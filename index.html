@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr Shaban Ahmad | Postdoc Researcher at UCPH</title>
+    <meta name="description" content="Academic Portfolio of Dr Shaban Ahmad">
+    
+    <link rel="icon" href="shaban.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #002e5f; /* UCPH Blue */
+            --primary-dark: #001a36;
+            --accent: #dca11d; /* Gold */
+            --text: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --inst-font: 'Merriweather', serif;
+            --transition: all 0.3s ease;
+            
+            /* Education Colors */
+            --edu-phd: #002e5f;
+            --edu-msc: #e67e22; /* Burnt Orange */
+            --edu-bsc: #20c997; 
+            --edu-xii: #fd7e14; 
+            --edu-x: #6f42c1;   
+            --edu-basic: #e83e8c; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: var(--text); background: var(--light-bg); padding-top: 65px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        
+        /* --- Separator --- */
+        .separator {
+            border: 0;
+            height: 4px; 
+            background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%);
+            margin: 3rem 0;
+            opacity: 0.8;
+        }
+
+        /* --- Header --- */
+        header { 
+            background: rgba(255, 255, 255, 0.98); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; height: 70px;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 30px; height: 100%; max-width: 1400px; margin: 0 auto;
+        }
+
+        .header-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary); 
+            text-decoration: none;
+            opacity: 0; 
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .header-name.visible {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+        
+        .header-name:hover { color: var(--accent) !important; }
+
+        /* CHANGED: Nav List Right Aligned + Less Gap */
+        .nav-list { 
+            display: flex; 
+            list-style: none; 
+            gap: 15px; /* Reduced gap */
+            padding: 0;
+            margin: 0 0 0 auto; /* Push to right */
+            align-items: center;
+        }
+        
+        .nav-link { 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            padding: 8px 10px; /* Compact padding */
+            border: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: transparent;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .nav-link:hover { 
+            color: var(--accent);
+            background: rgba(0, 46, 95, 0.05);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after { width: 80%; }
+
+        .nav-toggle { 
+            display: none; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            color: var(--primary); 
+            margin-left: auto; 
+            transition: transform 0.3s ease;
+        }
+        .nav-toggle.open { transform: rotate(90deg); }
+
+        /* --- Sidebar Socials --- */
+        .sticky-sidebar {
+            position: fixed; top: 50%; left: 0; transform: translateY(-50%);
+            z-index: 1100; display: flex; flex-direction: column; gap: 12px;
+            background-color: var(--white); padding: 15px 8px;
+            border-radius: 0 12px 12px 0; box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .sticky-sidebar .h-social {
+            font-size: 1.5rem; color: var(--primary); transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
+
+        /* --- Hero Section --- */
+        .hero { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
+            color: var(--white); padding: 4rem 2rem; position: relative;
+            display: flex; justify-content: center; align-items: center; gap: 4rem;
+            min-height: 450px;
+        }
+        
+        .hero-main { text-align: center; flex: 1; max-width: 600px; }
+        
+        .hero-img { 
+            width: 170px; height: 170px; border-radius: 50%; 
+            border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
+            background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 0.5rem; }
+        
+        .hero-name-link { color: var(--white); text-decoration: none; transition: color 0.3s; }
+        .hero-name-link:hover { color: var(--accent); }
+
+        .hero-role-link {
+            font-weight: 300; font-size: 1.25rem; color: #eee; border-bottom: 1px dotted #aaa;
+            display: inline-block; transition: 0.3s; margin-top: 5px;
+        }
+        .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        .hero-stats {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
+            width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .stat-row-link {
+            text-decoration: none; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s ease, background 0.2s; border-radius: 4px;
+        }
+        .stat-row-link:last-of-type { border-bottom: none; }
+        .stat-row-link:hover { transform: translateX(5px); background: rgba(255,255,255,0.05); }
+        .stat-row-link:hover .stat-value { color: #fff; }
+
+        .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 5px; font-size: 1.05rem; }
+        .stat-label { font-weight: 400; color: #ddd; display: flex; align-items: center; gap: 10px; }
+        .stat-value { font-weight: 700; color: var(--accent); font-size: 1.2rem; transition: color 0.2s; }
+        
+        .cv-btn {
+            display: block; width: 100%; padding: 12px; background: var(--accent);
+            color: var(--primary-dark); text-align: center; font-weight: 700;
+            border-radius: 8px; margin-top: 20px; transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; text-decoration: none;
+        }
+        .cv-btn:hover {
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
+            background: #fff; color: var(--primary);
+        }
+
+        /* --- Container & Titles --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .section-title { 
+            font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); 
+            margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px;
+        }
+
+        /* --- Profile & Interests --- */
+        .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+        .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .int-tag { 
+            background: var(--white); border: 1px solid #ddd; padding: 6px 12px; 
+            border-radius: 4px; font-weight: 500; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
+        }
+        .int-tag:hover { background: var(--primary); color: var(--white); }
+
+        /* --- Education (Added Animations) --- */
+        .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        
+        .edu-card { 
+            background: var(--white); padding: 1.5rem; border-radius: 8px; 
+            border-top: 5px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+        }
+        /* Hover Animation for Education */
+        .edu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        .edu-phd { border-top-color: var(--edu-phd); }
+        .edu-msc { border-top-color: var(--edu-msc); }
+        .edu-bsc { border-top-color: var(--edu-bsc); }
+        .edu-xii { border-top-color: var(--edu-xii); }
+        .edu-x { border-top-color: var(--edu-x); }
+        .edu-basic { border-top-color: var(--edu-basic); }
+
+        .edu-card h4 { font-size: 1.1rem; color: var(--text); margin-bottom: 5px; }
+        
+        .inst-link { 
+            font-family: var(--inst-font); font-size: 1rem; color: var(--primary); 
+            display: block; margin-bottom: 5px; text-decoration: none; 
+            font-weight: 600; transition: color 0.2s;
+        }
+        .inst-link:hover { color: var(--accent); }
+
+        .edu-meta { display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; margin-top: 10px;}
+
+        /* --- Experience (Added Animations) --- */
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        
+        .exp-box {
+            background: var(--white); padding: 1.2rem; border-radius: 6px; 
+            border-left: 4px solid; box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            display: flex; flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+        }
+        /* Hover Animation for Experience */
+        .exp-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        .exp-full { border-left-color: #28a745; } 
+        .exp-part { border-left-color: var(--edu-msc); } 
+        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+        
+        .exp-inst { 
+            font-family: var(--inst-font); color: var(--primary); 
+            font-weight: 600; font-size: 0.95rem; margin: 5px 0; 
+            text-decoration: none; transition: color 0.2s;
+        }
+        .exp-inst:hover { color: var(--accent); }
+
+        .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
+        .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; }
+        .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; margin-top: 10px; }
+        .bg-full { background: #28a745; }
+        .bg-part { background: var(--edu-msc); color: #fff; }
+
+        /* --- Awards Styling (CHANGED: Text Left, Badge Right, Compact) --- */
+        .award-box-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider for row layout */
+            gap: 20px;
+        }
+        
+        .award-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: row; /* Horizontal layout */
+            align-items: center;
+            justify-content: space-between; /* Space between text and icon */
+            text-align: left;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+
+        .award-content-wrapper { flex: 1; padding-right: 15px; }
+
+        .award-top {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .award-bottom {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .award-badge-icon {
+            font-size: 2.2rem;
+            color: var(--accent); /* Gold */
+            filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3));
+            flex-shrink: 0; /* Don't shrink the icon */
+        }
+
+        /* --- Patents (Added Animations) --- */
+        .patent-box { 
+            background: #fff; border: 1px solid #eee; padding: 1.5rem; 
+            border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+        }
+        /* Hover Animation for Patents */
+        .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
+
+        .patent-icon { font-size: 2rem; color: var(--accent); }
+        .patent-link { color: var(--primary); font-weight: bold; text-decoration: none; transition: color 0.2s; }
+        .patent-link:hover { color: var(--accent); }
+        
+        @media (min-width: 900px) {
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .patent-box { margin-bottom: 0; }
+        }
+
+        /* --- Contributions Accordion --- */
+        .accordion-btn {
+            width: 100%; padding: 1rem; text-align: left; 
+            background: var(--white); border: 1px solid #ddd; border-left: 4px solid var(--primary);
+            margin-bottom: 5px; cursor: pointer;
+            font-size: 1.05rem; font-weight: 600; color: var(--primary);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.3s ease;
+        }
+        .accordion-btn:hover { background: #f0f4f8; }
+        
+        .accordion-btn.active { 
+            background: #f0f8ff; 
+            color: var(--primary); 
+            border-left: 6px solid var(--primary);
+            border-top: 2px solid #87cefa;
+            border-right: 2px solid #87cefa;
+            border-bottom: 2px solid #87cefa;
+        }
+        
+        .panel { 
+            padding: 0 1rem; max-height: 0; overflow: hidden; 
+            transition: max-height 0.3s ease-out; background: var(--white);
+            border: 1px solid #eee; border-top: none; margin-bottom: 10px;
+        }
+        
+        .accordion-btn.active + .panel {
+            border-left: 2px solid #87cefa;
+            border-right: 2px solid #87cefa;
+            border-bottom: 2px solid #87cefa;
+            background: #fafcff;
+        }
+        
+        .scrollable-list { max-height: 600px; overflow-y: auto; padding-right: 15px; }
+        .scrollable-list::-webkit-scrollbar { width: 6px; }
+        .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
+        .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+        .pub-list { padding-left: 30px; list-style-type: decimal; }
+        .pub-item { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
+        .compact-list .pub-item { margin-bottom: 2px; padding-bottom: 2px; border: none; line-height: 1.3; }
+        .pub-item strong { color: #004d40; font-weight: 700; }
+        .pub-journal { font-style: italic; color: #555; font-size: 0.9rem; }
+        
+        .event-meta {
+            display: block; color: #666; font-size: 0.9rem; margin-top: 2px;
+            font-weight: 500; border-left: 3px solid var(--accent);
+            padding-left: 8px; margin-left: 2px;
+        }
+
+        .pub-doi { 
+            font-size: 0.7rem; color: #fff; background-color: var(--accent); 
+            padding: 3px 8px; border-radius: 4px; margin-left: 8px; 
+            font-weight: 700; text-decoration: none; display: inline-block;
+            transition: transform 0.2s;
+        }
+        .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); text-decoration: none; color: #fff; }
+
+        /* --- Academic Referee Cards (Updated Format & Animations) --- */
+        .referee-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+        }
+        .referee-card {
+            background: #fff; padding: 1.5rem; border-radius: 8px;
+            border-left: 4px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+        }
+        /* Hover Animation for Referees */
+        .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
+
+        .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+        .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; } /* Role inside parens style */
+        .referee-title-line { font-size: 0.95rem; font-weight: 600; color: #333; margin-top: 5px; }
+        
+        /* Institution Link Styling */
+        .referee-inst-link { 
+            font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; 
+            text-decoration: none; transition: color 0.3s ease;
+        }
+        .referee-inst-link:hover { color: var(--accent); text-decoration: none; }
+        
+        .referee-contact { font-size: 0.9rem; color: #444; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+        .email-badge { color: var(--accent); font-size: 1.1rem; }
+
+        /* --- Footer (Updated) --- */
+        footer { 
+            background: var(--primary-dark); 
+            color: #d1d5db; 
+            text-align: center; 
+            padding: 20px 0; /* Reduced height */
+            margin-top: 3rem; 
+            border-top: 4px solid var(--accent); 
+        }
+        
+        .footer-socials { 
+            margin: 0 0 10px 0; /* Reduced margin */
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; 
+        }
+
+        .footer-btn {
+            width: 35px; height: 35px; /* Slightly smaller */
+            background: rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.1rem; transition: all 0.3s;
+            text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-btn:hover { transform: translateY(-3px); background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
+        
+        .footer-text { 
+            font-size: 0.85rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px;
+            display: inline-block;
+            border-bottom: 1px solid var(--accent); /* Thin yellow underline */
+            padding-bottom: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .sticky-sidebar { display: none; }
+            .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
+            .hero-stats { width: 100%; max-width: 400px; animation: none; }
+            
+            .header-content { justify-content: space-between; }
+
+            .header-name { 
+                display: block !important; font-size: 1.1rem; margin-right: auto;
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;
+                pointer-events: auto !important;
+            }
+
+            .nav-list { 
+                display: none; flex-direction: column; 
+                background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); 
+                padding: 1.5rem; position: absolute; top: 70px; left: 0; width: 100%;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 12px;
+                border-bottom: 3px solid var(--accent); border-radius: 0 0 15px 15px;
+                margin: 0; /* Reset margin for mobile */
+            }
+            .nav-list.active { display: flex; }
+            
+            .nav-link {
+                color: #fff !important; background: var(--primary); text-align: center;
+                display: block; width: 100%; padding: 12px; border-radius: 50px; 
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .nav-link:hover { background: var(--accent); transform: scale(1.02); }
+            .nav-link::after { display: none; }
+            
+            .nav-toggle { display: block; }
+            .hero h1 { font-size: 1.8rem; }
+            .exp-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sticky-sidebar">
+        <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="h-social" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+        <a href="https://github.com/ShabanAhmad" target="_blank" class="h-social" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i target="_blank"  class="ai ai-orcid"></i></a>
+    </div>
+
+    <header id="main-header">
+        <div class="header-content">
+            <a href="https://sites.google.com/view/shaban-ahmad/home" target="_blank" class="header-name">Dr Shaban Ahmad</a>
+
+            <ul class="nav-list" id="nav-menu">
+                <li class="nav-item"><a href="#hero-section" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#patents" class="nav-link">Patents/Awards</a></li>
+                <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                <li class="nav-item"><a href="#professional" class="nav-link">Activities</a></li>
+                <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
+            </ul>
+
+            <div class="nav-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <section class="hero" id="hero-section">
+        <div class="hero-main">
+            <img src="shaban.png" alt="Dr Shaban Ahmad" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
+            <h1><a href="https://sites.google.com/view/shaban-ahmad/home" target="_blank" class="hero-name-link">Dr Shaban Ahmad</a></h1>
+            <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoc Researcher at University of Copenhagen</a>
+        </div>
+        
+        <div class="hero-stats">
+            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
+                <div class="stat-row">
+                    <span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span>
+                    <span class="stat-value">1550+</span>
+                </div>
+            </a>
+            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
+                <div class="stat-row">
+                    <span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span>
+                    <span class="stat-value">26</span>
+                </div>
+            </a>
+            <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link">
+                <div class="stat-row">
+                    <span class="stat-label"><i class="fas fa-check-circle"></i> Verified Reviews</span>
+                    <span class="stat-value">450+</span>
+                </div>
+            </a>
+            <a href="https://drive.google.com/file/d/1wS4sDe0t6SclCOBFtJyuzciShwteuNp8/view" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download Full CV</a>
+        </div>
+    </section>
+
+    <section id="profile" class="container" style="margin-top: 1rem;">
+        <h2 class="section-title">Personal Profile</h2>
+        <div class="profile-text">
+            Dr Shaban Ahmad is a Postdoctoral Researcher in Microbial Ecology and Biotechnology Section at the Department of Plant and Environmental Sciences, University of Copenhagen. His research combines AI, bioinformatics, and computational biology to identify PFAS-degrading enzymes in bacteria, addressing critical environmental challenges and advancing sustainable solutions. He earned his MSc and PhD in Bioinformatics from Jamia Millia Islamia University, New Delhi, where he developed AI-based models for drug discovery, focusing on lung cancer therapeutics.
+        </div>
+        <hr class="separator">
+
+        <h2 class="section-title">Research Interests</h2>
+        <div class="interests-wrapper">
+            <div class="int-tag">Artificial Intelligence in Genomics</div>
+            <div class="int-tag">AI in Drug Design</div>
+            <div class="int-tag">Deep Learning</div>
+            <div class="int-tag">Bioinformatics</div>
+            <div class="int-tag">Computer-Aided Drug Design (CADD)</div>
+            <div class="int-tag">Computational Genomics</div>
+            <div class="int-tag">Computational Chemistry</div>
+            <div class="int-tag">Molecular Dynamics Simulation</div>
+            <div class="int-tag">DFT</div>
+            <div class="int-tag">Binding Free Energy</div>
+            <div class="int-tag">Vaccine Design</div>
+            <div class="int-tag">PFAS Degradation</div>
+            <div class="int-tag">Machine Learning in Health</div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="education" class="container">
+        <h2 class="section-title">Educational Background</h2>
+        <div class="journey-intro">
+            From humble beginnings in Basti, UP, India (from KG to 8th), moving to Lucknow for 8th to 12th standard, then New Delhi for higher education, and now contributing to science globally in Finland and Denmark.
+        </div>
+
+
+        <div class="edu-grid">
+            <div class="edu-card edu-phd">
+                <h4>PhD (AI in Biology) <span style="color: var(--accent); font-size: 0.9em;">(<i class="fas fa-medal"></i> Medallist)</span></h4>
+
+                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
+                <div class="edu-meta">
+                    <span>2021 - 2025</span>
+                    <span><strong>8.60 CGPA</strong> (Coursework)</span>
+                </div>
+
+            </div>
+
+            <div class="edu-card edu-msc">
+                <h4>M.Sc. Bioinformatics</h4>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
+                <div class="edu-meta">
+                    <span>2018 - 2020</span>
+                    <span><strong>8.64 CGPA</strong></span>
+                </div>
+            </div>
+
+            <div class="edu-card edu-bsc">
+                <h4>B.Sc. (Hons.) Botany</h4>
+                <a href="https://www.du.ac.in/" target="_blank" class="inst-link">University of Delhi, India</a>
+                <div class="edu-meta">
+                    <span>2015 - 2018</span>
+                    <span><strong>7.36 CGPA</strong></span>
+                </div>
+            </div>
+
+            <div class="edu-card edu-xii">
+                <h4>XII (Intermediate)</h4>
+                <a href="#" class="inst-link" style="pointer-events: none;">J & M Inter College, Lucknow, India</a>
+                <div class="edu-meta">
+                    <span>2013 - 2015</span>
+                    <span><strong>79.2%</strong></span>
+                </div>
+            </div>
+
+            <div class="edu-card edu-x">
+                <h4>X (High School)</h4>
+                <a href="#" class="inst-link" style="pointer-events: none;">J & M School, Lucknow, India</a>
+                <div class="edu-meta">
+                    <span>2011 - 2013</span>
+                    <span><strong>73.5%</strong></span>
+                </div>
+            </div>
+
+             <div class="edu-card edu-basic">
+                <h4>Basic Schooling (KG to 8th)</h4>
+                <span class="inst-link" style="pointer-events: none;">Schools in Basti, UP, India</span>
+                <div class="edu-meta">
+                    <span>2003 - 2011</span>
+                    <span>NA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="journey-intro">
+            Honorary Alumna of National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="experience" class="container">
+        <h2 class="section-title">Research Experiences</h2>
+        <div class="exp-grid">
+            <div class="exp-box exp-full">
+                <div class="exp-role">Postdoc Researcher</div>
+                <a href="https://www.ku.dk/" target="_blank" class="exp-inst">University of Copenhagen, Denmark</a>
+                <div class="exp-date">June 2025 - Present</div>
+                <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
+                <span class="type-badge bg-full">FULL TIME</span>
+            </div>
+
+            <div class="exp-box exp-part">
+                <div class="exp-role">Visiting Researcher</div>
+                <a href="https://www.jyu.fi/en" target="_blank" class="exp-inst">University of Jyväskylä, Finland</a>
+                <div class="exp-date">Jan 2025 - Dec 2025</div>
+                <div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div>
+                <span class="type-badge bg-part">VISITING / PART TIME</span>
+            </div>
+
+             <div class="exp-box exp-full">
+                <div class="exp-role">PhD Scholar</div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="exp-inst">Jamia Millia Islamia, India</a>
+                <div class="exp-date">Sept 2021 - Oct 2025</div>
+                <div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div>
+                <span class="type-badge bg-full">FULL TIME</span>
+            </div>
+
+            <div class="exp-box exp-full">
+                <div class="exp-role">Project Assistant</div>
+                <a href="https://www.srmuniversity.ac.in/" target="_blank" class="exp-inst">SRM University, NCR, India</a>
+                <div class="exp-date">Nov 2020 - Sept 2021</div>
+                <div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div>
+                <span class="type-badge bg-full">PROJECT / FULL TIME</span>
+            </div>
+
+            <div class="exp-box exp-full">
+                <div class="exp-role">Project Assistant</div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="exp-inst">Jamia Millia Islamia, India</a>
+                <div class="exp-date">June 2020 - April 2021</div>
+                <div class="exp-desc">Nanodrug design, Molecular Docking, MD Simulation.</div>
+                <span class="type-badge bg-full">PROJECT / FULL TIME</span>
+            </div>
+
+             <div class="exp-box exp-full">
+                <div class="exp-role">DBT-Studentship</div>
+                <a href="https://www.iari.res.in/" target="_blank" class="exp-inst">ICAR - IARI, India</a>
+                <div class="exp-date">Jan 2020 - June 2020</div>
+                <div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div>
+                <span class="type-badge bg-full">TRAINEE / FULL TIME</span>
+            </div>
+
+             <div class="exp-box exp-part">
+                <div class="exp-role">Research Trainee</div>
+                <a href="https://www.icgeb.org/" target="_blank" class="exp-inst">ICGEB, India</a>
+                <div class="exp-date">Jan 2019 - Dec 2019</div>
+                <div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div>
+                <span class="type-badge bg-part">TRAINEE</span>
+            </div>
+            
+            <div class="exp-box exp-part">
+                <div class="exp-role">DBT-Studentship</div>
+                <a href="https://jamiahamdard.ac.in/" target="_blank" class="exp-inst">Jamia Hamdard University, India</a>
+                <div class="exp-date">March 2019 - April 2019</div>
+                <div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div>
+                <span class="type-badge bg-part">TRAINEE</span>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="patents" class="container">
+        <h2 class="section-title">Patents (IPR)</h2>
+        <div class="grid-container">
+            <div class="patent-box">
+                <i class="fas fa-certificate patent-icon"></i>
+                <div>
+                    <h4>Granted: 01 (German)</h4>
+                    <p>Extended-Release Tablet Composition for Multitarget Cancer Therapy</p>
+                    <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020241010280&CURSOR=8" target="_blank" class="patent-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="patent-box">
+                <i class="fas fa-file-signature patent-icon"></i>
+                <div>
+                    <h4>In Pipeline: 06</h4>
+                    <p>05 Indian, 1 US (Drug Molecules Designed During PhD Tenure)</p>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="awards" class="container">
+        <h2 class="section-title">Awards & Recognitions</h2>
+        <div class="award-box-grid">
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">World's Top 2% Scientists</div>
+                    <div class="award-bottom">Recognized by Stanford University and Elsevier for citation impact (2024).</div>
+                </div>
+                <i class="fas fa-medal award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Achievers of the Year</div>
+                    <div class="award-bottom">Awarded by University Registrar and Provost, Jamia Millia Islamia (2024-2025).</div>
+                </div>
+                <i class="fas fa-trophy award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Presentation Award</div>
+                    <div class="award-bottom">3rd International Electronic Conference on Cancers (MDPI) (2023).</div>
+                </div>
+                <i class="fas fa-microphone-alt award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Presentation Award</div>
+                    <div class="award-bottom">21st International Conference on Bioinformatics (InCoB), KAUST (2022).</div>
+                </div>
+                <i class="fas fa-award award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Oral Presentation</div>
+                    <div class="award-bottom">Interdisciplinary Science Conference, JMI, New Delhi (2019).</div>
+                </div>
+                <i class="fas fa-bullhorn award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Poster Presenter</div>
+                    <div class="award-bottom">National Conference on CCSMAP, MRIIRS (2019).</div>
+                </div>
+                <i class="fas fa-image award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">DBT-Studentship Fellowship</div>
+                    <div class="award-bottom">Awarded 6-month fellowship at ICAR-IARI (2020).</div>
+                </div>
+                <i class="fas fa-user-graduate award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">DBT-Studentship Fellowship</div>
+                    <div class="award-bottom">Awarded 2-month fellowship at Jamia Hamdard (2019).</div>
+                </div>
+                <i class="fas fa-certificate award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">1st Prize Working Model</div>
+                    <div class="award-bottom">"PARIVARTAN 2K18", Sri Aurobindo College, DU (2018).</div>
+                </div>
+                <i class="fas fa-project-diagram award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Society Contributions Award</div>
+                    <div class="award-bottom">Awarded by WEED for Greenest Campus initiatives (2016).</div>
+                </div>
+                <i class="fas fa-hand-holding-heart award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">2nd Prize (Quiz/Contest)</div>
+                    <div class="award-bottom">Explico Know Your Green in "SANJEEVANI", Deshbandhu College (2016).</div>
+                </div>
+                <i class="fas fa-star award-badge-icon"></i>
+            </div>
+
+            <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Poster Award</div>
+                    <div class="award-bottom">ICSSR-sponsored National Seminar, Sri Aurobindo College (2016).</div>
+                </div>
+                <i class="fas fa-file-alt award-badge-icon"></i>
+            </div>
+
+             <div class="award-card">
+                <div class="award-content-wrapper">
+                    <div class="award-top">Innovation Fellowship</div>
+                    <div class="award-bottom">Innovation Project Fellowship, University of Delhi (2015-16).</div>
+                </div>
+                <i class="fas fa-lightbulb award-badge-icon"></i>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="publications" class="container">
+        <h2 class="section-title">Publications & Scholarly Works</h2>
+        
+        <button class="accordion-btn">Journal Articles <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br><em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        <li class="pub-item"><strong>Multitarget Docking and Molecular Enumeration Reveal DdpMPyPEPhU as a Potent Modulator of Cell Cycle, Glucocorticoid, and Estrogen Signalling in Breast Cancer</strong><br><em>Submitted: IJBIOMAC-D-25-041021 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        <li class="pub-item"><strong>LUNGXAI: A Deep Learning Framework with LIME-based Interpretability for Gene Expression and Classification</strong><br><em>Submitted: INFFUS-D-25-02490 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        
+                        <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley-Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Multimodal evaluation of Mannose Engineered Poly Lactic Glycolic Acid Nanoparticles with Granulocyte Colony Stimulating Factor Focused Delivery to Bone Marrow for Neutropenia</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-025-29790-w" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em> <a class="pub-doi" href="http://doi.org/10.1080/1061186X.2025.2530656" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Correction: Integrative computational approaches identify haptoglobin inhibitors to modulate erythrocyte sedimentation rate...</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1662748" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>FDA-approved Levophed as an alternative multitargeted therapeutic against cervical cancer transferase, cell cycle, and regulatory proteins</strong><br><em>Computers in Biology and Medicine (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.compbiomed.2025.110163" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Probing the Multitargeted Potency of Theodrenaline and Its Comparative Evaluation with Crizotinib Against Transferase, Hydrolase, Signalling, and Apoptosis-Related Proteins...</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1611972" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Evaluating the polypharmacological potency of FEDPN from ChEMBL BioAssays against lung cancer EGFR, ALK, TrkA and KRAS proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.141703" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>RCSB Protein Data Bank: Revolutionising Drug Discovery and Design for Over Five Decades</strong><br><em>Medical Data Mining (2025)</em> <a class="pub-doi" href="https://doi.org/10.53388/MDM202508008" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Investigating the Inhibitory Effects of Paliperidone on RAGES: Docking, DFT, MD Simulations, MMPBSA, MTT, Apoptosis, and Immunoblotting Studies</strong><br><em>Intl. J. Mol. Sci. (2025)</em> <a class="pub-doi" href="https://doi.org/10.3390/ijms26031060" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Probing the Role of Coniferin and Tetrahydrocurcumin from Traditional Chinese Medicine against PSAT1 in Early-stage Ovarian Cancer</strong><br><em>PLoS ONE (2025)</em> <a class="pub-doi" href="http://dx.doi.org/10.1371/journal.pone.0313585" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank">DOI</a></li>
+                        
+                        <li class="pub-item"><strong>Reporting multitargeted potency of Tiaprofenic acid against lung cancer: Molecular fingerprinting, MD simulation, and MTT- based cell viability assay studies</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/j.ijbiomac.2024.133872" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Synthesis, structural elucidation, and antibacterial activities of novel copper(II), cobalt(II), and nickel(II) complexes with a bidentate Schiff base ligand against pathogenic bacteria</strong><br><em>Journal of Molecular Structure (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2024.139874" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Integrative Analysis Discovers Imidurea as a dual multitargeted inhibitor of CD69, CD40, SHP2, Lysozyme, GATA3, cCBL, and S-cysteinase from SARS-CoV-2 and M. tuberculosis</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/j.ijbiomac.2024.132332" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Deciphering the influenza neuraminidase inhibitory potential of naturally occurring bioflavonoids: An in-silico approach</strong><br><em>Open Chemistry (2024)</em> <a class="pub-doi" href="https://doi.org/10.1515/chem-2024-0053" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Meet the Executive Guest Editor of Mini-Reviews in Medicinal Chemistry (Shaban Ahmad)</strong><br><em>Mini-Reviews in Medicinal Chemistry (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.2174/138955752413240422155139" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Microbial biofilm inhibition using magnetic cross-linked polyphenol oxidase aggregates</strong><br><em>ACS Applied Biomaterials (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1021/acsabm.4c00175" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>An Extensive Review on Lung Cancer Therapeutics Using Machine Learning Techniques: State-of-the-art and Perspectives</strong><br><em>Journal of Drug Targeting (2024)</em> <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2024.2347358" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>2-hydrazinobenzothiazole-based derivatives: Synthesis, characterisation, antifungal, DNA binding and molecular modelling approaches</strong><br><em>Journal of Molecular Structure (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2024.138051" target="_blank">DOI</a></li>
+                        
+                        <li class="pub-item"><strong>Multisampling-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer: An optimisation followed multi-simulation and in-vitro study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2209673" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential aromatase inhibitor against breast carcinoma</strong><br><em>Nature- Scientific Reports (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Investigating the multitargeted anti-diabetic potential of cucurbitane-type triterpenoid from Momordica charantia: An LC-MS, docking-based MM\GBSA and MD Simulation Study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2291174" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Identification of 5-nitroindazole as a multitargeted inhibitor for CDK and transferase kinase in lung cancer: a multisampling algorithm-based structural study</strong><br><em>Molecular Diversity (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11030-023-10648-0" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Design, synthesis, X-ray crystal structures, anticancer, DNA binding and modelling studies of pyrazole-pyrazoline derivatives</strong><br><em>RSC Advances (2023)</em> <a class="pub-doi" href="https://doi.org/10.1039/d3ra04873j" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Structural-functional analysis and Molecular characterisation of arsenate reductase from Enterobacter cloacae RSC3 for arsenic biotransformation</strong><br><em>3-Biotech (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/s13205-023-03730-9" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Computational screening and MM\GBSA-based MD simulation studies reveal the high binding potential of FDA-approved drugs against Cutibacterium acnes Sialidase</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi" href="http://dx.doi.org/10.1080/07391102.2023.2242950" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Structure-Based Design of Novel MAO-B Inhibitors: A Review</strong><br><em>Molecules (2023)</em> <a class="pub-doi" href="https://doi.org/10.3390/molecules28124814" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Comparative genomic assessment of members of Genus Tenacibaculum: An exploratory study</strong><br><em>Mol. Gen. Genomics (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/s00438-023-02031-3" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Synthesis, Single crystal, TD-DFT, Molecular Dynamics Simulation and DNA binding studies of Carbothioamide Analogue</strong><br><em>Journal of Molecular Structure (2023)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2023.135701" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Structure-based virtual screening, molecular docking, molecular dynamics simulation, and metabolic reactivity studies of quinazoline derivatives for their anti-EGFR activity against tumour angiogenesis</strong><br><em>Current Medicinal Chemistry (2023)</em> <a class="pub-doi" href="https://doi.org/10.2174/0929867330666230309143711" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Comprehensive Computational Studies of Naturally Occurring Kuguacins as Anti-diabetic Agents by Targeting Visfatin</strong><br><em>Chemistry Africa (2023)</em> <a class="pub-doi" href="http://dx.doi.org/10.1007/s42250-023-00604-8" target="_blank">DOI</a></li>
+                        
+                        <li class="pub-item"><strong>Predictive modelling and therapeutic repurposing of natural compounds against the receptor-binding domain of SARS-CoV-2</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Correction to: Novel Severe Acute Respiratory Syndrome Coronavirus 2...</strong><br><em>Mol. Cell. Biochem. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-021-04317-9" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation...</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Comparative insight into Rice chloroplasts genome: Mutational Phylogenomics reveals Echinochloa oryzicola as the ongoing progenitor of rice</strong><br><em>Gen. Res. Crop Evol. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10722-022-01471-x" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Macrophage-Targeted Punicalagin Nanoengineering to Alleviate Methotrexate-Induced Neutropenia: A Molecular Docking, DFT, and MD Simulation Analysis</strong><br><em>Molecules (2022)</em> <a class="pub-doi" href="https://doi.org/10.3390/molecules27186034" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>In silico analysis reveals Quinic acid as a multitargeted inhibitor against Cervical Cancer</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2022.2146202" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Multitargeted molecular dynamic understanding of Butoxypheser against SARS-CoV-2: An in-silico study</strong><br><em>Nat. Prod. Comm. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1177/1934578X221115499" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Reporting dinaciclib and theodrenaline as a multitargeted inhibitor against SARS-CoV-2: an in-silico study</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2022.2060308" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>In-silico Screening and Molecular Dynamics Simulation of Drug Bank Experimental Compounds against SARS-CoV-2</strong><br><em>Molecules (2022)</em> <a class="pub-doi" href="https://doi.org/10.3390/molecules27144391" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Unveiling the multitargeted potential of N-(4-Aminobutanoyl)-S-(4-methoxybenzyl)-L-cysteinylglycine (NSL-CG) against SARS-CoV-2: A virtual screening and molecular dynamics simulation study</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2022.2110158" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Hemi-Babim and Fenoterol as Potential Inhibitors of MPro and Papain-like Protease against SARS-CoV-2: An In-Silico Study</strong><br><em>Medicina (2022)</em> <a class="pub-doi" href="https://doi.org/10.3390/medicina58040515" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>In silico analysis of the ACE2 receptor to find potential herbal drugs in COVID-19-associated neurological dysfunctions</strong><br><em>Nat. Prod. Comm. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1177/1934578X221118549" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Molecular dynamics simulation and docking analysis of NF-kB protein binding with sulindac acid</strong><br><em>Bioinformation (2022)</em> <a class="pub-doi" href="https://doi.org/10.6026%2F97320630018170" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Antiviral Potential of Indian Medicinal Plants Against Influenza and SARS-CoV: A Systematic Review</strong><br><em>Nat. Prod. Comm. (2022)</em> <a class="pub-doi" href="http://dx.doi.org/10.1177/1934578X221086988" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Novel severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) and other coronaviruses: a genome-wide comparative annotation and analysis</strong><br><em>Mol. Cell. Biochem. (2021)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-020-04027-8" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Phytochemical Analysis and Antifungal Activity of Weed Extracts against Rhizoctonia Root Rot in Buckwheat (Fagopyrum tataricum)</strong><br><em>Biopesticide International (2020)</em> <a class="pub-doi" href="https://connectjournals.com/02196.2020.16.125" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Probing the effect of a plus 1bp frameshift mutation in the protein-DNA interface of the domestication gene, NAMB1, in wheat</strong><br><em>J. Biomol. Struct. Dyn. (2019)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2019.1680435" target="_blank">DOI</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Book Chapters <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>Artificial Intelligence in Molecular Screening: Advances, Challenges, and Future Perspectives.</strong><br><em>Springer Nature- Al in Precision Drug Design (2025)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        <li class="pub-item"><strong>Artificial Intelligence in Omics Integration for Precision Drug Design.</strong><br><em>Springer Nature- Al in Precision Drug Design (2025)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
+                        <li class="pub-item"><strong>Deep learning in variant detection and annotation.</strong><br><em>Elsevier- Deep Learning in Genetics and Genomics (2025)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/B978-0-443-27574-6.00010-2" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Artificial Bee Colony Algorithms in Gene Expression Studies: A Case Study.</strong><br><em>Springer Nature- Solving with Bees (2024)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-97-7344-2_10" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Generative AI in Drug Designing: Current State-of-the-Art and Perspectives.</strong><br><em>Springer Nature- Generative AI in Drug Designing (2024)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-97-8460-8_20" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Beispielhafte Implikationen von naturinspirierten Berechnungsmethoden auf Therapeutika und computergestützte Arzneimittelentwicklung.</strong><br><em>Springer Nature (2024)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-99-7808-3_15" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Bedeutende Innovationen in naturinspirierten intelligenten Computertechniken zur Identifizierung von Biomarkern und potenziellen therapeutischen Mitteln.</strong><br><em>Springer Nature (2024)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-99-7808-3_13" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Deep learning in computer-aided drug design: a case study.</strong><br><em>Elsevier- Deep Learning Applications in Translational Bioinformatics (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/B978-0-443-22299-3.00012-8" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Natural Product-Based Drug Designing for Treatment of Human Parasitic Diseases.</strong><br><em>Springer- Natural Product-based Drug Discovery against Human Parasites (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-19-9605-4_3" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Application of machine learning-based approaches in stem cell research.</strong><br><em>Elsevier- Computational Biology for Stem Cell Research (2023)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/B978-0-443-13222-3.00007-1" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>5-Nitroindazole against Lung Cancer: A Multitargeted in-silico Molecular Docking and Molecular Dynamics Simulation Study.</strong><br><em>MDPI- Medical Sciences Forum (2023)</em> <a class="pub-doi" href="https://sciforum.net/paper/view/14216" target="_blank">Link</a></li>
+                        <li class="pub-item"><strong>Multialgorithm-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer.</strong><br><em>MDPI- Medical Sciences Forum (2023)</em> <a class="pub-doi" href="https://doi.org/10.3390/ECB2023-14138" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Protein-based Therapeutic Vaccines.</strong><br><em>Springer- Protein-Based Therapeutics (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-19-8249-1_13" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Nanoinformatics and Nanomodeling: Recent developments in computational nanodrug design and delivery systems.</strong><br><em>Elsevier- Emerging Nanotechnologies for Medical Applications (2022)</em> <a class="pub-doi" href="https://doi.org/10.1016/B978-0-323-91182-5.00001-2" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Illustrious Implications of NIC Methods in Therapeutics and Computer-Aided Drug Design.</strong><br><em>Springer- Nature-Inspired Intelligent Computing Techniques in Bioinformatics (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-19-6379-7_15" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Consequential Innovations in NIC Techniques for Biomarkers and Potential Therapeutics Identification.</strong><br><em>Springer- Nature-Inspired Intelligent Computing Techniques in Bioinformatics (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-19-6379-7_13" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Fundamentals of molecular modelling in drug design.</strong><br><em>Elsevier- Computer Aided Drug Design (2022)</em> <a class="pub-doi" href="https://doi.org/10.1016/B978-0-323-90608-1.00001-0" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>The Incipient Role of Computational Intelligence in Oncology: Drug Designing, Discovery, and Development.</strong><br><em>Springer- Computational Intelligence in Oncology (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-16-9221-5_21" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>A review of predictive systems and data models for COVID-19.</strong><br><em>Springer- Computational Intelligence Methods in COVID-19 (2021)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-15-8534-0_7" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Mobile Technology Solution for COVID-19: Surveillance and Prevention.</strong><br><em>Springer- Computational Intelligence Methods in COVID-19 (2021)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-981-15-8534-0_5" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>From molecules to patients: The clinical applications of biological databases and electronic health records.</strong><br><em>Elsevier- Translational Bioinformatics in Healthcare and Medicine (2021)</em> <a class="pub-doi" href="https://doi.org/10.1016/B978-0-323-89824-9.00009-4" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Clinical Applications of Next-Generation Sequencing Analysis in Acute Myelogenous Leukaemia.</strong><br><em>T & F- Translational Bioinformatics Applications in Healthcare (2021)</em> <a class="pub-doi" href="https://dx.doi.org/10.1201/9781003146988-4" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Mitogen-activated protein kinase, plants, and heat stress.</strong><br><em>Springer- Harsh Environment and Plant Resilience (2021)</em> <a class="pub-doi" href="https://doi.org/10.1007/978-3-030-65912-7_13" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Exosomes as an emerging nanoplatform for functional therapeutics.</strong><br><em>Elsevier- Handbook on Nanobiomaterials for Therapeutics and Diagnostic Applications (2021)</em> <a class="pub-doi" href="https://doi.org/10.1016/B978-0-12-821013-0.00002-7" target="_blank">DOI</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Data & Codes <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                 <ul class="pub-list">
+                    <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
+                    <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                    <li class="pub-item"><strong>LungXAI:</strong> Deep Learning Framework. <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                    <li class="pub-item"><strong>RMSD-RMSF Plots:</strong> <a href="https://github.com/ShabanAhmad/RMSD-RMSF-Plots" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                    <li class="pub-item"><strong>ChEMBL BioAssays:</strong> <a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                    <li class="pub-item"><strong>PubChem BioAssay:</strong> <a href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="conferences" class="container">
+        <h2 class="section-title">Conferences & Events</h2>
+
+        <button class="accordion-btn">Presented in Conferences <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>5-Nitroindazole against Lung Cancer: A multitargeted in-silico molecular docking and Molecular Dynamics simulation study</strong><div class="event-meta">3rd International Electronic Conference on Cancers (IECC 2023) | Mar 16-30, 2023</div></li>
+                        <li class="pub-item"><strong>Multialgorithms-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer</strong><div class="event-meta">2nd International Electronic Conference on Biomedicines | 2023</div></li>
+                        <li class="pub-item"><strong>Multitargeted docking-based simulative understanding of Theodrenaline against lung cancer: an in-silico study</strong><div class="event-meta">21st International Conference on Bioinformatics (InCoB), KAUST, Saudi Arabia | Nov 21-23, 2022</div></li>
+                        <li class="pub-item"><strong>In silico study of aromatase inhibitors using computer-aided drug design</strong><div class="event-meta">World Congress on Reproductive Health (ISSRF2020), Katra, J&K | Feb 14-16, 2020</div></li>
+                        <li class="pub-item"><strong>Rice Bean (Vigna umbellata) draft genome sequence: unravelling the late flowering and unpalatability related genomic resources</strong><div class="event-meta">Young Scientist Conference India International Science Festival (YSC-IISF), Kolkata | Nov 05-07, 2019</div></li>
+                        <li class="pub-item"><strong>Deep learning and Artificial intelligence in Biological sciences</strong><div class="event-meta">Interdisciplinary Science Conference, JMI, New Delhi | Oct 21-22, 2019</div></li>
+                        <li class="pub-item"><strong>Efficacy of Weed based botanicals against Rhizoctonia root rot in Buckwheat (Fagopyrum sp.)</strong><div class="event-meta">1st National Conference on 'Neglected and Underutilized Crop Species', NIPGR, New Delhi | Aug 02, 2019</div></li>
+                        <li class="pub-item"><strong>Sustainable Agriculture and Global Food Security: Perspective, importance and Opinion</strong><div class="event-meta">Symposium on 'Avenues in Plants Sciences', Deshbandhu College, New Delhi | Mar 8-9, 2019</div></li>
+                        <li class="pub-item"><strong>Buckwheat (Kuttu): As food, good health and Medicine</strong><div class="event-meta">National Conference on CCSMAP, MRIIRS | Feb 21-22, 2019</div></li>
+                        <li class="pub-item"><strong>Biofuels: A sustainable approach of Futuristic Energy</strong><div class="event-meta">National Conference on 'Trends in Life Sciences and Biotechnology', Maitreyi College, New Delhi | Feb 19-20, 2019</div></li>
+                        <li class="pub-item"><strong>Biodiversity: Threats and Conservation</strong><div class="event-meta">Fourth National Symposium on 'Environment', Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
+                        <li class="pub-item"><strong>Role of Nanobiotechnology in Enhancing Crop production</strong><div class="event-meta">'Trends in Nanobiotechnology', TERI University | Sep 28-29, 2017</div></li>
+                        <li class="pub-item"><strong>Study of Bioactive component in Buckwheat and in-silico analysis of fagopyritol synthase</strong><div class="event-meta">'Emerging Issues of Climate change', Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Attended Workshops <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                 <div class="scrollable-list">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>2025 Summer School in Applied Deep Learning in Bioinformatics</strong><div class="event-meta">Faculty of Health and Medical Sciences, University of Copenhagen, Denmark | Aug 11-15, 2025</div></li>
+                        <li class="pub-item"><strong>Clinical Interpretation of Whole Genome Sequences</strong><div class="event-meta">Knowmics (Online Course) | June 29, 2025</div></li>
+                        <li class="pub-item"><strong>New Education Policy (NEP) 2020 Sensitisation Programme</strong><div class="event-meta">UGC-MMTTC, Jamia Millia Islamia, New Delhi | Aug 05-14, 2024</div></li>
+                        <li class="pub-item"><strong>Enabling Technology Training (ETT-5) Workshop</strong><div class="event-meta">SCIS, JNU, New Delhi | Feb 17, 2024</div></li>
+                        <li class="pub-item"><strong>"Artificial Intelligence in Modern Biology-2"</strong><div class="event-meta">ICGEB, New Delhi | Sep 12-14, 2023</div></li>
+                        <li class="pub-item"><strong>Indo-Vietnam Hands-on Workshop on Sequencing Techniques</strong><div class="event-meta">CSIR-IGIB, New Delhi | Aug 02-06, 2023</div></li>
+                        <li class="pub-item"><strong>Computational Techniques for AI and Data Science Applications</strong><div class="event-meta">DST-STUTI, Banasthali Vidyapith, Rajasthan | July 25-31, 2023</div></li>
+                        <li class="pub-item"><strong>Hands-on Workshop on "Design, Synthesis, Computational Studies..."</strong><div class="event-meta">SERB-KARYASHALA, NIPER-Ahmedabad | Jan 30 - Feb 05, 2023</div></li>
+                        <li class="pub-item"><strong>Accelerate your Research Using Elsevier’s Science Direct and Scopus</strong><div class="event-meta">NIPER-Ahmedabad | Jan 31, 2023</div></li>
+                        <li class="pub-item"><strong>Application of High-Performance Computing in Drug Designing</strong><div class="event-meta">SERB, MNNIT Allahabad | Aug 06, 2022</div></li>
+                        <li class="pub-item"><strong>BioC2022- Bioconductor Conference 2022</strong><div class="event-meta">Seattle Children’s Hospital (Virtual) | July 27-29, 2022</div></li>
+                        <li class="pub-item"><strong>Cloud-based Hands-on Workshop on Molecular Docking...</strong><div class="event-meta">ICMR-NICPR & Schrodinger Inc, Noida | Mar 15-16, 2022</div></li>
+                        <li class="pub-item"><strong>Discovery of Vaccines and Drugs for Infectious Diseases</strong><div class="event-meta">ICGEB, New Delhi | Dec 06-09, 2021</div></li>
+                        <li class="pub-item"><strong>7 days International Workshop on Artificial Intelligence</strong><div class="event-meta">AiCHEF & St Claret College, Bengaluru | Nov 15-21, 2021</div></li>
+                        <li class="pub-item"><strong>2-days Cloud-based Hands-on Workshop: Computational SBDD & MD Simulations</strong><div class="event-meta">SRM University & Schrodinger Inc | Sep 02-03, 2021</div></li>
+                        <li class="pub-item"><strong>Quantitative genetics genomics and plant breeding</strong><div class="event-meta">Vignan's Foundation, Guntur | Nov 23-27, 2020</div></li>
+                        <li class="pub-item"><strong>Advanced Structural Bioinformatics</strong><div class="event-meta">DBT-ABTIC, ICGEB, New Delhi | Nov 18-21, 2019</div></li>
+                        <li class="pub-item"><strong>Deep learning and IoT using MATLAB</strong><div class="event-meta">Dept. of Computer Science, Jamia Millia Islamia | Oct 03, 2019</div></li>
+                        <li class="pub-item"><strong>BioTecNika Schrodinger Joint Workshop on CADD</strong><div class="event-meta">Biotecnika Info Pvt. Ltd | July 22 - Aug 02, 2019</div></li>
+                        <li class="pub-item"><strong>Application of Artificial Intelligence in Modern Biology</strong><div class="event-meta">ICGEB, New Delhi | Mar 28-29, 2019</div></li>
+                        <li class="pub-item"><strong>Translational Bioinformatics: Guinness Book Recording to Digital Era</strong><div class="event-meta">Jamia Millia Islamia | Mar 06-07, 2019</div></li>
+                        <li class="pub-item"><strong>Interactive NGS Data Analysis</strong><div class="event-meta">NEHU, Shillong | Nov 15-17, 2018</div></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Conferences Attended <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>3rd Symposium on Applied Deep Learning in Bioinformatics</strong><div class="event-meta">Faculty of Health and Medical Sciences, University of Copenhagen, Denmark | Aug 15, 2025</div></li>
+                        <li class="pub-item"><strong>Springer Nature: Navigate the World of Scientific Article Writing</strong><div class="event-meta">Online Session | May 15, 2025</div></li>
+                        <li class="pub-item"><strong>Springer Nature: How to Navigate Platforms to Access all Journals</strong><div class="event-meta">Online Session | Mar 19, 2025</div></li>
+                        <li class="pub-item"><strong>The 3rd International Electronic Conference on Cancers</strong><div class="event-meta">MDPI | Mar 16-30, 2023</div></li>
+                        <li class="pub-item"><strong>The 2nd International Electronic Conference on Biomedicines</strong><div class="event-meta">MDPI | Mar 01-31, 2023</div></li>
+                        <li class="pub-item"><strong>MDPI Webinar: GIS in the Management of Sustainable and Smart Cities</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
+                        <li class="pub-item"><strong>MDPI Webinar: Entropy Measures to Assess Irregularity...</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
+                        <li class="pub-item"><strong>Seminar: Recent Advances in Translational Cancer Research</strong><div class="event-meta">IGNTU, Amarkantak | Feb 08, 2023</div></li>
+                        <li class="pub-item"><strong>MDPI Webinar: Screening for miRNA With Essentiality in Cancer</strong><div class="event-meta">Online | Dec 13, 2022</div></li>
+                        <li class="pub-item"><strong>MDPI Webinar: Cardio-Oncology...</strong><div class="event-meta">Online | Dec 07, 2022</div></li>
+                        <li class="pub-item"><strong>National Webinar on Emotional Intelligence</strong><div class="event-meta">MQI College, Bangalore | Dec 07, 2022</div></li>
+                        <li class="pub-item"><strong>21st International Conference on Bioinformatics (InCoB)</strong><div class="event-meta">KAUST, Saudi Arabia | Nov 21-23, 2022</div></li>
+                        <li class="pub-item"><strong>Seminar on "Intellectual Property Rights"</strong><div class="event-meta">Jamia Millia Islamia, New Delhi | Feb 28, 2022</div></li>
+                        <li class="pub-item"><strong>3rd ICGA 2022 Virtual Conference: Biobanking to Omics</strong><div class="event-meta">Online | Jan 13-14, 2022</div></li>
+                        <li class="pub-item"><strong>Economic botany and plant genetic resources: National Perspective</strong><div class="event-meta">Deshbandhu College, New Delhi | Jan 18, 2022</div></li>
+                        <li class="pub-item"><strong>ISCBSC- RSG India Student Symposium 2019</strong><div class="event-meta">JNU, New Delhi | Nov 22, 2019</div></li>
+                        <li class="pub-item"><strong>Young Scientist Conference - India International Science Festival (YSC-IISF)</strong><div class="event-meta">Kolkata | Nov 05-07, 2019</div></li>
+                        <li class="pub-item"><strong>Interdisciplinary Science Conference: Big Data and Computational Biology</strong><div class="event-meta">JMI, New Delhi | Oct 21-22, 2019</div></li>
+                        <li class="pub-item"><strong>DST-PURSE National Seminar on Biophysics</strong><div class="event-meta">JMI, New Delhi</div></li>
+                        <li class="pub-item"><strong>Mini-symposium on "Tracking Antimicrobial Drug Resistance Tuberculosis"</strong><div class="event-meta">VPCI, Delhi University</div></li>
+                        <li class="pub-item"><strong>20th Distinguished Lecture by Sir Prof. Tom Blundell</strong><div class="event-meta">Jamia Hamdard, New Delhi | Mar 20, 2019</div></li>
+                        <li class="pub-item"><strong>Symposium on "Avenues in Plants Sciences"</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
+                        <li class="pub-item"><strong>National Conference on CCSMAP</strong><div class="event-meta">MRIIRS | Feb 21-22, 2019</div></li>
+                        <li class="pub-item"><strong>Fourth National Symposium on "Environment: Green Technology..."</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
+                        <li class="pub-item"><strong>National Science Congress Association Delhi Chapter</strong><div class="event-meta">Zakir Hussain Delhi College | Oct 25, 2017</div></li>
+                        <li class="pub-item"><strong>"PARIVARTAN 2K18"</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
+                        <li class="pub-item"><strong>26th World Environmental Congress (WEED)</strong><div class="event-meta">India International Centre, New Delhi | Nov 08, 2017</div></li>
+                        <li class="pub-item"><strong>"BIOTIKOS 2017"</strong><div class="event-meta">TERI School of Advanced Sciences | Sep 28-29, 2017</div></li>
+                        <li class="pub-item"><strong>Conference on "Growth control in development and disease"</strong><div class="event-meta">NII, New Delhi | Oct 07, 2016</div></li>
+                        <li class="pub-item"><strong>National Conference on "Galapagos Island and Darwin's Theory of Evolution"</strong><div class="event-meta">NII, New Delhi | Oct 06, 2016</div></li>
+                        <li class="pub-item"><strong>ICSSR-sponsored seminar "Emerging Issues of Climate change"</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
+                        <li class="pub-item"><strong>Environmental Concerns of the 21st century</strong><div class="event-meta">Zakir Hussain Delhi College</div></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <section id="professional" class="container">
+        <h2 class="section-title">Professional Activities</h2>
+
+        <button class="accordion-btn">Editorial Roles <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <ul class="pub-list" style="padding-left: 20px;">
+                    <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)</li>
+                    <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)</li>
+                    <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)</li>
+                    <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Society Membership <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <ul class="pub-list" style="padding-left: 20px;">
+                    <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">International Association for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>
+                    <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">European Society for Medical Oncology</a></strong> (10/05/2024 to 09/05/2026)</li>
+                    <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">Bioinformatics and Drug Discovery Society</a></strong> (Life Member)</li>
+                    <li class="pub-item">Council Member of the <strong><a href="https://www.deshbandhucollege.ac.in/" target="_blank" style="color:var(--primary); text-decoration: underline;">Botanical Society (Sanjeevani)</a></strong>, Deshbandhu College, University of Delhi.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Peer Reviews <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">450+ Verified Peer Reviews on Publons</p>
+                    <p style="font-size:0.95rem;">Reviewer for journals including:</p>
+                    <ul class="pub-list compact-list" style="margin-top:10px;">
+                        <li class="pub-item">Archives of Computational Methods in Engineering</li>
+                        <li class="pub-item">Archives of Microbiology</li>
+                        <li class="pub-item">Accreditation and Quality Assurance</li>
+                        <li class="pub-item">Biochemical and Biophysical Research Communications</li>
+                        <li class="pub-item">Biochemical Genetics</li>
+                        <li class="pub-item">Bioinformatics and Biology Insights</li>
+                        <li class="pub-item">Biomedical Reports</li>
+                        <li class="pub-item">BMC Artificial Intelligence</li>
+                        <li class="pub-item">BMC Infectious Diseases</li>
+                        <li class="pub-item">BMC Veterinary Research</li>
+                        <li class="pub-item">Brazilian Journal of Biology</li>
+                        <li class="pub-item">Cancer Investigation</li>
+                        <li class="pub-item">Cell Biochemistry and Biophysics</li>
+                        <li class="pub-item">Computer Methods in Biomechanics and Biomedical Engineering</li>
+                        <li class="pub-item">Computers in Biology and Medicine</li>
+                        <li class="pub-item">Crop Protection</li>
+                        <li class="pub-item">Current Cancer Drug Targets</li>
+                        <li class="pub-item">Current Medicinal Chemistry</li>
+                        <li class="pub-item">Current Plant Biology</li>
+                        <li class="pub-item">Digital Health</li>
+                        <li class="pub-item">Discover Applied Sciences</li>
+                        <li class="pub-item">Discover Oncology</li>
+                        <li class="pub-item">Drug Development Research</li>
+                        <li class="pub-item">European Journal of Medicinal Chemistry</li>
+                        <li class="pub-item">Experimental and Therapeutic Medicine</li>
+                        <li class="pub-item">F1000Research</li>
+                        <li class="pub-item">Frontiers in Dental Medicine</li>
+                        <li class="pub-item">Frontiers in Immunology</li>
+                        <li class="pub-item">Future Medicinal Chemistry</li>
+                        <li class="pub-item">Heliyon</li>
+                        <li class="pub-item">In Silico Pharmacology</li>
+                        <li class="pub-item">International Journal of Oncology</li>
+                        <li class="pub-item">IScience</li>
+                        <li class="pub-item">Journal of Biological Research and Reviews</li>
+                        <li class="pub-item">Journal of Biomolecular Structure and Dynamics</li>
+                        <li class="pub-item">Journal of Chemistry</li>
+                        <li class="pub-item">Journal of Computational Science</li>
+                        <li class="pub-item">Journal of Computer-Aided Molecular Design</li>
+                        <li class="pub-item">Journal of Drug Targeting</li>
+                        <li class="pub-item">Journal of Experimental & Clinical Cancer Research</li>
+                        <li class="pub-item">Journal of Molecular Modeling</li>
+                        <li class="pub-item">Journal of Pharmaceutical Innovation</li>
+                        <li class="pub-item">Journal of Proteins and Proteomics</li>
+                        <li class="pub-item">Journal of the Egyptian National Cancer Institute</li>
+                        <li class="pub-item">Medical Oncology</li>
+                        <li class="pub-item">Molecular Diversity</li>
+                        <li class="pub-item">Molecular Medicine Reports</li>
+                        <li class="pub-item">Natural Resources for Human Health</li>
+                        <li class="pub-item">Naunyn-Schmiedeberg's Archives of Pharmacology</li>
+                        <li class="pub-item">Neural Computing and Applications</li>
+                        <li class="pub-item">Npj Precision Oncology</li>
+                        <li class="pub-item">Oncology Letters</li>
+                        <li class="pub-item">Open Chemistry</li>
+                        <li class="pub-item">PeerJ</li>
+                        <li class="pub-item">Pharmacological Research</li>
+                        <li class="pub-item">PLoS Neglected Tropical Diseases</li>
+                        <li class="pub-item">Plos One</li>
+                        <li class="pub-item">Qeios</li>
+                        <li class="pub-item">Scientific Reports</li>
+                        <li class="pub-item">SN Applied Sciences</li>
+                        <li class="pub-item">Structural Chemistry</li>
+                        <li class="pub-item">VEGETOS</li>
+                        <li class="pub-item">Virology</li>
+                        <li class="pub-item">Virulence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn">Mentorship & Supervision <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <ul class="pub-list">
+                    <li class="pub-item">Guided <strong>10 MSc</strong> and <strong>5 BSc</strong> dissertation students during PhD tenure at Jamia Millia Islamia.</li>
+                    <li class="pub-item">Guided many PhD Students as a mentor on quality research and publication.</li>
+                    <li class="pub-item">Currently Supervising <strong>3 MSc</strong> and <strong>1 BSc</strong> dissertation students at University of Copenhagen, Denmark.</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+    
+    <section id="technical" class="container">
+        <h2 class="section-title">Technical Proficiency</h2>
+        <ul class="pub-list">
+            <li class="pub-item"><strong>Operating Systems:</strong> Linux (Ubuntu), Windows (10, 11, Server), Android, macOS.</li>
+            <li class="pub-item"><strong>Programming & Scripting Languages:</strong> Python (NumPy, pandas, matplotlib, Biopython), R (tidyverse, Bioconductor), Perl, MATLAB, Bash scripting, SQL.</li>
+            <li class="pub-item"><strong>Web Development:</strong> PHP, Django, Flask, Node.js, Express.js, React, Angular, Vue.js, RESTful API development.</li>
+            <li class="pub-item"><strong>Automation & Workflow Tools:</strong> NextGen Flow, KNIME, Power Automate, GitHub.</li>
+            <li class="pub-item"><strong>Data Analysis & Machine Learning:</strong> Weka, TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, LightGBM, Pandas, NumPy, Matplotlib, Seaborn, MS Excel (advanced functions, pivot tables).</li>
+            <li class="pub-item"><strong>Bioinformatics & Sequence Analysis:</strong> BLAST, FASTA, Clustal Omega, MEGA, Phylip, EMBOSS, HMMER, Bowtie, SAMtools, BWA, T-Coffee, MAFFT, Geneious Prime, Genome Browsers (UCSC, Ensembl).</li>
+            <li class="pub-item"><strong>Structural Biology & Molecular Modelling:</strong> PyMOL, Chimera, Swiss-PDBViewer, Modeller, VMD, Rosetta, Coot, CCP4 Suite, Phenix, ChimeraX.</li>
+            <li class="pub-item"><strong>Genomics Tools:</strong> GEO2R, Gene Ontology-based Enrichment Analyser, SRA Toolkit, Bowtie2, TopHat, Cufflinks, HTSeq, SAMtools, BWA, GATK, Picard, Geneious Prime, DESeq2, EdgeR, Bioconductor packages.</li>
+            <li class="pub-item"><strong>Systems Biology:</strong> Cytoscape, KEGG Mapper, Reactome Pathway Browser, STRING, GeneMANIA, BioGRID, OmicsNet.</li>
+            <li class="pub-item"><strong>Drug Discovery & Docking:</strong> AutoDock Vina, SwissDock, InstaDock, Glide (Schrödinger Suite), MOE.</li>
+            <li class="pub-item"><strong>Molecular Dynamics Simulation:</strong> Desmond, GROMACS, NAMD, VMD (visualisation).</li>
+            <li class="pub-item"><strong>Free Energy Calculations:</strong> MM/GBSA, MM/PBSA, FEP (Free Energy Perturbation), Thermodynamic Integration (TI), Umbrella Sampling.</li>
+            <li class="pub-item"><strong>Graphics & Visualisation:</strong> BioRender, Adobe Photoshop, CorelDraw, Blender (3D modelling, animation), ClipChamp, PowerPoint, Illustrator, Matplotlib, Seaborn, ggplot2.</li>
+            <li class="pub-item"><strong>Additional Expertise:</strong> Protein and ligand structure optimisation, multitargeted drug design, virtual screening workflows (VSW), interaction fingerprint analysis, WaterMap, Density Functional Theory (DFT) calculations.</li>
+            <li class="pub-item"><strong>Cloud & Computing:</strong> Proficient in managing and configuring cloud servers (AWS, Google Cloud, Microsoft Azure), HPC clusters, and supercomputers for job queue management (SLURM), deployment, containerisation (Docker), and workflow scheduling.</li>
+        </ul>
+        <hr class="separator">
+    </section>
+
+    <section id="referees" class="container">
+        <h2 class="section-title">Academic Referees</h2>
+        <div class="referee-grid">
+            <div class="referee-card">
+                <div class="referee-name">Dr Khalid Raza <span class="referee-role">(PhD Supervisor)</span></div>
+                <div class="referee-title-line">Associate Professor</div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:kraza@jmi.ac.in">kraza@jmi.ac.in</a>
+                </div>
+            </div>
+            
+            <div class="referee-card">
+                <div class="referee-name">Dr Murugesh Eswaran <span class="referee-role">(PI @ ICGEB)</span></div>
+                <div class="referee-title-line">Tenure Track Faculty</div>
+                <a href="https://www.msm.edu/" target="_blank" class="referee-inst-link">Morehouse School of Medicine, USA</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a>
+                </div>
+            </div>
+            
+            <div class="referee-card">
+                <div class="referee-name">Dr Mansaf Alam <span class="referee-role">(MSc Supervisor)</span></div>
+                <div class="referee-title-line">Professor</div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a>
+                </div>
+            </div>
+            
+            <div class="referee-card">
+                <div class="referee-name">Dr Manoj K Yadav <span class="referee-role">(PI- SARS-CoV-2)</span></div>
+                <div class="referee-title-line">Associate Professor</div>
+                <a href="https://www.srmuniversity.ac.in/" target="_blank" class="referee-inst-link">SRM University, Haryana</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:manoj.yadav@srmuniversity.ac.in">manoj.yadav@srmuniversity.ac.in</a>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+
+	    <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="footer-btn s-Email" title="Email"> <i class="fas fa-envelope"></i> </a>
+            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
+            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
+            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/DrShabanAhmad" target="_blank" class="footer-btn s-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
+            <a href="https://loop.frontiersin.org/people/925491/publications" target="_blank" class="footer-btn s-loop" title="Loop"><i class="fas fa-infinity"></i></a>
+            <a href="https://sciprofiles.com/profile/ShabanAhmad" target="_blank" class="footer-btn s-sci" title="SciProfiles"><i class="fas fa-flask"></i></a>
+        </div>
+        
+        <div class="footer-text">
+            &copy; 2026 Dr Shaban Ahmad | All Rights Reserved | Last Updated on January 30, 2026.
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Logic for Name Reveal
+        window.addEventListener('scroll', function() {
+            const headerName = document.querySelector('.header-name');
+            const hero = document.querySelector('.hero');
+            const triggerHeight = hero.offsetHeight - 150; 
+
+            if (window.scrollY > triggerHeight) {
+                headerName.classList.add('visible');
+            } else {
+                headerName.classList.remove('visible');
+            }
+        });
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navBar = document.querySelector('.nav-list');
+            const toggleBtn = document.querySelector('.nav-toggle');
+            navBar.classList.toggle('active');
+            toggleBtn.classList.toggle('open');
+        }
+
+        // Close mobile menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const navBar = document.querySelector('.nav-list');
+                if (navBar.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Accordion Logic
+        const acc = document.getElementsByClassName("accordion-btn");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = "700px"; 
+                } 
+            });
+        }
+    </script>
+</body>
+</html>
