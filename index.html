@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr Shaban Ahmad | Postdoc Researcher at UCPH</title>
-    <meta name="description" content="Academic Portfolio of Dr Shaban Ahmad">
+    <title>Dr Shaban | Postdoc at UCPH</title>
+    <meta name="description" content="Academic Portfolio of Dr Shaban">
     
     <link rel="icon" href="shaban.png" type="image/png">
     
@@ -30,6 +30,12 @@
             --edu-xii: #fd7e14; 
             --edu-x: #6f42c1;   
             --edu-basic: #e83e8c; 
+            
+            /* Referee Colors */
+            --ref-1: #002e5f;
+            --ref-2: #008080;
+            --ref-3: #6610f2;
+            --ref-4: #dc3545;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,7 +62,9 @@
 
         .header-content {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 30px; height: 100%; max-width: 1400px; margin: 0 auto;
+            padding: 0 30px; height: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto;
         }
 
         .header-name {
@@ -79,13 +87,12 @@
         
         .header-name:hover { color: var(--accent) !important; }
 
-        /* CHANGED: Nav List Right Aligned + Less Gap */
         .nav-list { 
             display: flex; 
             list-style: none; 
-            gap: 15px; /* Reduced gap */
+            gap: 10px; 
             padding: 0;
-            margin: 0 0 0 auto; /* Push to right */
+            margin: 0 0 0 auto; 
             align-items: center;
         }
         
@@ -95,7 +102,7 @@
             font-size: 0.85rem; 
             font-weight: 600; 
             letter-spacing: 0.5px;
-            padding: 8px 10px; /* Compact padding */
+            padding: 8px 10px; 
             border: none;
             border-radius: 4px;
             transition: all 0.3s ease;
@@ -150,11 +157,19 @@
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
         /* --- Hero Section --- */
+        .hero-section-wrapper {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+        }
+
         .hero { 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
             color: var(--white); padding: 4rem 2rem; position: relative;
             display: flex; justify-content: center; align-items: center; gap: 4rem;
             min-height: 450px;
+            max-width: 1200px; 
+            width: 100%;
         }
         
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
@@ -228,18 +243,19 @@
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
-        /* --- Education (Added Animations) --- */
+        /* --- Education --- */
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
         .edu-card { 
-            background: var(--white); padding: 1.5rem; border-radius: 8px; 
-            border-top: 5px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+            background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
+            border-top: 6px solid #ccc; 
+            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
         }
-        /* Hover Animation for Education */
-        .edu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
+        
         .edu-phd { border-top-color: var(--edu-phd); }
         .edu-msc { border-top-color: var(--edu-msc); }
         .edu-bsc { border-top-color: var(--edu-bsc); }
@@ -247,7 +263,16 @@
         .edu-x { border-top-color: var(--edu-x); }
         .edu-basic { border-top-color: var(--edu-basic); }
 
-        .edu-card h4 { font-size: 1.1rem; color: var(--text); margin-bottom: 5px; }
+        /* FIXED Hover Effect: Border color matches box type on all sides */
+        .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
+        .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
+        .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
+        .edu-xii:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-xii); }
+        .edu-x:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-x); }
+        .edu-basic:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-basic); }
+
+        .edu-card h4 { font-size: 1.15rem; color: var(--text); margin-bottom: 8px; font-weight: 700; }
+        .year-span { color: #888; font-weight: 400; font-size: 0.95rem; margin-left: 5px; }
         
         .inst-link { 
             font-family: var(--inst-font); font-size: 1rem; color: var(--primary); 
@@ -256,41 +281,50 @@
         }
         .inst-link:hover { color: var(--accent); }
 
-        .edu-meta { display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; margin-top: 10px;}
+        .badge-gold { 
+            display: inline-block; background-color: #fff9db; color: #856404; 
+            padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;
+            margin-top: 5px; border: 1px solid #ffeeba;
+        }
 
-        /* --- Experience (Added Animations) --- */
-        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        /* --- Experience --- */
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
         
         .exp-box {
-            background: var(--white); padding: 1.2rem; border-radius: 6px; 
-            border-left: 4px solid; box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            background: var(--white); padding: 1.5rem; border-radius: 6px; 
+            border-top: 5px solid; 
+            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
             display: flex; flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        /* Hover Animation for Experience */
-        .exp-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
-        .exp-full { border-left-color: #28a745; } 
-        .exp-part { border-left-color: var(--edu-msc); } 
-        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
         
+        .exp-full { border-top-color: #28a745; } 
+        .exp-part { border-top-color: var(--edu-msc); } 
+        .exp-trainee { border-top-color: #6f42c1; }
+        
+        .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #28a745; }
+        .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
+        .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #6f42c1; }
+
+        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
         .exp-inst { 
             font-family: var(--inst-font); color: var(--primary); 
             font-weight: 600; font-size: 0.95rem; margin: 5px 0; 
             text-decoration: none; transition: color 0.2s;
         }
         .exp-inst:hover { color: var(--accent); }
-
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
         .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; }
         .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; margin-top: 10px; }
         .bg-full { background: #28a745; }
         .bg-part { background: var(--edu-msc); color: #fff; }
+        .bg-trainee { background: #6f42c1; color: #fff; }
 
-        /* --- Awards Styling (CHANGED: Text Left, Badge Right, Compact) --- */
+        /* --- Awards Styling (CHANGED: Icon Left) --- */
         .award-box-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider for row layout */
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
             gap: 20px;
         }
         
@@ -304,7 +338,8 @@
             display: flex;
             flex-direction: row; /* Horizontal layout */
             align-items: center;
-            justify-content: space-between; /* Space between text and icon */
+            justify-content: flex-start; /* Items start from left */
+            gap: 20px; /* Space between icon and text */
             text-align: left;
         }
 
@@ -314,36 +349,24 @@
             border-color: var(--accent);
         }
 
-        .award-content-wrapper { flex: 1; padding-right: 15px; }
+        .award-content-wrapper { flex: 1; }
 
-        .award-top {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.05rem;
-            margin-bottom: 5px;
-            line-height: 1.2;
-        }
-
-        .award-bottom {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.3;
-        }
+        .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; }
+        .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
 
         .award-badge-icon {
             font-size: 2.2rem;
-            color: var(--accent); /* Gold */
+            color: var(--accent); 
             filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3));
-            flex-shrink: 0; /* Don't shrink the icon */
+            flex-shrink: 0;
         }
 
-        /* --- Patents (Added Animations) --- */
+        /* --- Patents --- */
         .patent-box { 
             background: #fff; border: 1px solid #eee; padding: 1.5rem; 
             border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
-        /* Hover Animation for Patents */
         .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
 
         .patent-icon { font-size: 2rem; color: var(--accent); }
@@ -359,7 +382,7 @@
             .patent-box { margin-bottom: 0; }
         }
 
-        /* --- Contributions Accordion --- */
+        /* --- Accordion --- */
         .accordion-btn {
             width: 100%; padding: 1rem; text-align: left; 
             background: var(--white); border: 1px solid #ddd; border-left: 4px solid var(--primary);
@@ -417,49 +440,108 @@
         }
         .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); text-decoration: none; color: #fff; }
 
-        /* --- Academic Referee Cards (Updated Format & Animations) --- */
+        /* --- Academic Referee Cards --- */
         .referee-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
         }
         .referee-card {
             background: #fff; padding: 1.5rem; border-radius: 8px;
-            border-left: 4px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation prep */
+            border-top: 5px solid; 
+            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        /* Hover Animation for Referees */
-        .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
+        
+        .ref-1 { border-top-color: var(--ref-1); }
+        .ref-2 { border-top-color: var(--ref-2); }
+        .ref-3 { border-top-color: var(--ref-3); }
+        .ref-4 { border-top-color: var(--ref-4); }
+
+        /* Hover: Color Matches Top Border */
+        .ref-1:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-1); }
+        .ref-2:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-2); }
+        .ref-3:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-3); }
+        .ref-4:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-4); }
 
         .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
-        .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; } /* Role inside parens style */
+        .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; }
         .referee-title-line { font-size: 0.95rem; font-weight: 600; color: #333; margin-top: 5px; }
-        
-        /* Institution Link Styling */
         .referee-inst-link { 
             font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; 
             text-decoration: none; transition: color 0.3s ease;
         }
-        .referee-inst-link:hover { color: var(--accent); text-decoration: none; }
-        
+        .referee-inst-link:hover { color: var(--accent); }
         .referee-contact { font-size: 0.9rem; color: #444; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
-        /* --- Footer (Updated) --- */
+        /* --- Updated Tech Proficiency Design (Grid of Cards inside Accordion) --- */
+        .tech-panel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem 0.5rem;
+        }
+        
+        .tech-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 5px solid #ccc; /* Default gray */
+            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* Card Colors */
+        .tc-blue { border-top-color: var(--primary); }
+        .tc-blue:hover { border-color: var(--primary); }
+        
+        .tc-green { border-top-color: #20c997; }
+        .tc-green:hover { border-color: #20c997; }
+        
+        .tc-purple { border-top-color: #6f42c1; }
+        .tc-purple:hover { border-color: #6f42c1; }
+        
+        .tc-orange { border-top-color: #fd7e14; }
+        .tc-orange:hover { border-color: #fd7e14; }
+
+        .tech-sub-title {
+            font-weight: 700; color: var(--primary); font-size: 1.1rem; 
+            margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .tech-sub-title i { color: var(--accent); font-size: 1.2rem; }
+
+        .tech-ul { list-style: none; padding: 0; margin: 0; }
+        .tech-ul li {
+            position: relative; padding-left: 20px; margin-bottom: 8px;
+            font-size: 0.9rem; color: #555; line-height: 1.4;
+        }
+        .tech-ul li::before {
+            content: '\f00c'; /* FontAwesome Check */
+            font-family: 'Font Awesome 5 Free'; font-weight: 900;
+            position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem;
+        }
+
+        /* --- Footer --- */
         footer { 
             background: var(--primary-dark); 
             color: #d1d5db; 
             text-align: center; 
-            padding: 20px 0; /* Reduced height */
+            padding: 20px 0; 
             margin-top: 3rem; 
             border-top: 4px solid var(--accent); 
         }
         
         .footer-socials { 
-            margin: 0 0 10px 0; /* Reduced margin */
+            margin: 0 0 10px 0; 
             display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; 
         }
 
         .footer-btn {
-            width: 35px; height: 35px; /* Slightly smaller */
+            width: 35px; height: 35px; 
             background: rgba(255,255,255,0.1); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             color: #fff; font-size: 1.1rem; transition: all 0.3s;
@@ -469,9 +551,7 @@
         
         .footer-text { 
             font-size: 0.85rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px;
-            display: inline-block;
-            border-bottom: 1px solid var(--accent); /* Thin yellow underline */
-            padding-bottom: 2px;
+            display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;
         }
 
         /* Mobile Responsive */
@@ -479,36 +559,17 @@
             .sticky-sidebar { display: none; }
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
-            
             .header-content { justify-content: space-between; }
-
-            .header-name { 
-                display: block !important; font-size: 1.1rem; margin-right: auto;
-                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;
-                pointer-events: auto !important;
-            }
-
-            .nav-list { 
-                display: none; flex-direction: column; 
-                background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); 
-                padding: 1.5rem; position: absolute; top: 70px; left: 0; width: 100%;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 12px;
-                border-bottom: 3px solid var(--accent); border-radius: 0 0 15px 15px;
-                margin: 0; /* Reset margin for mobile */
-            }
+            .header-name { display: block !important; font-size: 1.1rem; margin-right: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%; pointer-events: auto !important; }
+            .nav-list { display: none; flex-direction: column; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); padding: 1.5rem; position: absolute; top: 70px; left: 0; width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 12px; border-bottom: 3px solid var(--accent); border-radius: 0 0 15px 15px; margin: 0; }
             .nav-list.active { display: flex; }
-            
-            .nav-link {
-                color: #fff !important; background: var(--primary); text-align: center;
-                display: block; width: 100%; padding: 12px; border-radius: 50px; 
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
+            .nav-link { color: #fff !important; background: var(--primary); text-align: center; display: block; width: 100%; padding: 12px; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
             .nav-link:hover { background: var(--accent); transform: scale(1.02); }
             .nav-link::after { display: none; }
-            
             .nav-toggle { display: block; }
             .hero h1 { font-size: 1.8rem; }
             .exp-grid { grid-template-columns: 1fr; }
+            .tech-panel-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -520,20 +581,23 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
         <a href="https://github.com/ShabanAhmad" target="_blank" class="h-social" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i target="_blank"  class="ai ai-orcid"></i></a>
+        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
+        <a href="https://shabanahmad.github.io/" target="_blank" class="h-social" title="Updated Personal Website"><i class="fas fa-globe"></i></a>
     </div>
 
     <header id="main-header">
         <div class="header-content">
-            <a href="https://sites.google.com/view/shaban-ahmad/home" target="_blank" class="header-name">Dr Shaban Ahmad</a>
+            <a href="#hero-section" class="header-name">Dr Shaban</a>
 
             <ul class="nav-list" id="nav-menu">
-                <li class="nav-item"><a href="#hero-section" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#patents" class="nav-link">Patents/Awards</a></li>
+                <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
+                <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                <li class="nav-item"><a href="#conferences" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="#professional" class="nav-link">Activities</a></li>
+                <li class="nav-item"><a href="#technical" class="nav-link">Technical</a></li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
             </ul>
 
@@ -541,61 +605,71 @@
         </div>
     </header>
 
-    <section class="hero" id="hero-section">
-        <div class="hero-main">
-            <img src="shaban.png" alt="Dr Shaban Ahmad" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
-            <h1><a href="https://sites.google.com/view/shaban-ahmad/home" target="_blank" class="hero-name-link">Dr Shaban Ahmad</a></h1>
-            <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoc Researcher at University of Copenhagen</a>
-        </div>
-        
-        <div class="hero-stats">
-            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
-                <div class="stat-row">
-                    <span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span>
-                    <span class="stat-value">1550+</span>
-                </div>
-            </a>
-            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
-                <div class="stat-row">
-                    <span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span>
-                    <span class="stat-value">26</span>
-                </div>
-            </a>
-            <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link">
-                <div class="stat-row">
-                    <span class="stat-label"><i class="fas fa-check-circle"></i> Verified Reviews</span>
-                    <span class="stat-value">450+</span>
-                </div>
-            </a>
-            <a href="https://drive.google.com/file/d/1wS4sDe0t6SclCOBFtJyuzciShwteuNp8/view" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download Full CV</a>
-        </div>
-    </section>
+    <div class="hero-section-wrapper" id="hero-section">
+        <section class="hero">
+            <div class="hero-main">
+                <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
+                <h1><a href="https://shabanahmad.github.io/" target="_blank" class="hero-name-link">Dr Shaban Ahmad</a></h1>
+                <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoc Researcher at University of Copenhagen</a>
+            </div>
+            
+            <div class="hero-stats">
+                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span>
+                        <span class="stat-value">1550+</span>
+                    </div>
+                </a>
+                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span>
+                        <span class="stat-value">26</span>
+                    </div>
+                </a>
+                <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link">
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fas fa-check-circle"></i> Verified Reviews</span>
+                        <span class="stat-value">450+</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/file/d/1CJGuR3PlwKiQkgjcskuR2KDOqINkG2UN/view" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download Full CV</a>
+            </div>
+        </section>
+    </div>
 
-    <section id="profile" class="container" style="margin-top: 1rem;">
-        <h2 class="section-title">Personal Profile</h2>
-        <div class="profile-text">
-            Dr Shaban Ahmad is a Postdoctoral Researcher in Microbial Ecology and Biotechnology Section at the Department of Plant and Environmental Sciences, University of Copenhagen. His research combines AI, bioinformatics, and computational biology to identify PFAS-degrading enzymes in bacteria, addressing critical environmental challenges and advancing sustainable solutions. He earned his MSc and PhD in Bioinformatics from Jamia Millia Islamia University, New Delhi, where he developed AI-based models for drug discovery, focusing on lung cancer therapeutics.
-        </div>
-        <hr class="separator">
+<section id="profile" class="container" style="margin-top: 1rem;">
+    <h2 class="section-title">Personal Profile</h2>
+    <div class="profile-text">
+        <p>
+            Dr Shaban Ahmad is a Postdoctoral Researcher in the Microbial Ecology and Biotechnology Section, Department of Plant and Environmental Sciences, University of Copenhagen. His research integrates AI, bioinformatics, and computational biology to study PFAS-degrading enzymes and advance sustainable biotechnological solutions.
+        </p>
 
-        <h2 class="section-title">Research Interests</h2>
-        <div class="interests-wrapper">
-            <div class="int-tag">Artificial Intelligence in Genomics</div>
-            <div class="int-tag">AI in Drug Design</div>
-            <div class="int-tag">Deep Learning</div>
-            <div class="int-tag">Bioinformatics</div>
-            <div class="int-tag">Computer-Aided Drug Design (CADD)</div>
-            <div class="int-tag">Computational Genomics</div>
-            <div class="int-tag">Computational Chemistry</div>
-            <div class="int-tag">Molecular Dynamics Simulation</div>
-            <div class="int-tag">DFT</div>
-            <div class="int-tag">Binding Free Energy</div>
-            <div class="int-tag">Vaccine Design</div>
-            <div class="int-tag">PFAS Degradation</div>
-            <div class="int-tag">Machine Learning in Health</div>
-        </div>
-        <hr class="separator">
-    </section>
+        <p>
+            He holds an MSc and a PhD in Bioinformatics from Jamia Millia Islamia, India, where his doctoral work focused on AI-driven drug discovery, particularly in lung cancer.
+        </p>
+
+            His research focuses on AI-enabled genomics and computer-aided drug design, including deep learning models for drug activity prediction, cancer genomics, antimicrobial resistance, and PFAS biodegradation. He has strong expertise in molecular modelling, simulations, and large-scale computational genomics.
+        </p>
+    </div>
+
+    <div class="interests-wrapper">
+        <div class="int-tag">AI in Genomics</div>
+        <div class="int-tag">AI in Drug Design</div>
+        <div class="int-tag">Deep Learning</div>
+        <div class="int-tag">Bioinformatics</div>
+        <div class="int-tag">CADD</div>
+        <div class="int-tag">Computational Genomics</div>
+        <div class="int-tag">Computational Chemistry</div>
+        <div class="int-tag">Molecular Dynamics</div>
+        <div class="int-tag">DFT</div>
+        <div class="int-tag">Binding Free Energy</div>
+        <div class="int-tag">Vaccine Design</div>
+        <div class="int-tag">PFAS Biodegradation</div>
+        <div class="int-tag">Machine Learning in Health</div>
+    </div>
+
+    <hr class="separator">
+</section>
 
     <section id="education" class="container">
         <h2 class="section-title">Educational Background</h2>
@@ -606,63 +680,38 @@
 
         <div class="edu-grid">
             <div class="edu-card edu-phd">
-                <h4>PhD (AI in Biology) <span style="color: var(--accent); font-size: 0.9em;">(<i class="fas fa-medal"></i> Medallist)</span></h4>
-
+                <h4>PhD (AI in Biology) <span class="year-span">(2021 - 2025)</span></h4>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
-                <div class="edu-meta">
-                    <span>2021 - 2025</span>
-                    <span><strong>8.60 CGPA</strong> (Coursework)</span>
-                </div>
-
+                <div class="badge-gold"><i class="fas fa-medal"></i> Gold Medallist</div>
             </div>
 
             <div class="edu-card edu-msc">
-                <h4>M.Sc. Bioinformatics</h4>
+                <h4>M.Sc. Bioinformatics <span class="year-span">(2018 - 2020)</span></h4>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
-                <div class="edu-meta">
-                    <span>2018 - 2020</span>
-                    <span><strong>8.64 CGPA</strong></span>
-                </div>
             </div>
 
             <div class="edu-card edu-bsc">
-                <h4>B.Sc. (Hons.) Botany</h4>
+                <h4>B.Sc. (Hons.) Botany <span class="year-span">(2015 - 2018)</span></h4>
                 <a href="https://www.du.ac.in/" target="_blank" class="inst-link">University of Delhi, India</a>
-                <div class="edu-meta">
-                    <span>2015 - 2018</span>
-                    <span><strong>7.36 CGPA</strong></span>
-                </div>
             </div>
 
             <div class="edu-card edu-xii">
-                <h4>XII (Intermediate)</h4>
+                <h4>XII (Intermediate) <span class="year-span">(2013 - 2015)</span></h4>
                 <a href="#" class="inst-link" style="pointer-events: none;">J & M Inter College, Lucknow, India</a>
-                <div class="edu-meta">
-                    <span>2013 - 2015</span>
-                    <span><strong>79.2%</strong></span>
-                </div>
             </div>
 
             <div class="edu-card edu-x">
-                <h4>X (High School)</h4>
+                <h4>X (High School) <span class="year-span">(2011 - 2013)</span></h4>
                 <a href="#" class="inst-link" style="pointer-events: none;">J & M School, Lucknow, India</a>
-                <div class="edu-meta">
-                    <span>2011 - 2013</span>
-                    <span><strong>73.5%</strong></span>
-                </div>
             </div>
 
              <div class="edu-card edu-basic">
-                <h4>Basic Schooling (KG to 8th)</h4>
+                <h4>Basic Schooling <span class="year-span">(2003 - 2011)</span></h4>
                 <span class="inst-link" style="pointer-events: none;">Schools in Basti, UP, India</span>
-                <div class="edu-meta">
-                    <span>2003 - 2011</span>
-                    <span>NA</span>
-                </div>
             </div>
         </div>
 
-        <div class="journey-intro">
+        <div class="journey-intro" style="margin-top: 2rem;">
             Honorary Alumna of National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
         </div>
         <hr class="separator">
@@ -719,20 +768,20 @@
                 <span class="type-badge bg-full">TRAINEE / FULL TIME</span>
             </div>
 
-             <div class="exp-box exp-part">
+             <div class="exp-box exp-trainee">
                 <div class="exp-role">Research Trainee</div>
                 <a href="https://www.icgeb.org/" target="_blank" class="exp-inst">ICGEB, India</a>
                 <div class="exp-date">Jan 2019 - Dec 2019</div>
                 <div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div>
-                <span class="type-badge bg-part">TRAINEE</span>
+                <span class="type-badge bg-trainee">TRAINEE</span>
             </div>
             
-            <div class="exp-box exp-part">
+            <div class="exp-box exp-trainee">
                 <div class="exp-role">DBT-Studentship</div>
                 <a href="https://jamiahamdard.ac.in/" target="_blank" class="exp-inst">Jamia Hamdard University, India</a>
                 <div class="exp-date">March 2019 - April 2019</div>
                 <div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div>
-                <span class="type-badge bg-part">TRAINEE</span>
+                <span class="type-badge bg-trainee">TRAINEE</span>
             </div>
         </div>
         <hr class="separator">
@@ -764,111 +813,113 @@
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
             <div class="award-card">
+                <i class="fas fa-medal award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">World's Top 2% Scientists</div>
                     <div class="award-bottom">Recognized by Stanford University and Elsevier for citation impact (2024).</div>
                 </div>
-                <i class="fas fa-medal award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-trophy award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Achievers of the Year</div>
                     <div class="award-bottom">Awarded by University Registrar and Provost, Jamia Millia Islamia (2024-2025).</div>
                 </div>
-                <i class="fas fa-trophy award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-microphone-alt award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Presentation Award</div>
                     <div class="award-bottom">3rd International Electronic Conference on Cancers (MDPI) (2023).</div>
                 </div>
-                <i class="fas fa-microphone-alt award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-award award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Presentation Award</div>
                     <div class="award-bottom">21st International Conference on Bioinformatics (InCoB), KAUST (2022).</div>
                 </div>
-                <i class="fas fa-award award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-bullhorn award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Oral Presentation</div>
                     <div class="award-bottom">Interdisciplinary Science Conference, JMI, New Delhi (2019).</div>
                 </div>
-                <i class="fas fa-bullhorn award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-image award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Poster Presenter</div>
                     <div class="award-bottom">National Conference on CCSMAP, MRIIRS (2019).</div>
                 </div>
-                <i class="fas fa-image award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-user-graduate award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">DBT-Studentship Fellowship</div>
                     <div class="award-bottom">Awarded 6-month fellowship at ICAR-IARI (2020).</div>
                 </div>
-                <i class="fas fa-user-graduate award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-certificate award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">DBT-Studentship Fellowship</div>
                     <div class="award-bottom">Awarded 2-month fellowship at Jamia Hamdard (2019).</div>
                 </div>
-                <i class="fas fa-certificate award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-project-diagram award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">1st Prize Working Model</div>
                     <div class="award-bottom">"PARIVARTAN 2K18", Sri Aurobindo College, DU (2018).</div>
                 </div>
-                <i class="fas fa-project-diagram award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-hand-holding-heart award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Society Contributions Award</div>
                     <div class="award-bottom">Awarded by WEED for Greenest Campus initiatives (2016).</div>
                 </div>
-                <i class="fas fa-hand-holding-heart award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-star award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">2nd Prize (Quiz/Contest)</div>
                     <div class="award-bottom">Explico Know Your Green in "SANJEEVANI", Deshbandhu College (2016).</div>
                 </div>
-                <i class="fas fa-star award-badge-icon"></i>
             </div>
 
             <div class="award-card">
+                <i class="fas fa-file-alt award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Poster Award</div>
                     <div class="award-bottom">ICSSR-sponsored National Seminar, Sri Aurobindo College (2016).</div>
                 </div>
-                <i class="fas fa-file-alt award-badge-icon"></i>
             </div>
 
              <div class="award-card">
+                <i class="fas fa-lightbulb award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Innovation Fellowship</div>
                     <div class="award-bottom">Innovation Project Fellowship, University of Delhi (2015-16).</div>
                 </div>
-                <i class="fas fa-lightbulb award-badge-icon"></i>
             </div>
         </div>
         <hr class="separator">
     </section>
+
+
 
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
@@ -991,6 +1042,7 @@
         <hr class="separator">
     </section>
 
+
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
 
@@ -1093,6 +1145,7 @@
         <hr class="separator">
     </section>
 
+
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -1119,6 +1172,7 @@
                 </ul>
             </div>
         </div>
+
 
         <button class="accordion-btn">Peer Reviews <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
@@ -1196,45 +1250,181 @@
             </div>
         </div>
 
+
         <button class="accordion-btn">Mentorship & Supervision <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <ul class="pub-list">
-                    <li class="pub-item">Guided <strong>10 MSc</strong> and <strong>5 BSc</strong> dissertation students during PhD tenure at Jamia Millia Islamia.</li>
-                    <li class="pub-item">Guided many PhD Students as a mentor on quality research and publication.</li>
                     <li class="pub-item">Currently Supervising <strong>3 MSc</strong> and <strong>1 BSc</strong> dissertation students at University of Copenhagen, Denmark.</li>
+                    <li class="pub-item">Guided <strong>10 MSc</strong> and <strong>5 BSc</strong> dissertation students during PhD tenure at Jamia Millia Islamia, India.</li>
+                    <li class="pub-item">Guided many PhD Students as a mentor on quality research and publication.</li>
                 </ul>
             </div>
         </div>
         <hr class="separator">
     </section>
-    
+
+
+    <!-- NEW SECTION: Detailed Technical Proficiency with Card Grid -->
     <section id="technical" class="container">
         <h2 class="section-title">Technical Proficiency</h2>
-        <ul class="pub-list">
-            <li class="pub-item"><strong>Operating Systems:</strong> Linux (Ubuntu), Windows (10, 11, Server), Android, macOS.</li>
-            <li class="pub-item"><strong>Programming & Scripting Languages:</strong> Python (NumPy, pandas, matplotlib, Biopython), R (tidyverse, Bioconductor), Perl, MATLAB, Bash scripting, SQL.</li>
-            <li class="pub-item"><strong>Web Development:</strong> PHP, Django, Flask, Node.js, Express.js, React, Angular, Vue.js, RESTful API development.</li>
-            <li class="pub-item"><strong>Automation & Workflow Tools:</strong> NextGen Flow, KNIME, Power Automate, GitHub.</li>
-            <li class="pub-item"><strong>Data Analysis & Machine Learning:</strong> Weka, TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, LightGBM, Pandas, NumPy, Matplotlib, Seaborn, MS Excel (advanced functions, pivot tables).</li>
-            <li class="pub-item"><strong>Bioinformatics & Sequence Analysis:</strong> BLAST, FASTA, Clustal Omega, MEGA, Phylip, EMBOSS, HMMER, Bowtie, SAMtools, BWA, T-Coffee, MAFFT, Geneious Prime, Genome Browsers (UCSC, Ensembl).</li>
-            <li class="pub-item"><strong>Structural Biology & Molecular Modelling:</strong> PyMOL, Chimera, Swiss-PDBViewer, Modeller, VMD, Rosetta, Coot, CCP4 Suite, Phenix, ChimeraX.</li>
-            <li class="pub-item"><strong>Genomics Tools:</strong> GEO2R, Gene Ontology-based Enrichment Analyser, SRA Toolkit, Bowtie2, TopHat, Cufflinks, HTSeq, SAMtools, BWA, GATK, Picard, Geneious Prime, DESeq2, EdgeR, Bioconductor packages.</li>
-            <li class="pub-item"><strong>Systems Biology:</strong> Cytoscape, KEGG Mapper, Reactome Pathway Browser, STRING, GeneMANIA, BioGRID, OmicsNet.</li>
-            <li class="pub-item"><strong>Drug Discovery & Docking:</strong> AutoDock Vina, SwissDock, InstaDock, Glide (Schrödinger Suite), MOE.</li>
-            <li class="pub-item"><strong>Molecular Dynamics Simulation:</strong> Desmond, GROMACS, NAMD, VMD (visualisation).</li>
-            <li class="pub-item"><strong>Free Energy Calculations:</strong> MM/GBSA, MM/PBSA, FEP (Free Energy Perturbation), Thermodynamic Integration (TI), Umbrella Sampling.</li>
-            <li class="pub-item"><strong>Graphics & Visualisation:</strong> BioRender, Adobe Photoshop, CorelDraw, Blender (3D modelling, animation), ClipChamp, PowerPoint, Illustrator, Matplotlib, Seaborn, ggplot2.</li>
-            <li class="pub-item"><strong>Additional Expertise:</strong> Protein and ligand structure optimisation, multitargeted drug design, virtual screening workflows (VSW), interaction fingerprint analysis, WaterMap, Density Functional Theory (DFT) calculations.</li>
-            <li class="pub-item"><strong>Cloud & Computing:</strong> Proficient in managing and configuring cloud servers (AWS, Google Cloud, Microsoft Azure), HPC clusters, and supercomputers for job queue management (SLURM), deployment, containerisation (Docker), and workflow scheduling.</li>
-        </ul>
+        
+        <!-- Accordion 1 -->
+        <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <!-- Card 1 -->
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-atom"></i> Molecular Modeling & Simulation</div>
+                        <ul class="tech-ul">
+                            <li>Molecular Dynamics: Desmond, GROMACS, NAMD</li>
+                            <li>Force fields: OPLS, AMBER, CHARMM</li>
+                            <li>Trajectory analysis, RMSD/RMSF, PCA, MM/PBSA workflows</li>
+                        </ul>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt"></i> Structure-Based Drug Design</div>
+                        <ul class="tech-ul">
+                            <li>Docking: AutoDock Vina, Glide, SwissDock</li>
+                            <li>Binding free energy calculations: MM/GBSA, MM/PBSA</li>
+                            <li>Virtual screening (ligand-based & structure-based)</li>
+                            <li>Protein–ligand interaction profiling & residue-level analysis</li>
+                        </ul>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-microscope"></i> Quantum & Structural Methods</div>
+                        <ul class="tech-ul">
+                            <li>DFT calculations (geometry optimization, electronic properties)</li>
+                            <li>Homology modeling & refinement: MODELLER</li>
+                            <li>Structure optimization, validation, and preparation</li>
+                        </ul>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="tech-card tc-orange">
+                        <div class="tech-sub-title"><i class="fas fa-eye"></i> Visualization & Analysis</div>
+                        <ul class="tech-ul">
+                            <li>PyMOL, UCSF Chimera / ChimeraX</li>
+                            <li>Interaction mapping, publication-quality figures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Accordion 2 -->
+        <button class="accordion-btn">Machine Learning, AI & Data Science <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-code"></i> Programming & Scientific Computing</div>
+                        <ul class="tech-ul">
+                            <li>Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn)</li>
+                            <li>R (Tidyverse, Bioconductor)</li>
+                            <li>MATLAB</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-brain"></i> Machine Learning & Deep Learning</div>
+                        <ul class="tech-ul">
+                            <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
+                            <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
+                            <li>Model development, hyperparameter tuning, cross-validation</li>
+                            <li>Feature engineering for chemical & biological data</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-flask"></i> Cheminformatics & Bioinformatics ML</div>
+                        <ul class="tech-ul">
+                            <li>Molecular descriptors & fingerprints</li>
+                            <li>Protein–ligand ML pipelines</li>
+                            <li>Predictive modeling for binding affinity & toxicity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accordion 3 -->
+        <button class="accordion-btn">Genomics, Transcriptomics & Systems Biology <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
+                        <ul class="tech-ul">
+                            <li>NGS data processing & variant analysis</li>
+                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
+                            <li>Variant calling & filtering: GATK</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
+                        <ul class="tech-ul">
+                            <li>Cytoscape</li>
+                            <li>Functional interaction databases: STRING, GeneMANIA</li>
+                            <li>Systems-level interpretation of omics data</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
+                        <ul class="tech-ul">
+                            <li>BLAST, FASTA</li>
+                            <li>Multiple sequence alignment: Clustal Omega</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accordion 4 -->
+        <button class="accordion-btn">Software Development, Automation & Infrastructure <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-terminal"></i> Operating Systems & Scripting</div>
+                        <ul class="tech-ul">
+                            <li>Linux/Unix</li>
+                            <li>Bash scripting (automation, pipelines, job control)</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-cogs"></i> Workflow & Pipeline Development</div>
+                        <ul class="tech-ul">
+                            <li>Reproducible computational pipelines</li>
+                            <li>Resume-safe, large-scale batch processing</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-server"></i> High-Performance & Research Computing</div>
+                        <ul class="tech-ul">
+                            <li>HPC environments, job schedulers (SLURM-style workflows)</li>
+                            <li>Large-scale data handling & automation</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-orange">
+                        <div class="tech-sub-title"><i class="fab fa-git-alt"></i> Version Control & Reproducibility</div>
+                        <ul class="tech-ul">
+                            <li>Git-based project management</li>
+                            <li>Modular, production-ready scientific codebases</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr class="separator">
     </section>
+
 
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
-            <div class="referee-card">
+            <div class="referee-card ref-1">
                 <div class="referee-name">Dr Khalid Raza <span class="referee-role">(PhD Supervisor)</span></div>
                 <div class="referee-title-line">Associate Professor</div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
@@ -1243,7 +1433,7 @@
                 </div>
             </div>
             
-            <div class="referee-card">
+            <div class="referee-card ref-2">
                 <div class="referee-name">Dr Murugesh Eswaran <span class="referee-role">(PI @ ICGEB)</span></div>
                 <div class="referee-title-line">Tenure Track Faculty</div>
                 <a href="https://www.msm.edu/" target="_blank" class="referee-inst-link">Morehouse School of Medicine, USA</a>
@@ -1252,7 +1442,7 @@
                 </div>
             </div>
             
-            <div class="referee-card">
+            <div class="referee-card ref-3">
                 <div class="referee-name">Dr Mansaf Alam <span class="referee-role">(MSc Supervisor)</span></div>
                 <div class="referee-title-line">Professor</div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
@@ -1261,10 +1451,10 @@
                 </div>
             </div>
             
-            <div class="referee-card">
+            <div class="referee-card ref-4">
                 <div class="referee-name">Dr Manoj K Yadav <span class="referee-role">(PI- SARS-CoV-2)</span></div>
                 <div class="referee-title-line">Associate Professor</div>
-                <a href="https://www.srmuniversity.ac.in/" target="_blank" class="referee-inst-link">SRM University, Haryana</a>
+                <a href="https://www.srmuniversity.ac.in/" target="_blank" class="referee-inst-link">SRM University, NCR, India</a>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:manoj.yadav@srmuniversity.ac.in">manoj.yadav@srmuniversity.ac.in</a>
                 </div>
@@ -1275,8 +1465,7 @@
 
     <footer>
         <div class="footer-socials">
-
-	    <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="footer-btn s-Email" title="Email"> <i class="fas fa-envelope"></i> </a>
+            <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="footer-btn s-Email" title="Email"> <i class="fas fa-envelope"></i> </a>
             <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
             <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
             <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
