@@ -64,7 +64,17 @@
         */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        html { scroll-behavior: smooth; } /* Enables smooth scrolling when clicking links */
+        html { 
+            scroll-behavior: smooth; /* Enables smooth scrolling when clicking links */
+            
+            /* CRITICAL FIX: Scroll Padding
+               Header is 70px height. We add 85px padding so that when 
+               clicking a link (e.g. #awards), the browser stops scrolling 
+               85px ABOVE the section title. This prevents the header from 
+               covering the title.
+            */
+            scroll-padding-top: 85px; 
+        } 
         
         body { 
             font-family: 'Roboto', sans-serif; 
@@ -231,7 +241,8 @@
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
         
         .hero-img { 
-            width: 170px; height: 170px; border-radius: 50%; 
+            width: 190px; height: 190px; /* Made slightly bigger */
+            border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
             background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -251,7 +262,8 @@
         .hero-stats {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
-            width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
+            width: 320px; /* Slightly wider to prevent overflow */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
             animation: float 4s ease-in-out infinite; /* Floating animation */
         }
         
@@ -284,13 +296,26 @@
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
             background: rgba(0,0,0,0.1); border-radius: 4px;
         }
-        .pub-breakdown.open { max-height: 200px; }
+        .pub-breakdown.open { max-height: 250px; }
+        
+        /* Updated styling for inner items to look like headers (Left label - Right Count) */
         .pub-breakdown a {
-            display: block; padding: 8px 15px; font-size: 0.9rem; color: #eee;
+            display: flex; /* Flexbox for Left-Right alignment */
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px; 
+            font-size: 0.9rem; color: #eee;
             border-bottom: 1px dashed rgba(255,255,255,0.1); text-decoration: none;
         }
         .pub-breakdown a:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
         .pub-breakdown a:last-child { border-bottom: none; }
+        
+        /* Badge styling inside dropdown - Box removed as requested */
+        .pub-badge {
+            color: var(--accent);
+            font-size: 0.9rem; 
+            font-weight: bold;
+        }
 
         /* Download CV Button */
         .cv-btn {
@@ -636,9 +661,7 @@
         <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-        <a href="https://github.com/ShabanAhmad" target="_blank" class="h-social" title="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
-        <a href="https://shabanahmad.github.io/" target="_blank" class="h-social" title="Updated Personal Website"><i class="fas fa-globe"></i></a>
     </div>
 
     <!-- 
@@ -660,7 +683,7 @@
                 <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
                 <li class="nav-item"><a href="#conferences" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="#professional" class="nav-link">Activities</a></li>
-                <li class="nav-item"><a href="#technical" class="nav-link">Technical</a></li>
+                <li class="nav-item"><a href="#technical" class="nav-link">Expertise</a></li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
             </ul>
 
@@ -678,7 +701,7 @@
         <section class="hero">
             <div class="hero-main">
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
-                <h1><a href="#hero-section" class="hero-name-link">Dr Shaban Ahmad</a></h1>
+                <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoc Researcher at University of Copenhagen</a>
             </div>
             
@@ -696,19 +719,31 @@
                         <!-- Number count -->
                         <a href="#publications" class="stat-value">74+</a>
                     </div>
-                    <!-- Hidden Dropdown Content -->
+                    <!-- Hidden Dropdown Content - Redesigned UI Point 1 -->
                     <div class="pub-breakdown" id="pub-breakdown">
-                        <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles: 50+</a>
-                        <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters: 24</a>
-                        <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes: 6+</a>
-                        <a href="#publications" onclick="triggerAccordion('pubs-conf')">Conference Papers: 13+</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-journal')">
+                            <span><i class="fas fa-file-alt" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Journal Articles</span>
+                            <span class="pub-badge">50+</span>
+                        </a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-book')">
+                            <span><i class="fas fa-book-open" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Book Chapters</span>
+                            <span class="pub-badge">24+</span>
+                        </a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-data')">
+                            <span><i class="fas fa-database" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Data & Codes</span>
+                            <span class="pub-badge">6+</span>
+                        </a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-conf')">
+                            <span><i class="fas fa-microphone" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Conference Papers</span>
+                            <span class="pub-badge">13+</span>
+                        </a>
                     </div>
                 </div>
 
-                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
+                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link">
                     <div class="stat-row">
                         <span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span>
-                        <span class="stat-value">1550+</span>
+                        <span class="stat-value">1600+</span>
                     </div>
                 </a>
                 <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
@@ -1267,11 +1302,6 @@
     </section>
 
 
-    <!-- 
-       ========================================================================
-       PROFESSIONAL ACTIVITIES
-       ========================================================================
-    -->
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -1396,7 +1426,7 @@
        ========================================================================
     -->
     <section id="technical" class="container">
-        <h2 class="section-title">Technical Proficiency</h2>
+        <h2 class="section-title">Expertise & Technical Proficiencies</h2>
         
         <!-- Accordion 1 -->
         <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
@@ -1604,13 +1634,14 @@
     <footer>
         <div class="footer-socials">
             <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
+            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
             <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
             <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-            <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
-            <a href="https://www.facebook.com/DrShabanAhmad" target="_blank" class="footer-btn s-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
+            <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
+
+
         </div>
         
         <div class="footer-text">
@@ -1667,6 +1698,21 @@
         });
 
         // =========================================
+        // GLOBAL MENU CLOSING (FIXED POINT 3)
+        // Detects clicks anywhere on the page to close the menu if open
+        // =========================================
+        document.addEventListener('click', function(event) {
+            const navBar = document.querySelector('.nav-list');
+            const toggleBtn = document.querySelector('.nav-toggle');
+            const header = document.querySelector('header');
+
+            // If the clicked target is NOT the menu, NOT the toggle button, and the menu IS active
+            if (navBar.classList.contains('active') && !navBar.contains(event.target) && !toggleBtn.contains(event.target)) {
+                toggleMenu(); // Close it
+            }
+        });
+
+        // =========================================
         // ACCORDION LOGIC
         // Handles expanding/collapsing of publication/event lists
         // =========================================
@@ -1709,22 +1755,24 @@
             }
         }
 
-        // Helper: When clicking a sub-link in Hero, open the specific accordion section below
+        // =========================================
+        // AUTO-SCROLL AND EXPAND HELPER (FIXED POINT 2)
+        // Used by hero dropdown links to jump to and open specific accordions
+        // =========================================
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
-            if(btn && !btn.classList.contains('active')) {
-                // Trigger click to open the accordion
-                btn.click();
-                // Scroll to it after a slight delay for accordion animation to start
+            if (btn) {
+                // If the accordion isn't already open, click it to open
+                if (!btn.classList.contains('active')) {
+                    btn.click();
+                }
+                
+                // Scroll smoothly to the button, centered on screen
                 setTimeout(() => {
-                    btn.scrollIntoView({behavior: "smooth", block: "center"});
-                }, 300);
-            } else if (btn) {
-                // If already open, just scroll to it
-                btn.scrollIntoView({behavior: "smooth", block: "center"});
+                    btn.scrollIntoView({ behavior: "smooth", block: "center" });
+                }, 300); // Slight delay ensures expansion animation has started
             }
         }
     </script>
 </body>
 </html>
-
