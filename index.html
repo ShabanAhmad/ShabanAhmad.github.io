@@ -66,14 +66,8 @@
         
         html { 
             scroll-behavior: smooth; /* Enables smooth scrolling when clicking links */
-            
-            /* CRITICAL FIX: Scroll Padding
-               Header is 70px height. We add 85px padding so that when 
-               clicking a link (e.g. #awards), the browser stops scrolling 
-               85px ABOVE the section title. This prevents the header from 
-               covering the title.
-            */
-            scroll-padding-top: 85px; 
+            /* Header is 50px height. We add padding so scrolling stops nicely above titles */
+            scroll-padding-top: 65px; 
         } 
         
         body { 
@@ -81,7 +75,8 @@
             line-height: 1.6; 
             color: var(--text); 
             background: var(--light-bg); 
-            padding-top: 65px; /* Pushes content down so Fixed Header doesn't cover it */
+            padding-top: 50px; /* Slimmer header padding */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
         a { text-decoration: none; color: inherit; transition: var(--transition); }
@@ -104,32 +99,32 @@
             backdrop-filter: blur(10px); /* Frosted glass effect behind header */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             position: fixed; top: 0; left: 0; width: 100%; 
-            z-index: 1000; height: 70px;
+            z-index: 1000; 
+            height: 50px; /* Slimmer Header */
             transition: all 0.3s ease;
         }
 
         .header-content {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 30px; height: 100%; 
+            padding: 0 20px; height: 100%; 
             max-width: 1200px; 
             margin: 0 auto;
-            position: relative; /* Essential for absolute centering on mobile */
+            position: relative;
         }
 
-        /* -- Desktop Name Styling (Hidden initially, appears on scroll) -- */
+        /* -- Desktop Name Styling -- */
         .header-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem; 
             font-weight: 700;
             color: var(--primary); 
             text-decoration: none;
-            opacity: 0; /* Hidden by default on desktop */
+            opacity: 0; 
             transform: translateX(-20px);
             transition: all 0.3s ease;
             pointer-events: none;
         }
         
-        /* The class '.visible' is added via JavaScript when user scrolls down */
         .header-name.visible {
             opacity: 1;
             transform: translateX(0);
@@ -142,7 +137,7 @@
         .nav-list { 
             display: flex; 
             list-style: none; 
-            gap: 10px; 
+            gap: 15px; 
             padding: 0;
             margin: 0 0 0 auto; 
             align-items: center;
@@ -151,10 +146,10 @@
         .nav-link { 
             color: var(--primary); 
             text-transform: uppercase; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem;
             font-weight: 600; 
             letter-spacing: 0.5px;
-            padding: 8px 10px; 
+            padding: 5px 8px; 
             border: none;
             border-radius: 4px;
             transition: all 0.3s ease;
@@ -163,18 +158,19 @@
             position: relative;
         }
         
+        /* Highlight gold on hover */
         .nav-link:hover { 
             color: var(--accent);
             background: rgba(0, 46, 95, 0.05);
         }
         
-        /* The gold underline effect on hover */
+        /* The gold underline */
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: 5px;
+            bottom: 2px;
             left: 50%;
             background-color: var(--accent);
             transition: all 0.3s ease;
@@ -182,17 +178,26 @@
         }
         .nav-link:hover::after { width: 80%; }
 
+        /* -- Active Section State (Scroll Spy) -- */
+        .nav-link.active-section {
+            color: var(--accent) !important; /* Gold text only, no dot */
+        }
+        /* Ensure the underline stays for active section */
+        .nav-link.active-section::after {
+            width: 80%;
+        }
+
         /* -- Mobile Menu Toggle (Hamburger Icon) -- */
         .nav-toggle { 
             display: none; /* Hidden on desktop */
-            font-size: 1.5rem; 
+            font-size: 1.3rem; 
             cursor: pointer; 
             color: var(--primary); 
             margin-left: auto; 
             transition: transform 0.3s ease;
-            z-index: 1001;
+            z-index: 2001; 
         }
-        .nav-toggle.open { transform: rotate(90deg); } /* Rotates when menu is open */
+        .nav-toggle.open { transform: rotate(90deg); }
 
         /* ========================================================================
            SIDEBAR (Social Links)
@@ -201,11 +206,11 @@
         .sticky-sidebar {
             position: fixed; 
             top: 50%; 
-            left: 0; /* Left side on desktop */
+            left: 0; 
             transform: translateY(-50%);
             z-index: 1100; 
             display: flex; flex-direction: column; gap: 12px;
-            background-color: var(--white); /* Solid White Background */
+            background-color: var(--white);
             padding: 15px 8px;
             border-radius: 0 12px 12px 0; 
             box-shadow: 2px 0 8px rgba(0,0,0,0.1);
@@ -220,7 +225,7 @@
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
         /* ========================================================================
-           HERO SECTION (Top Banner)
+           HERO SECTION
            ========================================================================
         */
         .hero-section-wrapper {
@@ -231,9 +236,11 @@
         }
 
         .hero { 
-            color: var(--white); padding: 4rem 2rem; position: relative;
+            color: var(--white); 
+            padding: 2rem 1rem; /* Compact padding */
+            position: relative;
             display: flex; justify-content: center; align-items: center; gap: 4rem;
-            min-height: 450px;
+            min-height: auto; 
             max-width: 1200px; 
             width: 100%;
         }
@@ -241,7 +248,7 @@
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
         
         .hero-img { 
-            width: 190px; height: 190px; /* Made slightly bigger */
+            width: 190px; height: 190px; 
             border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
             background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -258,13 +265,23 @@
         }
         .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
 
+        .hero-contact {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+        .hero-contact i { color: var(--accent); margin-right: 5px; }
+        .hero-contact a { color: #fff; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
+        .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
+
         /* -- Floating Stats Box in Hero -- */
         .hero-stats {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
-            width: 320px; /* Slightly wider to prevent overflow */
+            width: 320px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
-            animation: float 4s ease-in-out infinite; /* Floating animation */
+            animation: float 4s ease-in-out infinite; 
         }
         
         @keyframes float {
@@ -285,24 +302,20 @@
         .stat-label { font-weight: 400; color: #ddd; display: flex; align-items: center; gap: 10px; }
         .stat-value { font-weight: 700; color: var(--accent); font-size: 1.2rem; transition: color 0.2s; }
         
-        /* -- Publications Dropdown Toggle -- */
         .stat-toggle { cursor: pointer; color: #ddd; padding: 0 10px; transition: color 0.3s; }
         .stat-toggle:hover { color: var(--accent); }
         .stat-label-link { color: #ddd; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .stat-label-link:hover { color: var(--accent); }
 
-        /* The hidden dropdown list */
+        /* Hidden dropdown list */
         .pub-breakdown {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
             background: rgba(0,0,0,0.1); border-radius: 4px;
         }
         .pub-breakdown.open { max-height: 250px; }
         
-        /* Updated styling for inner items to look like headers (Left label - Right Count) */
         .pub-breakdown a {
-            display: flex; /* Flexbox for Left-Right alignment */
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 8px 15px; 
             font-size: 0.9rem; color: #eee;
             border-bottom: 1px dashed rgba(255,255,255,0.1); text-decoration: none;
@@ -310,12 +323,16 @@
         .pub-breakdown a:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
         .pub-breakdown a:last-child { border-bottom: none; }
         
-        /* Badge styling inside dropdown - Box removed as requested */
         .pub-badge {
             color: var(--accent);
             font-size: 0.9rem; 
             font-weight: bold;
         }
+        
+        /* New class for the 'add-on' items in dropdown */
+        .secondary-pub-item span { color: #a8d0e6; opacity: 0.9; }
+        .secondary-pub-item i { color: #a8d0e6 !important; }
+        .secondary-pub-item .pub-badge { color: #a8d0e6; }
 
         /* Download CV Button */
         .cv-btn {
@@ -349,7 +366,7 @@
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
         /* ========================================================================
-           EDUCATION & EXPERIENCE CARDS STYLING
+           EDUCATION & EXPERIENCE CARDS
            ========================================================================
         */
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
@@ -357,64 +374,43 @@
         
         .edu-card, .exp-box { 
             background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
-            border-top: 6px solid #ccc; /* Default border color, overridden by classes below */
+            border-top: 6px solid #ccc; 
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* added border-color transition */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
             position: relative; display: flex; flex-direction: column;
         }
 
-        /* -- Top Border Colors for Education -- */
-        .edu-phd { border-top-color: var(--edu-phd); }
-        .edu-msc { border-top-color: var(--edu-msc); }
-        .edu-bsc { border-top-color: var(--edu-bsc); }
-        .edu-xii { border-top-color: var(--edu-xii); }
-        .edu-x { border-top-color: var(--edu-x); }
-        .edu-basic { border-top-color: var(--edu-basic); }
+        /* Border Colors */
+        .edu-phd { border-top-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); }
+        .edu-bsc { border-top-color: var(--edu-bsc); } .edu-xii { border-top-color: var(--edu-xii); }
+        .edu-x { border-top-color: var(--edu-x); } .edu-basic { border-top-color: var(--edu-basic); }
         
-        /* -- Top Border Colors for Experience -- */
-        .exp-full { border-top-color: #28a745; } 
-        .exp-part { border-top-color: var(--edu-msc); } 
-        .exp-trainee { border-top-color: #6f42c1; }
+        .exp-full { border-top-color: #28a745; } .exp-part { border-top-color: var(--edu-msc); } .exp-trainee { border-top-color: #6f42c1; }
 
-        /* -- HOVER EFFECTS: Border color changes to match card type (FIXED POINT 4) -- 
-           We specifically target each class on hover to change the full border color.
-        */
+        /* Hover Effects */
         .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
         .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
-        .edu-xii:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-xii); }
-        .edu-x:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-x); }
-        .edu-basic:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-basic); }
-
+        
         .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #28a745; }
         .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #6f42c1; }
 
-        /* General Card Typography */
-        .edu-card h4 { font-size: 1.15rem; color: var(--text); margin-bottom: 8px; font-weight: 700; }
-        .year-span { color: #888; font-weight: 400; font-size: 0.95rem; margin-left: 5px; }
+        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; }
+        .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
         
-        .inst-link, .exp-inst { 
-            font-family: var(--inst-font); font-size: 1rem; color: var(--primary); 
-            display: block; margin-bottom: 5px; text-decoration: none; 
-            font-weight: 600; transition: color 0.2s;
-        }
+        .inst-link, .exp-inst { font-family: var(--inst-font); font-size: 1rem; color: var(--primary); display: block; margin-bottom: 5px; text-decoration: none; font-weight: 600; transition: color 0.2s; }
         .inst-link:hover, .exp-inst:hover { color: var(--accent); }
         
-        .badge-gold { 
-            display: inline-block; background-color: #fff9db; color: #856404; 
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;
-            margin-top: 5px; border: 1px solid #ffeeba; align-self: flex-start;
-        }
+        .badge-gold-inline { display: inline-block; background-color: #fff9db; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 1rem; font-weight: bold; border: 1px solid #ffeeba; margin-left: 5px; vertical-align: middle; cursor: help; }
         
         .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
         .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
         .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; }
-        .bg-full { background: #28a745; }
-        .bg-part { background: var(--edu-msc); color: #fff; }
-        .bg-trainee { background: #6f42c1; color: #fff; }
+        .bg-full { background: #28a745; } .bg-part { background: var(--edu-msc); color: #fff; } .bg-trainee { background: #6f42c1; color: #fff; }
 
         /* ========================================================================
            AWARDS GRID
@@ -453,7 +449,7 @@
         }
 
         /* ========================================================================
-           ACCORDION (Publications, Events, Technical)
+           ACCORDION & PUBLICATIONS LISTS
            ========================================================================
         */
         .accordion-btn {
@@ -471,25 +467,56 @@
             border-top: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa;
         }
         
-        /* The Panel holds content. Height is controlled via JS logic (max-height) */
         .panel { 
-            padding: 0 1rem; max-height: 0; overflow: hidden; 
+            /* Ensure overflow doesn't clip top/bottom content immediately */
+            max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; background: var(--white);
             border: 1px solid #eee; border-top: none; margin-bottom: 10px;
         }
         .accordion-btn.active + .panel { border-left: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa; background: #fafcff; }
         
-        .scrollable-list { max-height: 600px; overflow-y: auto; padding-right: 15px; }
-        /* Scrollbar styling for Webkit browsers */
+        /* FIX FOR HOVER CLIPPING: Increased padding creates a buffer zone */
+        .panel-content {
+            padding: 20px; /* More padding to allow pop-out effect */
+        }
+
+        /* FIX FOR HOVER CLIPPING: Padding ensures scroll content doesn't hit edge */
+        .scrollable-list { 
+            max-height: 600px; overflow-y: auto; 
+            padding: 15px 20px; /* Padding for hover effect */
+        }
         .scrollable-list::-webkit-scrollbar { width: 6px; }
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
         .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
 
         .pub-list { padding-left: 30px; list-style-type: decimal; }
-        .pub-item { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
-        .compact-list .pub-item { margin-bottom: 2px; padding-bottom: 2px; border: none; line-height: 1.3; }
+        
+        .pub-item { 
+            margin-bottom: 1rem; 
+            padding: 12px; /* Added padding for box feel */
+            border-bottom: 1px dashed #eee; 
+            border: 1px solid transparent; 
+            border-bottom-color: #eee; 
+            border-radius: 6px; 
+            font-size: 0.95rem; 
+            transition: all 0.3s ease;
+        }
+        
+        .pub-item:hover {
+            transform: translateY(-3px);
+            background: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-bottom-color: var(--accent);
+            z-index: 10; position: relative; /* Ensure it stays on top */
+        }
+
+        .compact-list .pub-item { margin-bottom: 2px; padding: 8px; border: none; line-height: 1.3; border: 1px solid transparent; }
+        .compact-list .pub-item:hover { border-color: var(--accent); background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
         .pub-item strong { color: #004d40; font-weight: 700; }
         .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 2px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
+        
         .pub-doi { 
             font-size: 0.7rem; color: #fff; background-color: var(--accent); 
             padding: 3px 8px; border-radius: 4px; margin-left: 8px; 
@@ -499,7 +526,7 @@
         .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); color: #fff; }
 
         /* ========================================================================
-           TECHNICAL PROFICIENCY (Grid Layout inside Accordion)
+           TECHNICAL PROFICIENCY GRID
            ========================================================================
         */
         .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
@@ -508,13 +535,16 @@
             border-top: 5px solid #ccc; 
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .tc-blue { border-top-color: var(--primary); }
-        .tc-green { border-top-color: #20c997; }
-        .tc-purple { border-top-color: #6f42c1; }
-        .tc-orange { border-top-color: #fd7e14; }
+        
+        .tc-blue { border-top-color: var(--primary); } .tc-green { border-top-color: #20c997; }
+        .tc-purple { border-top-color: #6f42c1; } .tc-orange { border-top-color: #fd7e14; }
+
+        .tc-blue:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .tc-green:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #20c997; }
+        .tc-purple:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #6f42c1; }
+        .tc-orange:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #fd7e14; }
 
         .tech-sub-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .tech-sub-title i { color: var(--accent); font-size: 1.2rem; }
@@ -540,6 +570,9 @@
         .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); transform: translateY(-5px); }
         
         .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+        .referee-name a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        .referee-name a:hover { color: var(--accent); }
+
         .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; }
         .referee-inst-link { font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; text-decoration: none; }
         .referee-inst-link:hover { color: var(--accent); }
@@ -561,88 +594,43 @@
             text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
         }
         .footer-btn:hover { transform: translateY(-3px); background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
-        .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; }
+        .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
+
 
         /* ========================================================================
            MOBILE RESPONSIVE STYLES
            ========================================================================
         */
         @media (max-width: 900px) {
-            
-            /* -- Header Name: Centered, Gold, Big, Permanent -- */
-            .header-content { 
-                justify-content: center; /* Absolute Center alignment context */
-            }
-            
+            .header-content { justify-content: center; }
             .header-name { 
-                display: block !important; 
-                opacity: 1 !important; /* Always visible */
-                transform: none !important; /* No slide animation */
-                pointer-events: auto !important;
-                color: var(--accent) !important; /* Gold Color */
-                font-size: 1.8rem; /* Larger font */
-                position: absolute; /* Absolute Center */
-                left: 50%;
-                transform: translateX(-50%) !important;
-                margin: 0;
-                white-space: nowrap;
-                z-index: 1002;
+                display: block !important; opacity: 1 !important; transform: none !important; pointer-events: auto !important;
+                color: var(--accent) !important; font-size: 1.5rem; position: absolute; left: 50%;
+                transform: translateX(-50%) !important; margin: 0; white-space: nowrap; z-index: 1002;
             }
-
-            .nav-toggle { 
-                display: block; 
-                position: absolute; 
-                right: 30px; /* Keep burger icon on right */
-            }
-
-            /* -- Glassy Mobile Menu (FIXED POINT 2) -- 
-               Changed from 95% opacity to 0.75 (75%) opacity. 
-            */
+            .nav-toggle { display: block; position: absolute; right: 30px; }
             .nav-list { 
-                display: none; 
-                flex-direction: column; 
-                /* 0.75 alpha makes it ~75% solid white, readable but "glassy" */
-                background: rgba(255, 255, 255, 0.75); 
-                backdrop-filter: blur(8px); 
-                -webkit-backdrop-filter: blur(8px);
-                padding: 1.5rem; 
-                position: absolute; 
-                top: 70px; left: 0; width: 100%; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-                gap: 12px; 
-                border-bottom: 3px solid var(--accent); 
-                border-radius: 0 0 15px 15px; 
-                margin: 0; 
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: var(--white); flex-direction: column; justify-content: flex-start;
+                padding-top: 80px; padding-left: 20px; padding-right: 20px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: right 0.3s ease-in-out; z-index: 2000; display: flex;
             }
-            .nav-list.active { display: flex; }
+            .nav-list.active { right: 0; }
             .nav-link { 
-                color: #fff !important; 
-                background: var(--primary); /* Button remains solid for readability */
-                text-align: center; display: block; width: 100%; 
-                padding: 12px; border-radius: 50px; 
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+                color: var(--primary) !important; text-align: left; font-size: 1.1rem;
+                padding: 15px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
             }
-            .nav-link:hover { background: var(--accent); transform: scale(1.02); }
+            .nav-link:hover { background: transparent; color: var(--accent) !important; padding-left: 10px; }
             .nav-link::after { display: none; }
             
-            /* -- Sidebar: Right side & Solid White (FIXED POINT 3) -- 
-            */
             .sticky-sidebar { 
-                display: flex; 
-                left: auto; right: 0; /* Move to right */
-                top: 50%;
-                border-radius: 12px 0 0 12px; /* Curved on left side only */
-                background-color: var(--white); /* Solid White like Desktop */
-                border: 1px solid #eee;
-                padding: 10px 5px;
-                box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+                display: flex; left: auto; right: 0; top: 50%;
+                border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee;
+                padding: 10px 5px; box-shadow: -2px 0 8px rgba(0,0,0,0.1);
             }
             .sticky-sidebar .h-social { font-size: 1.3rem; margin: 2px 0; }
-
-            /* -- Hero Layout -- */
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
-            
             .hero h1 { font-size: 1.8rem; }
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
@@ -650,12 +638,7 @@
 </head>
 <body>
 
-    <!-- 
-       ========================================================================
-       SIDEBAR SOCIAL ICONS
-       Desktop: Fixed Left | Mobile: Fixed Right + Solid White
-       ========================================================================
-    -->
+    <!-- SIDEBAR -->
     <div class="sticky-sidebar">
         <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="h-social" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -664,17 +647,10 @@
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
     </div>
 
-    <!-- 
-       ========================================================================
-       MAIN HEADER
-       Contains Logo/Name and Navigation Menu
-       ========================================================================
-    -->
+    <!-- MAIN HEADER -->
     <header id="main-header">
         <div class="header-content">
-            <!-- Name: Permanently visible/centered/gold on mobile via CSS -->
             <a href="#hero-section" class="header-name">Dr Shaban</a>
-
             <ul class="nav-list" id="nav-menu">
                 <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
@@ -686,40 +662,31 @@
                 <li class="nav-item"><a href="#technical" class="nav-link">Expertise</a></li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
             </ul>
-
             <div class="nav-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
-    <!-- 
-       ========================================================================
-       HERO SECTION
-       Profile Image, Name, Role, and Stats Box
-       ========================================================================
-    -->
+    <!-- HERO SECTION -->
     <div class="hero-section-wrapper" id="hero-section">
         <section class="hero">
             <div class="hero-main">
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
-                <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoc Researcher at University of Copenhagen</a>
+                <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
+                <div class="hero-contact">
+                    <i class="fas fa-envelope"></i> 
+                    <a href="mailto:shaban@plen.ku.dk">shaban@plen.ku.dk</a> | 
+                    <a href="mailto:shaban.ucph@gmail.com">shaban.ucph@gmail.com</a>
+                </div>
             </div>
             
             <div class="hero-stats">
-                
-                <!-- Publications Dropdown Entry -->
                 <div class="stat-row-link" style="padding:0;">
                     <div class="stat-row">
-                        <!-- Link to section -->
                         <a href="#publications" class="stat-label-link"><i class="fas fa-book"></i> Publications</a>
-                        
-                        <!-- Click arrow to expand dropdown -->
                         <span class="stat-toggle" onclick="togglePubStats(event)"> <i class="fas fa-chevron-down"></i> </span>
-                        
-                        <!-- Number count -->
                         <a href="#publications" class="stat-value">74+</a>
                     </div>
-                    <!-- Hidden Dropdown Content - Redesigned UI Point 1 -->
                     <div class="pub-breakdown" id="pub-breakdown">
                         <a href="#publications" onclick="triggerAccordion('pubs-journal')">
                             <span><i class="fas fa-file-alt" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Journal Articles</span>
@@ -729,12 +696,12 @@
                             <span><i class="fas fa-book-open" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Book Chapters</span>
                             <span class="pub-badge">24+</span>
                         </a>
-                        <a href="#publications" onclick="triggerAccordion('pubs-data')">
-                            <span><i class="fas fa-database" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Data & Codes</span>
+                        <a href="#publications" onclick="triggerAccordion('pubs-data')" class="secondary-pub-item">
+                            <span><i class="fas fa-database" style="margin-right:8px; font-size:0.8rem;"></i> Data & Codes</span>
                             <span class="pub-badge">6+</span>
                         </a>
-                        <a href="#publications" onclick="triggerAccordion('pubs-conf')">
-                            <span><i class="fas fa-microphone" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Conference Papers</span>
+                        <a href="#publications" onclick="triggerAccordion('pubs-conf')" class="secondary-pub-item">
+                            <span><i class="fas fa-microphone" style="margin-right:8px; font-size:0.8rem;"></i> Conference Papers</span>
                             <span class="pub-badge">13+</span>
                         </a>
                     </div>
@@ -763,24 +730,18 @@
         </section>
     </div>
 
-    <!-- 
-       ========================================================================
-       PROFILE SECTION
-       ========================================================================
-    -->
+    <!-- PROFILE -->
     <section id="profile" class="container" style="margin-top: 1rem;">
         <h2 class="section-title">Personal Profile</h2>
         <div class="profile-text">
             <p>
-                Dr. Shaban Ahmad is a Postdoctoral Researcher in the Microbial Ecology and Biotechnology Section, Department of Plant and Environmental Sciences, University of Copenhagen. He holds an MSc and a PhD in Bioinformatics from Jamia Millia Islamia, India, where his doctoral research focused on the application of artificial intelligence and computational methods for drug discovery, with an emphasis on lung cancer therapeutics.
+                Dr Shaban is a Postdoctoral Researcher in the MEB Section of PLEN at the University of Copenhagen. He holds an MSc and a PhD in Bioinformatics from Jamia Millia Islamia, India, where his doctoral research focused on the application of artificial intelligence and computational methods for drug discovery, with an emphasis on lung cancer therapeutics.
             </p>
             <p style="margin-top:10px;">
-                In his current research, Dr. Ahmad applies AI-driven bioinformatics and computational biology approaches to investigate and engineer PFAS-degrading enzymes, contributing to the development of sustainable biotechnological solutions for environmental challenges. His research interests broadly include AI-enabled genomics, computer-aided drug design (CADD), molecular modelling and simulations, and deep learning–based drug activity prediction, with applications in both biomedical and environmental contexts. His work aims to integrate data-driven methods with biological insight to address complex health and environmental problems.
+                In his current research, Dr Shaban applies AI-driven bioinformatics and computational biology approaches to investigate and engineer PFAS-degrading enzymes, contributing to the development of sustainable biotechnological solutions for environmental challenges. His research interests broadly include AI-enabled genomics, computer-aided drug design (CADD), molecular modelling and simulations, and deep learning–based drug activity prediction, with applications in both biomedical and environmental contexts. His work aims to integrate data-driven methods with biological insight to address complex health and environmental problems.
             </p>
         </div>
-
-        <p class="int-intro-text">These are his research interests/areas but not limited to-</p>
-
+        <p class="int-intro-text">Research interests/areas:</p>
         <div class="interests-wrapper">
             <div class="int-tag">AI in Genomics</div>
             <div class="int-tag">AI in Drug Design</div>
@@ -794,62 +755,57 @@
             <div class="int-tag">Binding Free Energy</div>
             <div class="int-tag">Vaccine Design</div>
             <div class="int-tag">PFAS Biodegradation</div>
-            <div class="int-tag">Machine Learning in Health</div>
+            <div class="int-tag">Machine Learning in Health Science</div>
         </div>
-
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       EDUCATION SECTION
-       ========================================================================
-    -->
+    <!-- EDUCATION -->
     <section id="education" class="container">
         <h2 class="section-title">Educational Background</h2>
         <div class="journey-intro">
             From humble beginnings in a smaller town in India, moving to Lucknow for middle schooling, then New Delhi for higher education, and now contributing to science globally in Finland and Denmark.
         </div>
-
         <div class="edu-grid">
             <div class="edu-card edu-phd">
-                <h4>PhD (AI in Biology) <span class="year-span">(2021 - 2025)</span></h4>
+                <div class="edu-header">
+                    <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
+                    <span class="year-span">(2025)</span>
+                </div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
-                <div class="badge-gold"><i class="fas fa-medal"></i> Gold Medallist</div>
             </div>
-
             <div class="edu-card edu-msc">
-                <h4>MSc Bioinformatics <span class="year-span">(2018 - 2020)</span></h4>
+                <div class="edu-header">
+                    <h4>MSc Bioinformatics</h4>
+                    <span class="year-span">(2020)</span>
+                </div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link">Jamia Millia Islamia, India</a>
             </div>
-
             <div class="edu-card edu-bsc">
-                <h4>BSc (Hons) Botany <span class="year-span">(2015 - 2018)</span></h4>
+                <div class="edu-header">
+                    <h4>BSc (Hons) Botany</h4>
+                    <span class="year-span">(2018)</span>
+                </div>
                 <a href="https://www.du.ac.in/" target="_blank" class="inst-link">University of Delhi, India</a>
             </div>
-
+        </div>
         <div class="journey-intro" style="margin-top: 2rem;">
-            Honorary Alumna of National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
+            Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:none;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a> for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
         </div>
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       EXPERIENCE SECTION
-       ========================================================================
-    -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="container">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
             <div class="exp-box exp-full">
                 <div class="exp-role">Postdoc Researcher</div>
-                <a href="https://www.ku.dk/" target="_blank" class="exp-inst">University of Copenhagen, Denmark</a>
+                <a href="https://www.ku.dk/en" target="_blank" class="exp-inst">University of Copenhagen, Denmark</a>
                 <div class="exp-date">June 2025 - Present</div>
                 <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
                 <span class="type-badge bg-full">FULL TIME</span>
             </div>
-
             <div class="exp-box exp-part">
                 <div class="exp-role">Visiting Researcher</div>
                 <a href="https://www.jyu.fi/en" target="_blank" class="exp-inst">University of Jyväskylä, Finland</a>
@@ -857,7 +813,6 @@
                 <div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div>
                 <span class="type-badge bg-part">VISITING / PART TIME</span>
             </div>
-
              <div class="exp-box exp-full">
                 <div class="exp-role">PhD Scholar</div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="exp-inst">Jamia Millia Islamia, India</a>
@@ -865,7 +820,6 @@
                 <div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div>
                 <span class="type-badge bg-full">FULL TIME</span>
             </div>
-
             <div class="exp-box exp-full">
                 <div class="exp-role">Project Assistant</div>
                 <a href="https://www.srmuniversity.ac.in/" target="_blank" class="exp-inst">SRM University, NCR, India</a>
@@ -873,7 +827,6 @@
                 <div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div>
                 <span class="type-badge bg-full">PROJECT / FULL TIME</span>
             </div>
-
              <div class="exp-box exp-full">
                 <div class="exp-role">DBT-Studentship</div>
                 <a href="https://www.iari.res.in/" target="_blank" class="exp-inst">ICAR - IARI, India</a>
@@ -881,7 +834,6 @@
                 <div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div>
                 <span class="type-badge bg-full">TRAINEE / FULL TIME</span>
             </div>
-
              <div class="exp-box exp-trainee">
                 <div class="exp-role">Research Trainee</div>
                 <a href="https://www.icgeb.org/" target="_blank" class="exp-inst">ICGEB, India</a>
@@ -889,7 +841,6 @@
                 <div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div>
                 <span class="type-badge bg-trainee">TRAINEE</span>
             </div>
-            
             <div class="exp-box exp-trainee">
                 <div class="exp-role">DBT-Studentship</div>
                 <a href="https://jamiahamdard.ac.in/" target="_blank" class="exp-inst">Jamia Hamdard University, India</a>
@@ -901,11 +852,7 @@
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       PATENTS SECTION
-       ========================================================================
-    -->
+    <!-- PATENTS -->
     <section id="patents" class="container">
         <h2 class="section-title">Patents (IPR)</h2>
         <div class="grid-container">
@@ -928,11 +875,7 @@
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       AWARDS SECTION
-       ========================================================================
-    -->
+    <!-- AWARDS -->
     <section id="awards" class="container">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
@@ -940,18 +883,24 @@
                 <i class="fas fa-medal award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">World's Top 2% Scientists</div>
-                    <div class="award-bottom">Recognized by Stanford University and Elsevier for citation impact (2024).</div>
+                    <div class="award-bottom">Recognized by Stanford University and Elsevier for citation impact (2025).</div>
                 </div>
             </div>
-
+            <div class="award-card">
+                <i class="fas fa-trophy award-badge-icon"></i>
+                <div class="award-content-wrapper">
+                    <!-- Updated text as requested -->
+                    <div class="award-top">Felicitated by Vice Chancellor</div>
+                    <div class="award-bottom">Felicitated by Vice Chancellor for academic excellence (2025).</div>
+                </div>
+            </div>
             <div class="award-card">
                 <i class="fas fa-trophy award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Achievers of the Year</div>
-                    <div class="award-bottom">Awarded by University Registrar and Provost, Jamia Millia Islamia (2024-2025).</div>
+                    <div class="award-bottom">Awarded by University Registrar and Provost, Jamia Millia Islamia (2025).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-microphone-alt award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -959,7 +908,6 @@
                     <div class="award-bottom">3rd International Electronic Conference on Cancers (MDPI) (2023).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-award award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -967,23 +915,6 @@
                     <div class="award-bottom">21st International Conference on Bioinformatics (InCoB), KAUST (2022).</div>
                 </div>
             </div>
-
-            <div class="award-card">
-                <i class="fas fa-bullhorn award-badge-icon"></i>
-                <div class="award-content-wrapper">
-                    <div class="award-top">Best Oral Presentation</div>
-                    <div class="award-bottom">Interdisciplinary Science Conference, JMI, New Delhi (2019).</div>
-                </div>
-            </div>
-
-            <div class="award-card">
-                <i class="fas fa-image award-badge-icon"></i>
-                <div class="award-content-wrapper">
-                    <div class="award-top">Best Poster Presenter</div>
-                    <div class="award-bottom">National Conference on CCSMAP, MRIIRS (2019).</div>
-                </div>
-            </div>
-
             <div class="award-card">
                 <i class="fas fa-user-graduate award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -991,7 +922,20 @@
                     <div class="award-bottom">Awarded 6-month fellowship at ICAR-IARI (2020).</div>
                 </div>
             </div>
-
+            <div class="award-card">
+                <i class="fas fa-bullhorn award-badge-icon"></i>
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Oral Presentation</div>
+                    <div class="award-bottom">Interdisciplinary Science Conference, JMI, New Delhi (2019).</div>
+                </div>
+            </div>
+            <div class="award-card">
+                <i class="fas fa-image award-badge-icon"></i>
+                <div class="award-content-wrapper">
+                    <div class="award-top">Best Poster Presenter</div>
+                    <div class="award-bottom">National Conference on CCSMAP, MRIIRS (2019).</div>
+                </div>
+            </div>
             <div class="award-card">
                 <i class="fas fa-certificate award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -999,64 +943,54 @@
                     <div class="award-bottom">Awarded 2-month fellowship at Jamia Hamdard (2019).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-project-diagram award-badge-icon"></i>
                 <div class="award-content-wrapper">
-                    <div class="award-top">1st Prize Working Model</div>
+                    <div class="award-top">1st Prize in Working Model</div>
                     <div class="award-bottom">"PARIVARTAN 2K18", Sri Aurobindo College, DU (2018).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-hand-holding-heart award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Society Contributions Award</div>
-                    <div class="award-bottom">Awarded by WEED for Greenest Campus initiatives (2016).</div>
+                    <div class="award-bottom">Awarded by WEED (UNESCO) for Greenest Campus Initiatives (2016).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-star award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">2nd Prize (Quiz/Contest)</div>
-                    <div class="award-bottom">Explico Know Your Green in "SANJEEVANI", Deshbandhu College (2016).</div>
+                    <div class="award-bottom">Explico Know Your Green in "SANJEEVANI", Deshbandhu College, DU (2016).</div>
                 </div>
             </div>
-
             <div class="award-card">
                 <i class="fas fa-file-alt award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Best Poster Award</div>
-                    <div class="award-bottom">ICSSR-sponsored National Seminar, Sri Aurobindo College (2016).</div>
+                    <div class="award-bottom">ICSSR-sponsored National Seminar, Sri Aurobindo College, DU (2016).</div>
                 </div>
             </div>
-
              <div class="award-card">
                 <i class="fas fa-lightbulb award-badge-icon"></i>
                 <div class="award-content-wrapper">
                     <div class="award-top">Innovation Fellowship</div>
-                    <div class="award-bottom">Innovation Project Fellowship, University of Delhi (2015-16).</div>
+                    <div class="award-bottom">DBC311 Innovation Project Fellowship, University of Delhi (2015).</div>
                 </div>
             </div>
         </div>
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       PUBLICATIONS SECTION
-       IDs added to Accordion buttons to link from Hero Dropdown
-       ========================================================================
-    -->
+    <!-- PUBLICATIONS -->
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
-        
         <button class="accordion-btn" id="pubs-journal">Journal Articles <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list">
+
                         <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br><em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Multitarget Docking and Molecular Enumeration Reveal DdpMPyPEPhU as a Potent Modulator of Cell Cycle, Glucocorticoid, and Estrogen Signalling in Breast Cancer</strong><br><em>Submitted: IJBIOMAC-D-25-041021 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
@@ -1170,14 +1104,9 @@
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       CONFERENCES & EVENTS SECTION
-       ========================================================================
-    -->
+    <!-- CONFERENCES -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
-
         <button class="accordion-btn" id="pubs-conf">Presented in Conferences <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1311,7 +1240,7 @@
             <div class="panel-content">
                 <div class="scrollable-list">
                     <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">450+ Verified Peer Reviews on Publons</p>
-                    <p style="font-size:0.95rem;">Reviewer for journals including:</p>
+                    <p style="font-size:0.95rem;">Regular Reviewer in the Following Journals-</p>
                     <ul class="pub-list compact-list" style="margin-top:10px;">
                         <li class="pub-item">Archives of Computational Methods in Engineering</li>
                         <li class="pub-item">Archives of Microbiology</li>
@@ -1396,20 +1325,13 @@
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       TECHNICAL PROFICIENCY (Cards in Accordion)
-       ========================================================================
-    -->
+    <!-- TECHNICAL PROFICIENCY -->
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
-        
-        <!-- Accordion 1 -->
         <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="tech-panel-grid">
-                    <!-- Card 1 -->
                     <div class="tech-card tc-blue">
                         <div class="tech-sub-title"><i class="fas fa-atom"></i> Molecular Modeling & Simulation</div>
                         <ul class="tech-ul">
@@ -1418,7 +1340,6 @@
                             <li>Trajectory analysis, RMSD/RMSF, PCA, MM/PBSA workflows</li>
                         </ul>
                     </div>
-                    <!-- Card 2 -->
                     <div class="tech-card tc-green">
                         <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt"></i> Structure-Based Drug Design</div>
                         <ul class="tech-ul">
@@ -1428,7 +1349,6 @@
                             <li>Protein–ligand interaction profiling & residue-level analysis</li>
                         </ul>
                     </div>
-                    <!-- Card 3 -->
                     <div class="tech-card tc-purple">
                         <div class="tech-sub-title"><i class="fas fa-microscope"></i> Quantum & Structural Methods</div>
                         <ul class="tech-ul">
@@ -1437,7 +1357,6 @@
                             <li>Structure optimization, validation, and preparation</li>
                         </ul>
                     </div>
-                    <!-- Card 4 -->
                     <div class="tech-card tc-orange">
                         <div class="tech-sub-title"><i class="fas fa-eye"></i> Visualization & Analysis</div>
                         <ul class="tech-ul">
@@ -1449,8 +1368,6 @@
             </div>
         </div>
 
-
-        <!-- Accordion 2 -->
         <button class="accordion-btn">Machine Learning, AI & Data Science <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1468,8 +1385,7 @@
                         <ul class="tech-ul">
                             <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
                             <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
-                            <li>Model development, hyperparameter tuning, cross-validation</li>
-                            <li>Feature engineering for chemical & biological data</li>
+                            <li>Model development, hyperparameter tuning, cross-val, Feature engg</li>
                         </ul>
                     </div>
                     <div class="tech-card tc-purple">
@@ -1484,7 +1400,6 @@
             </div>
         </div>
 
-        <!-- Accordion 3 -->
         <button class="accordion-btn">Genomics, Transcriptomics & Systems Biology <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1516,7 +1431,6 @@
             </div>
         </div>
 
-        <!-- Accordion 4 -->
         <button class="accordion-btn">Software Development, Automation & Infrastructure <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1555,58 +1469,63 @@
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       REFEREES SECTION
-       ========================================================================
-    -->
+    <!-- REFEREES -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
             <div class="referee-card ref-1">
-                <div class="referee-name">Dr Khalid Raza <span class="referee-role">(PhD Supervisor)</span></div>
+                <div class="referee-name"><a href="https://researchprofiles.ku.dk/da/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Tue Kjærgaard Nielsen</a> <span class="referee-role">(Postdoc PI)</span></div>
+                <div class="referee-title-line">Associate Professor</div>
+                <a href="https://plen.ku.dk/english/" target="_blank" class="referee-inst-link">University of Copenhagen, Denmark</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:tkn@plen.ku.dk">tkn@plen.ku.dk</a>
+                </div>
+            </div>
+            <div class="referee-card ref-2">
+                <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a> <span class="referee-role">(PhD Supervisor)</span></div>
                 <div class="referee-title-line">Associate Professor</div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:kraza@jmi.ac.in">kraza@jmi.ac.in</a>
                 </div>
             </div>
-            
-            <div class="referee-card ref-2">
-                <div class="referee-name">Dr Murugesh Eswaran <span class="referee-role">(PI @ ICGEB)</span></div>
-                <div class="referee-title-line">Assistant Professor</div>
-                <a href="https://www.msm.edu/" target="_blank" class="referee-inst-link">Morehouse School of Medicine, USA</a>
-                <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a>
-                </div>
-            </div>
-            
             <div class="referee-card ref-3">
-                <div class="referee-name">Dr Mansaf Alam <span class="referee-role">(MSc Supervisor)</span></div>
-                <div class="referee-title-line">Professor</div>
-                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a> <span class="referee-role">(JYU Visiting PI)</span></div>
+                <div class="referee-title-line">Research Director</div>
+                <a href="https://www.jyu.fi/en" target="_blank" class="referee-inst-link">University of Jyväskylä, Finland</a>
                 <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a>
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:tiina.a.jokela@jyu.fi">tiina.a.jokela@jyu.fi</a>
                 </div>
             </div>
-            
-            <div class="referee-card ref-4">
-                <div class="referee-name">Dr Manoj K Yadav <span class="referee-role">(PI- SARS-CoV-2)</span></div>
+             <div class="referee-card ref-4">
+                <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a> <span class="referee-role">(PI- SARS-CoV-2)</span></div>
                 <div class="referee-title-line">Associate Professor</div>
                 <a href="https://www.srmuniversity.ac.in/" target="_blank" class="referee-inst-link">SRM University, NCR, India</a>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:manoj.yadav@srmuniversity.ac.in">manoj.yadav@srmuniversity.ac.in</a>
                 </div>
             </div>
+            <div class="referee-card ref-1">
+                <div class="referee-name"><a href="https://www.msm.edu/directory/facultyprofile.php?id=123" target="_blank">Dr Murugesh Eswaran</a> <span class="referee-role">(PI @ ICGEB)</span></div>
+                <div class="referee-title-line">Assistant Professor</div>
+                <a href="https://www.msm.edu/" target="_blank" class="referee-inst-link">Morehouse School of Medicine, USA</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a>
+                </div>
+            </div>
+            <div class="referee-card ref-2">
+                <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a> <span class="referee-role">(MSc Supervisor)</span></div>
+                <div class="referee-title-line">Professor</div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="referee-contact">
+                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a>
+                </div>
+            </div>
         </div>
         <hr class="separator">
     </section>
 
-    <!-- 
-       ========================================================================
-       FOOTER SECTION
-       ========================================================================
-    -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-socials">
             <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -1616,33 +1535,20 @@
             <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
             <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
             <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
-
-
         </div>
-        
         <div class="footer-text">
-            &copy; 2026 All Rights Reserved | Updated on 27/01/2026.
+            &copy; 2026 All Rights Reserved
         </div>
     </footer>
 
-    <!-- 
-       ========================================================================
-       JAVASCRIPT LOGIC
-       ========================================================================
-    -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // =========================================
-        // SCROLL LOGIC FOR HEADER (Desktop Only)
-        // Shows the name in header only after scrolling past the Hero image
-        // =========================================
+        // HEADER SCROLL LOGIC
         window.addEventListener('scroll', function() {
-            // Check if we are on desktop (>900px) before applying opacity logic
             if (window.innerWidth > 900) {
                 const headerName = document.querySelector('.header-name');
                 const hero = document.querySelector('.hero');
-                // Calculate trigger point (when to show name)
                 const triggerHeight = hero.offsetHeight - 150; 
-
                 if (window.scrollY > triggerHeight) {
                     headerName.classList.add('visible');
                 } else {
@@ -1651,10 +1557,7 @@
             }
         });
 
-        // =========================================
-        // MOBILE MENU TOGGLE LOGIC
-        // Opens/Closes the navigation menu on mobile
-        // =========================================
+        // MENU TOGGLE
         function toggleMenu() {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
@@ -1662,7 +1565,6 @@
             toggleBtn.classList.toggle('open');
         }
 
-        // Close mobile menu automatically when a link is clicked
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1673,51 +1575,34 @@
             });
         });
 
-        // =========================================
-        // GLOBAL MENU CLOSING (FIXED POINT 3)
-        // Detects clicks anywhere on the page to close the menu if open
-        // =========================================
         document.addEventListener('click', function(event) {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
-            const header = document.querySelector('header');
-
-            // If the clicked target is NOT the menu, NOT the toggle button, and the menu IS active
             if (navBar.classList.contains('active') && !navBar.contains(event.target) && !toggleBtn.contains(event.target)) {
-                toggleMenu(); // Close it
+                toggleMenu();
             }
         });
 
-        // =========================================
         // ACCORDION LOGIC
-        // Handles expanding/collapsing of publication/event lists
-        // =========================================
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
-                
-                // If expanded, collapse it
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    // Use scrollHeight to automatically detect full height of content
                     panel.style.maxHeight = panel.scrollHeight + "px"; 
                 } 
             });
         }
 
-        // =========================================
-        // HERO PUBLICATIONS DROPDOWN LOGIC
-        // Handles the small dropdown arrow in the Hero Stats box
-        // =========================================
+        // HERO DROPDOWN
         function togglePubStats(e) {
             e.preventDefault();
-            e.stopPropagation(); // Prevent clicking the parent link
+            e.stopPropagation(); 
             const breakdown = document.getElementById('pub-breakdown');
             const toggleIcon = e.currentTarget.querySelector('i');
-            
             if (breakdown.classList.contains('open')) {
                 breakdown.classList.remove('open');
                 breakdown.style.maxHeight = "0";
@@ -1731,28 +1616,40 @@
             }
         }
 
-        // =========================================
-        // AUTO-SCROLL AND EXPAND HELPER (FIXED POINT 2)
-        // Used by hero dropdown links to jump to and open specific accordions
-        // =========================================
+        // AUTO-SCROLL
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
             if (btn) {
-                // If the accordion isn't already open, click it to open
                 if (!btn.classList.contains('active')) {
                     btn.click();
                 }
-                
-                // Scroll smoothly to the button, centered on screen
                 setTimeout(() => {
                     btn.scrollIntoView({ behavior: "smooth", block: "center" });
-                }, 300); // Slight delay ensures expansion animation has started
+                }, 300);
             }
         }
+
+        // SCROLL SPY
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((li) => {
+                li.classList.remove("active-section");
+                if (li.getAttribute("href").includes(current)) {
+                    li.classList.add("active-section");
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
