@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 
+       ========================================================================
+       META TAGS & DOCUMENT SETTINGS
+       ========================================================================
+    -->
     <meta charset="UTF-8">
+    <!-- Viewport setting ensures the site renders correctly on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr Shaban | Postdoc at UCPH</title>
     <meta name="description" content="Academic Portfolio of Dr Shaban">
     
+    <!-- Favicon -->
     <link rel="icon" href="shaban.png" type="image/png">
     
+    <!-- 
+       ========================================================================
+       EXTERNAL LIBRARIES & FONTS
+       ========================================================================
+    -->
+    <!-- FontAwesome for general icons (bars, envelope, etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Academicons for academic-specific icons (Google Scholar, ResearchGate) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- Google Fonts: Roboto (Body), Playfair Display (Headings), Merriweather (Institutes) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
+        /* ========================================================================
+           CSS VARIABLES (COLOR PALETTE)
+           Use these variables to maintain consistent branding throughout the site.
+           ========================================================================
+        */
         :root {
-            --primary: #002e5f; /* UCPH Blue */
-            --primary-dark: #001a36;
-            --accent: #dca11d; /* Gold */
-            --text: #333;
-            --light-bg: #f8f9fa;
+            --primary: #002e5f;      /* UCPH Blue - Main Brand Color */
+            --primary-dark: #001a36; /* Darker shade for gradients/footer */
+            --accent: #dca11d;       /* Gold - Highlight/Action Color */
+            --text: #333;            /* Standard Text Color */
+            --light-bg: #f8f9fa;     /* Light Gray Background */
             --white: #ffffff;
-            --inst-font: 'Merriweather', serif;
-            --transition: all 0.3s ease;
+            --inst-font: 'Merriweather', serif; /* Font for Institution Names */
+            --transition: all 0.3s ease;        /* Standard animation timing */
             
-            /* Education Colors */
-            --edu-phd: #002e5f;
-            --edu-msc: #e67e22; /* Burnt Orange */
-            --edu-bsc: #20c997; 
-            --edu-xii: #fd7e14; 
-            --edu-x: #6f42c1;   
-            --edu-basic: #e83e8c; 
+            /* -- Education Card Specific Colors -- */
+            --edu-phd: #002e5f;      /* Blue */
+            --edu-msc: #e67e22;      /* Burnt Orange */
+            --edu-bsc: #20c997;      /* Teal */
+            --edu-xii: #fd7e14;      /* Orange */
+            --edu-x: #6f42c1;        /* Purple */
+            --edu-basic: #e83e8c;    /* Pink */
             
-            /* Referee Colors */
+            /* -- Referee Card Specific Colors -- */
             --ref-1: #002e5f;
             --ref-2: #008080;
             --ref-3: #6610f2;
             --ref-4: #dc3545;
         }
 
+        /* ========================================================================
+           GLOBAL RESETS & BASE STYLES
+           ========================================================================
+        */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: var(--text); background: var(--light-bg); padding-top: 65px; }
+        
+        html { scroll-behavior: smooth; } /* Enables smooth scrolling when clicking links */
+        
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text); 
+            background: var(--light-bg); 
+            padding-top: 65px; /* Pushes content down so Fixed Header doesn't cover it */
+        }
+        
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-        /* --- Separator --- */
+        /* The decorative line separating sections */
         .separator {
             border: 0;
             height: 4px; 
@@ -51,12 +85,16 @@
             opacity: 0.8;
         }
 
-        /* --- Header --- */
+        /* ========================================================================
+           HEADER & NAVIGATION STYLES
+           ========================================================================
+        */
         header { 
             background: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Frosted glass effect behind header */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; height: 70px;
+            position: fixed; top: 0; left: 0; width: 100%; 
+            z-index: 1000; height: 70px;
             transition: all 0.3s ease;
         }
 
@@ -65,20 +103,23 @@
             padding: 0 30px; height: 100%; 
             max-width: 1200px; 
             margin: 0 auto;
+            position: relative; /* Essential for absolute centering on mobile */
         }
 
+        /* -- Desktop Name Styling (Hidden initially, appears on scroll) -- */
         .header-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary); 
             text-decoration: none;
-            opacity: 0; 
+            opacity: 0; /* Hidden by default on desktop */
             transform: translateX(-20px);
             transition: all 0.3s ease;
             pointer-events: none;
         }
         
+        /* The class '.visible' is added via JavaScript when user scrolls down */
         .header-name.visible {
             opacity: 1;
             transform: translateX(0);
@@ -87,6 +128,7 @@
         
         .header-name:hover { color: var(--accent) !important; }
 
+        /* -- Navigation Menu (Desktop) -- */
         .nav-list { 
             display: flex; 
             list-style: none; 
@@ -116,6 +158,7 @@
             background: rgba(0, 46, 95, 0.05);
         }
         
+        /* The gold underline effect on hover */
         .nav-link::after {
             content: '';
             position: absolute;
@@ -127,25 +170,35 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        
         .nav-link:hover::after { width: 80%; }
 
+        /* -- Mobile Menu Toggle (Hamburger Icon) -- */
         .nav-toggle { 
-            display: none; 
+            display: none; /* Hidden on desktop */
             font-size: 1.5rem; 
             cursor: pointer; 
             color: var(--primary); 
             margin-left: auto; 
             transition: transform 0.3s ease;
+            z-index: 1001;
         }
-        .nav-toggle.open { transform: rotate(90deg); }
+        .nav-toggle.open { transform: rotate(90deg); } /* Rotates when menu is open */
 
-        /* --- Sidebar Socials --- */
+        /* ========================================================================
+           SIDEBAR (Social Links)
+           ========================================================================
+        */
         .sticky-sidebar {
-            position: fixed; top: 50%; left: 0; transform: translateY(-50%);
-            z-index: 1100; display: flex; flex-direction: column; gap: 12px;
-            background-color: var(--white); padding: 15px 8px;
-            border-radius: 0 12px 12px 0; box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            position: fixed; 
+            top: 50%; 
+            left: 0; /* Left side on desktop */
+            transform: translateY(-50%);
+            z-index: 1100; 
+            display: flex; flex-direction: column; gap: 12px;
+            background-color: var(--white); /* Solid White Background */
+            padding: 15px 8px;
+            border-radius: 0 12px 12px 0; 
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
             border: 1px solid #f0f0f0;
         }
 
@@ -156,7 +209,10 @@
 
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
-        /* --- Hero Section --- */
+        /* ========================================================================
+           HERO SECTION (Top Banner)
+           ========================================================================
+        */
         .hero-section-wrapper {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             width: 100%;
@@ -191,11 +247,12 @@
         }
         .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
 
+        /* -- Floating Stats Box in Hero -- */
         .hero-stats {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
             width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
-            animation: float 4s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite; /* Floating animation */
         }
         
         @keyframes float {
@@ -204,7 +261,7 @@
             100% { transform: translateY(0px); }
         }
 
-        .stat-row-link {
+        .stat-row-link, .stat-row-container {
             text-decoration: none; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.2s ease, background 0.2s; border-radius: 4px;
         }
@@ -216,6 +273,26 @@
         .stat-label { font-weight: 400; color: #ddd; display: flex; align-items: center; gap: 10px; }
         .stat-value { font-weight: 700; color: var(--accent); font-size: 1.2rem; transition: color 0.2s; }
         
+        /* -- Publications Dropdown Toggle -- */
+        .stat-toggle { cursor: pointer; color: #ddd; padding: 0 10px; transition: color 0.3s; }
+        .stat-toggle:hover { color: var(--accent); }
+        .stat-label-link { color: #ddd; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .stat-label-link:hover { color: var(--accent); }
+
+        /* The hidden dropdown list */
+        .pub-breakdown {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+            background: rgba(0,0,0,0.1); border-radius: 4px;
+        }
+        .pub-breakdown.open { max-height: 200px; }
+        .pub-breakdown a {
+            display: block; padding: 8px 15px; font-size: 0.9rem; color: #eee;
+            border-bottom: 1px dashed rgba(255,255,255,0.1); text-decoration: none;
+        }
+        .pub-breakdown a:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
+        .pub-breakdown a:last-child { border-bottom: none; }
+
+        /* Download CV Button */
         .cv-btn {
             display: block; width: 100%; padding: 12px; background: var(--accent);
             color: var(--primary-dark); text-align: center; font-weight: 700;
@@ -227,43 +304,57 @@
             background: #fff; color: var(--primary);
         }
 
-        /* --- Container & Titles --- */
+        /* ========================================================================
+           GENERAL PAGE SECTIONS
+           ========================================================================
+        */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         .section-title { 
             font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); 
             margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px;
         }
 
-        /* --- Profile & Interests --- */
-        .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
-        .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
+        .int-intro-text { font-style: italic; color: #666; margin-bottom: 10px; font-weight: 600; }
+        .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 0.5rem; }
         .int-tag { 
             background: var(--white); border: 1px solid #ddd; padding: 6px 12px; 
             border-radius: 4px; font-weight: 500; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
-        /* --- Education --- */
+        /* ========================================================================
+           EDUCATION & EXPERIENCE CARDS STYLING
+           ========================================================================
+        */
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .edu-grid, .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
-        .edu-card { 
+        .edu-card, .exp-box { 
             background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
-            border-top: 6px solid #ccc; 
+            border-top: 6px solid #ccc; /* Default border color, overridden by classes below */
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* added border-color transition */
+            position: relative; display: flex; flex-direction: column;
         }
-        
+
+        /* -- Top Border Colors for Education -- */
         .edu-phd { border-top-color: var(--edu-phd); }
         .edu-msc { border-top-color: var(--edu-msc); }
         .edu-bsc { border-top-color: var(--edu-bsc); }
         .edu-xii { border-top-color: var(--edu-xii); }
         .edu-x { border-top-color: var(--edu-x); }
         .edu-basic { border-top-color: var(--edu-basic); }
+        
+        /* -- Top Border Colors for Experience -- */
+        .exp-full { border-top-color: #28a745; } 
+        .exp-part { border-top-color: var(--edu-msc); } 
+        .exp-trainee { border-top-color: #6f42c1; }
 
-        /* FIXED Hover Effect: Border color matches box type on all sides */
+        /* -- HOVER EFFECTS: Border color changes to match card type (FIXED POINT 4) -- 
+           We specifically target each class on hover to change the full border color.
+        */
         .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
         .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
@@ -271,118 +362,75 @@
         .edu-x:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-x); }
         .edu-basic:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-basic); }
 
-        .edu-card h4 { font-size: 1.15rem; color: var(--text); margin-bottom: 8px; font-weight: 700; }
-        .year-span { color: #888; font-weight: 400; font-size: 0.95rem; margin-left: 5px; }
-        
-        .inst-link { 
-            font-family: var(--inst-font); font-size: 1rem; color: var(--primary); 
-            display: block; margin-bottom: 5px; text-decoration: none; 
-            font-weight: 600; transition: color 0.2s;
-        }
-        .inst-link:hover { color: var(--accent); }
-
-        .badge-gold { 
-            display: inline-block; background-color: #fff9db; color: #856404; 
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;
-            margin-top: 5px; border: 1px solid #ffeeba;
-        }
-
-        /* --- Experience --- */
-        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        
-        .exp-box {
-            background: var(--white); padding: 1.5rem; border-radius: 6px; 
-            border-top: 5px solid; 
-            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
-            display: flex; flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        
-        .exp-full { border-top-color: #28a745; } 
-        .exp-part { border-top-color: var(--edu-msc); } 
-        .exp-trainee { border-top-color: #6f42c1; }
-        
         .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #28a745; }
         .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #6f42c1; }
 
-        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
-        .exp-inst { 
-            font-family: var(--inst-font); color: var(--primary); 
-            font-weight: 600; font-size: 0.95rem; margin: 5px 0; 
-            text-decoration: none; transition: color 0.2s;
+        /* General Card Typography */
+        .edu-card h4 { font-size: 1.15rem; color: var(--text); margin-bottom: 8px; font-weight: 700; }
+        .year-span { color: #888; font-weight: 400; font-size: 0.95rem; margin-left: 5px; }
+        
+        .inst-link, .exp-inst { 
+            font-family: var(--inst-font); font-size: 1rem; color: var(--primary); 
+            display: block; margin-bottom: 5px; text-decoration: none; 
+            font-weight: 600; transition: color 0.2s;
         }
-        .exp-inst:hover { color: var(--accent); }
+        .inst-link:hover, .exp-inst:hover { color: var(--accent); }
+        
+        .badge-gold { 
+            display: inline-block; background-color: #fff9db; color: #856404; 
+            padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;
+            margin-top: 5px; border: 1px solid #ffeeba; align-self: flex-start;
+        }
+        
+        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
-        .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; }
-        .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; margin-top: 10px; }
+        .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
+        .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; }
         .bg-full { background: #28a745; }
         .bg-part { background: var(--edu-msc); color: #fff; }
         .bg-trainee { background: #6f42c1; color: #fff; }
 
-        /* --- Awards Styling (CHANGED: Icon Left) --- */
-        .award-box-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 20px;
-        }
-        
+        /* ========================================================================
+           AWARDS GRID
+           ========================================================================
+        */
+        .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         .award-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            background: var(--white); border-radius: 12px; padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: row; /* Horizontal layout */
-            align-items: center;
-            justify-content: flex-start; /* Items start from left */
-            gap: 20px; /* Space between icon and text */
-            text-align: left;
+            display: flex; flex-direction: row; align-items: center;
+            justify-content: flex-start; gap: 20px; text-align: left;
         }
-
-        .award-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-
+        .award-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
         .award-content-wrapper { flex: 1; }
-
         .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; }
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
+        .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; }
 
-        .award-badge-icon {
-            font-size: 2.2rem;
-            color: var(--accent); 
-            filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3));
-            flex-shrink: 0;
-        }
-
-        /* --- Patents --- */
+        /* ========================================================================
+           PATENTS GRID
+           ========================================================================
+        */
         .patent-box { 
             background: #fff; border: 1px solid #eee; padding: 1.5rem; 
             border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
-
         .patent-icon { font-size: 2rem; color: var(--accent); }
         .patent-link { color: var(--primary); font-weight: bold; text-decoration: none; transition: color 0.2s; }
-        .patent-link:hover { color: var(--accent); }
         
         @media (min-width: 900px) {
-            .grid-container {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
+            .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .patent-box { margin-bottom: 0; }
         }
 
-        /* --- Accordion --- */
+        /* ========================================================================
+           ACCORDION (Publications, Events, Technical)
+           ========================================================================
+        */
         .accordion-btn {
             width: 100%; padding: 1rem; text-align: left; 
             background: var(--white); border: 1px solid #ddd; border-left: 4px solid var(--primary);
@@ -392,30 +440,22 @@
             transition: all 0.3s ease;
         }
         .accordion-btn:hover { background: #f0f4f8; }
-        
         .accordion-btn.active { 
-            background: #f0f8ff; 
-            color: var(--primary); 
+            background: #f0f8ff; color: var(--primary); 
             border-left: 6px solid var(--primary);
-            border-top: 2px solid #87cefa;
-            border-right: 2px solid #87cefa;
-            border-bottom: 2px solid #87cefa;
+            border-top: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa;
         }
         
+        /* The Panel holds content. Height is controlled via JS logic (max-height) */
         .panel { 
             padding: 0 1rem; max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; background: var(--white);
             border: 1px solid #eee; border-top: none; margin-bottom: 10px;
         }
-        
-        .accordion-btn.active + .panel {
-            border-left: 2px solid #87cefa;
-            border-right: 2px solid #87cefa;
-            border-bottom: 2px solid #87cefa;
-            background: #fafcff;
-        }
+        .accordion-btn.active + .panel { border-left: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa; background: #fafcff; }
         
         .scrollable-list { max-height: 600px; overflow-y: auto; padding-right: 15px; }
+        /* Scrollbar styling for Webkit browsers */
         .scrollable-list::-webkit-scrollbar { width: 6px; }
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
         .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
@@ -424,157 +464,173 @@
         .pub-item { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
         .compact-list .pub-item { margin-bottom: 2px; padding-bottom: 2px; border: none; line-height: 1.3; }
         .pub-item strong { color: #004d40; font-weight: 700; }
-        .pub-journal { font-style: italic; color: #555; font-size: 0.9rem; }
-        
-        .event-meta {
-            display: block; color: #666; font-size: 0.9rem; margin-top: 2px;
-            font-weight: 500; border-left: 3px solid var(--accent);
-            padding-left: 8px; margin-left: 2px;
-        }
-
+        .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 2px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
         .pub-doi { 
             font-size: 0.7rem; color: #fff; background-color: var(--accent); 
             padding: 3px 8px; border-radius: 4px; margin-left: 8px; 
             font-weight: 700; text-decoration: none; display: inline-block;
             transition: transform 0.2s;
         }
-        .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); text-decoration: none; color: #fff; }
+        .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); color: #fff; }
 
-        /* --- Academic Referee Cards --- */
-        .referee-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+        /* ========================================================================
+           TECHNICAL PROFICIENCY (Grid Layout inside Accordion)
+           ========================================================================
+        */
+        .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
+        .tech-card {
+            background: #fff; padding: 1.5rem; border-radius: 8px;
+            border-top: 5px solid #ccc; 
+            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
+        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .tc-blue { border-top-color: var(--primary); }
+        .tc-green { border-top-color: #20c997; }
+        .tc-purple { border-top-color: #6f42c1; }
+        .tc-orange { border-top-color: #fd7e14; }
+
+        .tech-sub-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .tech-sub-title i { color: var(--accent); font-size: 1.2rem; }
+        .tech-ul { list-style: none; padding: 0; margin: 0; }
+        .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; }
+        .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
+
+        /* ========================================================================
+           REFEREES GRID
+           ========================================================================
+        */
+        .referee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .referee-card {
             background: #fff; padding: 1.5rem; border-radius: 8px;
             border-top: 5px solid; 
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
+        .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); transform: translateY(-5px); }
+        .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); transform: translateY(-5px); }
+        .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); transform: translateY(-5px); }
+        .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); transform: translateY(-5px); }
         
-        .ref-1 { border-top-color: var(--ref-1); }
-        .ref-2 { border-top-color: var(--ref-2); }
-        .ref-3 { border-top-color: var(--ref-3); }
-        .ref-4 { border-top-color: var(--ref-4); }
-
-        /* Hover: Color Matches Top Border */
-        .ref-1:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-1); }
-        .ref-2:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-2); }
-        .ref-3:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-3); }
-        .ref-4:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--ref-4); }
-
         .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
         .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; }
-        .referee-title-line { font-size: 0.95rem; font-weight: 600; color: #333; margin-top: 5px; }
-        .referee-inst-link { 
-            font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; 
-            text-decoration: none; transition: color 0.3s ease;
-        }
+        .referee-inst-link { font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; text-decoration: none; }
         .referee-inst-link:hover { color: var(--accent); }
         .referee-contact { font-size: 0.9rem; color: #444; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
-        /* --- Updated Tech Proficiency Design (Grid of Cards inside Accordion) --- */
-        .tech-panel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 1.5rem 0.5rem;
-        }
-        
-        .tech-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-top: 5px solid #ccc; /* Default gray */
-            border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        
-        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-        /* Card Colors */
-        .tc-blue { border-top-color: var(--primary); }
-        .tc-blue:hover { border-color: var(--primary); }
-        
-        .tc-green { border-top-color: #20c997; }
-        .tc-green:hover { border-color: #20c997; }
-        
-        .tc-purple { border-top-color: #6f42c1; }
-        .tc-purple:hover { border-color: #6f42c1; }
-        
-        .tc-orange { border-top-color: #fd7e14; }
-        .tc-orange:hover { border-color: #fd7e14; }
-
-        .tech-sub-title {
-            font-weight: 700; color: var(--primary); font-size: 1.1rem; 
-            margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .tech-sub-title i { color: var(--accent); font-size: 1.2rem; }
-
-        .tech-ul { list-style: none; padding: 0; margin: 0; }
-        .tech-ul li {
-            position: relative; padding-left: 20px; margin-bottom: 8px;
-            font-size: 0.9rem; color: #555; line-height: 1.4;
-        }
-        .tech-ul li::before {
-            content: '\f00c'; /* FontAwesome Check */
-            font-family: 'Font Awesome 5 Free'; font-weight: 900;
-            position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem;
-        }
-
-        /* --- Footer --- */
+        /* ========================================================================
+           FOOTER
+           ========================================================================
+        */
         footer { 
-            background: var(--primary-dark); 
-            color: #d1d5db; 
-            text-align: center; 
-            padding: 20px 0; 
-            margin-top: 3rem; 
-            border-top: 4px solid var(--accent); 
+            background: var(--primary-dark); color: #d1d5db; text-align: center; 
+            padding: 20px 0; margin-top: 3rem; border-top: 4px solid var(--accent); 
         }
-        
-        .footer-socials { 
-            margin: 0 0 10px 0; 
-            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; 
-        }
-
+        .footer-socials { margin: 0 0 10px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .footer-btn {
-            width: 35px; height: 35px; 
-            background: rgba(255,255,255,0.1); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 1.1rem; transition: all 0.3s;
+            width: 35px; height: 35px; background: rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; transition: all 0.3s;
             text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
         }
         .footer-btn:hover { transform: translateY(-3px); background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
-        
-        .footer-text { 
-            font-size: 0.85rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px;
-            display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;
-        }
+        .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; }
 
-        /* Mobile Responsive */
+        /* ========================================================================
+           MOBILE RESPONSIVE STYLES
+           ========================================================================
+        */
         @media (max-width: 900px) {
-            .sticky-sidebar { display: none; }
-            .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
-            .hero-stats { width: 100%; max-width: 400px; animation: none; }
-            .header-content { justify-content: space-between; }
-            .header-name { display: block !important; font-size: 1.1rem; margin-right: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%; pointer-events: auto !important; }
-            .nav-list { display: none; flex-direction: column; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); padding: 1.5rem; position: absolute; top: 70px; left: 0; width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.1); gap: 12px; border-bottom: 3px solid var(--accent); border-radius: 0 0 15px 15px; margin: 0; }
+            
+            /* -- Header Name: Centered, Gold, Big, Permanent -- */
+            .header-content { 
+                justify-content: center; /* Absolute Center alignment context */
+            }
+            
+            .header-name { 
+                display: block !important; 
+                opacity: 1 !important; /* Always visible */
+                transform: none !important; /* No slide animation */
+                pointer-events: auto !important;
+                color: var(--accent) !important; /* Gold Color */
+                font-size: 1.8rem; /* Larger font */
+                position: absolute; /* Absolute Center */
+                left: 50%;
+                transform: translateX(-50%) !important;
+                margin: 0;
+                white-space: nowrap;
+                z-index: 1002;
+            }
+
+            .nav-toggle { 
+                display: block; 
+                position: absolute; 
+                right: 30px; /* Keep burger icon on right */
+            }
+
+            /* -- Glassy Mobile Menu (FIXED POINT 2) -- 
+               Changed from 95% opacity to 0.75 (75%) opacity. 
+            */
+            .nav-list { 
+                display: none; 
+                flex-direction: column; 
+                /* 0.75 alpha makes it ~75% solid white, readable but "glassy" */
+                background: rgba(255, 255, 255, 0.75); 
+                backdrop-filter: blur(8px); 
+                -webkit-backdrop-filter: blur(8px);
+                padding: 1.5rem; 
+                position: absolute; 
+                top: 70px; left: 0; width: 100%; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+                gap: 12px; 
+                border-bottom: 3px solid var(--accent); 
+                border-radius: 0 0 15px 15px; 
+                margin: 0; 
+            }
             .nav-list.active { display: flex; }
-            .nav-link { color: #fff !important; background: var(--primary); text-align: center; display: block; width: 100%; padding: 12px; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .nav-link { 
+                color: #fff !important; 
+                background: var(--primary); /* Button remains solid for readability */
+                text-align: center; display: block; width: 100%; 
+                padding: 12px; border-radius: 50px; 
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            }
             .nav-link:hover { background: var(--accent); transform: scale(1.02); }
             .nav-link::after { display: none; }
-            .nav-toggle { display: block; }
+            
+            /* -- Sidebar: Right side & Solid White (FIXED POINT 3) -- 
+            */
+            .sticky-sidebar { 
+                display: flex; 
+                left: auto; right: 0; /* Move to right */
+                top: 50%;
+                border-radius: 12px 0 0 12px; /* Curved on left side only */
+                background-color: var(--white); /* Solid White like Desktop */
+                border: 1px solid #eee;
+                padding: 10px 5px;
+                box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+            }
+            .sticky-sidebar .h-social { font-size: 1.3rem; margin: 2px 0; }
+
+            /* -- Hero Layout -- */
+            .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
+            .hero-stats { width: 100%; max-width: 400px; animation: none; }
+            
             .hero h1 { font-size: 1.8rem; }
-            .exp-grid { grid-template-columns: 1fr; }
-            .tech-panel-grid { grid-template-columns: 1fr; }
+            .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- 
+       ========================================================================
+       SIDEBAR SOCIAL ICONS
+       Desktop: Fixed Left | Mobile: Fixed Right + Solid White
+       ========================================================================
+    -->
     <div class="sticky-sidebar">
         <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="h-social" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -585,8 +641,15 @@
         <a href="https://shabanahmad.github.io/" target="_blank" class="h-social" title="Updated Personal Website"><i class="fas fa-globe"></i></a>
     </div>
 
+    <!-- 
+       ========================================================================
+       MAIN HEADER
+       Contains Logo/Name and Navigation Menu
+       ========================================================================
+    -->
     <header id="main-header">
         <div class="header-content">
+            <!-- Name: Permanently visible/centered/gold on mobile via CSS -->
             <a href="#hero-section" class="header-name">Dr Shaban</a>
 
             <ul class="nav-list" id="nav-menu">
@@ -605,6 +668,12 @@
         </div>
     </header>
 
+    <!-- 
+       ========================================================================
+       HERO SECTION
+       Profile Image, Name, Role, and Stats Box
+       ========================================================================
+    -->
     <div class="hero-section-wrapper" id="hero-section">
         <section class="hero">
             <div class="hero-main">
@@ -614,6 +683,28 @@
             </div>
             
             <div class="hero-stats">
+                
+                <!-- Publications Dropdown Entry -->
+                <div class="stat-row-link" style="padding:0;">
+                    <div class="stat-row">
+                        <!-- Link to section -->
+                        <a href="#publications" class="stat-label-link"><i class="fas fa-book"></i> Publications</a>
+                        
+                        <!-- Click arrow to expand dropdown -->
+                        <span class="stat-toggle" onclick="togglePubStats(event)"> <i class="fas fa-chevron-down"></i> </span>
+                        
+                        <!-- Number count -->
+                        <a href="#publications" class="stat-value">74+</a>
+                    </div>
+                    <!-- Hidden Dropdown Content -->
+                    <div class="pub-breakdown" id="pub-breakdown">
+                        <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles: 50+</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters: 24</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes: 6+</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-conf')">Conference Papers: 13+</a>
+                    </div>
+                </div>
+
                 <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link">
                     <div class="stat-row">
                         <span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span>
@@ -637,46 +728,53 @@
         </section>
     </div>
 
-<section id="profile" class="container" style="margin-top: 1rem;">
-    <h2 class="section-title">Personal Profile</h2>
-    <div class="profile-text">
-        <p>
-            Dr Shaban Ahmad is a Postdoctoral Researcher in the Microbial Ecology and Biotechnology Section, Department of Plant and Environmental Sciences, University of Copenhagen. His research integrates AI, bioinformatics, and computational biology to study PFAS-degrading enzymes and advance sustainable biotechnological solutions.
-        </p>
+    <!-- 
+       ========================================================================
+       PROFILE SECTION (FIXED POINT 5: Rewritten Text)
+       ========================================================================
+    -->
+    <section id="profile" class="container" style="margin-top: 1rem;">
+        <h2 class="section-title">Personal Profile</h2>
+        <div class="profile-text">
+            <p>
+                Dr. Shaban Ahmad is a distinguished Postdoctoral Researcher in the Microbial Ecology and Biotechnology Section at the University of Copenhagen's Department of Plant and Environmental Sciences. With a solid foundation in Bioinformatics, holding both an MSc and a PhD from Jamia Millia Islamia, India, Dr. Ahmad has established himself as an expert at the intersection of Artificial Intelligence and biological sciences. His doctoral research was pivotal in advancing AI-driven drug discovery, specifically targeting lung cancer therapeutics.
+            </p>
+            <p style="margin-top:10px;">
+                Currently, Dr. Ahmad leverages his deep expertise to pioneer sustainable biotechnological solutions, focusing on the discovery and engineering of PFAS-degrading enzymes using cutting-edge AI, bioinformatics, and computational biology strategies. His broader research portfolio encompasses AI-enabled genomics, computer-aided drug design (CADD), and deep learning applications for drug activity prediction and antimicrobial resistance. He possesses specialized proficiency in molecular modelling, simulations, and large-scale computational genomics, bridging the gap between data science and critical health and environmental challenges.
+            </p>
+        </div>
 
-        <p>
-            He holds an MSc and a PhD in Bioinformatics from Jamia Millia Islamia, India, where his doctoral work focused on AI-driven drug discovery, particularly in lung cancer.
-        </p>
+        <p class="int-intro-text">These are my research interests but not limited to-</p>
 
-            His research focuses on AI-enabled genomics and computer-aided drug design, including deep learning models for drug activity prediction, cancer genomics, antimicrobial resistance, and PFAS biodegradation. He has strong expertise in molecular modelling, simulations, and large-scale computational genomics.
-        </p>
-    </div>
+        <div class="interests-wrapper">
+            <div class="int-tag">AI in Genomics</div>
+            <div class="int-tag">AI in Drug Design</div>
+            <div class="int-tag">Deep Learning</div>
+            <div class="int-tag">Bioinformatics</div>
+            <div class="int-tag">CADD</div>
+            <div class="int-tag">Computational Genomics</div>
+            <div class="int-tag">Computational Chemistry</div>
+            <div class="int-tag">Molecular Dynamics</div>
+            <div class="int-tag">DFT</div>
+            <div class="int-tag">Binding Free Energy</div>
+            <div class="int-tag">Vaccine Design</div>
+            <div class="int-tag">PFAS Biodegradation</div>
+            <div class="int-tag">Machine Learning in Health</div>
+        </div>
 
-    <div class="interests-wrapper">
-        <div class="int-tag">AI in Genomics</div>
-        <div class="int-tag">AI in Drug Design</div>
-        <div class="int-tag">Deep Learning</div>
-        <div class="int-tag">Bioinformatics</div>
-        <div class="int-tag">CADD</div>
-        <div class="int-tag">Computational Genomics</div>
-        <div class="int-tag">Computational Chemistry</div>
-        <div class="int-tag">Molecular Dynamics</div>
-        <div class="int-tag">DFT</div>
-        <div class="int-tag">Binding Free Energy</div>
-        <div class="int-tag">Vaccine Design</div>
-        <div class="int-tag">PFAS Biodegradation</div>
-        <div class="int-tag">Machine Learning in Health</div>
-    </div>
+        <hr class="separator">
+    </section>
 
-    <hr class="separator">
-</section>
-
+    <!-- 
+       ========================================================================
+       EDUCATION SECTION
+       ========================================================================
+    -->
     <section id="education" class="container">
         <h2 class="section-title">Educational Background</h2>
         <div class="journey-intro">
             From humble beginnings in Basti, UP, India (from KG to 8th), moving to Lucknow for 8th to 12th standard, then New Delhi for higher education, and now contributing to science globally in Finland and Denmark.
         </div>
-
 
         <div class="edu-grid">
             <div class="edu-card edu-phd">
@@ -717,6 +815,11 @@
         <hr class="separator">
     </section>
 
+    <!-- 
+       ========================================================================
+       EXPERIENCE SECTION
+       ========================================================================
+    -->
     <section id="experience" class="container">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
@@ -787,6 +890,11 @@
         <hr class="separator">
     </section>
 
+    <!-- 
+       ========================================================================
+       PATENTS SECTION
+       ========================================================================
+    -->
     <section id="patents" class="container">
         <h2 class="section-title">Patents (IPR)</h2>
         <div class="grid-container">
@@ -809,6 +917,11 @@
         <hr class="separator">
     </section>
 
+    <!-- 
+       ========================================================================
+       AWARDS SECTION
+       ========================================================================
+    -->
     <section id="awards" class="container">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
@@ -919,12 +1032,16 @@
         <hr class="separator">
     </section>
 
-
-
+    <!-- 
+       ========================================================================
+       PUBLICATIONS SECTION
+       IDs added to Accordion buttons to link from Hero Dropdown
+       ========================================================================
+    -->
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
         
-        <button class="accordion-btn">Journal Articles <i class="fas fa-chevron-down"></i></button>
+        <button class="accordion-btn" id="pubs-journal">Journal Articles <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
@@ -992,7 +1109,7 @@
             </div>
         </div>
 
-        <button class="accordion-btn">Book Chapters <i class="fas fa-chevron-down"></i></button>
+        <button class="accordion-btn" id="pubs-book">Book Chapters <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
@@ -1026,7 +1143,7 @@
             </div>
         </div>
 
-        <button class="accordion-btn">Data & Codes <i class="fas fa-chevron-down"></i></button>
+        <button class="accordion-btn" id="pubs-data">Data & Codes <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                  <ul class="pub-list">
@@ -1042,11 +1159,15 @@
         <hr class="separator">
     </section>
 
-
+    <!-- 
+       ========================================================================
+       CONFERENCES & EVENTS SECTION
+       ========================================================================
+    -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
 
-        <button class="accordion-btn">Presented in Conferences <i class="fas fa-chevron-down"></i></button>
+        <button class="accordion-btn" id="pubs-conf">Presented in Conferences <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
@@ -1146,6 +1267,11 @@
     </section>
 
 
+    <!-- 
+       ========================================================================
+       PROFESSIONAL ACTIVITIES
+       ========================================================================
+    -->
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -1264,8 +1390,11 @@
         <hr class="separator">
     </section>
 
-
-    <!-- NEW SECTION: Detailed Technical Proficiency with Card Grid -->
+    <!-- 
+       ========================================================================
+       TECHNICAL PROFICIENCY (Cards in Accordion)
+       ========================================================================
+    -->
     <section id="technical" class="container">
         <h2 class="section-title">Technical Proficiency</h2>
         
@@ -1420,7 +1549,11 @@
         <hr class="separator">
     </section>
 
-
+    <!-- 
+       ========================================================================
+       REFEREES SECTION
+       ========================================================================
+    -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
@@ -1463,41 +1596,58 @@
         <hr class="separator">
     </section>
 
+    <!-- 
+       ========================================================================
+       FOOTER SECTION
+       ========================================================================
+    -->
     <footer>
         <div class="footer-socials">
-            <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="footer-btn s-Email" title="Email"> <i class="fas fa-envelope"></i> </a>
-            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
-            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
             <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com/DrShabanAhmad" target="_blank" class="footer-btn s-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
             <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
+            <a href="https://www.facebook.com/DrShabanAhmad" target="_blank" class="footer-btn s-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
-            <a href="https://loop.frontiersin.org/people/925491/publications" target="_blank" class="footer-btn s-loop" title="Loop"><i class="fas fa-infinity"></i></a>
-            <a href="https://sciprofiles.com/profile/ShabanAhmad" target="_blank" class="footer-btn s-sci" title="SciProfiles"><i class="fas fa-flask"></i></a>
         </div>
         
         <div class="footer-text">
-            &copy; 2026 Dr Shaban Ahmad | All Rights Reserved | Last Updated on January 26, 2026.
+            &copy; 2026 All Rights Reserved | Updated on 27/01/2026.
         </div>
     </footer>
 
+    <!-- 
+       ========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================
+    -->
     <script>
-        // Scroll Logic for Name Reveal
+        // =========================================
+        // SCROLL LOGIC FOR HEADER (Desktop Only)
+        // Shows the name in header only after scrolling past the Hero image
+        // =========================================
         window.addEventListener('scroll', function() {
-            const headerName = document.querySelector('.header-name');
-            const hero = document.querySelector('.hero');
-            const triggerHeight = hero.offsetHeight - 150; 
+            // Check if we are on desktop (>900px) before applying opacity logic
+            if (window.innerWidth > 900) {
+                const headerName = document.querySelector('.header-name');
+                const hero = document.querySelector('.hero');
+                // Calculate trigger point (when to show name)
+                const triggerHeight = hero.offsetHeight - 150; 
 
-            if (window.scrollY > triggerHeight) {
-                headerName.classList.add('visible');
-            } else {
-                headerName.classList.remove('visible');
+                if (window.scrollY > triggerHeight) {
+                    headerName.classList.add('visible');
+                } else {
+                    headerName.classList.remove('visible');
+                }
             }
         });
 
-        // Toggle Mobile Menu
+        // =========================================
+        // MOBILE MENU TOGGLE LOGIC
+        // Opens/Closes the navigation menu on mobile
+        // =========================================
         function toggleMenu() {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
@@ -1505,7 +1655,7 @@
             toggleBtn.classList.toggle('open');
         }
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu automatically when a link is clicked
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1516,20 +1666,64 @@
             });
         });
 
-        // Accordion Logic
+        // =========================================
+        // ACCORDION LOGIC
+        // Handles expanding/collapsing of publication/event lists
+        // =========================================
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
+                
+                // If expanded, collapse it
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    panel.style.maxHeight = "700px"; 
+                    // Use scrollHeight to automatically detect full height of content
+                    panel.style.maxHeight = panel.scrollHeight + "px"; 
                 } 
             });
+        }
+
+        // =========================================
+        // HERO PUBLICATIONS DROPDOWN LOGIC
+        // Handles the small dropdown arrow in the Hero Stats box
+        // =========================================
+        function togglePubStats(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent clicking the parent link
+            const breakdown = document.getElementById('pub-breakdown');
+            const toggleIcon = e.currentTarget.querySelector('i');
+            
+            if (breakdown.classList.contains('open')) {
+                breakdown.classList.remove('open');
+                breakdown.style.maxHeight = "0";
+                toggleIcon.classList.remove('fa-chevron-up');
+                toggleIcon.classList.add('fa-chevron-down');
+            } else {
+                breakdown.classList.add('open');
+                breakdown.style.maxHeight = breakdown.scrollHeight + "px";
+                toggleIcon.classList.remove('fa-chevron-down');
+                toggleIcon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Helper: When clicking a sub-link in Hero, open the specific accordion section below
+        function triggerAccordion(id) {
+            const btn = document.getElementById(id);
+            if(btn && !btn.classList.contains('active')) {
+                // Trigger click to open the accordion
+                btn.click();
+                // Scroll to it after a slight delay for accordion animation to start
+                setTimeout(() => {
+                    btn.scrollIntoView({behavior: "smooth", block: "center"});
+                }, 300);
+            } else if (btn) {
+                // If already open, just scroll to it
+                btn.scrollIntoView({behavior: "smooth", block: "center"});
+            }
         }
     </script>
 </body>
 </html>
-
