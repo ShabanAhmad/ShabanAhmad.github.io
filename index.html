@@ -406,10 +406,12 @@
         
         .badge-gold-inline { display: inline-block; background-color: #fff9db; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 1rem; font-weight: bold; border: 1px solid #ffeeba; margin-left: 5px; vertical-align: middle; cursor: help; }
         
-        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+        /* EXP CARD NEW HEADER STYLES (Title + Badge) */
+        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%; }
+        .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0; }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
         .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
-        .type-badge { align-self: flex-start; margin-top: auto; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; color: #fff; font-weight: bold; }
+        .type-badge { font-size: 0.75rem; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 3px; align-self: center; white-space: nowrap; }
         .bg-full { background: #28a745; } .bg-part { background: var(--edu-msc); color: #fff; } .bg-trainee { background: #6f42c1; color: #fff; }
 
         /* ========================================================================
@@ -468,22 +470,19 @@
         }
         
         .panel { 
-            /* Ensure overflow doesn't clip top/bottom content immediately */
             max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; background: var(--white);
             border: 1px solid #eee; border-top: none; margin-bottom: 10px;
         }
         .accordion-btn.active + .panel { border-left: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa; background: #fafcff; }
         
-        /* FIX FOR HOVER CLIPPING: Increased padding creates a buffer zone */
         .panel-content {
-            padding: 20px; /* More padding to allow pop-out effect */
+            padding: 20px; 
         }
 
-        /* FIX FOR HOVER CLIPPING: Padding ensures scroll content doesn't hit edge */
         .scrollable-list { 
             max-height: 600px; overflow-y: auto; 
-            padding: 15px 20px; /* Padding for hover effect */
+            padding: 15px 20px; 
         }
         .scrollable-list::-webkit-scrollbar { width: 6px; }
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -493,7 +492,7 @@
         
         .pub-item { 
             margin-bottom: 1rem; 
-            padding: 12px; /* Added padding for box feel */
+            padding: 12px; 
             border-bottom: 1px dashed #eee; 
             border: 1px solid transparent; 
             border-bottom-color: #eee; 
@@ -508,7 +507,7 @@
             border-color: var(--accent);
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-bottom-color: var(--accent);
-            z-index: 10; position: relative; /* Ensure it stays on top */
+            z-index: 10; position: relative; 
         }
 
         .compact-list .pub-item { margin-bottom: 2px; padding: 8px; border: none; line-height: 1.3; border: 1px solid transparent; }
@@ -569,14 +568,26 @@
         .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); transform: translateY(-5px); }
         .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); transform: translateY(-5px); }
         
-        .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+        /* New Header for Referee Name + Role Alignment */
+        .ref-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; }
         .referee-name a { text-decoration: none; color: inherit; transition: color 0.3s; }
         .referee-name a:hover { color: var(--accent); }
 
-        .referee-role { font-size: 0.9rem; color: #666; font-weight: 400; }
-        .referee-inst-link { font-size: 0.9rem; color: #555; display: block; margin-bottom: 10px; text-decoration: none; }
-        .referee-inst-link:hover { color: var(--accent); }
-        .referee-contact { font-size: 0.9rem; color: #444; margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+        .referee-role { font-size: 0.85rem; color: #666; font-weight: 400; text-align: right; }
+        
+        .referee-title-line { font-weight: 600; color: #444; font-size: 0.95rem; margin-bottom: 5px; }
+
+        .ref-inst-row { margin-bottom: 10px; font-size: 0.9rem; color: #555; display: flex; align-items: center; gap: 8px; }
+        .ref-inst-row a { color: #555; text-decoration: none; font-weight: 600; font-family: var(--inst-font); transition: 0.3s;}
+        .ref-inst-row a:hover { color: var(--accent); }
+        
+        .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
         /* ========================================================================
@@ -609,16 +620,33 @@
                 transform: translateX(-50%) !important; margin: 0; white-space: nowrap; z-index: 1002;
             }
             .nav-toggle { display: block; position: absolute; right: 30px; }
+            
+            /* UPDATED: Compact Sidebar Menu */
             .nav-list { 
-                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
-                background: var(--white); flex-direction: column; justify-content: flex-start;
-                padding-top: 80px; padding-left: 20px; padding-right: 20px;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: right 0.3s ease-in-out; z-index: 2000; display: flex;
+                position: fixed; 
+                top: 50px; /* Below the 50px header */
+                right: -100%; 
+                width: 50%; /* Reduced width (was 75%) */
+                max-width: 300px;
+                height: auto; /* Fit content height instead of full screen */
+                min-height: 300px; /* Ensure at least some height */
+                background: var(--white); 
+                flex-direction: column; 
+                justify-content: flex-start;
+                padding-top: 20px; padding-left: 20px; padding-right: 20px; padding-bottom: 20px;
+                box-shadow: -5px 5px 15px rgba(0,0,0,0.1); 
+                transition: right 0.3s ease-in-out; 
+                z-index: 2000; 
+                display: flex;
+                border-bottom-left-radius: 15px; /* Visual flair */
+                border-left: 1px solid #eee;
+                border-bottom: 1px solid #eee;
             }
             .nav-list.active { right: 0; }
+            
             .nav-link { 
-                color: var(--primary) !important; text-align: left; font-size: 1.1rem;
-                padding: 15px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
+                color: var(--primary) !important; text-align: left; font-size: 1rem;
+                padding: 12px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
             }
             .nav-link:hover { background: transparent; color: var(--accent) !important; padding-left: 10px; }
             .nav-link::after { display: none; }
@@ -645,12 +673,16 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
+        <a href="https://shabanahmad.github.io/" class="h-social" title="Updated Personal Website"><i class="fas fa-globe"></i></a>
+
     </div>
 
     <!-- MAIN HEADER -->
     <header id="main-header">
         <div class="header-content">
-            <a href="#hero-section" class="header-name">Dr Shaban</a>
+            <a href="https://shabanahmad.github.io/" class="header-name">Dr Shaban</a>
+
+
             <ul class="nav-list" id="nav-menu">
                 <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
@@ -799,54 +831,77 @@
     <section id="experience" class="container">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
+            
+            <!-- Postdoc -->
             <div class="exp-box exp-full">
-                <div class="exp-role">Postdoc Researcher</div>
+                <div class="exp-header">
+                    <div class="exp-role">Postdoc Researcher</div>
+                    <span class="type-badge bg-full">FULL TIME</span>
+                </div>
                 <a href="https://www.ku.dk/en" target="_blank" class="exp-inst">University of Copenhagen, Denmark</a>
                 <div class="exp-date">June 2025 - Present</div>
                 <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
-                <span class="type-badge bg-full">FULL TIME</span>
             </div>
+
+            <!-- Visiting -->
             <div class="exp-box exp-part">
-                <div class="exp-role">Visiting Researcher</div>
+                <div class="exp-header">
+                    <div class="exp-role">Visiting Researcher</div>
+                    <span class="type-badge bg-part">VISITING</span>
+                </div>
                 <a href="https://www.jyu.fi/en" target="_blank" class="exp-inst">University of Jyväskylä, Finland</a>
                 <div class="exp-date">Jan 2025 - Dec 2025</div>
                 <div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div>
-                <span class="type-badge bg-part">VISITING / PART TIME</span>
             </div>
+
              <div class="exp-box exp-full">
-                <div class="exp-role">PhD Scholar</div>
+                <div class="exp-header">
+                    <div class="exp-role">PhD Scholar</div>
+                    <span class="type-badge bg-full">FULL TIME</span>
+                </div>
                 <a href="https://www.jmi.ac.in/" target="_blank" class="exp-inst">Jamia Millia Islamia, India</a>
                 <div class="exp-date">Sept 2021 - Feb 2025</div>
                 <div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div>
-                <span class="type-badge bg-full">FULL TIME</span>
             </div>
+
             <div class="exp-box exp-full">
-                <div class="exp-role">Project Assistant</div>
+                <div class="exp-header">
+                    <div class="exp-role">Project Assistant</div>
+                    <span class="type-badge bg-full">FULL TIME</span>
+                </div>
                 <a href="https://www.srmuniversity.ac.in/" target="_blank" class="exp-inst">SRM University, NCR, India</a>
                 <div class="exp-date">Nov 2020 - Sept 2021</div>
                 <div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div>
-                <span class="type-badge bg-full">PROJECT / FULL TIME</span>
             </div>
+
              <div class="exp-box exp-full">
-                <div class="exp-role">DBT-Studentship</div>
+                <div class="exp-header">
+                    <div class="exp-role">DBT-Studentship</div>
+                    <span class="type-badge bg-full">TRAINEE</span>
+                </div>
                 <a href="https://www.iari.res.in/" target="_blank" class="exp-inst">ICAR - IARI, India</a>
                 <div class="exp-date">Jan 2020 - June 2020</div>
                 <div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div>
-                <span class="type-badge bg-full">TRAINEE / FULL TIME</span>
             </div>
+
              <div class="exp-box exp-trainee">
-                <div class="exp-role">Research Trainee</div>
+                <div class="exp-header">
+                    <div class="exp-role">Research Trainee</div>
+                    <span class="type-badge bg-trainee">TRAINEE</span>
+                </div>
                 <a href="https://www.icgeb.org/" target="_blank" class="exp-inst">ICGEB, India</a>
                 <div class="exp-date">Jan 2019 - Dec 2019</div>
                 <div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div>
-                <span class="type-badge bg-trainee">TRAINEE</span>
             </div>
+            
             <div class="exp-box exp-trainee">
-                <div class="exp-role">DBT-Studentship</div>
+                <div class="exp-header">
+                    <div class="exp-role">DBT-Studentship</div>
+                    <span class="type-badge bg-trainee">TRAINEE</span>
+                </div>
                 <a href="https://jamiahamdard.ac.in/" target="_blank" class="exp-inst">Jamia Hamdard University, India</a>
                 <div class="exp-date">March 2019 - April 2019</div>
                 <div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div>
-                <span class="type-badge bg-trainee">TRAINEE</span>
             </div>
         </div>
         <hr class="separator">
@@ -889,7 +944,6 @@
             <div class="award-card">
                 <i class="fas fa-trophy award-badge-icon"></i>
                 <div class="award-content-wrapper">
-                    <!-- Updated text as requested -->
                     <div class="award-top">Felicitated by Vice Chancellor</div>
                     <div class="award-bottom">Felicitated by Vice Chancellor for academic excellence (2025).</div>
                 </div>
@@ -1048,8 +1102,7 @@
                         <li class="pub-item"><strong>Antiviral Potential of Indian Medicinal Plants Against Influenza and SARS-CoV: A Systematic Review</strong><br><em>Nat. Prod. Comm. (2022)</em> <a class="pub-doi" href="http://dx.doi.org/10.1177/1934578X221086988" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Novel severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) and other coronaviruses: a genome-wide comparative annotation and analysis</strong><br><em>Mol. Cell. Biochem. (2021)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-020-04027-8" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Phytochemical Analysis and Antifungal Activity of Weed Extracts against Rhizoctonia Root Rot in Buckwheat (Fagopyrum tataricum)</strong><br><em>Biopesticide International (2020)</em> <a class="pub-doi" href="https://connectjournals.com/02196.2020.16.125" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Probing the effect of a plus 1bp frameshift mutation in the protein-DNA interface of the domestication gene, NAMB1, in wheat</strong><br><em>J. Biomol. Struct. Dyn. (2019)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2019.1680435" target="_blank">DOI</a></li>
-                    </ol>
+                        <li class="pub-item"><strong>Probing the effect of a plus 1bp frameshift mutation in the protein-DNA interface of the domestication gene, NAMB1, in wheat</strong><br><em>J. Biomol. Struct. Dyn. (2019)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2019.1680435" target="_blank">DOI</a></li>                    </ol>
                 </div>
             </div>
         </div>
@@ -1473,54 +1526,107 @@
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
+            
+            <!-- 1. Tue Kjærgaard Nielsen -->
             <div class="referee-card ref-1">
-                <div class="referee-name"><a href="https://researchprofiles.ku.dk/da/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Tue Kjærgaard Nielsen</a> <span class="referee-role">(Postdoc PI)</span></div>
+                <!-- Header with Name Left and Role Right -->
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://plen.ku.dk/ansatte/?pure=da/persons/331150" target="_blank">Dr Tue K. Nielsen</a></div>
+                    <span class="referee-role">(Postdoc PI)</span>
+                </div>
                 <div class="referee-title-line">Associate Professor</div>
-                <a href="https://plen.ku.dk/english/" target="_blank" class="referee-inst-link">University of Copenhagen, Denmark</a>
+                
+                <!-- Institute with Badge -->
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://plen.ku.dk/english/" target="_blank">University of Copenhagen, Denmark</a>
+                </div>
+                
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:tkn@plen.ku.dk">tkn@plen.ku.dk</a>
                 </div>
             </div>
+
+            <!-- 2. Dr Khalid Raza -->
             <div class="referee-card ref-2">
-                <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a> <span class="referee-role">(PhD Supervisor)</span></div>
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a></div>
+                    <span class="referee-role">(PhD Supervisor)</span>
+                </div>
                 <div class="referee-title-line">Associate Professor</div>
-                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a>
+                </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:kraza@jmi.ac.in">kraza@jmi.ac.in</a>
                 </div>
             </div>
+            
+            <!-- 3. Tiina Jokela -->
             <div class="referee-card ref-3">
-                <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a> <span class="referee-role">(JYU Visiting PI)</span></div>
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a></div>
+                    <span class="referee-role">(JYU Visiting PI)</span>
+                </div>
                 <div class="referee-title-line">Research Director</div>
-                <a href="https://www.jyu.fi/en" target="_blank" class="referee-inst-link">University of Jyväskylä, Finland</a>
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://www.jyu.fi/en" target="_blank">University of Jyväskylä, Finland</a>
+                </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:tiina.a.jokela@jyu.fi">tiina.a.jokela@jyu.fi</a>
                 </div>
             </div>
+
+            <!-- 4. Manoj Yadav -->
              <div class="referee-card ref-4">
-                <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a> <span class="referee-role">(PI- SARS-CoV-2)</span></div>
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a></div>
+                    <span class="referee-role">(PI- SARS-CoV-2)</span>
+                </div>
                 <div class="referee-title-line">Associate Professor</div>
-                <a href="https://www.srmuniversity.ac.in/" target="_blank" class="referee-inst-link">SRM University, NCR, India</a>
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://www.srmuniversity.ac.in/" target="_blank">SRM University, NCR, India</a>
+                </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:manoj.yadav@srmuniversity.ac.in">manoj.yadav@srmuniversity.ac.in</a>
                 </div>
             </div>
+            
+            <!-- 5. Murugesh Eswaran -->
             <div class="referee-card ref-1">
-                <div class="referee-name"><a href="https://www.msm.edu/directory/facultyprofile.php?id=123" target="_blank">Dr Murugesh Eswaran</a> <span class="referee-role">(PI @ ICGEB)</span></div>
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://www.msm.edu/directory/facultyprofile.php?id=123" target="_blank">Dr Murugesh Eswaran</a></div>
+                    <span class="referee-role">(PI @ ICGEB)</span>
+                </div>
                 <div class="referee-title-line">Assistant Professor</div>
-                <a href="https://www.msm.edu/" target="_blank" class="referee-inst-link">Morehouse School of Medicine, USA</a>
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine, USA</a>
+                </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a>
                 </div>
             </div>
+            
+            <!-- 6. Mansaf Alam -->
             <div class="referee-card ref-2">
-                <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a> <span class="referee-role">(MSc Supervisor)</span></div>
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
+                    <span class="referee-role">(MSc Supervisor)</span>
+                </div>
                 <div class="referee-title-line">Professor</div>
-                <a href="https://www.jmi.ac.in/" target="_blank" class="referee-inst-link">Jamia Millia Islamia, India</a>
+                <div class="ref-inst-row">
+                    <i class="fas fa-university email-badge"></i> 
+                    <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a>
+                </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a>
                 </div>
             </div>
+            
         </div>
         <hr class="separator">
     </section>
@@ -1537,7 +1643,7 @@
             <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
         <div class="footer-text">
-            &copy; 2026 All Rights Reserved
+            &copy; Dr Shaban | 2026 All Rights Reserved.
         </div>
     </footer>
 
@@ -1653,4 +1759,3 @@
     </script>
 </body>
 </html>
-
