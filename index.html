@@ -334,31 +334,16 @@
         .secondary-pub-item i { color: #a8d0e6 !important; }
         .secondary-pub-item .pub-badge { color: #a8d0e6; }
 
-        /* HERO ACTION BUTTONS (New) */
-        .hero-btn-container {
-            display: flex; gap: 10px; margin-top: 20px;
+        /* Download CV Button */
+        .cv-btn {
+            display: block; width: 100%; padding: 12px; background: var(--accent);
+            color: var(--primary-dark); text-align: center; font-weight: 700;
+            border-radius: 8px; margin-top: 20px; transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; text-decoration: none;
         }
-        .hero-btn {
-            flex: 1; padding: 10px;
-            text-align: center; font-weight: 700; border-radius: 6px;
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;
-            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;
-            cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: none;
-        }
-        /* Download Button Style */
-        .dl-btn {
-            background: var(--accent); color: var(--primary-dark);
-        }
-        .dl-btn:hover {
-            transform: translateY(-2px); background: #fff; color: var(--primary);
-            box-shadow: 0 5px 10px rgba(220, 161, 29, 0.4);
-        }
-        /* Print Button Style */
-        .print-btn-inline {
-            background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4);
-        }
-        .print-btn-inline:hover {
-            transform: translateY(-2px); background: var(--accent); color: var(--primary-dark); border-color: var(--accent);
+        .cv-btn:hover {
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
+            background: #fff; color: var(--primary);
         }
 
         /* ========================================================================
@@ -606,98 +591,22 @@
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
         /* ========================================================================
-           PRINT STYLES (@media print)
-           Optimizes the layout for printing or saving as PDF
+           FOOTER
            ========================================================================
         */
-        @media print {
-            /* 1. Reset Global Styles for Print */
-            @page { margin: 1cm; size: auto; }
-            body { 
-                background-color: white !important; 
-                color: black !important; 
-                padding-top: 0 !important; 
-                font-size: 11pt;
-            }
-            
-            /* 2. Hide Non-Essential Elements */
-            header, nav, .nav-toggle, .sticky-sidebar, footer, .hero-btn-container, .hero-contact i, .int-intro-text, .separator {
-                display: none !important;
-            }
-
-            /* 3. Hero Section Adjustment */
-            .hero-section-wrapper { 
-                background: none !important; 
-                display: block !important; 
-                padding: 0 !important;
-                border-bottom: 2px solid #000;
-                margin-bottom: 20px;
-            }
-            .hero {
-                padding: 0 !important;
-                display: block !important;
-                color: black !important;
-                text-align: left !important;
-            }
-            .hero-main { max-width: 100% !important; text-align: left !important; }
-            .hero-img { 
-                float: right; width: 120px; height: 120px; 
-                border: 2px solid #000 !important; margin-left: 20px; box-shadow: none !important;
-            }
-            .hero h1 { font-size: 24pt; margin: 0; color: black !important; }
-            .hero-name-link { color: black !important; pointer-events: none; }
-            .hero-role-link { color: #333 !important; font-size: 14pt; border: none !important; }
-            .hero-contact { color: #000 !important; font-size: 10pt; margin-top: 5px; }
-            .hero-contact a { color: black !important; text-decoration: none !important; border: none !important; }
-            
-            /* Hide the stats box buttons/toggles but keep the numbers if possible? 
-               Actually, stats are less relevant in printed CV. Let's hide the stats box completely to clean up.
-            */
-            .hero-stats { display: none !important; }
-
-            /* 4. Section Styles */
-            section { margin-bottom: 20px !important; page-break-inside: avoid; }
-            .section-title { 
-                font-size: 16pt; color: #000 !important; 
-                border-left: none !important; padding-left: 0;
-                border-bottom: 2px solid #000; margin-bottom: 10px;
-            }
-            
-            /* 5. Content Expansion (Crucial) */
-            .accordion-btn { 
-                display: none !important; /* Hide buttons */
-            }
-            .panel { 
-                max-height: none !important; 
-                display: block !important; 
-                overflow: visible !important;
-                border: none !important;
-            }
-            .scrollable-list { 
-                max-height: none !important; 
-                overflow: visible !important; 
-                padding: 0 !important;
-            }
-            
-            /* 6. List & Grid Adjustments */
-            .pub-list { padding-left: 20px; }
-            .pub-item { border-bottom: 1px solid #ddd !important; padding: 5px 0 !important; page-break-inside: avoid; }
-            .edu-grid, .exp-grid, .award-box-grid, .referee-grid { 
-                display: block !important; /* Stack items */
-            }
-            .edu-card, .exp-box, .award-card, .referee-card {
-                break-inside: avoid; page-break-inside: avoid;
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                margin-bottom: 10px;
-                padding: 10px !important;
-            }
-            
-            /* 7. Tags & Minor Fixes */
-            .int-tag { border: 1px solid #000 !important; color: #000 !important; box-shadow: none !important; }
-            a { text-decoration: none !important; color: #000 !important; }
-            .badge-gold-inline { border: 1px solid #000 !important; background: none !important; color: #000 !important; }
+        footer { 
+            background: var(--primary-dark); color: #d1d5db; text-align: center; 
+            padding: 20px 0; margin-top: 3rem; border-top: 4px solid var(--accent); 
         }
+        .footer-socials { margin: 0 0 10px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .footer-btn {
+            width: 35px; height: 35px; background: rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; transition: all 0.3s;
+            text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-btn:hover { transform: translateY(-3px); background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
+        .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
+
 
         /* ========================================================================
            MOBILE RESPONSIVE STYLES
@@ -717,7 +626,7 @@
                 position: fixed; 
                 top: 50px; /* Below the 50px header */
                 right: -100%; 
-                width: 60%; /* Reduced width (was 75%) */
+                width: 50%; /* Reduced width (was 75%) */
                 max-width: 300px;
                 height: auto; /* Fit content height instead of full screen */
                 min-height: 300px; /* Ensure at least some height */
@@ -848,16 +757,7 @@
                         <span class="stat-value">450+</span>
                     </div>
                 </a>
-                
-                <!-- NEW ACTION BUTTONS -->
-                <div class="hero-btn-container">
-                    <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="hero-btn dl-btn">
-                        <i class="fas fa-file-pdf"></i> Full CV
-                    </a>
-                    <button onclick="window.print()" class="hero-btn print-btn-inline">
-                        <i class="fas fa-print"></i> Website
-                    </button>
-                </div>
+                <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download Full CV</a>
             </div>
         </section>
     </div>
