@@ -1,23 +1,26 @@
 # 🧬 Dr. Shaban Ahmad | Academic Portfolio
 
 <p align="center">
-  <a href="https://shabanahmad.github.io/" target="_blank">
-    <img src="https://cdn.simpleicons.org/github/000000" alt="Website" width="32"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad" target="_blank">
-    <img src="https://cdn.simpleicons.org/universityofcopenhagen/002e5f" alt="UCPH" width="32"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://orcid.org/0000-0001-9832-2830" target="_blank">
-    <img src="https://cdn.simpleicons.org/orcid/A6CE39" alt="ORCID" width="32"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ" target="_blank">
-    <img src="https://cdn.simpleicons.org/googlescholar/4285F4" alt="Google Scholar" width="32"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank">
-    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="32"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank">
-    <img src="https://cdn.simpleicons.org/researchgate/00CCBB" alt="ResearchGate" width="32"/>
+  <a href="[https://shabanahmad.github.io/](https://shabanahmad.github.io/)" target="_blank">
+    <img src="[https://img.shields.io/badge/Website-Live_Portfolio-dca11d?style=for-the-badge&logo=googlechrome&logoColor=black](https://img.shields.io/badge/Website-Live_Portfolio-dca11d?style=for-the-badge&logo=googlechrome&logoColor=black)" alt="Website" />
+  </a>
+  <a href="[https://researchprofiles.ku.dk/en/persons/shaban-ahmad](https://researchprofiles.ku.dk/en/persons/shaban-ahmad)" target="_blank">
+    <img src="[https://img.shields.io/badge/University_of_Copenhagen-Postdoc-002e5f?style=for-the-badge&logo=googlescholar&logoColor=white](https://img.shields.io/badge/University_of_Copenhagen-Postdoc-002e5f?style=for-the-badge&logo=googlescholar&logoColor=white)" alt="UCPH" />
+  </a>
+  <a href="[https://orcid.org/0000-0001-9832-2830](https://orcid.org/0000-0001-9832-2830)" target="_blank">
+    <img src="[https://img.shields.io/badge/ORCID-0000--0001--9832--2830-A6CE39?style=for-the-badge&logo=orcid&logoColor=white](https://img.shields.io/badge/ORCID-0000--0001--9832--2830-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)" alt="ORCID" />
+  </a>
+  <a href="[https://scholar.google.com/citations?user=Bv4nV80AAAAJ](https://scholar.google.com/citations?user=Bv4nV80AAAAJ)" target="_blank">
+    <img src="[https://img.shields.io/badge/Google_Scholar-Citations-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white](https://img.shields.io/badge/Google_Scholar-Citations-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)" alt="Google Scholar" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="[https://www.linkedin.com/in/drshabanahmad/](https://www.linkedin.com/in/drshabanahmad/)" target="_blank">
+    <img src="[https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)" alt="LinkedIn" />
+  </a>
+  <a href="[https://www.researchgate.net/profile/Shaban-Ahmad-2](https://www.researchgate.net/profile/Shaban-Ahmad-2)" target="_blank">
+    <img src="[https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)" alt="ResearchGate" />
   </a>
 </p>
 
@@ -61,8 +64,7 @@ Previously, I completed my **PhD in Bioinformatics (Gold Medallist)** at **Jamia
 ## 📊 Academic Impact
 
 - **74+ Publications** — Journal articles, book chapters, conference papers  
-- **1600+ Citations** — h-index: **26**  
-- **450+ Peer Reviews** — Verified (Web of Science)  
+- **1600+ Citations** — h-index: **26** - **450+ Peer Reviews** — Verified (Web of Science)  
 - **Patents:** 1 Granted, 6 Under Review  
 
 ---
@@ -96,42 +98,45 @@ To run the website locally:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/shabanahmad/shabanahmad.github.io.git
-````
+
 
 2. **Navigate to the directory**
+```bash
+cd shabanahmad.github.io
 
-   ```bash
-   cd shabanahmad.github.io
-   ```
+```
 
 3. **Open**
+* Double-click `index.html` in any modern web browser
+* No dependencies, build tools, or package managers required
 
-   * Double-click `index.html` in any modern web browser
-   * No dependencies, build tools, or package managers required
 
----
+
 
 ## 📫 Connect
 
 <p align="center">
-  <a href="mailto:shaban@plen.ku.dk">
-    <img src="https://cdn.simpleicons.org/maildotru/000000" alt="Email" width="30"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/drshabanahmad/">
-    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="30"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ">
-    <img src="https://cdn.simpleicons.org/googlescholar/4285F4" alt="Google Scholar" width="30"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2">
-    <img src="https://cdn.simpleicons.org/researchgate/00CCBB" alt="ResearchGate" width="30"/>
-  </a>&nbsp;&nbsp;&nbsp;
-  <a href="https://orcid.org/0000-0001-9832-2830">
-    <img src="https://cdn.simpleicons.org/orcid/A6CE39" alt="ORCID" width="30"/>
-  </a>
+<a href="mailto:shaban@plen.ku.dk">
+<img src="[https://cdn.simpleicons.org/gmail/D14836?viewbox=auto](https://www.google.com/search?q=https://cdn.simpleicons.org/gmail/D14836%3Fviewbox%3Dauto)" alt="Email" height="40"/>
+</a>&nbsp;&nbsp;&nbsp;
+<a href="[https://www.linkedin.com/in/drshabanahmad/](https://www.linkedin.com/in/drshabanahmad/)">
+<img src="[https://cdn.simpleicons.org/linkedin/0A66C2?viewbox=auto](https://www.google.com/search?q=https://cdn.simpleicons.org/linkedin/0A66C2%3Fviewbox%3Dauto)" alt="LinkedIn" height="40"/>
+</a>&nbsp;&nbsp;&nbsp;
+<a href="[https://scholar.google.com/citations?user=Bv4nV80AAAAJ](https://scholar.google.com/citations?user=Bv4nV80AAAAJ)">
+<img src="[https://cdn.simpleicons.org/googlescholar/4285F4?viewbox=auto](https://www.google.com/search?q=https://cdn.simpleicons.org/googlescholar/4285F4%3Fviewbox%3Dauto)" alt="Google Scholar" height="40"/>
+</a>&nbsp;&nbsp;&nbsp;
+<a href="[https://www.researchgate.net/profile/Shaban-Ahmad-2](https://www.researchgate.net/profile/Shaban-Ahmad-2)">
+<img src="[https://cdn.simpleicons.org/researchgate/00CCBB?viewbox=auto](https://www.google.com/search?q=https://cdn.simpleicons.org/researchgate/00CCBB%3Fviewbox%3Dauto)" alt="ResearchGate" height="40"/>
+</a>&nbsp;&nbsp;&nbsp;
+<a href="[https://orcid.org/0000-0001-9832-2830](https://orcid.org/0000-0001-9832-2830)">
+<img src="[https://cdn.simpleicons.org/orcid/A6CE39?viewbox=auto](https://www.google.com/search?q=https://cdn.simpleicons.org/orcid/A6CE39%3Fviewbox%3Dauto)" alt="ORCID" height="40"/>
+</a>
+</p>
+
+
+
+<p align="center">
+© 2026 <strong>Dr. Shaban Ahmad</strong>. All rights reserved.
 </p>
 
 ---
-
-© 2026 **Dr. Shaban Ahmad**. All rights reserved.
-```
