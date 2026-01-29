@@ -1,55 +1,110 @@
+<!-- 
+    SECTION A: DOCUMENT TYPE DECLARATION
+    This specific line tells the web browser (Chrome, Safari, etc.) that this is a 
+    modern HTML5 website. It prevents the browser from going into "quirks mode".
+-->
 <!DOCTYPE html>
+
+<!-- 
+    SECTION B: ROOT ELEMENT
+    The <html> tag is the root of your document. 
+    "lang='en'" tells search engines and screen readers that the content is in English.
+-->
 <html lang="en">
+
+<!-- 
+    SECTION C: THE HEAD (Metadata & Settings)
+    Everything inside <head> is NOT visible on the page itself. 
+    It contains settings, titles, and links to external resources (like fonts and icons).
+-->
 <head>
-    <!-- 
-       ========================================================================
-       META TAGS & DOCUMENT SETTINGS
-       ========================================================================
+    
+    <!-- C.1: Character Encoding
+         "UTF-8" covers almost all characters and symbols in the world. 
+         Without this, special characters (like é or ©) might look like garbled text. 
     -->
     <meta charset="UTF-8">
-    <!-- Viewport setting ensures the site renders correctly on mobile devices -->
+
+    <!-- C.2: Viewport Settings (CRITICAL FOR MOBILE)
+         This line makes the website "responsive". It tells mobile phones to set the 
+         width of the page to match the screen width, so text isn't tiny.
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- C.3: Browser Tab Title
+         This is the text displayed on the tab at the top of your browser.
+    -->
     <title>Dr Shaban | Postdoc at UCPH</title>
+
+    <!-- C.4: SEO Description
+         This is the short summary Google shows in search results under your link.
+    -->
     <meta name="description" content="Academic Portfolio of Dr Shaban">
     
-    <!-- Favicon -->
+    <!-- C.5: Favicon
+         The small icon that appears next to the title in the browser tab.
+    -->
     <link rel="icon" href="shaban.png" type="image/png">
     
     <!-- 
-       ========================================================================
-       EXTERNAL LIBRARIES & FONTS
-       ========================================================================
+       SECTION D: EXTERNAL LIBRARIES (Borrowing tools from the internet)
+       Instead of writing code for every icon or font from scratch, we link to 
+       libraries that already have them.
     -->
-    <!-- FontAwesome for general icons (bars, envelope, etc.) -->
+
+    <!-- D.1: FontAwesome
+         Provides standard icons like the Envelope, Bars (hamburger menu), etc.
+    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Academicons for academic-specific icons (Google Scholar, ResearchGate) -->
+
+    <!-- D.2: Academicons
+         Provides specific academic icons like the Google Scholar or ResearchGate logos.
+    -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <!-- Google Fonts: Roboto (Body), Playfair Display (Headings), Merriweather (Institutes) -->
+
+    <!-- D.3: Google Fonts
+         We are importing three specific fonts to make the site look professional:
+         1. Roboto: For the main body text (easy to read).
+         2. Playfair Display: For elegant headings.
+         3. Merriweather: For university names.
+    -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- 
+       SECTION E: CSS STYLES (The "Makeup" of the website)
+       This huge block controls colors, layout, sizing, and animations.
+    -->
     <style>
-        /* ========================================================================
-           CSS VARIABLES (COLOR PALETTE)
-           Use these variables to maintain consistent branding throughout the site.
-           ========================================================================
+        /* E.1: CSS VARIABLES (The Global Settings)
+           Think of this as a central control panel. If you change a color here,
+           it updates EVERYWHERE on the site instantly.
         */
         :root {
-            --primary: #002e5f;      /* UCPH Blue - Main Brand Color */
-            --primary-dark: #001a36; /* Darker shade for gradients/footer */
-            --accent: #dca11d;       /* Gold - Highlight/Action Color */
-            --text: #333;            /* Standard Text Color */
-            --light-bg: #f8f9fa;     /* Light Gray Background */
-            --white: #ffffff;
-            --inst-font: 'Merriweather', serif; /* Font for Institution Names */
-            --transition: all 0.3s ease;        /* Standard animation timing */
+            /* Brand Colors */
+            --primary: #002e5f;      /* Deep Blue - The main professional color */
+            --primary-dark: #001a36; /* Darker Blue - Used for the footer and gradients */
+            --accent: #dca11d;       /* Gold - Used for highlights, links, and buttons */
             
-            /* -- Education Card Colors (Top Borders) -- */
+            /* Text & Backgrounds */
+            --text: #333;            /* Dark Grey - Easier on the eyes than pure black */
+            --light-bg: #f8f9fa;     /* Very Light Grey - The main page background */
+            --white: #ffffff;        /* Pure White */
+            
+            /* Fonts & Animation */
+            --inst-font: 'Merriweather', serif; /* Special font for Institution names */
+            --transition: all 0.3s ease;        /* Makes hover effects smooth (takes 0.3 seconds) */
+            
+            /* -- Card Border Colors (Categorization) -- */
+            /* These colors identify different levels of education */
             --edu-phd: #dc3545;       /* Red */
             --edu-msc: #fd7e14;       /* Orange */
             --edu-bsc: #20c997;       /* Teal */
+            --edu-xii: #20c997;       /* Teal (Reused) */
+            --edu-x: #20c997;         /* Teal (Reused) */
+            --edu-basic: #20c997;     /* Teal (Reused) */
             
             /* -- Referee Card Colors -- */
-            /* Each referee has a unique color ID */
+            /* Giving each referee a unique color strip */
             --ref-1: #002e5f; /* Blue */
             --ref-2: #008080; /* Teal */
             --ref-3: #6f42c1; /* Purple */
@@ -58,15 +113,14 @@
             --ref-6: #17a2b8; /* Cyan */
         }
 
-        /* ========================================================================
-           GLOBAL RESETS & BASE STYLES
-           ========================================================================
+        /* E.2: GLOBAL RESETS
+           Browsers add default spacing that can mess up designs. We remove it here.
         */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html { 
-            scroll-behavior: smooth; /* Enables smooth scrolling when clicking links */
-            /* Header is 50px height. We add padding so scrolling stops nicely above titles */
+            scroll-behavior: smooth; /* Makes the page glide when you click a link, instead of jumping instantly */
+            /* We add padding so that when you jump to a section, the title isn't hidden behind the fixed header */
             scroll-padding-top: 65px; 
         } 
         
@@ -75,10 +129,11 @@
             line-height: 1.6; 
             color: var(--text); 
             background: var(--light-bg); 
-            padding-top: 50px; /* Slimmer header padding */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            padding-top: 50px; /* Pushes content down so it doesn't hide behind the fixed header */
+            overflow-x: hidden; /* Prevents accidental horizontal scrolling */
         }
         
+        /* Basic link styling */
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
         /* The decorative line separating sections */
@@ -88,20 +143,20 @@
             background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%);
             margin: 3rem 0;
             opacity: 0.8;
-            page-break-after: avoid; /* Print optimization */
+            page-break-after: avoid; /* Ensures the line doesn't get pushed to a new page alone when printing */
         }
 
-        /* ========================================================================
-           HEADER & NAVIGATION STYLES
-           ========================================================================
+        /* E.3: HEADER & NAVIGATION STYLES
+           The strip at the very top of the page.
         */
         header { 
             background: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(10px); /* Frosted glass effect behind header */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            position: fixed; top: 0; left: 0; width: 100%; 
-            z-index: 1000; 
-            height: 50px; /* Slimmer Header */
+            backdrop-filter: blur(10px); /* Creates a "frosted glass" effect */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow underneath */
+            position: fixed; /* Keeps the header stuck to the top even when scrolling */
+            top: 0; left: 0; width: 100%; 
+            z-index: 1000; /* Layers the header ON TOP of everything else */
+            height: 50px; 
             transition: all 0.3s ease;
         }
 
@@ -109,18 +164,18 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 20px; height: 100%; 
             max-width: 1200px; 
-            margin: 0 auto;
+            margin: 0 auto; /* Centers the content */
             position: relative;
         }
 
-        /* -- Desktop Name Styling -- */
+        /* Styling for the name "Dr Shaban" in the top left */
         .header-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem; 
             font-weight: 700;
             color: var(--primary); 
             text-decoration: none;
-            opacity: 0; 
+            opacity: 0; /* Hidden initially, JS shows it when you scroll past the Hero section */
             transform: translateX(-20px);
             transition: all 0.3s ease;
             pointer-events: none;
@@ -134,10 +189,10 @@
         
         .header-name:hover { color: var(--accent) !important; }
 
-        /* -- Navigation Menu (Desktop) -- */
+        /* Navigation Menu (Desktop View) */
         .nav-list { 
             display: flex; 
-            list-style: none; 
+            list-style: none; /* Removes bullet points */
             gap: 15px; 
             padding: 0;
             margin: 0 0 0 auto; 
@@ -165,11 +220,11 @@
             background: rgba(0, 46, 95, 0.05);
         }
         
-        /* The gold underline */
+        /* The gold underline animation */
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0;
+            width: 0; /* Starts at width 0 (invisible) */
             height: 2px;
             bottom: 2px;
             left: 50%;
@@ -177,20 +232,19 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        .nav-link:hover::after { width: 80%; }
+        .nav-link:hover::after { width: 80%; /* Expands to 80% on hover */ }
 
-        /* -- Active Section State (Scroll Spy) -- */
+        /* State for the active section (Scroll Spy) */
         .nav-link.active-section {
-            color: var(--accent) !important; /* Gold text only, no dot */
+            color: var(--accent) !important; 
         }
-        /* Ensure the underline stays for active section */
         .nav-link.active-section::after {
             width: 80%;
         }
 
-        /* -- Mobile Menu Toggle (Hamburger Icon) -- */
+        /* Mobile Menu Button (Hamburger) - Hidden on desktop */
         .nav-toggle { 
-            display: none; /* Hidden on desktop */
+            display: none; 
             font-size: 1.3rem; 
             cursor: pointer; 
             color: var(--primary); 
@@ -198,17 +252,15 @@
             transition: transform 0.3s ease;
             z-index: 2001; 
         }
-        .nav-toggle.open { transform: rotate(90deg); }
+        .nav-toggle.open { transform: rotate(90deg); /* Rotates when clicked */ }
 
-        /* ========================================================================
-           SIDEBAR (Social Links)
-           ========================================================================
+        /* E.4: SIDEBAR STYLES (The floating social icons)
         */
         .sticky-sidebar {
             position: fixed; 
-            top: 50%; 
-            left: 0; 
-            transform: translateY(-50%);
+            top: 50%; /* Center vertically */
+            left: 0; /* Stick to left side */
+            transform: translateY(-50%); /* Adjust for perfect centering */
             z-index: 1100; 
             display: flex; flex-direction: column; gap: 12px;
             background-color: var(--white);
@@ -225,9 +277,7 @@
 
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
-        /* ========================================================================
-           HERO SECTION
-           ========================================================================
+        /* E.5: HERO SECTION (The big blue area at the top)
         */
         .hero-section-wrapper {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -238,7 +288,7 @@
 
         .hero { 
             color: var(--white); 
-            padding: 2rem 1rem; /* Compact padding */
+            padding: 2rem 1rem; 
             position: relative;
             display: flex; justify-content: center; align-items: center; gap: 4rem;
             min-height: auto; 
@@ -248,9 +298,10 @@
         
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
         
+        /* The round profile picture */
         .hero-img { 
             width: 190px; height: 190px; 
-            border-radius: 50%; 
+            border-radius: 50%; /* Makes it a perfect circle */
             border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
             background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -276,13 +327,13 @@
         .hero-contact a { color: #fff; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
         .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
 
-        /* -- Floating Stats Box in Hero -- */
+        /* -- Floating Stats Box (The box on the right of the Hero) -- */
         .hero-stats {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
             width: 320px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
-            animation: float 4s ease-in-out infinite; 
+            animation: float 4s ease-in-out infinite; /* Makes it gently bob up and down */
         }
         
         @keyframes float {
@@ -308,12 +359,12 @@
         .stat-label-link { color: #ddd; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .stat-label-link:hover { color: var(--accent); }
 
-        /* Hidden dropdown list */
+        /* The Dropdown list inside the Stats box */
         .pub-breakdown {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
             background: rgba(0,0,0,0.1); border-radius: 4px;
         }
-        .pub-breakdown.open { max-height: 300px; /* Increased height to accommodate Patents */ }
+        .pub-breakdown.open { max-height: 300px; }
         
         .pub-breakdown a {
             display: flex; justify-content: space-between; align-items: center;
@@ -330,17 +381,17 @@
             font-weight: bold;
         }
 
-        /* New class for the 'add-on' items in dropdown - Type 3 Color (Blueish) */
+        /* Specific styles for different types of dropdown items */
         .secondary-pub-item span { color: #a8d0e6; opacity: 0.9; }
         .secondary-pub-item i { color: #a8d0e6 !important; }
         .secondary-pub-item .pub-badge { color: #a8d0e6; }
 
-        /* Type 2 Color - Patents (Gold) */
+        /* Patents - Special color style */
         .patent-pub-item span { color: var(--accent); opacity: 1; font-weight: bold; }
         .patent-pub-item i { color: var(--accent) !important; }
         .patent-pub-item .pub-badge { color: var(--accent); }
 
-        /* Download Buttons Group */
+        /* CV Download Buttons */
         .cv-btn-group {
             display: flex;
             gap: 10px;
@@ -373,11 +424,11 @@
             color: var(--primary);
         }
 
-        /* ========================================================================
-           GENERAL PAGE SECTIONS
-           ========================================================================
+        /* E.6: GENERAL CONTENT SECTIONS
         */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* Main Section Titles (e.g., "About Me", "Experience") */
         .section-title { 
             font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); 
             margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px;
@@ -385,6 +436,8 @@
 
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         .int-intro-text { font-style: italic; color: #666; margin-bottom: 10px; font-weight: 600; }
+        
+        /* Interest Tags (The little bubbles in "About Me") */
         .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 0.5rem; }
         .int-tag { 
             background: var(--white); border: 1px solid #ddd; padding: 6px 12px; 
@@ -392,7 +445,6 @@
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
-        /* Sub-heading style for "My Educational Background..." */
         .sub-heading-bold { 
             color: var(--primary); 
             font-weight: 700; 
@@ -403,31 +455,30 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* ========================================================================
-           EDUCATION & EXPERIENCE CARDS
-           ========================================================================
+        /* E.7: EDUCATION & EXPERIENCE CARDS
         */
         
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
         .edu-grid, .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
+        /* The Card Container */
         .edu-card, .exp-box { 
             background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
-            border-top: 6px solid #ccc; 
+            border-top: 6px solid #ccc; /* Default top border color */
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
             position: relative; display: flex; flex-direction: column;
         }
 
-        /* Border Colors */
+        /* Specific Top Border Colors */
         .edu-phd { border-top-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); }
         .edu-bsc { border-top-color: var(--edu-bsc); } .edu-xii { border-top-color: var(--edu-xii); }
         .edu-x { border-top-color: var(--edu-x); } .edu-basic { border-top-color: var(--edu-basic); }
         
         .exp-full { border-top-color: #28a745; } .exp-part { border-top-color: var(--edu-msc); } .exp-trainee { border-top-color: #6f42c1; }
 
-        /* Hover Effects */
+        /* Hover Animation: Lifts the card slightly */
         .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
         .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
@@ -445,7 +496,7 @@
         
         .badge-gold-inline { display: inline-block; background-color: #fff9db; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 1rem; font-weight: bold; border: 1px solid #ffeeba; margin-left: 5px; vertical-align: middle; cursor: help; }
         
-        /* EXP CARD NEW HEADER STYLES (Title + Badge) */
+        /* EXP CARD NEW HEADER STYLES */
         .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%; }
         .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0; }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
@@ -453,9 +504,7 @@
         .type-badge { font-size: 0.75rem; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 3px; align-self: center; white-space: nowrap; }
         .bg-full { background: #28a745; } .bg-part { background: var(--edu-msc); color: #fff; } .bg-trainee { background: #6f42c1; color: #fff; }
 
-        /* ========================================================================
-           AWARDS GRID
-           ========================================================================
+        /* E.8: AWARDS GRID
         */
         .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         .award-card {
@@ -464,7 +513,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: row; align-items: center;
             justify-content: flex-start; gap: 20px; text-align: left;
-            position: relative; /* Needed for positioning the number */
+            position: relative; 
         }
         .award-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
         .award-content-wrapper { flex: 1; padding-right: 0px; }
@@ -472,11 +521,11 @@
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
         .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; margin-top: 10px; }
 
-        /* Award Number Styling - UPDATED POSITION */
+        /* The small number circle on the Award Card */
         .award-number {
             position: absolute;
-            top: 5px;  /* This places it 5 pixels from the top */
-            right: 5px; /* This places it 5 pixels from the right */
+            top: 5px;  
+            right: 5px; 
             width: 22px;
             height: 22px;
             background: var(--accent);
@@ -492,9 +541,7 @@
             z-index: 5;
         }
 
-        /* ========================================================================
-           PATENTS GRID
-           ========================================================================
+        /* E.9: PATENTS GRID
         */
         .patent-box { 
             background: #fff; border: 1px solid #eee; padding: 1.5rem; 
@@ -510,9 +557,8 @@
             .patent-box { margin-bottom: 0; }
         }
 
-        /* ========================================================================
-           ACCORDION & PUBLICATIONS LISTS - UPDATED STYLE
-           ========================================================================
+        /* E.10: ACCORDION & PUBLICATIONS LISTS
+           The clickable headers that open up to show more content.
         */
         /* Default Button Style */
         .accordion-btn {
@@ -530,14 +576,14 @@
 
         /* Active Button Style - Merges with panel */
         .accordion-btn.active { 
-            background: #fff; /* Match panel background */
+            background: #fff; 
             color: var(--primary); 
-            border-bottom: 1px solid transparent; /* Remove visual separator between button and panel */
+            border-bottom: 1px solid transparent; /* Remove separator */
             border-left: 5px solid var(--primary);
             border-top: 1px solid #ddd;
             border-right: 1px solid #ddd;
-            text-decoration: underline; /* Underline text to look like heading */
-            margin-bottom: 0; /* Attach to panel */
+            text-decoration: underline; 
+            margin-bottom: 0; 
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -548,33 +594,32 @@
             transition: max-height 0.3s ease-out; 
             background: var(--white);
             border: 1px solid #ddd; 
-            border-top: none; /* No top border so it merges with button */
-            border-left: 5px solid var(--primary); /* Continuous thick blue border */
+            border-top: none; 
+            border-left: 5px solid var(--primary); 
             margin-bottom: 10px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
         
-        /* When button is active, panel should look connected */
         .accordion-btn.active + .panel {
             border-left: 5px solid var(--primary); 
             border-right: 1px solid #ddd; 
             border-bottom: 1px solid #ddd; 
         }
         
-        .panel-content {
-            padding: 20px; 
-        }
+        .panel-content { padding: 20px; }
 
+        /* Scrollable area inside the panel */
         .scrollable-list { 
             max-height: 600px; overflow-y: auto; 
             padding: 15px 20px; 
         }
+        /* Custom scrollbar styling */
         .scrollable-list::-webkit-scrollbar { width: 6px; }
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
         .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
 
-        .pub-list { padding-left: 30px; } /* list-style-type depends on OL vs UL */
+        .pub-list { padding-left: 30px; } 
         
         .pub-item { 
             margin-bottom: 1rem; 
@@ -596,7 +641,7 @@
             z-index: 10; position: relative; 
         }
 
-        /* --- UPDATED COMPACT LIST FOR PEER REVIEWS --- */
+        /* --- COMPACT LIST FOR PEER REVIEWS --- */
         .compact-list {
             padding: 0;
             list-style: none;
@@ -622,18 +667,14 @@
             color: var(--primary);
         }
         
-        /* Add separator after each item */
+        /* Add separator after each item using CSS */
         .compact-list .pub-item::after {
             content: " | ";
             color: var(--accent);
             font-weight: 900;
             margin: 0 4px;
         }
-        
-        /* Remove separator from the last item */
-        .compact-list .pub-item:last-child::after {
-            content: "";
-        }
+        .compact-list .pub-item:last-child::after { content: ""; }
 
         .pub-item strong { color: #004d40; font-weight: 700; }
         .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 2px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
@@ -646,9 +687,7 @@
         }
         .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); color: #fff; }
 
-        /* ========================================================================
-           TECHNICAL PROFICIENCY GRID
-           ========================================================================
+        /* E.11: TECHNICAL PROFICIENCY GRID
         */
         .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
         .tech-card {
@@ -673,9 +712,7 @@
         .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; }
         .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
 
-        /* ========================================================================
-           REFEREES GRID
-           ========================================================================
+        /* E.12: REFEREES GRID
         */
         .referee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .referee-card {
@@ -692,7 +729,6 @@
         .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); transform: translateY(-5px); }
         .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); transform: translateY(-5px); }
         
-        /* New Header for Referee Name + Role Alignment */
         .ref-header {
             display: flex;
             justify-content: space-between;
@@ -714,9 +750,7 @@
         .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
-        /* ========================================================================
-           FOOTER
-           ========================================================================
+        /* E.13: FOOTER
         */
         footer { 
             background: var(--primary-dark); color: #d1d5db; text-align: center; 
@@ -732,9 +766,8 @@
         .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
 
 
-        /* ========================================================================
-           MOBILE RESPONSIVE STYLES
-           ========================================================================
+        /* E.14: MOBILE RESPONSIVE STYLES
+           These styles only apply when the screen width is less than 900px.
         */
         @media (max-width: 900px) {
             .header-content { justify-content: center; }
@@ -745,15 +778,15 @@
             }
             .nav-toggle { display: block; position: absolute; right: 30px; }
             
-            /* UPDATED: Compact Sidebar Menu */
+            /* Sidebar Menu shifts to the right and becomes a sliding drawer */
             .nav-list { 
                 position: fixed; 
-                top: 50px; /* Below the 50px header */
+                top: 50px; 
                 right: -100%; 
-                width: 45%; /* Reduced width (was 75%) */
+                width: 45%; 
                 max-width: 200px;
-                height: auto; /* Fit content height instead of full screen */
-                min-height: 300px; /* Ensure at least some height */
+                height: auto; 
+                min-height: 300px; 
                 background: var(--white); 
                 flex-direction: column; 
                 justify-content: flex-start;
@@ -762,7 +795,7 @@
                 transition: right 0.3s ease-in-out; 
                 z-index: 2000; 
                 display: flex;
-                border-bottom-left-radius: 10px; /* Visual flair */
+                border-bottom-left-radius: 10px;
                 border-left: 1px solid #eee;
                 border-bottom: 1px solid #eee;
             }
@@ -775,32 +808,33 @@
             .nav-link:hover { background: transparent; color: var(--accent) !important; padding-left: 10px; }
             .nav-link::after { display: none; }
             
+            /* Sticky sidebar moves to the bottom or adjusts */
             .sticky-sidebar { 
                 display: flex; left: auto; right: 0; top: 50%;
                 border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee;
                 padding: 10px 5px; box-shadow: -2px 0 8px rgba(0,0,0,0.1);
             }
             .sticky-sidebar .h-social { font-size: 1.3rem; margin: 2px 0; }
+            
+            /* Hero section layout changes to column */
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .hero h1 { font-size: 1.8rem; }
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
 
-        /* ========================================================================
-           PRINT STYLES (CTRL + P)
-           ========================================================================
+        /* E.15: PRINT STYLES (Control + P)
+           These styles define how the page looks when printed on paper.
         */
-        /* Default state for Custom Print Elements */
         #print-header, #print-footer { display: none; }
 
         @media print {
-            /* Hide Navigation, Sidebars, and Interactive Elements, BUT KEEP FOOTER & STATS */
+            /* Hide Navigation, Sidebars, and Interactive Elements */
             header, .sticky-sidebar, .nav-toggle, .cv-btn-group { 
                 display: none !important; 
             }
             
-            /* FORCE STATS VISIBILITY IN PRINT & STYLE AS PLAIN BOX */
+            /* Style Stats as a plain box */
             .hero-stats {
                 display: block !important;
                 width: 100% !important;
@@ -813,7 +847,7 @@
                 background: none !important;
             }
             
-            /* Override text colors in hero for print */
+            /* Override text colors to Black for print */
             .hero-stats .stat-value, .hero-stats .stat-label, .hero-stats a, 
             .hero h1 a, .hero-role-link, .hero-contact, .hero-contact a {
                 color: #000 !important;
@@ -825,15 +859,14 @@
                 border-bottom: 1px solid #eee !important;
             }
             
-            /* Hide stats toggle/dropdowns in print */
             .stat-toggle { display: none !important; }
             
-            /* Show Breakdown in print */
+            /* Ensure the breakdown lists are visible */
             .pub-breakdown {
                 display: block !important;
                 max-height: none !important;
                 height: auto !important;
-                border: 1px solid #eee; /* Optional styling for print */
+                border: 1px solid #eee;
                 margin-top: 10px;
             }
             .pub-breakdown a {
@@ -849,7 +882,7 @@
                 margin-top: 20px !important;
             }
             
-            /* Expand All Panels */
+            /* Expand All Accordion Panels */
             .panel {
                 max-height: none !important;
                 overflow: visible !important;
@@ -860,7 +893,7 @@
                 margin-bottom: 15px !important;
             }
 
-            /* Accordion Buttons become simple Headers */
+            /* Simplifies buttons for print */
             .accordion-btn {
                 border: none !important;
                 border-left: 5px solid var(--primary) !important;
@@ -871,18 +904,16 @@
                 font-weight: bold !important;
                 margin-bottom: 0 !important;
             }
-            .accordion-btn i { display: none !important; } /* Hide chevron icons */
+            .accordion-btn i { display: none !important; }
 
-            /* Handle Scrollable Lists */
             .scrollable-list {
                 max-height: none !important;
                 overflow-y: visible !important;
             }
 
-            /* General Layout Fixes */
             body { 
                 padding-top: 40px !important; 
-                padding-bottom: 80px !important; /* Increased padding to prevent overlap with fixed footer */
+                padding-bottom: 80px !important; 
                 background: #fff !important; 
                 color: #000 !important;
             }
@@ -892,34 +923,30 @@
                 margin: 0 !important;
             }
             
-            /* Show Separators in Print - UPDATED MARGINS */
+            /* Show Separators in Print */
             .separator { 
                 display: block !important; 
                 height: 4px !important; 
                 background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%) !important;
                 -webkit-print-color-adjust: exact !important; 
                 print-color-adjust: exact !important;
-                margin: 30px 0 30px 0 !important; /* Forces 30px top and bottom margin */
+                margin: 30px 0 30px 0 !important; 
                 border: none !important;
                 opacity: 1 !important;
             }
             
-            /* Add top margin to section titles in print to double-ensure gap */
-            .section-title {
-                margin-top: 20px !important;
-            }
+            .section-title { margin-top: 20px !important; }
             
-            /* Ensure page breaks are handled gracefully */
+            /* Avoid breaking elements across pages */
             section { page-break-inside: avoid; }
             .pub-item, .award-card, .edu-card { page-break-inside: avoid; }
 
-            /* Hyperlinks Active in Print */
             a {
                 text-decoration: underline !important;
                 color: var(--primary) !important;
             }
 
-            /* --- CUSTOM PRINT FOOTER --- */
+            /* Custom Footer for Print */
             #print-footer {
                 display: block !important;
                 position: fixed;
@@ -938,12 +965,21 @@
         }
     </style>
 </head>
+
+<!-- 
+    SECTION D: THE BODY
+    This is where all the visible content lives.
+-->
 <body>
 
-    <!-- CUSTOM PRINT FOOTER CONTAINER -->
+    <!-- D.1: CUSTOM PRINT FOOTER CONTAINER
+         Only shows up when you physically print the page.
+    -->
     <div id="print-footer">Downloaded from https://shabanahmad.github.io/ on <span id="print-date"></span></div>
 
-    <!-- SIDEBAR -->
+    <!-- D.2: SIDEBAR 
+         The fixed icons on the side of the screen.
+    -->
     <div class="sticky-sidebar">
         <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="h-social" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -952,7 +988,9 @@
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
     </div>
 
-    <!-- MAIN HEADER -->
+    <!-- D.3: MAIN HEADER 
+         The navigation bar at the top.
+    -->
     <header id="main-header">
         <div class="header-content">
             <a href="https://shabanahmad.github.io/" class="header-name">Dr Shaban</a>
@@ -972,9 +1010,12 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- D.4: HERO SECTION 
+         The large introductory area with photo, title, and stats.
+    -->
     <div class="hero-section-wrapper" id="hero-section">
         <section class="hero">
+            <!-- Left side: Photo & Intro Text -->
             <div class="hero-main">
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
@@ -986,6 +1027,7 @@
                 </div>
             </div>
             
+            <!-- Right side: Floating Statistics Box -->
             <div class="hero-stats">
                 <div class="stat-row-link" style="padding:0;">
                     <div class="stat-row">
@@ -993,6 +1035,7 @@
                         <span class="stat-toggle" onclick="togglePubStats(event)"> <i class="fas fa-chevron-down"></i> </span>
                         <a href="#publications" class="stat-value">74+</a>
                     </div>
+                    <!-- Collapsible Dropdown -->
                     <div class="pub-breakdown" id="pub-breakdown">
                         <a href="#publications" onclick="triggerAccordion('pubs-journal')">
                             <span><i class="fas fa-file-alt" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Journal Articles</span>
@@ -1038,7 +1081,7 @@
                     </div>
                 </a>
                 
-                <!-- NEW SPLIT BUTTONS -->
+                <!-- Download Buttons -->
                 <div class="cv-btn-group">
                     <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Full CV</a>
                     <a href="#" onclick="window.print(); return false;" class="cv-btn-half"><i class="fas fa-print"></i> Save PDF</a>
@@ -1047,7 +1090,7 @@
         </section>
     </div>
 
-    <!-- PROFILE (MERGED WITH EDUCATION) -->
+    <!-- D.5: PROFILE & EDUCATION SECTION -->
     <section id="profile" class="container" style="margin-top: 1rem;">
         <h2 class="section-title">About Me</h2>
         <div class="profile-text">
@@ -1063,11 +1106,10 @@
 
             </p>
 
-            <!-- Sub-Heading 1: Styled as requested (Dark Blue, Bold) -->
             <span class="sub-heading-bold">My Educational Background Includes:</span>
         </div>
         
-            <!-- INSERTED EDUCATION GRID -->
+            <!-- Education Grid -->
             <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
                 <div class="edu-card edu-phd">
                     <div class="edu-header">
@@ -1097,12 +1139,9 @@
             </p>
 
  
-        <!-- Sub-Heading 2: Styled as requested -->
         <span class="sub-heading-bold">My Research Interests Include:</span>
         
-
-        </div>
-        
+        <!-- Interests Tags -->
         <div class="interests-wrapper">
             <div class="int-tag">🤖 AI in Bioinformatics & Genomics</div>
             <div class="int-tag">💊 Drug Design & Discovery (CADD)</div>
@@ -1118,7 +1157,7 @@
         <hr class="separator">
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- D.6: EXPERIENCE SECTION -->
     <section id="experience" class="container">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
@@ -1198,10 +1237,11 @@
         <hr class="separator">
     </section>
 
-    <!-- AWARDS (Moved Before Patents) -->
+    <!-- D.7: AWARDS SECTION -->
     <section id="awards" class="container">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
+            <!-- Each award is its own card. Numbering is handled automatically by JavaScript. -->
             <div class="award-card">
                 <i class="fas fa-medal award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -1304,7 +1344,7 @@
         <hr class="separator">
     </section>
 
-    <!-- PATENTS (Moved After Awards) -->
+    <!-- D.8: PATENTS SECTION -->
     <section id="patents" class="container">
         <h2 class="section-title">Patents (IPR)</h2>
         <div class="grid-container">
@@ -1328,20 +1368,19 @@
     </section>
 
 
-    <!-- PUBLICATIONS -->
+    <!-- D.9: PUBLICATIONS SECTION -->
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
+        <!-- Accordion 1: Journal Articles -->
         <button class="accordion-btn" id="pubs-journal">Journal Articles <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
-
                         <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br><em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Multitarget Docking and Molecular Enumeration Reveal DdpMPyPEPhU as a Potent Modulator of Cell Cycle, Glucocorticoid, and Estrogen Signalling in Breast Cancer</strong><br><em>Submitted: IJBIOMAC-D-25-041021 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>LUNGXAI: A Deep Learning Framework with LIME-based Interpretability for Gene Expression and Classification</strong><br><em>Submitted: INFFUS-D-25-02490 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
-                        
                         <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley-Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Multimodal evaluation of Mannose Engineered Poly Lactic Glycolic Acid Nanoparticles with Granulocyte Colony Stimulating Factor Focused Delivery to Bone Marrow for Neutropenia</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-025-29790-w" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank">DOI</a></li>
@@ -1355,7 +1394,6 @@
                         <li class="pub-item"><strong>Investigating the Inhibitory Effects of Paliperidone on RAGES: Docking, DFT, MD Simulations, MMPBSA, MTT, Apoptosis, and Immunoblotting Studies</strong><br><em>Intl. J. Mol. Sci. (2025)</em> <a class="pub-doi" href="https://doi.org/10.3390/ijms26031060" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Probing the Role of Coniferin and Tetrahydrocurcumin from Traditional Chinese Medicine against PSAT1 in Early-stage Ovarian Cancer</strong><br><em>PLoS ONE (2025)</em> <a class="pub-doi" href="http://dx.doi.org/10.1371/journal.pone.0313585" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank">DOI</a></li>
-                        
                         <li class="pub-item"><strong>Reporting multitargeted potency of Tiaprofenic acid against lung cancer: Molecular fingerprinting, MD simulation, and MTT- based cell viability assay studies</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/j.ijbiomac.2024.133872" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Synthesis, structural elucidation, and antibacterial activities of novel copper(II), cobalt(II), and nickel(II) complexes with a bidentate Schiff base ligand against pathogenic bacteria</strong><br><em>Journal of Molecular Structure (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2024.139874" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Integrative Analysis Discovers Imidurea as a dual multitargeted inhibitor of CD69, CD40, SHP2, Lysozyme, GATA3, cCBL, and S-cysteinase from SARS-CoV-2 and M. tuberculosis</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/j.ijbiomac.2024.132332" target="_blank">DOI</a></li>
@@ -1364,7 +1402,6 @@
                         <li class="pub-item"><strong>Microbial biofilm inhibition using magnetic cross-linked polyphenol oxidase aggregates</strong><br><em>ACS Applied Biomaterials (2024)</em> <a class="pub-doi" href="http://dx.doi.org/10.1021/acsabm.4c00175" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>An Extensive Review on Lung Cancer Therapeutics Using Machine Learning Techniques: State-of-the-art and Perspectives</strong><br><em>Journal of Drug Targeting (2024)</em> <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2024.2347358" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>2-hydrazinobenzothiazole-based derivatives: Synthesis, characterisation, antifungal, DNA binding and molecular modelling approaches</strong><br><em>Journal of Molecular Structure (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2024.138051" target="_blank">DOI</a></li>
-                        
                         <li class="pub-item"><strong>Multisampling-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer: An optimisation followed multi-simulation and in-vitro study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2209673" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential aromatase inhibitor against breast carcinoma</strong><br><em>Nature- Scientific Reports (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Investigating the multitargeted anti-diabetic potential of cucurbitane-type triterpenoid from Momordica charantia: An LC-MS, docking-based MM\GBSA and MD Simulation Study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2291174" target="_blank">DOI</a></li>
@@ -1377,7 +1414,6 @@
                         <li class="pub-item"><strong>Synthesis, Single crystal, TD-DFT, Molecular Dynamics Simulation and DNA binding studies of Carbothioamide Analogue</strong><br><em>Journal of Molecular Structure (2023)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2023.135701" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Structure-based virtual screening, molecular docking, molecular dynamics simulation, and metabolic reactivity studies of quinazoline derivatives for their anti-EGFR activity against tumour angiogenesis</strong><br><em>Current Medicinal Chemistry (2023)</em> <a class="pub-doi" href="https://doi.org/10.2174/0929867330666230309143711" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Comprehensive Computational Studies of Naturally Occurring Kuguacins as Anti-diabetic Agents by Targeting Visfatin</strong><br><em>Chemistry Africa (2023)</em> <a class="pub-doi" href="http://dx.doi.org/10.1007/s42250-023-00604-8" target="_blank">DOI</a></li>
-                        
                         <li class="pub-item"><strong>Predictive modelling and therapeutic repurposing of natural compounds against the receptor-binding domain of SARS-CoV-2</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Correction to: Novel Severe Acute Respiratory Syndrome Coronavirus 2...</strong><br><em>Mol. Cell. Biochem. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-021-04317-9" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation...</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a></li>
@@ -1399,6 +1435,7 @@
             </div>
         </div>
 
+        <!-- Accordion 2: Book Chapters -->
         <button class="accordion-btn" id="pubs-book">Book Chapters <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1433,10 +1470,11 @@
             </div>
         </div>
 
+        <!-- Accordion 3: Data & Codes -->
         <button class="accordion-btn" id="pubs-data">Data & Codes <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                 <!-- No number reversed needed here as it's a ul list of codes, but user asked for "all sub-buttons". Assuming keep ul for list of items unless ordered is critical. -->
+                 <!-- No number reversed needed here as it's a ul list of codes -->
                  <ul class="pub-list">
                     <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
                     <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
@@ -1451,9 +1489,10 @@
     </section>
 
 
-    <!-- CONFERENCES -->
+    <!-- D.10: CONFERENCES SECTION -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
+        <!-- Conferences Accordion -->
         <button class="accordion-btn" id="pubs-conf">Presented in Conferences <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1477,6 +1516,7 @@
             </div>
         </div>
 
+        <!-- Workshops Accordion -->
         <button class="accordion-btn">Attended Workshops <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1509,6 +1549,7 @@
             </div>
         </div>
 
+        <!-- Attended Conferences Accordion -->
         <button class="accordion-btn">Conferences Attended <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1554,6 +1595,7 @@
     </section>
 
 
+    <!-- D.11: PROFESSIONAL ACTIVITIES SECTION -->
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -1672,7 +1714,7 @@
         <hr class="separator">
     </section>
 
-    <!-- TECHNICAL PROFICIENCY -->
+    <!-- D.12: TECHNICAL PROFICIENCY GRID -->
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
         <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
@@ -1816,7 +1858,7 @@
         <hr class="separator">
     </section>
 
-    <!-- REFEREES -->
+    <!-- D.13: REFEREES GRID -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
@@ -1825,7 +1867,7 @@
             <div class="referee-card ref-1">
                 <!-- Header with Name Left and Role Right -->
                 <div class="ref-header">
-                    <div class="referee-name"><a href="https://plen.ku.dk/ansatte/?pure=da/persons/331150" target="_blank">Dr Tue K. Nielsen</a></div>
+                    <div class="referee-name"><a href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Dr Tue K. Nielsen</a></div>
                     <span class="referee-role">(Postdoc PI)</span>
                 </div>
                 <div class="referee-title-line">Associate Professor</div>
@@ -1889,7 +1931,7 @@
                 </div>
             </div>
             
-            <!-- 4. Murugesh Eswaran -->
+            <!-- 5. Murugesh Eswaran -->
             <div class="referee-card ref-5">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div>
@@ -1900,7 +1942,7 @@
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a></div>
             </div>
             
-            <!-- 4. Mansaf Alam -->
+            <!-- 6. Mansaf Alam -->
             <div class="referee-card ref-6">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
@@ -1916,7 +1958,7 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- D.14: FOOTER -->
     <footer>
         <div class="footer-socials">
             <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -1932,13 +1974,19 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- 
+       SECTION E: JAVASCRIPT LOGIC
+       The "Brain" of the website that makes things click, move, and scroll.
+    -->
     <script>
-        // HEADER SCROLL LOGIC
+        // E.1: HEADER SCROLL LOGIC
+        // When you scroll down, the name "Dr Shaban" appears in the top left corner.
         window.addEventListener('scroll', function() {
+            // Only do this on screens wider than 900px (Desktop)
             if (window.innerWidth > 900) {
                 const headerName = document.querySelector('.header-name');
                 const hero = document.querySelector('.hero');
+                // Calculate when to show the name (after scrolling past most of the Hero section)
                 const triggerHeight = hero.offsetHeight - 150; 
                 if (window.scrollY > triggerHeight) {
                     headerName.classList.add('visible');
@@ -1948,14 +1996,17 @@
             }
         });
 
-        // MENU TOGGLE
+        // E.2: MENU TOGGLE (MOBILE)
+        // Opens and closes the side menu when clicking the "Hamburger" icon.
         function toggleMenu() {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
+            // Toggle the 'active' class which slides the menu in/out via CSS
             navBar.classList.toggle('active');
             toggleBtn.classList.toggle('open');
         }
 
+        // Auto-close menu when a link is clicked
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1966,6 +2017,7 @@
             });
         });
 
+        // Auto-close menu when clicking outside of it
         document.addEventListener('click', function(event) {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
@@ -1974,12 +2026,14 @@
             }
         });
 
-        // ACCORDION LOGIC
+        // E.3: ACCORDION LOGIC
+        // Expands and collapses the publication lists.
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
+                // If open, close it (max-height: null). If closed, open it (max-height: scrollHeight).
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
@@ -1988,39 +2042,39 @@
             });
         }
 
-        // HERO DROPDOWN
+        // E.4: HERO DROPDOWN LOGIC
+        // Controls the small stats dropdown menu in the blue hero section.
         function togglePubStats(e) {
-            // Check if we clicked on a link that should navigate (like the Patent link)
+            // Special handling for the Patent link inside the dropdown to allow navigation
             if (e.currentTarget.classList.contains('stat-toggle') || e.currentTarget.classList.contains('patent-pub-item')) {
-                 // If it's the patent item, execute scrolling logic then allow closing
-                 
                  if (e.currentTarget.classList.contains('patent-pub-item')) {
-                     // Simply allow default behavior (navigation) and close dropdown
+                     // If clicking patent link: close dropdown but allow browser to jump to section
                      const breakdown = document.getElementById('pub-breakdown');
-                     const toggleIcon = document.querySelector('.stat-toggle i'); // Find the main toggle icon
+                     const toggleIcon = document.querySelector('.stat-toggle i');
                      breakdown.classList.remove('open');
                      breakdown.style.maxHeight = "0";
                      if(toggleIcon) {
                         toggleIcon.classList.remove('fa-chevron-up');
                         toggleIcon.classList.add('fa-chevron-down');
                      }
-                     // Do NOT preventDefault() - allow standard anchor jump which respects scroll-padding-top
                      return; 
                  }
                  
-                 // If it is the toggle button
+                 // If clicking the arrow toggle: prevent navigation and just toggle menu
                  e.preventDefault();
                  e.stopPropagation(); 
                  const breakdown = document.getElementById('pub-breakdown');
                  const toggleIcon = e.currentTarget.querySelector('i');
+                 
                  if (breakdown.classList.contains('open')) {
+                    // Close it
                     breakdown.classList.remove('open');
                     breakdown.style.maxHeight = "0";
                     toggleIcon.classList.remove('fa-chevron-up');
                     toggleIcon.classList.add('fa-chevron-down');
                  } else {
+                    // Open it
                     breakdown.classList.add('open');
-                    // Increase max height to fit new item
                     breakdown.style.maxHeight = breakdown.scrollHeight + "px";
                     toggleIcon.classList.remove('fa-chevron-down');
                     toggleIcon.classList.add('fa-chevron-up');
@@ -2028,20 +2082,24 @@
             }
         }
 
-        // AUTO-SCROLL
+        // E.5: AUTO-SCROLL HELPER
+        // When clicking a stat link, this opens the correct accordion and scrolls to it.
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
             if (btn) {
+                // If the accordion is closed, click it to open
                 if (!btn.classList.contains('active')) {
                     btn.click();
                 }
+                // Wait 300ms for animation, then scroll smoothly
                 setTimeout(() => {
                     btn.scrollIntoView({ behavior: "smooth", block: "center" });
                 }, 300);
             }
         }
 
-        // SCROLL SPY
+        // E.6: SCROLL SPY
+        // Highlights the menu link corresponding to the section currently on screen.
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll(".nav-link");
 
@@ -2050,6 +2108,7 @@
             sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
+                // -150 offset accounts for the fixed header height
                 if (window.scrollY >= (sectionTop - 150)) {
                     current = section.getAttribute("id");
                 }
@@ -2063,30 +2122,25 @@
             });
         });
 
-        // AWARD NUMBERING LOGIC (Bottom to Top)
+        // E.7: AWARD NUMBERING LOGIC
+        // Automatically numbers the awards from bottom to top (so newest is highest number).
         const awardCards = document.querySelectorAll('.award-card');
         const totalAwards = awardCards.length;
         
         awardCards.forEach((card, index) => {
-            // Calculate number: Total - Index (so first card gets highest number)
             const number = totalAwards - index;
-            
-            // Create the number badge
             const badge = document.createElement('div');
             badge.className = 'award-number';
             badge.innerText = number;
-            
-            // Append to card
             card.appendChild(badge);
         });
 
-        // PRINT DATE LOGIC
+        // E.8: PRINT DATE LOGIC
+        // Adds the current date/time to the footer when printing.
         document.addEventListener('DOMContentLoaded', () => {
             const dateSpan = document.getElementById('print-date');
             if(dateSpan) {
                 const now = new Date();
-                // Format: Day Month Year (e.g., 29 January 2026)
-                // Added Time as requested (e.g. 14:30)
                 const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
                 dateSpan.textContent = `${dateStr} at ${timeStr}`;
