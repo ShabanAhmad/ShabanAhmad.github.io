@@ -1,9 +1,12 @@
 # 🧬 Dr. Shaban Ahmad | Academic Portfolio
 
-[![Website](https://shabanahmad.github.io/)
-[![University](https://img.shields.io/badge/Postdoc Researcher at UCPH-002e5f?style=for-the-badge)]([https://researchprofiles.ku.dk/en/persons/shaban-ahmad/))
-[![ORCID](https://img.shields.io/badge/ORCID?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9832-2830)
-[![Citations](https://img.shields.io/badge/Google Scholar%2B-blue?style=for-the-badge)](https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en)
+[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=github&logoColor=white)](https://shabanahmad.github.io/)
+[![University of Copenhagen](https://img.shields.io/badge/Postdoc%20Researcher-UCPH-002e5f?style=for-the-badge&logo=university&logoColor=white)](https://researchprofiles.ku.dk/en/persons/shaban-ahmad)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--9832--2830-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9832-2830)
+[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-1600%2B-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white)](https://scholar.google.com/citations?user=Bv4nV80AAAAJ)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dr%20Shaban%20Ahmad-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/drshabanahmad/)
+[![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Shaban-Ahmad-2)
+
 
 
 
