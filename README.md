@@ -1,90 +1,137 @@
 # 🧬 Dr. Shaban Ahmad | Academic Portfolio
 
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=github&logoColor=white)](https://shabanahmad.github.io/)
-[![University of Copenhagen](https://img.shields.io/badge/Postdoc%20Researcher-UCPH-002e5f?style=for-the-badge&logo=university&logoColor=white)](https://researchprofiles.ku.dk/en/persons/shaban-ahmad)
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--9832--2830-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9832-2830)
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-1600%2B-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white)](https://scholar.google.com/citations?user=Bv4nV80AAAAJ)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dr%20Shaban%20Ahmad-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/drshabanahmad/)
-[![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Shaban-Ahmad-2)
+<p align="center">
+  <a href="https://shabanahmad.github.io/" target="_blank">
+    <img src="https://cdn.simpleicons.org/github/000000" alt="Website" width="32"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad" target="_blank">
+    <img src="https://cdn.simpleicons.org/universityofcopenhagen/002e5f" alt="UCPH" width="32"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0001-9832-2830" target="_blank">
+    <img src="https://cdn.simpleicons.org/orcid/A6CE39" alt="ORCID" width="32"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ" target="_blank">
+    <img src="https://cdn.simpleicons.org/googlescholar/4285F4" alt="Google Scholar" width="32"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank">
+    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="32"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank">
+    <img src="https://cdn.simpleicons.org/researchgate/00CCBB" alt="ResearchGate" width="32"/>
+  </a>
+</p>
 
+---
 
+Welcome to the source code repository for my personal academic portfolio.  
+This website serves as a central hub for my research in **AI-driven Genomics, Bioinformatics, and Computational Drug Design**.
 
-
-Welcome to the source code repository for my personal academic portfolio. This website serves as a central hub for my research in **AI-driven Genomics, Bioinformatics, and Computational Drug Design**.
+---
 
 ## 👨‍🔬 About Me
 
-I am a **Postdoctoral Researcher** in the MEB Section of PLEN at the **University of Copenhagen (UCPH)**.
+I am a **Postdoctoral Researcher** in the **Microbial Ecology and Biotechnology (MEB) Section**,  
+**Department of Plant and Environmental Sciences (PLEN)**,  
+**University of Copenhagen (UCPH), Denmark**.
 
-My research focuses on the intersection of Artificial Intelligence and Biological Sciences. Currently, I am applying AI-driven bioinformatics to investigate and engineer PFAS-degrading enzymes. Previously, I completed my PhD at Jamia Millia Islamia, focusing on AI and computational methods for lung cancer therapeutics.
+My research lies at the intersection of **Artificial Intelligence and Biological Sciences**.  
+Currently, I apply **AI-driven bioinformatics** to investigate and engineer **PFAS-degrading enzymes** for sustainable environmental solutions.
 
-**Highlights:**
-* **Current Role:** Postdoc Researcher, UCPH (Denmark).
-* **Visiting Researcher:** University of Jyväskylä (Finland).
-* **PhD:** AI in Biology (Gold Medallist).
-* **Recognition:** World's Top 2% Scientists (Stanford/Elsevier 2025).
+Previously, I completed my **PhD in Bioinformatics (Gold Medallist)** at **Jamia Millia Islamia, India**, focusing on **AI and computational drug discovery for lung cancer therapeutics**.
+
+### 🌟 Highlights
+
+- 🎓 **Current Role:** Postdoctoral Researcher, UCPH (Denmark)
+- 🌍 **Visiting Researcher:** University of Jyväskylä (Finland)
+- 🏅 **Recognition:** World’s Top 2% Scientists (Stanford–Elsevier, 2025)
+- 📜 **Patents:** 1 Granted (Germany), 6 in pipeline (India/US)
+
+---
 
 ## 🔬 Research Interests
 
-* 🧬 **AI in Genomics & Drug Design**
-* 💻 **Bioinformatics & CADD**
-* 🧠 **Deep Learning in Health Science**
-* ⚗️ **Molecular Dynamics & Simulation**
-* 🌍 **PFAS Biodegradation**
+- 🧬 **AI in Genomics & Systems Biology**
+- 💊 **Computer-Aided Drug Design (CADD)**
+- 🧠 **Deep Learning in Health Sciences**
+- ⚗️ **Molecular Dynamics & Simulation**
+- 🌍 **PFAS Biodegradation & Enzyme Engineering**
+
+---
 
 ## 📊 Academic Impact
 
-This portfolio showcases my academic contributions, including:
+- **74+ Publications** — Journal articles, book chapters, conference papers  
+- **1600+ Citations** — h-index: **26**  
+- **450+ Peer Reviews** — Verified (Web of Science)  
+- **Patents:** 1 Granted, 6 Under Review  
 
-* **74+ Publications:** Journal articles, book chapters, and conference papers.
-* **1 Patents:** Granted (German) with 6 in the pipeline.
-* **1600+ Citations:** h-index of 26.
-* **450+ Verified Reviews:** Active contribution to the scientific peer-review community.
+---
 
 ## 💻 Website Architecture
 
-This portfolio is built as a static, responsive single-page application (SPA) hosted on GitHub Pages. It is designed to be lightweight, fast, and accessible.
+This portfolio is built as a **lightweight, responsive single-page application (SPA)** hosted on **GitHub Pages**, emphasizing performance, accessibility, and long-term maintainability.
 
 ### Tech Stack
-* **HTML5:** Semantic structure for accessibility.
-* **CSS3:** Custom variables (CSS Properties) for the "UCPH Blue & Gold" theme, Flexbox/Grid layouts, and responsive media queries.
-* **JavaScript (Vanilla):**
-    * Scroll-spy navigation (highlights menu items based on scroll position).
-    * Dynamic header transparency effects.
-    * Accordion logic for extensive publication lists.
-    * Mobile navigation toggle.
-* **Libraries:**
-    * [FontAwesome](https://fontawesome.com/) (UI Icons)
-    * [Academicons](https://jpswalsh.github.io/academicons/) (Academic specific icons like Google Scholar/ORCID)
-    * [Google Fonts](https://fonts.google.com/) (Roboto, Playfair Display, Merriweather)
 
-### Key Features
-1.  **Responsive Design:** Fully optimized for Desktops, Tablets, and Mobile phones.
-2.  **Sticky Sidebar:** Persistent access to social and academic profiles.
-3.  **Interactive Stats:** Floating/Animated statistics in the Hero section.
-4.  **Collapsible Sections:** "Accordion" style menus for organizing large lists of publications and conference events.
+- **HTML5** — Semantic, accessible structure  
+- **CSS3** — Custom properties, Flexbox/Grid, responsive layouts  
+- **Vanilla JavaScript**
+  - Scroll-spy navigation
+  - Dynamic header behavior
+  - Accordion logic for publications
+  - Mobile navigation toggle  
+
+### External Libraries
+
+- **Font Awesome** — UI icons  
+- **Academicons** — Academic profile icons  
+- **Google Fonts** — Roboto, Playfair Display, Merriweather  
+
+---
 
 ## 🚀 Local Installation
 
-If you wish to clone this repo or run it locally:
+To run the website locally:
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/shabanahmad/shabanahmad.github.io.git](https://github.com/shabanahmad/shabanahmad.github.io.git)
-    ```
-2.  **Navigate to the folder:**
-    ```bash
-    cd shabanahmad.github.io
-    ```
-3.  **Open in Browser:**
-    Simply double-click the `index.html` file to view it in your default web browser.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/shabanahmad/shabanahmad.github.io.git
+````
+
+2. **Navigate to the directory**
+
+   ```bash
+   cd shabanahmad.github.io
+   ```
+
+3. **Open**
+
+   * Double-click `index.html` in any modern web browser
+   * No dependencies, build tools, or package managers required
+
+---
 
 ## 📫 Connect
 
-* 📧 **Email:** [shaban@plen.ku.dk](mailto:shaban@plen.ku.dk) | [shaban.ucph@gmail.com](mailto:shaban.ucph@gmail.com)
-* 🔗 **LinkedIn:** [Dr. Shaban Ahmad](https://www.linkedin.com/in/drshabanahmad/)
-* 🎓 **Google Scholar:** [Profile](https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en)
-* 🔬 **ResearchGate:** [Profile](https://www.researchgate.net/profile/Shaban-Ahmad-2)
+<p align="center">
+  <a href="mailto:shaban@plen.ku.dk">
+    <img src="https://cdn.simpleicons.org/maildotru/000000" alt="Email" width="30"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/drshabanahmad/">
+    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="30"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ">
+    <img src="https://cdn.simpleicons.org/googlescholar/4285F4" alt="Google Scholar" width="30"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2">
+    <img src="https://cdn.simpleicons.org/researchgate/00CCBB" alt="ResearchGate" width="30"/>
+  </a>&nbsp;&nbsp;&nbsp;
+  <a href="https://orcid.org/0000-0001-9832-2830">
+    <img src="https://cdn.simpleicons.org/orcid/A6CE39" alt="ORCID" width="30"/>
+  </a>
+</p>
 
 ---
-*© 2026 Dr. Shaban Ahmad. All Rights Reserved.*
+
+© 2026 **Dr. Shaban Ahmad**. All rights reserved.
+```
