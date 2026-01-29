@@ -43,21 +43,19 @@
             --inst-font: 'Merriweather', serif; /* Font for Institution Names */
             --transition: all 0.3s ease;        /* Standard animation timing */
             
-            /* -- Education Card Specific Colors -- */
-            --edu-phd: #dc3545;      /* Pink */
-            --edu-msc: #e67e22;      /* Burnt Orange */
-            --edu-bsc: #20c997;      /* Teal */
-            --edu-xii: #fd7e14;      /* Orange */
-            --edu-x: #6f42c1;        /* Purple */
-            --edu-basic: #e83e8c;    /* Pink */
+            /* -- Education Card Colors (Top Borders) -- */
+            --edu-phd: #dc3545;       /* Red */
+            --edu-msc: #fd7e14;       /* Orange */
+            --edu-bsc: #20c997;       /* Teal */
             
-            /* -- Referee Card Specific Colors -- */
-            --ref-1: #002e5f;
-            --ref-2: #008080;
-            --ref-3: #6610f2;
-            --ref-4: #dc3545;
-            --ref-5: #20c997;      /* Teal */
-            --ref-6: #fd7e14;      /* Orange */
+            /* -- Referee Card Colors -- */
+            /* Each referee has a unique color ID */
+            --ref-1: #002e5f; /* Blue */
+            --ref-2: #008080; /* Teal */
+            --ref-3: #6f42c1; /* Purple */
+            --ref-4: #dc3545; /* Red */
+            --ref-5: #28a745; /* Green */
+            --ref-6: #17a2b8; /* Cyan */
         }
 
         /* ========================================================================
@@ -331,7 +329,7 @@
             font-size: 0.9rem; 
             font-weight: bold;
         }
-        
+
         /* New class for the 'add-on' items in dropdown - Type 3 Color (Blueish) */
         .secondary-pub-item span { color: #a8d0e6; opacity: 0.9; }
         .secondary-pub-item i { color: #a8d0e6 !important; }
@@ -393,6 +391,17 @@
             border-radius: 4px; font-weight: 500; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
+
+        /* Sub-heading style for "My Educational Background..." */
+        .sub-heading-bold { 
+            color: var(--primary); 
+            font-weight: 700; 
+            font-size: 1.15rem; 
+            display: block; 
+            margin-top: 2rem;
+            margin-bottom: 1rem; 
+            font-family: 'Roboto', sans-serif;
+        }
 
         /* ========================================================================
            EDUCATION & EXPERIENCE CARDS
@@ -680,6 +689,8 @@
         .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); transform: translateY(-5px); }
         .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); transform: translateY(-5px); }
         .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); transform: translateY(-5px); }
+        .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); transform: translateY(-5px); }
+        .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); transform: translateY(-5px); }
         
         /* New Header for Referee Name + Role Alignment */
         .ref-header {
@@ -992,10 +1003,9 @@
                             <span class="pub-badge">24+</span>
                         </a>
                         
-                        <!-- NEW PATENT LINK IN DROPDOWN (TYPE 2 COLOR: GOLD) -->
-                        <a href="#patents" class="patent-pub-item" onclick="togglePubStats(event)">
-                            <span><i class="fas fa-certificate" style="margin-right:8px; font-size:0.8rem;"></i> Patents</span>
-                            <span class="pub-badge">1 & 6</span>
+                        <a href="#patents" class="patent-link-hero" style="color:#ff6b6b;">
+                            <span><i class="fas fa-certificate"></i> Patents</span>
+                            <span style="color:#ff6b6b; font-weight:bold;">1</span>
                         </a>
 
                         <a href="#publications" onclick="triggerAccordion('pubs-data')" class="secondary-pub-item">
@@ -1031,7 +1041,7 @@
                 <!-- NEW SPLIT BUTTONS -->
                 <div class="cv-btn-group">
                     <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Full CV</a>
-                    <a href="#" onclick="window.print(); return false;" class="cv-btn-half"><i class="fas fa-download"></i> Website</a>
+                    <a href="#" onclick="window.print(); return false;" class="cv-btn-half"><i class="fas fa-print"></i> Save PDF</a>
                 </div>
             </div>
         </section>
@@ -1053,10 +1063,10 @@
 
             </p>
 
-            <p style="margin-bottom: 2rem;">
-                 <a style="color:var(--primary); font-weight:600;">My Educational Background Includes:</a>
-            </p>
-            
+            <!-- Sub-Heading 1: Styled as requested (Dark Blue, Bold) -->
+            <span class="sub-heading-bold">My Educational Background Includes:</span>
+        </div>
+        
             <!-- INSERTED EDUCATION GRID -->
             <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
                 <div class="edu-card edu-phd">
@@ -1086,9 +1096,11 @@
                 Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a> for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
             </p>
 
-            <p>
-                <a style="color:var(--primary); font-weight:600;">My Research Interests Include:</a>
-            </p>
+ 
+        <!-- Sub-Heading 2: Styled as requested -->
+        <span class="sub-heading-bold">My Research Interests Include:</span>
+        
+
         </div>
         
         <div class="interests-wrapper">
@@ -1877,41 +1889,32 @@
                 </div>
             </div>
             
-            <!-- 5. Murugesh Eswaran -->
+            <!-- 4. Murugesh Eswaran -->
             <div class="referee-card ref-5">
                 <div class="ref-header">
-                    <div class="referee-name"><a href="https://www.msm.edu/directory/facultyprofile.php?id=123" target="_blank">Dr Murugesh Eswaran</a></div>
+                    <div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div>
                     <span class="referee-role">(Mentor)</span>
                 </div>
                 <div class="referee-title-line">Assistant Professor</div>
-                <div class="ref-inst-row">
-                    <i class="fas fa-university email-badge"></i> 
-                    <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine, USA</a>
-                </div>
-                <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a>
-                </div>
+                <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine, USA</a></div>
+                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a></div>
             </div>
             
-            <!-- 6. Mansaf Alam -->
-            <div class="referee-card -ref-6">
+            <!-- 4. Mansaf Alam -->
+            <div class="referee-card ref-6">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
                     <span class="referee-role">(MSc Supervisor)</span>
                 </div>
                 <div class="referee-title-line">Professor</div>
-                <div class="ref-inst-row">
-                    <i class="fas fa-university email-badge"></i> 
-                    <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a>
-                </div>
-                <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a>
-                </div>
+                <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a></div>
+                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a></div>
             </div>
             
         </div>
         <hr class="separator">
     </section>
+
 
     <!-- FOOTER -->
     <footer>
