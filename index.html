@@ -44,7 +44,7 @@
             --transition: all 0.3s ease;        /* Standard animation timing */
             
             /* -- Education Card Specific Colors -- */
-            --edu-phd: #002e5f;      /* Blue */
+            --edu-phd: #dc3545;      /* Pink */
             --edu-msc: #e67e22;      /* Burnt Orange */
             --edu-bsc: #20c997;      /* Teal */
             --edu-xii: #fd7e14;      /* Orange */
@@ -56,6 +56,8 @@
             --ref-2: #008080;
             --ref-3: #6610f2;
             --ref-4: #dc3545;
+            --ref-5: #20c997;      /* Teal */
+            --ref-6: #fd7e14;      /* Orange */
         }
 
         /* ========================================================================
@@ -88,6 +90,7 @@
             background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%);
             margin: 3rem 0;
             opacity: 0.8;
+            page-break-after: avoid; /* Print optimization */
         }
 
         /* ========================================================================
@@ -312,7 +315,7 @@
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
             background: rgba(0,0,0,0.1); border-radius: 4px;
         }
-        .pub-breakdown.open { max-height: 250px; }
+        .pub-breakdown.open { max-height: 300px; /* Increased height to accommodate Patents */ }
         
         .pub-breakdown a {
             display: flex; justify-content: space-between; align-items: center;
@@ -329,21 +332,47 @@
             font-weight: bold;
         }
         
-        /* New class for the 'add-on' items in dropdown */
+        /* New class for the 'add-on' items in dropdown - Type 3 Color (Blueish) */
         .secondary-pub-item span { color: #a8d0e6; opacity: 0.9; }
         .secondary-pub-item i { color: #a8d0e6 !important; }
         .secondary-pub-item .pub-badge { color: #a8d0e6; }
 
-        /* Download CV Button */
-        .cv-btn {
-            display: block; width: 100%; padding: 12px; background: var(--accent);
-            color: var(--primary-dark); text-align: center; font-weight: 700;
-            border-radius: 8px; margin-top: 20px; transition: transform 0.2s, box-shadow 0.2s;
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; text-decoration: none;
+        /* Type 2 Color - Patents (Gold) */
+        .patent-pub-item span { color: var(--accent); opacity: 1; font-weight: bold; }
+        .patent-pub-item i { color: var(--accent) !important; }
+        .patent-pub-item .pub-badge { color: var(--accent); }
+
+        /* Download Buttons Group */
+        .cv-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
         }
-        .cv-btn:hover {
-            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
-            background: #fff; color: var(--primary);
+        .cv-btn-half {
+            flex: 1;
+            padding: 12px;
+            background: var(--accent);
+            color: var(--primary-dark);
+            text-align: center;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .cv-btn-half:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
+            background: #fff;
+            color: var(--primary);
         }
 
         /* ========================================================================
@@ -369,6 +398,7 @@
            EDUCATION & EXPERIENCE CARDS
            ========================================================================
         */
+        
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
         .edu-grid, .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
@@ -425,12 +455,33 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: row; align-items: center;
             justify-content: flex-start; gap: 20px; text-align: left;
+            position: relative; /* Needed for positioning the number */
         }
         .award-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
-        .award-content-wrapper { flex: 1; }
+        .award-content-wrapper { flex: 1; padding-right: 0px; }
         .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; }
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
-        .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; }
+        .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; margin-top: 10px; }
+
+        /* Award Number Styling - UPDATED POSITION */
+        .award-number {
+            position: absolute;
+            top: 5px;  /* This places it 5 pixels from the top */
+            right: 5px; /* This places it 5 pixels from the right */
+            width: 22px;
+            height: 22px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+            z-index: 5;
+        }
 
         /* ========================================================================
            PATENTS GRID
@@ -451,30 +502,56 @@
         }
 
         /* ========================================================================
-           ACCORDION & PUBLICATIONS LISTS
+           ACCORDION & PUBLICATIONS LISTS - UPDATED STYLE
            ========================================================================
         */
+        /* Default Button Style */
         .accordion-btn {
             width: 100%; padding: 1rem; text-align: left; 
-            background: var(--white); border: 1px solid #ddd; border-left: 4px solid var(--primary);
+            background: var(--white); 
+            border: 1px solid #ddd; 
+            border-left: 5px solid var(--primary); /* Thick blue border on left */
             margin-bottom: 5px; cursor: pointer;
             font-size: 1.05rem; font-weight: 600; color: var(--primary);
             display: flex; justify-content: space-between; align-items: center;
             transition: all 0.3s ease;
         }
+        
         .accordion-btn:hover { background: #f0f4f8; }
+
+        /* Active Button Style - Merges with panel */
         .accordion-btn.active { 
-            background: #f0f8ff; color: var(--primary); 
-            border-left: 6px solid var(--primary);
-            border-top: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa;
+            background: #fff; /* Match panel background */
+            color: var(--primary); 
+            border-bottom: 1px solid transparent; /* Remove visual separator between button and panel */
+            border-left: 5px solid var(--primary);
+            border-top: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            text-decoration: underline; /* Underline text to look like heading */
+            margin-bottom: 0; /* Attach to panel */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
         
+        /* Panel Style - Matches active button to form single box */
         .panel { 
             max-height: 0; overflow: hidden; 
-            transition: max-height 0.3s ease-out; background: var(--white);
-            border: 1px solid #eee; border-top: none; margin-bottom: 10px;
+            transition: max-height 0.3s ease-out; 
+            background: var(--white);
+            border: 1px solid #ddd; 
+            border-top: none; /* No top border so it merges with button */
+            border-left: 5px solid var(--primary); /* Continuous thick blue border */
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
         }
-        .accordion-btn.active + .panel { border-left: 2px solid #87cefa; border-right: 2px solid #87cefa; border-bottom: 2px solid #87cefa; background: #fafcff; }
+        
+        /* When button is active, panel should look connected */
+        .accordion-btn.active + .panel {
+            border-left: 5px solid var(--primary); 
+            border-right: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd; 
+        }
         
         .panel-content {
             padding: 20px; 
@@ -488,7 +565,7 @@
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
         .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
 
-        .pub-list { padding-left: 30px; list-style-type: decimal; }
+        .pub-list { padding-left: 30px; } /* list-style-type depends on OL vs UL */
         
         .pub-item { 
             margin-bottom: 1rem; 
@@ -510,8 +587,44 @@
             z-index: 10; position: relative; 
         }
 
-        .compact-list .pub-item { margin-bottom: 2px; padding: 8px; border: none; line-height: 1.3; border: 1px solid transparent; }
-        .compact-list .pub-item:hover { border-color: var(--accent); background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        /* --- UPDATED COMPACT LIST FOR PEER REVIEWS --- */
+        .compact-list {
+            padding: 0;
+            list-style: none;
+            text-align: justify;
+        }
+        
+        .compact-list .pub-item { 
+            display: inline;
+            margin: 0; 
+            padding: 0; 
+            border: none; 
+            line-height: 1.6; 
+            font-size: 0.95rem;
+            box-shadow: none;
+            background: transparent;
+            font-weight: 500;
+        }
+        
+        .compact-list .pub-item:hover {
+            transform: none;
+            box-shadow: none;
+            background: transparent;
+            color: var(--primary);
+        }
+        
+        /* Add separator after each item */
+        .compact-list .pub-item::after {
+            content: " | ";
+            color: var(--accent);
+            font-weight: 900;
+            margin: 0 4px;
+        }
+        
+        /* Remove separator from the last item */
+        .compact-list .pub-item:last-child::after {
+            content: "";
+        }
 
         .pub-item strong { color: #004d40; font-weight: 700; }
         .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 2px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
@@ -662,9 +775,162 @@
             .hero h1 { font-size: 1.8rem; }
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
+
+        /* ========================================================================
+           PRINT STYLES (CTRL + P)
+           ========================================================================
+        */
+        /* Default state for Custom Print Elements */
+        #print-header, #print-footer { display: none; }
+
+        @media print {
+            /* Hide Navigation, Sidebars, and Interactive Elements, BUT KEEP FOOTER & STATS */
+            header, .sticky-sidebar, .nav-toggle, .cv-btn-group { 
+                display: none !important; 
+            }
+            
+            /* FORCE STATS VISIBILITY IN PRINT & STYLE AS PLAIN BOX */
+            .hero-stats {
+                display: block !important;
+                width: 100% !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+                margin-bottom: 20px !important;
+                color: #000 !important;
+                animation: none !important;
+                padding: 10px !important;
+                background: none !important;
+            }
+            
+            /* Override text colors in hero for print */
+            .hero-stats .stat-value, .hero-stats .stat-label, .hero-stats a, 
+            .hero h1 a, .hero-role-link, .hero-contact, .hero-contact a {
+                color: #000 !important;
+                text-decoration: none !important;
+                border: none !important;
+            }
+            
+            .hero-stats .stat-row {
+                border-bottom: 1px solid #eee !important;
+            }
+            
+            /* Hide stats toggle/dropdowns in print */
+            .stat-toggle { display: none !important; }
+            
+            /* Show Breakdown in print */
+            .pub-breakdown {
+                display: block !important;
+                max-height: none !important;
+                height: auto !important;
+                border: 1px solid #eee; /* Optional styling for print */
+                margin-top: 10px;
+            }
+            .pub-breakdown a {
+                border-bottom: 1px solid #ddd;
+                color: #000 !important;
+            }
+
+            footer {
+                display: block !important;
+                background: none !important;
+                color: #000 !important;
+                border-top: 2px solid #333 !important;
+                margin-top: 20px !important;
+            }
+            
+            /* Expand All Panels */
+            .panel {
+                max-height: none !important;
+                overflow: visible !important;
+                opacity: 1 !important;
+                border: 1px solid #ddd !important;
+                border-left: 5px solid var(--primary) !important;
+                display: block !important;
+                margin-bottom: 15px !important;
+            }
+
+            /* Accordion Buttons become simple Headers */
+            .accordion-btn {
+                border: none !important;
+                border-left: 5px solid var(--primary) !important;
+                background: none !important;
+                color: #000 !important;
+                padding-left: 10px !important;
+                text-decoration: underline !important;
+                font-weight: bold !important;
+                margin-bottom: 0 !important;
+            }
+            .accordion-btn i { display: none !important; } /* Hide chevron icons */
+
+            /* Handle Scrollable Lists */
+            .scrollable-list {
+                max-height: none !important;
+                overflow-y: visible !important;
+            }
+
+            /* General Layout Fixes */
+            body { 
+                padding-top: 40px !important; 
+                padding-bottom: 80px !important; /* Increased padding to prevent overlap with fixed footer */
+                background: #fff !important; 
+                color: #000 !important;
+            }
+            .container { 
+                max-width: 100% !important; 
+                padding: 0 !important; 
+                margin: 0 !important;
+            }
+            
+            /* Show Separators in Print - UPDATED MARGINS */
+            .separator { 
+                display: block !important; 
+                height: 4px !important; 
+                background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%) !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+                margin: 30px 0 30px 0 !important; /* Forces 30px top and bottom margin */
+                border: none !important;
+                opacity: 1 !important;
+            }
+            
+            /* Add top margin to section titles in print to double-ensure gap */
+            .section-title {
+                margin-top: 20px !important;
+            }
+            
+            /* Ensure page breaks are handled gracefully */
+            section { page-break-inside: avoid; }
+            .pub-item, .award-card, .edu-card { page-break-inside: avoid; }
+
+            /* Hyperlinks Active in Print */
+            a {
+                text-decoration: underline !important;
+                color: var(--primary) !important;
+            }
+
+            /* --- CUSTOM PRINT FOOTER --- */
+            #print-footer {
+                display: block !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 0.8rem;
+                color: #555;
+                background-color: #fff;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-top: 1px solid #ccc;
+                z-index: 9999;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- CUSTOM PRINT FOOTER CONTAINER -->
+    <div id="print-footer">Downloaded from https://shabanahmad.github.io/ on <span id="print-date"></span></div>
 
     <!-- SIDEBAR -->
     <div class="sticky-sidebar">
@@ -673,10 +939,6 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
-<!-- 
-        <a href="https://shabanahmad.github.io/" class="h-social" title="Updated Personal Website"><i class="fas fa-globe"></i></a>
--->
-        
     </div>
 
     <!-- MAIN HEADER -->
@@ -686,10 +948,9 @@
 
 
             <ul class="nav-list" id="nav-menu">
-                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
+                <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
                 <li class="nav-item"><a href="#conferences" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="#professional" class="nav-link">Activities</a></li>
@@ -730,6 +991,13 @@
                             <span><i class="fas fa-book-open" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Book Chapters</span>
                             <span class="pub-badge">24+</span>
                         </a>
+                        
+                        <!-- NEW PATENT LINK IN DROPDOWN (TYPE 2 COLOR: GOLD) -->
+                        <a href="#patents" class="patent-pub-item" onclick="togglePubStats(event)">
+                            <span><i class="fas fa-certificate" style="margin-right:8px; font-size:0.8rem;"></i> Patents</span>
+                            <span class="pub-badge">1 & 6</span>
+                        </a>
+
                         <a href="#publications" onclick="triggerAccordion('pubs-data')" class="secondary-pub-item">
                             <span><i class="fas fa-database" style="margin-right:8px; font-size:0.8rem;"></i> Data & Codes</span>
                             <span class="pub-badge">6+</span>
@@ -759,73 +1027,81 @@
                         <span class="stat-value">450+</span>
                     </div>
                 </a>
-                <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download Full CV</a>
+                
+                <!-- NEW SPLIT BUTTONS -->
+                <div class="cv-btn-group">
+                    <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Full CV</a>
+                    <a href="#" onclick="window.print(); return false;" class="cv-btn-half"><i class="fas fa-download"></i> Website</a>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- PROFILE -->
+    <!-- PROFILE (MERGED WITH EDUCATION) -->
     <section id="profile" class="container" style="margin-top: 1rem;">
-        <h2 class="section-title">Personal Profile</h2>
+        <h2 class="section-title">About Me</h2>
         <div class="profile-text">
-            <p>
-                Dr Shaban is a Postdoctoral Researcher in the MEB Section of PLEN at the University of Copenhagen. He holds an MSc and a PhD in Bioinformatics from Jamia Millia Islamia, India, where his doctoral research focused on the application of artificial intelligence and computational methods for drug discovery, with an emphasis on lung cancer therapeutics.
+            <p style="margin-top:10px;">
+                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color:var(--primary); font-weight:400;">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" style="color:var(--primary); font-weight:400;">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" style="color:var(--primary); font-weight:400;">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" style="color:var(--primary); font-weight:400;">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" style="color:var(--primary); font-weight:400;">University of Copenhagen</a>, Denmark. My research focuses on applying AI-driven bioinformatics and computational biology to investigate and engineer PFAS-degrading enzymes, contributing to sustainable biotechnological solutions for pressing environmental challenges.
             </p>
             <p style="margin-top:10px;">
-                In his current research, Dr Shaban applies AI-driven bioinformatics and computational biology approaches to investigate and engineer PFAS-degrading enzymes, contributing to the development of sustainable biotechnological solutions for environmental challenges. His research interests broadly include AI-enabled genomics, computer-aided drug design (CADD), molecular modelling and simulations, and deep learning–based drug activity prediction, with applications in both biomedical and environmental contexts. His work aims to integrate data-driven methods with biological insight to address complex health and environmental problems.
+                My work centres on deep learning–based predictive modelling, including <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:400;">DrLungker</a> (drug activity prediction in lung cancer), <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:400;">LungXAI</a> (RNA-Seq–based lung cancer subtype classification with explainable AI), and <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:400;">DeepEntXAI</a> (drug resistance prediction in Enterobacteriaceae). I bring strong expertise in protein modelling, molecular docking, interaction fingerprints, DFT, WaterMap, molecular dynamics, binding free-energy calculations, and automated pipelines for sequence alignment, evolutionary inference, and phylogenetics. My broader interests include AI-driven drug discovery, comparative genomics, and vaccine target prioritisation, with a focus on translational and precision medicine.
+            </p>
+            
+            <p style="margin-top:10px;">
+                My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" style="color:var(--primary); font-weight:400;">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" style="color:var(--primary); font-weight:400;">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" style="color:var(--primary); font-weight:400;">SRM University</a>—and now continues through international research in Finland and Denmark.
+
+            </p>
+
+            <p style="margin-bottom: 2rem;">
+                 <a style="color:var(--primary); font-weight:600;">My Educational Background Includes:</a>
+            </p>
+            
+            <!-- INSERTED EDUCATION GRID -->
+            <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
+                <div class="edu-card edu-phd">
+                    <div class="edu-header">
+                        <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
+                        <span class="year-span">(2025)</span>
+                    </div>
+                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                </div>
+                <div class="edu-card edu-msc">
+                    <div class="edu-header">
+                        <h4>MSc Bioinformatics</h4>
+                        <span class="year-span">(2020)</span>
+                    </div>
+                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                </div>
+                <div class="edu-card edu-bsc">
+                    <div class="edu-header">
+                        <h4>BSc (Hons) Botany</h4>
+                        <span class="year-span">(2018)</span>
+                    </div>
+                    <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
+                </div>
+            </div>
+
+            <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">
+                Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a> for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
+            </p>
+
+            <p>
+                <a style="color:var(--primary); font-weight:600;">My Research Interests Include:</a>
             </p>
         </div>
-        <p class="int-intro-text">Research interests/areas:</p>
+        
         <div class="interests-wrapper">
-            <div class="int-tag">AI in Genomics</div>
-            <div class="int-tag">AI in Drug Design</div>
-            <div class="int-tag">Deep Learning</div>
-            <div class="int-tag">Bioinformatics</div>
-            <div class="int-tag">CADD</div>
-            <div class="int-tag">Computational Genomics</div>
-            <div class="int-tag">Computational Chemistry</div>
-            <div class="int-tag">Molecular Dynamics</div>
-            <div class="int-tag">DFT</div>
-            <div class="int-tag">Binding Free Energy</div>
-            <div class="int-tag">Vaccine Design</div>
-            <div class="int-tag">PFAS Biodegradation</div>
-            <div class="int-tag">Machine Learning in Health Science</div>
-        </div>
-        <hr class="separator">
-    </section>
-
-
-    <!-- EDUCATION -->
-    <section id="education" class="container">
-        <h2 class="section-title">Educational Background</h2>
-        <div class="journey-intro">
-            From humble beginnings in a smaller town in India, moving to Lucknow for middle schooling, then New Delhi for higher education, and now contributing to science globally in Finland and Denmark.
-        </div>
-        <div class="edu-grid">
-            <div class="edu-card edu-phd">
-                <div class="edu-header">
-                    <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
-                    <span class="year-span">(2025)</span>
-                </div>
-                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
-            </div>
-            <div class="edu-card edu-msc">
-                <div class="edu-header">
-                    <h4>MSc Bioinformatics</h4>
-                    <span class="year-span">(2020)</span>
-                </div>
-                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
-            </div>
-            <div class="edu-card edu-bsc">
-                <div class="edu-header">
-                    <h4>BSc (Hons) Botany</h4>
-                    <span class="year-span">(2018)</span>
-                </div>
-                <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
-            </div>
-        </div>
-        <div class="journey-intro" style="margin-top: 2rem;">
-            Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:bold; text-decoration:none;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a> for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
+            <div class="int-tag">🤖 AI in Bioinformatics & Genomics</div>
+            <div class="int-tag">💊 Drug Design & Discovery (CADD)</div>
+            <div class="int-tag">🧪 Molecular Modelling & Structural Bioinformatics</div>
+            <div class="int-tag">🧬 Computational Genomics & Systems Biology</div>
+            <div class="int-tag">🌳 Phylogenetics & Molecular Evolution</div>
+            <div class="int-tag">🦠 Immunoinformatics & Vaccine Design</div>
+            <div class="int-tag">🧠 Translational Bioinformatics & Health AI</div>
+            <div class="int-tag">🌍 PFAS Biodegradation & Environmental AI</div>
+            <div class="int-tag">📊 Deep Learning & Machine Learning</div>
+            <div class="int-tag">⚛️ Computational Chemistry (MD, DFT, Binding Free Energy)</div>
         </div>
         <hr class="separator">
     </section>
@@ -910,30 +1186,7 @@
         <hr class="separator">
     </section>
 
-    <!-- PATENTS -->
-    <section id="patents" class="container">
-        <h2 class="section-title">Patents (IPR)</h2>
-        <div class="grid-container">
-            <div class="patent-box">
-                <i class="fas fa-certificate patent-icon"></i>
-                <div>
-                    <h4>Granted: 01 (German)</h4>
-                    <p>Extended-Release Tablet Composition for Multitarget Cancer Therapy</p>
-                    <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020241010280&CURSOR=8" target="_blank" class="patent-link">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="patent-box">
-                <i class="fas fa-file-signature patent-icon"></i>
-                <div>
-                    <h4>In Pipeline: 06</h4>
-                    <p>05 Indian, 1 US (Drug Molecules Designed During PhD Tenure)</p>
-                </div>
-            </div>
-        </div>
-        <hr class="separator">
-    </section>
-
-    <!-- AWARDS -->
+    <!-- AWARDS (Moved Before Patents) -->
     <section id="awards" class="container">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
@@ -1039,6 +1292,30 @@
         <hr class="separator">
     </section>
 
+    <!-- PATENTS (Moved After Awards) -->
+    <section id="patents" class="container">
+        <h2 class="section-title">Patents (IPR)</h2>
+        <div class="grid-container">
+            <div class="patent-box">
+                <i class="fas fa-certificate patent-icon"></i>
+                <div>
+                    <h4>Granted: 01 (German)</h4>
+                    <p>Extended-Release Tablet Composition for Multitarget Cancer Therapy</p>
+                    <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020241010280&CURSOR=8" target="_blank" class="patent-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="patent-box">
+                <i class="fas fa-file-signature patent-icon"></i>
+                <div>
+                    <h4>In Pipeline: 06</h4>
+                    <p>05 Indian, 1 US (Drug Molecules Designed During PhD Tenure)</p>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
+
     <!-- PUBLICATIONS -->
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
@@ -1046,7 +1323,7 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <ol class="pub-list">
+                    <ol class="pub-list" reversed>
 
                         <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br><em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
@@ -1114,7 +1391,7 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <ol class="pub-list">
+                    <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>Artificial Intelligence in Molecular Screening: Advances, Challenges, and Future Perspectives.</strong><br><em>Springer Nature- Al in Precision Drug Design (2025)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Artificial Intelligence in Omics Integration for Precision Drug Design.</strong><br><em>Springer Nature- Al in Precision Drug Design (2025)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>Deep learning in variant detection and annotation.</strong><br><em>Elsevier- Deep Learning in Genetics and Genomics (2025)</em> <a class="pub-doi" href="http://dx.doi.org/10.1016/B978-0-443-27574-6.00010-2" target="_blank">DOI</a></li>
@@ -1147,6 +1424,7 @@
         <button class="accordion-btn" id="pubs-data">Data & Codes <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
+                 <!-- No number reversed needed here as it's a ul list of codes, but user asked for "all sub-buttons". Assuming keep ul for list of items unless ordered is critical. -->
                  <ul class="pub-list">
                     <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
                     <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
@@ -1160,6 +1438,7 @@
         <hr class="separator">
     </section>
 
+
     <!-- CONFERENCES -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
@@ -1167,7 +1446,7 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <ol class="pub-list">
+                    <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>5-Nitroindazole against Lung Cancer: A multitargeted in-silico molecular docking and Molecular Dynamics simulation study</strong><div class="event-meta">3rd International Electronic Conference on Cancers (IECC 2023) | Mar 16-30, 2023</div></li>
                         <li class="pub-item"><strong>Multialgorithms-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer</strong><div class="event-meta">2nd International Electronic Conference on Biomedicines | 2023</div></li>
                         <li class="pub-item"><strong>Multitargeted docking-based simulative understanding of Theodrenaline against lung cancer: an in-silico study</strong><div class="event-meta">21st International Conference on Bioinformatics (InCoB), KAUST, Saudi Arabia | Nov 21-23, 2022</div></li>
@@ -1190,7 +1469,7 @@
         <div class="panel">
             <div class="panel-content">
                  <div class="scrollable-list">
-                    <ol class="pub-list">
+                    <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>2025 Summer School in Applied Deep Learning in Bioinformatics</strong><div class="event-meta">Faculty of Health and Medical Sciences, University of Copenhagen, Denmark | Aug 11-15, 2025</div></li>
                         <li class="pub-item"><strong>Clinical Interpretation of Whole Genome Sequences</strong><div class="event-meta">Knowmics (Online Course) | June 29, 2025</div></li>
                         <li class="pub-item"><strong>New Education Policy (NEP) 2020 Sensitisation Programme</strong><div class="event-meta">UGC-MMTTC, Jamia Millia Islamia, New Delhi | Aug 05-14, 2024</div></li>
@@ -1222,7 +1501,7 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <ol class="pub-list">
+                    <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>3rd Symposium on Applied Deep Learning in Bioinformatics</strong><div class="event-meta">Faculty of Health and Medical Sciences, University of Copenhagen, Denmark | Aug 15, 2025</div></li>
                         <li class="pub-item"><strong>Springer Nature: Navigate the World of Scientific Article Writing</strong><div class="event-meta">Online Session | May 15, 2025</div></li>
                         <li class="pub-item"><strong>Springer Nature: How to Navigate Platforms to Access all Journals</strong><div class="event-meta">Online Session | Mar 19, 2025</div></li>
@@ -1269,24 +1548,24 @@
         <button class="accordion-btn">Editorial Roles <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                <ul class="pub-list" style="padding-left: 20px;">
+                <ol class="pub-list" reversed style="padding-left: 20px;">
                     <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)</li>
                     <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)</li>
                     <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)</li>
                     <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)</li>
-                </ul>
+                </ol>
             </div>
         </div>
 
         <button class="accordion-btn">Society Membership <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                <ul class="pub-list" style="padding-left: 20px;">
+                <ol class="pub-list" reversed style="padding-left: 20px;">
                     <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">International Association for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>
                     <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">European Society for Medical Oncology</a></strong> (10/05/2024 to 09/05/2026)</li>
                     <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">Bioinformatics and Drug Discovery Society</a></strong> (Life Member)</li>
                     <li class="pub-item">Council Member of the <strong><a href="https://www.deshbandhucollege.ac.in/" target="_blank" style="color:var(--primary); text-decoration: underline;">Botanical Society (Sanjeevani)</a></strong>, Deshbandhu College, University of Delhi.</li>
-                </ul>
+                </ol>
             </div>
         </div>
 
@@ -1297,7 +1576,7 @@
                 <div class="scrollable-list">
                     <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">450+ Verified Peer Reviews on Publons</p>
                     <p style="font-size:0.95rem;">Regular Reviewer in the Following Journals-</p>
-                    <ul class="pub-list compact-list" style="margin-top:10px;">
+                    <ul class="compact-list" style="margin-top:10px;">
                         <li class="pub-item">Archives of Computational Methods in Engineering</li>
                         <li class="pub-item">Archives of Microbiology</li>
                         <li class="pub-item">Accreditation and Quality Assurance</li>
@@ -1599,10 +1878,10 @@
             </div>
             
             <!-- 5. Murugesh Eswaran -->
-            <div class="referee-card ref-1">
+            <div class="referee-card ref-5">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://www.msm.edu/directory/facultyprofile.php?id=123" target="_blank">Dr Murugesh Eswaran</a></div>
-                    <span class="referee-role">(PI @ ICGEB)</span>
+                    <span class="referee-role">(Mentor)</span>
                 </div>
                 <div class="referee-title-line">Assistant Professor</div>
                 <div class="ref-inst-row">
@@ -1615,7 +1894,7 @@
             </div>
             
             <!-- 6. Mansaf Alam -->
-            <div class="referee-card ref-2">
+            <div class="referee-card -ref-6">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
                     <span class="referee-role">(MSc Supervisor)</span>
@@ -1708,20 +1987,41 @@
 
         // HERO DROPDOWN
         function togglePubStats(e) {
-            e.preventDefault();
-            e.stopPropagation(); 
-            const breakdown = document.getElementById('pub-breakdown');
-            const toggleIcon = e.currentTarget.querySelector('i');
-            if (breakdown.classList.contains('open')) {
-                breakdown.classList.remove('open');
-                breakdown.style.maxHeight = "0";
-                toggleIcon.classList.remove('fa-chevron-up');
-                toggleIcon.classList.add('fa-chevron-down');
-            } else {
-                breakdown.classList.add('open');
-                breakdown.style.maxHeight = breakdown.scrollHeight + "px";
-                toggleIcon.classList.remove('fa-chevron-down');
-                toggleIcon.classList.add('fa-chevron-up');
+            // Check if we clicked on a link that should navigate (like the Patent link)
+            if (e.currentTarget.classList.contains('stat-toggle') || e.currentTarget.classList.contains('patent-pub-item')) {
+                 // If it's the patent item, execute scrolling logic then allow closing
+                 
+                 if (e.currentTarget.classList.contains('patent-pub-item')) {
+                     // Simply allow default behavior (navigation) and close dropdown
+                     const breakdown = document.getElementById('pub-breakdown');
+                     const toggleIcon = document.querySelector('.stat-toggle i'); // Find the main toggle icon
+                     breakdown.classList.remove('open');
+                     breakdown.style.maxHeight = "0";
+                     if(toggleIcon) {
+                        toggleIcon.classList.remove('fa-chevron-up');
+                        toggleIcon.classList.add('fa-chevron-down');
+                     }
+                     // Do NOT preventDefault() - allow standard anchor jump which respects scroll-padding-top
+                     return; 
+                 }
+                 
+                 // If it is the toggle button
+                 e.preventDefault();
+                 e.stopPropagation(); 
+                 const breakdown = document.getElementById('pub-breakdown');
+                 const toggleIcon = e.currentTarget.querySelector('i');
+                 if (breakdown.classList.contains('open')) {
+                    breakdown.classList.remove('open');
+                    breakdown.style.maxHeight = "0";
+                    toggleIcon.classList.remove('fa-chevron-up');
+                    toggleIcon.classList.add('fa-chevron-down');
+                 } else {
+                    breakdown.classList.add('open');
+                    // Increase max height to fit new item
+                    breakdown.style.maxHeight = breakdown.scrollHeight + "px";
+                    toggleIcon.classList.remove('fa-chevron-down');
+                    toggleIcon.classList.add('fa-chevron-up');
+                 }
             }
         }
 
@@ -1758,6 +2058,36 @@
                     li.classList.add("active-section");
                 }
             });
+        });
+
+        // AWARD NUMBERING LOGIC (Bottom to Top)
+        const awardCards = document.querySelectorAll('.award-card');
+        const totalAwards = awardCards.length;
+        
+        awardCards.forEach((card, index) => {
+            // Calculate number: Total - Index (so first card gets highest number)
+            const number = totalAwards - index;
+            
+            // Create the number badge
+            const badge = document.createElement('div');
+            badge.className = 'award-number';
+            badge.innerText = number;
+            
+            // Append to card
+            card.appendChild(badge);
+        });
+
+        // PRINT DATE LOGIC
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateSpan = document.getElementById('print-date');
+            if(dateSpan) {
+                const now = new Date();
+                // Format: Day Month Year (e.g., 29 January 2026)
+                // Added Time as requested (e.g. 14:30)
+                const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                dateSpan.textContent = `${dateStr} at ${timeStr}`;
+            }
         });
     </script>
 </body>
