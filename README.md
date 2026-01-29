@@ -1,8 +1,11 @@
 # 🧬 Dr. Shaban Ahmad | Academic Portfolio
 
-[![Live Site](https://img.shields.io/badge/Live-View_Portfolio-dca11d?style=for-the-badge&logo=github)](https://shabanahmad.github.io/)
-[![University](https://img.shields.io/badge/University_of_Copenhagen-Postdoc-002e5f?style=for-the-badge)](https://www.ku.dk/en)
-[![Citations](https://img.shields.io/badge/Citations-1600%2B-blue?style=for-the-badge)](https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en)
+[![Website](https://shabanahmad.github.io/)
+[![University](https://img.shields.io/badge/Postdoc Researcher at UCPH-002e5f?style=for-the-badge)]([https://researchprofiles.ku.dk/en/persons/shaban-ahmad/))
+[![ORCID](https://img.shields.io/badge/ORCID?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9832-2830)
+[![Citations](https://img.shields.io/badge/Google Scholar%2B-blue?style=for-the-badge)](https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en)
+
+
 
 Welcome to the source code repository for my personal academic portfolio. This website serves as a central hub for my research in **AI-driven Genomics, Bioinformatics, and Computational Drug Design**.
 
