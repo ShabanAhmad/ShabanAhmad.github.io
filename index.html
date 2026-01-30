@@ -308,8 +308,40 @@
             font-weight: 400;
         }
         .hero-contact i { color: var(--accent); margin-right: 5px; }
-        .hero-contact a { color: #fff; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
-        .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
+        
+        /* Updated Email Link Styling for Hero & Referee (Click to Copy) */
+        .email-click { 
+            color: inherit; 
+            text-decoration: none; 
+            border-bottom: 1px dashed rgba(0,0,0,0.2); 
+            transition: 0.3s; 
+            cursor: pointer; 
+            position: relative;
+        }
+        /* Hero specific border */
+        .hero-contact .email-click { border-bottom-color: rgba(255,255,255,0.4); color: #fff; }
+        
+        /* Gold Hover for ALL emails (Hero + Referee) */
+        .email-click:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+
+        /* Copy Tooltip */
+        .copy-feedback {
+            position: absolute;
+            background: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .copy-feedback.show { opacity: 1; }
 
         /* Hero Stats Box */
         .hero-stats {
@@ -365,7 +397,7 @@
             font-weight: bold;
         }
 
-        /* NEW: Gold Badge for Patent Section */
+        /* Gold Badge for Patent Section */
         .grant-badge {
             display: inline-block;
             background-color: #fff9db; /* Light Gold background */
@@ -521,7 +553,7 @@
         .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
         
         /* UPDATED: Reverted Main Icon to Gold */
-        .patent-icon { font-size: 2rem; color: var(--accent); }
+        .patent-icon { font-size: 3rem; color: var(--accent); }
         
         .patent-link { color: var(--primary); font-weight: bold; text-decoration: none; transition: color 0.2s; }
         
@@ -620,14 +652,19 @@
             border: 1px solid transparent; font-size: 0.95rem; 
             border-radius: 4px; transition: all 0.2s ease; cursor: default;
         }
+        /* Hover Effect: Blue Background */
         .compact-list .pub-item:hover {
             background: var(--primary); color: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .compact-list .pub-item::after {
-            content: "|"; color: var(--accent); font-weight: 900; margin-left: 8px; margin-right: 2px;
+        /* NEW: Separator Style (Red, Bold, No Hover Effect) */
+        .compact-list .sep {
+            color: #dc3545; /* Red */
+            font-weight: 900;
+            font-size: 1.1rem; /* Bigger */
+            margin: 0 4px;
+            vertical-align: -1px;
+            display: inline-block;
         }
-        .compact-list .pub-item:last-child::after { content: ""; }
-        .compact-list .pub-item:hover::after { color: rgba(255,255,255,0.5); }
 
         /* 3.14: TECHNICAL SKILLS */
         .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
@@ -740,6 +777,9 @@
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .hero h1 { font-size: 1.8rem; }
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
+            
+            /* UPDATED: Back to top button higher on mobile to avoid footer overlap */
+            .back-to-top { bottom: 90px !important; }
         }
 
         /* 3.18: PRINT STYLES */
@@ -859,9 +899,10 @@
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
                 <div class="hero-contact">
+                    <!-- Updated Emails with Click-to-Copy -->
                     <i class="fas fa-envelope"></i> 
-                    <a href="mailto:shaban@plen.ku.dk">shaban@plen.ku.dk</a> | 
-                    <a href="mailto:shaban.ucph@gmail.com">shaban.ucph@gmail.com</a>
+                    <span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
+                    <span class="email-click" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
                 </div>
             </div>
             
@@ -893,7 +934,7 @@
                         </a>
                         <a href="#publications" onclick="triggerAccordion('pubs-conf')" class="secondary-pub-item">
                             <span><i class="fas fa-microphone" style="margin-right:8px; font-size:0.8rem;"></i> Conference Papers</span>
-                            <span class="pub-badge">13+</span>
+                            <span class="pub-badge">14+</span>
                         </a>
                     </div>
                 </div>
@@ -1095,6 +1136,8 @@
                     <div class="award-bottom">3rd International Electronic Conference on Cancers (MDPI) (2023).</div>
                 </div>
             </div>
+
+
             <div class="award-card">
                 <i class="fas fa-award award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -1102,6 +1145,8 @@
                     <div class="award-bottom">21st International Conference on Bioinformatics (InCoB), KAUST (2022).</div>
                 </div>
             </div>
+
+
             <div class="award-card">
                 <i class="fas fa-user-graduate award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -1175,7 +1220,7 @@
         <div class="grid-container">
             <div class="patent-box">
                 <!-- Main Icon is Gold via CSS -->
-                <i class="fas fa-certificate patent-icon"></i>
+                <i class="fas fa-award patent-icon"></i>
                 <div>
                     <!-- Gold Badge with Red Tick -->
                     <h4><span class="grant-badge"><i class="fas fa-check-circle"></i> Granted</span> 01 (German)</h4>
@@ -1405,7 +1450,7 @@
                         <li class="pub-item"><strong>20th Distinguished Lecture by Sir Prof. Tom Blundell</strong><div class="event-meta">Jamia Hamdard, New Delhi | Mar 20, 2019</div></li>
                         <li class="pub-item"><strong>Symposium on Avenues in Plants Sciences</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
                         <li class="pub-item"><strong>National Conference on CCSMAP</strong><div class="event-meta">MRIIRS | Feb 21-22, 2019</div></li>
-                        <li class="pub-item"><strong>Environment: Green Technology for Environmental Sustainability"</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
+                        <li class="pub-item"><strong>Fourth National Symposium on "Environment: Green Technology..."</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
                         <li class="pub-item"><strong>National Science Congress Association Delhi Chapter</strong><div class="event-meta">Zakir Hussain Delhi College | Oct 25, 2017</div></li>
                         <li class="pub-item"><strong>PARIVARTAN 2K18</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
                         <li class="pub-item"><strong>26th World Environmental Congress (WEED)</strong><div class="event-meta">India International Centre, New Delhi | Nov 08, 2017</div></li>
@@ -1453,84 +1498,75 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">450+ Verified Peer Reviews on Publons</p>
-                    <ul class="compact-list" style="margin-top:10px;">                        <li class="pub-item">Accreditation and Quality Assurance</li>
-                        <li class="pub-item">Archives of Computational Methods in Engineering</li>
-                        <li class="pub-item">Archives of Microbiology</li>
-                        <li class="pub-item">Biochemical and Biophysical Research Communications</li>
-                        <li class="pub-item">Biochemical Genetics</li>
-                        <li class="pub-item">Bioinformatics and Biology Insights</li>
-                        <li class="pub-item">Biomedical Reports</li>
-                        <li class="pub-item">BMC Artificial Intelligence</li>
-                        <li class="pub-item">BMC Infectious Diseases</li>
-                        <li class="pub-item">BMC Veterinary Research</li>
-                        <li class="pub-item">Brazilian Journal of Biology</li>
-                        <li class="pub-item">Cancer Investigation</li>
-                        <li class="pub-item">Cancer Medicine</li>
-                        <li class="pub-item">Cancer Reports</li>
-                        <li class="pub-item">Cell Biochemistry and Biophysics</li>
-                        <li class="pub-item">Chemistry and Biodiversity</li>
-                        <li class="pub-item">Computer Methods in Biomechanics and Biomedical Engineering</li>
-                        <li class="pub-item">Computers in Biology and Medicine</li>
-                        <li class="pub-item">Crop Protection</li>
-                        <li class="pub-item">Current Cancer Drug Targets</li>
-                        <li class="pub-item">Current Medicinal Chemistry</li>
-                        <li class="pub-item">Current Plant Biology</li>
-                        <li class="pub-item">Digital Health</li>
-                        <li class="pub-item">Discover Applied Sciences</li>
-                        <li class="pub-item">Discover Oncology</li>
-                        <li class="pub-item">Drug Development Research</li>
-                        <li class="pub-item">European Journal of Medicinal Chemistry</li>
-                        <li class="pub-item">Experimental and Therapeutic Medicine</li>
-                        <li class="pub-item">F1000Research</li>
-                        <li class="pub-item">Frontiers in Dental Medicine</li>
-                        <li class="pub-item">Frontiers in Immunology</li>
-                        <li class="pub-item">Frontiers in Radiology</li>
-                        <li class="pub-item">Future Medicinal Chemistry</li>
-                        <li class="pub-item">Heliyon</li>
-                        <li class="pub-item">In Silico Pharmacology</li>
-                        <li class="pub-item">In Silico Research in Biomedicine</li>
-                        <li class="pub-item">Intelligence-Based Medicine</li>
-                        <li class="pub-item">International Journal of Oncology</li>
-                        <li class="pub-item">IScience</li>
-                        <li class="pub-item">Journal of Biological Research and Reviews</li>
-                        <li class="pub-item">Journal of Biomolecular Structure and Dynamics</li>
-                        <li class="pub-item">Journal of Chemistry</li>
-                        <li class="pub-item">Journal of Computational Biophysics and Chemistry</li>
-                        <li class="pub-item">Journal of Computational Science</li>
-                        <li class="pub-item">Journal of Computer-Aided Molecular Design</li>
-                        <li class="pub-item">Journal of Drug Targeting</li>
-                        <li class="pub-item">Journal of Experimental & Clinical Cancer Research</li>
-                        <li class="pub-item">Journal of Molecular Modeling</li>
-                        <li class="pub-item">Journal of Pharmaceutical Analysis</li>
-                        <li class="pub-item">Journal of Pharmaceutical Innovation</li>
-                        <li class="pub-item">Journal of Proteins and Proteomics</li>
-                        <li class="pub-item">Journal of the Brazilian Chemical Society</li>
-                        <li class="pub-item">Journal of the Egyptian National Cancer Institute</li>
-                        <li class="pub-item">Letters in Drug Design & Discovery</li>
-                        <li class="pub-item">Lung Cancer: Targets and Therapy</li>
-                        <li class="pub-item">Medical Oncology</li>
-                        <li class="pub-item">Mini-Reviews in Medicinal Chemistry</li>
-                        <li class="pub-item">Molecular Diversity</li>
-                        <li class="pub-item">Molecular Medicine Reports</li>
-                        <li class="pub-item">Natural Resources for Human Health</li>
-                        <li class="pub-item">Naunyn-Schmiedeberg's Archives of Pharmacology</li>
-                        <li class="pub-item">Neural Computing and Applications</li>
-                        <li class="pub-item">Npj Precision Oncology</li>
-                        <li class="pub-item">Oncology Letters</li>
-                        <li class="pub-item">Open Chemistry</li>
-                        <li class="pub-item">PeerJ</li>
-                        <li class="pub-item">Pharmacological Research</li>
-                        <li class="pub-item">Pharmacological Research - Modern Chinese Medicine</li>
-                        <li class="pub-item">PLoS Neglected Tropical Diseases</li>
-                        <li class="pub-item">Plos One</li>
-                        <li class="pub-item">Qeios</li>
-                        <li class="pub-item">Scientific African</li>
-                        <li class="pub-item">Scientific Reports</li>
-                        <li class="pub-item">SN Applied Sciences</li>
-                        <li class="pub-item">Structural Chemistry</li>
-                        <li class="pub-item">VEGETOS</li>
-                        <li class="pub-item">Virology</li>
+                    <!-- Updated Link -->
+                    <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">
+                        <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;">450+ Verified Peer Reviews on Publons (WoS)</a>
+                    </p>
+                    <!-- Updated List with explicit separators -->
+                    <ul class="compact-list" style="margin-top:10px;">
+                        <li class="pub-item">Archives of Computational Methods in Engineering</li><span class="sep">|</span>
+                        <li class="pub-item">Archives of Microbiology</li><span class="sep">|</span>
+                        <li class="pub-item">Accreditation and Quality Assurance</li><span class="sep">|</span>
+                        <li class="pub-item">Biochemical and Biophysical Research Communications</li><span class="sep">|</span>
+                        <li class="pub-item">Biochemical Genetics</li><span class="sep">|</span>
+                        <li class="pub-item">Bioinformatics and Biology Insights</li><span class="sep">|</span>
+                        <li class="pub-item">Biomedical Reports</li><span class="sep">|</span>
+                        <li class="pub-item">BMC Artificial Intelligence</li><span class="sep">|</span>
+                        <li class="pub-item">BMC Infectious Diseases</li><span class="sep">|</span>
+                        <li class="pub-item">BMC Veterinary Research</li><span class="sep">|</span>
+                        <li class="pub-item">Brazilian Journal of Biology</li><span class="sep">|</span>
+                        <li class="pub-item">Cancer Investigation</li><span class="sep">|</span>
+                        <li class="pub-item">Cell Biochemistry and Biophysics</li><span class="sep">|</span>
+                        <li class="pub-item">Computer Methods in Biomechanics and Biomedical Engineering</li><span class="sep">|</span>
+                        <li class="pub-item">Computers in Biology and Medicine</li><span class="sep">|</span>
+                        <li class="pub-item">Crop Protection</li><span class="sep">|</span>
+                        <li class="pub-item">Current Cancer Drug Targets</li><span class="sep">|</span>
+                        <li class="pub-item">Current Medicinal Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">Current Plant Biology</li><span class="sep">|</span>
+                        <li class="pub-item">Digital Health</li><span class="sep">|</span>
+                        <li class="pub-item">Discover Applied Sciences</li><span class="sep">|</span>
+                        <li class="pub-item">Discover Oncology</li><span class="sep">|</span>
+                        <li class="pub-item">Drug Development Research</li><span class="sep">|</span>
+                        <li class="pub-item">European Journal of Medicinal Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">Experimental and Therapeutic Medicine</li><span class="sep">|</span>
+                        <li class="pub-item">F1000Research</li><span class="sep">|</span>
+                        <li class="pub-item">Frontiers in Dental Medicine</li><span class="sep">|</span>
+                        <li class="pub-item">Frontiers in Immunology</li><span class="sep">|</span>
+                        <li class="pub-item">Future Medicinal Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">Heliyon</li><span class="sep">|</span>
+                        <li class="pub-item">In Silico Pharmacology</li><span class="sep">|</span>
+                        <li class="pub-item">International Journal of Oncology</li><span class="sep">|</span>
+                        <li class="pub-item">IScience</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Biological Research and Reviews</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Biomolecular Structure and Dynamics</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Computational Science</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Computer-Aided Molecular Design</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Drug Targeting</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Experimental & Clinical Cancer Research</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Molecular Modeling</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Pharmaceutical Innovation</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of Proteins and Proteomics</li><span class="sep">|</span>
+                        <li class="pub-item">Journal of the Egyptian National Cancer Institute</li><span class="sep">|</span>
+                        <li class="pub-item">Medical Oncology</li><span class="sep">|</span>
+                        <li class="pub-item">Molecular Diversity</li><span class="sep">|</span>
+                        <li class="pub-item">Molecular Medicine Reports</li><span class="sep">|</span>
+                        <li class="pub-item">Natural Resources for Human Health</li><span class="sep">|</span>
+                        <li class="pub-item">Naunyn-Schmiedeberg's Archives of Pharmacology</li><span class="sep">|</span>
+                        <li class="pub-item">Neural Computing and Applications</li><span class="sep">|</span>
+                        <li class="pub-item">Npj Precision Oncology</li><span class="sep">|</span>
+                        <li class="pub-item">Oncology Letters</li><span class="sep">|</span>
+                        <li class="pub-item">Open Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">PeerJ</li><span class="sep">|</span>
+                        <li class="pub-item">Pharmacological Research</li><span class="sep">|</span>
+                        <li class="pub-item">PLoS Neglected Tropical Diseases</li><span class="sep">|</span>
+                        <li class="pub-item">Plos One</li><span class="sep">|</span>
+                        <li class="pub-item">Qeios</li><span class="sep">|</span>
+                        <li class="pub-item">Scientific Reports</li><span class="sep">|</span>
+                        <li class="pub-item">SN Applied Sciences</li><span class="sep">|</span>
+                        <li class="pub-item">Structural Chemistry</li><span class="sep">|</span>
+                        <li class="pub-item">VEGETOS</li><span class="sep">|</span>
+                        <li class="pub-item">Virology</li><span class="sep">|</span>
                         <li class="pub-item">Virulence</li>
                     </ul>
                 </div>
@@ -1553,6 +1589,73 @@
     <!-- 4.13: TECHNICAL PROFICIENCY GRID -->
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
+        
+        <!-- REORDERED: 1. Machine Learning (Foundation/Tools) -->
+        <button class="accordion-btn">Machine Learning, AI & Data Science <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-code"></i> Programming & Scientific Computing</div>
+                        <ul class="tech-ul">
+                            <li>Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn)</li>
+                            <li>R (Tidyverse, Bioconductor)</li>
+                            <li>MATLAB</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-brain"></i> Machine Learning & Deep Learning</div>
+                        <ul class="tech-ul">
+                            <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
+                            <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
+                            <li>Model development, hyperparameter tuning, cross-val, Feature engg</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-flask"></i> Cheminformatics & Bioinformatics ML</div>
+                        <ul class="tech-ul">
+                            <li>Molecular descriptors & fingerprints</li>
+                            <li>Protein–ligand ML pipelines</li>
+                            <li>Predictive modeling for binding affinity & toxicity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REORDERED: 2. Genomics (Core Domain) -->
+        <button class="accordion-btn">Genomics, Transcriptomics & Systems Biology <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
+                        <ul class="tech-ul">
+                            <li>NGS data processing & variant analysis</li>
+                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
+                            <li>Variant calling & filtering: GATK</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
+                        <ul class="tech-ul">
+                            <li>Cytoscape</li>
+                            <li>Functional interaction databases: STRING, GeneMANIA</li>
+                            <li>Systems-level interpretation of omics data</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
+                        <ul class="tech-ul">
+                            <li>BLAST, FASTA</li>
+                            <li>Multiple sequence alignment: Clustal Omega</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REORDERED: 3. Computational Biology (Applied) -->
         <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1593,69 +1696,7 @@
             </div>
         </div>
 
-        <button class="accordion-btn">Machine Learning, AI & Data Science <i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-code"></i> Programming & Scientific Computing</div>
-                        <ul class="tech-ul">
-                            <li>Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn)</li>
-                            <li>R (Tidyverse, Bioconductor)</li>
-                            <li>MATLAB</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-brain"></i> Machine Learning & Deep Learning</div>
-                        <ul class="tech-ul">
-                            <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
-                            <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
-                            <li>Model development, hyperparameter tuning, cross-val, Feature engg</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-flask"></i> Cheminformatics & Bioinformatics ML</div>
-                        <ul class="tech-ul">
-                            <li>Molecular descriptors & fingerprints</li>
-                            <li>Protein–ligand ML pipelines</li>
-                            <li>Predictive modeling for binding affinity & toxicity</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="accordion-btn">Genomics, Transcriptomics & Systems Biology <i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
-                        <ul class="tech-ul">
-                            <li>NGS data processing & variant analysis</li>
-                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
-                            <li>Variant calling & filtering: GATK</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
-                        <ul class="tech-ul">
-                            <li>Cytoscape</li>
-                            <li>Functional interaction databases: STRING, GeneMANIA</li>
-                            <li>Systems-level interpretation of omics data</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
-                        <ul class="tech-ul">
-                            <li>BLAST, FASTA</li>
-                            <li>Multiple sequence alignment: Clustal Omega</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- REORDERED: 4. Software/Infra -->
         <button class="accordion-btn">Software Development, Automation & Infrastructure <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1710,7 +1751,9 @@
                     <a href="https://plen.ku.dk/english/" target="_blank">University of Copenhagen, Denmark</a>
                 </div>
                 <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:tkn@plen.ku.dk">tkn@plen.ku.dk</a>
+                    <!-- Updated Email Logic & Hover -->
+                    <i class="fas fa-envelope email-badge"></i> 
+                    <span class="email-click" onclick="copyEmail(this, 'tkn@plen.ku.dk')">tkn@plen.ku.dk</span>
                 </div>
             </div>
 
@@ -1725,9 +1768,20 @@
                     <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a>
                 </div>
                 <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:kraza@jmi.ac.in">kraza@jmi.ac.in</a>
+                    <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'kraza@jmi.ac.in')">kraza@jmi.ac.in</span>
                 </div>
             </div>
+
+            <div class="referee-card ref-5">
+                <div class="ref-header">
+                    <div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div>
+                    <span class="referee-role">(Mentor)</span>
+                </div>
+                <div class="referee-title-line">Assistant Professor</div>
+                <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine, USA</a></div>
+                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div>
+            </div>
+
             
             <div class="referee-card ref-3">
                 <div class="ref-header">
@@ -1740,7 +1794,7 @@
                     <a href="https://www.jyu.fi/en" target="_blank">University of Jyväskylä, Finland</a>
                 </div>
                 <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:tiina.a.jokela@jyu.fi">tiina.a.jokela@jyu.fi</a>
+                    <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi')">tiina.a.jokela@jyu.fi</span>
                 </div>
             </div>
 
@@ -1755,20 +1809,11 @@
                     <a href="https://www.srmuniversity.ac.in/" target="_blank">SRM University, NCR, India</a>
                 </div>
                 <div class="referee-contact">
-                    <i class="fas fa-envelope email-badge"></i> <a href="mailto:manoj.yadav@srmuniversity.ac.in">manoj.yadav@srmuniversity.ac.in</a>
+                    <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in')">manoj.yadav@srmuniversity.ac.in</span>
                 </div>
             </div>
             
-            <div class="referee-card ref-5">
-                <div class="ref-header">
-                    <div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div>
-                    <span class="referee-role">(Mentor)</span>
-                </div>
-                <div class="referee-title-line">Assistant Professor</div>
-                <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine, USA</a></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a></div>
-            </div>
-            
+           
             <div class="referee-card ref-6">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
@@ -1776,7 +1821,7 @@
                 </div>
                 <div class="referee-title-line">Professor</div>
                 <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a></div>
+                <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'malam2@jmi.ac.in')">malam2@jmi.ac.in</span></div>
             </div>
         </div>
         <hr class="separator">
@@ -1804,6 +1849,29 @@
         ========================================================================
     -->
     <script>
+        // NEW: Copy Email Logic
+        function copyEmail(element, email) {
+            // Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                // Create feedback element
+                let feedback = document.createElement("span");
+                feedback.className = "copy-feedback";
+                feedback.innerText = "Email copied!";
+                element.appendChild(feedback);
+                
+                // Show it
+                setTimeout(() => feedback.classList.add("show"), 10);
+                
+                // Remove it
+                setTimeout(() => {
+                    feedback.classList.remove("show");
+                    setTimeout(() => feedback.remove(), 300);
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
         // 5.1: HEADER SCROLL VISIBILITY
         // Shows the name in the header only after scrolling past the Hero section.
         window.addEventListener('scroll', function() {
@@ -1861,16 +1929,31 @@
             }
         });
 
-        // 5.4: ACCORDION LOGIC
+        // 5.4: ACCORDION LOGIC - UPDATED to Single Open
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
+                // 1. Close all other active panels
+                for (let j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this && acc[j].classList.contains("active")) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+                }
+
+                // 2. Toggle current
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
                     panel.style.maxHeight = panel.scrollHeight + "px"; 
+                    
+                    // 3. Optional: Smooth scroll to keep focused (User requested: expand fixed on screen)
+                    // We wait slightly for animation to start
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    }, 300);
                 } 
             });
         }
