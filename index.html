@@ -258,9 +258,9 @@
         */
         .sticky-sidebar {
             position: fixed; 
-            top: 50%; /* Center vertically */
-            left: 0; /* Stick to left side */
-            transform: translateY(-50%); /* Adjust for perfect centering */
+            top: 50%;                 /* Center vertically */
+            left: 0;                  /* Stick to left side */
+            transform: translateY(-50%); /* Perfect centering adjustment */
             z-index: 1100; 
             display: flex; flex-direction: column; gap: 12px;
             background-color: var(--white);
@@ -276,6 +276,44 @@
         }
 
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
+
+        /* E.4.B: BACK-TO-TOP BUTTON 
+           New addition as requested: Bottom right button
+        */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;              /* Bottom right corner */
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent); /* Gold Background */
+            color: var(--primary);    /* Blue Icon */
+            border-radius: 50%;       /* Circle Shape */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 9999;            /* Very high Z-index to stay on top */
+            opacity: 0;               /* Hidden by default */
+            transform: translateY(20px); /* Pushed down slightly initially */
+            pointer-events: none;     /* Not clickable when hidden */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;               /* Make visible */
+            transform: translateY(0); /* Slide up */
+            pointer-events: auto;     /* Enable clicking */
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary); /* Invert colors on hover */
+            color: var(--accent);
+            transform: translateY(-5px); /* Lift effect */
+        }
+
 
         /* E.5: HERO SECTION (The big blue area at the top)
         */
@@ -641,53 +679,53 @@
             z-index: 10; position: relative; 
         }
 
-        /* --- COMPACT LIST FOR PEER REVIEWS --- */
+        /* E.11: PEER REVIEW "TAG" STYLE
+           Styles for the compact list of peer review journals.
+        */
         .compact-list {
             padding: 0;
             list-style: none;
             text-align: justify;
+            line-height: 2; /* Increased line height for spacing between tags */
         }
         
+        /* The individual journal item */
         .compact-list .pub-item { 
             display: inline;
-            margin: 0; 
-            padding: 0; 
-            border: none; 
-            line-height: 1.6; 
+            margin: 0 2px; 
+            padding: 2px 6px;             /* Padding creates the tag shape */
+            border: 1px solid transparent; /* Placeholder border to prevent layout shift */
             font-size: 0.95rem;
-            box-shadow: none;
-            background: transparent;
-            font-weight: 500;
+            border-radius: 4px;           /* Rounded corners like interest tags */
+            transition: all 0.2s ease;
+            cursor: default;
         }
         
+        /* Hover Effect: Turns Blue (Like Interest Tags) */
         .compact-list .pub-item:hover {
-            transform: none;
-            box-shadow: none;
-            background: transparent;
-            color: var(--primary);
+            background: var(--primary);   /* Blue Background */
+            color: var(--white);          /* White Text */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
-        /* Add separator after each item using CSS */
+        /* The separator line "|" between items */
         .compact-list .pub-item::after {
-            content: " | ";
-            color: var(--accent);
+            content: "|";
+            color: var(--accent);         /* Gold Separator */
             font-weight: 900;
-            margin: 0 4px;
+            margin-left: 8px; 
+            margin-right: 2px;
         }
-        .compact-list .pub-item:last-child::after { content: ""; }
-
-        .pub-item strong { color: #004d40; font-weight: 700; }
-        .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 2px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
         
-        .pub-doi { 
-            font-size: 0.7rem; color: #fff; background-color: var(--accent); 
-            padding: 3px 8px; border-radius: 4px; margin-left: 8px; 
-            font-weight: 700; text-decoration: none; display: inline-block;
-            transition: transform 0.2s;
-        }
-        .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); color: #fff; }
+        /* Hide separator for the last item */
+        .compact-list .pub-item:last-child::after { content: ""; }
+        
+        /* Dim separator on hover so it doesn't clash with blue background */
+        .compact-list .pub-item:hover::after { color: rgba(255,255,255,0.5); }
 
-        /* E.11: TECHNICAL PROFICIENCY GRID
+
+
+        /* E.12: TECHNICAL PROFICIENCY GRID
         */
         .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
         .tech-card {
@@ -712,7 +750,7 @@
         .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; }
         .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
 
-        /* E.12: REFEREES GRID
+        /* E.13: REFEREES GRID
         */
         .referee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .referee-card {
@@ -750,7 +788,7 @@
         .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
-        /* E.13: FOOTER
+        /* E.14: FOOTER
         */
         footer { 
             background: var(--primary-dark); color: #d1d5db; text-align: center; 
@@ -766,7 +804,7 @@
         .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
 
 
-        /* E.14: MOBILE RESPONSIVE STYLES
+        /* E.15: MOBILE RESPONSIVE STYLES
            These styles only apply when the screen width is less than 900px.
         */
         @media (max-width: 900px) {
@@ -823,14 +861,15 @@
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
 
-        /* E.15: PRINT STYLES (Control + P)
+        
+        /* E.16: PRINT STYLES (Control + P)
            These styles define how the page looks when printed on paper.
         */
         #print-header, #print-footer { display: none; }
 
         @media print {
-            /* Hide Navigation, Sidebars, and Interactive Elements */
-            header, .sticky-sidebar, .nav-toggle, .cv-btn-group { 
+            /* Hide Navigation, Sidebars, Back-to-Top, and Interactive Elements */
+            header, .sticky-sidebar, .nav-toggle, .cv-btn-group, .back-to-top { 
                 display: none !important; 
             }
             
@@ -988,6 +1027,14 @@
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
     </div>
 
+    <!-- 
+       NEW ELEMENT: BACK-TO-TOP BUTTON 
+       Gold circle with an upward arrow. Only visible when scrolling down.
+    -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    
     <!-- D.3: MAIN HEADER 
          The navigation bar at the top.
     -->
@@ -1083,7 +1130,7 @@
                 
                 <!-- Download Buttons -->
                 <div class="cv-btn-group">
-                    <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Downlaod Full CV</a>
+                    <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a>
                     
                 </div>
             </div>
@@ -1095,10 +1142,10 @@
         <h2 class="section-title">About Me</h2>
         <div class="profile-text">
             <p style="margin-top:10px;">
-                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color:var(--primary); font-weight:400;">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" style="color:var(--primary); font-weight:400;">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" style="color:var(--primary); font-weight:400;">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" style="color:var(--primary); font-weight:400;">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" style="color:var(--primary); font-weight:400;">University of Copenhagen</a>, Denmark. My research focuses on applying AI-driven bioinformatics and computational biology to investigate and engineer PFAS-degrading enzymes, contributing to sustainable biotechnological solutions for pressing environmental challenges.
+                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color:var(--primary); font-weight:400;">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" style="color:var(--primary); font-weight:400;">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" style="color:var(--primary); font-weight:400;">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" style="color:var(--primary); font-weight:400;">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" style="color:var(--primary); font-weight:400;">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
             </p>
             <p style="margin-top:10px;">
-                My work centres on deep learning–based predictive modelling, including <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:400;">DrLungker</a> (drug activity prediction in lung cancer), <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:400;">LungXAI</a> (RNA-Seq–based lung cancer subtype classification with explainable AI), and <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:400;">DeepEntXAI</a> (drug resistance prediction in Enterobacteriaceae). I bring strong expertise in protein modelling, molecular docking, interaction fingerprints, DFT, WaterMap, molecular dynamics, binding free-energy calculations, and automated pipelines for sequence alignment, evolutionary inference, and phylogenetics. My broader interests include AI-driven drug discovery, comparative genomics, and vaccine target prioritisation, with a focus on translational and precision medicine.
+                My work centres on deep learning–based predictive modelling, including <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:400;">DrLungker</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:400;">LungXAI</a>, and <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:400;">DeepEntXAI</a>. I bring strong expertise in protein modelling, multitargeted molecular docking, interaction fingerprints, DFT, WaterMap, MD Simulations, MM-GBSA and free-energy calculations, and many more.
             </p>
             
             <p style="margin-top:10px;">
@@ -1135,7 +1182,7 @@
             </div>
 
             <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">
-                Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a> for attending the 7-day SERB (DST-GoI) funded KARYASHALA.
+                Honorary Alumnus of the <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a>, recognised for completion of the SERB (DST-GoI) funded KARYASHALA program.
             </p>
 
  
@@ -1143,8 +1190,8 @@
         
         <!-- Interests Tags -->
         <div class="interests-wrapper">
-            <div class="int-tag">🤖 AI in Bioinformatics & Genomics</div>
-            <div class="int-tag">💊 Drug Design & Discovery (CADD)</div>
+            <div class="int-tag">💊 AI in Drug Design</div>
+            <div class="int-tag">🤖 AI in Genomics</div>
             <div class="int-tag">🧪 Molecular Modelling & Structural Bioinformatics</div>
             <div class="int-tag">🧬 Computational Genomics & Systems Biology</div>
             <div class="int-tag">🌳 Phylogenetics & Molecular Evolution</div>
@@ -1624,12 +1671,12 @@
         </div>
 
 
+ 
         <button class="accordion-btn">Peer Reviews <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
                     <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">450+ Verified Peer Reviews on Publons</p>
-                    <p style="font-size:0.95rem;">Regular Reviewer in the Following Journals-</p>
                     <ul class="compact-list" style="margin-top:10px;">
                         <li class="pub-item">Archives of Computational Methods in Engineering</li>
                         <li class="pub-item">Archives of Microbiology</li>
@@ -1996,7 +2043,23 @@
             }
         });
 
-        // E.2: MENU TOGGLE (MOBILE)
+        // E.2: BACK-TO-TOP LOGIC
+        const backToTopBtn = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            // Show button if scrolled down more than 300px
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        });
+
+        // Smooth scroll to top when clicked
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // E.3: MENU TOGGLE (MOBILE)
         // Opens and closes the side menu when clicking the "Hamburger" icon.
         function toggleMenu() {
             const navBar = document.querySelector('.nav-list');
@@ -2026,7 +2089,7 @@
             }
         });
 
-        // E.3: ACCORDION LOGIC
+        // E.4: ACCORDION LOGIC
         // Expands and collapses the publication lists.
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
@@ -2042,7 +2105,7 @@
             });
         }
 
-        // E.4: HERO DROPDOWN LOGIC
+        // E.5: HERO DROPDOWN LOGIC
         // Controls the small stats dropdown menu in the blue hero section.
         function togglePubStats(e) {
             // Special handling for the Patent link inside the dropdown to allow navigation
@@ -2082,7 +2145,7 @@
             }
         }
 
-        // E.5: AUTO-SCROLL HELPER
+        // E.6: AUTO-SCROLL HELPER
         // When clicking a stat link, this opens the correct accordion and scrolls to it.
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
@@ -2098,7 +2161,7 @@
             }
         }
 
-        // E.6: SCROLL SPY
+        // E.7: SCROLL SPY
         // Highlights the menu link corresponding to the section currently on screen.
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll(".nav-link");
@@ -2122,7 +2185,7 @@
             });
         });
 
-        // E.7: AWARD NUMBERING LOGIC
+        // E.8: AWARD NUMBERING LOGIC
         // Automatically numbers the awards from bottom to top (so newest is highest number).
         const awardCards = document.querySelectorAll('.award-card');
         const totalAwards = awardCards.length;
@@ -2135,7 +2198,7 @@
             card.appendChild(badge);
         });
 
-        // E.8: PRINT DATE LOGIC
+        // E.9: PRINT DATE LOGIC
         // Adds the current date/time to the footer when printing.
         document.addEventListener('DOMContentLoaded', () => {
             const dateSpan = document.getElementById('print-date');
