@@ -1,126 +1,90 @@
 <!-- 
-    SECTION A: DOCUMENT TYPE DECLARATION
-    This specific line tells the web browser (Chrome, Safari, etc.) that this is a 
-    modern HTML5 website. It prevents the browser from going into "quirks mode".
+    ========================================================================
+    1.0: DOCUMENT SETUP & METADATA
+    ========================================================================
+    1.1: DOCTYPE - Defines the document as HTML5.
+    1.2: HTML ROOT - Sets language to English.
 -->
 <!DOCTYPE html>
-
-<!-- 
-    SECTION B: ROOT ELEMENT
-    The <html> tag is the root of your document. 
-    "lang='en'" tells search engines and screen readers that the content is in English.
--->
 <html lang="en">
 
 <!-- 
-    SECTION C: THE HEAD (Metadata & Settings)
-    Everything inside <head> is NOT visible on the page itself. 
-    It contains settings, titles, and links to external resources (like fonts and icons).
+    1.3: HEAD - Contains metadata, styling links, and browser settings.
 -->
 <head>
-    
-    <!-- C.1: Character Encoding
-         "UTF-8" covers almost all characters and symbols in the world. 
-         Without this, special characters (like é or ©) might look like garbled text. 
-    -->
+    <!-- 1.3.1: Character Encoding (UTF-8) -->
     <meta charset="UTF-8">
 
-    <!-- C.2: Viewport Settings (CRITICAL FOR MOBILE)
-         This line makes the website "responsive". It tells mobile phones to set the 
-         width of the page to match the screen width, so text isn't tiny.
-    -->
+    <!-- 1.3.2: Viewport (Responsive Design for Mobile) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- C.3: Browser Tab Title
-         This is the text displayed on the tab at the top of your browser.
-    -->
+    <!-- 1.3.3: Page Title & SEO -->
     <title>Dr Shaban | Postdoc at UCPH</title>
-
-    <!-- C.4: SEO Description
-         This is the short summary Google shows in search results under your link.
-    -->
     <meta name="description" content="Academic Portfolio of Dr Shaban">
     
-    <!-- C.5: Favicon
-         The small icon that appears next to the title in the browser tab.
-    -->
+    <!-- 1.3.4: Favicon -->
     <link rel="icon" href="shaban.png" type="image/png">
     
     <!-- 
-       SECTION D: EXTERNAL LIBRARIES (Borrowing tools from the internet)
-       Instead of writing code for every icon or font from scratch, we link to 
-       libraries that already have them.
+        ========================================================================
+        2.0: EXTERNAL LIBRARIES & FONTS
+        ========================================================================
     -->
-
-    <!-- D.1: FontAwesome
-         Provides standard icons like the Envelope, Bars (hamburger menu), etc.
-    -->
+    <!-- 2.1: FontAwesome (General Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- D.2: Academicons
-         Provides specific academic icons like the Google Scholar or ResearchGate logos.
-    -->
+    <!-- 2.2: Academicons (Academic Specific Icons) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-    <!-- D.3: Google Fonts
-         We are importing three specific fonts to make the site look professional:
-         1. Roboto: For the main body text (easy to read).
-         2. Playfair Display: For elegant headings.
-         3. Merriweather: For university names.
-    -->
+    <!-- 2.3: Google Fonts (Typography) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- 
-       SECTION E: CSS STYLES (The "Makeup" of the website)
-       This huge block controls colors, layout, sizing, and animations.
+        ========================================================================
+        3.0: CSS STYLING ENGINE
+        ========================================================================
     -->
     <style>
-        /* E.1: CSS VARIABLES (The Global Settings)
-           Think of this as a central control panel. If you change a color here,
-           it updates EVERYWHERE on the site instantly.
-        */
+        /* 3.1: GLOBAL VARIABLES (COLOR PALETTE) */
         :root {
             /* Brand Colors */
-            --primary: #002e5f;      /* Deep Blue - The main professional color */
-            --primary-dark: #001a36; /* Darker Blue - Used for the footer and gradients */
-            --accent: #dca11d;       /* Gold - Used for highlights, links, and buttons */
+            --primary: #002e5f;      /* Deep Blue */
+            --primary-dark: #001a36; /* Darker Blue */
+            --accent: #dca11d;       /* Gold */
             
-            /* Text & Backgrounds */
-            --text: #333;            /* Dark Grey - Easier on the eyes than pure black */
-            --light-bg: #f8f9fa;     /* Very Light Grey - The main page background */
-            --white: #ffffff;        /* Pure White */
+            /* UI Colors */
+            --text: #333;            
+            --light-bg: #f8f9fa;     
+            --white: #ffffff;        
             
-            /* Fonts & Animation */
-            --inst-font: 'Merriweather', serif; /* Special font for Institution names */
-            --transition: all 0.3s ease;        /* Makes hover effects smooth (takes 0.3 seconds) */
+            /* Typography & Motion */
+            --inst-font: 'Merriweather', serif; 
+            --transition: all 0.3s ease;        
             
-            /* -- Card Border Colors (Categorization) -- */
-            /* These colors identify different levels of education */
+            /* Education Card Borders */
             --edu-phd: #dc3545;       /* Red */
             --edu-msc: #fd7e14;       /* Orange */
             --edu-bsc: #20c997;       /* Teal */
-            --edu-xii: #20c997;       /* Teal (Reused) */
-            --edu-x: #20c997;         /* Teal (Reused) */
-            --edu-basic: #20c997;     /* Teal (Reused) */
+            --edu-xii: #20c997;       
             
-            /* -- Referee Card Colors -- */
-            /* Giving each referee a unique color strip */
-            --ref-1: #002e5f; /* Blue */
-            --ref-2: #008080; /* Teal */
-            --ref-3: #6f42c1; /* Purple */
-            --ref-4: #dc3545; /* Red */
-            --ref-5: #28a745; /* Green */
-            --ref-6: #17a2b8; /* Cyan */
+            /* Experience Borders */
+            --exp-full: #28a745;      /* Green */
+            --exp-trainee: #6f42c1;   /* Purple */
+            
+            /* Referee Card Borders */
+            --ref-1: #002e5f; 
+            --ref-2: #dc3545; 
+            --ref-3: #6f42c1; 
+            --ref-4: #0dadbc; 
+            --ref-5: #28a745; 
+            --ref-6: #9f0f85; 
         }
 
-        /* E.2: GLOBAL RESETS
-           Browsers add default spacing that can mess up designs. We remove it here.
-        */
+        /* 3.2: GLOBAL RESETS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html { 
-            scroll-behavior: smooth; /* Makes the page glide when you click a link, instead of jumping instantly */
-            /* We add padding so that when you jump to a section, the title isn't hidden behind the fixed header */
+            scroll-behavior: smooth; 
             scroll-padding-top: 65px; 
         } 
         
@@ -129,33 +93,30 @@
             line-height: 1.6; 
             color: var(--text); 
             background: var(--light-bg); 
-            padding-top: 50px; /* Pushes content down so it doesn't hide behind the fixed header */
-            overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+            padding-top: 50px; 
+            overflow-x: hidden; 
         }
         
-        /* Basic link styling */
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-        /* The decorative line separating sections */
+        /* 3.3: SECTION SEPARATORS */
         .separator {
             border: 0;
             height: 4px; 
             background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%);
             margin: 3rem 0;
             opacity: 0.8;
-            page-break-after: avoid; /* Ensures the line doesn't get pushed to a new page alone when printing */
+            page-break-after: avoid; 
         }
 
-        /* E.3: HEADER & NAVIGATION STYLES
-           The strip at the very top of the page.
-        */
+        /* 3.4: HEADER & NAVIGATION */
         header { 
             background: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(10px); /* Creates a "frosted glass" effect */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow underneath */
-            position: fixed; /* Keeps the header stuck to the top even when scrolling */
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
+            position: fixed; 
             top: 0; left: 0; width: 100%; 
-            z-index: 1000; /* Layers the header ON TOP of everything else */
+            z-index: 1000; 
             height: 50px; 
             transition: all 0.3s ease;
         }
@@ -164,18 +125,17 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 20px; height: 100%; 
             max-width: 1200px; 
-            margin: 0 auto; /* Centers the content */
+            margin: 0 auto; 
             position: relative;
         }
 
-        /* Styling for the name "Dr Shaban" in the top left */
         .header-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem; 
             font-weight: 700;
             color: var(--primary); 
             text-decoration: none;
-            opacity: 0; /* Hidden initially, JS shows it when you scroll past the Hero section */
+            opacity: 0; 
             transform: translateX(-20px);
             transition: all 0.3s ease;
             pointer-events: none;
@@ -189,10 +149,9 @@
         
         .header-name:hover { color: var(--accent) !important; }
 
-        /* Navigation Menu (Desktop View) */
         .nav-list { 
             display: flex; 
-            list-style: none; /* Removes bullet points */
+            list-style: none; 
             gap: 15px; 
             padding: 0;
             margin: 0 0 0 auto; 
@@ -212,19 +171,18 @@
             background: transparent;
             display: inline-block;
             position: relative;
+            cursor: pointer;
         }
         
-        /* Highlight gold on hover */
         .nav-link:hover { 
             color: var(--accent);
             background: rgba(0, 46, 95, 0.05);
         }
         
-        /* The gold underline animation */
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0; /* Starts at width 0 (invisible) */
+            width: 0; 
             height: 2px;
             bottom: 2px;
             left: 50%;
@@ -232,17 +190,12 @@
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
-        .nav-link:hover::after { width: 80%; /* Expands to 80% on hover */ }
+        .nav-link:hover::after { width: 80%; }
 
-        /* State for the active section (Scroll Spy) */
-        .nav-link.active-section {
-            color: var(--accent) !important; 
-        }
-        .nav-link.active-section::after {
-            width: 80%;
-        }
+        .nav-link.active-section { color: var(--accent) !important; }
+        .nav-link.active-section::after { width: 80%; }
 
-        /* Mobile Menu Button (Hamburger) - Hidden on desktop */
+        /* Mobile Toggle */
         .nav-toggle { 
             display: none; 
             font-size: 1.3rem; 
@@ -252,15 +205,14 @@
             transition: transform 0.3s ease;
             z-index: 2001; 
         }
-        .nav-toggle.open { transform: rotate(90deg); /* Rotates when clicked */ }
+        .nav-toggle.open { transform: rotate(90deg); }
 
-        /* E.4: SIDEBAR STYLES (The floating social icons)
-        */
+        /* 3.5: SIDEBARS & FLOATING ELEMENTS */
         .sticky-sidebar {
             position: fixed; 
-            top: 50%;                 /* Center vertically */
-            left: 0;                  /* Stick to left side */
-            transform: translateY(-50%); /* Perfect centering adjustment */
+            top: 50%;                 
+            left: 0;                  
+            transform: translateY(-50%); 
             z-index: 1100; 
             display: flex; flex-direction: column; gap: 12px;
             background-color: var(--white);
@@ -277,46 +229,41 @@
 
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
-        /* E.4.B: BACK-TO-TOP BUTTON 
-           New addition as requested: Bottom right button
-        */
         .back-to-top {
             position: fixed;
             bottom: 30px;
-            right: 30px;              /* Bottom right corner */
+            right: 30px;              
             width: 50px;
             height: 50px;
-            background-color: var(--accent); /* Gold Background */
-            color: var(--primary);    /* Blue Icon */
-            border-radius: 50%;       /* Circle Shape */
+            background-color: var(--accent); 
+            color: var(--primary);    
+            border-radius: 50%;       
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             cursor: pointer;
-            z-index: 9999;            /* Very high Z-index to stay on top */
-            opacity: 0;               /* Hidden by default */
-            transform: translateY(20px); /* Pushed down slightly initially */
-            pointer-events: none;     /* Not clickable when hidden */
+            z-index: 9999;            
+            opacity: 0;               
+            transform: translateY(20px); 
+            pointer-events: none;     
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         
         .back-to-top.visible {
-            opacity: 1;               /* Make visible */
-            transform: translateY(0); /* Slide up */
-            pointer-events: auto;     /* Enable clicking */
+            opacity: 1;               
+            transform: translateY(0); 
+            pointer-events: auto;     
         }
         
         .back-to-top:hover {
-            background-color: var(--primary); /* Invert colors on hover */
+            background-color: var(--primary); 
             color: var(--accent);
-            transform: translateY(-5px); /* Lift effect */
+            transform: translateY(-5px); 
         }
 
-
-        /* E.5: HERO SECTION (The big blue area at the top)
-        */
+        /* 3.6: HERO SECTION */
         .hero-section-wrapper {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             width: 100%;
@@ -336,10 +283,9 @@
         
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
         
-        /* The round profile picture */
         .hero-img { 
             width: 190px; height: 190px; 
-            border-radius: 50%; /* Makes it a perfect circle */
+            border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
             background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -365,13 +311,13 @@
         .hero-contact a { color: #fff; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
         .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
 
-        /* -- Floating Stats Box (The box on the right of the Hero) -- */
+        /* Hero Stats Box */
         .hero-stats {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem;
             width: 320px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;
-            animation: float 4s ease-in-out infinite; /* Makes it gently bob up and down */
+            animation: float 4s ease-in-out infinite; 
         }
         
         @keyframes float {
@@ -397,7 +343,7 @@
         .stat-label-link { color: #ddd; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .stat-label-link:hover { color: var(--accent); }
 
-        /* The Dropdown list inside the Stats box */
+        /* Stats Dropdown */
         .pub-breakdown {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
             background: rgba(0,0,0,0.1); border-radius: 4px;
@@ -419,54 +365,56 @@
             font-weight: bold;
         }
 
-        /* Specific styles for different types of dropdown items */
+        /* NEW: Gold Badge for Patent Section */
+        .grant-badge {
+            display: inline-block;
+            background-color: #fff9db; /* Light Gold background */
+            color: #856404;            /* Dark Gold text */
+            border: 1px solid #ffeeba; /* Gold border */
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* The Tick Mark inside the badge -> RED (Highlighted) */
+        .grant-badge i {
+            color: #dc3545; 
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+
         .secondary-pub-item span { color: #a8d0e6; opacity: 0.9; }
         .secondary-pub-item i { color: #a8d0e6 !important; }
         .secondary-pub-item .pub-badge { color: #a8d0e6; }
 
-        /* Patents - Special color style */
         .patent-pub-item span { color: var(--accent); opacity: 1; font-weight: bold; }
         .patent-pub-item i { color: var(--accent) !important; }
         .patent-pub-item .pub-badge { color: var(--accent); }
 
         /* CV Download Buttons */
-        .cv-btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
+        .cv-btn-group { display: flex; gap: 10px; margin-top: 20px; }
         .cv-btn-half {
-            flex: 1;
-            padding: 12px;
-            background: var(--accent);
-            color: var(--primary-dark);
-            text-align: center;
-            font-weight: 700;
-            border-radius: 8px;
+            flex: 1; padding: 12px; background: var(--accent); color: var(--primary-dark);
+            text-align: center; font-weight: 700; border-radius: 8px;
             transition: transform 0.2s, box-shadow 0.2s;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px;
+            text-decoration: none; cursor: pointer; border: none;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
         }
         .cv-btn-half:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
-            background: #fff;
-            color: var(--primary);
+            background: #fff; color: var(--primary);
         }
 
-        /* E.6: GENERAL CONTENT SECTIONS
-        */
+        /* 3.7: LAYOUT CONTAINERS */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
-        /* Main Section Titles (e.g., "About Me", "Experience") */
         .section-title { 
             font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); 
             margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px;
@@ -475,56 +423,47 @@
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         .int-intro-text { font-style: italic; color: #666; margin-bottom: 10px; font-weight: 600; }
         
-        /* Interest Tags (The little bubbles in "About Me") */
         .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 0.5rem; }
         .int-tag { 
             background: var(--white); border: 1px solid #ddd; padding: 6px 12px; 
-            border-radius: 4px; font-weight: 500; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
+            border-radius: 4px; font-weight: 500; color: var(--primary); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
         .sub-heading-bold { 
-            color: var(--primary); 
-            font-weight: 700; 
-            font-size: 1.15rem; 
-            display: block; 
-            margin-top: 2rem;
-            margin-bottom: 1rem; 
+            color: var(--primary); font-weight: 700; font-size: 1.15rem; 
+            display: block; margin-top: 2rem; margin-bottom: 1rem; 
             font-family: 'Roboto', sans-serif;
         }
 
-        /* E.7: EDUCATION & EXPERIENCE CARDS
-        */
-        
+        /* 3.8: EDUCATION & EXPERIENCE CARDS */
         .journey-intro { margin-bottom: 2rem; font-style: italic; color: #666; }
         .edu-grid, .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
-        /* The Card Container */
         .edu-card, .exp-box { 
             background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
-            border-top: 6px solid #ccc; /* Default top border color */
+            border-top: 6px solid #ccc; 
             border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
             position: relative; display: flex; flex-direction: column;
         }
 
-        /* Specific Top Border Colors */
+        /* Card Colors */
         .edu-phd { border-top-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); }
         .edu-bsc { border-top-color: var(--edu-bsc); } .edu-xii { border-top-color: var(--edu-xii); }
-        .edu-x { border-top-color: var(--edu-x); } .edu-basic { border-top-color: var(--edu-basic); }
-        
-        .exp-full { border-top-color: #28a745; } .exp-part { border-top-color: var(--edu-msc); } .exp-trainee { border-top-color: #6f42c1; }
+        .exp-full { border-top-color: var(--exp-full); } .exp-part { border-top-color: var(--edu-msc); } .exp-trainee { border-top-color: var(--exp-trainee); }
 
-        /* Hover Animation: Lifts the card slightly */
+        /* FIX: Card Hover Effects (Specific Color Change) */
         .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
         .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
         
-        .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #28a745; }
+        .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-full); }
         .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
-        .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #6f42c1; }
-
+        .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-trainee); }
+        
         .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
         .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; }
         .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
@@ -534,16 +473,17 @@
         
         .badge-gold-inline { display: inline-block; background-color: #fff9db; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 1rem; font-weight: bold; border: 1px solid #ffeeba; margin-left: 5px; vertical-align: middle; cursor: help; }
         
-        /* EXP CARD NEW HEADER STYLES */
         .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%; }
         .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0; }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;}
         .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
         .type-badge { font-size: 0.75rem; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 3px; align-self: center; white-space: nowrap; }
-        .bg-full { background: #28a745; } .bg-part { background: var(--edu-msc); color: #fff; } .bg-trainee { background: #6f42c1; color: #fff; }
+        
+        .bg-full { background: var(--exp-full); } 
+        .bg-part { background: var(--edu-msc); color: #fff; } 
+        .bg-trainee { background: var(--exp-trainee); color: #fff; }
 
-        /* E.8: AWARDS GRID
-        */
+        /* 3.9: AWARDS & RECOGNITION */
         .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         .award-card {
             background: var(--white); border-radius: 12px; padding: 1.2rem;
@@ -559,35 +499,30 @@
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
         .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; margin-top: 10px; }
 
-        /* The small number circle on the Award Card */
         .award-number {
-            position: absolute;
-            top: 5px;  
-            right: 5px; 
-            width: 22px;
-            height: 22px;
-            background: var(--accent);
-            color: #fff;
+            position: absolute; top: 5px; right: 5px; 
+            width: 22px; height: 22px;
+            background: var(--accent); color: #fff;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border: 2px solid #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.8rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); border: 2px solid #fff;
             z-index: 5;
         }
 
-        /* E.9: PATENTS GRID
-        */
+        /* 3.10: PATENTS */
         .patent-box { 
             background: #fff; border: 1px solid #eee; padding: 1.5rem; 
             border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
+        
+        /* UPDATED: Reverted Hover Border to Gold */
         .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent); }
+        
+        /* UPDATED: Reverted Main Icon to Gold */
         .patent-icon { font-size: 2rem; color: var(--accent); }
+        
         .patent-link { color: var(--primary); font-weight: bold; text-decoration: none; transition: color 0.2s; }
         
         @media (min-width: 900px) {
@@ -595,64 +530,44 @@
             .patent-box { margin-bottom: 0; }
         }
 
-        /* E.10: ACCORDION & PUBLICATIONS LISTS
-           The clickable headers that open up to show more content.
-        */
-        /* Default Button Style */
+        /* 3.11: ACCORDION & LISTS (PUBLICATIONS) */
         .accordion-btn {
             width: 100%; padding: 1rem; text-align: left; 
-            background: var(--white); 
-            border: 1px solid #ddd; 
-            border-left: 5px solid var(--primary); /* Thick blue border on left */
+            background: var(--white); border: 1px solid #ddd; 
+            border-left: 5px solid var(--primary); 
             margin-bottom: 5px; cursor: pointer;
             font-size: 1.05rem; font-weight: 600; color: var(--primary);
             display: flex; justify-content: space-between; align-items: center;
             transition: all 0.3s ease;
         }
-        
         .accordion-btn:hover { background: #f0f4f8; }
 
-        /* Active Button Style - Merges with panel */
         .accordion-btn.active { 
-            background: #fff; 
-            color: var(--primary); 
-            border-bottom: 1px solid transparent; /* Remove separator */
+            background: #fff; color: var(--primary); 
+            border-bottom: 1px solid transparent; 
             border-left: 5px solid var(--primary);
-            border-top: 1px solid #ddd;
-            border-right: 1px solid #ddd;
-            text-decoration: underline; 
-            margin-bottom: 0; 
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top: 1px solid #ddd; border-right: 1px solid #ddd;
+            text-decoration: underline; margin-bottom: 0; 
+            border-bottom-left-radius: 0; border-bottom-right-radius: 0;
         }
         
-        /* Panel Style - Matches active button to form single box */
         .panel { 
             max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; 
             background: var(--white);
-            border: 1px solid #ddd; 
-            border-top: none; 
+            border: 1px solid #ddd; border-top: none; 
             border-left: 5px solid var(--primary); 
             margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+            border-top-left-radius: 0; border-top-right-radius: 0;
         }
         
         .accordion-btn.active + .panel {
             border-left: 5px solid var(--primary); 
-            border-right: 1px solid #ddd; 
-            border-bottom: 1px solid #ddd; 
+            border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; 
         }
         
         .panel-content { padding: 20px; }
-
-        /* Scrollable area inside the panel */
-        .scrollable-list { 
-            max-height: 600px; overflow-y: auto; 
-            padding: 15px 20px; 
-        }
-        /* Custom scrollbar styling */
+        .scrollable-list { max-height: 600px; overflow-y: auto; padding: 15px 20px; }
         .scrollable-list::-webkit-scrollbar { width: 6px; }
         .scrollable-list::-webkit-scrollbar-track { background: #f1f1f1; }
         .scrollable-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
@@ -660,73 +575,61 @@
         .pub-list { padding-left: 30px; } 
         
         .pub-item { 
-            margin-bottom: 1rem; 
-            padding: 12px; 
+            margin-bottom: 1rem; padding: 12px; 
             border-bottom: 1px dashed #eee; 
-            border: 1px solid transparent; 
-            border-bottom-color: #eee; 
-            border-radius: 6px; 
-            font-size: 0.95rem; 
+            border: 1px solid transparent; border-bottom-color: #eee; 
+            border-radius: 6px; font-size: 0.95rem; 
             transition: all 0.3s ease;
         }
         
+        /* Updated Pub Item Hover */
         .pub-item:hover {
-            transform: translateY(-3px);
-            background: #fff;
+            transform: translateY(-3px); background: #fff;
             border-color: var(--accent);
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-bottom-color: var(--accent);
             z-index: 10; position: relative; 
         }
 
-        /* E.11: PEER REVIEW "TAG" STYLE
-           Styles for the compact list of peer review journals.
-        */
-        .compact-list {
-            padding: 0;
-            list-style: none;
-            text-align: justify;
-            line-height: 2; /* Increased line height for spacing between tags */
-        }
+        /* 3.12: SPECIAL PUBLICATION STYLES (GOLD BADGE & EVENT META) */
         
-        /* The individual journal item */
+        /* Gold Badge for DOI */
+        .pub-doi { 
+            font-size: 0.7rem; color: #fff; background-color: var(--accent); 
+            padding: 3px 8px; border-radius: 4px; margin-left: 8px; 
+            font-weight: 700; text-decoration: none; display: inline-block;
+            transition: transform 0.2s;
+        }
+        .pub-doi:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            text-decoration: none; color: #fff; 
+        }
+
+        /* Bordered Event Details */
+        .event-meta {
+            display: block; color: #666; font-size: 0.9rem; margin-top: 4px;
+            font-weight: 500; border-left: 3px solid var(--accent);
+            padding-left: 8px; margin-left: 2px;
+        }
+
+        /* 3.13: PEER REVIEW TAGS */
+        .compact-list { padding: 0; list-style: none; text-align: justify; line-height: 2; }
         .compact-list .pub-item { 
-            display: inline;
-            margin: 0 2px; 
-            padding: 2px 6px;             /* Padding creates the tag shape */
-            border: 1px solid transparent; /* Placeholder border to prevent layout shift */
-            font-size: 0.95rem;
-            border-radius: 4px;           /* Rounded corners like interest tags */
-            transition: all 0.2s ease;
-            cursor: default;
+            display: inline; margin: 0 2px; padding: 2px 6px; 
+            border: 1px solid transparent; font-size: 0.95rem; 
+            border-radius: 4px; transition: all 0.2s ease; cursor: default;
         }
-        
-        /* Hover Effect: Turns Blue (Like Interest Tags) */
         .compact-list .pub-item:hover {
-            background: var(--primary);   /* Blue Background */
-            color: var(--white);          /* White Text */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: var(--primary); color: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        
-        /* The separator line "|" between items */
         .compact-list .pub-item::after {
-            content: "|";
-            color: var(--accent);         /* Gold Separator */
-            font-weight: 900;
-            margin-left: 8px; 
-            margin-right: 2px;
+            content: "|"; color: var(--accent); font-weight: 900; margin-left: 8px; margin-right: 2px;
         }
-        
-        /* Hide separator for the last item */
         .compact-list .pub-item:last-child::after { content: ""; }
-        
-        /* Dim separator on hover so it doesn't clash with blue background */
         .compact-list .pub-item:hover::after { color: rgba(255,255,255,0.5); }
 
-
-
-        /* E.12: TECHNICAL PROFICIENCY GRID
-        */
+        /* 3.14: TECHNICAL SKILLS */
         .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
         .tech-card {
             background: #fff; padding: 1.5rem; border-radius: 8px;
@@ -739,6 +642,7 @@
         .tc-blue { border-top-color: var(--primary); } .tc-green { border-top-color: #20c997; }
         .tc-purple { border-top-color: #6f42c1; } .tc-orange { border-top-color: #fd7e14; }
 
+        /* FIX: Technical Card Hover Colors */
         .tc-blue:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
         .tc-green:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #20c997; }
         .tc-purple:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #6f42c1; }
@@ -750,8 +654,7 @@
         .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; }
         .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
 
-        /* E.13: REFEREES GRID
-        */
+        /* 3.15: REFEREES */
         .referee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .referee-card {
             background: #fff; padding: 1.5rem; border-radius: 8px;
@@ -760,6 +663,8 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
+        
+        /* FIX: Referee Card Hover Colors */
         .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); transform: translateY(-5px); }
         .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); transform: translateY(-5px); }
         .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); transform: translateY(-5px); }
@@ -767,18 +672,12 @@
         .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); transform: translateY(-5px); }
         .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); transform: translateY(-5px); }
         
-        .ref-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2px;
-        }
+        .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
         .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; }
         .referee-name a { text-decoration: none; color: inherit; transition: color 0.3s; }
         .referee-name a:hover { color: var(--accent); }
 
         .referee-role { font-size: 0.85rem; color: #666; font-weight: 400; text-align: right; }
-        
         .referee-title-line { font-weight: 600; color: #444; font-size: 0.95rem; margin-bottom: 5px; }
 
         .ref-inst-row { margin-bottom: 10px; font-size: 0.9rem; color: #555; display: flex; align-items: center; gap: 8px; }
@@ -788,8 +687,7 @@
         .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; }
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
-        /* E.14: FOOTER
-        */
+        /* 3.16: FOOTER */
         footer { 
             background: var(--primary-dark); color: #d1d5db; text-align: center; 
             padding: 20px 0; margin-top: 3rem; border-top: 4px solid var(--accent); 
@@ -803,10 +701,7 @@
         .footer-btn:hover { transform: translateY(-3px); background: var(--accent); border-color: var(--accent); color: var(--primary-dark); }
         .footer-text { font-size: 0.8rem; line-height: 1.5; color: #aaa; font-weight: 400; letter-spacing: 0.5px; display: inline-block; border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
 
-
-        /* E.15: MOBILE RESPONSIVE STYLES
-           These styles only apply when the screen width is less than 900px.
-        */
+        /* 3.17: MOBILE RESPONSIVE */
         @media (max-width: 900px) {
             .header-content { justify-content: center; }
             .header-name { 
@@ -816,26 +711,14 @@
             }
             .nav-toggle { display: block; position: absolute; right: 30px; }
             
-            /* Sidebar Menu shifts to the right and becomes a sliding drawer */
             .nav-list { 
-                position: fixed; 
-                top: 50px; 
-                right: -100%; 
-                width: 45%; 
-                max-width: 200px;
-                height: auto; 
-                min-height: 300px; 
-                background: var(--white); 
-                flex-direction: column; 
-                justify-content: flex-start;
+                position: fixed; top: 50px; right: -100%; width: 45%; max-width: 200px;
+                height: auto; min-height: 300px; background: var(--white); 
+                flex-direction: column; justify-content: flex-start;
                 padding-top: 3px; padding-left: 3px; padding-right: 3px; padding-bottom: 5px;
                 box-shadow: -2px 2px 2px rgba(0,0,0,0.1); 
-                transition: right 0.3s ease-in-out; 
-                z-index: 2000; 
-                display: flex;
-                border-bottom-left-radius: 10px;
-                border-left: 1px solid #eee;
-                border-bottom: 1px solid #eee;
+                transition: right 0.3s ease-in-out; z-index: 2000; 
+                display: flex; border-bottom-left-radius: 10px; border-left: 1px solid #eee; border-bottom: 1px solid #eee;
             }
             .nav-list.active { right: 0; }
             
@@ -846,7 +729,6 @@
             .nav-link:hover { background: transparent; color: var(--accent) !important; padding-left: 10px; }
             .nav-link::after { display: none; }
             
-            /* Sticky sidebar moves to the bottom or adjusts */
             .sticky-sidebar { 
                 display: flex; left: auto; right: 0; top: 50%;
                 border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee;
@@ -854,171 +736,86 @@
             }
             .sticky-sidebar .h-social { font-size: 1.3rem; margin: 2px 0; }
             
-            /* Hero section layout changes to column */
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .hero h1 { font-size: 1.8rem; }
             .exp-grid, .tech-panel-grid { grid-template-columns: 1fr; }
         }
 
-        
-        /* E.16: PRINT STYLES (Control + P)
-           These styles define how the page looks when printed on paper.
-        */
+        /* 3.18: PRINT STYLES */
         #print-header, #print-footer { display: none; }
-
         @media print {
-            /* Hide Navigation, Sidebars, Back-to-Top, and Interactive Elements */
-            header, .sticky-sidebar, .nav-toggle, .cv-btn-group, .back-to-top { 
-                display: none !important; 
-            }
-            
-            /* Style Stats as a plain box */
+            header, .sticky-sidebar, .nav-toggle, .cv-btn-group, .back-to-top { display: none !important; }
             .hero-stats {
-                display: block !important;
-                width: 100% !important;
-                border: 1px solid #ddd !important;
-                box-shadow: none !important;
-                margin-bottom: 20px !important;
-                color: #000 !important;
-                animation: none !important;
-                padding: 10px !important;
-                background: none !important;
+                display: block !important; width: 100% !important; border: 1px solid #ddd !important;
+                box-shadow: none !important; margin-bottom: 20px !important; color: #000 !important;
+                animation: none !important; padding: 10px !important; background: none !important;
             }
-            
-            /* Override text colors to Black for print */
             .hero-stats .stat-value, .hero-stats .stat-label, .hero-stats a, 
             .hero h1 a, .hero-role-link, .hero-contact, .hero-contact a {
-                color: #000 !important;
-                text-decoration: none !important;
-                border: none !important;
+                color: #000 !important; text-decoration: none !important; border: none !important;
             }
-            
-            .hero-stats .stat-row {
-                border-bottom: 1px solid #eee !important;
-            }
-            
+            .hero-stats .stat-row { border-bottom: 1px solid #eee !important; }
             .stat-toggle { display: none !important; }
             
-            /* Ensure the breakdown lists are visible */
             .pub-breakdown {
-                display: block !important;
-                max-height: none !important;
-                height: auto !important;
-                border: 1px solid #eee;
-                margin-top: 10px;
+                display: block !important; max-height: none !important; height: auto !important;
+                border: 1px solid #eee; margin-top: 10px;
             }
-            .pub-breakdown a {
-                border-bottom: 1px solid #ddd;
-                color: #000 !important;
-            }
+            .pub-breakdown a { border-bottom: 1px solid #ddd; color: #000 !important; }
 
             footer {
-                display: block !important;
-                background: none !important;
-                color: #000 !important;
-                border-top: 2px solid #333 !important;
-                margin-top: 20px !important;
+                display: block !important; background: none !important; color: #000 !important;
+                border-top: 2px solid #333 !important; margin-top: 20px !important;
             }
-            
-            /* Expand All Accordion Panels */
             .panel {
-                max-height: none !important;
-                overflow: visible !important;
-                opacity: 1 !important;
-                border: 1px solid #ddd !important;
-                border-left: 5px solid var(--primary) !important;
-                display: block !important;
-                margin-bottom: 15px !important;
+                max-height: none !important; overflow: visible !important; opacity: 1 !important;
+                border: 1px solid #ddd !important; border-left: 5px solid var(--primary) !important;
+                display: block !important; margin-bottom: 15px !important;
             }
-
-            /* Simplifies buttons for print */
             .accordion-btn {
-                border: none !important;
-                border-left: 5px solid var(--primary) !important;
-                background: none !important;
-                color: #000 !important;
-                padding-left: 10px !important;
-                text-decoration: underline !important;
-                font-weight: bold !important;
-                margin-bottom: 0 !important;
+                border: none !important; border-left: 5px solid var(--primary) !important;
+                background: none !important; color: #000 !important; padding-left: 10px !important;
+                text-decoration: underline !important; font-weight: bold !important; margin-bottom: 0 !important;
             }
             .accordion-btn i { display: none !important; }
 
-            .scrollable-list {
-                max-height: none !important;
-                overflow-y: visible !important;
-            }
-
-            body { 
-                padding-top: 40px !important; 
-                padding-bottom: 80px !important; 
-                background: #fff !important; 
-                color: #000 !important;
-            }
-            .container { 
-                max-width: 100% !important; 
-                padding: 0 !important; 
-                margin: 0 !important;
-            }
+            .scrollable-list { max-height: none !important; overflow-y: visible !important; }
+            body { padding-top: 40px !important; padding-bottom: 80px !important; background: #fff !important; color: #000 !important; }
+            .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
             
-            /* Show Separators in Print */
             .separator { 
-                display: block !important; 
-                height: 4px !important; 
+                display: block !important; height: 4px !important; 
                 background: radial-gradient(circle, var(--primary) 0%, rgba(0,46,95,0) 90%) !important;
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important;
-                margin: 30px 0 30px 0 !important; 
-                border: none !important;
-                opacity: 1 !important;
+                -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
+                margin: 30px 0 30px 0 !important; border: none !important; opacity: 1 !important;
             }
             
             .section-title { margin-top: 20px !important; }
-            
-            /* Avoid breaking elements across pages */
             section { page-break-inside: avoid; }
             .pub-item, .award-card, .edu-card { page-break-inside: avoid; }
+            a { text-decoration: underline !important; color: var(--primary) !important; }
 
-            a {
-                text-decoration: underline !important;
-                color: var(--primary) !important;
-            }
-
-            /* Custom Footer for Print */
             #print-footer {
-                display: block !important;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                text-align: center;
-                font-size: 0.8rem;
-                color: #555;
-                background-color: #fff;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-top: 1px solid #ccc;
-                z-index: 9999;
+                display: block !important; position: fixed; bottom: 0; left: 0; width: 100%;
+                text-align: center; font-size: 0.8rem; color: #555; background-color: #fff;
+                padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #ccc; z-index: 9999;
             }
         }
     </style>
 </head>
 
 <!-- 
-    SECTION D: THE BODY
-    This is where all the visible content lives.
+    ========================================================================
+    4.0: PAGE CONTENT (BODY)
+    ========================================================================
 -->
 <body>
 
-    <!-- D.1: CUSTOM PRINT FOOTER CONTAINER
-         Only shows up when you physically print the page.
-    -->
+    <!-- 4.1: PRINT FOOTER (Hidden on Screen) -->
     <div id="print-footer">Downloaded from https://shabanahmad.github.io/ on <span id="print-date"></span></div>
 
-    <!-- D.2: SIDEBAR 
-         The fixed icons on the side of the screen.
-    -->
+    <!-- 4.2: STICKY SIDEBAR ICONS -->
     <div class="sticky-sidebar">
         <a href="mailto:shaban.ucph@gmail.com" target="_blank" class="h-social" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -1027,23 +824,19 @@
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
     </div>
 
-    <!-- 
-       NEW ELEMENT: BACK-TO-TOP BUTTON 
-       Gold circle with an upward arrow. Only visible when scrolling down.
-    -->
+    <!-- 4.3: BACK-TO-TOP BUTTON -->
     <div class="back-to-top" id="back-to-top">
         <i class="fas fa-chevron-up"></i>
     </div>
     
-    <!-- D.3: MAIN HEADER 
-         The navigation bar at the top.
-    -->
+    <!-- 4.4: HEADER NAVIGATION -->
     <header id="main-header">
         <div class="header-content">
             <a href="https://shabanahmad.github.io/" class="header-name">Dr Shaban</a>
 
-
             <ul class="nav-list" id="nav-menu">
+                <!-- NEW: Home Button -->
+                <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
@@ -1057,12 +850,10 @@
         </div>
     </header>
 
-    <!-- D.4: HERO SECTION 
-         The large introductory area with photo, title, and stats.
-    -->
+    <!-- 4.5: HERO SECTION (INTRODUCTION) -->
     <div class="hero-section-wrapper" id="hero-section">
         <section class="hero">
-            <!-- Left side: Photo & Intro Text -->
+            <!-- Left: Profile Info -->
             <div class="hero-main">
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/180?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
@@ -1074,7 +865,7 @@
                 </div>
             </div>
             
-            <!-- Right side: Floating Statistics Box -->
+            <!-- Right: Stats Box -->
             <div class="hero-stats">
                 <div class="stat-row-link" style="padding:0;">
                     <div class="stat-row">
@@ -1082,7 +873,7 @@
                         <span class="stat-toggle" onclick="togglePubStats(event)"> <i class="fas fa-chevron-down"></i> </span>
                         <a href="#publications" class="stat-value">74+</a>
                     </div>
-                    <!-- Collapsible Dropdown -->
+                    <!-- Stats Dropdown -->
                     <div class="pub-breakdown" id="pub-breakdown">
                         <a href="#publications" onclick="triggerAccordion('pubs-journal')">
                             <span><i class="fas fa-file-alt" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Journal Articles</span>
@@ -1092,12 +883,10 @@
                             <span><i class="fas fa-book-open" style="margin-right:8px; font-size:0.8rem; color:rgba(255,255,255,0.7);"></i> Book Chapters</span>
                             <span class="pub-badge">24+</span>
                         </a>
-                        
-                        <a href="#patents" class="patent-link-hero" style="color:#ff6b6b;">
-                            <span><i class="fas fa-certificate"></i> Patents</span>
-                            <span style="color:#ff6b6b; font-weight:bold;">1</span>
-                        </a>
-
+                        <a href="#patents" class="patent-link-hero" style="color:#e05d5d;">
+                                <span><i class="fas fa-stamp"></i> Patents</span>
+                                <span style="color:#e05d5d; font-weight:bold;">1</span>
+                            </a>
                         <a href="#publications" onclick="triggerAccordion('pubs-data')" class="secondary-pub-item">
                             <span><i class="fas fa-database" style="margin-right:8px; font-size:0.8rem;"></i> Data & Codes</span>
                             <span class="pub-badge">6+</span>
@@ -1128,16 +917,14 @@
                     </div>
                 </a>
                 
-                <!-- Download Buttons -->
                 <div class="cv-btn-group">
                     <a href="Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a>
-                    
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- D.5: PROFILE & EDUCATION SECTION -->
+    <!-- 4.6: ABOUT ME & EDUCATION -->
     <section id="profile" class="container" style="margin-top: 1rem;">
         <h2 class="section-title">About Me</h2>
         <div class="profile-text">
@@ -1147,48 +934,42 @@
             <p style="margin-top:10px;">
                 My work centres on deep learning–based predictive modelling, including <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:400;">DrLungker</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:400;">LungXAI</a>, and <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:400;">DeepEntXAI</a>. I bring strong expertise in protein modelling, multitargeted molecular docking, interaction fingerprints, DFT, WaterMap, MD Simulations, MM-GBSA and free-energy calculations, and many more.
             </p>
-            
             <p style="margin-top:10px;">
                 My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" style="color:var(--primary); font-weight:400;">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" style="color:var(--primary); font-weight:400;">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" style="color:var(--primary); font-weight:400;">SRM University</a>—and now continues through international research in Finland and Denmark.
-
             </p>
-
             <span class="sub-heading-bold">My Educational Background Includes:</span>
         </div>
         
-            <!-- Education Grid -->
-            <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
-                <div class="edu-card edu-phd">
-                    <div class="edu-header">
-                        <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
-                        <span class="year-span">(2025)</span>
-                    </div>
-                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+        <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
+            <div class="edu-card edu-phd">
+                <div class="edu-header">
+                    <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
+                    <span class="year-span">(2025)</span>
                 </div>
-                <div class="edu-card edu-msc">
-                    <div class="edu-header">
-                        <h4>MSc Bioinformatics</h4>
-                        <span class="year-span">(2020)</span>
-                    </div>
-                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
-                </div>
-                <div class="edu-card edu-bsc">
-                    <div class="edu-header">
-                        <h4>BSc (Hons) Botany</h4>
-                        <span class="year-span">(2018)</span>
-                    </div>
-                    <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
-                </div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
             </div>
+            <div class="edu-card edu-msc">
+                <div class="edu-header">
+                    <h4>MSc Bioinformatics</h4>
+                    <span class="year-span">(2020)</span>
+                </div>
+                <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+            </div>
+            <div class="edu-card edu-bsc">
+                <div class="edu-header">
+                    <h4>BSc (Hons) Botany</h4>
+                    <span class="year-span">(2018)</span>
+                </div>
+                <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
+            </div>
+        </div>
 
-            <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">
-                Honorary Alumnus of the <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a>, recognised for completion of the SERB (DST-GoI) funded KARYASHALA program.
-            </p>
-
+        <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">
+            Honorary Alumnus of the <a href="https://niperahm.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a>, recognised for completion of the SERB (DST-GoI) funded KARYASHALA program.
+        </p>
  
         <span class="sub-heading-bold">My Research Interests Include:</span>
         
-        <!-- Interests Tags -->
         <div class="interests-wrapper">
             <div class="int-tag">💊 AI in Drug Design</div>
             <div class="int-tag">🤖 AI in Genomics</div>
@@ -1204,12 +985,10 @@
         <hr class="separator">
     </section>
 
-    <!-- D.6: EXPERIENCE SECTION -->
+    <!-- 4.7: EXPERIENCE SECTION -->
     <section id="experience" class="container">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
-            
-            <!-- Postdoc -->
             <div class="exp-box exp-full">
                 <div class="exp-header">
                     <div class="exp-role">Postdoc Researcher</div>
@@ -1220,7 +999,6 @@
                 <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
             </div>
 
-            <!-- Visiting -->
             <div class="exp-box exp-part">
                 <div class="exp-header">
                     <div class="exp-role">Visiting Researcher</div>
@@ -1284,11 +1062,11 @@
         <hr class="separator">
     </section>
 
-    <!-- D.7: AWARDS SECTION -->
+    <!-- 4.8: AWARDS SECTION -->
     <section id="awards" class="container">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
-            <!-- Each award is its own card. Numbering is handled automatically by JavaScript. -->
+            <!-- JS Numbers these automatically -->
             <div class="award-card">
                 <i class="fas fa-medal award-badge-icon"></i>
                 <div class="award-content-wrapper">
@@ -1391,18 +1169,21 @@
         <hr class="separator">
     </section>
 
-    <!-- D.8: PATENTS SECTION -->
+    <!-- 4.9: PATENTS SECTION -->
     <section id="patents" class="container">
         <h2 class="section-title">Patents (IPR)</h2>
         <div class="grid-container">
             <div class="patent-box">
+                <!-- Main Icon is Gold via CSS -->
                 <i class="fas fa-certificate patent-icon"></i>
                 <div>
-                    <h4>Granted: 01 (German)</h4>
+                    <!-- Gold Badge with Red Tick -->
+                    <h4><span class="grant-badge"><i class="fas fa-check-circle"></i> Granted</span> 01 (German)</h4>
                     <p>Extended-Release Tablet Composition for Multitarget Cancer Therapy</p>
                     <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020241010280&CURSOR=8" target="_blank" class="patent-link">View Details <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
+
             <div class="patent-box">
                 <i class="fas fa-file-signature patent-icon"></i>
                 <div>
@@ -1414,11 +1195,11 @@
         <hr class="separator">
     </section>
 
-
-    <!-- D.9: PUBLICATIONS SECTION -->
+    <!-- 4.10: PUBLICATIONS SECTION -->
     <section id="publications" class="container">
         <h2 class="section-title">Publications & Scholarly Works</h2>
-        <!-- Accordion 1: Journal Articles -->
+        
+        <!-- Journal Articles -->
         <button class="accordion-btn" id="pubs-journal">Journal Articles <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1432,9 +1213,9 @@
                         <li class="pub-item"><strong>Multimodal evaluation of Mannose Engineered Poly Lactic Glycolic Acid Nanoparticles with Granulocyte Colony Stimulating Factor Focused Delivery to Bone Marrow for Neutropenia</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-025-29790-w" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em> <a class="pub-doi" href="http://doi.org/10.1080/1061186X.2025.2530656" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Correction: Integrative computational approaches identify haptoglobin inhibitors to modulate erythrocyte sedimentation rate...</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1662748" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Correction: Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1662748" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>FDA-approved Levophed as an alternative multitargeted therapeutic against cervical cancer transferase, cell cycle, and regulatory proteins</strong><br><em>Computers in Biology and Medicine (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.compbiomed.2025.110163" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Probing the Multitargeted Potency of Theodrenaline and Its Comparative Evaluation with Crizotinib Against Transferase, Hydrolase, Signalling, and Apoptosis-Related Proteins...</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Probing the multitargeted potency of Theodrenaline and its comparative evaluation with Crizotinib against transferase, hydrolase, signalling, and apoptosis-related proteins to overcome lung cancer drug resistance</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1611972" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Evaluating the polypharmacological potency of FEDPN from ChEMBL BioAssays against lung cancer EGFR, ALK, TrkA and KRAS proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.141703" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>RCSB Protein Data Bank: Revolutionising Drug Discovery and Design for Over Five Decades</strong><br><em>Medical Data Mining (2025)</em> <a class="pub-doi" href="https://doi.org/10.53388/MDM202508008" target="_blank">DOI</a></li>
@@ -1462,8 +1243,8 @@
                         <li class="pub-item"><strong>Structure-based virtual screening, molecular docking, molecular dynamics simulation, and metabolic reactivity studies of quinazoline derivatives for their anti-EGFR activity against tumour angiogenesis</strong><br><em>Current Medicinal Chemistry (2023)</em> <a class="pub-doi" href="https://doi.org/10.2174/0929867330666230309143711" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Comprehensive Computational Studies of Naturally Occurring Kuguacins as Anti-diabetic Agents by Targeting Visfatin</strong><br><em>Chemistry Africa (2023)</em> <a class="pub-doi" href="http://dx.doi.org/10.1007/s42250-023-00604-8" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Predictive modelling and therapeutic repurposing of natural compounds against the receptor-binding domain of SARS-CoV-2</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Correction to: Novel Severe Acute Respiratory Syndrome Coronavirus 2...</strong><br><em>Mol. Cell. Biochem. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-021-04317-9" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation...</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Correction to: Novel Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2) and other coronaviruses: a genome-wide comparative annotation and analysis</strong><br><em>Mol. Cell. Biochem. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s11010-021-04317-9" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation, an Increasing Antigenic and Anti-Inflammatory Cytokine Induction, and Rising Structural Protein Instability: A Minimal Number Genome-Based Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Comparative insight into Rice chloroplasts genome: Mutational Phylogenomics reveals Echinochloa oryzicola as the ongoing progenitor of rice</strong><br><em>Gen. Res. Crop Evol. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10722-022-01471-x" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Macrophage-Targeted Punicalagin Nanoengineering to Alleviate Methotrexate-Induced Neutropenia: A Molecular Docking, DFT, and MD Simulation Analysis</strong><br><em>Molecules (2022)</em> <a class="pub-doi" href="https://doi.org/10.3390/molecules27186034" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>In silico analysis reveals Quinic acid as a multitargeted inhibitor against Cervical Cancer</strong><br><em>J. Biomol. Struct. Dyn. (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2022.2146202" target="_blank">DOI</a></li>
@@ -1482,7 +1263,7 @@
             </div>
         </div>
 
-        <!-- Accordion 2: Book Chapters -->
+        <!-- Book Chapters -->
         <button class="accordion-btn" id="pubs-book">Book Chapters <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1517,11 +1298,10 @@
             </div>
         </div>
 
-        <!-- Accordion 3: Data & Codes -->
+        <!-- Data & Codes -->
         <button class="accordion-btn" id="pubs-data">Data & Codes <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                 <!-- No number reversed needed here as it's a ul list of codes -->
                  <ul class="pub-list">
                     <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
                     <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
@@ -1535,8 +1315,7 @@
         <hr class="separator">
     </section>
 
-
-    <!-- D.10: CONFERENCES SECTION -->
+    <!-- 4.11: CONFERENCES SECTION -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
         <!-- Conferences Accordion -->
@@ -1551,6 +1330,7 @@
                         <li class="pub-item"><strong>In silico study of aromatase inhibitors using computer-aided drug design</strong><div class="event-meta">World Congress on Reproductive Health (ISSRF2020), Katra, J&K | Feb 14-16, 2020</div></li>
                         <li class="pub-item"><strong>Rice Bean (Vigna umbellata) draft genome sequence: unravelling the late flowering and unpalatability related genomic resources</strong><div class="event-meta">Young Scientist Conference India International Science Festival (YSC-IISF), Kolkata | Nov 05-07, 2019</div></li>
                         <li class="pub-item"><strong>Deep learning and Artificial intelligence in Biological sciences</strong><div class="event-meta">Interdisciplinary Science Conference, JMI, New Delhi | Oct 21-22, 2019</div></li>
+                        <li class="pub-item"><strong>Presenting First Draft Genome Sequence Rice Bean</strong><div class="event-meta">Interdisciplinary Science Conference, JMI, New Delhi | Oct 21-22, 2019</div></li>
                         <li class="pub-item"><strong>Efficacy of Weed based botanicals against Rhizoctonia root rot in Buckwheat (Fagopyrum sp.)</strong><div class="event-meta">1st National Conference on 'Neglected and Underutilized Crop Species', NIPGR, New Delhi | Aug 02, 2019</div></li>
                         <li class="pub-item"><strong>Sustainable Agriculture and Global Food Security: Perspective, importance and Opinion</strong><div class="event-meta">Symposium on 'Avenues in Plants Sciences', Deshbandhu College, New Delhi | Mar 8-9, 2019</div></li>
                         <li class="pub-item"><strong>Buckwheat (Kuttu): As food, good health and Medicine</strong><div class="event-meta">National Conference on CCSMAP, MRIIRS | Feb 21-22, 2019</div></li>
@@ -1573,14 +1353,14 @@
                         <li class="pub-item"><strong>Clinical Interpretation of Whole Genome Sequences</strong><div class="event-meta">Knowmics (Online Course) | June 29, 2025</div></li>
                         <li class="pub-item"><strong>New Education Policy (NEP) 2020 Sensitisation Programme</strong><div class="event-meta">UGC-MMTTC, Jamia Millia Islamia, New Delhi | Aug 05-14, 2024</div></li>
                         <li class="pub-item"><strong>Enabling Technology Training (ETT-5) Workshop</strong><div class="event-meta">SCIS, JNU, New Delhi | Feb 17, 2024</div></li>
-                        <li class="pub-item"><strong>"Artificial Intelligence in Modern Biology-2"</strong><div class="event-meta">ICGEB, New Delhi | Sep 12-14, 2023</div></li>
+                        <li class="pub-item"><strong>Artificial Intelligence in Modern Biology-2</strong><div class="event-meta">ICGEB, New Delhi | Sep 12-14, 2023</div></li>
                         <li class="pub-item"><strong>Indo-Vietnam Hands-on Workshop on Sequencing Techniques</strong><div class="event-meta">CSIR-IGIB, New Delhi | Aug 02-06, 2023</div></li>
                         <li class="pub-item"><strong>Computational Techniques for AI and Data Science Applications</strong><div class="event-meta">DST-STUTI, Banasthali Vidyapith, Rajasthan | July 25-31, 2023</div></li>
-                        <li class="pub-item"><strong>Hands-on Workshop on "Design, Synthesis, Computational Studies..."</strong><div class="event-meta">SERB-KARYASHALA, NIPER-Ahmedabad | Jan 30 - Feb 05, 2023</div></li>
+                        <li class="pub-item"><strong>Hands-on Workshop on Design, Synthesis, Computational Studies and Data Interpretation of Drug-Like molecules</strong><div class="event-meta">SERB-KARYASHALA, NIPER-Ahmedabad | Jan 30 - Feb 05, 2023</div></li>
                         <li class="pub-item"><strong>Accelerate your Research Using Elsevier’s Science Direct and Scopus</strong><div class="event-meta">NIPER-Ahmedabad | Jan 31, 2023</div></li>
                         <li class="pub-item"><strong>Application of High-Performance Computing in Drug Designing</strong><div class="event-meta">SERB, MNNIT Allahabad | Aug 06, 2022</div></li>
                         <li class="pub-item"><strong>BioC2022- Bioconductor Conference 2022</strong><div class="event-meta">Seattle Children’s Hospital (Virtual) | July 27-29, 2022</div></li>
-                        <li class="pub-item"><strong>Cloud-based Hands-on Workshop on Molecular Docking...</strong><div class="event-meta">ICMR-NICPR & Schrodinger Inc, Noida | Mar 15-16, 2022</div></li>
+                        <li class="pub-item"><strong>Cloud-based Hands-on Workshop on Molecular Docking, Pharmacophore Modeling and Machine Learning</strong><div class="event-meta">ICMR-NICPR & Schrodinger Inc, Noida | Mar 15-16, 2022</div></li>
                         <li class="pub-item"><strong>Discovery of Vaccines and Drugs for Infectious Diseases</strong><div class="event-meta">ICGEB, New Delhi | Dec 06-09, 2021</div></li>
                         <li class="pub-item"><strong>7 days International Workshop on Artificial Intelligence</strong><div class="event-meta">AiCHEF & St Claret College, Bengaluru | Nov 15-21, 2021</div></li>
                         <li class="pub-item"><strong>2-days Cloud-based Hands-on Workshop: Computational SBDD & MD Simulations</strong><div class="event-meta">SRM University & Schrodinger Inc | Sep 02-03, 2021</div></li>
@@ -1608,31 +1388,31 @@
                         <li class="pub-item"><strong>The 3rd International Electronic Conference on Cancers</strong><div class="event-meta">MDPI | Mar 16-30, 2023</div></li>
                         <li class="pub-item"><strong>The 2nd International Electronic Conference on Biomedicines</strong><div class="event-meta">MDPI | Mar 01-31, 2023</div></li>
                         <li class="pub-item"><strong>MDPI Webinar: GIS in the Management of Sustainable and Smart Cities</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
-                        <li class="pub-item"><strong>MDPI Webinar: Entropy Measures to Assess Irregularity...</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
+                        <li class="pub-item"><strong>Entropy Webinar | Entropy Measures to Assess Irregularity and Complexity of Time Series and Multidimensional Data</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
                         <li class="pub-item"><strong>Seminar: Recent Advances in Translational Cancer Research</strong><div class="event-meta">IGNTU, Amarkantak | Feb 08, 2023</div></li>
                         <li class="pub-item"><strong>MDPI Webinar: Screening for miRNA With Essentiality in Cancer</strong><div class="event-meta">Online | Dec 13, 2022</div></li>
-                        <li class="pub-item"><strong>MDPI Webinar: Cardio-Oncology...</strong><div class="event-meta">Online | Dec 07, 2022</div></li>
+                        <li class="pub-item"><strong>MDPI Webinar: Cardio-Oncology: From Adverse Outcome Pathways to Treatments to Mitigate Cardiotoxicity of Anticancer Therapies</strong><div class="event-meta">Online | Dec 07, 2022</div></li>
                         <li class="pub-item"><strong>National Webinar on Emotional Intelligence</strong><div class="event-meta">MQI College, Bangalore | Dec 07, 2022</div></li>
                         <li class="pub-item"><strong>21st International Conference on Bioinformatics (InCoB)</strong><div class="event-meta">KAUST, Saudi Arabia | Nov 21-23, 2022</div></li>
-                        <li class="pub-item"><strong>Seminar on "Intellectual Property Rights"</strong><div class="event-meta">Jamia Millia Islamia, New Delhi | Feb 28, 2022</div></li>
+                        <li class="pub-item"><strong>Seminar on Intellectual Property Rights</strong><div class="event-meta">Jamia Millia Islamia, New Delhi | Feb 28, 2022</div></li>
                         <li class="pub-item"><strong>3rd ICGA 2022 Virtual Conference: Biobanking to Omics</strong><div class="event-meta">Online | Jan 13-14, 2022</div></li>
                         <li class="pub-item"><strong>Economic botany and plant genetic resources: National Perspective</strong><div class="event-meta">Deshbandhu College, New Delhi | Jan 18, 2022</div></li>
                         <li class="pub-item"><strong>ISCBSC- RSG India Student Symposium 2019</strong><div class="event-meta">JNU, New Delhi | Nov 22, 2019</div></li>
                         <li class="pub-item"><strong>Young Scientist Conference - India International Science Festival (YSC-IISF)</strong><div class="event-meta">Kolkata | Nov 05-07, 2019</div></li>
                         <li class="pub-item"><strong>Interdisciplinary Science Conference: Big Data and Computational Biology</strong><div class="event-meta">JMI, New Delhi | Oct 21-22, 2019</div></li>
                         <li class="pub-item"><strong>DST-PURSE National Seminar on Biophysics</strong><div class="event-meta">JMI, New Delhi</div></li>
-                        <li class="pub-item"><strong>Mini-symposium on "Tracking Antimicrobial Drug Resistance Tuberculosis"</strong><div class="event-meta">VPCI, Delhi University</div></li>
+                        <li class="pub-item"><strong>Mini-symposium on Tracking Antimicrobial Drug Resistance Tuberculosis</strong><div class="event-meta">VPCI, Delhi University</div></li>
                         <li class="pub-item"><strong>20th Distinguished Lecture by Sir Prof. Tom Blundell</strong><div class="event-meta">Jamia Hamdard, New Delhi | Mar 20, 2019</div></li>
-                        <li class="pub-item"><strong>Symposium on "Avenues in Plants Sciences"</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
+                        <li class="pub-item"><strong>Symposium on Avenues in Plants Sciences</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
                         <li class="pub-item"><strong>National Conference on CCSMAP</strong><div class="event-meta">MRIIRS | Feb 21-22, 2019</div></li>
-                        <li class="pub-item"><strong>Fourth National Symposium on "Environment: Green Technology..."</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
+                        <li class="pub-item"><strong>Environment: Green Technology for Environmental Sustainability"</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
                         <li class="pub-item"><strong>National Science Congress Association Delhi Chapter</strong><div class="event-meta">Zakir Hussain Delhi College | Oct 25, 2017</div></li>
-                        <li class="pub-item"><strong>"PARIVARTAN 2K18"</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
+                        <li class="pub-item"><strong>PARIVARTAN 2K18</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
                         <li class="pub-item"><strong>26th World Environmental Congress (WEED)</strong><div class="event-meta">India International Centre, New Delhi | Nov 08, 2017</div></li>
-                        <li class="pub-item"><strong>"BIOTIKOS 2017"</strong><div class="event-meta">TERI School of Advanced Sciences | Sep 28-29, 2017</div></li>
-                        <li class="pub-item"><strong>Conference on "Growth control in development and disease"</strong><div class="event-meta">NII, New Delhi | Oct 07, 2016</div></li>
-                        <li class="pub-item"><strong>National Conference on "Galapagos Island and Darwin's Theory of Evolution"</strong><div class="event-meta">NII, New Delhi | Oct 06, 2016</div></li>
-                        <li class="pub-item"><strong>ICSSR-sponsored seminar "Emerging Issues of Climate change"</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
+                        <li class="pub-item"><strong>BIOTIKOS 2017</strong><div class="event-meta">TERI School of Advanced Sciences | Sep 28-29, 2017</div></li>
+                        <li class="pub-item"><strong>Conference on Growth control in development and disease</strong><div class="event-meta">NII, New Delhi | Oct 07, 2016</div></li>
+                        <li class="pub-item"><strong>National Conference on Galapagos Island and Darwin's Theory of Evolution"</strong><div class="event-meta">NII, New Delhi | Oct 06, 2016</div></li>
+                        <li class="pub-item"><strong>ICSSR-sponsored seminar Emerging Issues of Climate change</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
                         <li class="pub-item"><strong>Environmental Concerns of the 21st century</strong><div class="event-meta">Zakir Hussain Delhi College</div></li>
                     </ol>
                 </div>
@@ -1641,8 +1421,7 @@
         <hr class="separator">
     </section>
 
-
-    <!-- D.11: PROFESSIONAL ACTIVITIES SECTION -->
+    <!-- 4.12: PROFESSIONAL ACTIVITIES SECTION -->
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -1669,8 +1448,6 @@
                 </ol>
             </div>
         </div>
-
-
  
         <button class="accordion-btn">Peer Reviews <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
@@ -1747,7 +1524,6 @@
             </div>
         </div>
 
-
         <button class="accordion-btn">Mentorship & Supervision <i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
@@ -1761,7 +1537,7 @@
         <hr class="separator">
     </section>
 
-    <!-- D.12: TECHNICAL PROFICIENCY GRID -->
+    <!-- 4.13: TECHNICAL PROFICIENCY GRID -->
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
         <button class="accordion-btn">Computational Biology & Drug Discovery <i class="fas fa-chevron-down"></i></button>
@@ -1905,32 +1681,26 @@
         <hr class="separator">
     </section>
 
-    <!-- D.13: REFEREES GRID -->
+    <!-- 4.14: REFEREES GRID -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
             
-            <!-- 1. Tue Kjærgaard Nielsen -->
             <div class="referee-card ref-1">
-                <!-- Header with Name Left and Role Right -->
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Dr Tue K. Nielsen</a></div>
                     <span class="referee-role">(Postdoc PI)</span>
                 </div>
                 <div class="referee-title-line">Associate Professor</div>
-                
-                <!-- Institute with Badge -->
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://plen.ku.dk/english/" target="_blank">University of Copenhagen, Denmark</a>
                 </div>
-                
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <a href="mailto:tkn@plen.ku.dk">tkn@plen.ku.dk</a>
                 </div>
             </div>
 
-            <!-- 2. Dr Khalid Raza -->
             <div class="referee-card ref-2">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a></div>
@@ -1946,7 +1716,6 @@
                 </div>
             </div>
             
-            <!-- 3. Tiina Jokela -->
             <div class="referee-card ref-3">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a></div>
@@ -1962,7 +1731,6 @@
                 </div>
             </div>
 
-            <!-- 4. Manoj Yadav -->
              <div class="referee-card ref-4">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a></div>
@@ -1978,7 +1746,6 @@
                 </div>
             </div>
             
-            <!-- 5. Murugesh Eswaran -->
             <div class="referee-card ref-5">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div>
@@ -1989,7 +1756,6 @@
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:meswaran@msm.edu">meswaran@msm.edu</a></div>
             </div>
             
-            <!-- 6. Mansaf Alam -->
             <div class="referee-card ref-6">
                 <div class="ref-header">
                     <div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div>
@@ -1999,13 +1765,11 @@
                 <div class="ref-inst-row"><i class="fas fa-university email-badge"></i> <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia, India</a></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <a href="mailto:malam2@jmi.ac.in">malam2@jmi.ac.in</a></div>
             </div>
-            
         </div>
         <hr class="separator">
     </section>
 
-
-    <!-- D.14: FOOTER -->
+    <!-- 4.15: FOOTER -->
     <footer>
         <div class="footer-socials">
             <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -2022,18 +1786,17 @@
     </footer>
 
     <!-- 
-       SECTION E: JAVASCRIPT LOGIC
-       The "Brain" of the website that makes things click, move, and scroll.
+        ========================================================================
+        SECTION 5: JAVASCRIPT BEHAVIOR (LOGIC ENGINE)
+        ========================================================================
     -->
     <script>
-        // E.1: HEADER SCROLL LOGIC
-        // When you scroll down, the name "Dr Shaban" appears in the top left corner.
+        // 5.1: HEADER SCROLL VISIBILITY
+        // Shows the name in the header only after scrolling past the Hero section.
         window.addEventListener('scroll', function() {
-            // Only do this on screens wider than 900px (Desktop)
             if (window.innerWidth > 900) {
                 const headerName = document.querySelector('.header-name');
                 const hero = document.querySelector('.hero');
-                // Calculate when to show the name (after scrolling past most of the Hero section)
                 const triggerHeight = hero.offsetHeight - 150; 
                 if (window.scrollY > triggerHeight) {
                     headerName.classList.add('visible');
@@ -2043,10 +1806,9 @@
             }
         });
 
-        // E.2: BACK-TO-TOP LOGIC
+        // 5.2: BACK-TO-TOP BUTTON VISIBILITY
         const backToTopBtn = document.getElementById("back-to-top");
         window.addEventListener("scroll", () => {
-            // Show button if scrolled down more than 300px
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add("visible");
             } else {
@@ -2054,22 +1816,19 @@
             }
         });
 
-        // Smooth scroll to top when clicked
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // E.3: MENU TOGGLE (MOBILE)
-        // Opens and closes the side menu when clicking the "Hamburger" icon.
+        // 5.3: MOBILE MENU TOGGLE
         function toggleMenu() {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
-            // Toggle the 'active' class which slides the menu in/out via CSS
             navBar.classList.toggle('active');
             toggleBtn.classList.toggle('open');
         }
 
-        // Auto-close menu when a link is clicked
+        // Close menu when clicking a link
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -2080,7 +1839,7 @@
             });
         });
 
-        // Auto-close menu when clicking outside of it
+        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
@@ -2089,14 +1848,12 @@
             }
         });
 
-        // E.4: ACCORDION LOGIC
-        // Expands and collapses the publication lists.
+        // 5.4: ACCORDION LOGIC
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
-                // If open, close it (max-height: null). If closed, open it (max-height: scrollHeight).
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
@@ -2105,13 +1862,10 @@
             });
         }
 
-        // E.5: HERO DROPDOWN LOGIC
-        // Controls the small stats dropdown menu in the blue hero section.
+        // 5.5: STATS DROPDOWN LOGIC
         function togglePubStats(e) {
-            // Special handling for the Patent link inside the dropdown to allow navigation
             if (e.currentTarget.classList.contains('stat-toggle') || e.currentTarget.classList.contains('patent-pub-item')) {
                  if (e.currentTarget.classList.contains('patent-pub-item')) {
-                     // If clicking patent link: close dropdown but allow browser to jump to section
                      const breakdown = document.getElementById('pub-breakdown');
                      const toggleIcon = document.querySelector('.stat-toggle i');
                      breakdown.classList.remove('open');
@@ -2123,20 +1877,17 @@
                      return; 
                  }
                  
-                 // If clicking the arrow toggle: prevent navigation and just toggle menu
                  e.preventDefault();
                  e.stopPropagation(); 
                  const breakdown = document.getElementById('pub-breakdown');
                  const toggleIcon = e.currentTarget.querySelector('i');
                  
                  if (breakdown.classList.contains('open')) {
-                    // Close it
                     breakdown.classList.remove('open');
                     breakdown.style.maxHeight = "0";
                     toggleIcon.classList.remove('fa-chevron-up');
                     toggleIcon.classList.add('fa-chevron-down');
                  } else {
-                    // Open it
                     breakdown.classList.add('open');
                     breakdown.style.maxHeight = breakdown.scrollHeight + "px";
                     toggleIcon.classList.remove('fa-chevron-down');
@@ -2145,24 +1896,20 @@
             }
         }
 
-        // E.6: AUTO-SCROLL HELPER
-        // When clicking a stat link, this opens the correct accordion and scrolls to it.
+        // 5.6: ACCORDION AUTO-SCROLL
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
             if (btn) {
-                // If the accordion is closed, click it to open
                 if (!btn.classList.contains('active')) {
                     btn.click();
                 }
-                // Wait 300ms for animation, then scroll smoothly
                 setTimeout(() => {
                     btn.scrollIntoView({ behavior: "smooth", block: "center" });
                 }, 300);
             }
         }
 
-        // E.7: SCROLL SPY
-        // Highlights the menu link corresponding to the section currently on screen.
+        // 5.7: SCROLL SPY (HIGHLIGHT ACTIVE SECTION)
         const sections = document.querySelectorAll("section");
         const navLi = document.querySelectorAll(".nav-link");
 
@@ -2171,7 +1918,6 @@
             sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                // -150 offset accounts for the fixed header height
                 if (window.scrollY >= (sectionTop - 150)) {
                     current = section.getAttribute("id");
                 }
@@ -2185,8 +1931,7 @@
             });
         });
 
-        // E.8: AWARD NUMBERING LOGIC
-        // Automatically numbers the awards from bottom to top (so newest is highest number).
+        // 5.8: AWARD NUMBERING
         const awardCards = document.querySelectorAll('.award-card');
         const totalAwards = awardCards.length;
         
@@ -2198,8 +1943,7 @@
             card.appendChild(badge);
         });
 
-        // E.9: PRINT DATE LOGIC
-        // Adds the current date/time to the footer when printing.
+        // 5.9: PRINT DATE STAMP
         document.addEventListener('DOMContentLoaded', () => {
             const dateSpan = document.getElementById('print-date');
             if(dateSpan) {
