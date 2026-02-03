@@ -1,9 +1,9 @@
 I want you to modify the following (Also take help from the attached Old_Code.html file as instructed below)- 
 
 
-1. The header should be 100% hidden and on hero just at the top right side of my image (attached placeholder) the menu button should be there. When user scrolls the Dr Shaban {Home badge} text with white background should appear and the menu button will already be there and upon scroll it back, it will hide again. Remove the Home Button (Take some help from the Old_Code.html). 
+1. The header should be 100% hidden and on hero just at the top right side of my image (attached placeholder) the menu button should be there. When user scrolls the Dr Shaban {Home badge} text should appear and the menu button will already be there and upon scroll it back, it will hide again. Remove the Home Button (Take some help from the Old_Code.html). 
 
-2. On awards the numbering which is written on gold background in white font, make it little bigger so the background too. Also modify the badges a bit more to look more unique. (Take some help from the Old_Code.html)
+2. On awards the numbering which is written on gold background in white font, make it little bigger so the background too. Also modify all the badges (if needed) a bit more to look more unique. (Take some help from the Old_Code.html)
 
 3. Try to make the content with more animations to appear upon scroll. However, as much as content is there on the screen it should be clearly visible need not to scroll to popup. As some screens are kept horizontal and some vertical, so the visible content as much possible should be there by default. (Take some help from the Old_Code.html)
 
@@ -11,14 +11,12 @@ I want you to modify the following (Also take help from the attached Old_Code.ht
 
 5. Add hover over effect on - Honorary Alumnus of the National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad.
 
-6. Redesign the statistics 4 distinct "thin white background" groups in hero-
+6. Redesign the hero statistics, keep it as it looks now but when user clicks to expand then it should make 4 distinct "thin white background" around-
 Group 1: Publications Header + Journal Articles (50+) + Book Chapters (24+).
 Group 2: Patents.
 Group 3: Data & Codes.
 Group 4: Conference Papers.
-Also, set the numbers to white by default and gold on hover.
-
-When it will be normal (collapsed) then no white thin border and when opened then the border will appear. 
+Also, set the numbers to white by default and gold on hover. When it will be normal (collapsed) then no white thin border and when opened then the border will appear. 
 
 7. In the Referee section can you make make it more better by replacing the country with flag and upon hover over, it should tell the name like this-
 Jamia Millia Islamia {India's Flag}
@@ -26,7 +24,4 @@ and when user hover over the flat it should tell India
 
 8. Add badge in each of the sub-buttons in the following sections- Publications & Scholarly Works, Conferences & Events, Professional Activities, Expertise & Technical Proficiencies. Also the left side border the Old_Code.html file looks more cool as it does not feel like joining two, so make it like the Old_Code.html file. Also, the scroll button on the right side, make it in gold colour to be more distinct. 
 
-9. On shaban.png, add a CSS Animation that continuously changes the border-radius (corner roundness) of the image over an 8-second loop.
-By cycling through different curve values for each corner defined in the @keyframes morph block, it creates a fluid, organic "blob" effect that makes the static image look like it is shapeshifting or rotating in a liquid motion.
-
-Remaining, other parts are already good in my code. If you need to change any colour etc to balance it, you are free to do to match a professional looks so the user should stay more and read more. 
+9. On shaban.png, add a CSS Animation that very slowly runs around the border or the image (maybe the same yellow border or different whichsoever should not look bad. 
