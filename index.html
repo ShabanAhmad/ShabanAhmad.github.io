@@ -51,10 +51,11 @@
             position: static !important;
         }
 
-        /* Hides the Google Translate Top Banner */
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        } 
+        /* FORCE HIDE: Google Translate Top Banner and fix layout shift */
+        html { margin-top: 0px !important; }
+        .goog-te-banner-frame { display: none !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body > .skiptranslate { display: none !important; }
         
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
@@ -748,11 +749,30 @@
 
         /* 3.15: MOBILE RESPONSIVE */
         @media (max-width: 900px) {
-            .header-content { justify-content: center; }
+            /* Updated: Use flexbox to distribute space automatically */
+            .header-content { 
+                justify-content: space-between; /* Spread items */
+                gap: 10px;
+            }
+            
+            /* Updated: Dr Shaban Name Auto-Centering Logic */
             .header-name { 
-                display: block !important; opacity: 1 !important; transform: none !important; pointer-events: auto !important;
-                color: var(--accent) !important; font-size: 1.5rem; position: absolute; left: 50%;
-                transform: translateX(-50%) !important; margin: 0; white-space: nowrap; z-index: 1002;
+                display: block !important; 
+                opacity: 1 !important; 
+                transform: none !important; 
+                pointer-events: auto !important;
+                color: var(--accent) !important; 
+                font-size: 1.5rem; 
+                
+                /* Remove absolute positioning so it doesn't overlap */
+                position: static !important; 
+                margin: 0; 
+                
+                /* Flex magic: Take up remaining space and center text within it */
+                flex-grow: 1;
+                text-align: center;
+                white-space: nowrap; 
+                z-index: 1002;
             }
             .header-name i { display: none !important; } 
             
@@ -774,8 +794,21 @@
                 padding: 9px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
             }
             
-            .mobile-controls-container { display: flex; margin-left: auto; z-index: 2002; }
-            .nav-toggle { display: block; position: relative; margin-left: 15px; }
+            /* Controls stay on the right, naturally pushing the name left if needed */
+            .mobile-controls-container { 
+                display: flex; 
+                align-items: center;
+                margin-left: 0; /* Remove auto margin so flex-grow on name works */
+                z-index: 2002; 
+                flex-shrink: 0; /* Prevent controls from shrinking */
+            }
+            
+            /* UPDATED: Increased margin-left to 30px to create space between EN and Menu */
+            .nav-toggle { 
+                display: block; 
+                position: relative; 
+                margin-left: 30px; 
+            }
             
             .sticky-sidebar { 
                 display: flex; left: auto; right: 0; top: 50%;
