@@ -35,7 +35,7 @@ Previously, I completed my PhD in Bioinformatics (AI in Biology) at Jamia Millia
 | Metric | Count | Details |
 |------|------|--------|
 | **Patents** | **1 + 6** | 1 Granted (Germany), 6 in pipeline (India/US) |
-| **Publications** | **74+** | Journal articles, book chapters, conference papers |
+| **Publications** | **100+** | Journal articles, book chapters, conference papers, etc |
 | **Citations** | **1600+** | Verified via Google Scholar |
 | **h-index** | **26** | Sustained research impact |
 | **Peer Reviews** | **450+** | Verified reviews (Web of Science) |
