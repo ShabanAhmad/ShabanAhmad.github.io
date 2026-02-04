@@ -50,7 +50,33 @@
         
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-        /* UPDATED: Scrollbar "Fill" Look - Solid Gold Thumb */
+        /* Highlight Class for Search */
+        .highlight-match {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+        }
+        .highlight-match.active {
+            background-color: orange;
+            outline: 2px solid red;
+        }
+
+        /* ADDED: Search Tools Styles */
+        .search-tools {
+            display: flex; align-items: center; gap: 10px; margin-left: 10px;
+            font-size: 0.9rem; color: #666;
+        }
+        .search-count { 
+            font-weight: bold; min-width: 60px; text-align: center; font-size: 0.9rem;
+        }
+        .search-btn {
+            background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 4px;
+            cursor: pointer; transition: 0.2s; color: var(--primary); font-size: 0.9rem;
+        }
+        .search-btn:hover { background: var(--accent); color: #fff; }
+
+
+        /* Scrollbar "Fill" Look - Solid Gold Thumb */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
         ::-webkit-scrollbar-thumb { 
@@ -112,13 +138,16 @@
             text-decoration: none;
             cursor: pointer;
         }
-        /* Hide Name on Desktop */
+        
+        /* Hide Name on Desktop & Center Content */
         @media (min-width: 901px) {
             .header-name { display: none !important; }
+            /* Updated: Center align the nav on desktop */
             .header-content { justify-content: center; } 
         }
         
         .header-name.visible { opacity: 1; transform: translateX(0); }
+
 
         /* Search Bar (Inside Header) */
         .header-search-bar {
@@ -142,7 +171,7 @@
 
         /* Nav List */
         .nav-list { 
-            display: flex; list-style: none; gap: 10px; padding: 0; margin: 0 0 0 auto; align-items: center;
+            display: flex; list-style: none; gap: 10px; padding: 0; margin: 0; align-items: center;
         }
         
         .nav-link { 
@@ -183,10 +212,16 @@
             z-index: 2005;
         }
         .custom-lang-dropdown.show { display: flex; }
+        
+        /* UPDATED: Flexbox for Language Options */
         .lang-option {
-            padding: 8px 15px; font-size: 0.85rem; color: #333; cursor: pointer; transition: 0.2s;
+            padding: 8px 15px; font-size: 0.85rem; color: #333; 
+            cursor: pointer; transition: 0.2s;
+            display: flex; align-items: center; gap: 10px; /* Ensures inline */
+            white-space: nowrap; /* Forces text and flag on same line */
         }
         .lang-option:hover { background: #f0f0f0; color: var(--accent); }
+        
         #google_translate_element { display: none; }
 
         /* Mobile Specifics */
@@ -442,16 +477,19 @@
         }
         .accordion-btn:hover { background: #f0f4f8; }
 
+        /* ACTIVE ACCORDION BUTTON - Seamless Border */
         .accordion-btn.active { 
             background: #fff; color: var(--primary); 
-            border-bottom: 1px solid transparent; 
             border-left: 5px solid var(--primary);
-            border-top: 1px solid #ddd; border-right: 1px solid #ddd;
+            border-top: 2px solid var(--primary);
+            border-right: 2px solid var(--primary);
+            border-bottom: none; /* No border between button and panel */
             text-decoration: underline; margin-bottom: 0; 
             border-bottom-left-radius: 0; border-bottom-right-radius: 0;
         }
         .accordion-btn.active i.fa-chevron-down { transform: rotate(180deg); color: var(--accent); }
         
+        /* ACTIVE PANEL - Seamless Border */
         .panel { 
             max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; 
@@ -461,7 +499,13 @@
             margin-bottom: 10px;
             border-top-left-radius: 0; border-top-right-radius: 0;
         }
-        .accordion-btn.active + .panel { border-left: 5px solid var(--primary); border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+        /* Make borders match the active button */
+        .accordion-btn.active + .panel { 
+            border-left: 5px solid var(--primary); 
+            border-right: 2px solid var(--primary); 
+            border-bottom: 2px solid var(--primary); 
+            border-top: none;
+        }
         
         .panel-content { padding: 20px; }
         .panel-content a:not(.pub-doi):not(.btn-send):hover { 
@@ -598,7 +642,8 @@
             /* Base borders: Thick Grey Top, Thin Grey sides/bottom */
             border: 1px solid #eee;
             border-top: 5px solid #ccc; 
-            max-width: 800px; margin: 0 auto;
+            /* Fixed: Use full width of container */
+            width: 100%; margin: 0 auto;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .contact-form-box:hover {
@@ -646,40 +691,50 @@
         }
         .btn-send:hover { background: var(--accent); color: var(--primary); transform: translateY(-2px); }
 
-        /* 3.14: FOOTER */
+        /* 3.14: FOOTER (Refined for Same Line on Desktop) */
         footer { 
             background: var(--primary-dark); color: #fff; text-align: center; 
-            padding: 15px 0; /* Reduced from 40px */
+            padding: 15px 0; 
             margin-top: 3rem; border-top: 3px solid var(--accent); 
         }
+        .footer-content {
+            display: flex; justify-content: center; align-items: center; gap: 15px;
+            flex-wrap: wrap; margin: 0 auto; max-width: 1200px; padding: 0 20px;
+        }
         .footer-socials { 
-            margin: 0 auto 8px auto; /* Tighter spacing */
             display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; 
         }
         .footer-btn { 
-            width: 32px; height: 32px; /* Smaller buttons */
+            width: 32px; height: 32px; 
             background: transparent; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; 
-            color: #fff; font-size: 1rem; /* Smaller icons */
+            color: #fff; font-size: 1rem; 
             transition: all 0.3s; text-decoration: none; 
             border: 1px solid rgba(255,255,255,0.3);
         }
         .footer-btn:hover { 
-            background: #fff; border-color: #fff; color: var(--primary-dark); transform: translateY(-2px); 
+            background: #b8860b; border-color: #b8860b; color: var(--primary-dark); transform: translateY(-2px); 
         }
         .footer-text { 
-            font-size: 0.8rem; color: #eee; font-weight: 400; 
-            display: inline-block; padding-bottom: 5px; border-bottom: 1px solid var(--accent);
+            font-size: 0.9rem; color: #eee; font-weight: 400; margin: 0;
+            border-bottom: 1px solid transparent; transition: border-color 0.3s;
         }
+        .footer-text:hover { border-bottom-color: var(--accent); }
 
         /* COPY TO CLIPBOARD FEEDBACK */
-
         .copy-feedback {
             position: absolute; background: #333; color: #fff; padding: 4px 8px; border-radius: 4px;
             font-size: 0.75rem; top: -30px; left: 50%; transform: translateX(-50%);
             opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100;
         }
         .copy-feedback.show { opacity: 1; }
+        
+        /* Message Sent Feedback (Contact Form) */
+        .msg-sent-feedback {
+            color: green; font-weight: bold; margin-left: 10px; 
+            opacity: 0; transition: opacity 0.5s; font-size: 0.95rem;
+        }
+        .msg-sent-feedback.show { opacity: 1; }
 
         /* 3.15: MOBILE RESPONSIVE */
         @media (max-width: 900px) {
@@ -689,7 +744,7 @@
                 color: var(--accent) !important; font-size: 1.5rem; position: absolute; left: 50%;
                 transform: translateX(-50%) !important; margin: 0; white-space: nowrap; z-index: 1002;
             }
-            .header-name i { display: none !important; } /* Hide Home Icon in Mobile Header */
+            .header-name i { display: none !important; } 
             
             .nav-toggle { display: block; position: absolute; right: 30px; }
             
@@ -724,8 +779,11 @@
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; }
             .back-to-top { bottom: 90px !important; }
-            .contact-grid { grid-template-columns: 1fr; } /* Stack contact form on mobile */
+            .contact-grid { grid-template-columns: 1fr; } 
             .contact-full { grid-column: span 1; }
+            
+            /* Footer: Stack on Mobile */
+            .footer-content { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -741,20 +799,26 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
-        <a href="https://shabanahmad.github.io/" class="h-social" title="Website"><i class="fas fa-globe"></i></a>
+        <a href="https://shabanahmad.github.io/" class="h-social" title="Website"><i class="fa-solid fa-globe"></i></a>
     </div>
 
     <div class="back-to-top" id="back-to-top"><i class="fas fa-chevron-up"></i></div>
     
     <!-- 4.3: HEADER -->
     <header id="main-header">
-        <!-- Search Bar Overlay -->
+        <!-- Search Bar Overlay (UPDATED with Tools) -->
         <div class="header-search-bar" id="header-search-bar">
             <input type="text" class="header-search-input" id="search-input" 
-                   placeholder="Enter the Text here and press Enter" 
-                   onkeydown="handleSearch(event)">
-            <i class="fas fa-level-down-alt fa-rotate-90" style="margin-left: 10px; font-size: 1.2rem; color: var(--primary);"></i>
-            <i class="fas fa-times header-search-close" onclick="toggleSearch(event)"></i>
+                   placeholder="Find on page..." 
+                   onkeydown="handleSearchKey(event)">
+            
+            <div class="search-tools">
+                <span id="search-count" class="search-count"></span>
+                <button class="search-btn" onclick="nextMatch()" title="Next Match (Enter)"><i class="fas fa-chevron-down"></i></button>
+                <button class="search-btn" onclick="prevMatch()" title="Previous Match"><i class="fas fa-chevron-up"></i></button>
+            </div>
+
+            <i class="fas fa-times header-search-close" onclick="closeSearch(event)" title="Close Search (Esc)"></i>
         </div>
 
         <div class="header-content">
@@ -764,25 +828,51 @@
                 Dr Shaban <i class="fas fa-home"></i>
             </a>
 
+
             <!-- Mobile Controls -->
             <div class="mobile-controls-container">
-                <i class="fas fa-search control-icon" onclick="toggleSearch(event)"></i>
-                <div class="lang-wrapper" onclick="toggleLangDropdown(event)">
+                <i class="fas fa-search control-icon" onclick="toggleSearch(event)" style="margin-right:10px;"></i>
+                
+                <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)">
                     EN <i class="fas fa-chevron-down"></i>
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
-                        <div class="lang-option" onclick="changeLanguage('en')">English</div>
-                        <div class="lang-option" onclick="changeLanguage('da')">Dansk</div>
-                        <div class="lang-option" onclick="changeLanguage('es')">Español</div>
-                        <div class="lang-option" onclick="changeLanguage('fr')">Français</div>
-                        <div class="lang-option" onclick="changeLanguage('de')">Deutsch</div>
-                        <div class="lang-option" onclick="changeLanguage('hi')">हिन्दी</div>
-                        <div class="lang-option" onclick="changeLanguage('zh-CN')">中文</div>
-                        <div class="lang-option" onclick="changeLanguage('ar')">العربية</div>
-                        <div class="lang-option" onclick="changeLanguage('ur')">اردو</div>
-                        <div class="lang-option" onclick="changeLanguage('ru')">Русский</div>
-                        <div class="lang-option" onclick="changeLanguage('ja')">日本語</div>
+                        <!-- Flags provided by flagcdn.com -->
+                        <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
+                             <img src="https://flagcdn.com/w40/gb.png" class="flag-img" alt="UK"> English
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)">
+                             <img src="https://flagcdn.com/w40/dk.png" class="flag-img" alt="DK"> Dansk
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)">
+                             <img src="https://flagcdn.com/w40/es.png" class="flag-img" alt="ES"> Español
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)">
+                             <img src="https://flagcdn.com/w40/fr.png" class="flag-img" alt="FR"> Français
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)">
+                             <img src="https://flagcdn.com/w40/de.png" class="flag-img" alt="DE"> Deutsch
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)">
+                             <img src="https://flagcdn.com/w40/in.png" class="flag-img" alt="IN"> हिन्दी
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)">
+                             <img src="https://flagcdn.com/w40/cn.png" class="flag-img" alt="CN"> 中文
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)">
+                             <img src="https://flagcdn.com/w40/sa.png" class="flag-img" alt="SA"> العربية
+                        </div>
+                         <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (Pakistan)">
+                             <img src="https://flagcdn.com/w40/pk.png" class="flag-img" alt="PK"> اردو
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
+                             <img src="https://flagcdn.com/w40/ru.png" class="flag-img" alt="RU"> Русский
+                        </div>
+                        <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
+                             <img src="https://flagcdn.com/w40/jp.png" class="flag-img" alt="JP"> 日本語
+                        </div>
                     </div>
                 </div>
+
                 <div class="nav-toggle" onclick="toggleMenu(event)"><i class="fas fa-bars"></i></div>
             </div>
 
@@ -806,20 +896,43 @@
                 <!-- Desktop Controls -->
                 <li class="header-controls">
                     <i class="fas fa-search control-icon" onclick="toggleSearch(event)" title="Search"></i>
-                    <div class="lang-wrapper" style="margin-left:15px;" onclick="toggleLangDropdown(event)">
+                    <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)">
                         EN <i class="fas fa-chevron-down"></i>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
-                            <div class="lang-option" onclick="changeLanguage('en')">English</div>
-                            <div class="lang-option" onclick="changeLanguage('da')">Dansk</div>
-                            <div class="lang-option" onclick="changeLanguage('es')">Español</div>
-                            <div class="lang-option" onclick="changeLanguage('fr')">Français</div>
-                            <div class="lang-option" onclick="changeLanguage('de')">Deutsch</div>
-                            <div class="lang-option" onclick="changeLanguage('hi')">हिन्दी</div>
-                            <div class="lang-option" onclick="changeLanguage('zh-CN')">中文</div>
-                            <div class="lang-option" onclick="changeLanguage('ar')">العربية</div>
-                            <div class="lang-option" onclick="changeLanguage('ur')">اردو</div>
-                            <div class="lang-option" onclick="changeLanguage('ru')">Русский</div>
-                            <div class="lang-option" onclick="changeLanguage('ja')">日本語</div>
+                           <!-- Flags provided by flagcdn.com -->
+                            <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
+                                 <img src="https://flagcdn.com/w40/gb.png" class="flag-img" alt="UK"> English
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)">
+                                 <img src="https://flagcdn.com/w40/dk.png" class="flag-img" alt="DK"> Dansk
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)">
+                                 <img src="https://flagcdn.com/w40/es.png" class="flag-img" alt="ES"> Español
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)">
+                                 <img src="https://flagcdn.com/w40/fr.png" class="flag-img" alt="FR"> Français
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)">
+                                 <img src="https://flagcdn.com/w40/de.png" class="flag-img" alt="DE"> Deutsch
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)">
+                                 <img src="https://flagcdn.com/w40/in.png" class="flag-img" alt="IN"> हिन्दी
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)">
+                                 <img src="https://flagcdn.com/w40/cn.png" class="flag-img" alt="CN"> 中文
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)">
+                                 <img src="https://flagcdn.com/w40/sa.png" class="flag-img" alt="SA"> العربية
+                            </div>
+                             <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (Pakistan)">
+                                 <img src="https://flagcdn.com/w40/pk.png" class="flag-img" alt="PK"> اردو
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
+                                 <img src="https://flagcdn.com/w40/ru.png" class="flag-img" alt="RU"> Русский
+                            </div>
+                            <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
+                                 <img src="https://flagcdn.com/w40/jp.png" class="flag-img" alt="JP"> 日本語
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -830,6 +943,7 @@
     <!-- Google Translate Element (Hidden) -->
     <div id="google_translate_element"></div>
 
+    <!-- ... (Sections 4.4 to 4.13 are unchanged) ... -->
     <!-- 4.4: HERO SECTION -->
     <div class="hero-section-wrapper reveal" id="hero-section">
         <section class="hero">
@@ -837,6 +951,7 @@
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/190?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
+
                 <div class="hero-contact">
                     <i class="fas fa-envelope"></i> 
                     <span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
@@ -853,6 +968,7 @@
                     </div>
                     
                     <div class="pub-breakdown" id="pub-breakdown">
+                        <!-- ... (Pub breakdown content unchanged) ... -->
                         <div class="stat-group">
                             <div class="stat-group-header">Articles</div>
                             <a href="#publications" onclick="triggerAccordion('pubs-journal')" class="stat-sub-item">
@@ -925,7 +1041,7 @@
                 I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color:var(--primary); font-weight:400;">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" style="color:var(--primary); font-weight:400;">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" style="color:var(--primary); font-weight:400;">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" style="color:var(--primary); font-weight:400;">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" style="color:var(--primary); font-weight:400;">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
             </p>
             <p style="margin-top:10px;">
-                I bring expertise in deep learning–driven predictive modeling (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>, <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>), and advanced protein modeling, spanning multitarget docking, MD simulations, and free-energy calculations.
+                I bring expertise in deep learning–driven predictive modeling (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker,</a><a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI,</a><a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>), and advanced protein modeling, spanning multitarget docking, MD simulations, and free-energy calculations.
             </p>
             <p style="margin-top:10px;">
                 My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" style="color:var(--primary); font-weight:400;">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" style="color:var(--primary); font-weight:400;">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" style="color:var(--primary); font-weight:400;">SRM University</a>—and now continues through international research in Finland and Denmark.
@@ -1206,6 +1322,8 @@
         </div>
         <hr class="separator">
     </section>
+
+
 
     <!-- 4.9: PUBLICATIONS -->
     <section id="publications" class="container reveal">
@@ -1496,7 +1614,7 @@
                 <div class="scrollable-list">
                     <!-- Updated Link -->
                     <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">
-                        <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;">450+ Verified Peer Reviews on Publons (WoS)</a> <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 450+ Verified</span> Peer Reviews on Publons (WoS)</a> 
                     </p>
                     <!-- Updated List with explicit badges -->
                     <div class="peer-review-container">
@@ -1628,42 +1746,8 @@
             </div>
         </div>
 
-        <!-- REORDERED: 2. Genomics -->
-        <button class="accordion-btn">
-            <span><i class="fas fa-dna acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Genomics, Transcriptomics & Systems Biology</span> 
-            <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
-                        <ul class="tech-ul">
-                            <li>NGS data processing & variant analysis</li>
-                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
-                            <li>Variant calling & filtering: GATK</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
-                        <ul class="tech-ul">
-                            <li>Cytoscape</li>
-                            <li>Functional interaction databases: STRING, GeneMANIA</li>
-                            <li>Systems-level interpretation of omics data</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
-                        <ul class="tech-ul">
-                            <li>BLAST, FASTA</li>
-                            <li>Multiple sequence alignment: Clustal Omega</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- REORDERED: 3. Computational Biology (Applied) -->
+        
+<!-- REORDERED: 3. Computational Biology (Applied) -->
         <button class="accordion-btn">
             <span><i class="fas fa-atom acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Computational Biology & Drug Discovery</span> 
             <i class="fas fa-chevron-down"></i>
@@ -1701,6 +1785,42 @@
                         <ul class="tech-ul">
                             <li>PyMOL, UCSF Chimera / ChimeraX</li>
                             <li>Interaction mapping, publication-quality figures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- REORDERED: 3. Genomics -->
+        <button class="accordion-btn">
+            <span><i class="fas fa-dna acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Genomics, Transcriptomics & Systems Biology</span> 
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tech-panel-grid">
+                    <div class="tech-card tc-blue">
+                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
+                        <ul class="tech-ul">
+                            <li>NGS data processing & variant analysis</li>
+                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
+                            <li>Variant calling & filtering: GATK</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-green">
+                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
+                        <ul class="tech-ul">
+                            <li>Cytoscape</li>
+                            <li>Functional interaction databases: STRING, GeneMANIA</li>
+                            <li>Systems-level interpretation of omics data</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card tc-purple">
+                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
+                        <ul class="tech-ul">
+                            <li>BLAST, FASTA</li>
+                            <li>Multiple sequence alignment: Clustal Omega</li>
                         </ul>
                     </div>
                 </div>
@@ -1750,6 +1870,7 @@
         <hr class="separator">
     </section>
 
+
     <!-- 4.14: REFEREES GRID -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
@@ -1797,7 +1918,7 @@
                 <div class="referee-title-line">Assistant Professor</div>
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
-                    <a href="https://www.msm.edu/" target="_blank">Morehouse School of Medicine</a>
+                    <a href="https://www.msm.edu/" target="_blank">More School of Medicine</a>
                     <img src="https://flagcdn.com/w20/us.png" class="flag-img" alt="US" title="United States">
                 </div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div>
@@ -1854,52 +1975,69 @@
         <hr class="separator">
     </section>
 
-    <!-- 4.14: CONTACT SECTION -->
+
+
+    <!-- 4.14: CONTACT SECTION (Integrated with Google Forms) -->
     <section id="contact" class="container reveal">
         <h2 class="section-title">Get in Touch</h2>
-        <!-- New Sub-text -->
         <p style="text-align:center; color:#666; margin-bottom:20px; font-style:italic;">
             For any question, research collaboration, fill the form to get in touch.
         </p>
         
         <div class="contact-form-box">
-            <div id="contact-form">
+            <!-- Hidden Iframe to capture submission without redirecting -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSubmit();}"></iframe>
+            
+            <!-- Google Form Backend Integration -->
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" 
+                  method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
+                
                 <div class="contact-grid">
                     <div class="form-group">
                         <label class="form-label">Full Name</label>
-                        <input type="text" id="c-name" class="form-control" placeholder="Your Name">
+                        <!-- Entry ID for Name -->
+                        <input type="text" name="entry.323008242" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email Address</label>
-                        <input type="email" id="c-mail" class="form-control" placeholder="your.email@example.com">
+                        <!-- Entry ID for Email -->
+                        <input type="email" name="entry.1398368038" class="form-control" placeholder="your.email@example.com" required>
                     </div>
                     <div class="form-group contact-full">
                         <label class="form-label">Subject</label>
-                        <input type="text" id="c-subject" class="form-control" placeholder="Subject">
+                        <!-- Entry ID for Subject -->
+                        <input type="text" name="entry.1980791409" class="form-control" placeholder="Subject" required>
                     </div>
                     <div class="form-group contact-full">
                         <label class="form-label">Message</label>
-                        <textarea id="c-body" class="form-control" rows="5" placeholder="Write your message here..."></textarea>
+                        <!-- Entry ID for Message -->
+                        <textarea name="entry.1216360893" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
                     </div>
                 </div>
-                <button type="button" class="btn-send" onclick="sendMail()"><i class="fas fa-paper-plane"></i> Send Message</button>
-            </div>
+                
+                <button type="submit" class="btn-send">
+                    <i class="fas fa-paper-plane"></i> Send Message 
+                    <span id="msg-sent-text" class="msg-sent-feedback">Message Sent Successfully!</span>
+                </button>
+            </form>
         </div>
     </section>
 
-    <!-- 4.15: FOOTER -->
+    <!-- 4.15: FOOTER (Updated Layout) -->
     <footer>
-        <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
-            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
-            <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-        <div class="footer-text">
-            &copy; Dr Shaban | 2026 All Rights Reserved.
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
+                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
+                <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="footer-text">
+                &copy; Dr Shaban | 2026 All Rights Reserved.
+            </p>
         </div>
     </footer>
 
@@ -1909,20 +2047,17 @@
         ========================================================================
     -->
     <script>
-        // NEW: Copy Email Logic
+        // Form Submission Tracker
+        var submitted = false;
+
+        // 5.0: COPY EMAIL LOGIC
         function copyEmail(element, email) {
-            // Copy to clipboard
             navigator.clipboard.writeText(email).then(() => {
-                // Create feedback element
                 let feedback = document.createElement("span");
                 feedback.className = "copy-feedback";
                 feedback.innerText = "Email copied!";
                 element.appendChild(feedback);
-                
-                // Show it
                 setTimeout(() => feedback.classList.add("show"), 10);
-                
-                // Remove it
                 setTimeout(() => {
                     feedback.classList.remove("show");
                     setTimeout(() => feedback.remove(), 300);
@@ -1932,17 +2067,18 @@
             });
         }
 
-        // NEW: Send Mail Function (Avoiding Form Submit Warning)
-        function sendMail() {
-            const name = document.getElementById('c-name').value;
-            // email field is mostly for user reference in mailto context
-            const subject = document.getElementById('c-subject').value;
-            const body = document.getElementById('c-body').value;
+        // NEW: Handle Form Submit (Google Forms Feedback)
+        function handleFormSubmit() {
+            // Clear fields
+            document.getElementById('contact-form').reset();
             
-            // Construct mailto link
-            const mailtoLink = `mailto:shaban.ucph@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\n\n" + body)}`;
-            
-            window.location.href = mailtoLink;
+            // Show Success Message
+            const feedbackText = document.getElementById('msg-sent-text');
+            feedbackText.classList.add('show');
+            setTimeout(() => {
+                feedbackText.classList.remove('show');
+                submitted = false; // Reset for next submission
+            }, 3000);
         }
 
         // 5.1: HEADER SCROLL VISIBILITY & BACK-TO-TOP
@@ -1953,7 +2089,7 @@
             if (window.innerWidth > 900) {
                 const headerName = document.querySelector('.header-name');
                 const hero = document.querySelector('.hero');
-                const triggerHeight = hero.offsetHeight - 150; 
+                const triggerHeight = hero ? hero.offsetHeight - 150 : 300; 
                 if (window.scrollY > triggerHeight) {
                     headerName.classList.add('visible');
                 } else {
@@ -1982,7 +2118,6 @@
 
             navLi.forEach((li) => {
                 li.classList.remove("active-section");
-                // Check if href matches current section ID
                 if (li.getAttribute("href") && li.getAttribute("href").includes(current)) {
                     li.classList.add("active-section");
                 }
@@ -1995,31 +2130,138 @@
             });
         }
 
-        // 5.2: SEARCH LOGIC (HEADER LINE)
+        /* =========================================
+           5.2: ADVANCED SEARCH ENGINE (Highlight & Nav)
+           ========================================= */
+        let searchMatches = [];
+        let currentMatchIndex = -1;
+        let lastQuery = "";
+
         function toggleSearch(e) {
             if(e) e.stopPropagation();
             const bar = document.getElementById('header-search-bar');
-            const input = document.getElementById('search-input');
-            
             if (bar.style.display === 'flex') {
-                bar.style.display = 'none';
+                closeSearch(e);
             } else {
                 bar.style.display = 'flex';
-                input.focus();
+                setTimeout(() => document.getElementById('search-input').focus(), 50);
             }
         }
 
-        function handleSearch(event) {
+        function closeSearch(e) {
+            if(e) e.stopPropagation();
+            document.getElementById('header-search-bar').style.display = 'none';
+            clearHighlights();
+            document.getElementById('search-input').value = '';
+            if(document.getElementById('search-count')) document.getElementById('search-count').innerText = '';
+            lastQuery = "";
+        }
+
+        function handleSearchKey(event) {
             if (event.key === 'Enter') {
-                performSearch();
+                const currentVal = document.getElementById('search-input').value.trim();
+                // If query changed or no matches yet, perform new search
+                if (currentVal !== lastQuery || searchMatches.length === 0) {
+                    performCustomSearch();
+                } else {
+                    // Otherwise just go to next match
+                    nextMatch();
+                }
+            } else if (event.key === 'Escape') {
+                closeSearch(event);
             }
         }
 
-        function performSearch() {
-            const input = document.getElementById('search-input').value.toLowerCase();
-            if(window.find && window.getSelection && input.length > 0) {
-               window.find(input);
+        function performCustomSearch() {
+            clearHighlights();
+            const query = document.getElementById('search-input').value.trim();
+            if (!query) return;
+            
+            lastQuery = query;
+
+            // TreeWalker to find text nodes excluding scripts/styles/header
+            const walker = document.createTreeWalker(
+                document.body, 
+                NodeFilter.SHOW_TEXT, 
+                { acceptNode: (node) => {
+                    if (node.parentElement.tagName === 'SCRIPT' || 
+                        node.parentElement.tagName === 'STYLE' ||
+                        node.parentElement.closest('#main-header')) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    if (node.nodeValue.trim() === '') return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }}
+            );
+
+            const nodesToReplace = [];
+            while(walker.nextNode()) {
+                if (walker.currentNode.nodeValue.toLowerCase().includes(query.toLowerCase())) {
+                    nodesToReplace.push(walker.currentNode);
+                }
             }
+
+            searchMatches = [];
+            nodesToReplace.forEach(node => {
+                const span = document.createElement('span');
+                // Escape special characters for Regex
+                const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${safeQuery})`, 'gi');
+                span.innerHTML = node.nodeValue.replace(regex, '<span class="highlight-match">$1</span>');
+                
+                const fragment = document.createRange().createContextualFragment(span.innerHTML);
+                // We need to insert the fragment and then track the new highlight elements
+                node.replaceWith(fragment);
+            });
+
+            // Re-query DOM to get matches in document order
+            searchMatches = Array.from(document.querySelectorAll('.highlight-match'));
+            
+            const countSpan = document.getElementById('search-count');
+            if (searchMatches.length > 0) {
+                currentMatchIndex = 0;
+                updateMatchView();
+            } else {
+                if(countSpan) countSpan.innerText = "0/0";
+            }
+        }
+
+        function updateMatchView() {
+            searchMatches.forEach(m => m.classList.remove('active'));
+            if (currentMatchIndex >= 0 && currentMatchIndex < searchMatches.length) {
+                const currentEl = searchMatches[currentMatchIndex];
+                currentEl.classList.add('active');
+                currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const countSpan = document.getElementById('search-count');
+                if(countSpan) countSpan.innerText = `${currentMatchIndex + 1}/${searchMatches.length}`;
+            }
+        }
+
+        function nextMatch() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex++;
+            if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+            updateMatchView();
+        }
+
+        function prevMatch() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex--;
+            if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+            updateMatchView();
+        }
+
+        function clearHighlights() {
+            const highlights = document.querySelectorAll('.highlight-match');
+            highlights.forEach(h => {
+                const parent = h.parentNode;
+                parent.replaceChild(document.createTextNode(h.textContent), h);
+                parent.normalize(); 
+            });
+            searchMatches = [];
+            currentMatchIndex = -1;
+            const countSpan = document.getElementById('search-count');
+            if(countSpan) countSpan.innerText = "";
         }
 
         // 5.3: LANGUAGE SWITCHER
@@ -2027,9 +2269,20 @@
             e.stopPropagation();
             const desktopDD = document.getElementById('desktop-lang-dd');
             const mobileDD = document.getElementById('mobile-lang-dd');
+            const navList = document.querySelector('.nav-list');
+            const navToggle = document.querySelector('.nav-toggle');
+
+            // Logic: Close menu if language opens
+            if (navList.classList.contains('active')) {
+                navList.classList.remove('active');
+                navToggle.classList.remove('open');
+            }
             
-            if(window.innerWidth > 900) desktopDD.classList.toggle('show');
-            else mobileDD.classList.toggle('show');
+            if(window.innerWidth > 900) {
+                if(desktopDD) desktopDD.classList.toggle('show');
+            } else {
+                if(mobileDD) mobileDD.classList.toggle('show');
+            }
         }
 
         function changeLanguage(langCode) {
@@ -2046,11 +2299,17 @@
             if(e) e.stopPropagation();
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
+            const mobileDD = document.getElementById('mobile-lang-dd');
+
+            // Logic: Close Language if menu opens
+            if (mobileDD && mobileDD.classList.contains('show')) {
+                mobileDD.classList.remove('show');
+            }
+
             navBar.classList.toggle('active');
             toggleBtn.classList.toggle('open');
         }
 
-        // Close menu when clicking a link
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -2063,23 +2322,24 @@
             });
         });
 
-        // 5.5: GLOBAL CLICK LISTENER (Close menus when clicking outside)
+        // 5.5: GLOBAL CLICK LISTENER
         document.addEventListener('click', function(event) {
             // Close Search
             const searchBar = document.getElementById('header-search-bar');
-            if(searchBar.style.display === 'flex' && !event.target.closest('.header-search-input') && !event.target.closest('.header-search-close')) {
-                searchBar.style.display = 'none';
+            // UPDATED LOGIC: Only close if the click is OUTSIDE the entire search bar container
+            if(searchBar && searchBar.style.display === 'flex' && 
+               !event.target.closest('#header-search-bar')) {
+                closeSearch(event);
             }
 
             // Close Mobile Menu
             const navList = document.querySelector('.nav-list');
             const navToggle = document.querySelector('.nav-toggle');
-            if (navList.classList.contains('active') && !navList.contains(event.target) && !navToggle.contains(event.target)) {
+            if (navList && navList.classList.contains('active') && !navList.contains(event.target) && !navToggle.contains(event.target)) {
                 navList.classList.remove('active');
                 navToggle.classList.remove('open');
             }
 
-            // Close Language Dropdowns
             document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show'));
         });
 
@@ -2131,7 +2391,6 @@
             });
         }
         
-        // Helper to open accordion via link
         function triggerAccordion(id) {
             const btn = document.getElementById(id);
             if (btn) {
@@ -2146,7 +2405,6 @@
 
         // 5.9: HERO STATS TOGGLE
         function togglePubStats(e) {
-            // Prevent default anchor behavior if clicking the row
             if(e.target.closest('.stat-row')) {
                  e.preventDefault();
                  e.stopPropagation();
@@ -2177,7 +2435,6 @@
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 
 </body>
 </html>
