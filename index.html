@@ -42,11 +42,19 @@
         
         html { scroll-behavior: smooth; scroll-padding-top: 65px; } 
         
-        body { 
+         body { 
             font-family: 'Roboto', sans-serif; line-height: 1.6; 
             color: var(--text); background: var(--light-bg); 
             padding-top: 50px; overflow-x: hidden; 
+            /* Fix for Google Translate shifting the body */
+            top: 0px !important; 
+            position: static !important;
         }
+
+        /* Hides the Google Translate Top Banner */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        } 
         
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
@@ -861,7 +869,7 @@
                         <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)">
                              <img src="https://flagcdn.com/w40/sa.png" class="flag-img" alt="SA"> العربية
                         </div>
-                         <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (Pakistan)">
+                         <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (India/Pakistan)">
                              <img src="https://flagcdn.com/w40/pk.png" class="flag-img" alt="PK"> اردو
                         </div>
                         <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
@@ -1986,8 +1994,9 @@
         
         <div class="contact-form-box">
             <!-- Hidden Iframe to capture submission without redirecting -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSubmit();}"></iframe>
-            
+             <!-- NOTE: Using typeof check to prevent ReferenceError on initial load -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
+                        
             <!-- Google Form Backend Integration -->
             <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" 
                   method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
@@ -2056,6 +2065,7 @@
                 let feedback = document.createElement("span");
                 feedback.className = "copy-feedback";
                 feedback.innerText = "Email copied!";
+                feedback.style.whiteSpace = "nowrap";
                 element.appendChild(feedback);
                 setTimeout(() => feedback.classList.add("show"), 10);
                 setTimeout(() => {
@@ -2429,7 +2439,7 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ru,ja',
+                includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja',
                 autoDisplay: false
             }, 'google_translate_element');
         }
