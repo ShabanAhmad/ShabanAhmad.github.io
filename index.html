@@ -115,7 +115,7 @@
         }
         .separator {
             height: 4px; border: none;
-            background: linear-gradient(90deg, #dc3545, var(--accent), #dc3545);
+            background: linear-gradient(90deg, #0d0b0c, var(--accent), #f3071f);
             background-size: 200% 100%;
             animation: gradientRun 3s linear infinite;
             margin: 3rem 0; opacity: 0.9;
@@ -358,6 +358,24 @@
         }
         .cv-btn-half:hover { background: #fff; color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4); }
 
+
+
+        /* Style for the Publications container when expanded */
+        .stat-row-link.active-box {
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Explicit border around the whole box */
+            background: rgba(255, 255, 255, 0.05); /* Slight background tint */
+            border-radius: 8px; /* Rounded corners */
+            margin: 10px 0; /* Add spacing from other items */
+            padding-bottom: 10px; /* Space at the bottom inside the box */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Optional: nice depth */
+        }
+
+        /* Ensure the bottom border is removed when the full box border is active */
+        .stat-row-link.active-box {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+        }
+
+
         /* 3.7: CONTENT CONTAINERS */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
@@ -437,7 +455,7 @@
         .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         .award-card {
             background: var(--white); border-radius: 12px; padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #ccc;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px; text-align: left; position: relative; 
         }
@@ -460,7 +478,7 @@
 
         /* 3.10: PATENTS */
         .patent-box { 
-            background: #fff; border: 1px solid #eee; padding: 1.5rem; 
+            background: #fff; border: 1px solid #ccc; padding: 1.5rem; 
             border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
@@ -2449,28 +2467,42 @@
             }
         }
 
-        // 5.9: HERO STATS TOGGLE
+        // 5.9: HERO STATS TOGGLE (UPDATED)
         function togglePubStats(e) {
+            // Prevent bubbling if clicking internal links
             if(e.target.closest('.stat-row')) {
-                 e.preventDefault();
-                 e.stopPropagation();
-                 const breakdown = document.getElementById('pub-breakdown');
-                 const toggleIcon = document.querySelector('.stat-toggle i');
-                 
-                 if (breakdown.classList.contains('open')) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const breakdown = document.getElementById('pub-breakdown');
+                const toggleIcon = document.querySelector('.stat-toggle i');
+                
+                // NEW: Select the parent container to add the border class
+                const parentContainer = e.target.closest('.stat-row-link');
+                
+                if (breakdown.classList.contains('open')) {
+                    // CLOSING
                     breakdown.classList.remove('open');
                     breakdown.style.maxHeight = "0";
                     toggleIcon.classList.remove('fa-chevron-up');
                     toggleIcon.classList.add('fa-chevron-down');
-                 } else {
+                    
+                    // NEW: Remove the border class
+                    if(parentContainer) parentContainer.classList.remove('active-box');
+                    
+                } else {
+                    // OPENING
                     breakdown.classList.add('open');
                     breakdown.style.maxHeight = breakdown.scrollHeight + "px";
                     toggleIcon.classList.remove('fa-chevron-down');
                     toggleIcon.classList.add('fa-chevron-up');
-                 }
+                    
+                    // NEW: Add the border class
+                    if(parentContainer) parentContainer.classList.add('active-box');
+                }
             }
         }
-
+       
         // Google Translate Init
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -2484,4 +2516,3 @@
 
 </body>
 </html>
-
