@@ -59,8 +59,6 @@
         
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         
-
-
         /* Highlight Class for Search */
         .highlight-match {
             background-color: yellow;
@@ -87,15 +85,18 @@
         .search-btn:hover { background: var(--accent); color: #fff; }
 
 
-        /* Scrollbar "Fill" Look - Solid Gold Thumb */
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
-        ::-webkit-scrollbar-thumb { 
+        /* UPDATED: SCROLLBAR STYLING FOR MOBILE & DESKTOP 
+           Added explicit html and body selectors to force mobile browser support 
+        */
+        ::-webkit-scrollbar, *::-webkit-scrollbar, html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track, *::-webkit-scrollbar-track, html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
+        ::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { 
             background: var(--accent); 
             border-radius: 6px; 
             border: 2px solid #f9f9f9; 
         }
-        ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+        ::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+
 
         /* 3.3: ANIMATION CLASSES */
         .reveal {
@@ -214,6 +215,10 @@
         .lang-wrapper { position: relative; display: inline-block; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
         .lang-wrapper:hover { color: var(--accent); }
         
+        /* NEW: Display container for Flag + Text */
+        .lang-current-display { display: flex; align-items: center; gap: 5px; }
+        .flag-xs { width: 18px; height: auto; border-radius: 2px; }
+
         .custom-lang-dropdown {
             position: absolute; top: 100%; right: 0;
             background: #fff; border: 1px solid #eee;
@@ -542,7 +547,14 @@
             text-decoration: none; 
         }
 
-        .scrollable-list { max-height: 600px; overflow-y: auto; padding: 15px 20px; }
+        /* UPDATED: Height limited to show ~3 items (approx 280px) */
+        .scrollable-list { 
+            max-height: 280px; 
+            overflow-y: auto; 
+            padding: 10px 20px 10px 10px; 
+            /* Momentum scrolling for touch */
+            -webkit-overflow-scrolling: touch;
+        }
         
         /* Restored Pub List Styling & Bold Numbers */
         .pub-list { padding-left: 30px; }
@@ -605,8 +617,17 @@
             margin-left: 10px; display: inline-flex; align-items: center; gap: 4px;
         }
 
+        /* NEW: Technical Grid Scrollable Wrapper */
+        .scrollable-grid {
+            max-height: 380px; /* Approx height of one card + padding */
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 10px 5px;
+            -webkit-overflow-scrolling: touch; 
+        }
+
         /* Technical Grid */
-        .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1.5rem 0.5rem; }
+        .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 0.5rem 0.5rem; }
         .tech-card {
             background: #fff; padding: 1.5rem; border-radius: 8px;
             border-top: 5px solid #ccc; 
@@ -713,12 +734,37 @@
             font-family: inherit; font-size: 1rem; transition: 0.3s;
         }
         .form-control:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(220, 161, 29, 0.1); }
+        
+        /* NEW: Footer Buttons area for Contact form */
+        .form-footer {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 10px;
+        }
+
         .btn-send {
             background: var(--primary); color: #fff; border: none; padding: 12px 30px;
             font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer;
             transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+            white-space: nowrap;
         }
         .btn-send:hover { background: var(--accent); color: var(--primary); transform: translateY(-2px); }
+
+        /* NEW: Success Box Style */
+        .msg-success-box {
+            display: none;
+            padding: 10px 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex: 1; /* Take remaining space */
+            text-align: center;
+            max-width: 300px; /* Don't get too wide on desktop */
+        }
+        .msg-success-box.show { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
 
         /* 3.14: FOOTER (Refined for Same Line on Desktop) */
         footer { 
@@ -758,13 +804,6 @@
         }
         .copy-feedback.show { opacity: 1; }
         
-        /* Message Sent Feedback (Contact Form) */
-        .msg-sent-feedback {
-            color: green; font-weight: bold; margin-left: 10px; 
-            opacity: 0; transition: opacity 0.5s; font-size: 0.95rem;
-        }
-        .msg-sent-feedback.show { opacity: 1; }
-
         /* 3.15: MOBILE RESPONSIVE */
         @media (max-width: 900px) {
             /* Updated: Use flexbox to distribute space automatically */
@@ -845,6 +884,11 @@
             
             /* Footer: Stack on Mobile */
             .footer-content { flex-direction: column; gap: 15px; }
+
+            /* Contact form footer on mobile: Column direction */
+            .form-footer { flex-direction: column; align-items: stretch; }
+            .btn-send { width: 100%; justify-content: center; }
+            .msg-success-box { max-width: 100%; }
         }
     </style>
 </head>
@@ -895,7 +939,11 @@
                 <i class="fas fa-search control-icon" onclick="toggleSearch(event)" style="margin-right:10px;"></i>
                 
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)">
-                    EN <i class="fas fa-chevron-down"></i>
+                    <!-- Dynamic Content -->
+                    <div class="lang-current-display">
+                        EN <i class="fas fa-chevron-down"></i>
+                    </div>
+
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
                         <!-- Flags provided by flagcdn.com -->
                         <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
@@ -958,7 +1006,10 @@
                 <li class="header-controls">
                     <i class="fas fa-search control-icon" onclick="toggleSearch(event)" title="Search"></i>
                     <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)">
-                        EN <i class="fas fa-chevron-down"></i>
+                        <!-- Dynamic Content -->
+                         <div class="lang-current-display">
+                            EN <i class="fas fa-chevron-down"></i>
+                        </div>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
                            <!-- Flags provided by flagcdn.com -->
                             <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
@@ -1099,13 +1150,13 @@
         <h2 class="section-title">About Me</h2>
         <div class="profile-text">
             <p style="margin-top:10px;">
-                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color:var(--primary); font-weight:400;">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" style="color:var(--primary); font-weight:400;">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" style="color:var(--primary); font-weight:400;">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" style="color:var(--primary); font-weight:400;">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" style="color:var(--primary); font-weight:400;">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
+                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" class="niper-hover">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" class="niper-hover">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" class="niper-hover">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
             </p>
             <p style="margin-top:10px;">
                 I bring expertise in deep learning–driven predictive modeling (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker,</a><a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI,</a><a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>), and advanced protein modeling, spanning multitarget docking, MD simulations, and free-energy calculations.
             </p>
             <p style="margin-top:10px;">
-                My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" style="color:var(--primary); font-weight:400;">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" style="color:var(--primary); font-weight:400;">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" style="color:var(--primary); font-weight:400;">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" style="color:var(--primary); font-weight:400;">SRM University</a>—and now continues through international research in Finland and Denmark.
+                My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" class="niper-hover">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" class="niper-hover">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" class="niper-hover">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" class="niper-hover">SRM University</a>—and now continues through international research in Finland and Denmark.
             </p>
             <span class="sub-heading-bold">My Educational Background Includes:</span>
             
@@ -1502,14 +1553,17 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-                 <ul class="pub-list">
-                    <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
-                    <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
-                    <li class="pub-item"><strong>LungXAI:</strong> Deep Learning Framework. <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
-                    <li class="pub-item"><strong>RMSD-RMSF Plots:</strong> <a href="https://github.com/ShabanAhmad/RMSD-RMSF-Plots" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
-                    <li class="pub-item"><strong>ChEMBL BioAssays:</strong> <a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
-                    <li class="pub-item"><strong>PubChem BioAssay:</strong> <a href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
-                </ul>
+                <!-- Added scrollable-list wrapper -->
+                <div class="scrollable-list">
+                     <ul class="pub-list">
+                        <li class="pub-item"><strong>DrLungker:</strong> Deep Ensemble Learning Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" style="color:var(--primary); font-weight:bold;">[Figshare]</a></li>
+                        <li class="pub-item"><strong>DeepEntXAI:</strong> Hybrid Explainable Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                        <li class="pub-item"><strong>LungXAI:</strong> Deep Learning Framework. <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                        <li class="pub-item"><strong>RMSD-RMSF Plots:</strong> <a href="https://github.com/ShabanAhmad/RMSD-RMSF-Plots" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                        <li class="pub-item"><strong>ChEMBL BioAssays:</strong> <a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                        <li class="pub-item"><strong>PubChem BioAssay:</strong> <a href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" style="color:var(--primary); font-weight:bold;">[GitHub]</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <hr class="separator">
@@ -1642,12 +1696,15 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-                <ol class="pub-list" reversed style="padding-left: 20px;">
-                    <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)</li>
-                    <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)</li>
-                    <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)</li>
-                    <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)</li>
-                </ol>
+                <!-- Applied scrollable limit here too -->
+                <div class="scrollable-list">
+                    <ol class="pub-list" reversed style="padding-left: 20px;">
+                        <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)</li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)</li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)</li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)</li>
+                    </ol>
+                </div>
              </div>
         </div>
 
@@ -1658,12 +1715,14 @@
 
         <div class="panel">
             <div class="panel-content">
-                <ol class="pub-list" reversed style="padding-left: 20px;">
-                    <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">International Association for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>
-                    <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">European Society for Medical Oncology</a></strong> (10/05/2024 to 09/05/2026)</li>
-                    <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">Bioinformatics and Drug Discovery Society</a></strong> (Life Member)</li>
-                    <li class="pub-item">Council Member of the <strong><a href="https://www.deshbandhucollege.ac.in/" target="_blank" style="color:var(--primary); text-decoration: underline;">Botanical Society (Sanjeevani)</a></strong>, Deshbandhu College, University of Delhi.</li>
-                </ol>
+                <div class="scrollable-list">
+                    <ol class="pub-list" reversed style="padding-left: 20px;">
+                        <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">International Association for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>
+                        <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">European Society for Medical Oncology</a></strong> (10/05/2024 to 09/05/2026)</li>
+                        <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank" style="color:var(--primary); text-decoration: underline;">Bioinformatics and Drug Discovery Society</a></strong> (Life Member)</li>
+                        <li class="pub-item">Council Member of the <strong><a href="https://www.deshbandhucollege.ac.in/" target="_blank" style="color:var(--primary); text-decoration: underline;">Botanical Society (Sanjeevani)</a></strong>, Deshbandhu College, University of Delhi.</li>
+                    </ol>
+                </div>
             </div>
         </div>
  
@@ -1757,11 +1816,14 @@
 
         <div class="panel">
             <div class="panel-content">
-                <ul class="pub-list">
-                    <li class="pub-item">Currently Supervising <strong>3 MSc</strong> and <strong>1 BSc</strong> dissertation students at University of Copenhagen, Denmark.</li>
-                    <li class="pub-item">Guided <strong>10 MSc</strong> and <strong>5 BSc</strong> dissertation students during PhD tenure at Jamia Millia Islamia, India.</li>
-                    <li class="pub-item">Guided many PhD Students as a mentor on quality research and publication.</li>
-                </ul>
+                <!-- Added scrollable-list wrapper -->
+                <div class="scrollable-list">
+                    <ul class="pub-list">
+                        <li class="pub-item">Currently Supervising <strong>3 MSc</strong> and <strong>1 BSc</strong> dissertation students at University of Copenhagen, Denmark.</li>
+                        <li class="pub-item">Guided <strong>10 MSc</strong> and <strong>5 BSc</strong> dissertation students during PhD tenure at Jamia Millia Islamia, India.</li>
+                        <li class="pub-item">Guided many PhD Students as a mentor on quality research and publication.</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -1779,30 +1841,33 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-code"></i> Programming & Scientific Computing</div>
-                        <ul class="tech-ul">
-                            <li>Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn)</li>
-                            <li>R (Tidyverse, Bioconductor)</li>
-                            <li>MATLAB</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-brain"></i> Machine Learning & Deep Learning</div>
-                        <ul class="tech-ul">
-                            <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
-                            <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
-                            <li>Model development, hyperparameter tuning, cross-val, Feature engg</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-flask"></i> Cheminformatics & Bioinformatics ML</div>
-                        <ul class="tech-ul">
-                            <li>Molecular descriptors & fingerprints</li>
-                            <li>Protein–ligand ML pipelines</li>
-                            <li>Predictive modeling for binding affinity & toxicity</li>
-                        </ul>
+                <!-- WRAPPED IN SCROLLABLE GRID -->
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-code"></i> Programming & Scientific Computing</div>
+                            <ul class="tech-ul">
+                                <li>Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn)</li>
+                                <li>R (Tidyverse, Bioconductor)</li>
+                                <li>MATLAB</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-brain"></i> Machine Learning & Deep Learning</div>
+                            <ul class="tech-ul">
+                                <li>Classical ML: Scikit-learn, XGBoost, Weka</li>
+                                <li>Deep Learning: TensorFlow, Keras, PyTorch</li>
+                                <li>Model development, hyperparameter tuning, cross-val, Feature engg</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-flask"></i> Cheminformatics & Bioinformatics ML</div>
+                            <ul class="tech-ul">
+                                <li>Molecular descriptors & fingerprints</li>
+                                <li>Protein–ligand ML pipelines</li>
+                                <li>Predictive modeling for binding affinity & toxicity</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1816,38 +1881,41 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-atom"></i> Molecular Modeling & Simulation</div>
-                        <ul class="tech-ul">
-                            <li>Molecular Dynamics: Desmond, GROMACS, NAMD</li>
-                            <li>Force fields: OPLS, AMBER, CHARMM</li>
-                            <li>Trajectory analysis, RMSD/RMSF, PCA, MM/PBSA workflows</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt"></i> Structure-Based Drug Design</div>
-                        <ul class="tech-ul">
-                            <li>Docking: AutoDock Vina, Glide, SwissDock</li>
-                            <li>Binding free energy calculations: MM/GBSA, MM/PBSA</li>
-                            <li>Virtual screening (ligand-based & structure-based)</li>
-                            <li>Protein–ligand interaction profiling & residue-level analysis</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-microscope"></i> Quantum & Structural Methods</div>
-                        <ul class="tech-ul">
-                            <li>DFT calculations (geometry optimization, electronic properties)</li>
-                            <li>Homology modeling & refinement: MODELLER</li>
-                            <li>Structure optimization, validation, and preparation</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-orange">
-                        <div class="tech-sub-title"><i class="fas fa-eye"></i> Visualization & Analysis</div>
-                        <ul class="tech-ul">
-                            <li>PyMOL, UCSF Chimera / ChimeraX</li>
-                            <li>Interaction mapping, publication-quality figures</li>
-                        </ul>
+                 <!-- WRAPPED IN SCROLLABLE GRID -->
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-atom"></i> Molecular Modeling & Simulation</div>
+                            <ul class="tech-ul">
+                                <li>Molecular Dynamics: Desmond, GROMACS, NAMD</li>
+                                <li>Force fields: OPLS, AMBER, CHARMM</li>
+                                <li>Trajectory analysis, RMSD/RMSF, PCA, MM/PBSA workflows</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt"></i> Structure-Based Drug Design</div>
+                            <ul class="tech-ul">
+                                <li>Docking: AutoDock Vina, Glide, SwissDock</li>
+                                <li>Binding free energy calculations: MM/GBSA, MM/PBSA</li>
+                                <li>Virtual screening (ligand-based & structure-based)</li>
+                                <li>Protein–ligand interaction profiling & residue-level analysis</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-microscope"></i> Quantum & Structural Methods</div>
+                            <ul class="tech-ul">
+                                <li>DFT calculations (geometry optimization, electronic properties)</li>
+                                <li>Homology modeling & refinement: MODELLER</li>
+                                <li>Structure optimization, validation, and preparation</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-orange">
+                            <div class="tech-sub-title"><i class="fas fa-eye"></i> Visualization & Analysis</div>
+                            <ul class="tech-ul">
+                                <li>PyMOL, UCSF Chimera / ChimeraX</li>
+                                <li>Interaction mapping, publication-quality figures</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1861,29 +1929,32 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
-                        <ul class="tech-ul">
-                            <li>NGS data processing & variant analysis</li>
-                            <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
-                            <li>Variant calling & filtering: GATK</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
-                        <ul class="tech-ul">
-                            <li>Cytoscape</li>
-                            <li>Functional interaction databases: STRING, GeneMANIA</li>
-                            <li>Systems-level interpretation of omics data</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
-                        <ul class="tech-ul">
-                            <li>BLAST, FASTA</li>
-                            <li>Multiple sequence alignment: Clustal Omega</li>
-                        </ul>
+                 <!-- WRAPPED IN SCROLLABLE GRID -->
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-dna"></i> NGS & Omics Analysis</div>
+                            <ul class="tech-ul">
+                                <li>NGS data processing & variant analysis</li>
+                                <li>Alignment & preprocessing: Bowtie2, SAMtools</li>
+                                <li>Variant calling & filtering: GATK</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Network & Pathway Analysis</div>
+                            <ul class="tech-ul">
+                                <li>Cytoscape</li>
+                                <li>Functional interaction databases: STRING, GeneMANIA</li>
+                                <li>Systems-level interpretation of omics data</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-align-left"></i> Sequence & Comparative Analysis</div>
+                            <ul class="tech-ul">
+                                <li>BLAST, FASTA</li>
+                                <li>Multiple sequence alignment: Clustal Omega</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1897,34 +1968,37 @@
 
         <div class="panel">
             <div class="panel-content">
-                <div class="tech-panel-grid">
-                    <div class="tech-card tc-blue">
-                        <div class="tech-sub-title"><i class="fas fa-terminal"></i> Operating Systems & Scripting</div>
-                        <ul class="tech-ul">
-                            <li>Linux/Unix</li>
-                            <li>Bash scripting (automation, pipelines, job control)</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-green">
-                        <div class="tech-sub-title"><i class="fas fa-cogs"></i> Workflow & Pipeline Development</div>
-                        <ul class="tech-ul">
-                            <li>Reproducible computational pipelines</li>
-                            <li>Resume-safe, large-scale batch processing</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-purple">
-                        <div class="tech-sub-title"><i class="fas fa-server"></i> High-Performance & Research Computing</div>
-                        <ul class="tech-ul">
-                            <li>HPC environments, job schedulers (SLURM-style workflows)</li>
-                            <li>Large-scale data handling & automation</li>
-                        </ul>
-                    </div>
-                    <div class="tech-card tc-orange">
-                        <div class="tech-sub-title"><i class="fab fa-git-alt"></i> Version Control & Reproducibility</div>
-                        <ul class="tech-ul">
-                            <li>Git-based project management</li>
-                            <li>Modular, production-ready scientific codebases</li>
-                        </ul>
+                 <!-- WRAPPED IN SCROLLABLE GRID -->
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-terminal"></i> Operating Systems & Scripting</div>
+                            <ul class="tech-ul">
+                                <li>Linux/Unix</li>
+                                <li>Bash scripting (automation, pipelines, job control)</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-cogs"></i> Workflow & Pipeline Development</div>
+                            <ul class="tech-ul">
+                                <li>Reproducible computational pipelines</li>
+                                <li>Resume-safe, large-scale batch processing</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-server"></i> High-Performance & Research Computing</div>
+                            <ul class="tech-ul">
+                                <li>HPC environments, job schedulers (SLURM-style workflows)</li>
+                                <li>Large-scale data handling & automation</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-orange">
+                            <div class="tech-sub-title"><i class="fab fa-git-alt"></i> Version Control & Reproducibility</div>
+                            <ul class="tech-ul">
+                                <li>Git-based project management</li>
+                                <li>Modular, production-ready scientific codebases</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2078,10 +2152,15 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="btn-send">
-                    <i class="fas fa-paper-plane"></i> Send Message 
-                    <span id="msg-sent-text" class="msg-sent-feedback">Message Sent Successfully!</span>
-                </button>
+                <!-- NEW: Footer with Button and Separate Success Box -->
+                <div class="form-footer">
+                    <button type="submit" class="btn-send">
+                        <i class="fas fa-paper-plane"></i> Send Message 
+                    </button>
+                    <div id="msg-success-box" class="msg-success-box">
+                        <i class="fas fa-check-circle"></i> Message Sent Successfully!
+                    </div>
+                </div>
             </form>
         </div>
     </section>
@@ -2136,13 +2215,14 @@
             // Clear fields
             document.getElementById('contact-form').reset();
             
-            // Show Success Message
-            const feedbackText = document.getElementById('msg-sent-text');
-            feedbackText.classList.add('show');
+            // Show Success Message Box
+            const feedbackBox = document.getElementById('msg-success-box');
+            feedbackBox.classList.add('show');
+            
             setTimeout(() => {
-                feedbackText.classList.remove('show');
+                feedbackBox.classList.remove('show');
                 submitted = false; // Reset for next submission
-            }, 3000);
+            }, 5000);
         }
 
         // 5.1: HEADER SCROLL VISIBILITY & BACK-TO-TOP
@@ -2328,7 +2408,21 @@
             if(countSpan) countSpan.innerText = "";
         }
 
-        // 5.3: LANGUAGE SWITCHER
+        // 5.3: LANGUAGE SWITCHER LOGIC (UPDATED WITH FLAGS)
+        const languages = {
+            'en': { code: 'EN', flag: 'gb' },
+            'da': { code: 'DK', flag: 'dk' },
+            'es': { code: 'ES', flag: 'es' },
+            'fr': { code: 'FR', flag: 'fr' },
+            'de': { code: 'DE', flag: 'de' },
+            'hi': { code: 'HI', flag: 'in' },
+            'zh-CN': { code: 'CN', flag: 'cn' },
+            'ar': { code: 'SA', flag: 'sa' },
+            'ur': { code: 'PK', flag: 'pk' },
+            'ru': { code: 'RU', flag: 'ru' },
+            'ja': { code: 'JP', flag: 'jp' }
+        };
+
         function toggleLangDropdown(e) {
             e.stopPropagation();
             const desktopDD = document.getElementById('desktop-lang-dd');
@@ -2350,11 +2444,23 @@
         }
 
         function changeLanguage(langCode) {
+            // 1. Google Translate Trigger
             var select = document.querySelector('.goog-te-combo');
             if (select) {
                 select.value = langCode;
                 select.dispatchEvent(new Event('change'));
             }
+
+            // 2. Update Header UI (Flags + Code)
+            const langData = languages[langCode] || languages['en'];
+            const displayHTML = `<img src="https://flagcdn.com/w40/${langData.flag}.png" class="flag-xs" alt="${langData.code}"> ${langData.code} <i class="fas fa-chevron-down"></i>`;
+            
+            // Update both desktop and mobile headers
+            document.querySelectorAll('.lang-current-display').forEach(el => {
+                el.innerHTML = displayHTML;
+            });
+
+            // Close dropdowns
             document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show'));
         }
 
@@ -2516,4 +2622,3 @@
 
 </body>
 </html>
-
