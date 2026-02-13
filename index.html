@@ -229,12 +229,13 @@
             min-width: 180px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             z-index: 2005;
-            border-top: 3px solid var(--accent);
+            /* Gold line for main dropdown */
+            border-left: 3px solid var(--accent);
+            border-top: none; 
             border-radius: 0 0 4px 4px;
-            /* UPDATED: Position 100% removes gap so menu doesn't close on hover */
             top: 100%; 
             left: 0;
-            padding-top: 5px; /* Internal spacing instead of margin */
+            padding-top: 5px;
         }
         
         .nav-item-dropdown:hover .nav-dropdown-content { display: block; }
@@ -246,13 +247,12 @@
         
         .nav-dropdown-content a {
             color: var(--primary);
-            /* UPDATED: Reduced padding for compact fit */
             padding: 8px 12px;
             text-decoration: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 500;
             border-bottom: 1px solid #f9f9f9;
             transition: all 0.2s;
@@ -260,10 +260,10 @@
         .nav-dropdown-content a:hover {
             background-color: #f0f4f8;
             color: var(--accent);
-            padding-left: 16px; /* Slide effect */
+            padding-left: 20px; /* Slide effect */
         }
 
-        /* UPDATED: Keep parent highlighted when hovering nested menu */
+        /* Keep parent highlighted when hovering nested menu */
         .dropdown-item-wrapper:hover > a {
             background-color: #f0f4f8;
             color: var(--accent);
@@ -274,12 +274,13 @@
             display: none;
             position: absolute;
             left: 100%;
-            /* UPDATED: Aligns better */
-            top: -2px;
+            top: 0;
             background-color: #fff;
-            min-width: 200px;
+            min-width: 160px; /* Compact width */
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            border-left: 3px solid var(--accent);
+            /* UPDATED: Grey Color for Nested Items to differentiate */
+            border-left: 3px solid #b0b0b0; 
+            border-top: none;
             border-radius: 0 4px 4px 4px;
         }
         
@@ -313,6 +314,13 @@
             z-index: 2005;
         }
         .custom-lang-dropdown.show { display: flex; }
+
+        /* UPDATED: Enable Hover for Language Dropdown on Desktop */
+        @media (min-width: 901px) {
+            .lang-wrapper:hover .custom-lang-dropdown {
+                display: flex;
+            }
+        }
         
         /* UPDATED: Flexbox for Language Options */
         .lang-option {
@@ -410,19 +418,33 @@
 
         /* Stats Breakdown */
         .pub-breakdown {
-            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
-            background: rgba(0,0,0,0.1); border-radius: 4px;
+            /* FIXED: Set padding to 0 vertical initially so it is fully hidden */
+            max-height: 0; 
+            overflow: hidden; 
+            transition: all 0.3s ease-out;
+            background: rgba(0,0,0,0.1); 
+            border-radius: 4px;
+            padding: 0 12px; /* Only horizontal padding initially */
+            opacity: 0;
         }
-        .pub-breakdown.open { margin-top: 10px; max-height: 600px; }
+        .pub-breakdown.open { 
+            margin-top: 10px; 
+            max-height: 600px; 
+            /* Add vertical padding only when open */
+            padding: 10px 12px; 
+            opacity: 1;
+        }
         
         /* Stats Groups */
         .stat-group {
             border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 6px; margin-bottom: 8px; overflow: hidden;
+            border-radius: 6px; margin-bottom: 15px; overflow: hidden;
             background: rgba(0,0,0,0.1);
-            /* UPDATED: Added side margins for aesthetic spacing */
-            margin-left: 10px;
-            margin-right: 10px;
+            /* Removed side margins as padding is now on parent */
+            margin-left: 0;
+            margin-right: 0;
+            /* UPDATED: Added bottom padding so items don't touch the bottom border */
+            padding-bottom: 5px; 
         }
         .stat-group-header {
             background: rgba(255,255,255,0.05);
@@ -450,7 +472,6 @@
             display: flex; align-items: center; justify-content: center; gap: 5px;
         }
         .cv-btn-half:hover { background: #fff; color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4); }
-
 
 
         /* Style for the Publications container when expanded */
@@ -1255,11 +1276,11 @@
                 <!-- Text Home Button -->
                 <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
                 
-                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experiences</a></li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 
-                <!-- NEW: Research Dropdown with Nested Menus -->
+                <!-- NEW: Research Dropdown with Nested Menus (UPDATED WITH ICONS) -->
                 <li class="nav-item nav-item-dropdown">
                     <a href="#publications" class="nav-link" style="display: flex; align-items: center; gap: 5px;">
                         Research <i class="fas fa-chevron-down" style="font-size: 0.7em;"></i>
@@ -1268,7 +1289,7 @@
                         
                         <!-- Publications Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#publications">Publications <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#publications"><span><i class="fas fa-book"></i> Publications</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
                             <div class="sub-dropdown-content">
                                 <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
                                 <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
@@ -1279,7 +1300,7 @@
 
                         <!-- Events Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#conferences">Events <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#conferences"><span><i class="fas fa-calendar-alt"></i> Events</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
                             <div class="sub-dropdown-content">
                                 <a href="#conferences" onclick="triggerAccordion('pubs-conf')">Presented</a>
                                 <a href="#conferences" onclick="triggerAccordion('pubs-work')">Workshops</a>
@@ -1289,7 +1310,7 @@
 
                         <!-- Activities Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#professional">Activities <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#professional"><span><i class="fas fa-briefcase"></i> Activities</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
                             <div class="sub-dropdown-content">
                                 <a href="#professional" onclick="triggerAccordion('prof-edit')">Editorial Roles</a>
                                 <a href="#professional" onclick="triggerAccordion('prof-soc')">Society Membership</a>
@@ -1300,9 +1321,9 @@
 
                         <!-- Expertise Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#technical">Expertise <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#technical"><span><i class="fas fa-microscope"></i> Expertise</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
                             <div class="sub-dropdown-content">
-                                <a href="#technical" onclick="triggerAccordion('tech-ml')">AI & Machine Learning</a>
+                                <a href="#technical" onclick="triggerAccordion('tech-ml')">Machine Learning</a>
                                 <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
                                 <a href="#technical" onclick="triggerAccordion('tech-gen')">Genomics</a>
                                 <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
@@ -1426,7 +1447,7 @@
                             </a>
                             <a href="#publications" onclick="triggerAccordion('pubs-data')" class="stat-sub-item">
                                 <span><i class="fas fa-database"></i> Data & Codes</span>
-                                <span class="pub-badge">6+</span>
+                                <span class="pub-badge">13+</span>
                             </a>
                         </div>
                     </div>
@@ -1868,13 +1889,13 @@
             <div class="panel-content">
                 <!-- Added scrollable-list wrapper -->
                 <div class="scrollable-list">
-                     <ul class="pub-list">
+                     <!-- UPDATED: Changed from ul to ol reversed for numbering -->
+                     <ol class="pub-list" reversed>
                         <!-- Updated Buttons to Green Style -->
                         <li class="pub-item">
                             <strong>DrLungker:</strong> Deep Ensemble Learning Framework. 
                             <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data"><i class="fab fa-github"></i> GitHub</a> 
                             <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data"><i class="fas fa-share-alt"></i> Figshare</a>
-                            <br><span style="font-size:0.85rem; color:#666; display:block; margin-top:5px;">Individual Repositories: <a href="https://doi.org/10.6084/m9.figshare.30763082" target="_blank" style="text-decoration:underline;">10.6084/m9.figshare.30763082</a>, <a href="https://doi.org/10.6084/m9.figshare.30763514" target="_blank" style="text-decoration:underline;">10.6084/m9.figshare.30763514</a></span>
                         </li>
                         <li class="pub-item">
                             <strong>DeepEntXAI:</strong> Hybrid Explainable Framework. 
@@ -1891,6 +1912,9 @@
                         <li class="pub-item">
                             <strong>ChEMBL BioAssays:</strong> 
                             <a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" class="btn-data"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="http://dx.doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 1</a>
+                            <a href="http://dx.doi.org/10.13140/RG.2.2.27314.67529" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 2</a>
+
                         </li>
                         <li class="pub-item">
                             <strong>PubChem BioAssay:</strong> 
@@ -1907,11 +1931,7 @@
                             <a href="http://dx.doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 2</a>
                         </li>
                         
-                        <li class="pub-item"><strong>Dataset: FEDPN Polypharmacology</strong><br>
-                            <a href="http://dx.doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 1</a>
-                            <a href="http://dx.doi.org/10.13140/RG.2.2.27314.67529" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 2</a>
-                        </li>
-                        
+                            
                         <li class="pub-item"><strong>Supplementary Data: Paliperidone on RAGES</strong><br><a href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank" class="btn-data"><i class="fas fa-file-download"></i> MDPI Supplementary</a></li>
                         
                         <li class="pub-item"><strong>Dataset: Imidurea Dual Inhibitor</strong><br>
@@ -1922,7 +1942,7 @@
                         <li class="pub-item"><strong>Dataset: Imidazolidinyl Urea Multisampling</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                         
                         <li class="pub-item"><strong>Dataset: Predictive Modelling of Natural Compounds (SARS-CoV-2)</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.18926.06725" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
-                    </ul>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -2056,14 +2076,16 @@
         </button>
         <div class="panel">
             <div class="panel-content">
+
                 <!-- Applied scrollable limit here too -->
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed style="padding-left: 20px;">
-                        <li class="pub-item">Guest Editor: <strong><a href="https://www.frontiersin.org/research-topics/77977/artificial-intelligence-for-polypharmacology-and-resistance-aware-cancer-drug-discovery" target="_blank" style="color:var(--primary); text-decoration: underline;">Frontiers in Pharmacology</a></strong> (2025-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence for Polypharmacology and Resistance-Aware Cancer Drug Discovery</span></li>
-                        <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)</li>
-                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)</li>
-                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)</li>
-                        <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)</li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://www.frontiersin.org/research-topics/77977/artificial-intelligence-for-polypharmacology-and-resistance-aware-cancer-drug-discovery" target="_blank" style="color:var(--primary); text-decoration: underline;">Frontiers in Oncology</a></strong> (2025-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence for Polypharmacology and Resistance-Aware Cancer Drug Discovery</span></li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Current Genomics</a></strong> (2025-date)<br><span style="font-size:0.85rem; color:#666;">Topic: AI-Driven Genomics and Multi-Omics Approaches for Drug Discovery and Precision Medicine</span></li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://link.springer.com/collections/hbihjggjeg" target="_blank" style="color:var(--primary); text-decoration: underline;">Discover Biotechnology</a></strong> (2025-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence Applications in Bioinformatics for Cancer Research</span></li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies" target="_blank" style="color:var(--primary); text-decoration: underline;">Natural Product Communications</a></strong> (2024-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Harnessing Nature's Pharmacy for the Therapeutics of Lung and Respiratory Diseases</span></li>
+                        <li class="pub-item">Guest Editor: <strong><a href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue" target="_blank" style="color:var(--primary); text-decoration: underline;">Mini-Reviews in Medicinal Chemistry</a></strong> (2024-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Computational Frontiers in Medicinal Chemistry</span></li>
+
                     </ol>
                 </div>
              </div>
@@ -2509,7 +2531,7 @@
                     <div class="form-group contact-full">
                         <label class="form-label">Message</label>
                         <!-- Entry ID for Message -->
-                        <textarea name="entry.1216360893" class="form-control" rows="5" placeholder="Write your message here...&#10;I'm always open to discussing new research opportunities, collaborations, or speaking engagements." required></textarea>
+                        <textarea name="entry.1216360893" class="form-control" rows="5" placeholder="Write your message here...&#10;&#10;I'm always open to discussing new research opportunities, collaborations, or speaking engagements." required></textarea>
                     </div>
                 </div>
                 
@@ -3065,7 +3087,7 @@
             'es': { code: 'ES', flag: 'es' },
             'fr': { code: 'FR', flag: 'fr' },
             'de': { code: 'DE', flag: 'de' },
-            'hi': { code: 'HI', flag: 'in' },
+            'hi': { code: 'IN', flag: 'in' },
             'zh-CN': { code: 'CN', flag: 'cn' },
             'ar': { code: 'SA', flag: 'sa' },
             'ur': { code: 'PK', flag: 'pk' },
