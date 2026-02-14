@@ -1,6 +1,6 @@
 <!-- 
     ========================================================================
-    1.0: DOCUMENT SETUP & METADATA
+    PRODUCTION GRADE PORTFOLIO - DR SHABAN AHMAD
     ========================================================================
 -->
 <!DOCTYPE html>
@@ -10,14 +10,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr Shaban | Postdoc at UCPH</title>
-    <meta name="description" content="Academic Portfolio of Dr Shaban">
+    <meta name="description" content="Academic Portfolio of Dr Shaban - Postdoctoral Researcher at University of Copenhagen specializing in AI in Biology, Genomics, Drug Design & PFAS Biodegradation.">
     
-    <!-- ADDED: Social Media & SEO Meta Tags -->
+    <!-- SEO & Social Media Meta Tags -->
     <meta property="og:title" content="Dr Shaban | Postdoc Scientist">
     <meta property="og:description" content="Academic Portfolio: AI in Biology, Genomics, Drug Design & PFAS Biodegradation.">
     <meta property="og:image" content="shaban.png">
     <meta property="og:url" content="https://shabanahmad.github.io/">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr Shaban | Postdoc Scientist">
+    <meta name="twitter:description" content="Academic Portfolio: AI in Biology, Genomics, Drug Design.">
+    <meta name="twitter:image" content="shaban.png">
 
     <link rel="icon" href="shaban.png" type="image/png">
     
@@ -26,6 +30,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dr. Shaban Ahmad",
+      "jobTitle": "Postdoctoral Researcher",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Copenhagen",
+        "url": "https://www.ku.dk/en"
+      },
+      "url": "https://shabanahmad.github.io/",
+      "image": "https://shabanahmad.github.io/shaban.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/drshabanahmad/",
+        "https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en",
+        "https://www.researchgate.net/profile/Shaban-Ahmad-2",
+        "https://orcid.org/0000-0001-9832-2830"
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Jamia Millia Islamia"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Delhi"
+        }
+      ]
+    }
+    </script>
+
     <!-- 3.0: CSS STYLING ENGINE -->
     <style>
         /* 3.1: GLOBAL VARIABLES */
@@ -43,6 +80,24 @@
             --edu-phd: #dc3545; --edu-msc: #fd7e14; --edu-bsc: #20c997; --edu-xii: #20c997;       
             --exp-full: #28a745; --exp-trainee: #6f42c1;   
             --ref-1: #002e5f; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
+        }
+
+        /* NEW: Thematic Text Selection */
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* NEW: Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 10001; /* Above header */
+            transition: width 0.1s ease-out;
         }
 
         /* 3.2: GLOBAL RESETS & SCROLLBAR */
@@ -78,7 +133,7 @@
             outline: 2px solid red;
         }
 
-        /* ADDED: Search Tools Styles */
+        /* Search Tools Styles */
         .search-tools {
             display: flex; align-items: center; gap: 10px; margin-left: 10px;
             font-size: 0.9rem; color: #666;
@@ -93,9 +148,7 @@
         .search-btn:hover { background: var(--accent); color: #fff; }
 
 
-        /* UPDATED: SCROLLBAR STYLING FOR MOBILE & DESKTOP 
-           Added explicit html and body selectors to force mobile browser support 
-        */
+        /* SCROLLBAR STYLING */
         ::-webkit-scrollbar, *::-webkit-scrollbar, html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track, *::-webkit-scrollbar-track, html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
         ::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { 
@@ -117,7 +170,7 @@
             transform: translateY(0);
         }
 
-        /* Running Separator Animation (Red & Gold) */
+        /* Running Separator Animation */
         @keyframes gradientRun {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
@@ -151,7 +204,7 @@
         .header-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem; font-weight: 700;
-            color: var(--accent) !important; /* Gold */
+            color: var(--accent) !important;
             display: flex; align-items: center; gap: 8px;
             opacity: 0; transform: translateX(-20px);
             transition: all 0.3s ease;
@@ -159,17 +212,15 @@
             cursor: pointer;
         }
         
-        /* Hide Name on Desktop & Center Content */
         @media (min-width: 901px) {
             .header-name { display: none !important; }
-            /* Updated: Center align the nav on desktop */
             .header-content { justify-content: center; } 
         }
         
         .header-name.visible { opacity: 1; transform: translateX(0); }
 
 
-        /* Search Bar (Inside Header) */
+        /* Search Bar */
         .header-search-bar {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: #fff; z-index: 3000; 
@@ -196,7 +247,6 @@
         
         .nav-link { 
             color: var(--primary); text-transform: uppercase; 
-            /* UPDATED: Bigger font to match EN button */
             font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;
             padding: 5px 8px; border: none; border-radius: 4px;
             transition: all 0.3s ease; background: transparent;
@@ -212,7 +262,7 @@
         .nav-link.active-section { color: var(--accent) !important; }
         .nav-link.active-section::after { width: 80%; }
 
-        /* NEW: Nested Nav Dropdown Styles */
+        /* Nested Nav Dropdown Styles */
         .nav-item-dropdown {
             position: relative;
             display: inline-block;
@@ -229,7 +279,6 @@
             min-width: 180px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             z-index: 2005;
-            /* Gold line for main dropdown */
             border-left: 3px solid var(--accent);
             border-top: none; 
             border-radius: 0 0 4px 4px;
@@ -238,11 +287,14 @@
             padding-top: 5px;
         }
         
-        .nav-item-dropdown:hover .nav-dropdown-content { display: block; }
+        /* Desktop Hover only */
+        @media (min-width: 901px) {
+            .nav-item-dropdown:hover .nav-dropdown-content { display: block; }
+        }
 
         /* Dropdown Items */
         .dropdown-item-wrapper {
-            position: relative; /* For nesting */
+            position: relative; 
         }
         
         .nav-dropdown-content a {
@@ -260,10 +312,9 @@
         .nav-dropdown-content a:hover {
             background-color: #f0f4f8;
             color: var(--accent);
-            padding-left: 20px; /* Slide effect */
+            padding-left: 20px;
         }
 
-        /* Keep parent highlighted when hovering nested menu */
         .dropdown-item-wrapper:hover > a {
             background-color: #f0f4f8;
             color: var(--accent);
@@ -276,18 +327,29 @@
             left: 100%;
             top: 0;
             background-color: #fff;
-            min-width: 160px; /* Compact width */
+            min-width: 160px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            /* UPDATED: Grey Color for Nested Items to differentiate */
             border-left: 3px solid #b0b0b0; 
             border-top: none;
             border-radius: 0 4px 4px 4px;
         }
         
-        /* Show sub-dropdown on hover of wrapper */
         .dropdown-item-wrapper:hover .sub-dropdown-content {
             display: block;
         }
+
+        /* Navigation Arrow Styling */
+        .desktop-arrow {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 0.7em;
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-toggle {
+            display: none; /* Hidden by default on desktop */
+        }
+
 
         /* Desktop Controls */
         .header-controls {
@@ -301,7 +363,6 @@
         .lang-wrapper { position: relative; display: inline-block; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); }
         .lang-wrapper:hover { color: var(--accent); }
         
-        /* NEW: Display container for Flag + Text */
         .lang-current-display { display: flex; align-items: center; gap: 5px; }
         .flag-xs { width: 18px; height: auto; border-radius: 2px; }
 
@@ -315,19 +376,17 @@
         }
         .custom-lang-dropdown.show { display: flex; }
 
-        /* UPDATED: Enable Hover for Language Dropdown on Desktop */
         @media (min-width: 901px) {
             .lang-wrapper:hover .custom-lang-dropdown {
                 display: flex;
             }
         }
         
-        /* UPDATED: Flexbox for Language Options */
         .lang-option {
             padding: 8px 15px; font-size: 0.85rem; color: #333; 
             cursor: pointer; transition: 0.2s;
-            display: flex; align-items: center; gap: 10px; /* Ensures inline */
-            white-space: nowrap; /* Forces text and flag on same line */
+            display: flex; align-items: center; gap: 10px;
+            white-space: nowrap;
         }
         .lang-option:hover { background: #f0f0f0; color: var(--accent); }
         
@@ -418,32 +477,27 @@
 
         /* Stats Breakdown */
         .pub-breakdown {
-            /* FIXED: Set padding to 0 vertical initially so it is fully hidden */
             max-height: 0; 
             overflow: hidden; 
             transition: all 0.3s ease-out;
             background: rgba(0,0,0,0.1); 
             border-radius: 4px;
-            padding: 0 12px; /* Only horizontal padding initially */
+            padding: 0 12px;
             opacity: 0;
         }
         .pub-breakdown.open { 
             margin-top: 10px; 
             max-height: 600px; 
-            /* Add vertical padding only when open */
             padding: 10px 12px; 
             opacity: 1;
         }
         
-        /* Stats Groups */
         .stat-group {
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 6px; margin-bottom: 15px; overflow: hidden;
             background: rgba(0,0,0,0.1);
-            /* Removed side margins as padding is now on parent */
             margin-left: 0;
             margin-right: 0;
-            /* UPDATED: Added bottom padding so items don't touch the bottom border */
             padding-bottom: 5px; 
         }
         .stat-group-header {
@@ -473,22 +527,15 @@
         }
         .cv-btn-half:hover { background: #fff; color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4); }
 
-
-        /* Style for the Publications container when expanded */
         .stat-row-link.active-box {
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Explicit border around the whole box */
-            background: rgba(255, 255, 255, 0.05); /* Slight background tint */
-            border-radius: 8px; /* Rounded corners */
-            margin: 10px 0; /* Add spacing from other items */
-            padding-bottom: 10px; /* Space at the bottom inside the box */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Optional: nice depth */
-        }
-
-        /* Ensure the bottom border is removed when the full box border is active */
-        .stat-row-link.active-box {
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            margin: 10px 0; 
+            padding-bottom: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
             border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
         }
-
 
         /* 3.7: CONTENT CONTAINERS */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
@@ -500,11 +547,10 @@
 
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         
-        /* UPDATED: NIPER & Tool Links Hover (Blue underline default, Blue box on hover) */
         .niper-hover {
             color: inherit; 
             text-decoration: none; 
-            border-bottom: 1px solid var(--primary); /* Thin blue underline */
+            border-bottom: 1px solid var(--primary); 
             transition: all 0.2s ease-in-out; 
             padding: 0 2px;
             display: inline-block;
@@ -534,14 +580,19 @@
         }
         .int-tag:hover { background: var(--primary); color: var(--white); }
 
-        /* Gold Medal Fix */
         .badge-gold-inline {
-            color: var(--accent); /* Force Gold Color */
+            color: var(--accent); 
             margin-left: 5px; font-size: 1.1rem;
         }
 
         /* 3.8: CARDS & GRIDS */
-        .edu-grid, .exp-grid, .referee-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .edu-grid, .exp-grid, .referee-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 1.5rem; 
+            /* Initialize counter for numbering */
+            counter-reset: exp-counter;
+        }
         
         .edu-card, .exp-box, .referee-card {
             background: var(--white); padding: 1.8rem 1.5rem; border-radius: 8px; 
@@ -552,7 +603,57 @@
             position: relative; display: flex; flex-direction: column;
         }
 
-        /* Specific Colors & Hovers */
+        /* ================================================================
+           NEW: "CENTRE-LEFT BADGE" DESIGN (Updated per request)
+           ================================================================
+        */
+        
+        .exp-box {
+            counter-increment: exp-counter;
+            /* Standard padding ensures content isn't thrown to the right */
+            padding: 1.8rem 1.5rem; 
+            overflow: visible; /* Allows circle to sit on border */
+        }
+
+        /* The Numbered Node */
+        .exp-box::after {
+            content: counter(exp-counter); /* Simple 1, 2, 3... */
+            position: absolute;
+            left: 0; /* Align to left border */
+            top: 50%; /* Vertically Center */
+            transform: translate(-50%, -50%); /* Center perfectly on the line */
+            width: 24px;  /* Reduced Size (was 32px) */
+            height: 24px; /* Reduced Size */
+            background: #fff;
+            border: 2px solid #ccc; /* Thinner border */
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; /* Smaller, cleaner font */
+            font-weight: 800; 
+            color: #555;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Effect: Node fills with color */
+        .exp-box:hover::after {
+            color: #fff;
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Color Coordination (Matches the top border) */
+        .exp-full::after { border-color: var(--exp-full); color: var(--exp-full); }
+        .exp-full:hover::after { background: var(--exp-full); }
+
+        .exp-part::after { border-color: var(--edu-msc); color: var(--edu-msc); }
+        .exp-part:hover::after { background: var(--edu-msc); }
+
+        .exp-trainee::after { border-color: var(--exp-trainee); color: var(--exp-trainee); }
+        .exp-trainee:hover::after { background: var(--exp-trainee); }
+
+
         .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); }
         .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); }
         .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
@@ -630,19 +731,17 @@
         }
         .accordion-btn:hover { background: #f0f4f8; }
 
-        /* ACTIVE ACCORDION BUTTON - Seamless Border */
         .accordion-btn.active { 
             background: #fff; color: var(--primary); 
             border-left: 5px solid var(--primary);
             border-top: 2px solid var(--primary);
             border-right: 2px solid var(--primary);
-            border-bottom: none; /* No border between button and panel */
+            border-bottom: none; 
             text-decoration: underline; margin-bottom: 0; 
             border-bottom-left-radius: 0; border-bottom-right-radius: 0;
         }
         .accordion-btn.active i.fa-chevron-down { transform: rotate(180deg); color: var(--accent); }
         
-        /* ACTIVE PANEL - Seamless Border */
         .panel { 
             max-height: 0; overflow: hidden; 
             transition: max-height 0.3s ease-out; 
@@ -652,7 +751,6 @@
             margin-bottom: 10px;
             border-top-left-radius: 0; border-top-right-radius: 0;
         }
-        /* Make borders match the active button */
         .accordion-btn.active + .panel { 
             border-left: 5px solid var(--primary); 
             border-right: 2px solid var(--primary); 
@@ -661,24 +759,21 @@
         }
         
         .panel-content { padding: 20px; }
-        .panel-content a:not(.pub-doi):not(.btn-send):not(.btn-data):hover { 
+        .panel-content a:not(.pub-doi):not(.btn-send):not(.btn-data):not(.btn-cite):hover { 
             color: var(--accent) !important; 
             text-decoration: none; 
         }
 
-        /* UPDATED: Height limited to show ~3 items (approx 280px) */
         .scrollable-list { 
             max-height: 280px; 
             overflow-y: auto; 
             padding: 10px 20px 10px 10px; 
-            /* Momentum scrolling for touch */
             -webkit-overflow-scrolling: touch;
         }
         
-        /* Restored Pub List Styling & Bold Numbers */
         .pub-list { padding-left: 30px; }
         .pub-list li::marker {
-            font-weight: 700; /* Bold Numbers */
+            font-weight: 700; 
             color: var(--primary);
             font-size: 1.05rem;
         } 
@@ -697,7 +792,6 @@
             z-index: 10; position: relative; 
         }
         
-        /* UPDATED: DOI Button Style (Matches Screenshot with Spacing) */
         .pub-doi { 
             font-size: 0.75rem; color: #fff !important; background-color: #dca11d; 
             padding: 3px 8px; border-radius: 6px; margin-left: 8px; 
@@ -705,20 +799,18 @@
             align-items: center; gap: 4px; text-transform: uppercase;
             transition: transform 0.2s;
         }
-        /* Add Icon via CSS */
         .pub-doi::after {
-            content: '\f35d'; /* FontAwesome External Link Icon */
+            content: '\f35d'; 
             font-family: 'Font Awesome 5 Free'; font-weight: 900;
             font-size: 0.7rem;
-            margin-left: 6px; /* Added spacing */
+            margin-left: 6px;
         }
         .pub-doi:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* DATA BUTTON STYLE */
         .btn-data {
             font-size: 0.75rem; 
             color: #fff !important; 
-            background-color: #28a745; /* Green */
+            background-color: #28a745; 
             padding: 3px 8px; 
             border-radius: 6px; 
             margin-left: 8px; 
@@ -735,7 +827,7 @@
 
         .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 4px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
 
-        /* 3.13: PEER REVIEW TAGS - UPDATED POP STYLE */
+        /* 3.13: PEER REVIEW TAGS */
         .peer-review-container {
             display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-top: 10px;
         }
@@ -748,17 +840,15 @@
             background-color: var(--primary); color: #fff; border-color: var(--primary);
             transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        /* Verified Badge next to title */
         .verified-badge {
             background-color: #002e5f; color: #fff; padding: 2px 8px; 
             border-radius: 12px; font-size: 0.75rem; vertical-align: middle; 
             margin-left: 10px; display: inline-flex; align-items: center; gap: 4px;
         }
 
-        /* NEW: Technical Grid Scrollable Wrapper */
         .scrollable-grid {
-            max-height: 380px; /* Approx height of one card + padding */
-            overflow-y: auto;
+            max-height: 380px; 
+            overflow-y: auto; 
             overflow-x: hidden;
             padding: 10px 5px;
             -webkit-overflow-scrolling: touch; 
@@ -801,7 +891,6 @@
         .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; }
         .referee-title-line { font-weight: 600; color: #444; font-size: 0.95rem; margin-bottom: 5px; }
         
-        /* UPDATED: Institution Hover */
         .ref-inst-row, .ref-inst-row a { 
             font-family: var(--inst-font) !important;
             font-size: 1rem !important;
@@ -813,7 +902,6 @@
         }
         .ref-inst-row:hover, .ref-inst-row a:hover { color: var(--accent) !important; }
 
-        /* Flag Image from CDN */
         .flag-img {
             width: 22px; height: auto; vertical-align: middle; margin-left: 5px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.2); border-radius: 2px;
@@ -823,27 +911,22 @@
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
 
-        /* UPDATED: Contact Box - Whole Border Hover Effect */
         .contact-form-box {
             background: #fff; padding: 2rem; border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-            /* Base borders: Thick Grey Top, Thin Grey sides/bottom */
             border: 1px solid #eee;
             border-top: 5px solid #ccc; 
-            /* Fixed: Use full width of container */
             width: 100%; margin: 0 auto;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .contact-form-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            /* Turns whole border Gold */
             border-color: var(--accent);
         }
 
-        /* UPDATED: Strict Alignment for Uni Name & Flag */
         .ref-inst-row { 
-            display: flex; align-items: center; /* Vertically Center */
+            display: flex; align-items: center; 
             gap: 10px; margin-bottom: 5px;
             font-family: var(--inst-font); font-weight: 600; color: var(--primary);
         }
@@ -856,17 +939,19 @@
         
         .flag-img {
             width: 22px; height: auto; 
-            display: block; /* Removes inline spacing issues */
+            display: block; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.2); border-radius: 2px;
         }
 
                 
-        /* Desktop: 2 cols for Name/Email */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        /* Contact Form Grid */
+        /* UPDATED: Reduced gap from 1.5rem to 1rem to tighten spacing */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .contact-full { grid-column: span 2; }
         
-        .form-group { margin-bottom: 1.2rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); }
+        /* UPDATED: Reduced margin from 1.2rem to 0.8rem */
+        .form-group { margin-bottom: 0.8rem; }
+        .form-label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--primary); }
         .form-control {
             width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px;
             font-family: inherit; font-size: 1rem; transition: 0.3s;
@@ -875,18 +960,24 @@
         
         /* NEW: Footer Buttons area for Contact form */
         .form-footer {
-            display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 10px;
+            display: flex; flex-wrap: wrap; align-items: center; 
+            gap: 15px; 
+            margin-top: 15px; 
+            width: 100%;
+            position: relative;
+            z-index: 10;
         }
 
         .btn-send {
             background: var(--primary); color: #fff; border: none; padding: 12px 30px;
             font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer;
-            transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+            transition: 0.3s; display: flex; align-items: center; gap: 8px; /* Changed to flex for better centering */
             white-space: nowrap;
+            visibility: visible;
+            opacity: 1;
         }
         .btn-send:hover { background: var(--accent); color: var(--primary); transform: translateY(-2px); }
 
-        /* NEW: Success Box Style */
         .msg-success-box {
             display: none;
             padding: 10px 20px;
@@ -897,14 +988,14 @@
             font-weight: 600;
             font-size: 0.95rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            flex: 1; /* Take remaining space */
+            flex: 1; 
             text-align: center;
-            max-width: 300px; /* Don't get too wide on desktop */
+            max-width: 300px; 
         }
         .msg-success-box.show { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
 
-        /* 3.14: FOOTER (Refined for Same Line on Desktop) */
+        /* 3.14: FOOTER */
         footer { 
             background: var(--primary-dark); color: #fff; text-align: center; 
             padding: 15px 0; 
@@ -944,13 +1035,11 @@
         
         /* 3.15: MOBILE RESPONSIVE */
         @media (max-width: 900px) {
-            /* Updated: Use flexbox to distribute space automatically */
             .header-content { 
-                justify-content: space-between; /* Spread items */
+                justify-content: space-between; 
                 gap: 10px;
             }
             
-            /* Updated: Dr Shaban Name Auto-Centering Logic */
             .header-name { 
                 display: block !important; 
                 opacity: 1 !important; 
@@ -958,12 +1047,8 @@
                 pointer-events: auto !important;
                 color: var(--accent) !important; 
                 font-size: 1.5rem; 
-                
-                /* Remove absolute positioning so it doesn't overlap */
                 position: static !important; 
                 margin: 0; 
-                
-                /* Flex magic: Take up remaining space and center text within it */
                 flex-grow: 1;
                 text-align: center;
                 white-space: nowrap; 
@@ -989,16 +1074,94 @@
                 padding: 9px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
             }
             
-            /* Controls stay on the right, naturally pushing the name left if needed */
+            /* UPDATED: Flex Container for Arrow + Text Row */
+            .nav-item-dropdown {
+                display: flex;
+                flex-wrap: wrap; /* Allows dropdown content to break to next line */
+                width: 100%;
+                border-bottom: 1px solid #eee;
+                align-items: center; /* Vertically center content */
+            }
+
+            /* UPDATED: Link Text (Moves to Right) */
+            .nav-item-dropdown .nav-link {
+                border-bottom: none; 
+                flex-grow: 1;       /* Take up remaining width */
+                width: auto;        /* Override 100% width */
+                display: flex;
+                align-items: center;
+                order: 2;           /* Place AFTER the arrow */
+                padding-left: 20px; /* The "5 space" gap requested */
+            }
+
+            /* UPDATED: Dropdown Arrow (Moves to Left) */
+            .mobile-dropdown-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;        /* Large touch target */
+                height: 45px;       /* Consistent height */
+                font-size: 1.2rem;
+                color: var(--primary);
+                cursor: pointer;
+                border-left: none;
+                border-right: 1px solid #f0f0f0; /* Separator line on right */
+                transition: background 0.2s, color 0.2s;
+                order: 1;           /* Place BEFORE the text */
+                background-color: #fafafa; /* Slight BG to differentiate button */
+            }
+            
+            .mobile-dropdown-toggle:hover, .mobile-dropdown-toggle.active {
+                background-color: #f0f4f8;
+                color: var(--accent);
+            }
+            
+            /* Hide desktop arrow on mobile */
+            .desktop-arrow { display: none; }
+
+            .nav-dropdown-content {
+                position: static;
+                box-shadow: none;
+                border: none;
+                border-left: 3px solid #eee;
+                background: #f9f9f9;
+                width: 100%;
+                /* UPDATED: Increased indentation for sub-buttons */
+                padding-left: 25px; 
+                display: none; /* Controlled via JS */
+                order: 3; /* Force to new line below arrow and text */
+            }
+            
+            .nav-dropdown-content.show-mobile { display: block; }
+
+            /* Sub-dropdowns on mobile flatten out */
+            .dropdown-item-wrapper:hover .sub-dropdown-content {
+                position: static;
+                display: none; /* Disable hover on mobile so click works */
+            }
+
+            /* NEW: Class to toggle nested menus on mobile */
+            .sub-dropdown-content.show-nested {
+                display: block !important;
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding-left: 15px;
+                background-color: #f9f9f9;
+                border-left: 3px solid #e0e0e0;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            
+            /* Controls stay on the right */
             .mobile-controls-container { 
                 display: flex; 
                 align-items: center;
-                margin-left: 0; /* Remove auto margin so flex-grow on name works */
+                margin-left: 0; 
                 z-index: 2002; 
-                flex-shrink: 0; /* Prevent controls from shrinking */
+                flex-shrink: 0; 
             }
             
-            /* UPDATED: Increased margin-left to 30px to create space between EN and Menu */
             .nav-toggle { 
                 display: block; 
                 position: relative; 
@@ -1020,18 +1183,15 @@
             .contact-grid { grid-template-columns: 1fr; } 
             .contact-full { grid-column: span 1; }
             
-            /* Footer: Stack on Mobile */
             .footer-content { flex-direction: column; gap: 15px; }
 
-            /* Contact form footer on mobile: Column direction */
             .form-footer { flex-direction: column; align-items: stretch; }
             .btn-send { width: 100%; justify-content: center; }
             .msg-success-box { max-width: 100%; }
         }
 
-        /* ADDED: Print Stylesheet (Converts Website to PDF CV) */
+        /* PRINT STYLES */
         @media print {
-            /* Hide interactive/navigation elements */
             #main-header, .sticky-sidebar, .back-to-top, .accordion-btn i, 
             .nav-toggle, .mobile-controls-container, .header-search-bar, 
             .search-tools, .form-footer, .contact-form-box, .cv-btn-group, 
@@ -1039,28 +1199,24 @@
                 display: none !important;
             }
             
-            /* Reset Layout for A4 Paper */
             body { 
                 padding-top: 0; background: #fff; color: #000; 
                 font-size: 11pt; 
             }
             .container { max-width: 100%; padding: 0; margin: 0; }
             
-            /* Header adjustments for print */
             .hero-section-wrapper { background: none; color: #000; }
             .hero { padding: 0; gap: 20px; justify-content: flex-start; text-align: left; }
             .hero h1 { color: #000; font-size: 24pt; margin: 0; }
             .hero-role-link { color: #333; border: none; }
             .hero-img { border-color: #000; width: 120px; height: 120px; }
-            .hero-stats { display: none; } /* Hide stats box to save space */
+            .hero-stats { display: none; }
 
-            /* Section Titles */
             .section-title { 
                 font-size: 16pt; border-left: none; 
                 border-bottom: 2px solid #000; padding-left: 0; margin-top: 20px; 
             }
 
-            /* Accordions: Force Open & Remove Styling */
             .accordion-btn {
                 background: none; border: none; padding: 0; margin: 10px 0 5px 0;
                 font-weight: 800; font-size: 13pt; color: #000;
@@ -1074,26 +1230,22 @@
             }
             .panel-content { padding: 0; }
 
-            /* Remove Scroll Limits */
             .scrollable-list, .scrollable-grid {
                 max-height: none !important;
                 overflow: visible !important;
                 padding: 0;
             }
 
-            /* Links */
             a { text-decoration: none; color: #000 !important; }
             .pub-doi { border: 1px solid #000; color: #000 !important; background: #fff; }
 
-            /* Show Footer for Print Attribution */
-        #print-footer { 
-            display: block !important; text-align: center; 
-            margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px;
-            font-size: 9pt; color: #555;
+            #print-footer { 
+                display: block !important; text-align: center; 
+                margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px;
+                font-size: 9pt; color: #555;
+            }
         }
-    }
     
-    /* ADDED: Cite Button & Dropdown Styles */
     .pub-controls {
         display: inline-flex;
         align-items: center;
@@ -1103,7 +1255,6 @@
         position: relative;
     }
     
-    /* Cite Button Styling */
     .btn-cite {
         font-size: 0.75rem; 
         color: #555; 
@@ -1126,7 +1277,6 @@
     }
     .btn-cite i { font-size: 0.7rem; }
 
-    /* Dropdown Menu */
     .cite-dropdown-menu {
         position: absolute;
         top: 100%;
@@ -1135,8 +1285,8 @@
         border: 1px solid #ddd;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         border-radius: 6px;
-        min-width: 200px; /* Made slightly wider for full text */
-        z-index: 1000; /* High z-index */
+        min-width: 200px;
+        z-index: 1000; 
         display: none;
         flex-direction: column;
         margin-top: 5px;
@@ -1144,11 +1294,10 @@
     }
     .cite-dropdown-menu.show { display: flex; animation: fadeIn 0.2s ease-out; }
     
-    /* ADDED: Active Class for Z-Index handling */
     .pub-item.z-active {
         z-index: 50 !important;
         position: relative;
-        border-color: var(--accent); /* Optional: Highlight active item */
+        border-color: var(--accent);
     }
 
     .cite-option {
@@ -1163,7 +1312,7 @@
         align-items: center;
         gap: 8px;
         transition: background 0.2s;
-        text-decoration: none; /* For download links */
+        text-decoration: none;
         width: 100%;
     }
     .cite-option:hover { background-color: #f5f5f5; color: var(--accent); }
@@ -1184,20 +1333,23 @@
     <!-- 4.1: PRINT FOOTER -->
     <div id="print-footer" style="display:none;">Downloaded from https://shabanahmad.github.io/</div>
 
+    <!-- NEW: SCROLL PROGRESS BAR ELEMENT -->
+    <div id="scroll-progress"></div>
+
     <!-- 4.2: SIDEBAR & BACK TO TOP -->
     <div class="sticky-sidebar">
-        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar"><i class="ai ai-google-scholar"></i></a>
-        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"><i class="ai ai-orcid"></i></a>
-        <a href="https://shabanahmad.github.io/" class="h-social" title="Website"><i class="fa-solid fa-globe"></i></a>
+        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
+        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
+        <a href="https://shabanahmad.github.io/" class="h-social" title="Website" aria-label="Personal Website"><i class="fa-solid fa-globe"></i></a>
     </div>
 
-    <div class="back-to-top" id="back-to-top"><i class="fas fa-chevron-up"></i></div>
+    <div class="back-to-top" id="back-to-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></div>
     
     <!-- 4.3: HEADER -->
     <header id="main-header">
-        <!-- Search Bar Overlay (UPDATED with Tools) -->
+        <!-- Search Bar Overlay -->
         <div class="header-search-bar" id="header-search-bar">
             <input type="text" class="header-search-input" id="search-input" 
                    placeholder="Find on page..." 
@@ -1205,11 +1357,11 @@
             
             <div class="search-tools">
                 <span id="search-count" class="search-count"></span>
-                <button class="search-btn" onclick="nextMatch()" title="Next Match (Enter)"><i class="fas fa-chevron-down"></i></button>
-                <button class="search-btn" onclick="prevMatch()" title="Previous Match"><i class="fas fa-chevron-up"></i></button>
+                <button class="search-btn" onclick="nextMatch()" title="Next Match (Enter)" aria-label="Next Match"><i class="fas fa-chevron-down"></i></button>
+                <button class="search-btn" onclick="prevMatch()" title="Previous Match" aria-label="Previous Match"><i class="fas fa-chevron-up"></i></button>
             </div>
 
-            <i class="fas fa-times header-search-close" onclick="closeSearch(event)" title="Close Search (Esc)"></i>
+            <i class="fas fa-times header-search-close" onclick="closeSearch(event)" title="Close Search (Esc)" aria-label="Close Search"></i>
         </div>
 
         <div class="header-content">
@@ -1222,7 +1374,7 @@
 
             <!-- Mobile Controls -->
             <div class="mobile-controls-container">
-                <i class="fas fa-search control-icon" onclick="toggleSearch(event)" style="margin-right:10px;"></i>
+                <i class="fas fa-search control-icon" onclick="toggleSearch(event)" style="margin-right:10px;" aria-label="Search"></i>
                 
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)">
                     <!-- Dynamic Content -->
@@ -1231,66 +1383,80 @@
                     </div>
 
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
-                        <!-- Flags provided by flagcdn.com -->
+                        <!-- Flags loaded lazily for performance -->
                         <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
-                             <img src="https://flagcdn.com/w40/gb.png" class="flag-img" alt="UK"> English
+                             <img src="https://flagcdn.com/w40/gb.png" class="flag-img" loading="lazy" alt="UK"> English
                         </div>
                         <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)">
-                             <img src="https://flagcdn.com/w40/dk.png" class="flag-img" alt="DK"> Dansk
+                             <img src="https://flagcdn.com/w40/dk.png" class="flag-img" loading="lazy" alt="DK"> Dansk
                         </div>
                         <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)">
-                             <img src="https://flagcdn.com/w40/es.png" class="flag-img" alt="ES"> Español
+                             <img src="https://flagcdn.com/w40/es.png" class="flag-img" loading="lazy" alt="ES"> Español
                         </div>
                         <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)">
-                             <img src="https://flagcdn.com/w40/fr.png" class="flag-img" alt="FR"> Français
+                             <img src="https://flagcdn.com/w40/fr.png" class="flag-img" loading="lazy" alt="FR"> Français
                         </div>
                         <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)">
-                             <img src="https://flagcdn.com/w40/de.png" class="flag-img" alt="DE"> Deutsch
+                             <img src="https://flagcdn.com/w40/de.png" class="flag-img" loading="lazy" alt="DE"> Deutsch
                         </div>
                         <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)">
-                             <img src="https://flagcdn.com/w40/in.png" class="flag-img" alt="IN"> हिन्दी
+                             <img src="https://flagcdn.com/w40/in.png" class="flag-img" loading="lazy" alt="IN"> हिन्दी
                         </div>
                         <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)">
-                             <img src="https://flagcdn.com/w40/cn.png" class="flag-img" alt="CN"> 中文
+                             <img src="https://flagcdn.com/w40/cn.png" class="flag-img" loading="lazy" alt="CN"> 中文
                         </div>
                         <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)">
-                             <img src="https://flagcdn.com/w40/sa.png" class="flag-img" alt="SA"> العربية
+                             <img src="https://flagcdn.com/w40/sa.png" class="flag-img" loading="lazy" alt="SA"> العربية
                         </div>
                          <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (India/Pakistan)">
-                             <img src="https://flagcdn.com/w40/pk.png" class="flag-img" alt="PK"> اردو
+                             <img src="https://flagcdn.com/w40/pk.png" class="flag-img" loading="lazy" alt="PK"> اردو
                         </div>
                         <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
-                             <img src="https://flagcdn.com/w40/ru.png" class="flag-img" alt="RU"> Русский
+                             <img src="https://flagcdn.com/w40/ru.png" class="flag-img" loading="lazy" alt="RU"> Русский
                         </div>
                         <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
-                             <img src="https://flagcdn.com/w40/jp.png" class="flag-img" alt="JP"> 日本語
+                             <img src="https://flagcdn.com/w40/jp.png" class="flag-img" loading="lazy" alt="JP"> 日本語
                         </div>
                     </div>
                 </div>
 
-                <div class="nav-toggle" onclick="toggleMenu(event)"><i class="fas fa-bars"></i></div>
+                <div class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu Toggle"><i class="fas fa-bars"></i></div>
             </div>
 
             <!-- Desktop Nav List -->
             <ul class="nav-list" id="nav-menu">
-                <!-- Text Home Button -->
                 <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
                 
                 <li class="nav-item"><a href="#experience" class="nav-link">Experiences</a></li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 
-                <!-- NEW: Research Dropdown with Nested Menus (UPDATED WITH ICONS) -->
+                <!-- NEW: Upgraded Nav Item Structure for Mobile/Desktop Separation -->
                 <li class="nav-item nav-item-dropdown">
-                    <a href="#publications" class="nav-link" style="display: flex; align-items: center; gap: 5px;">
-                        Research <i class="fas fa-chevron-down" style="font-size: 0.7em;"></i>
+                    <!-- Text Link (Clickable) -->
+                    <a href="#publications" class="nav-link">
+                        Research 
+                        <!-- Desktop Arrow (Visible only on desktop via CSS) -->
+                        <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span>
                     </a>
-                    <div class="nav-dropdown-content">
+                    
+                    <!-- Mobile Dropdown Toggle (Visible only on mobile via CSS) -->
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event)">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+
+                    <div class="nav-dropdown-content" id="research-dropdown">
                         
                         <!-- Publications Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#publications"><span><i class="fas fa-book"></i> Publications</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <!-- ADDED: onclick handler for mobile -->
+                            <a href="#publications" onclick="toggleNestedMobile(event, this)">
+                                <span><i class="fas fa-book"></i> Publications</span> 
+                                <i class="fas fa-chevron-right nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i>
+                            </a>
                             <div class="sub-dropdown-content">
+                                <!-- UPDATED: Added In Pipeline Link -->
+                                <a href="#publications" onclick="triggerAccordion('pubs-pipeline')">In Pipeline</a>
                                 <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
                                 <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
                                 <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes</a>
@@ -1300,7 +1466,10 @@
 
                         <!-- Events Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#conferences"><span><i class="fas fa-calendar-alt"></i> Events</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#conferences" onclick="toggleNestedMobile(event, this)">
+                                <span><i class="fas fa-calendar-alt"></i> Events</span> 
+                                <i class="fas fa-chevron-right nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i>
+                            </a>
                             <div class="sub-dropdown-content">
                                 <a href="#conferences" onclick="triggerAccordion('pubs-conf')">Presented</a>
                                 <a href="#conferences" onclick="triggerAccordion('pubs-work')">Workshops</a>
@@ -1310,7 +1479,10 @@
 
                         <!-- Activities Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#professional"><span><i class="fas fa-briefcase"></i> Activities</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#professional" onclick="toggleNestedMobile(event, this)">
+                                <span><i class="fas fa-briefcase"></i> Activities</span> 
+                                <i class="fas fa-chevron-right nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i>
+                            </a>
                             <div class="sub-dropdown-content">
                                 <a href="#professional" onclick="triggerAccordion('prof-edit')">Editorial Roles</a>
                                 <a href="#professional" onclick="triggerAccordion('prof-soc')">Society Membership</a>
@@ -1321,7 +1493,10 @@
 
                         <!-- Expertise Sub-Menu -->
                         <div class="dropdown-item-wrapper">
-                            <a href="#technical"><span><i class="fas fa-microscope"></i> Expertise</span> <i class="fas fa-chevron-right" style="font-size: 0.7em; opacity: 0.5;"></i></a>
+                            <a href="#technical" onclick="toggleNestedMobile(event, this)">
+                                <span><i class="fas fa-microscope"></i> Expertise</span> 
+                                <i class="fas fa-chevron-right nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i>
+                            </a>
                             <div class="sub-dropdown-content">
                                 <a href="#technical" onclick="triggerAccordion('tech-ml')">Machine Learning</a>
                                 <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
@@ -1338,46 +1513,46 @@
                 
                 <!-- Desktop Controls -->
                 <li class="header-controls">
-                    <i class="fas fa-search control-icon" onclick="toggleSearch(event)" title="Search"></i>
+                    <i class="fas fa-search control-icon" onclick="toggleSearch(event)" title="Search" aria-label="Search"></i>
                     <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)">
                         <!-- Dynamic Content -->
                          <div class="lang-current-display">
                             EN <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
-                           <!-- Flags provided by flagcdn.com -->
+                           <!-- Flags loaded lazily -->
                             <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)">
-                                 <img src="https://flagcdn.com/w40/gb.png" class="flag-img" alt="UK"> English
+                                 <img src="https://flagcdn.com/w40/gb.png" class="flag-img" loading="lazy" alt="UK"> English
                             </div>
                             <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)">
-                                 <img src="https://flagcdn.com/w40/dk.png" class="flag-img" alt="DK"> Dansk
+                                 <img src="https://flagcdn.com/w40/dk.png" class="flag-img" loading="lazy" alt="DK"> Dansk
                             </div>
                             <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)">
-                                 <img src="https://flagcdn.com/w40/es.png" class="flag-img" alt="ES"> Español
+                                 <img src="https://flagcdn.com/w40/es.png" class="flag-img" loading="lazy" alt="ES"> Español
                             </div>
                             <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)">
-                                 <img src="https://flagcdn.com/w40/fr.png" class="flag-img" alt="FR"> Français
+                                 <img src="https://flagcdn.com/w40/fr.png" class="flag-img" loading="lazy" alt="FR"> Français
                             </div>
                             <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)">
-                                 <img src="https://flagcdn.com/w40/de.png" class="flag-img" alt="DE"> Deutsch
+                                 <img src="https://flagcdn.com/w40/de.png" class="flag-img" loading="lazy" alt="DE"> Deutsch
                             </div>
                             <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)">
-                                 <img src="https://flagcdn.com/w40/in.png" class="flag-img" alt="IN"> हिन्दी
+                                 <img src="https://flagcdn.com/w40/in.png" class="flag-img" loading="lazy" alt="IN"> हिन्दी
                             </div>
                             <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)">
-                                 <img src="https://flagcdn.com/w40/cn.png" class="flag-img" alt="CN"> 中文
+                                 <img src="https://flagcdn.com/w40/cn.png" class="flag-img" loading="lazy" alt="CN"> 中文
                             </div>
                             <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)">
-                                 <img src="https://flagcdn.com/w40/sa.png" class="flag-img" alt="SA"> العربية
+                                 <img src="https://flagcdn.com/w40/sa.png" class="flag-img" loading="lazy" alt="SA"> العربية
                             </div>
                              <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (India/Pakistan)">
-                                 <img src="https://flagcdn.com/w40/pk.png" class="flag-img" alt="PK"> اردو
+                                 <img src="https://flagcdn.com/w40/pk.png" class="flag-img" loading="lazy" alt="PK"> اردو
                             </div>
                             <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
-                                 <img src="https://flagcdn.com/w40/ru.png" class="flag-img" alt="RU"> Русский
+                                 <img src="https://flagcdn.com/w40/ru.png" class="flag-img" loading="lazy" alt="RU"> Русский
                             </div>
                             <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
-                                 <img src="https://flagcdn.com/w40/jp.png" class="flag-img" alt="JP"> 日本語
+                                 <img src="https://flagcdn.com/w40/jp.png" class="flag-img" loading="lazy" alt="JP"> 日本語
                             </div>
                         </div>
                     </div>
@@ -1389,12 +1564,12 @@
     <!-- Google Translate Element (Hidden) -->
     <div id="google_translate_element"></div>
 
-    <!-- ... (Sections 4.4 to 4.13 are unchanged) ... -->
     <!-- 4.4: HERO SECTION -->
     <div class="hero-section-wrapper reveal" id="hero-section">
         <section class="hero">
             <div class="hero-main">
-                <img src="shaban.png" alt="Dr Shaban" class="hero-img" onerror="this.src='https://via.placeholder.com/190?text=SA'">
+                <!-- UPDATED: Eager loading + Dimensions for LCP -->
+                <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.src='https://via.placeholder.com/190?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
 
@@ -1414,14 +1589,14 @@
                     </div>
                     
                     <div class="pub-breakdown" id="pub-breakdown">
-                        <!-- ... (Pub breakdown content unchanged) ... -->
                         <div class="stat-group">
                             <div class="stat-group-header">Articles</div>
                             <a href="#publications" onclick="triggerAccordion('pubs-journal')" class="stat-sub-item">
                                 <span><i class="fas fa-file-alt"></i> Published Articles</span>
                                 <span class="pub-badge">50+</span>
                             </a>
-                             <a href="#publications" onclick="triggerAccordion('pubs-journal')" class="stat-sub-item">
+                             <!-- UPDATED: Points to 'pubs-pipeline' instead of 'pubs-journal' -->
+                             <a href="#publications" onclick="triggerAccordion('pubs-pipeline')" class="stat-sub-item">
                                 <span><i class="fas fa-paper-plane"></i> Communicated Articles</span>
                                 <span class="pub-badge">5+</span>
                             </a>
@@ -1549,10 +1724,10 @@
                     <div class="exp-role">Postdoc Researcher</div>
                     <span class="type-badge bg-full">FULL TIME</span>
                 </div>
-                <!-- University Name same style as Referee, Flag not linked -->
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.ku.dk/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Copenhagen</a>
-                    <img src="https://flagcdn.com/w20/dk.png" class="flag-img" alt="DK" title="Denmark">
+                    <!-- Lazy loaded flag -->
+                    <img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark">
                 </div>
                 <div class="exp-date">June 2025 - Present</div>
                 <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
@@ -1565,7 +1740,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.jyu.fi/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Jyväskylä</a>
-                    <img src="https://flagcdn.com/w20/fi.png" class="flag-img" alt="FI" title="Finland">
+                    <img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland">
                 </div>
                 <div class="exp-date">Jan 2025 - Dec 2025</div>
                 <div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div>
@@ -1578,7 +1753,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="exp-date">Sept 2021 - Feb 2025</div>
                 <div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div>
@@ -1591,7 +1766,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University, NCR</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="exp-date">Nov 2020 - Sept 2021</div>
                 <div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div>
@@ -1604,7 +1779,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.iari.res.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICAR - IARI</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="exp-date">Jan 2020 - June 2020</div>
                 <div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div>
@@ -1617,7 +1792,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://www.icgeb.org/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICGEB</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="exp-date">Jan 2019 - Dec 2019</div>
                 <div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div>
@@ -1630,7 +1805,7 @@
                 </div>
                 <div class="ref-inst-row" style="margin-bottom:5px;">
                     <a href="https://jamiahamdard.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Hamdard University</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="exp-date">March 2019 - April 2019</div>
                 <div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div>
@@ -1775,6 +1950,41 @@
     <section id="publications" class="container reveal">
         <h2 class="section-title">Publications & Scholarly Works</h2>
         
+        <!-- NEW ACCORDION: IN PIPELINE / UNDER REVIEW -->
+        <button class="accordion-btn" id="pubs-pipeline">
+            <span><i class="fas fa-hourglass-half acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> In Pipeline / Under Review</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-list">
+                    <ol class="pub-list" reversed>
+                        <li class="pub-item">
+                            <strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br>
+                            <em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In Pipeline)</span>
+                        </li>
+                        <li class="pub-item">
+                            <strong>LUNGXAI: A Deep Learning Framework with LIME-based Interpretability for Gene Expression and Classification</strong><br>
+                            <em>Submitted: INFFUS-D-25-02490 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In Pipeline)</span>
+                        </li>
+                        <li class="pub-item">
+                            <strong>Nature’s Pharmacy for the Therapeutics of Lung and Respiratory Diseases</strong><br>
+                            <em>Submitted: NPX-26-0106 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In Pipeline)</span>
+                        </li>
+                        <li class="pub-item">
+                            <strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br>
+                            <em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In Pipeline)</span>
+                        </li>
+                        <li class="pub-item">
+                            <strong>Multitarget Docking and Molecular Enumeration Reveal DdpMPyPEPhU as a Potent Modulator of Cell Cycle, Glucocorticoid, and Estrogen Signalling in Breast Cancer</strong><br>
+                            <em>Submitted: PlosOne (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In Pipeline)</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXISTING: JOURNAL ARTICLES (Cleaned to show only published) -->
         <button class="accordion-btn" id="pubs-journal">
             <span><i class="fas fa-file-alt acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Journal Articles</span> 
             <i class="fas fa-chevron-down"></i>
@@ -1783,11 +1993,6 @@
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
-                        <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework for Enterobacteriaceae Drug Activity Classification and Efficacy Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
-                        <li class="pub-item"><strong>LUNGXAI: A Deep Learning Framework with LIME-based Interpretability for Gene Expression and Classification</strong><br><em>Submitted: INFFUS-D-25-02490 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
-                        <li class="pub-item"><strong>Nature’s Pharmacy for the Therapeutics of Lung and Respiratory Diseases</strong><br><em>Submitted: NPX-26-0106 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
-                        <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top Multitargeted Lung Cancer Inhibitor from PubChem BioAssays</strong><br><em>Submitted: IJBIOMAC-D-25-04108 (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
-                        <li class="pub-item"><strong>Multitarget Docking and Molecular Enumeration Reveal DdpMPyPEPhU as a Potent Modulator of Cell Cycle, Glucocorticoid, and Estrogen Signalling in Breast Cancer</strong><br><em>Submitted: PlosOne (2026)</em> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">(In Pipeline)</span></li>
                         <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley-Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data</a></li>
                         <li class="pub-item"><strong>Multimodal evaluation of Mannose Engineered Poly Lactic Glycolic Acid Nanoparticles with Granulocyte Colony Stimulating Factor Focused Delivery to Bone Marrow for Neutropenia</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-025-29790-w" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank">DOI</a> <a href="http://dx.doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data</a></li>
@@ -1880,18 +2085,14 @@
         </div>
 
 
-<!-- Data & Codes Button -->
         <button class="accordion-btn" id="pubs-data">
              <span><i class="fas fa-database acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Data & Codes</span>
              <i class="fas fa-chevron-down"></i>
         </button>
         <div class="panel">
             <div class="panel-content">
-                <!-- Added scrollable-list wrapper -->
                 <div class="scrollable-list">
-                     <!-- UPDATED: Changed from ul to ol reversed for numbering -->
                      <ol class="pub-list" reversed>
-                        <!-- Updated Buttons to Green Style -->
                         <li class="pub-item">
                             <strong>DrLungker:</strong> Deep Ensemble Learning Framework. 
                             <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data"><i class="fab fa-github"></i> GitHub</a> 
@@ -1921,7 +2122,6 @@
                             <a href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" class="btn-data"><i class="fab fa-github"></i> GitHub</a>
                         </li>
                         
-                        <!-- Added Data Links from Articles -->
                         <li class="pub-item"><strong>Dataset: Imidurea Polypharmacology (Lung Cancer)</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                         
                         <li class="pub-item"><strong>Dataset: Levophed Multitargeted Therapy</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.17248.34566" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
@@ -1952,7 +2152,6 @@
     <!-- 4.11: CONFERENCES SECTION -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
-<!-- Conferences Accordion -->
         <button class="accordion-btn" id="pubs-conf">
             <span><i class="fas fa-microphone acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Presented in Conferences</span>
             <i class="fas fa-chevron-down"></i>
@@ -2076,8 +2275,6 @@
         </button>
         <div class="panel">
             <div class="panel-content">
-
-                <!-- Applied scrollable limit here too -->
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed style="padding-left: 20px;">
                         <li class="pub-item">Guest Editor: <strong><a href="https://www.frontiersin.org/research-topics/77977/artificial-intelligence-for-polypharmacology-and-resistance-aware-cancer-drug-discovery" target="_blank" style="color:var(--primary); text-decoration: underline;">Frontiers in Oncology</a></strong> (2025-date)<br><span style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence for Polypharmacology and Resistance-Aware Cancer Drug Discovery</span></li>
@@ -2116,11 +2313,9 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <!-- Updated Link -->
                     <p style="margin-bottom:15px; font-weight:bold; color:var(--primary);">
                         <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 450+ Verified</span> Peer Reviews on Publons (WoS)</a> 
                     </p>
-                    <!-- Updated List with explicit badges -->
                     <div class="peer-review-container">
                         <span class="pr-badge-item">Archives of Computational Methods in Engineering</span>
                         <span class="pr-badge-item">Archives of Microbiology</span>
@@ -2199,7 +2394,6 @@
 
         <div class="panel">
             <div class="panel-content">
-                <!-- Added scrollable-list wrapper -->
                 <div class="scrollable-list">
                     <ul class="pub-list">
                         <li class="pub-item">Currently Supervising <strong>3 MSc</strong> and <strong>1 BSc</strong> dissertation students at University of Copenhagen, Denmark.</li>
@@ -2217,14 +2411,12 @@
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
         
-        <!-- REORDERED: 1. Machine Learning (Foundation/Tools) -->
         <button class="accordion-btn" id="tech-ml">
             <span><i class="fas fa-brain acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Machine Learning, AI & Data Science</span> 
             <i class="fas fa-chevron-down"></i>
         </button>
         <div class="panel">
             <div class="panel-content">
-                <!-- WRAPPED IN SCROLLABLE GRID -->
                 <div class="scrollable-grid">
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue">
@@ -2257,14 +2449,12 @@
         </div>
 
         
-<!-- REORDERED: 3. Computational Biology (Applied) -->
         <button class="accordion-btn" id="tech-drug">
             <span><i class="fas fa-atom acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Computational Biology & Drug Discovery</span> 
             <i class="fas fa-chevron-down"></i>
         </button>
         <div class="panel">
             <div class="panel-content">
-                 <!-- WRAPPED IN SCROLLABLE GRID -->
                 <div class="scrollable-grid">
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue">
@@ -2305,14 +2495,12 @@
         </div>
 
 
-        <!-- REORDERED: 3. Genomics -->
         <button class="accordion-btn" id="tech-gen">
             <span><i class="fas fa-dna acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Genomics, Transcriptomics & Systems Biology</span> 
             <i class="fas fa-chevron-down"></i>
         </button>
         <div class="panel">
             <div class="panel-content">
-                 <!-- WRAPPED IN SCROLLABLE GRID -->
                 <div class="scrollable-grid">
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue">
@@ -2343,7 +2531,6 @@
             </div>
         </div>
 
-        <!-- REORDERED: 4. Software/Infra -->
         <button class="accordion-btn" id="tech-soft">
             <span><i class="fas fa-laptop-code acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Software Development, Automation & Infrastructure</span> 
             <i class="fas fa-chevron-down"></i>
@@ -2351,7 +2538,6 @@
 
         <div class="panel">
             <div class="panel-content">
-                 <!-- WRAPPED IN SCROLLABLE GRID -->
                 <div class="scrollable-grid">
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue">
@@ -2404,10 +2590,9 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://plen.ku.dk/english/" target="_blank">University of Copenhagen</a>
-                    <img src="https://flagcdn.com/w20/dk.png" class="flag-img" alt="DK" title="Denmark">
+                    <img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark">
                 </div>
                 <div class="referee-contact">
-                    <!-- Updated Email Logic & Hover -->
                     <i class="fas fa-envelope email-badge"></i> 
                     <span class="email-click" onclick="copyEmail(this, 'tkn@plen.ku.dk')">tkn@plen.ku.dk</span>
                 </div>
@@ -2422,7 +2607,7 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'kraza@jmi.ac.in')">kraza@jmi.ac.in</span>
@@ -2438,7 +2623,7 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://www.msm.edu/" target="_blank">More School of Medicine</a>
-                    <img src="https://flagcdn.com/w20/us.png" class="flag-img" alt="US" title="United States">
+                    <img src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US" title="United States">
                 </div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div>
             </div>
@@ -2453,7 +2638,7 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://www.jyu.fi/en" target="_blank">University of Jyväskylä</a>
-                    <img src="https://flagcdn.com/w20/fi.png" class="flag-img" alt="FI" title="Finland">
+                    <img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland">
                 </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi')">tiina.a.jokela@jyu.fi</span>
@@ -2469,7 +2654,7 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://www.srmuniversity.ac.in/" target="_blank">SRM University, NCR</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="referee-contact">
                     <i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in')">manoj.yadav@srmuniversity.ac.in</span>
@@ -2486,7 +2671,7 @@
                 <div class="ref-inst-row">
                     <i class="fas fa-university email-badge"></i> 
                     <a href="https://www.jmi.ac.in/" target="_blank">Jamia Millia Islamia</a>
-                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" alt="IN" title="India">
+                    <img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India">
                 </div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i> <span class="email-click" onclick="copyEmail(this, 'malam2@jmi.ac.in')">malam2@jmi.ac.in</span></div>
             </div>
@@ -2504,38 +2689,33 @@
         </p>
         
         <div class="contact-form-box">
-            <!-- Hidden Iframe to capture submission without redirecting -->
              <!-- NOTE: Using typeof check to prevent ReferenceError on initial load -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
                         
-            <!-- Google Form Backend Integration -->
             <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" 
                   method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
                 
                 <div class="contact-grid">
                     <div class="form-group">
                         <label class="form-label">Full Name</label>
-                        <!-- Entry ID for Name -->
                         <input type="text" name="entry.323008242" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email Address</label>
-                        <!-- Entry ID for Email -->
                         <input type="email" name="entry.1398368038" class="form-control" placeholder="your.email@example.com" required>
                     </div>
                     <div class="form-group contact-full">
                         <label class="form-label">Subject</label>
-                        <!-- Entry ID for Subject -->
                         <input type="text" name="entry.1980791409" class="form-control" placeholder="Subject" required>
                     </div>
                     <div class="form-group contact-full">
                         <label class="form-label">Message</label>
                         <!-- Entry ID for Message -->
-                        <textarea name="entry.1216360893" class="form-control" rows="5" placeholder="Write your message here...&#10;&#10;I'm always open to discussing new research opportunities, collaborations, or speaking engagements." required></textarea>
+                        <textarea name="entry.1216360893" class="form-control" rows="8" placeholder="Write your message here...&#10;&#10;I'm always open to discussing new research opportunities, collaborations, or speaking engagements." required style="resize: vertical; min-height: 180px;"></textarea>
                     </div>
                 </div>
                 
-                <!-- NEW: Footer with Button and Separate Success Box -->
+                <!-- FIXED: Restored Button Visibility -->
                 <div class="form-footer">
                     <button type="submit" class="btn-send">
                         <i class="fas fa-paper-plane"></i> Send Message 
@@ -2548,34 +2728,30 @@
         </div>
     </section>
 
-    <!-- 4.15: FOOTER (Updated Layout) -->
+    <!-- 4.15: FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID"><i class="ai ai-orcid"></i></a>
-                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-                <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-                <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus"><i class="ai ai-scopus"></i></a>
-                <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
+                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate" aria-label="ResearchGate"><i class="ai ai-researchgate"></i></a>
+                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science" aria-label="Web of Science"><i class="ai ai-clarivate"></i></a>
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus" aria-label="Scopus"><i class="ai ai-scopus"></i></a>
+                <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
             <p class="footer-text">
-                &copy; Dr Shaban | 2026 All Rights Reserved.
+                &copy; Dr Shaban | <span id="current-year">2026</span> All Rights Reserved.
             </p>
         </div>
     </footer>
 
-<!-- 
-        ========================================================================
-        SECTION 5: JAVASCRIPT BEHAVIOR (LOGIC ENGINE)
-        ========================================================================
-    -->
     <script>
-        // Form Submission Tracker
+        // Update Copyright Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         var submitted = false;
 
-        // 5.0: COPY EMAIL LOGIC
         function copyEmail(element, email) {
             navigator.clipboard.writeText(email).then(() => {
                 let feedback = document.createElement("span");
@@ -2593,10 +2769,7 @@
             });
         }
 
-        /* ===========================================================
-         NEW: AUTOMATED CITATION LOGIC (API INTEGRATION)
-         ===========================================================
-        */
+        /* NEW: AUTOMATED CITATION LOGIC */
         document.addEventListener('DOMContentLoaded', function() {
             initCitationButtons();
         });
@@ -2605,42 +2778,34 @@
             const pubs = document.querySelectorAll('.pub-item');
 
             pubs.forEach((pub, index) => {
-                // 1. Create Container
                 const controls = document.createElement('span');
                 controls.className = 'pub-controls';
 
-                // 2. Check for DOI - CRITICAL CHANGE
-                // We only proceed if a DOI button exists
                 const doiBtn = pub.querySelector('.pub-doi');
                 
                 if (doiBtn) {
                     let doiUrl = doiBtn.getAttribute('href');
-                    controls.appendChild(doiBtn); // Move DOI button inside controls
+                    controls.appendChild(doiBtn); 
 
-                    // 3. Create Cite Button (Only because DOI exists)
                     const citeBtn = document.createElement('button');
                     citeBtn.className = 'btn-cite';
                     citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>';
                     citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn);
 
-                    // 4. Create Dropdown Menu
                     const dropdown = document.createElement('div');
                     dropdown.className = 'cite-dropdown-menu';
                     dropdown.id = `cite-menu-${index}`;
 
-                    // --- Option 1: Copy APA ---
                     const optCopy = document.createElement('button');
                     optCopy.className = 'cite-option';
                     optCopy.innerHTML = '<i class="fas fa-copy"></i> Copy APA Format';
                     optCopy.onclick = () => handleCitationAction(pub, doiUrl, optCopy, 'copy');
                     
-                    // --- Option 2: BibTeX ---
                     const optBib = document.createElement('button');
                     optBib.className = 'cite-option';
                     optBib.innerHTML = '<i class="fas fa-file-code"></i> Download BibTeX';
                     optBib.onclick = () => handleCitationAction(pub, doiUrl, optBib, 'bib');
 
-                    // --- Option 3: EndNote/RIS ---
                     const optRis = document.createElement('button');
                     optRis.className = 'cite-option';
                     optRis.innerHTML = '<i class="fas fa-file-export"></i> Download EndNote';
@@ -2663,7 +2828,6 @@
             const currentMenu = btn.nextElementSibling;
             const parentItem = btn.closest('.pub-item');
 
-            // Close all other open menus and reset z-index
             document.querySelectorAll('.cite-dropdown-menu').forEach(m => {
                 if (m !== currentMenu) {
                     m.classList.remove('show');
@@ -2671,32 +2835,26 @@
                 }
             });
 
-            // Toggle current
             if (currentMenu.classList.contains('show')) {
                 currentMenu.classList.remove('show');
                 parentItem.classList.remove('z-active');
             } else {
                 currentMenu.classList.add('show');
-                parentItem.classList.add('z-active'); // Bring to front
+                parentItem.classList.add('z-active'); 
                 
-                // Scroll to center to ensure dropdown isn't hidden
                 setTimeout(() => {
                     parentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 100);
             }
         }
 
-        // MASTER HANDLER: Decides whether to Fetch API or Use HTML Fallback
         async function handleCitationAction(pubItem, doiUrl, btn, actionType) {
             const originalText = btn.innerHTML;
-            
-            // 1. Show Loading State
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching...';
             btn.style.cursor = 'wait';
 
             let meta = null;
 
-            // 2. Try Fetching from CrossRef API if DOI exists
             if (doiUrl && doiUrl.includes('doi.org')) {
                 const doi = doiUrl.split('doi.org/')[1];
                 try {
@@ -2710,12 +2868,10 @@
                 }
             }
 
-            // 3. Fallback to HTML scraping if API failed
             if (!meta) {
                 meta = scrapeHtmlData(pubItem);
             }
 
-            // 4. Perform Action (Copy or Download)
             try {
                 if (actionType === 'copy') {
                     const apaText = formatAPA(meta);
@@ -2734,7 +2890,6 @@
                 console.error(err);
             }
 
-            // 5. Reset Button after delay
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.style.color = '';
@@ -2747,10 +2902,7 @@
             }, 2000);
         }
 
-        // --- DATA PARSERS ---
-
         function parseCrossRefData(data, doiUrl) {
-            // Process Authors - Fetch ALL authors
             const authors = data.author ? data.author.map(a => {
                 return {
                     last: a.family,
@@ -2758,7 +2910,6 @@
                 };
             }) : [{ last: "Ahmad", initial: "S." }];
 
-            // Process Year
             let year = "n.d.";
             if (data['published-print'] && data['published-print']['date-parts']) {
                 year = data['published-print']['date-parts'][0][0];
@@ -2782,16 +2933,13 @@
         }
 
         function scrapeHtmlData(pubItem) {
-            // Fallback: Extract from visible text
             const title = pubItem.querySelector('strong')?.innerText.trim() || "Publication";
             const journalText = pubItem.querySelector('em')?.innerText.trim() || "";
             const doiBtn = pubItem.querySelector('.pub-doi');
             
-            // Try to find year in parenthesis e.g. (2025)
             const yearMatch = journalText.match(/\((20\d{2})\)/);
             const year = yearMatch ? yearMatch[1] : new Date().getFullYear();
             
-            // Clean journal name (remove year)
             const journal = journalText.replace(/\(20\d{2}\)/, '').trim();
 
             return {
@@ -2807,11 +2955,7 @@
             };
         }
 
-        // --- FORMATTERS ---
-
         function formatAPA(m) {
-            // 1. Authors
-            // Format: Singh, N., Kumar, P., & Ahmad, S.
             let authorStr = "";
             if (m.authors.length > 0) {
                 const formatted = m.authors.map(a => `${a.last}, ${a.initial}`);
@@ -2825,16 +2969,11 @@
                 authorStr = "Ahmad, S.";
             }
             
-            // 2. Title (Sentence case roughly handled by just taking the string)
-            // 3. Journal & Details
-            // Format: Journal, Volume(Issue), Pages.
             let journalDetails = m.journal;
             if (m.volume) journalDetails += `, ${m.volume}`;
             if (m.issue) journalDetails += `(${m.issue})`;
             if (m.pages) journalDetails += `, ${m.pages}`;
 
-            // Final Assembly
-            // Note: We use the full DOI URL as requested
             return `${authorStr} (${m.year}). ${m.title}. ${journalDetails}. ${m.doi}`;
         }
 
@@ -2871,7 +3010,6 @@
             document.body.removeChild(link);
         }
 
-        // Close dropdowns when clicking outside
         window.addEventListener('click', (e) => {
              if(!e.target.closest('.btn-cite')) {
                  document.querySelectorAll('.cite-dropdown-menu').forEach(m => {
@@ -2881,27 +3019,19 @@
              }
         });
 
-
-        // NEW: Handle Form Submit (Google Forms Feedback)
         function handleFormSubmit() {
-            // Clear fields
             document.getElementById('contact-form').reset();
-            
-            // Show Success Message Box
             const feedbackBox = document.getElementById('msg-success-box');
             feedbackBox.classList.add('show');
-            
             setTimeout(() => {
                 feedbackBox.classList.remove('show');
-                submitted = false; // Reset for next submission
+                submitted = false;
             }, 5000);
         }
 
-        // 5.1: HEADER SCROLL VISIBILITY & BACK-TO-TOP
         const backToTopBtn = document.getElementById("back-to-top");
         
         window.addEventListener('scroll', function() {
-            // Header Name Logic
             if (window.innerWidth > 900) {
                 const headerName = document.querySelector('.header-name');
                 const hero = document.querySelector('.hero');
@@ -2913,14 +3043,12 @@
                 }
             }
 
-            // Back To Top Logic
             if (window.scrollY > 300) {
                 backToTopBtn.classList.add("visible");
             } else {
                 backToTopBtn.classList.remove("visible");
             }
             
-            // Scroll Spy Logic
             let current = "";
             const sections = document.querySelectorAll("section");
             const navLi = document.querySelectorAll(".nav-link");
@@ -2946,9 +3074,7 @@
             });
         }
 
-        /* =========================================
-           5.2: ADVANCED SEARCH ENGINE (Highlight & Nav)
-           ========================================= */
+        /* 5.2: ADVANCED SEARCH ENGINE */
         let searchMatches = [];
         let currentMatchIndex = -1;
         let lastQuery = "";
@@ -2976,11 +3102,9 @@
         function handleSearchKey(event) {
             if (event.key === 'Enter') {
                 const currentVal = document.getElementById('search-input').value.trim();
-                // If query changed or no matches yet, perform new search
                 if (currentVal !== lastQuery || searchMatches.length === 0) {
                     performCustomSearch();
                 } else {
-                    // Otherwise just go to next match
                     nextMatch();
                 }
             } else if (event.key === 'Escape') {
@@ -2995,7 +3119,6 @@
             
             lastQuery = query;
 
-            // TreeWalker to find text nodes excluding scripts/styles/header
             const walker = document.createTreeWalker(
                 document.body, 
                 NodeFilter.SHOW_TEXT, 
@@ -3020,17 +3143,14 @@
             searchMatches = [];
             nodesToReplace.forEach(node => {
                 const span = document.createElement('span');
-                // Escape special characters for Regex
                 const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = new RegExp(`(${safeQuery})`, 'gi');
                 span.innerHTML = node.nodeValue.replace(regex, '<span class="highlight-match">$1</span>');
                 
                 const fragment = document.createRange().createContextualFragment(span.innerHTML);
-                // We need to insert the fragment and then track the new highlight elements
                 node.replaceWith(fragment);
             });
 
-            // Re-query DOM to get matches in document order
             searchMatches = Array.from(document.querySelectorAll('.highlight-match'));
             
             const countSpan = document.getElementById('search-count');
@@ -3047,7 +3167,26 @@
             if (currentMatchIndex >= 0 && currentMatchIndex < searchMatches.length) {
                 const currentEl = searchMatches[currentMatchIndex];
                 currentEl.classList.add('active');
-                currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // === NEW: SMART ACCORDION OPENER ===
+                // Check if the match is inside a hidden panel
+                const parentPanel = currentEl.closest('.panel');
+                if (parentPanel) {
+                    // Find the button that controls this panel (it's the previous sibling)
+                    const toggleBtn = parentPanel.previousElementSibling;
+                    
+                    // If button exists and is NOT active (closed), click it to open
+                    if (toggleBtn && toggleBtn.classList.contains('accordion-btn') && !toggleBtn.classList.contains('active')) {
+                        toggleBtn.click();
+                    }
+                }
+                // ===================================
+
+                // Small delay to let the accordion animation start before scrolling
+                setTimeout(() => {
+                    currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+
                 const countSpan = document.getElementById('search-count');
                 if(countSpan) countSpan.innerText = `${currentMatchIndex + 1}/${searchMatches.length}`;
             }
@@ -3080,7 +3219,7 @@
             if(countSpan) countSpan.innerText = "";
         }
 
-        // 5.3: LANGUAGE SWITCHER LOGIC (UPDATED WITH FLAGS)
+        /* 5.3: LANGUAGE SWITCHER */
         const languages = {
             'en': { code: 'EN', flag: 'gb' },
             'da': { code: 'DK', flag: 'dk' },
@@ -3102,7 +3241,6 @@
             const navList = document.querySelector('.nav-list');
             const navToggle = document.querySelector('.nav-toggle');
 
-            // Logic: Close menu if language opens
             if (navList.classList.contains('active')) {
                 navList.classList.remove('active');
                 navToggle.classList.remove('open');
@@ -3116,34 +3254,29 @@
         }
 
         function changeLanguage(langCode) {
-            // 1. Google Translate Trigger
             var select = document.querySelector('.goog-te-combo');
             if (select) {
                 select.value = langCode;
                 select.dispatchEvent(new Event('change'));
             }
 
-            // 2. Update Header UI (Flags + Code)
             const langData = languages[langCode] || languages['en'];
             const displayHTML = `<img src="https://flagcdn.com/w40/${langData.flag}.png" class="flag-xs" alt="${langData.code}"> ${langData.code} <i class="fas fa-chevron-down"></i>`;
             
-            // Update both desktop and mobile headers
             document.querySelectorAll('.lang-current-display').forEach(el => {
                 el.innerHTML = displayHTML;
             });
 
-            // Close dropdowns
             document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show'));
         }
 
-        // 5.4: MOBILE MENU TOGGLE
+        /* 5.4: MOBILE MENU TOGGLE */
         function toggleMenu(e) {
             if(e) e.stopPropagation();
             const navBar = document.querySelector('.nav-list');
             const toggleBtn = document.querySelector('.nav-toggle');
             const mobileDD = document.getElementById('mobile-lang-dd');
 
-            // Logic: Close Language if menu opens
             if (mobileDD && mobileDD.classList.contains('show')) {
                 mobileDD.classList.remove('show');
             }
@@ -3152,29 +3285,83 @@
             toggleBtn.classList.toggle('open');
         }
 
+        // NEW: Specific Mobile Submenu Toggle
+        function toggleMobileSubmenu(e) {
+            e.stopPropagation(); // Don't trigger link click or menu close
+            const dropdown = document.getElementById('research-dropdown');
+            const toggleBtn = e.currentTarget;
+            
+            if (dropdown.classList.contains('show-mobile')) {
+                dropdown.classList.remove('show-mobile');
+                toggleBtn.classList.remove('active');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+            } else {
+                dropdown.classList.add('show-mobile');
+                toggleBtn.classList.add('active');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            }
+        }
+
+        // NEW: Toggle Nested Sub-menus on Mobile (Publications, Events, etc.)
+        function toggleNestedMobile(e, link) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault(); 
+                e.stopPropagation();
+                
+                const wrapper = link.closest('.dropdown-item-wrapper');
+                const subMenu = wrapper.querySelector('.sub-dropdown-content');
+                const arrow = link.querySelector('.nested-arrow');
+                
+                if (subMenu.classList.contains('show-nested')) {
+                    subMenu.classList.remove('show-nested');
+                    if(arrow) {
+                        arrow.classList.remove('fa-chevron-down');
+                        arrow.classList.add('fa-chevron-right');
+                    }
+                } else {
+                    // Optional: Close other open nested menus to keep it clean
+                    const allOpen = document.querySelectorAll('.sub-dropdown-content.show-nested');
+                    allOpen.forEach(el => {
+                        el.classList.remove('show-nested');
+                        const pArrow = el.parentElement.querySelector('.nested-arrow');
+                        if(pArrow) {
+                            pArrow.classList.remove('fa-chevron-down');
+                            pArrow.classList.add('fa-chevron-right');
+                        }
+                    });
+
+                    subMenu.classList.add('show-nested');
+                    if(arrow) {
+                        arrow.classList.remove('fa-chevron-right');
+                        arrow.classList.add('fa-chevron-down');
+                    }
+                }
+            }
+        }
+
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const navBar = document.querySelector('.nav-list');
-                const toggleBtn = document.querySelector('.nav-toggle');
-                if (navBar.classList.contains('active')) {
-                    navBar.classList.remove('active');
-                    toggleBtn.classList.remove('open');
-                }
-            });
+            // Only attach close logic if it's NOT the research dropdown toggle
+            if (!link.closest('.nav-item-dropdown')) {
+                link.addEventListener('click', () => {
+                    const navBar = document.querySelector('.nav-list');
+                    const toggleBtn = document.querySelector('.nav-toggle');
+                    if (navBar.classList.contains('active')) {
+                        navBar.classList.remove('active');
+                        toggleBtn.classList.remove('open');
+                    }
+                });
+            }
         });
 
-        // 5.5: GLOBAL CLICK LISTENER
+        /* 5.5: GLOBAL CLICK LISTENER */
         document.addEventListener('click', function(event) {
-            // Close Search
             const searchBar = document.getElementById('header-search-bar');
-            // UPDATED LOGIC: Only close if the click is OUTSIDE the entire search bar container
             if(searchBar && searchBar.style.display === 'flex' && 
                !event.target.closest('#header-search-bar')) {
                 closeSearch(event);
             }
 
-            // Close Mobile Menu
             const navList = document.querySelector('.nav-list');
             const navToggle = document.querySelector('.nav-toggle');
             if (navList && navList.classList.contains('active') && !navList.contains(event.target) && !navToggle.contains(event.target)) {
@@ -3184,8 +3371,9 @@
 
             document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show'));
         });
+        
 
-        // 5.6: SCROLL REVEAL ANIMATION
+        /* 5.6: SCROLL REVEAL */
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -3200,7 +3388,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // 5.7: AWARD NUMBERING
+        /* 5.7: AWARD NUMBERING */
         const awardCards = document.querySelectorAll('.award-card');
         awardCards.forEach((card, index) => {
             const number = awardCards.length - index;
@@ -3210,7 +3398,7 @@
             card.appendChild(badge);
         });
 
-        // 5.8: ACCORDION LOGIC
+        /* 5.8: ACCORDION LOGIC */
         const acc = document.getElementsByClassName("accordion-btn");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
@@ -3245,9 +3433,8 @@
             }
         }
 
-        // 5.9: HERO STATS TOGGLE (UPDATED)
+        /* 5.9: HERO STATS TOGGLE */
         function togglePubStats(e) {
-            // Prevent bubbling if clicking internal links
             if(e.target.closest('.stat-row')) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -3255,33 +3442,27 @@
                 const breakdown = document.getElementById('pub-breakdown');
                 const toggleIcon = document.querySelector('.stat-toggle i');
                 
-                // NEW: Select the parent container to add the border class
                 const parentContainer = e.target.closest('.stat-row-link');
                 
                 if (breakdown.classList.contains('open')) {
-                    // CLOSING
                     breakdown.classList.remove('open');
                     breakdown.style.maxHeight = "0";
                     toggleIcon.classList.remove('fa-chevron-up');
                     toggleIcon.classList.add('fa-chevron-down');
                     
-                    // NEW: Remove the border class
                     if(parentContainer) parentContainer.classList.remove('active-box');
                     
                 } else {
-                    // OPENING
                     breakdown.classList.add('open');
                     breakdown.style.maxHeight = breakdown.scrollHeight + "px";
                     toggleIcon.classList.remove('fa-chevron-down');
                     toggleIcon.classList.add('fa-chevron-up');
                     
-                    // NEW: Add the border class
                     if(parentContainer) parentContainer.classList.add('active-box');
                 }
             }
         }
        
-        // Google Translate Init
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
@@ -3289,6 +3470,18 @@
                 autoDisplay: false
             }, 'google_translate_element');
         }
+
+        // NEW: SCROLL PROGRESS BAR LOGIC
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            
+            const progressBar = document.getElementById('scroll-progress');
+            if(progressBar) {
+                progressBar.style.width = scrolled + "%";
+            }
+        });
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
