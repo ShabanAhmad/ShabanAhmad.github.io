@@ -1,6 +1,6 @@
 <!-- 
     ========================================================================
-    PRODUCTION GRADE PORTFOLIO - DR SHABAN AHMAD
+    ACADEMIC PORTFOLIO - DR SHABAN AHMAD
     ========================================================================
 -->
 <!DOCTYPE html>
@@ -82,13 +82,13 @@
             --ref-1: #002e5f; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
         }
 
-        /* NEW: Thematic Text Selection */
+        /* Thematic Text Selection */
         ::selection {
             background: var(--accent);
             color: #fff;
         }
 
-        /* NEW: Scroll Progress Bar */
+        /* Scroll Progress Bar */
         #scroll-progress {
             position: fixed;
             top: 0;
@@ -472,7 +472,11 @@
         .stat-label, .stat-label-link { font-weight: 400; color: #ddd; display: flex; align-items: center; gap: 10px; text-decoration: none;}
         .stat-value { font-weight: 700; color: var(--accent); font-size: 1.2rem; transition: color 0.2s; }
         
-        .stat-toggle { margin-left: auto; padding: 0 10px; cursor: pointer; color: #ddd; transition: color 0.3s; }
+        .stat-toggle { 
+            padding: 0 10px; cursor: pointer; color: #ddd; transition: color 0.3s; 
+            /* CENTER ALIGNED */
+            margin: 0 auto;
+        }
         .stat-toggle:hover { color: var(--accent); }
 
         /* Stats Breakdown */
@@ -547,10 +551,11 @@
 
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         
+        /* Updated NIPER Hover - Simple Text Gold Effect */
         .niper-hover {
             color: inherit; 
             text-decoration: none; 
-            border-bottom: 1px solid var(--primary); 
+            border-bottom: 1px dotted #aaa;
             transition: all 0.2s ease-in-out; 
             padding: 0 2px;
             display: inline-block;
@@ -558,12 +563,11 @@
             font-weight: inherit;
         }
         .niper-hover:hover {
-            background-color: var(--primary); 
-            color: #fff !important; 
-            border-bottom-color: transparent;
+            color: var(--accent) !important; 
+            border-color: var(--accent);
             text-decoration: none; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 3px;
+            background-color: transparent;
+            box-shadow: none;
         }
 
         .sub-heading-bold { 
@@ -590,7 +594,6 @@
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
             gap: 1.5rem; 
-            /* Removed counter-reset as we now use JS for reverse counting */
         }
         
         .edu-card, .exp-box, .referee-card, .award-card {
@@ -607,19 +610,14 @@
             padding-right: 2.5rem; 
         }
 
-        /* ================================================================
-           NEW: "RIGHT-BORDER REVERSE BADGE" DESIGN 
-           ================================================================
-        */
-
-        /* The Numbered Node (Uses data-badge attribute from JS) */
+        /* "RIGHT-BORDER REVERSE BADGE" DESIGN */
         .exp-box::after, .edu-card::after, .referee-card::after, .award-card::after {
-            content: attr(data-badge); /* Content injected by JS */
+            content: attr(data-badge); 
             position: absolute;
-            right: 0; /* Align to RIGHT border */
+            right: 0; 
             left: auto; 
-            top: 50%; /* Vertically Center */
-            transform: translate(50%, -50%); /* Center perfectly on the line */
+            top: 50%; 
+            transform: translate(50%, -50%); 
             width: 24px;  
             height: 24px; 
             background: #fff;
@@ -637,24 +635,20 @@
         /* Hover Effect: Node fills with color */
         .exp-box:hover::after, .edu-card:hover::after, .referee-card:hover::after, .award-card:hover::after {
             color: #fff;
-            /* Default Gold Fill */
             background: var(--accent); 
             border-color: var(--accent);
             transform: translate(50%, -50%) scale(1.15);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* Specific Color Overrides for Experience (Matches top border) */
         .exp-full:hover::after { background: var(--exp-full); border-color: var(--exp-full); }
         .exp-part:hover::after { background: var(--edu-msc); border-color: var(--edu-msc); }
         .exp-trainee:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
 
-        /* Specific Color Overrides for Education */
         .edu-phd:hover::after { background: var(--edu-phd); border-color: var(--edu-phd); }
         .edu-msc:hover::after { background: var(--edu-msc); border-color: var(--edu-msc); }
         .edu-bsc:hover::after { background: var(--edu-bsc); border-color: var(--edu-bsc); }
 
-        /* Specific Color Overrides for Referees */
         .ref-1:hover::after { background: var(--ref-1); border-color: var(--ref-1); }
         .ref-2:hover::after { background: var(--ref-2); border-color: var(--ref-2); }
         .ref-3:hover::after { background: var(--ref-3); border-color: var(--ref-3); }
@@ -699,7 +693,6 @@
         .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; }
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
 
-        /* REMOVED: Old static award number styling */
         .award-number { display: none; }
 
         /* 3.10: PATENTS */
@@ -765,8 +758,9 @@
             text-decoration: none; 
         }
 
+        /* UPDATED: Increased max-height for ~5 items visibility */
         .scrollable-list { 
-            max-height: 280px; 
+            max-height: 450px; 
             overflow-y: auto; 
             padding: 10px 20px 10px 10px; 
             -webkit-overflow-scrolling: touch;
@@ -946,12 +940,12 @@
 
                 
         /* Contact Form Grid */
-        /* UPDATED: Reduced gap from 1.5rem to 1rem to tighten spacing */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        /* UPDATED: Compact grid gap */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
         .contact-full { grid-column: span 2; }
         
-        /* UPDATED: Reduced margin from 1.2rem to 0.8rem */
-        .form-group { margin-bottom: 0.8rem; }
+        /* UPDATED: Reduced margin */
+        .form-group { margin-bottom: 0.5rem; }
         .form-label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--primary); }
         .form-control {
             width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px;
@@ -959,7 +953,6 @@
         }
         .form-control:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(220, 161, 29, 0.1); }
         
-        /* NEW: Footer Buttons area for Contact form */
         .form-footer {
             display: flex; flex-wrap: wrap; align-items: center; 
             gap: 15px; 
@@ -1075,7 +1068,7 @@
                 padding: 9px 0; border-bottom: 1px solid #eee; border-radius: 0; width: 100%; display: block;
             }
             
-            /* UPDATED: Flex Container for Arrow + Text Row */
+            /* Flex Container for Arrow + Text Row */
             .nav-item-dropdown {
                 display: flex;
                 flex-wrap: wrap; /* Allows dropdown content to break to next line */
@@ -1084,7 +1077,7 @@
                 align-items: center; /* Vertically center content */
             }
 
-            /* UPDATED: Link Text (Moves to Right) */
+            /* Link Text (Moves to Right) */
             .nav-item-dropdown .nav-link {
                 border-bottom: none; 
                 flex-grow: 1;       /* Take up remaining width */
@@ -1095,7 +1088,7 @@
                 padding-left: 20px; /* The "5 space" gap requested */
             }
 
-            /* UPDATED: Dropdown Arrow (Moves to Left) */
+            /* Dropdown Arrow (Moves to Left) */
             .mobile-dropdown-toggle {
                 display: flex;
                 align-items: center;
@@ -1127,7 +1120,6 @@
                 border-left: 3px solid #eee;
                 background: #f9f9f9;
                 width: 100%;
-                /* UPDATED: Increased indentation for sub-buttons */
                 padding-left: 25px; 
                 display: none; /* Controlled via JS */
                 order: 3; /* Force to new line below arrow and text */
@@ -1141,7 +1133,7 @@
                 display: none; /* Disable hover on mobile so click works */
             }
 
-            /* NEW: Class to toggle nested menus on mobile */
+            /* Class to toggle nested menus on mobile */
             .sub-dropdown-content.show-nested {
                 display: block !important;
                 position: static;
@@ -2123,26 +2115,26 @@
                             <a href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" class="btn-data"><i class="fab fa-github"></i> GitHub</a>
                         </li>
                         
-                        <li class="pub-item"><strong>Dataset: Imidurea Polypharmacology (Lung Cancer)</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
+                        <li class="pub-item"><strong>Dataset: Imidurea Polypharmacology (Lung Cancer)</strong> <a href="http://dx.doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                         
-                        <li class="pub-item"><strong>Dataset: Levophed Multitargeted Therapy</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.17248.34566" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
+                        <li class="pub-item"><strong>Dataset: Levophed Multitargeted Therapy</strong> <a href="http://dx.doi.org/10.13140/RG.2.2.17248.34566" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                         
-                        <li class="pub-item"><strong>Dataset: Theodrenaline vs Crizotinib</strong><br>
+                        <li class="pub-item"><strong>Dataset: Theodrenaline vs Crizotinib</strong>
                             <a href="http://dx.doi.org/10.13140/RG.2.2.30670.11846" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 1</a>
                             <a href="http://dx.doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 2</a>
                         </li>
                         
                             
-                        <li class="pub-item"><strong>Supplementary Data: Paliperidone on RAGES</strong><br><a href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank" class="btn-data"><i class="fas fa-file-download"></i> MDPI Supplementary</a></li>
+                        <li class="pub-item"><strong>Supplementary Data: Paliperidone on RAGES</strong> <a href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank" class="btn-data"><i class="fas fa-file-download"></i> MDPI Supplementary</a></li>
                         
-                        <li class="pub-item"><strong>Dataset: Imidurea Dual Inhibitor</strong><br>
+                        <li class="pub-item"><strong>Dataset: Imidurea Dual Inhibitor</strong> 
                             <a href="http://dx.doi.org/10.13140/RG.2.2.34025.56164" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 1</a>
                             <a href="http://dx.doi.org/10.13140/RG.2.2.25636.95361" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data Part 2</a>
                         </li>
                         
-                        <li class="pub-item"><strong>Dataset: Imidazolidinyl Urea Multisampling</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
+                        <li class="pub-item"><strong>Dataset: Imidazolidinyl Urea Multisampling</strong> <a href="http://dx.doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                         
-                        <li class="pub-item"><strong>Dataset: Predictive Modelling of Natural Compounds (SARS-CoV-2)</strong><br><a href="http://dx.doi.org/10.13140/RG.2.2.18926.06725" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
+                        <li class="pub-item"><strong>Dataset: Predictive Modelling of Natural Compounds (SARS-CoV-2)</strong> <a href="http://dx.doi.org/10.13140/RG.2.2.18926.06725" target="_blank" class="btn-data"><i class="fas fa-database"></i> ResearchGate Data</a></li>
                     </ol>
                 </div>
             </div>
@@ -2716,7 +2708,6 @@
                     </div>
                 </div>
                 
-                <!-- FIXED: Restored Button Visibility -->
                 <div class="form-footer">
                     <button type="submit" class="btn-send">
                         <i class="fas fa-paper-plane"></i> Send Message 
@@ -2770,7 +2761,7 @@
             });
         }
 
-        /* NEW: AUTOMATED CITATION LOGIC */
+        /* AUTOMATED CITATION LOGIC */
         document.addEventListener('DOMContentLoaded', function() {
             initCitationButtons();
         });
@@ -3011,14 +3002,59 @@
             document.body.removeChild(link);
         }
 
+        // Global Click Listener for Dropdowns
         window.addEventListener('click', (e) => {
+             // Logic to close citation dropdowns
              if(!e.target.closest('.btn-cite')) {
                  document.querySelectorAll('.cite-dropdown-menu').forEach(m => {
                      m.classList.remove('show');
                      m.closest('.pub-item').classList.remove('z-active');
                  });
              }
+             
+             // UPDATED: Logic to close Main Dropdowns (Lang, Search, Research)
+             // If click is NOT inside a dropdown toggle or the dropdown itself, close everything
+             if (!e.target.closest('.lang-wrapper') && 
+                 !e.target.closest('.header-search-bar') && 
+                 !e.target.closest('.control-icon') &&
+                 !e.target.closest('.mobile-dropdown-toggle')) {
+                 closeAllDropdowns();
+             }
         });
+
+        // UPDATED: SMART DROPDOWN SYSTEM
+        function closeAllDropdowns(except = null) {
+            // Close Lang Desktop
+            const desktopDD = document.getElementById('desktop-lang-dd');
+            if(desktopDD && desktopDD !== except) desktopDD.classList.remove('show');
+
+            // Close Lang Mobile
+            const mobileDD = document.getElementById('mobile-lang-dd');
+            if(mobileDD && mobileDD !== except) mobileDD.classList.remove('show');
+
+            // Close Search Bar
+            const searchBar = document.getElementById('header-search-bar');
+            const searchBarEl = document.getElementById('header-search-bar');
+            
+            // Note: We check if searchBar is visible and is NOT the exception
+            // Since toggleSearch passes the event object usually, we check references carefully
+            if(searchBar && searchBar.style.display === 'flex' && searchBar !== except) {
+                // Manually close search
+                searchBar.style.display = 'none';
+                clearHighlights(); // Helper function existing in code
+            }
+
+            // Close Mobile Research Dropdown
+            const researchDD = document.getElementById('research-dropdown');
+            const researchToggle = document.querySelector('.mobile-dropdown-toggle');
+            if(researchDD && researchDD.classList.contains('show-mobile') && researchDD !== except) {
+                researchDD.classList.remove('show-mobile');
+                if(researchToggle) {
+                    researchToggle.classList.remove('active');
+                    researchToggle.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                }
+            }
+        }
 
         function handleFormSubmit() {
             document.getElementById('contact-form').reset();
@@ -3082,12 +3118,16 @@
 
         function toggleSearch(e) {
             if(e) e.stopPropagation();
+            
             const bar = document.getElementById('header-search-bar');
-            if (bar.style.display === 'flex') {
-                closeSearch(e);
-            } else {
+            
+            // UPDATED: Close other dropdowns first
+            if (bar.style.display !== 'flex') {
+                closeAllDropdowns(bar);
                 bar.style.display = 'flex';
                 setTimeout(() => document.getElementById('search-input').focus(), 50);
+            } else {
+                closeSearch(e);
             }
         }
 
@@ -3169,21 +3209,15 @@
                 const currentEl = searchMatches[currentMatchIndex];
                 currentEl.classList.add('active');
                 
-                // === NEW: SMART ACCORDION OPENER ===
-                // Check if the match is inside a hidden panel
+                // Smart Accordion Opener
                 const parentPanel = currentEl.closest('.panel');
                 if (parentPanel) {
-                    // Find the button that controls this panel (it's the previous sibling)
                     const toggleBtn = parentPanel.previousElementSibling;
-                    
-                    // If button exists and is NOT active (closed), click it to open
                     if (toggleBtn && toggleBtn.classList.contains('accordion-btn') && !toggleBtn.classList.contains('active')) {
                         toggleBtn.click();
                     }
                 }
-                // ===================================
 
-                // Small delay to let the accordion animation start before scrolling
                 setTimeout(() => {
                     currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
@@ -3242,15 +3276,19 @@
             const navList = document.querySelector('.nav-list');
             const navToggle = document.querySelector('.nav-toggle');
 
+            // UPDATED: Close other dropdowns first
+            if(window.innerWidth > 900) {
+                closeAllDropdowns(desktopDD);
+                if(desktopDD) desktopDD.classList.toggle('show');
+            } else {
+                closeAllDropdowns(mobileDD);
+                if(mobileDD) mobileDD.classList.toggle('show');
+            }
+
+            // Close Mobile Nav if open
             if (navList.classList.contains('active')) {
                 navList.classList.remove('active');
                 navToggle.classList.remove('open');
-            }
-            
-            if(window.innerWidth > 900) {
-                if(desktopDD) desktopDD.classList.toggle('show');
-            } else {
-                if(mobileDD) mobileDD.classList.toggle('show');
             }
         }
 
@@ -3278,19 +3316,25 @@
             const toggleBtn = document.querySelector('.nav-toggle');
             const mobileDD = document.getElementById('mobile-lang-dd');
 
+            // Close Lang dropdown if open inside mobile view
             if (mobileDD && mobileDD.classList.contains('show')) {
                 mobileDD.classList.remove('show');
             }
+            // Close search if open
+            closeAllDropdowns();
 
             navBar.classList.toggle('active');
             toggleBtn.classList.toggle('open');
         }
 
-        // NEW: Specific Mobile Submenu Toggle
+        // UPDATED: Specific Mobile Submenu Toggle
         function toggleMobileSubmenu(e) {
-            e.stopPropagation(); // Don't trigger link click or menu close
+            e.stopPropagation(); 
             const dropdown = document.getElementById('research-dropdown');
             const toggleBtn = e.currentTarget;
+            
+            // Close other dropdowns first (like lang)
+            closeAllDropdowns(dropdown);
             
             if (dropdown.classList.contains('show-mobile')) {
                 dropdown.classList.remove('show-mobile');
@@ -3303,7 +3347,7 @@
             }
         }
 
-        // NEW: Toggle Nested Sub-menus on Mobile (Publications, Events, etc.)
+        // Toggle Nested Sub-menus on Mobile
         function toggleNestedMobile(e, link) {
             if (window.innerWidth <= 900) {
                 e.preventDefault(); 
@@ -3320,7 +3364,6 @@
                         arrow.classList.add('fa-chevron-right');
                     }
                 } else {
-                    // Optional: Close other open nested menus to keep it clean
                     const allOpen = document.querySelectorAll('.sub-dropdown-content.show-nested');
                     allOpen.forEach(el => {
                         el.classList.remove('show-nested');
@@ -3342,7 +3385,6 @@
 
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            // Only attach close logic if it's NOT the research dropdown toggle
             if (!link.closest('.nav-item-dropdown')) {
                 link.addEventListener('click', () => {
                     const navBar = document.querySelector('.nav-list');
@@ -3355,8 +3397,7 @@
             }
         });
 
-        /* 5.5: GLOBAL CLICK LISTENER */
-        // 5.6: SCROLL REVEAL ANIMATION
+        /* 5.6: SCROLL REVEAL ANIMATION */
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -3371,9 +3412,8 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        /* 5.7: REVERSE NUMBERING LOGIC (For Experience, Education, Referees, Awards) */
+        /* 5.7: REVERSE NUMBERING LOGIC */
         function assignReverseBadges() {
-            // Select all grid containers that need numbering
             const containers = [
                 document.querySelector('.exp-grid'),
                 document.querySelector('.edu-grid'),
@@ -3384,19 +3424,16 @@
             containers.forEach(container => {
                 if (!container) return;
                 
-                // Select specific cards within this container
                 const cards = container.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card');
                 const total = cards.length;
                 
                 cards.forEach((card, index) => {
-                    // Logic: Top item gets 'total', Bottom gets '1'
                     const number = total - index;
                     card.setAttribute('data-badge', number);
                 });
             });
         }
         
-        // Run on load
         document.addEventListener('DOMContentLoaded', assignReverseBadges);
 
         // 5.8: ACCORDION LOGIC
@@ -3472,7 +3509,7 @@
             }, 'google_translate_element');
         }
 
-        // NEW: SCROLL PROGRESS BAR LOGIC
+        // SCROLL PROGRESS BAR LOGIC
         window.addEventListener('scroll', () => {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
