@@ -96,12 +96,12 @@
             height: 4px;
             background: var(--accent);
             width: 0%;
-            z-index: 10001; /* Above header */
+            z-index: 10005; /* Above everything */
             transition: width 0.1s ease-out;
         }
 
         /* 3.2: GLOBAL RESETS & SCROLLBAR */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         html { scroll-behavior: smooth; scroll-padding-top: 65px; } 
         
@@ -132,21 +132,6 @@
             background-color: orange;
             outline: 2px solid red;
         }
-
-        /* Search Tools Styles */
-        .search-tools {
-            display: flex; align-items: center; gap: 10px; margin-left: 10px;
-            font-size: 0.9rem; color: #666;
-        }
-        .search-count { 
-            font-weight: bold; min-width: 60px; text-align: center; font-size: 0.9rem;
-        }
-        .search-btn {
-            background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 4px;
-            cursor: pointer; transition: 0.2s; color: var(--primary); font-size: 0.9rem;
-        }
-        .search-btn:hover { background: var(--accent); color: #fff; }
-
 
         /* SCROLLBAR STYLING */
         ::-webkit-scrollbar, *::-webkit-scrollbar, html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -189,7 +174,8 @@
             backdrop-filter: blur(10px); 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
             position: fixed; top: 0; left: 0; width: 100%; 
-            z-index: 10000; height: 60px; 
+            z-index: 10001; /* High z-index */
+            height: 60px; 
             transition: all 0.3s ease;
         }
 
@@ -219,26 +205,78 @@
         
         .header-name.visible { opacity: 1; transform: translateX(0); }
 
-
-        /* Search Bar */
-        .header-search-bar {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 3000; 
-            display: none; align-items: center; justify-content: center;
-            padding: 0 20px;
-            animation: slideDown 0.3s ease-out;
+        /* --- NEW SEARCH POPUP STYLES --- */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
-        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        
+        .search-icon-btn {
+            padding: 5px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        .search-icon-btn:hover { color: var(--accent); }
+
+        .search-dropdown {
+            position: absolute;
+            right: 0;
+            top: 160%; /* Push down */
+            width: 320px;
+            background: #fff;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            display: none; 
+            z-index: 3000;
+            animation: fadeSlideDown 0.2s ease-out;
+        }
+        
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: #f8fafc;
+        }
         
         .header-search-input {
-            width: 100%; max-width: 600px; border: none; outline: none;
-            font-size: 1.1rem; border-bottom: 2px solid var(--accent);
-            padding: 5px; color: var(--primary); background: transparent;
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            outline: none;
+            color: #334155;
         }
-        .header-search-close {
-            margin-left: 15px; font-size: 1.2rem; cursor: pointer; color: var(--primary); transition: 0.3s;
+
+        .search-controls {
+            display: flex;
+            gap: 5px;
+            padding-right: 8px;
+            align-items: center;
         }
-        .header-search-close:hover { color: var(--accent); }
+        
+        .mini-search-btn {
+            background: none; border: none; cursor: pointer;
+            color: #94a3b8; font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+        .mini-search-btn:hover { color: var(--primary); }
+
+        .search-count {
+            font-size: 0.75rem; color: #94a3b8; font-weight: 600; margin-right: 5px; min-width: 25px; text-align: center;
+        }
 
         /* Nav List */
         .nav-list { 
@@ -410,8 +448,10 @@
         .sticky-sidebar .h-social { font-size: 1.5rem; color: var(--primary); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
         .sticky-sidebar .h-social:hover { color: var(--accent); transform: scale(1.2); }
 
+        /* Back to top moved to RIGHT */
         .back-to-top {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            position: fixed; bottom: 30px; right: 30px; /* MOVED TO RIGHT */
+            width: 50px; height: 50px;
             background-color: var(--accent); color: var(--primary); border-radius: 50%;
             display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999;
@@ -431,11 +471,27 @@
             max-width: 1200px; width: 100%; min-height: auto;
         }
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
+        
+        /* UPDATED: Pulse Animation */
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 161, 29, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0); }
+        }
+        
         .hero-img { 
             width: 190px; height: 190px; border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; 
-            background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: #fff; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /* NEW: Animation & Hover Scale */
+            animation: pulse-shadow 2s infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .hero-img:hover {
+            transform: scale(1.05);
+        }
+
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 0.5rem; }
         .hero-name-link { color: var(--white); text-decoration: none; transition: color 0.3s; }
         .hero-name-link:hover { color: var(--accent); }
@@ -445,6 +501,16 @@
         }
         .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
         
+        /* NEW SUB-ROLE STYLE (UPDATED COLOR) */
+        .hero-sub-role {
+            font-size: 1rem;
+            color: var(--accent); /* CHANGED TO GOLD */
+            margin-top: 8px;
+            font-weight: 400; /* Increased weight slightly for visibility */
+            letter-spacing: 0.5px;
+            font-style: italic;
+        }
+
         .hero-contact { margin-top: 15px; font-size: 0.95rem; color: rgba(255,255,255,0.9); }
         .hero-contact i { color: var(--accent); margin-right: 5px; }
         .email-click { color: inherit; border-bottom: 1px dashed rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; position: relative; text-decoration: none;}
@@ -541,7 +607,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
         }
 
-        /* 3.7: CONTENT CONTAINERS */
+        /* 3.7: CONTENT CONTAINERS & SPLIT LAYOUT */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
         .section-title { 
@@ -549,8 +615,23 @@
             margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px;
         }
 
+        /* NEW: Split Layout for About Me */
+        .about-split-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         
+        /* NEW: Better Mobile Text Alignment & Grid Reset */
+        @media (max-width: 900px) {
+            .about-split-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .profile-text { text-align: left; }
+        }
+
+        /* UPDATED: NIPER HOVER - Gold on hover */
         .niper-hover {
             color: inherit; 
             text-decoration: none; 
@@ -562,27 +643,108 @@
             font-weight: inherit;
         }
         .niper-hover:hover {
-            background-color: var(--primary); 
-            color: #fff !important; 
-            border-bottom-color: transparent;
+            background-color: transparent; 
+            color: var(--accent) !important; 
+            border-bottom-color: var(--accent);
             text-decoration: none; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border-radius: 3px;
+            box-shadow: none;
         }
 
         .sub-heading-bold { 
             color: var(--primary); font-weight: 700; font-size: 1.15rem; 
-            display: block; margin-top: 2rem; margin-bottom: 1rem; 
+            display: block; margin-top: 0; margin-bottom: 1rem; /* Adjusted for column layout */
             font-family: 'Roboto', sans-serif;
         }
 
-        .interests-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 0.5rem; }
-        .int-tag { 
-            background: var(--white); border: 1px solid #ddd; padding: 6px 12px; 
-            border-radius: 4px; font-weight: 500; color: var(--primary); 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 0.9rem;
+        /* === ROTATING RESEARCH INTERESTS (MARQUEE) === */
+        .marquee-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            margin-top: 1rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .int-tag:hover { background: var(--primary); color: var(--white); }
+        
+        .marquee-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        /* Pause on hover for interaction */
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .interest-card {
+            background: #fff;
+            border: 1px solid var(--accent); /* Default Gold Border */
+            padding: 1.5rem;
+            border-radius: 20px 0 20px 0; /* Unique Shape */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            min-width: 260px; /* Slightly wider */
+            max-width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            cursor: grab;
+        }
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .ic-icon-box {
+            width: 60px; height: 60px; /* Bigger box */
+            background: rgba(0, 46, 95, 0.05); /* Light primary */
+            color: var(--accent);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; /* Increased Icon Size */
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        
+        /* DYNAMIC HOVER COLORS FOR INTEREST CARDS */
+        .interest-card:nth-child(5n+1):hover { border-color: #e63946; }
+        .interest-card:nth-child(5n+1):hover .ic-icon-box { color: #e63946; background: rgba(230, 57, 70, 0.1); }
+
+        .interest-card:nth-child(5n+2):hover { border-color: #2a9d8f; }
+        .interest-card:nth-child(5n+2):hover .ic-icon-box { color: #2a9d8f; background: rgba(42, 157, 143, 0.1); }
+
+        .interest-card:nth-child(5n+3):hover { border-color: #457b9d; }
+        .interest-card:nth-child(5n+3):hover .ic-icon-box { color: #457b9d; background: rgba(69, 123, 157, 0.1); }
+
+        .interest-card:nth-child(5n+4):hover { border-color: #f4a261; }
+        .interest-card:nth-child(5n+4):hover .ic-icon-box { color: #f4a261; background: rgba(244, 162, 97, 0.1); }
+
+        .interest-card:nth-child(5n+5):hover { border-color: #9d4edd; }
+        .interest-card:nth-child(5n+5):hover .ic-icon-box { color: #9d4edd; background: rgba(157, 78, 221, 0.1); }
+
+
+        .ic-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+        .ic-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
 
         .badge-gold-inline {
             color: var(--accent); 
@@ -590,7 +752,14 @@
         }
 
         /* 3.8: CARDS & GRIDS */
-        .edu-grid, .exp-grid, .referee-grid, .award-box-grid { 
+        .edu-grid {
+            /* Now vertical stack for the right column layout */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .exp-grid, .referee-grid, .award-box-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
             gap: 1.5rem; 
@@ -690,8 +859,6 @@
         .award-content-wrapper { flex: 1; padding-right: 0px; }
         .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; }
         .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
-
-        .award-number { display: none; }
 
         /* 3.10: PATENTS */
         .patent-box { 
@@ -907,20 +1074,6 @@
         .email-badge { color: var(--accent); font-size: 1.1rem; }
 
 
-        .contact-form-box {
-            background: #fff; padding: 2rem; border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-            border: 1px solid #eee;
-            border-top: 5px solid #ccc; 
-            width: 100%; margin: 0 auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .contact-form-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-
         .ref-inst-row { 
             display: flex; align-items: center; 
             gap: 10px; margin-bottom: 5px;
@@ -940,85 +1093,141 @@
         }
 
                 
-        /* Contact Form Grid */
-        /* UPDATED: Compact grid gap */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-        .contact-full { grid-column: span 2; }
-        
-        /* UPDATED: Reduced margin */
-        .form-group { margin-bottom: 0.5rem; }
-        .form-label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--primary); }
-        .form-control {
-            width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px;
-            font-family: inherit; font-size: 1rem; transition: 0.3s;
-        }
-        .form-control:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(220, 161, 29, 0.1); }
-        
-        .form-footer {
-            display: flex; flex-wrap: wrap; align-items: center; 
-            gap: 15px; 
-            margin-top: 15px; 
-            width: 100%;
-            position: relative;
-            z-index: 10;
+        /* === NEW CONTACT FOOTER STYLES === */
+        .contact-footer-section {
+            background-color: #0f172a; /* Slate 900 */
+            color: #fff;
+            padding: 2rem 0 2rem 0; /* REDUCED PADDING */
+            margin-top: 3rem;
         }
 
-        .btn-send {
-            background: var(--primary); color: #fff; border: none; padding: 12px 30px;
-            font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer;
-            transition: 0.3s; display: flex; align-items: center; gap: 8px; /* Changed to flex for better centering */
-            white-space: nowrap;
-            visibility: visible;
-            opacity: 1;
+        .contact-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 0; /* Remove bottom margin as content is inside */
         }
-        .btn-send:hover { background: var(--accent); color: var(--primary); transform: translateY(-2px); }
+
+        .contact-left h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+        }
+        .contact-left p {
+            color: #94a3b8; /* Slate 400 */
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #cbd5e1; /* Slate 300 */
+        }
+        .contact-item i {
+            color: var(--accent);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+        .contact-item a:hover { color: #fff; }
+
+        /* COPYRIGHT HOVER EFFECT */
+        .footer-copyright {
+            display: inline-block;
+            position: relative;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .footer-copyright:hover {
+            color: var(--accent);
+        }
+        .footer-copyright::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .footer-copyright:hover::after {
+            width: 100%;
+        }
+
+        /* Form Styles */
+        .cf-input-group {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+        }
+        .cf-input, .cf-textarea {
+            width: 100%;
+            background-color: #1e293b; /* Slate 800 */
+            border: 1px solid #334155; /* Slate 700 */
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .cf-input:focus, .cf-textarea:focus {
+            border-color: var(--accent);
+        }
+        .cf-textarea {
+            resize: vertical;
+            min-height: 150px;
+            margin-bottom: 1rem;
+        }
+        .cf-btn {
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: auto;
+        }
+        .cf-btn:hover { background-color: #b8860b; }
+
+        /* NEW WRAPPER FOR BUTTON & MESSAGE */
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-socials { 
+            display: flex; gap: 15px; justify-content: flex-start; margin-bottom: 10px; margin-top: 20px; 
+        }
+        .f-soc-link {
+            color: #94a3b8; font-size: 1.2rem; transition: 0.3s;
+        }
+        .f-soc-link:hover { color: var(--accent); transform: translateY(-2px); }
 
         .msg-success-box {
             display: none;
-            padding: 10px 20px;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            padding: 10px 15px;
+            /* margin-top removed for inline alignment */
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
             border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            flex: 1; 
             text-align: center;
-            max-width: 300px; 
+            font-size: 0.95rem;
+            font-weight: 600;
         }
         .msg-success-box.show { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
 
-        /* 3.14: FOOTER */
-        footer { 
-            background: var(--primary-dark); color: #fff; text-align: center; 
-            padding: 15px 0; 
-            margin-top: 3rem; border-top: 3px solid var(--accent); 
-        }
-        .footer-content {
-            display: flex; justify-content: center; align-items: center; gap: 15px;
-            flex-wrap: wrap; margin: 0 auto; max-width: 1200px; padding: 0 20px;
-        }
-        .footer-socials { 
-            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; 
-        }
-        .footer-btn { 
-            width: 32px; height: 32px; 
-            background: transparent; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; 
-            color: #fff; font-size: 1rem; 
-            transition: all 0.3s; text-decoration: none; 
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .footer-btn:hover { 
-            background: #b8860b; border-color: #b8860b; color: var(--primary-dark); transform: translateY(-2px); 
-        }
-        .footer-text { 
-            font-size: 0.9rem; color: #eee; font-weight: 400; margin: 0;
-            border-bottom: 1px solid transparent; transition: border-color 0.3s;
-        }
-        .footer-text:hover { border-bottom-color: var(--accent); }
 
         /* COPY TO CLIPBOARD FEEDBACK */
         .copy-feedback {
@@ -1141,6 +1350,14 @@
                 padding: 0 !important; /* Reset default padding to handle inner elements */
                 height: 40px;
                 border-bottom: 1px solid #f0f0f0;
+                /* NEW: Transition for active state */
+                transition: background-color 0.2s, color 0.2s;
+            }
+
+            /* NEW: Active State for Parent Link */
+            .dropdown-item-wrapper > a.active-parent {
+                color: var(--accent);
+                background-color: #f0f4f8; /* Subtle background highlight */
             }
 
             .dropdown-item-wrapper > a > span {
@@ -1164,6 +1381,14 @@
                 color: var(--primary);
                 font-size: 0.8rem;
                 margin: 0;
+                /* NEW: Smooth Rotation */
+                transition: transform 0.3s ease;
+            }
+            
+            /* NEW: Rotation Class */
+            .nested-arrow.rotated {
+                transform: rotate(-180deg);
+                color: var(--accent); /* Highlight arrow when open */
             }
 
             /* Class to toggle nested menus on mobile */
@@ -1205,15 +1430,26 @@
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; }
-            .back-to-top { bottom: 90px !important; }
-            .contact-grid { grid-template-columns: 1fr; } 
-            .contact-full { grid-column: span 1; }
+            
+            /* CONTACT GRID MOBILE */
+            .contact-grid-layout { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem;}
+            .cf-input-group { grid-template-columns: 1fr; }
+            .footer-socials { justify-content: center; } /* Center social icons on mobile */
+            .footer-bottom { align-items: center; }
             
             .footer-content { flex-direction: column; gap: 15px; }
 
             .form-footer { flex-direction: column; align-items: stretch; }
             .btn-send { width: 100%; justify-content: center; }
             .msg-success-box { max-width: 100%; }
+
+            /* Mobile Button Positioning Fix */
+            .back-to-top { bottom: 30px; right: 20px; left: auto; }
+            #ai-widget-toggle { bottom: 90px; right: 20px; left: auto; }
+            #ai-chat-window { bottom: 150px; right: 20px; left: auto; width: 300px; }
+            
+            .contact-footer-section { padding: 2rem 0; }
+            .contact-grid-layout { gap: 2rem; }
         }
 
         /* PRINT STYLES */
@@ -1221,7 +1457,7 @@
             #main-header, .sticky-sidebar, .back-to-top, .accordion-btn i, 
             .nav-toggle, .mobile-controls-container, .header-search-bar, 
             .search-tools, .form-footer, .contact-form-box, .cv-btn-group, 
-            .hero-contact, footer, .control-icon {
+            .hero-contact, footer, .control-icon, #ai-widget-toggle, #ai-chat-window {
                 display: none !important;
             }
             
@@ -1261,6 +1497,8 @@
                 overflow: visible !important;
                 padding: 0;
             }
+            
+            .about-split-layout { display: block; } /* Flatten grid for print */
 
             a { text-decoration: none; color: #000 !important; }
             .pub-doi { border: 1px solid #000; color: #000 !important; background: #fff; }
@@ -1351,6 +1589,141 @@
         margin: 0;
     }
 
+    /* === AI WIDGET STYLES === */
+    #ai-widget-toggle {
+        position: fixed;
+        bottom: 90px;
+        right: 30px; /* Aligned with back to top */
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        cursor: pointer;
+        z-index: 10002; /* Increase z-index for visibility */
+        transition: all 0.3s ease;
+        border: 2px solid var(--accent);
+    }
+    #ai-widget-toggle:hover {
+        transform: scale(1.1);
+        background-color: var(--accent);
+    }
+
+    #ai-chat-window {
+        position: fixed;
+        bottom: 150px; /* Above the buttons */
+        right: 30px;
+        width: 350px;
+        height: 500px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 10002; /* Ensure above header if overlapping */
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+    .chat-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 15px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid var(--accent);
+    }
+    .chat-body {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #f9f9f9;
+    }
+    .chat-footer {
+        padding: 10px;
+        background: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 5px;
+    }
+    .chat-input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+        font-size: 0.9rem;
+    }
+    .chat-send-btn {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+    }
+    .chat-send-btn:hover { background: var(--accent); }
+
+    .msg {
+        max-width: 80%;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .msg-bot {
+        background: #e2e8f0;
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+        color: #333;
+    }
+    .msg-user {
+        background: var(--primary);
+        color: #fff;
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+    }
+    .msg-loading {
+        font-style: italic;
+        color: #888;
+        font-size: 0.8rem;
+        align-self: flex-start;
+    }
+    .quick-action-btn {
+        background: #fff;
+        border: 1px solid var(--accent);
+        color: var(--primary);
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        margin-top: 5px;
+        display: inline-block;
+        transition: 0.2s;
+        margin-right: 5px;
+    }
+    .quick-action-btn:hover {
+        background: var(--accent);
+        color: #fff;
+    }
+
     </style>
 </head>
 
@@ -1371,25 +1744,37 @@
         <a href="https://shabanahmad.github.io/" class="h-social" title="Website" aria-label="Personal Website"><i class="fa-solid fa-globe"></i></a>
     </div>
 
+    <!-- BACK TO TOP BUTTON (RIGHT SIDE BOTTOM) -->
     <div class="back-to-top" id="back-to-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></div>
     
+    <!-- AI WIDGET BUTTON (RIGHT SIDE ABOVE BACK TO TOP) -->
+    <div id="ai-widget-toggle" tabindex="0" onkeydown="handleChatKey(event)" onclick="toggleChatWindow()" title="Ask Dr. Shaban AI" role="button" aria-label="AI Chat Assistant">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div id="ai-chat-window">
+        <div class="chat-header">
+            <span>✨ Dr. Shaban AI Assistant</span>
+            <i class="fas fa-times" onclick="toggleChatWindow()" style="cursor:pointer;" tabindex="0" onkeydown="if(event.key === 'Enter') toggleChatWindow()" role="button" aria-label="Close Chat"></i>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="msg msg-bot">
+                Hello! I am an AI assistant trained on Dr. Shaban's portfolio. Ask me anything about his research, publications, or expertise!
+                <br>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Summarize Dr. Shaban\'s research focus')">✨ Summarize Research</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key Publications</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('How can I contact him?')">📧 Contact Info</button>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type a question..." onkeydown="handleChatKey(event)">
+            <button class="chat-send-btn" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <!-- 4.3: HEADER -->
     <header id="main-header">
-        <!-- Search Bar Overlay -->
-        <div class="header-search-bar" id="header-search-bar">
-            <input type="text" class="header-search-input" id="search-input" 
-                   placeholder="Find on page..." 
-                   onkeydown="handleSearchKey(event)">
-            
-            <div class="search-tools">
-                <span id="search-count" class="search-count"></span>
-                <button class="search-btn" onclick="nextMatch()" title="Next Match (Enter)" aria-label="Next Match"><i class="fas fa-chevron-down"></i></button>
-                <button class="search-btn" onclick="prevMatch()" title="Previous Match" aria-label="Previous Match"><i class="fas fa-chevron-up"></i></button>
-            </div>
-
-            <i class="fas fa-times header-search-close" onclick="closeSearch(event)" title="Close Search (Esc)" aria-label="Close Search"></i>
-        </div>
-
+        
         <div class="header-content">
             
             <!-- Dr Shaban (Scrolls to Top) -->
@@ -1400,9 +1785,9 @@
 
             <!-- Mobile Controls -->
             <div class="mobile-controls-container">
-                <i class="fas fa-search control-icon" onclick="toggleSearch(event)" style="margin-right:10px;" aria-label="Search"></i>
+                <i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" style="margin-right:10px;" aria-label="Search" tabindex="0" role="button"></i>
                 
-                <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)">
+                <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                     <!-- Dynamic Content -->
                     <div class="lang-current-display">
                         EN <i class="fas fa-chevron-down"></i>
@@ -1446,7 +1831,7 @@
                     </div>
                 </div>
 
-                <div class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu Toggle"><i class="fas fa-bars"></i></div>
+                <div class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu Toggle" tabindex="0" role="button"><i class="fas fa-bars"></i></div>
             </div>
 
             <!-- Desktop Nav List -->
@@ -1535,12 +1920,29 @@
                 </li>
 
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 
                 <!-- Desktop Controls -->
                 <li class="header-controls">
-                    <i class="fas fa-search control-icon" onclick="toggleSearch(event)" title="Search" aria-label="Search"></i>
-                    <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)">
+                    <!-- NEW POPUP SEARCH BUTTON -->
+                    <div class="search-container">
+                        <i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" title="Search" aria-label="Search" tabindex="0" role="button"></i>
+                        
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-wrapper">
+                                <input type="text" class="header-search-input" id="search-input" 
+                                       placeholder="Find on page..." 
+                                       onkeydown="handleSearchKey(event)">
+                                
+                                <div class="search-controls">
+                                    <span id="search-count" class="search-count"></span>
+                                    <button class="mini-search-btn" onclick="prevMatch()" title="Previous Match"><i class="fas fa-chevron-up"></i></button>
+                                    <button class="mini-search-btn" onclick="nextMatch()" title="Next Match"><i class="fas fa-chevron-down"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                         <!-- Dynamic Content -->
                          <div class="lang-current-display">
                             EN <i class="fas fa-chevron-down"></i>
@@ -1577,7 +1979,7 @@
                             <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)">
                                  <img src="https://flagcdn.com/w40/ru.png" class="flag-img" loading="lazy" alt="RU"> Русский
                             </div>
-                            <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
+                             <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)">
                                  <img src="https://flagcdn.com/w40/jp.png" class="flag-img" loading="lazy" alt="JP"> 日本語
                             </div>
                         </div>
@@ -1598,6 +2000,9 @@
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.src='https://via.placeholder.com/190?text=SA'">
                 <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
+                
+                <!-- NEW SUB-ROLE -->
+                <div class="hero-sub-role">Bioinformatician with Expertise in Artificial Intelligence</div>
 
                 <div class="hero-contact">
                     <i class="fas fa-envelope"></i> 
@@ -1638,11 +2043,11 @@
 
                         <div class="stat-group">
                             <div class="stat-group-header">Innovation & Resources</div>
-                            <a href="#patents" class="stat-sub-item patent-hero-item">
+                            <a href="#patents" class="stat-sub-item">
                                 <span><i class="fas fa-stamp"></i> Patents Granted</span>
                                 <span class="pub-badge">1</span>
                             </a>
-                             <a href="#patents" class="stat-sub-item patent-hero-item">
+                             <a href="#patents" class="stat-sub-item">
                                 <span><i class="fas fa-file-contract"></i> Patents Communicated</span>
                                 <span class="pub-badge">6</span>
                             </a>
@@ -1680,68 +2085,93 @@
         </section>
     </div>
 
-    <!-- 4.5: PROFILE -->
+    <!-- 4.5: PROFILE (RESTRUCTURED SPLIT LAYOUT) -->
     <section id="profile" class="container reveal" style="margin-top: 2rem;">
-        <h2 class="section-title">About Me</h2>
-        <div class="profile-text">
-            <p style="margin-top:10px;">
-                I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" class="niper-hover">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" class="niper-hover">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" class="niper-hover">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
-            </p>
-            <p style="margin-top:10px;">
-                I bring expertise in deep learning–driven predictive modeling (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker,</a><a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI,</a><a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>), and advanced protein modeling, spanning multitarget docking, MD simulations, and free-energy calculations.
-            </p>
-            <p style="margin-top:10px;">
-                My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" class="niper-hover">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" class="niper-hover">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" class="niper-hover">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" class="niper-hover">SRM University</a>—and now continues through international research in Finland and Denmark.
-            </p>
-            <span class="sub-heading-bold">My Educational Background Includes:</span>
-            
-            <div class="edu-grid" style="margin-top: 1rem; margin-bottom: 2rem;">
-                <div class="edu-card edu-phd">
-                    <div class="edu-header">
-                        <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
-                        <span class="year-span">(2025)</span>
-                    </div>
-                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
-                </div>
-                <div class="edu-card edu-msc">
-                    <div class="edu-header">
-                        <h4>MSc Bioinformatics</h4>
-                        <span class="year-span">(2020)</span>
-                    </div>
-                    <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
-                </div>
-                <div class="edu-card edu-bsc">
-                    <div class="edu-header">
-                        <h4>BSc (Hons) Botany</h4>
-                        <span class="year-span">(2018)</span>
-                    </div>
-                    <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
+        
+        <div class="about-split-layout">
+            <!-- Left Column: Narrative Text -->
+            <div class="about-left">
+                <h2 class="section-title" style="margin-top:0;">About Me</h2>
+                <div class="profile-text">
+                    <p style="margin-top:0;">
+                        I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" class="niper-hover">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" class="niper-hover">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" class="niper-hover">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
+                    </p>
+                    <p style="margin-top:10px;">
+                        I bring expertise in deep learning–driven predictive modeling (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker,</a><a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI,</a><a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>), and advanced protein modeling, spanning multitarget docking, MD simulations, and free-energy calculations.
+                    </p>
+                    <p style="margin-top:10px;">
+                        My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" class="niper-hover">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" class="niper-hover">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" class="niper-hover">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" class="niper-hover">SRM University</a>—and now continues through international research in Finland and Denmark.
+                    </p>
                 </div>
             </div>
 
-            <p style="font-style: italic; color: #666; margin-bottom: 1.5rem;">
-                Honorary Alumnus of the <a href="https://niperahm.ac.in/" target="_blank" class="niper-hover">National Institute of Pharmaceutical Education and Research (NIPER) Ahmedabad</a>.
-            </p>
-
-            <span class="sub-heading-bold">My Research Interests Include:</span>
-        
-            <div class="interests-wrapper">
-                <div class="int-tag">💊 AI in Drug Design</div>
-                <div class="int-tag">🤖 AI in Genomics</div>
-                <div class="int-tag">🧪 Molecular Modelling & Structural Bioinformatics</div>
-                <div class="int-tag">🧬 Computational Genomics & Systems Biology</div>
-                <div class="int-tag">🌳 Phylogenetics & Molecular Evolution</div>
-                <div class="int-tag">🦠 Immunoinformatics & Vaccine Design</div>
-                <div class="int-tag">🧠 Translational Bioinformatics & Health AI</div>
-                <div class="int-tag">🌍 PFAS Biodegradation & Environmental AI</div>
-                <div class="int-tag">📊 Deep Learning & Machine Learning</div>
-                <div class="int-tag">⚛️ Computational Chemistry (MD, DFT, Binding Free Energy)</div>
+            <!-- Right Column: Vertical Education Stack -->
+            <div class="about-right">
+                <h2 class="section-title" style="margin-top:0; border-left:none; padding-left:0; color:var(--primary); font-size: 1.5rem; font-family: 'Roboto', sans-serif; font-weight:700;">Academic Qualifications</h2>
+                <div class="edu-grid">
+                    <div class="edu-card edu-phd">
+                        <div class="edu-header">
+                            <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4>
+                            <span class="year-span">(2025)</span>
+                        </div>
+                        <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                    </div>
+                    <div class="edu-card edu-msc">
+                        <div class="edu-header">
+                            <h4>MSc Bioinformatics</h4>
+                            <span class="year-span">(2020)</span>
+                        </div>
+                        <a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                    </div>
+                    <div class="edu-card edu-bsc">
+                        <div class="edu-header">
+                            <h4>BSc (Hons) Botany</h4>
+                            <span class="year-span">(2018)</span>
+                        </div>
+                        <a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a>
+                    </div>
+                </div>
+                <p style="font-style: italic; color: #666; margin-top: 1.5rem;">
+                    Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" class="niper-hover">NIPER-Ahmedabad</a>.
+                </p>
             </div>
         </div>
+
+        <span class="sub-heading-bold">Scientific Frontiers</span>
+    
+        <!-- NEW MARQUEE SECTION (UPDATED SCIENTIFIC TEXT) -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <!-- Original Items -->
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimization.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
+
+                <!-- DUPLICATES FOR SEAMLESS LOOP -->
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimization.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
+                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
+            </div>
+        </div>
+
         <hr class="separator">
     </section>
 
-    <!-- 4.6: EXPERIENCE -->
+        <!-- 4.6: EXPERIENCE -->
     <section id="experience" class="container reveal">
         <h2 class="section-title">Research Experiences</h2>
         <div class="exp-grid">
@@ -2708,73 +3138,75 @@
 
 
     <!-- 4.14: CONTACT SECTION (Integrated with Google Forms) -->
-    <section id="contact" class="container reveal">
-        <h2 class="section-title">Get in Touch</h2>
-        <p style="text-align:center; color:#666; margin-bottom:20px; font-style:italic;">
-            For any question, research collaboration, fill the form to get in touch.
-        </p>
-        
-        <div class="contact-form-box">
-             <!-- NOTE: Using typeof check to prevent ReferenceError on initial load -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
+    <!-- NEW DARK CONTACT FOOTER STYLE -->
+    <section id="contact" class="contact-footer-section reveal">
+        <div class="container">
+            <div class="contact-grid-layout">
+                <!-- Left: Info -->
+                <div class="contact-left">
+                    <h2>Let's Collaborate</h2>
+                    <p>
+                        I am always open to discussing new research opportunities, collaborations, or speaking engagements.
+                    </p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> 
+                        <span style="margin: 0 10px; color:var(--accent);">|</span> 
+                        <span class="email-click" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>University of Copenhagen, Denmark</span>
+                    </div>
+                    
+                    <div class="footer-socials">
+                        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="ResearchGate"><i class="ai ai-researchgate"></i></a>
+                        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
+                        <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="Web of Science"><i class="ai ai-clarivate"></i></a>
+                        <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="Scopus"><i class="ai ai-scopus"></i></a>
+                        <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" tabindex="0" role="button" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                    
+                    <div class="footer-copyright" tabindex="0" role="button">
+                        &copy; 2026 Dr Shaban | All rights reserved.
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="contact-right">
+                    <!-- NOTE: Using typeof check to prevent ReferenceError on initial load -->
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
+                    
+                    <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" 
+                          method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
                         
-            <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" 
-                  method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
-                
-                <div class="contact-grid">
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" name="entry.323008242" class="form-control" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" name="entry.1398368038" class="form-control" placeholder="your.email@example.com" required>
-                    </div>
-                    <div class="form-group contact-full">
-                        <label class="form-label">Subject</label>
-                        <input type="text" name="entry.1980791409" class="form-control" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group contact-full">
-                        <label class="form-label">Message</label>
-                        <!-- Entry ID for Message -->
-                        <textarea name="entry.1216360893" class="form-control" rows="8" placeholder="Write your message here...&#10;&#10;I'm always open to discussing new research opportunities, collaborations, or speaking engagements." required style="resize: vertical; min-height: 180px;"></textarea>
-                    </div>
+                        <div class="cf-input-group">
+                            <input type="text" name="entry.323008242" class="cf-input" placeholder="Name" required>
+                            <input type="email" name="entry.1398368038" class="cf-input" placeholder="Email" required>
+                        </div>
+                        <input type="text" name="entry.1980791409" class="cf-input" placeholder="Subject" required style="margin-bottom:1rem;">
+                        <textarea name="entry.1216360893" class="cf-textarea" placeholder="Message" required></textarea>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="cf-btn">Send Message</button>
+                            
+                            <div id="msg-success-box" class="msg-success-box">
+                                <i class="fas fa-check-circle"></i> Message Sent Successfully!
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                
-                <div class="form-footer">
-                    <button type="submit" class="btn-send">
-                        <i class="fas fa-paper-plane"></i> Send Message 
-                    </button>
-                    <div id="msg-success-box" class="msg-success-box">
-                        <i class="fas fa-check-circle"></i> Message Sent Successfully!
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
 
-    <!-- 4.15: FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="footer-btn s-li" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="footer-btn s-orcid" title="ORCID" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
-                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="footer-btn s-rg" title="ResearchGate" aria-label="ResearchGate"><i class="ai ai-researchgate"></i></a>
-                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="footer-btn s-gs" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-                <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="footer-btn s-wos" title="Web of Science" aria-label="Web of Science"><i class="ai ai-clarivate"></i></a>
-                <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="footer-btn s-scopus" title="Scopus" aria-label="Scopus"><i class="ai ai-scopus"></i></a>
-                <a href="https://github.com/ShabanAhmad" target="_blank" class="footer-btn s-gh" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-            <p class="footer-text">
-                &copy; Dr Shaban | <span id="current-year">2026</span> All Rights Reserved.
-            </p>
-        </div>
-    </footer>
+    <!-- Footer removed as it is now integrated above -->
 
     <script>
         // Update Copyright Year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
+        // document.getElementById('current-year').textContent = new Date().getFullYear(); // Removed as per static 2026 request
         var submitted = false;
 
         function copyEmail(element, email) {
@@ -3048,10 +3480,44 @@
              // UPDATED: Logic to close Main Dropdowns (Lang, Search, Research)
              // If click is NOT inside a dropdown toggle or the dropdown itself, close everything
              if (!e.target.closest('.lang-wrapper') && 
-                 !e.target.closest('.header-search-bar') && 
+                 !e.target.closest('.search-container') && 
                  !e.target.closest('.control-icon') &&
                  !e.target.closest('.mobile-dropdown-toggle')) {
                  closeAllDropdowns();
+             }
+
+             
+             // NEW: Logic to close Mobile Navigation Menu when clicking outside
+             if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) {
+                 const navBar = document.querySelector('.nav-list');
+                 const toggleBtn = document.querySelector('.nav-toggle');
+                 if (navBar && navBar.classList.contains('active')) {
+                     navBar.classList.remove('active');
+                     toggleBtn.classList.remove('open');
+                 }
+             }
+             
+             // NEW: Logic to close AI Chat if clicked outside
+             if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) {
+                const chatWindow = document.getElementById('ai-chat-window');
+                if (chatWindow && chatWindow.style.display === 'flex') {
+                    chatWindow.style.display = 'none';
+                }
+             }
+
+             // NEW: Logic to close Hero Stats Breakdown when clicking outside
+             const pubBreakdown = document.getElementById('pub-breakdown');
+             const pubContainer = pubBreakdown ? pubBreakdown.closest('.stat-row-link') : null;
+             
+             if (pubBreakdown && pubBreakdown.classList.contains('open') && pubContainer && !pubContainer.contains(e.target)) {
+                 pubBreakdown.classList.remove('open');
+                 pubBreakdown.style.maxHeight = "0";
+                 const toggleIcon = pubContainer.querySelector('.stat-toggle i');
+                 if (toggleIcon) {
+                     toggleIcon.classList.remove('fa-chevron-up');
+                     toggleIcon.classList.add('fa-chevron-down');
+                 }
+                 pubContainer.classList.remove('active-box');
              }
         });
 
@@ -3066,15 +3532,10 @@
             if(mobileDD && mobileDD !== except) mobileDD.classList.remove('show');
 
             // Close Search Bar
-            const searchBar = document.getElementById('header-search-bar');
-            const searchBarEl = document.getElementById('header-search-bar');
-            
-            // Note: We check if searchBar is visible and is NOT the exception
-            // Since toggleSearch passes the event object usually, we check references carefully
-            if(searchBar && searchBar.style.display === 'flex' && searchBar !== except) {
-                // Manually close search
+            const searchBar = document.getElementById('search-dropdown');
+            // If the element passed is searchBar, don't close it
+            if(searchBar && searchBar !== except) {
                 searchBar.style.display = 'none';
-                clearHighlights(); // Helper function existing in code
             }
 
             // Close Mobile Research Dropdown
@@ -3144,29 +3605,33 @@
             });
         }
 
-        /* 5.2: ADVANCED SEARCH ENGINE */
+        /* 5.2: ADVANCED SEARCH ENGINE (UPDATED FOR DROPDOWN) */
         let searchMatches = [];
         let currentMatchIndex = -1;
         let lastQuery = "";
 
-        function toggleSearch(e) {
-            if(e) e.stopPropagation();
+        // UPDATED: Toggle for Dropdown Search
+        function toggleSearchDropdown(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('search-dropdown');
+            const input = document.getElementById('search-input');
             
-            const bar = document.getElementById('header-search-bar');
-            
-            // UPDATED: Close other dropdowns first
-            if (bar.style.display !== 'flex') {
-                closeAllDropdowns(bar);
-                bar.style.display = 'flex';
-                setTimeout(() => document.getElementById('search-input').focus(), 50);
+            // Close other dropdowns first (like lang)
+            const langDD = document.getElementById('desktop-lang-dd');
+            if(langDD) langDD.classList.remove('show');
+
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                clearHighlights(); // Clear highlights when closing
             } else {
-                closeSearch(e);
+                dropdown.style.display = 'block';
+                setTimeout(() => input.focus(), 100);
             }
         }
 
         function closeSearch(e) {
             if(e) e.stopPropagation();
-            document.getElementById('header-search-bar').style.display = 'none';
+            document.getElementById('search-dropdown').style.display = 'none'; // Close dropdown
             clearHighlights();
             document.getElementById('search-input').value = '';
             if(document.getElementById('search-count')) document.getElementById('search-count').innerText = '';
@@ -3342,6 +3807,7 @@
             document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show'));
         }
 
+        
         /* 5.4: MOBILE MENU TOGGLE */
         function toggleMenu(e) {
             if(e) e.stopPropagation();
@@ -3393,25 +3859,26 @@
                 if (subMenu.classList.contains('show-nested')) {
                     subMenu.classList.remove('show-nested');
                     if(arrow) {
-                        arrow.classList.remove('fa-chevron-up');
-                        arrow.classList.add('fa-chevron-down');
+                        arrow.classList.remove('rotated');
                     }
+                    link.classList.remove('active-parent');
                 } else {
+                    // Close other nested menus if desired (keeping it clean)
                     const allOpen = document.querySelectorAll('.sub-dropdown-content.show-nested');
                     allOpen.forEach(el => {
                         el.classList.remove('show-nested');
-                        const pArrow = el.parentElement.querySelector('.nested-arrow');
-                        if(pArrow) {
-                            pArrow.classList.remove('fa-chevron-up');
-                            pArrow.classList.add('fa-chevron-down');
-                        }
+                        const pWrapper = el.closest('.dropdown-item-wrapper');
+                        const pArrow = pWrapper.querySelector('.nested-arrow');
+                        if(pArrow) pArrow.classList.remove('rotated');
+                        const pLink = pWrapper.querySelector('a');
+                        if(pLink) pLink.classList.remove('active-parent');
                     });
 
                     subMenu.classList.add('show-nested');
                     if(arrow) {
-                        arrow.classList.remove('fa-chevron-down');
-                        arrow.classList.add('fa-chevron-up');
+                        arrow.classList.add('rotated');
                     }
+                    link.classList.add('active-parent');
                 }
             }
         }
@@ -3553,6 +4020,101 @@
                 progressBar.style.width = scrolled + "%";
             }
         });
+
+        // --- AI CHAT WIDGET LOGIC ---
+        function toggleChatWindow() {
+            const window = document.getElementById('ai-chat-window');
+            window.style.display = (window.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function handleChatKey(e) {
+            if (e.key === 'Enter') sendUserMessage();
+        }
+
+        async function sendUserMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+
+            const loadingMsg = addMessage('Thinking...', 'loading');
+
+            try {
+                const response = await callGeminiAPI(message);
+                removeMessage(loadingMsg);
+                addMessage(response, 'bot');
+            } catch (error) {
+                removeMessage(loadingMsg);
+                addMessage("Sorry, I encountered an error. Please try again.", 'bot');
+            }
+        }
+
+        function sendQuickMessage(text) {
+            const input = document.getElementById('chat-input');
+            input.value = text;
+            sendUserMessage();
+        }
+
+        function addMessage(text, type) {
+            const body = document.getElementById('chat-body');
+            const div = document.createElement('div');
+            div.className = `msg msg-${type}`;
+            div.innerHTML = text; // Allow HTML for formatting
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+            return div;
+        }
+
+        function removeMessage(element) {
+            if (element && element.parentNode) {
+                element.parentNode.removeChild(element);
+            }
+        }
+
+        async function callGeminiAPI(query) {
+            const apiKey = ""; // API Key injected by environment
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            // Scrape page content for context
+            const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); // Limit context size
+
+            const prompt = `
+            You are a helpful AI assistant for Dr. Shaban Ahmad's academic portfolio website. 
+            Use the following context from his website to answer the user's question.
+            If the answer is not in the context, politely say you don't have that information.
+            Keep answers concise and professional.
+            
+            Context: ${pageContent}
+            
+            User Question: ${query}
+            `;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }]
+            };
+
+            // Retry logic
+            const delays = [1000, 2000, 4000];
+            for (let i = 0; i <= delays.length; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                    const data = await response.json();
+                    return data.candidates[0].content.parts[0].text;
+                } catch (error) {
+                    if (i === delays.length) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delays[i]));
+                }
+            }
+        }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
