@@ -1,7 +1,12 @@
 <!-- 
   ========================================================================
   ACADEMIC PORTFOLIO - DR. SHABAN AHMAD
-
+  ========================================================================
+  Description: A comprehensive, single-file academic portfolio containing 
+  HTML structure, cascading style sheets (CSS), and JavaScript logic.
+  Features: Custom DOM search, automated citation generation, offline AI 
+  assistant, and multi-language localisation.
+  ========================================================================
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -1714,9 +1719,14 @@
          */
         function toggleChatWindow() { const w = document.getElementById('ai-chat-window'); w.style.display = (w.style.display === 'flex') ? 'none' : 'flex'; }
         function handleChatKey(e) { if (e.key === 'Enter') sendUserMessage(); }
+
         async function sendUserMessage() {
             const inp = document.getElementById('chat-input'), msg = inp.value.trim(); if (!msg) return; addMessage(msg, 'user'); inp.value = ''; const loadMsg = addMessage('Thinking', 'loading'); 
-            try { const res = await callGeminiAPI(msg); removeMessage(loadMsg); addMessage(res, 'bot'); } catch (err) { removeMessage(loadMsg); addMessage("Sorry, I encountered an error. Please try again.", 'bot'); }
+            try { 
+                const res = await callGeminiAPI(msg); removeMessage(loadMsg); addMessage(res, 'bot'); 
+            } catch (err) { 
+                removeMessage(loadMsg); addMessage("<strong>❌ Error:</strong> " + err.message, 'bot'); 
+            }
         }
         function sendQuickMessage(text) { document.getElementById('chat-input').value = text; sendUserMessage(); }
         
@@ -1728,7 +1738,6 @@
         }
 
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
-
 
         async function fetchFromBackend(promptText, retries = 3, delay = 2000) {
             try {
@@ -1762,14 +1771,13 @@
             } catch (error) {
                 console.error("AI Connection Error:", error);
                 
-                // Make the final error message more user-friendly
-                if(error.message.includes('429') || error.message.includes('quota')) {
-                    throw new Error("⏳ The AI is currently analyzing too many requests. Please wait 30 seconds and try again!");
+                // Show the user a friendly rate limit error instead of "disconnected"
+                if(error.message.includes('429') || error.message.includes('quota') || error.message.includes('Too Many Requests') || error.message.includes('exhausted')) {
+                    throw new Error("⏳ The AI is currently processing too many requests. Please wait 30 seconds and try again!");
                 }
-                throw error;
+                throw error; // Pass real error to UI
             }
         }
-                
 
         async function callGeminiAPI(query) {
             const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); 
@@ -1783,18 +1791,17 @@
             return await fetchFromBackend(prompt);
         }
 
-        // --- NEW AI FEATURE LOGIC (Matcher, ELI5, TL;DR) ---
+        // --- AI FEATURE LOGIC (Matcher, ELI5, TL;DR) ---
         async function matchSkills() {
             const input = document.getElementById('job-desc-input');
             const resultBox = document.getElementById('match-result');
             const btn = document.getElementById('match-btn');
             
-            // Validation: Show red border and placeholder warning if empty
             if (!input.value.trim()) {
                 input.value = "";
                 input.placeholder = "⚠️ Please paste a job description here first!";
                 input.style.border = "2px solid red";
-                setTimeout(() => input.style.border = "1px solid #ccc", 2000);
+                setTimeout(() => input.style.border = "1px dashed #cbd5e1", 2000);
                 input.focus();
                 return;
             }
@@ -1813,27 +1820,19 @@
             
             try {
                 const response = await fetchFromBackend(prompt);
-                // Clean up any rogue markdown just in case, and inject as HTML
                 let formattedRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
                 resultBox.innerHTML = `<strong style="color:var(--primary);"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Skill Match Analysis:</strong><br><br>${formattedRes}`;
                 resultBox.style.display = 'block';
             } catch(e) {
-                resultBox.innerHTML = `<strong>❌ Error:</strong> Could not connect to the AI. Please try again.`;
+                resultBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`;
                 resultBox.style.display = 'block';
-                console.error(e);
-                
-                // Hide the error message automatically after 1 minute (60,000 ms)
-                setTimeout(() => {
-                    if (resultBox.innerHTML.includes('❌ Error:')) {
-                        resultBox.style.display = 'none';
-                    }
-                }, 30000);
+                setTimeout(() => { if (resultBox.innerHTML.includes('❌ Error:')) resultBox.style.display = 'none'; }, 30000);
             }
             btn.innerHTML = originalHtml;
             btn.disabled = false;
         }
 
-// --- AI Popup Modal Controllers ---
+        // --- AI Popup Modal Controllers ---
         function showAIModal(content) {
             document.getElementById('ai-modal-content').innerHTML = content;
             document.getElementById('ai-modal').classList.add('show');
@@ -1841,18 +1840,6 @@
         function closeAIModal(e) {
             if(e && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return;
             document.getElementById('ai-modal').classList.remove('show');
-        }
-
-        // --- Scientific Frontiers Summary ---
-        async function summarizeFrontiers() {
-            const prompt = `Summarise Dr. Shaban Ahmad's core research frontiers based on his portfolio (AI in Drug Design, Deep Learning in Genomics, MD Simulations, and PFAS Biodegradation). Keep it very brief (2-3 sentences max) and highly engaging. DO NOT use markdown. Use HTML <b> tags for emphasis.`;
-            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Analysing Frontiers...</div>`);
-            try {
-                const response = await fetchFromBackend(prompt);
-                showAIModal(`<strong>🔬 Research Frontiers:</strong><br><br>${response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`);
-            } catch(e) { 
-                showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); 
-            }
         }
 
         // --- Mic Interaction (Web Speech API) ---
@@ -1886,7 +1873,7 @@
             try {
                 const response = await fetchFromBackend(prompt);
                 showAIModal(`<strong>🔬 Research Frontiers:</strong><br><br>${response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`);
-            } catch(e) { showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
+            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
         }
 
         // --- Updated AI Features ---
@@ -1900,7 +1887,7 @@
             try {
                 const response = await fetchFromBackend(prompt);
                 showAIModal(`<strong>👶 Explain Like I'm 5:</strong><br><br>${response}`);
-            } catch(e) { console.error(e); showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
+            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
             
             btn.innerHTML = originalHtml; btn.disabled = false;
         }
@@ -1914,16 +1901,13 @@
             try {
                 const response = await fetchFromBackend(prompt);
                 showAIModal(`<strong>📄 Paper:</strong> <em>${paperTitle}</em><br><br><strong>✨ TL;DR Summary:</strong><br>${response}`);
-            } catch(e) { console.error(e); showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
+            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
             
             btnElement.innerHTML = originalHtml; btnElement.disabled = false;
         }
-        
-        // ---------------------------------------------------
                 
         /**
          * 9.11: Draft Email
-
          */
         async function draftEmail() {
             const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message'), ui = msgBox.value.trim();
@@ -1941,6 +1925,7 @@
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 3000);
             } catch(e) {
                 console.error("Drafting failed", e);
+                alert("Failed to draft email: " + e.message);
                 btn.innerHTML = '❌';
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
             }
