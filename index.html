@@ -1,12 +1,7 @@
 <!-- 
   ========================================================================
   ACADEMIC PORTFOLIO - DR. SHABAN AHMAD
-  ========================================================================
-  Description: A comprehensive, single-file academic portfolio containing 
-  HTML structure, cascading style sheets (CSS), and JavaScript logic.
-  Features: Custom DOM search, automated citation generation, offline AI 
-  assistant, and multi-language localisation.
-  ========================================================================
+
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -299,9 +294,9 @@
             margin-right: 5px; 
         }
         .edu-grid::before { 
-            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px; /* Moved line to right */
-            background: linear-gradient(to bottom, var(--accent) 0%, rgba(220,161,29,0.1) 100%); 
-            border-radius: 2px; 
+            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px;
+            background: linear-gradient(to bottom, #28a745 0%, #6f42c1 100%); /* Green to Purple Gradient */
+            border-radius: 2px;  
         }
         .edu-grid .edu-card { 
             position: relative; 
@@ -768,8 +763,11 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 10px;">
                     <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;">Scientific Frontiers</h3>
 
-                    <!-- ✨ TL;DR Summarizer for Frontiers -->
-                    <button onclick="tldrPaper(this, 'AI in Drug Design, Deep Learning in Genomics, MD Simulations, and Bioinformatics for PFAS Biodegradation')" class="btn-data" style="background-color: #6f42c1; border: none; cursor: pointer; margin:0;"> ✨ AI Summary</button>
+                    <!-- ✨ Summarizer for Frontiers -->
+                    <button onclick="summarizeFrontiers()" class="btn-data" style="background-color: #6f42c1; border: none; cursor: pointer; margin:0;">
+                    <svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> 
+                    AI Summary 
+                    </button>                  
                     <div style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
                 </div>
                 
@@ -819,8 +817,8 @@
                            ✨ Analyse Match <i class="fas fa-magic" style="transform: rotate(90deg);"></i>
                         </button>
                     </div>
-
-                    <div id="match-result" style="display: none; margin-top: 15px; padding: 15px; background: rgba(40, 167, 69, 0.1); border-left: 4px solid #28a745; border-radius: 4px; font-size: 0.95rem; line-height: 1.5;"></div>
+                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #334155; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"></div>
+                    
                 </div>
 
                 <!-- 3. RESEARCH EXPERIENCES & TIMELINE FIX -->
@@ -1721,11 +1719,18 @@
             try { const res = await callGeminiAPI(msg); removeMessage(loadMsg); addMessage(res, 'bot'); } catch (err) { removeMessage(loadMsg); addMessage("Sorry, I encountered an error. Please try again.", 'bot'); }
         }
         function sendQuickMessage(text) { document.getElementById('chat-input').value = text; sendUserMessage(); }
-        function addMessage(text, type) { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = text; b.appendChild(d); b.scrollTop = b.scrollHeight; return d; }
+        
+        function addMessage(text, type) { 
+            const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; 
+            // Fallback: forcefully convert accidental markdown **bold** to HTML
+            d.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); 
+            b.appendChild(d); b.scrollTop = b.scrollHeight; return d; 
+        }
+
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
 
 
-        async function fetchFromBackend(promptText) {
+        async function fetchFromBackend(promptText, retries = 3, delay = 2000) {
             try {
                 // Connect to Vercel
                 const response = await fetch('https://shaban-ahmad-github-io.vercel.app/api/gemini', {
@@ -1735,9 +1740,14 @@
                 });
                 
                 const data = await response.json();
-                console.log("Raw Vercel Response:", data); // Helps you debug in F12 Console
                 
                 if (!response.ok) {
+                    // SILENT AUTO-RETRY: If Google says "Too Many Requests" (429 error)
+                    if (response.status === 429 && retries > 0) {
+                        console.warn(`AI Rate Limit Hit. Silently retrying in ${delay/1000} seconds...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return fetchFromBackend(promptText, retries - 1, delay * 2); // Wait longer on next retry
+                    }
                     throw new Error(data.error?.message || data.error || 'Backend request failed with status ' + response.status);
                 }
 
@@ -1751,14 +1761,25 @@
                 }
             } catch (error) {
                 console.error("AI Connection Error:", error);
+                
+                // Make the final error message more user-friendly
+                if(error.message.includes('429') || error.message.includes('quota')) {
+                    throw new Error("⏳ The AI is currently analyzing too many requests. Please wait 30 seconds and try again!");
+                }
                 throw error;
             }
         }
-        
+                
 
         async function callGeminiAPI(query) {
             const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); 
-            const prompt = `You are a helpful AI assistant for Dr. Shaban Ahmad's academic portfolio website. Use the following context from his website to answer the user's question. Keep answers concise and professional.\n\nContext: ${pageContent}\n\nUser Question: ${query}`;
+            const prompt = `You are an AI assistant for Dr. Shaban Ahmad's academic portfolio. Answer the user based on context. 
+            CRITICAL INSTRUCTIONS: 
+            1. Keep it short, crispy, and professional. 
+            2. NEVER use markdown like **bold** or *bullet*. 
+            3. You MUST use HTML tags ONLY (<b> for bold, <ul><li> for lists, <br> for newlines).
+            
+            Context: ${pageContent}\n\nUser Question: ${query}`;
             return await fetchFromBackend(prompt);
         }
 
@@ -1782,11 +1803,19 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="transform: rotate(90deg);"></i>';
             btn.disabled = true;
             
-            const prompt = `Act as an AI Recruiter. Analyse this job description and match it specifically with Dr. Shaban Ahmad's bioinformatics, AI, and computational biology skills from his portfolio. Be concise, highlight strong matches in bullet points.\n\nJob Description: ${input.value}`;
+            const prompt = `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's bioinformatics and AI skills.
+            CRITICAL INSTRUCTIONS:
+            1. Start with an overall fit score out of 5 stars (e.g., ⭐⭐⭐⭐⭐ Fit).
+            2. Keep it short, punchy, and highly persuasive. Highlight exactly 3 top reasons he is the best candidate.
+            3. DO NOT use markdown like **bold** or *bullet*. Use HTML tags ONLY (<b> for bold, <ul><li> for lists, <br> for new lines).
+            
+            Job Description: ${input.value}`;
             
             try {
                 const response = await fetchFromBackend(prompt);
-                resultBox.innerHTML = `<strong>✨ Skill Match Analysis:</strong><br><br>${response.replace(/\n/g, '<br>')}`;
+                // Clean up any rogue markdown just in case, and inject as HTML
+                let formattedRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                resultBox.innerHTML = `<strong style="color:var(--primary);"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Skill Match Analysis:</strong><br><br>${formattedRes}`;
                 resultBox.style.display = 'block';
             } catch(e) {
                 resultBox.innerHTML = `<strong>❌ Error:</strong> Could not connect to the AI. Please try again.`;
@@ -1812,6 +1841,52 @@
         function closeAIModal(e) {
             if(e && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return;
             document.getElementById('ai-modal').classList.remove('show');
+        }
+
+        // --- Scientific Frontiers Summary ---
+        async function summarizeFrontiers() {
+            const prompt = `Summarise Dr. Shaban Ahmad's core research frontiers based on his portfolio (AI in Drug Design, Deep Learning in Genomics, MD Simulations, and PFAS Biodegradation). Keep it very brief (2-3 sentences max) and highly engaging. DO NOT use markdown. Use HTML <b> tags for emphasis.`;
+            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Analysing Frontiers...</div>`);
+            try {
+                const response = await fetchFromBackend(prompt);
+                showAIModal(`<strong>🔬 Research Frontiers:</strong><br><br>${response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`);
+            } catch(e) { 
+                showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); 
+            }
+        }
+
+        // --- Mic Interaction (Web Speech API) ---
+        let recognition;
+        function toggleMic() {
+            const micBtn = document.getElementById('mic-btn');
+            const chatInput = document.getElementById('chat-input');
+            
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("Voice input is not supported in this browser. Please type your message."); return;
+            }
+            
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if(!recognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false; recognition.interimResults = false;
+                
+                recognition.onstart = () => { micBtn.style.color = '#dc3545'; chatInput.placeholder = "Listening..."; };
+                recognition.onresult = (e) => { chatInput.value = e.results[0][0].transcript; sendUserMessage(); };
+                recognition.onerror = () => resetMic();
+                recognition.onend = () => resetMic();
+            }
+            try { recognition.start(); } catch(e) { recognition.stop(); }
+        }
+        function resetMic() { document.getElementById('mic-btn').style.color = '#555'; document.getElementById('chat-input').placeholder = "Type or say a question..."; }
+
+        // --- Scientific Frontiers Summary ---
+        async function summarizeFrontiers() {
+            const prompt = `Summarise Dr. Shaban Ahmad's core research frontiers based on his portfolio (AI in Drug Design, Deep Learning in Genomics, MD Simulations, and PFAS Biodegradation). Keep it very brief (2-3 sentences max) and highly engaging. DO NOT use markdown. Use HTML <b> tags for emphasis.`;
+            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Analysing Frontiers...</div>`);
+            try {
+                const response = await fetchFromBackend(prompt);
+                showAIModal(`<strong>🔬 Research Frontiers:</strong><br><br>${response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`);
+            } catch(e) { showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
         }
 
         // --- Updated AI Features ---
