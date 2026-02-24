@@ -298,6 +298,7 @@
             padding-right: 40px; /* Moved timeline space to right */
             margin-right: 5px; 
         }
+        
         .edu-grid::before { 
             content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px;
             background: linear-gradient(to bottom, #28a745 0%, #6f42c1 100%); /* Green to Purple Gradient */
@@ -822,7 +823,7 @@
                            ✨ Analyse Match <i class="fas fa-magic" style="transform: rotate(90deg);"></i>
                         </button>
                     </div>
-                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #334155; box-shadow: 0 4px 6px rgba(0,0,0,0.02);"></div>
+                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
                     
                 </div>
 
@@ -1731,14 +1732,19 @@
         function sendQuickMessage(text) { document.getElementById('chat-input').value = text; sendUserMessage(); }
         
         function addMessage(text, type) { 
-            const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; 
-            // Fallback: forcefully convert accidental markdown **bold** to HTML
-            d.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); 
+            const b = document.getElementById('chat-body'), d = document.createElement('div'); 
+            d.className = `msg msg-${type}`; 
+            // Force convert markdown symbols to clean HTML
+            let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                                    .replace(/\*(.*?)\*/g, '<i>$1</i>')
+                                    .replace(/\n/g, '<br>');
+            d.innerHTML = formattedText; 
             b.appendChild(d); b.scrollTop = b.scrollHeight; return d; 
         }
 
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
 
+    
         async function fetchFromBackend(promptText, retries = 3, delay = 2000) {
             try {
                 // Connect to Vercel
@@ -1781,15 +1787,16 @@
 
         async function callGeminiAPI(query) {
             const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); 
-            const prompt = `You are an AI assistant for Dr. Shaban Ahmad's academic portfolio. Answer the user based on context. 
-            CRITICAL INSTRUCTIONS: 
-            1. Keep it short, crispy, and professional. 
-            2. NEVER use markdown like **bold** or *bullet*. 
-            3. You MUST use HTML tags ONLY (<b> for bold, <ul><li> for lists, <br> for newlines).
+            const prompt = `You are an AI assistant for Dr. Shaban Ahmad's academic portfolio. 
+            RULES:
+            1. Use HTML ONLY for formatting. <b>bold</b>, <ul><li>lists</li></ul>, <br> for breaks.
+            2. NEVER use Markdown like ** or *. 
+            3. Keep responses short, punchy, and professional.
             
             Context: ${pageContent}\n\nUser Question: ${query}`;
             return await fetchFromBackend(prompt);
         }
+
 
         // --- AI FEATURE LOGIC (Matcher, ELI5, TL;DR) ---
         async function matchSkills() {
@@ -1810,26 +1817,28 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="transform: rotate(90deg);"></i>';
             btn.disabled = true;
             
-            const prompt = `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's bioinformatics and AI skills.
+            const prompt = `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's skills.
             CRITICAL INSTRUCTIONS:
-            1. Start with an overall fit score out of 5 stars (e.g., ⭐⭐⭐⭐⭐ Fit).
-            2. Keep it short, punchy, and highly persuasive. Highlight exactly 3 top reasons he is the best candidate.
-            3. DO NOT use markdown like **bold** or *bullet*. Use HTML tags ONLY (<b> for bold, <ul><li> for lists, <br> for new lines).
+            1. Start with a visual rating: "⭐ Rating: 5/5 Excellent Match" (or appropriate score).
+            2. Provide exactly 3 high-impact bullet points explaining WHY he is the best fit.
+            3. Use HTML tags (<b>, <ul>, <li>) ONLY. Do NOT use markdown asterisks.
+            4. Keep it extremely crispy and persuasive.
             
             Job Description: ${input.value}`;
             
             try {
                 const response = await fetchFromBackend(prompt);
-                let formattedRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-                resultBox.innerHTML = `<strong style="color:var(--primary);"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Skill Match Analysis:</strong><br><br>${formattedRes}`;
+                // Regex safety to strip any accidental markdown bolding
+                let cleanRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>');
+                resultBox.innerHTML = `<strong style="color:var(--primary); display:flex; align-items:center; gap:8px;"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Recruiter Analysis:</strong><br><br>${cleanRes}`;
                 resultBox.style.display = 'block';
             } catch(e) {
+               
                 resultBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`;
                 resultBox.style.display = 'block';
                 setTimeout(() => { if (resultBox.innerHTML.includes('❌ Error:')) resultBox.style.display = 'none'; }, 30000);
             }
-            btn.innerHTML = originalHtml;
-            btn.disabled = false;
+            btn.innerHTML = originalHtml; btn.disabled = false;
         }
 
         // --- AI Popup Modal Controllers ---
@@ -1845,37 +1854,53 @@
         // --- Mic Interaction (Web Speech API) ---
         let recognition;
         function toggleMic() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                showAIModal("Voice input is not supported in this browser. Try Chrome or Safari.");
+                return;
+            }
+
             const micBtn = document.getElementById('mic-btn');
             const chatInput = document.getElementById('chat-input');
-            
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert("Voice input is not supported in this browser. Please type your message."); return;
-            }
-            
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if(!recognition) {
-                recognition = new SpeechRecognition();
-                recognition.continuous = false; recognition.interimResults = false;
-                
-                recognition.onstart = () => { micBtn.style.color = '#dc3545'; chatInput.placeholder = "Listening..."; };
-                recognition.onresult = (e) => { chatInput.value = e.results[0][0].transcript; sendUserMessage(); };
-                recognition.onerror = () => resetMic();
-                recognition.onend = () => resetMic();
-            }
-            try { recognition.start(); } catch(e) { recognition.stop(); }
-        }
-        function resetMic() { document.getElementById('mic-btn').style.color = '#555'; document.getElementById('chat-input').placeholder = "Type or say a question..."; }
 
+            if (!recognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => { micBtn.style.color = '#dc3545'; chatInput.placeholder = "Listening to you..."; };
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    chatInput.value = transcript;
+                    sendUserMessage(); 
+                };
+                recognition.onend = () => { micBtn.style.color = '#555'; chatInput.placeholder = "Type or say a question..."; };
+                recognition.onerror = (e) => { console.error("Speech Error:", e); micBtn.style.color = '#555'; };
+            }
+
+            try {
+                recognition.start();
+            } catch (e) {
+                recognition.stop(); // If already running, stop it
+            }
+        }
+
+        
         // --- Scientific Frontiers Summary ---
         async function summarizeFrontiers() {
-            const prompt = `Summarise Dr. Shaban Ahmad's core research frontiers based on his portfolio (AI in Drug Design, Deep Learning in Genomics, MD Simulations, and PFAS Biodegradation). Keep it very brief (2-3 sentences max) and highly engaging. DO NOT use markdown. Use HTML <b> tags for emphasis.`;
-            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Analysing Frontiers...</div>`);
+            const prompt = `Summarize the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. 
+            Explain how these connect for a sustainable future.
+            FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. Use HTML only. Max 150 words.`;
+
+            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Synthesizing Research Frontiers...</div>`);
             try {
                 const response = await fetchFromBackend(prompt);
-                showAIModal(`<strong>🔬 Research Frontiers:</strong><br><br>${response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`);
+                let cleanRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                showAIModal(`<strong>🔬 Research Frontiers Summary:</strong><br><br>${cleanRes}`);
             } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
         }
-
+        
         // --- Updated AI Features ---
         async function simplifyBio() {
             const btn = document.getElementById('simplify-btn');
