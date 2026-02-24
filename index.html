@@ -50,7 +50,7 @@
         :root {
             --primary: #002e5f; --primary-dark: #001a36; --accent: #dca11d; --text: #333; --light-bg: #f8f9fa; --white: #ffffff;        
             --inst-font: 'Merriweather', serif; --transition: all 0.3s ease;        
-            --edu-phd: #dc3545; --edu-msc: #fd7e14; --edu-bsc: #20c997; --edu-xii: #20c997;       
+            --edu-phd: #28a745; --edu-msc: #dc3545; --edu-bsc: #6f42c1;     
             --exp-full: #28a745; --exp-trainee: #6f42c1;   
             --ref-1: #002e5f; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
         }
@@ -186,40 +186,158 @@
 
         /* --- 4.9: Standard Content Layouts & Typography --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* Consistent Section Title Styles for "About Me" and "Research Experiences" */
         .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary); margin-bottom: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px; }
-        .about-split-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; }
+        
+        /* Unified Split Layout (Research-Exposed Desktop view) */
+        .about-split-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+        .about-left, .about-right { min-width: 0; }
+        
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
         .niper-hover { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(0, 46, 95, 0.5); transition: all 0.2s ease-in-out; padding: 0 2px; display: inline-block; line-height: 1.2; font-weight: inherit; }
         .niper-hover:hover { background-color: transparent; color: var(--accent) !important; border-bottom: 1px dashed var(--accent); text-decoration: none; box-shadow: none; }
-        .unified-sub-heading { margin-top: 0; border-left: none; padding-left: 0; font-size: 1.5rem; font-family: 'Roboto', sans-serif; font-weight: 700; position: relative; display: inline-block; cursor: default; margin-bottom: 0.5rem; }
-        .about-right .unified-sub-heading { margin-top: 1.5rem; } .ush-primary { color: var(--primary); } .ush-accent { color: var(--accent); }
+        
+        /* Sub-headings for Academic Qual & Frontiers */
+        .unified-sub-heading { margin-top: 0; border-left: none; padding-left: 0; font-size: 1.5rem; font-family: 'Roboto', sans-serif; font-weight: 700; position: relative; display: inline-block; cursor: default; margin-bottom: 1.2rem; }
+        .ush-primary { color: var(--primary); } .ush-accent { color: var(--accent); }
         .unified-sub-heading::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0; background-color: currentColor; transition: width 0.5s ease; }
         .unified-sub-heading:hover::after { width: 100%; }
 
-        /* --- 4.10: Infinite Scrolling Marquee Banner --- */
-        .marquee-wrapper { position: relative; overflow: hidden; padding: 10px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); margin-top: 0.5rem; margin-bottom: 0.5rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
-        .marquee-track { display: flex; gap: 2rem; width: max-content; animation: scroll 40s linear infinite; }
-        .marquee-track:hover { animation-play-state: paused; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .interest-card { background: #fff; border: 1px solid var(--accent); padding: 1rem; border-radius: 20px 0 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 220px; max-width: 220px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; cursor: grab; }
+        /* Distinct Subtle Separator */
+        .subtle-separator { border: none; height: 1.5px; background: linear-gradient(90deg, transparent, rgba(39, 3, 200, 0.4), transparent); margin: 1.1rem 0; }
+        
+        /* --- AI RECRUITER (Subtle & Professional UI) --- */
+        .ai-matcher-box { background: #ffffff; border: 1px solid rgba(220, 161, 29, 0.4); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; transition: all 0.3s ease; border-left: 5px solid var(--accent); }
+        .ai-matcher-box:hover { border-color: var(--primary); border-left-color: var(--primary); box-shadow: 0 8px 25px rgba(0, 46, 95, 0.1); transform: translateY(-2px); }
+        
+        .ai-matcher-box textarea::placeholder { color: #64748b !important; font-weight: 400; font-style: italic; transition: color 0.3s ease; line-height: 1.5; }
+        .ai-matcher-box textarea:focus::placeholder { color: transparent !important; }
+        .ai-matcher-box textarea { transition: all 0.3s ease; background: #f8fafc; border: 1px dashed #cbd5e1 !important; cursor: text; font-size: 0.95rem; position: relative; z-index: 10; }
+        .ai-matcher-box textarea:hover { border-color: var(--accent) !important; background: #fff; }
+        .ai-matcher-box textarea:focus { border-color: var(--primary) !important; border-style: solid !important; background: #fff; box-shadow: 0 0 0 3px rgba(0, 46, 95, 0.1); outline: none; }
+        
+        /* --- 4.10: Scientific Frontiers Interactive Slider --- */
+        .marquee-wrapper { position: relative; overflow: hidden; padding: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        .marquee-track { 
+            display: flex; gap: 2rem; width: 100%; overflow-x: auto; 
+            scroll-behavior: smooth; scroll-snap-type: x mandatory;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); 
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+            padding-top: 35px; /* INCREASED PADDING HERE */
+            padding-bottom: 15px;
+        }
+        .marquee-track::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+        
+        /* Fixed Left/Right Navigation Buttons Below Slider */
+        .sf-nav-controls { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .sf-nav-btn {
+            background: #fff; border: 1px solid var(--accent); color: var(--primary);
+            width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .sf-nav-btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(220,161,29,0.3); }
+
+        /* Increased Card Size */
+        .interest-card { 
+            background: #fff; border: 1px solid var(--accent); padding: 1.8rem 1.5rem; 
+            border-radius: 20px 0 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            min-width: 290px; max-width: 290px; /* Made cards significantly bigger */
+            flex-shrink: 0; scroll-snap-align: center; /* Snaps card to center */
+            display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; 
+        }
         .interest-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .ic-icon-box { width: 60px; height: 60px; background: rgba(0, 46, 95, 0.05); color: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 1rem; transition: all 0.3s; }
+        .ic-icon-box { width: 75px; height: 75px; background: rgba(0, 46, 95, 0.05); color: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1.2rem; transition: all 0.3s; }
         .interest-card:nth-child(5n+1):hover { border-color: #e63946; } .interest-card:nth-child(5n+1):hover .ic-icon-box { color: #e63946; background: rgba(230, 57, 70, 0.1); }
         .interest-card:nth-child(5n+2):hover { border-color: #2a9d8f; } .interest-card:nth-child(5n+2):hover .ic-icon-box { color: #2a9d8f; background: rgba(42, 157, 143, 0.1); }
         .interest-card:nth-child(5n+3):hover { border-color: #457b9d; } .interest-card:nth-child(5n+3):hover .ic-icon-box { color: #457b9d; background: rgba(69, 123, 157, 0.1); }
         .interest-card:nth-child(5n+4):hover { border-color: #f4a261; } .interest-card:nth-child(5n+4):hover .ic-icon-box { color: #f4a261; background: rgba(244, 162, 97, 0.1); }
         .interest-card:nth-child(5n+5):hover { border-color: #9d4edd; } .interest-card:nth-child(5n+5):hover .ic-icon-box { color: #9d4edd; background: rgba(157, 78, 221, 0.1); }
-        .ic-title { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.2; }
-        .ic-desc { font-size: 0.85rem; color: #64748b; line-height: 1.4; }
+        .ic-title { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.15rem; line-height: 1.2; }
+        .ic-desc { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
         .badge-gold-inline { color: var(--accent); margin-left: 5px; font-size: 1.1rem; }
 
         /* --- 4.11: Dynamic Grid & Profile Cards --- */
-        .about-right .unified-sub-heading { margin-top: 1.5rem; margin-bottom: 1.5rem; }
-        .edu-grid { display: flex; flex-direction: column; gap: 0.8rem; }
-        .exp-grid, .referee-grid, .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        
+        /* 1. TIMELINE: EXPERIENCES (LEFT SIDE) */
+        .exp-grid-vertical { 
+            display: flex; flex-direction: column; gap: 1rem; 
+            position: relative; 
+            padding-left: 40px; 
+            margin-left: 5px; 
+        }
+        .exp-grid-vertical::before { 
+            content: ''; position: absolute; top: 15px; bottom: 15px; left: 0; width: 2px; 
+            background: linear-gradient(to bottom, var(--accent) 0%, rgba(220,161,29,0.1) 100%); 
+            border-radius: 2px; 
+        }
+        .exp-grid-vertical .exp-box { 
+            position: relative; 
+            padding: 0.8rem 1rem; 
+            padding-right: 2.2rem; /* Keep right padding for badge */
+        }
+        .exp-grid-vertical .exp-box::before { 
+            content: ''; position: absolute; 
+            left: -39px; 
+            top: 50%; transform: translate(-50%, -50%); 
+            width: 14px; height: 14px; background: var(--white); 
+            border: 2px solid var(--accent); border-radius: 50%; 
+            z-index: 2; transition: all 0.3s ease; 
+        }
+        .exp-grid-vertical .exp-box:hover::before { 
+            transform: translate(-50%, -50%) scale(1.3); 
+        }
+
+        /* 2. TIMELINE: ACADEMIC QUALIFICATIONS (RIGHT SIDE) */
+        .edu-grid { 
+            display: flex; flex-direction: column; gap: 1rem; 
+            position: relative; 
+            padding-right: 40px; /* Moved timeline space to right */
+            margin-right: 5px; 
+        }
+        .edu-grid::before { 
+            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px; /* Moved line to right */
+            background: linear-gradient(to bottom, var(--accent) 0%, rgba(220,161,29,0.1) 100%); 
+            border-radius: 2px; 
+        }
+        .edu-grid .edu-card { 
+            position: relative; 
+            padding: 1.5rem 1rem; 
+            padding-left: 2.2rem; /* Moved internal space to left to accommodate the shifted number badge */
+            padding-right: 1rem;
+        }
+        .edu-grid .edu-card::before { 
+            content: ''; position: absolute; 
+            right: -39.5px; /* Moved dot to right */
+            top: 50%; transform: translate(50%, -50%); 
+            width: 14px; height: 14px; background: var(--white); 
+            border: 2px solid var(--accent); border-radius: 50%; 
+            z-index: 2; transition: all 0.3s ease; 
+        }
+        .edu-grid .edu-card:hover::before { 
+            transform: translate(50%, -50%) scale(1.3); 
+        }
+
+        /* Shift the Edu-card number badge to the left to avoid overlapping the right-side timeline */
+        .edu-grid .edu-card::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; }
+        .edu-grid .edu-card:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
+        
+        /* 3. Specific dynamic hover colours for timeline circles */
+        .exp-grid-vertical .exp-full:hover::before { background: var(--exp-full); border-color: var(--exp-full); box-shadow: 0 0 10px rgba(40,167,69,0.5); }
+        .exp-grid-vertical .exp-part:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(253,126,20,0.5); }
+        .exp-grid-vertical .exp-trainee:hover::before { background: var(--exp-trainee); border-color: var(--exp-trainee); box-shadow: 0 0 10px rgba(111,66,193,0.5); }
+        .edu-grid .edu-phd:hover::before { background: var(--edu-phd); border-color: var(--edu-phd); box-shadow: 0 0 10px rgba(220,53,69,0.5); }
+        .edu-grid .edu-msc:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(253,126,20,0.5); }
+        .edu-grid .edu-bsc:hover::before { background: var(--edu-bsc); border-color: var(--edu-bsc); box-shadow: 0 0 10px rgba(32,201,151,0.5); }
+        
+        .referee-grid, .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+
+
         .edu-card, .exp-box, .referee-card { background: var(--white); padding: 1.2rem 1rem; border-radius: 8px; border-top: 6px solid #ccc; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; padding-right: 2.2rem; }
         
-        /* Node Badge Engine (Visual Numbering) */
         .exp-box::after, .edu-card::after, .referee-card::after, .award-card::after { content: attr(data-badge); position: absolute; right: 0; left: auto; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 10; transition: all 0.3s ease; }
         .exp-box:hover::after, .edu-card:hover::after, .referee-card:hover::after { color: #fff; background: var(--accent); border-color: var(--accent); transform: translate(50%, -50%) scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
         .exp-full:hover::after { background: var(--exp-full); border-color: var(--exp-full); } .exp-part:hover::after { background: var(--edu-msc); border-color: var(--edu-msc); } .exp-trainee:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
@@ -234,9 +352,7 @@
         .type-badge { font-size: 0.75rem; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 3px; align-self: center; white-space: nowrap; } .bg-full { background: var(--exp-full); } .bg-part { background: var(--edu-msc); color: #fff; } .bg-trainee { background: var(--exp-trainee); color: #fff; }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;} .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
 
-        /* Referee Specific Hover Restorations */
-        .referee-card { transition: all 0.3s ease; }
-        .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .referee-card { transition: all 0.3s ease; } .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); } .ref-1:hover::after { background: var(--ref-1); border-color: var(--ref-1); }
         .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); } .ref-2:hover::after { background: var(--ref-2); border-color: var(--ref-2); }
         .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); } .ref-3:hover::after { background: var(--ref-3); border-color: var(--ref-3); }
@@ -249,9 +365,6 @@
         .ref-inst-row:hover, .ref-inst-row a:hover { color: var(--accent) !important; } .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; } .email-badge { color: var(--accent); font-size: 1.1rem; } .flag-img { width: 22px; height: auto; vertical-align: middle; margin-left: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); border-radius: 2px; }
 
         /* --- 4.12: Accolades & IPR --- */
-        .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-        
-        /* Award & Patent Dynamic Border & Hover Colors (THINNER BORDERS & ICON COLORS) */
         .award-card { background: var(--white); border-radius: 12px; padding: 1.2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid var(--accent); transition: all 0.3s ease; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px; text-align: left; position: relative; }
         .award-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .award-card:nth-child(5n+1):hover { border-color: #e63946; } .award-card:nth-child(5n+1):hover::after { background: #e63946; border-color: #e63946; color: #fff; } .award-card:nth-child(5n+1):hover .award-badge-icon { color: #e63946; }
@@ -259,14 +372,12 @@
         .award-card:nth-child(5n+3):hover { border-color: #457b9d; } .award-card:nth-child(5n+3):hover::after { background: #457b9d; border-color: #457b9d; color: #fff; } .award-card:nth-child(5n+3):hover .award-badge-icon { color: #457b9d; }
         .award-card:nth-child(5n+4):hover { border-color: #9d4edd; } .award-card:nth-child(5n+4):hover::after { background: #9d4edd; border-color: #9d4edd; color: #fff; } .award-card:nth-child(5n+4):hover .award-badge-icon { color: #9d4edd; }
         .award-card:nth-child(5n+5):hover { border-color: #fd7e14; } .award-card:nth-child(5n+5):hover::after { background: #fd7e14; border-color: #fd7e14; color: #fff; } .award-card:nth-child(5n+5):hover .award-badge-icon { color: #fd7e14; }
-
         .award-badge-icon { font-size: 2.2rem; color: var(--accent); filter: drop-shadow(0 2px 4px rgba(220, 161, 29, 0.3)); flex-shrink: 0; margin-top: 10px; transition: all 0.3s ease; } .award-content-wrapper { flex: 1; padding-right: 0px; } .award-top { font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 5px; line-height: 1.2; } .award-bottom { font-size: 0.85rem; color: #666; line-height: 1.3; }
         
         .patent-box { background: #fff; border: 1px solid var(--accent); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; }
         .patent-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .patent-box:nth-child(odd):hover { border-color: #e63946; } .patent-box:nth-child(odd):hover .patent-icon { color: #e63946; }
         .patent-box:nth-child(even):hover { border-color: #2a9d8f; } .patent-box:nth-child(even):hover .patent-icon { color: #2a9d8f; }
-        
         .patent-icon { font-size: 3rem; color: var(--accent); } .grant-badge { background-color: #fff9db; color: #856404; border: 1px solid #ffeeba; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-right: 8px; display: inline-block; vertical-align: middle; } .grant-badge i { color: #03ce22; font-size: 0.9rem; margin-right: 5px; } .patent-link { color: var(--primary); font-weight: bold; text-decoration: none; transition: color 0.2s; } .patent-link:hover { color: var(--accent) !important; }
         @media (min-width: 900px) { .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; } .patent-box { margin-bottom: 0; } }
 
@@ -281,7 +392,7 @@
         .pub-item { margin-bottom: 1rem; padding: 12px; border-bottom: 1px dashed #eee; border: 1px solid transparent; border-bottom-color: #eee; border-radius: 6px; font-size: 0.95rem; transition: all 0.3s ease; }
         .pub-item:hover { transform: translateY(-3px); background: #fff; border-color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-bottom-color: var(--accent); z-index: 10; position: relative; }
         
-        .pub-doi, .btn-data { font-size: 0.75rem; color: #fff !important; padding: 3px 8px; border-radius: 6px; margin-left: 8px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; text-transform: uppercase; transition: transform 0.2s; }
+        .pub-doi, .btn-data { font-size: 0.75rem; color: #fff !important; padding: 3px 8px; border-radius: 6px; margin-left: 8px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; text-transform: uppercase; transition: transform 0.2s; border: none; cursor: pointer; }
         .pub-doi { background-color: #dca11d; } .pub-doi::after { content: '\f35d'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 0.7rem; margin-left: 6px; }
         .btn-data { background-color: #28a745; } .pub-doi:hover, .btn-data:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); } .btn-data i { font-size: 0.7rem; }
         .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 4px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
@@ -299,7 +410,7 @@
         .tech-ul { list-style: none; padding: 0; margin: 0; } .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; } .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
 
         /* --- 4.15: Contact Platform & Forms --- */
-        .contact-footer-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; padding: 1rem 0; margin-top: 1rem; }
+        .contact-footer-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; padding: 2rem 0; margin-top: 3rem; }
         .contact-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 0; }
         .contact-left h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: #fff; } .contact-left p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.6; }
         .contact-item { display: flex; align-items: center; margin-bottom: 0.5rem; color: #cbd5e1; } .contact-item i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; width: 20px; } .contact-item a:hover { color: #fff; }
@@ -333,14 +444,14 @@
         #ai-widget-toggle { position: fixed; bottom: 30px; right: 90px; width: 50px; height: 50px; background-color: var(--primary); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 10002; transition: all 0.3s ease; border: 2px solid var(--accent); } #ai-widget-toggle:hover { transform: scale(1.1); background-color: var(--accent); }
         #ai-chat-window { position: fixed; bottom: 90px; right: 30px; width: 350px; height: 500px; max-height: 80vh; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10002; display: none; flex-direction: column; overflow: hidden; border: 1px solid #ddd; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-        .chat-header { background: var(--primary); color: #fff; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--accent); } .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9; } .chat-footer { padding: 10px; background: #fff; border-top: 1px solid #eee; display: flex; gap: 5px; } .chat-input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-size: 0.9rem; } .chat-send-btn { background: var(--primary); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; } .chat-send-btn:hover { background: var(--accent); }
+        .chat-header { background: var(--primary); color: #fff; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--accent); } .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9; } .chat-footer { padding: 10px; background: #fff; border-top: 1px solid #eee; display: flex; gap: 5px; align-items: center; } .chat-input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-size: 0.9rem; width: 100%; } .chat-send-btn { background: var(--primary); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; flex-shrink: 0; } .chat-send-btn:hover { background: var(--accent); }
         .msg { max-width: 80%; padding: 8px 12px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; } .msg-bot { background: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 2px; color: #333; } .msg-user { background: var(--primary); color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
         .msg-loading { font-style: italic; color: #888; font-size: 0.8rem; align-self: flex-start; } .msg-loading::after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
         @keyframes dots { 0%, 20% { color: rgba(0,0,0,0); text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); } 40% { color: #888; text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); } 60% { text-shadow: .25em 0 0 #888, .5em 0 0 rgba(0,0,0,0); } 80%, 100% { text-shadow: .25em 0 0 #888, .5em 0 0 #888; } }
         .quick-action-btn { background: #fff; border: 1px solid var(--accent); color: var(--primary); padding: 5px 10px; border-radius: 15px; font-size: 0.75rem; cursor: pointer; margin-top: 5px; display: inline-block; transition: 0.2s; margin-right: 5px; } .quick-action-btn:hover { background: var(--accent); color: #fff; }
 
         /* --- 4.17: Citation Generation Engine UI --- */
-        .pub-controls { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; vertical-align: middle; position: relative; }
+        .pub-controls { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; vertical-align: middle; position: relative; flex-wrap: wrap; }
         .btn-cite { font-size: 0.75rem; color: #555; background-color: #f0f0f0; padding: 3px 10px; border-radius: 6px; border: 1px solid #ddd; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-transform: uppercase; transition: all 0.2s; } .btn-cite:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); } .btn-cite i { font-size: 0.7rem; }
         .cite-dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 6px; min-width: 200px; z-index: 1000; display: none; flex-direction: column; margin-top: 5px; overflow: hidden; } .cite-dropdown-menu.show { display: flex; animation: fadeIn 0.2s ease-out; }
         .pub-item.z-active { z-index: 50 !important; position: relative; border-color: var(--accent); }
@@ -360,15 +471,16 @@
             .dropdown-item-wrapper > a { display: flex; align-items: center; padding: 0 !important; height: 40px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s, color 0.2s; } .dropdown-item-wrapper > a.active-parent { color: var(--accent); background-color: #f0f4f8; } .dropdown-item-wrapper > a > span { order: 2; padding-left: 10px; flex: 1; font-size: 0.9rem; font-weight: 500; }
             .nested-arrow { order: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-right: none; background-color: transparent; color: var(--primary); font-size: 0.8rem; margin: 0; transition: transform 0.3s ease; } .nested-arrow.rotated { transform: rotate(-180deg); color: var(--accent); }
             .sub-dropdown-content.show-nested { display: block !important; position: static; box-shadow: none; border: none; padding-left: 15px; background-color: #f9f9f9; border-left: 3px solid #e0e0e0; margin-top: 5px; margin-bottom: 5px; }
-            .mobile-controls-container { display: flex; align-items: center; gap: 25px; margin-left: 0; z-index: 2002; flex-shrink: 0; } .nav-toggle { display: block; position: relative; margin-left: 20px; font-size: 1.4rem; cursor: pointer; color: var(--primary); transition: transform 0.3s ease; } .nav-toggle.open { transform: rotate(90deg); }
-            .sticky-sidebar { display: flex; left: auto; right: 0; top: 50%; border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee; padding: 10px 5px; box-shadow: -2px 0 8px rgba(0,0,0,0.1); } .sticky-sidebar .h-social { font-size: 1.3rem; margin: 2px 0; }
+            .mobile-controls-container { display: flex; align-items: center; gap: 25px; margin-left: 0; z-index: 2002; flex-shrink: 0; } .nav-toggle { display: block; position: relative; margin-left: 20px; font-size: 1.4rem; cursor: pointer; color: var(--primary); transition: transform 0.3s ease; } .nav-toggle.open { transform: rotate(90deg); }            
+            .sticky-sidebar { display: flex; left: auto; right: 0; top: 50%; border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee; padding: 6px 3px; box-shadow: -2px 0 8px rgba(0,0,0,0.1); } .sticky-sidebar .h-social { font-size: 1.05rem; margin: 2px 0; }
+            
             .header-controls { display: none; } 
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; } .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; }
             .contact-grid-layout { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem;} .cf-input-group { grid-template-columns: 1fr; } .footer-bottom { align-items: center; } .footer-content { flex-direction: column; gap: 15px; } .form-footer { flex-direction: column; align-items: stretch; } .btn-send { width: 100%; justify-content: center; } .msg-success-box { max-width: 100%; }
-            .back-to-top { bottom: 30px; right: 20px; left: auto; } #ai-widget-toggle { position: fixed; bottom: 30px; right: 80px; } #ai-chat-window { bottom: 90px; right: 20px; left: auto; width: 300px; }
-            .contact-footer-section { padding: 2rem 0; } .about-split-layout { grid-template-columns: 1fr; gap: 2rem; } .profile-text { text-align: justify; }
+            .back-to-top { bottom: 20px; right: 15px; left: auto; width: 38px; height: 38px; font-size: 1rem; } #ai-widget-toggle { position: fixed; bottom: 20px; right: 65px; width: 42px; height: 42px; font-size: 1.05rem; } #ai-chat-window { bottom: 75px; right: 15px; left: auto; width: calc(100vw - 30px); max-width: 320px; }
             
+            .contact-footer-section { padding: 2rem 0; } .about-split-layout { grid-template-columns: 1fr; gap: 2rem; } .profile-text { text-align: justify; }
         }
 
         /* --- 4.19: Print Output Configuration --- */
@@ -382,6 +494,18 @@
             .about-split-layout { display: block; } a { text-decoration: none; color: #000 !important; } .pub-doi { border: 1px solid #000; color: #000 !important; background: #fff; }
             #print-footer { display: block !important; text-align: center; margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 9pt; color: #555; }
         }
+
+        /* --- AI POPUP MODAL CSS --- */
+        .ai-logo-svg { width: 16px; height: 16px; vertical-align: middle; fill: currentColor; display: inline-block; margin-right: 4px; margin-top: -2px; }
+        .ai-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 10005; align-items: center; justify-content: center; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s ease; }
+        .ai-modal-overlay.show { display: flex; opacity: 1; }
+        .ai-modal-box { background: #fff; width: 90%; max-width: 550px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border-top: 4px solid var(--accent); transform: scale(0.9); transition: transform 0.3s ease; overflow: hidden; display: flex; flex-direction: column; }
+        .ai-modal-overlay.show .ai-modal-box { transform: scale(1); }
+        .ai-modal-header { padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .ai-modal-body { padding: 25px 20px; font-size: 1.05rem; color: #333; line-height: 1.6; max-height: 60vh; overflow-y: auto; }
+        .ai-close-btn { cursor: pointer; color: #888; transition: 0.3s; font-size: 1.3rem; }
+        .ai-close-btn:hover { color: #dc3545; }
+
     </style>
 </head>
 
@@ -411,20 +535,20 @@
     <!-- Artificial Intelligence Assistant Pane -->
     <div id="ai-chat-window">
         <div class="chat-header">
-            <span>✨ Dr. Shaban AI Assistant</span>
+            <span>✨ Dr. Shaban AI</span>
             <i class="fas fa-times" onclick="toggleChatWindow()" style="cursor:pointer;" tabindex="0" onkeydown="if(event.key === 'Enter') toggleChatWindow()" role="button" aria-label="Close Chat"></i>
         </div>
         <div class="chat-body" id="chat-body">
             <div class="msg msg-bot">
-                Hello! I am an AI assistant trained on Dr. Shaban's portfolio. Ask me anything about his research, publications, or expertise!
+                Hello! I am an AI assistant trained on Dr. Shaban's portfolio. Ask me anything, and click the 🎤 to speak to me directly!
                 <br>
                 <button class="quick-action-btn" onclick="sendQuickMessage('Summarize Dr. Shaban\'s research focus')">✨ Summarize Research</button>
                 <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key Publications</button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('How can I contact him?')">📧 Contact Info</button>
             </div>
         </div>
         <div class="chat-footer">
-            <input type="text" id="chat-input" class="chat-input" placeholder="Type a question..." onkeydown="handleChatKey(event)">
+            <button id="mic-btn" onclick="toggleMic()" title="Voice Input" style="background: none; border: none; cursor: pointer; color: #555; padding: 0 5px; font-size: 1.1rem; transition: color 0.3s;"><i class="fas fa-microphone"></i></button>
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type or say a question..." onkeydown="handleChatKey(event)">
             <button class="chat-send-btn" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
@@ -432,7 +556,6 @@
     <!-- === SECTION 6: PRIMARY NAVIGATION DOMAIN === -->
     <header id="main-header">
         <div class="header-content">
-            
             <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="header-name">
                 Dr Shaban <i class="fas fa-home"></i>
             </a>
@@ -459,53 +582,47 @@
                 <div class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu Toggle" tabindex="0" role="button"><i class="fas fa-bars"></i></div>
             </div>
 
-            <!-- Desktop & Central Navigation Structure -->
+            <!-- Desktop Navigation Structure -->
             <ul class="nav-list" id="nav-menu">
                 <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#experience" class="nav-link">Experiences</a></li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 
+                <!-- 1. Publications Menu -->
                 <li class="nav-item nav-item-dropdown">
-                    <a href="#publications" class="nav-link">Research <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
-                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event)"><i class="fas fa-chevron-down"></i></div>
-                    <div class="nav-dropdown-content" id="research-dropdown">
-                        <div class="dropdown-item-wrapper">
-                            <a href="#publications" onclick="toggleNestedMobile(event, this)"><span><i class="fas fa-book"></i> Publications</span> <i class="fas fa-chevron-down nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i></a>
-                            <div class="sub-dropdown-content">
-                                <a href="#publications" onclick="triggerAccordion('pubs-pipeline')">In Pipeline</a>
-                                <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
-                                <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
-                                <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes</a>
-                                <a href="#conferences" onclick="triggerAccordion('pubs-conf')">Conference Papers</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item-wrapper">
-                            <a href="#conferences" onclick="toggleNestedMobile(event, this)"><span><i class="fas fa-calendar-alt"></i> Events</span> <i class="fas fa-chevron-down nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i></a>
-                            <div class="sub-dropdown-content">
-                                <a href="#conferences" onclick="triggerAccordion('pubs-conf')">Presented</a>
-                                <a href="#conferences" onclick="triggerAccordion('pubs-work')">Workshops</a>
-                                <a href="#conferences" onclick="triggerAccordion('pubs-attend')">Attended</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item-wrapper">
-                            <a href="#professional" onclick="toggleNestedMobile(event, this)"><span><i class="fas fa-briefcase"></i> Activities</span> <i class="fas fa-chevron-down nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i></a>
-                            <div class="sub-dropdown-content">
-                                <a href="#professional" onclick="triggerAccordion('prof-edit')">Editorial Roles</a>
-                                <a href="#professional" onclick="triggerAccordion('prof-soc')">Society Membership</a>
-                                <a href="#professional" onclick="triggerAccordion('prof-peer')">Peer Reviews</a>
-                                <a href="#professional" onclick="triggerAccordion('prof-ment')">Mentorship</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item-wrapper">
-                            <a href="#technical" onclick="toggleNestedMobile(event, this)"><span><i class="fas fa-microscope"></i> Expertise</span> <i class="fas fa-chevron-down nested-arrow" style="font-size: 0.7em; opacity: 0.5;"></i></a>
-                            <div class="sub-dropdown-content">
-                                <a href="#technical" onclick="triggerAccordion('tech-ml')">Machine Learning</a>
-                                <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
-                                <a href="#technical" onclick="triggerAccordion('tech-gen')">Genomics</a>
-                                <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
-                            </div>
-                        </div>
+                    <a href="#publications" class="nav-link">Publications <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'pub-dd')"><i class="fas fa-chevron-down"></i></div>
+                    <div class="nav-dropdown-content" id="pub-dd">
+                        <a href="#publications" onclick="triggerAccordion('pubs-pipeline')">In Pipeline</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes</a>
+                    </div>
+                </li>
+
+                <!-- 2. Activities Menu (Combines Events & Editorial) -->
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#conferences" class="nav-link">Activities <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'act-dd')"><i class="fas fa-chevron-down"></i></div>
+                    <div class="nav-dropdown-content" id="act-dd">
+                        <a href="#conferences" onclick="triggerAccordion('pubs-conf')">Conferences Presented</a>
+                        <a href="#conferences" onclick="triggerAccordion('pubs-work')">Workshops Attended</a>
+                        <a href="#professional" onclick="triggerAccordion('prof-edit')">Editorial Roles</a>
+                        <a href="#professional" onclick="triggerAccordion('prof-soc')">Society Membership</a>
+                        <a href="#professional" onclick="triggerAccordion('prof-peer')">Peer Reviews</a>
+                        <a href="#professional" onclick="triggerAccordion('prof-ment')">Mentorship</a>
+                    </div>
+                </li>
+
+                <!-- 3. Expertise Menu -->
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#technical" class="nav-link">Expertise <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'exp-dd')"><i class="fas fa-chevron-down"></i></div>
+                    <div class="nav-dropdown-content" id="exp-dd">
+                        <a href="#technical" onclick="triggerAccordion('tech-ml')">Machine Learning</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-gen')">Genomics</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
                     </div>
                 </li>
 
@@ -603,11 +720,23 @@
         </section>
     </div>
 
-    <!-- 7.2: Biographical Narrative & Qualifications -->
-    <section id="profile" class="container reveal" style="margin-top: 2rem;">
+    <!-- 7.2: Unified Profile & Experience Layout (Research-Exposed UI) -->
+    <section id="profile-experience" class="container reveal" style="margin-top: 2rem;">
         <div class="about-split-layout">
-            <div class="about-left">
-                <h2 class="section-title" style="margin-top:0;">About Me</h2>
+            
+            <!-- LEFT COLUMN: Bio, Qualifications, and Frontiers -->
+            <div class="about-left" style="min-width: 0;">
+                
+                <!-- About Me -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
+                    <h2 class="section-title" style="margin-top:0; margin-bottom:0;">About Me</h2>
+                    <!-- ✨ ELI5 Bio Button -->
+                    <button onclick="simplifyBio()" class="quick-action-btn" id="simplify-btn" style="margin:0; background: rgba(220, 161, 29, 0.1); border-color: var(--accent);"> ✨ Explain Like I'm 5</button>
+                </div>
+                
+                <!-- ELI5 Output Box -->
+                <div id="eli5-result" style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
+                
                 <div class="profile-text">
                     <p style="margin-top:0;">
                         I am a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> in the <a href="https://researchprofiles.ku.dk/en/organisations/microbial-ecology-and-biotechnology/" target="_blank" class="niper-hover">MEB Section</a> of <a href="https://researchprofiles.ku.dk/en/organisations/institut-for-plante-og-milj%C3%B8videnskab/" target="_blank" class="niper-hover">PLEN</a>, <a href="https://science.ku.dk/english/" target="_blank" class="niper-hover">Faculty of Science</a>, <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen</a>, Denmark, where I am working on AI-driven bioinformatics to identify PFAS-degrading enzymes for sustainable biotechnological solutions for environmental challenges. 
@@ -619,60 +748,94 @@
                         My academic journey began in a small town in India, followed by middle schooling in Lucknow and higher education in New Delhi—where I gained expertise in genomics (WGS, WES), proteomics, and computer-aided drug design at leading institutions—such as <a href="https://www.icgeb.org/" target="_blank" class="niper-hover">ICGEB</a>, <a href="https://www.iari.res.in/" target="_blank" class="niper-hover">IARI</a>, <a href="https://jamiahamdard.ac.in/" target="_blank" class="niper-hover">Jamia Hamdard</a>, and <a href="https://www.srmuniversity.ac.in" target="_blank" class="niper-hover">SRM University</a>—and now continues through international research in Finland and Denmark.
                     </p>
                 </div>
-            </div>
 
-            <div class="about-right">
-                <h2 class="unified-sub-heading ush-primary">Academic Qualifications</h2>
+                <!-- Subtle Separator -->
+                <hr class="subtle-separator">
+
+                <!-- Academic Qualifications (Sub-heading style) -->
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 1.5rem; text-align: left;">Academic Qualifications</h3>
                 <div class="edu-grid">
                     <div class="edu-card edu-phd"><div class="edu-header"><h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i class="fas fa-medal"></i></span></h4><span class="year-span">(2025)</span></div><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a></div>
                     <div class="edu-card edu-msc"><div class="edu-header"><h4>MSc Bioinformatics</h4><span class="year-span">(2020)</span></div><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> Jamia Millia Islamia, India</a></div>
                     <div class="edu-card edu-bsc"><div class="edu-header"><h4>BSc (Hons) Botany</h4><span class="year-span">(2018)</span></div><a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i class="fas fa-university"></i> University of Delhi, India</a></div>
                 </div>
                 <p style="font-style: italic; color: #666; margin-top: 0.5rem; margin-bottom: 2.5rem; text-align: left; font-size: 0.95rem;">Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" class="niper-hover">NIPER-Ahmedabad</a>.</p>
-            </div>
-        </div>
 
-        <div style="text-align: center; margin-bottom: 0.5rem;"><h3 class="unified-sub-heading ush-accent">Scientific Frontiers</h3></div>
+                <!-- Subtle Separator -->
+                <hr class="subtle-separator">
+
+                <!-- Scientific Frontiers (Sub-heading style) -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 10px;">
+                    <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;">Scientific Frontiers</h3>
+
+                    <!-- ✨ TL;DR Summarizer for Frontiers -->
+                    <button onclick="tldrPaper(this, 'AI in Drug Design, Deep Learning in Genomics, MD Simulations, and Bioinformatics for PFAS Biodegradation')" class="btn-data" style="background-color: #6f42c1; border: none; cursor: pointer; margin:0;"> ✨ AI Summary</button>
+                    <div style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
+                </div>
+                
+                <!-- 2. LARGER SCIENTIFIC FRONTIERS SLIDER & BUTTONS -->
+                <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%;">
+                    <div class="marquee-track" id="sf-track">
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimisation.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
+                        <!-- DUPLICATES FOR SEAMLESS LOOP -->
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimisation.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
+                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
+                    </div>
+                    
+                    <!-- NEW Navigation Buttons Below Slider -->
+                    <div class="sf-nav-controls">
+                        <button class="sf-nav-btn" onclick="scrollSF(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                        <button class="sf-nav-btn" onclick="scrollSF(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: AI Matcher & Research Experiences -->
+            <div class="about-right" style="min-width: 0;">
+                
+                <!-- 1. AI RECRUITER SKILL MATCHER (ROTATED BUTTON & LAYOUT) -->
+                <div class="ai-matcher-box">                   
+                    <div style="display: flex; gap: 10px; align-items: stretch; width: 100%;">
+                        <textarea id="job-desc-input" style="flex: 1; min-height: 90px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.9rem; resize: vertical; outline: none; transition: border 0.3s;" placeholder="Hiring? Paste your job description here, and my AI will instantly analyse how well my skills match your requirements..."></textarea>
+                        
+                        <button onclick="matchSkills()" id="match-btn" class="cf-btn" style="writing-mode: vertical-rl; transform: rotate(180deg); padding: 10px 8px; font-size: 0.9rem; margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 6px; letter-spacing: 1px;">
+                           ✨ Analyse Match <i class="fas fa-magic" style="transform: rotate(90deg);"></i>
+                        </button>
+                    </div>
+
+                    <div id="match-result" style="display: none; margin-top: 15px; padding: 15px; background: rgba(40, 167, 69, 0.1); border-left: 4px solid #28a745; border-radius: 4px; font-size: 0.95rem; line-height: 1.5;"></div>
+                </div>
+
+                <!-- 3. RESEARCH EXPERIENCES & TIMELINE FIX -->
+                <h2 class="section-title" style="margin-top:0;">Research Experiences</h2>
+                <div class="exp-grid-vertical">
+                    <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">Postdoc Researcher</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.ku.dk/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Copenhagen    </a><img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark"></div><div class="exp-date">June 2025 - Present</div><div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div></div>
+                    <div class="exp-box exp-part"><div class="exp-header"><div class="exp-role">Visiting Researcher</div><span class="type-badge bg-part">VISITING</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Jyväskylä    </a><img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland"></div><div class="exp-date">Jan 2025 - Dec 2025</div><div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div></div>
+                    <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">PhD Scholar</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Sept 2021 - Feb 2025</div><div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div></div>
+                    <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">Project Assistant</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Nov 2020 - Sept 2021</div><div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div></div>
+                    <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-full">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.iari.res.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICAR - IARI    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2020 - June 2020</div><div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div></div>
+                    <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">Research Trainee</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.icgeb.org/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICGEB    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2019 - Dec 2019</div><div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div></div>
+                    <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://jamiahamdard.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Hamdard University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">March 2019 - April 2019</div><div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div></div>
+                </div>
+            </div>
             
-        <div class="marquee-wrapper">
-            <div class="marquee-track">
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimisation.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimisation.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
-                <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
-            </div>
-        </div>
-
-        <hr class="separator">
-    </section>
-
-    <!-- 7.3: Chronological Experience Timeline -->
-    <section id="experience" class="container reveal">
-        <h2 class="section-title">Research Experiences</h2>
-        <div class="exp-grid">
-            <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">Postdoc Researcher</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.ku.dk/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Copenhagen    </a><img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark"></div><div class="exp-date">June 2025 - Present</div><div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div></div>
-            <div class="exp-box exp-part"><div class="exp-header"><div class="exp-role">Visiting Researcher</div><span class="type-badge bg-part">VISITING</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Jyväskylä    </a><img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland"></div><div class="exp-date">Jan 2025 - Dec 2025</div><div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div></div>
-            <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">PhD Scholar</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Sept 2021 - Feb 2025</div><div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung Cancer.</div></div>
-            <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">Project Assistant</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Nov 2020 - Sept 2021</div><div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div></div>
-            <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-full">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.iari.res.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICAR - IARI    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2020 - June 2020</div><div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div></div>
-            <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">Research Trainee</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.icgeb.org/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICGEB    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2019 - Dec 2019</div><div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div></div>
-            <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://jamiahamdard.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Hamdard University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">March 2019 - April 2019</div><div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div></div>
         </div>
         <hr class="separator">
     </section>
@@ -1136,19 +1299,16 @@
                             <input type="email" name="entry.1398368038" class="cf-input" placeholder="Email" required>
                         </div>
                         
-                        <div style="display: flex; gap: 10px; align-items: stretch; margin-bottom: 1rem; height: 160px;">
-                            <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 5px;">
-                                <div id="ai-draft-controls" style="display: none; flex-direction: column; gap: 4px;">
-                                    <button type="button" onclick="prevDraft()" class="ai-cycle-btn" title="Previous Draft"><i class="fas fa-chevron-up"></i></button>
-                                    <button type="button" onclick="nextDraft()" class="ai-cycle-btn" title="Next Draft"><i class="fas fa-chevron-down"></i></button>
-                                </div>
-                                <button type="button" onclick="draftEmail()" id="draft-email-btn" class="ai-polish-btn vertical-btn" title="Draft a professional email using AI">✨</button>
-                            </div>
-                            <textarea name="entry.1216360893" id="contact-message" class="cf-textarea" placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ AI Polish to instantly get a professional draft..." required style="margin-bottom: 0; height: 100%;"></textarea>
-                        </div>
+                        <!-- 1. RESTORED FULL-WIDTH MESSAGE BOX -->
+                        <textarea name="entry.1216360893" id="contact-message" class="cf-textarea" placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ to instantly get a professional draft..." required></textarea>
                         
                         <div class="form-actions">
-                            <button type="submit" class="cf-btn">Send Message</button>
+                            <!-- 2. ADDED ID TO SEND BUTTON -->
+                            <button type="submit" class="cf-btn" id="submit-btn">Send Message</button>
+                            
+                            <!-- 3. MOVED AI BUTTON NEXT TO SEND BUTTON WITH COMPACT BORDER -->
+                            <button type="button" onclick="draftEmail()" id="draft-email-btn" class="ai-polish-btn" title="Draft a professional email using AI" style="padding: 10px 14px; font-size: 1.1rem; border-radius: 8px;">✨</button>
+                            
                             <div id="msg-success-box" class="msg-success-box">
                                 <span></span><span></span><span></span><span></span>
                                 <i class="fas fa-check-circle"></i> Sent Successfully!
@@ -1160,6 +1320,20 @@
         </div>
     </section>
     
+    <!-- === AI POPUP MODAL === -->
+    <div id="ai-modal" class="ai-modal-overlay" onclick="closeAIModal(event)">
+        <div class="ai-modal-box" onclick="event.stopPropagation()">
+            <div class="ai-modal-header">
+                <span>
+                    <svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg>
+                    AI Analysis Result
+                </span>
+                <i class="fas fa-times ai-close-btn" onclick="closeAIModal()"></i>
+            </div>
+            <div class="ai-modal-body" id="ai-modal-content"></div>
+        </div>
+    </div>
+
     <!-- === SECTION 9: INTERACTIVE BEHAVIOUR & LOGIC (JAVASCRIPT) === -->
     <script>
         /**
@@ -1173,6 +1347,7 @@
             initCitationButtons();
             assignReverseBadges();
             reveal(); 
+            startSFScroll(); // Starts the Scientific Frontiers auto-slider
         });
 
         function updateJournalCount() {
@@ -1207,7 +1382,19 @@
                 if (!doiBtn) return;
                 
                 const controls = document.createElement('span'); controls.className = 'pub-controls';
-                let doiUrl = doiBtn.getAttribute('href'); controls.appendChild(doiBtn); 
+                let doiUrl = doiBtn.getAttribute('href'); controls.appendChild(doiBtn);
+
+                // Auto-generate the AI TL;DR Button next to DOI
+                const pubTitle = pub.querySelector('strong')?.innerText.trim() || "";
+                const tldrBtn = document.createElement('button');
+                tldrBtn.className = 'btn-data';
+                tldrBtn.style.backgroundColor = '#dc3545'; tldrBtn.style.color = '#fff';
+                tldrBtn.style.border = 'none';
+                tldrBtn.style.marginLeft = '8px';
+                tldrBtn.innerHTML = '✨';
+                tldrBtn.onclick = () => tldrPaper(tldrBtn, pubTitle);
+                controls.appendChild(tldrBtn);
+
 
                 const citeBtn = document.createElement('button'); citeBtn.className = 'btn-cite';
                 citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>'; citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn);
@@ -1317,21 +1504,43 @@
         });
 
         function closeAllDropdowns(except = null) {
-            const dDD = document.getElementById('desktop-lang-dd'), mDD = document.getElementById('mobile-lang-dd'), sB = document.getElementById('search-dropdown'), rDD = document.getElementById('research-dropdown'), rT = document.querySelector('.mobile-dropdown-toggle');
+            const dDD = document.getElementById('desktop-lang-dd'), mDD = document.getElementById('mobile-lang-dd'), sB = document.getElementById('search-dropdown');
             if(dDD && dDD !== except) dDD.classList.remove('show'); if(mDD && mDD !== except) mDD.classList.remove('show'); if(sB && sB !== except) sB.style.display = 'none';
-            if(rDD && rDD.classList.contains('show-mobile') && rDD !== except) { rDD.classList.remove('show-mobile'); if(rT) { rT.classList.remove('active'); rT.innerHTML = '<i class="fas fa-chevron-down"></i>'; } }
+            
+            // Dynamically close all 3 new mobile dropdown menus
+            ['pub-dd', 'act-dd', 'exp-dd'].forEach(id => {
+                const rDD = document.getElementById(id);
+                if(rDD && rDD.classList.contains('show-mobile') && rDD !== except) { 
+                    rDD.classList.remove('show-mobile'); 
+                    const rT = rDD.previousElementSibling;
+                    if(rT && rT.classList.contains('mobile-dropdown-toggle')) { 
+                        rT.classList.remove('active'); 
+                        rT.innerHTML = '<i class="fas fa-chevron-down"></i>'; 
+                    } 
+                }
+            });
         }
 
         /**
          * 9.5: Contact Form State Controller
-         * Manages submission animations and form resets.
          */
         function handleFormSubmit() {
             document.getElementById('contact-form').reset();
             const fBox = document.getElementById('msg-success-box');
+            const sBtn = document.getElementById('submit-btn');
+            const aiBtn = document.getElementById('draft-email-btn');
+            
+            if(sBtn) sBtn.style.display = 'none'; 
+            if(aiBtn) aiBtn.style.display = 'none';
+            
             fBox.classList.add('anim-start'); setTimeout(() => fBox.classList.add('anim-running'), 100);
             setTimeout(() => { fBox.classList.remove('anim-running'); fBox.classList.add('anim-reverse'); }, 3000); 
-            setTimeout(() => { fBox.classList.remove('anim-start', 'anim-reverse'); fBox.style.display = 'none'; submitted = false; }, 5000);
+            setTimeout(() => { 
+                fBox.classList.remove('anim-start', 'anim-reverse'); fBox.style.display = 'none'; 
+                if(sBtn) sBtn.style.display = 'block'; 
+                if(aiBtn) aiBtn.style.display = 'inline-flex';
+                submitted = false; 
+            }, 5000);
         }
 
         /**
@@ -1414,11 +1623,17 @@
             if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns();
             nb.classList.toggle('active'); tb.classList.toggle('open');
         }
-        function toggleMobileSubmenu(e) {
-            e.stopPropagation(); const dd = document.getElementById('research-dropdown'), tb = e.currentTarget; closeAllDropdowns(dd);
+        
+    
+        // UPDATED to accept targetId from the HTML
+        function toggleMobileSubmenu(e, targetId) {
+            e.stopPropagation(); 
+            const dd = document.getElementById(targetId), tb = e.currentTarget; 
+            closeAllDropdowns(dd);
             if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } 
             else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; }
         }
+
         function toggleNestedMobile(e, link) {
             if (window.innerWidth <= 900) {
                 e.preventDefault(); e.stopPropagation(); const w = link.closest('.dropdown-item-wrapper'), sm = w.querySelector('.sub-dropdown-content'), a = link.querySelector('.nested-arrow');
@@ -1428,8 +1643,9 @@
         }
         document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
 
+        // 5. FIX FOR MISSING NUMBERING (Added .exp-grid-vertical)
         function assignReverseBadges() {
-            [document.querySelector('.exp-grid'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cards = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cards.forEach((cd, i) => cd.setAttribute('data-badge', cards.length - i)); });
+            [document.querySelector('.exp-grid-vertical'), document.querySelector('.exp-grid'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cards = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cards.forEach((cd, i) => cd.setAttribute('data-badge', cards.length - i)); });
         }
 
         const acc = document.getElementsByClassName("accordion-btn");
@@ -1447,6 +1663,52 @@
                 if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if(pc) pc.classList.remove('active-box'); } 
                 else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if(pc) pc.classList.add('active-box'); }
             }
+        }
+
+        /**
+         * 9.9b: Scientific Frontiers Infinite Carousel Slider
+         */
+        let sfInterval;
+        function startSFScroll() {
+            const track = document.getElementById('sf-track');
+            if(!track) return;
+            clearInterval(sfInterval); 
+            
+            sfInterval = setInterval(() => {
+                const card = track.querySelector('.interest-card');
+                if(!card) return;
+                const cardWidth = card.offsetWidth + 32; 
+                
+                // If we reach the duplicated cards (halfway), instantly teleport to start
+                if (track.scrollLeft >= (track.scrollWidth / 2) - cardWidth) {
+                    track.style.scrollBehavior = 'auto'; // Turn off smooth scroll
+                    track.scrollLeft = 0; // Jump instantly
+                    void track.offsetWidth; // Force browser to register the jump
+                    track.style.scrollBehavior = 'smooth'; // Turn smooth scroll back on
+                    track.scrollLeft += cardWidth; // Slide to next
+                } else {
+                    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                }
+            }, 2500); 
+        }
+
+        function scrollSF(direction) {
+            clearInterval(sfInterval); 
+            const track = document.getElementById('sf-track');
+            if(!track) return;
+            const cardWidth = track.querySelector('.interest-card').offsetWidth + 32;
+            
+            // Handle manual clicking edge cases for infinite loop
+            if (direction === 1 && track.scrollLeft >= (track.scrollWidth / 2) - cardWidth) {
+                track.style.scrollBehavior = 'auto'; track.scrollLeft = 0; void track.offsetWidth;
+                track.style.scrollBehavior = 'smooth'; track.scrollLeft += cardWidth;
+            } else if (direction === -1 && track.scrollLeft <= 0) {
+                track.style.scrollBehavior = 'auto'; track.scrollLeft = track.scrollWidth / 2; void track.offsetWidth;
+                track.style.scrollBehavior = 'smooth'; track.scrollLeft -= cardWidth;
+            } else {
+                track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+            }
+            setTimeout(startSFScroll, 6000); // Resume auto-scroll after 6 seconds
         }
 
         /**
@@ -1479,28 +1741,112 @@
             const prompt = `You are a helpful AI assistant for Dr. Shaban Ahmad's academic portfolio website. Use the following context from his website to answer the user's question. Keep answers concise and professional.\n\nContext: ${pageContent}\n\nUser Question: ${query}`;
             return await fetchFromBackend(prompt);
         }
+
+        // --- NEW AI FEATURE LOGIC (Matcher, ELI5, TL;DR) ---
+        async function matchSkills() {
+            const input = document.getElementById('job-desc-input');
+            const resultBox = document.getElementById('match-result');
+            const btn = document.getElementById('match-btn');
+            
+            // Validation: Show red border and placeholder warning if empty
+            if (!input.value.trim()) {
+                input.value = "";
+                input.placeholder = "⚠️ Please paste a job description here first!";
+                input.style.border = "2px solid red";
+                setTimeout(() => input.style.border = "1px solid #ccc", 2000);
+                input.focus();
+                return;
+            }
+            
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="transform: rotate(90deg);"></i>';
+            btn.disabled = true;
+            
+            const prompt = `Act as an AI Recruiter. Analyse this job description and match it specifically with Dr. Shaban Ahmad's bioinformatics, AI, and computational biology skills from his portfolio. Be concise, highlight strong matches in bullet points.\n\nJob Description: ${input.value}`;
+            
+            try {
+                const response = await fetchFromBackend(prompt);
+                resultBox.innerHTML = `<strong>✨ Skill Match Analysis:</strong><br><br>${response.replace(/\n/g, '<br>')}`;
+                resultBox.style.display = 'block';
+            } catch(e) {
+                resultBox.innerHTML = `<strong>❌ Error:</strong> Could not connect to the AI. Please try again.`;
+                resultBox.style.display = 'block';
+                console.error(e);
+                
+                // Hide the error message automatically after 1 minute (60,000 ms)
+                setTimeout(() => {
+                    if (resultBox.innerHTML.includes('❌ Error:')) {
+                        resultBox.style.display = 'none';
+                    }
+                }, 30000);
+            }
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+        }
+
+// --- AI Popup Modal Controllers ---
+        function showAIModal(content) {
+            document.getElementById('ai-modal-content').innerHTML = content;
+            document.getElementById('ai-modal').classList.add('show');
+        }
+        function closeAIModal(e) {
+            if(e && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return;
+            document.getElementById('ai-modal').classList.remove('show');
+        }
+
+        // --- Updated AI Features ---
+        async function simplifyBio() {
+            const btn = document.getElementById('simplify-btn');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Explaining...'; btn.disabled = true;
+            
+            const prompt = "Explain Dr. Shaban Ahmad's research in AI, bioinformatics, and PFAS biodegradation like I am 5 years old. Make it fun, engaging, and very short (3 sentences max).";
+            
+            try {
+                const response = await fetchFromBackend(prompt);
+                showAIModal(`<strong>👶 Explain Like I'm 5:</strong><br><br>${response}`);
+            } catch(e) { console.error(e); showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
+            
+            btn.innerHTML = originalHtml; btn.disabled = false;
+        }
+
+        async function tldrPaper(btnElement, paperTitle) {
+            const originalHtml = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...'; btnElement.disabled = true;
+            
+            const prompt = `Provide a very short, 2-sentence "TL;DR" summary for this scientific paper title: "${paperTitle}". Make it easy to understand for a non-expert.`;
+            
+            try {
+                const response = await fetchFromBackend(prompt);
+                showAIModal(`<strong>📄 Paper:</strong> <em>${paperTitle}</em><br><br><strong>✨ TL;DR Summary:</strong><br>${response}`);
+            } catch(e) { console.error(e); showAIModal(`<strong>❌ Error:</strong> AI disconnected.`); }
+            
+            btnElement.innerHTML = originalHtml; btnElement.disabled = false;
+        }
+        
+        // ---------------------------------------------------
                 
         /**
-         * 9.11: Pre-computed AI Email Drafter Logic
+         * 9.11: Draft Email
+
          */
         async function draftEmail() {
-            const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message'), ctrl = document.getElementById('ai-draft-controls'), ui = msgBox.value.trim();
+            const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message'), ui = msgBox.value.trim();
             if (!ui) { msgBox.placeholder = "Please type a few rough notes first! (e.g., 'postdoc inquiry')"; msgBox.value = ''; msgBox.focus(); return; }
             
             const originalHtml = btn.innerHTML;
-            btn.innerHTML = 'Polishing...'; btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; btn.disabled = true;
             
             const prompt = `You are an AI assistant helping a user write a highly professional, polite email to Dr. Shaban Ahmad. The user provided these rough notes: "${ui}". Draft a concise email based on these notes. Do not include placeholders like [Your Name] or [Date], just write the body and standard sign-off.`;
             
             try {
                 const polishedText = await fetchFromBackend(prompt);
                 msgBox.value = polishedText.trim();
-                btn.innerHTML = '✨ Polished!';
-                ctrl.style.display = 'none'; // Hide cycle controls
+                btn.innerHTML = '✨';
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 3000);
             } catch(e) {
                 console.error("Drafting failed", e);
-                btn.innerHTML = 'Error';
+                btn.innerHTML = '❌';
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
             }
             btn.disabled = false;
@@ -1513,4 +1859,3 @@
 
 </body>
 </html>
-
