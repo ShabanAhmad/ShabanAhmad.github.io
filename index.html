@@ -1463,7 +1463,8 @@
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
 
         async function fetchFromBackend(promptText) {
-            const response = await fetch('/api/gemini', {
+            // GitHub site to send the question to your Vercel backend!
+            const response = await fetch('https://shaban-ahmad-github-io.vercel.app/api/gemini', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: promptText })
@@ -1512,3 +1513,4 @@
 
 </body>
 </html>
+
