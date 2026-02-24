@@ -1142,7 +1142,7 @@
                                     <button type="button" onclick="prevDraft()" class="ai-cycle-btn" title="Previous Draft"><i class="fas fa-chevron-up"></i></button>
                                     <button type="button" onclick="nextDraft()" class="ai-cycle-btn" title="Next Draft"><i class="fas fa-chevron-down"></i></button>
                                 </div>
-                                <button type="button" onclick="draftEmail()" id="draft-email-btn" class="ai-polish-btn vertical-btn" title="Draft a professional email using AI">✨ AI Polish</button>
+                                <button type="button" onclick="draftEmail()" id="draft-email-btn" class="ai-polish-btn vertical-btn" title="Draft a professional email using AI">✨</button>
                             </div>
                             <textarea name="entry.1216360893" id="contact-message" class="cf-textarea" placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ AI Polish to instantly get a professional draft..." required style="margin-bottom: 0; height: 100%;"></textarea>
                         </div>
@@ -1462,47 +1462,50 @@
         function addMessage(text, type) { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = text; b.appendChild(d); b.scrollTop = b.scrollHeight; return d; }
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
 
+        async function fetchFromBackend(promptText) {
+            const response = await fetch('/api/gemini', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
+            });
+            if (!response.ok) throw new Error('Backend request failed');
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
         async function callGeminiAPI(query) {
-            await new Promise(resolve => setTimeout(resolve, 800)); const q = query.toLowerCase();
-            
-            if (/(hello|hi\b|hey|morning|afternoon|evening|greetings|who are you|what can you do)/i.test(q)) return "Hello! I am Dr. Shaban's AI assistant. I can answer questions about his research, publications, skills, awards, and professional experience. What would you like to know?";
-            else if (/(who is shaban|about shaban|profile|background|biography)/i.test(q)) return "Dr. Shaban Ahmad is a Postdoctoral Researcher at the University of Copenhagen (UCPH) specialising in AI-driven bioinformatics, genomics, and drug design. He holds a PhD in AI in Biology and is recognised among the World's Top 2% Scientists.";
-            else if (/(copenhagen|denmark|ucph|plen|current role|doing now|present role|postdoc)/i.test(q)) return "He is currently a Postdoctoral Researcher in the MEB Section of PLEN at the University of Copenhagen, Denmark. His current research uses AI strategies to identify PFAS-degrading enzymes for sustainable biotechnological solutions. His PI is Dr. Tue K. Nielsen.";
-            else if (/(finland|jyväskylä|jyu|visiting|tiina|jokela)/i.test(q)) return "In 2025, Dr. Shaban also served as a Visiting Researcher at the University of Jyväskylä, Finland, working with Dr. Tiina Jokela on predicting Colorectal Cancer susceptibility using AI.";
-            else if (/(phd|doctorate|jamia|jmi|khalid|raza|supervisor|guide)/i.test(q)) return "He earned his PhD in AI in Biology from Jamia Millia Islamia in 2025, where he was a Gold Medallist. His doctoral research focused on AI-based predictive modelling against lung cancer under the supervision of Dr. Khalid Raza.";
-            else if (/(msc|bsc|bachelor|master|delhi|botany|niper)/i.test(q)) return "He holds an MSc in Bioinformatics from Jamia Millia Islamia (2020) and a BSc (Hons) in Botany from the University of Delhi (2018). He is also an Honorary Alumnus of NIPER-Ahmedabad.";
-            else if (/(research focus|specialization|working on|pfas|cancer|drlungker|lungxai|covid|sars)/i.test(q)) return "His primary research spans AI in drug design, molecular modelling, and genomics. Notable projects include developing 'DrLungker' and 'LungXAI' for cancer therapeutics, and currently, mining enzymes for PFAS biodegradation.";
-            else if (/(programming|python|matlab|ml|machine learning|deep learning|ai|artificial intelligence|code)/i.test(q)) return "Dr. Shaban is highly proficient in Python and R. His Machine Learning stack includes TensorFlow, Keras, PyTorch, Scikit-learn, and XGBoost, used for predictive modelling and feature engineering in bioinformatics.";
-            else if (/(docking|simulation|md simulation|gromacs|desmond|genomics|ngs|software|tool)/i.test(q)) return "His computational biology expertise includes MD Simulations (Desmond, GROMACS), Structure-Based Drug Design (AutoDock, Glide), Quantum Methods (DFT), and Omics Analysis (NGS, GATK, Bowtie2).";
-            else if (/(publish|publication|paper|article|journal)/i.test(q)) return "Dr. Shaban has a highly prolific record with over 100 scholarly works. This includes 50+ published journal articles, 5+ in pipeline, 24+ book chapters, and 14+ conference papers. You can view them in the 'Research' section.";
-            else if (/(book|chapter|author)/i.test(q)) return "Dr. Shaban has authored over 24 book chapters published by renowned publishers like Elsevier and Springer Nature, covering topics from AI in Precision Drug Design to Generative AI.";
-            else if (/(citation|h-index|h index|metric|impact|scholar)/i.test(q)) return "His research has gathered over 1,600 citations, yielding an H-index of 26. He also maintains a strong peer review record with over 450 verified reviews on Web of Science.";
-            else if (/(patent|ipr|invention|german)/i.test(q)) return "He holds 1 Granted German Patent for an extended-release tablet composition targeting cancer, alongside 6 other patents (5 Indian, 1 US) currently in the pipeline.";
-            else if (/(award|medal|top 2%|stanford|recognition|prize)/i.test(q)) return "He is recognised in the World's Top 2% Scientists by Stanford University/Elsevier (2025). He is also a University Gold Medallist and has received multiple 'Best Presentation' and 'DBT-Studentship' awards.";
-            else if (/(peer review|editor|editorial|publons|wos|web of science|reviewing)/i.test(q)) return "He is an active Guest Editor for prestigious journals like Frontiers in Oncology and Current Genomics. He has also conducted over 450 verified peer reviews across dozens of international journals.";
-            else if (/(society|membership|iaslc|esmo|bidds)/i.test(q)) return "He holds active professional memberships with the International Association for the Study of Lung Cancer (IASLC), European Society for Medical Oncology (ESMO), and the Bioinformatics and Drug Discovery Society (BIDDS).";
-            else if (/(mentor|teach|supervis|student|guide)/i.test(q)) return "Dr. Shaban is deeply involved in academia. He currently supervises 3 MSc and 1 BSc students at UCPH, and previously guided 10 MSc and 5 BSc dissertation students during his PhD at Jamia Millia Islamia.";
-            else if (/(past experience|srm|icgeb|iari|hamdard)/i.test(q)) return "Before his PhD, he worked as a Project Assistant at SRM University, a Research Trainee at ICGEB, and held DBT-Studentships at ICAR-IARI and Jamia Hamdard University, focusing on genomics and drug repurposing.";
-            else if (/(contact|email|reach|hire|message|address|location)/i.test(q)) return "You can reach Dr. Shaban via email at shaban@plen.ku.dk or shaban.ucph@gmail.com. You can also find him at the MEB Section, PLEN, University of Copenhagen, or use the contact form at the bottom of the page.";
-            else if (/(cv|resume|download|pdf)/i.test(q)) return "You can download Dr. Shaban's full CV by clicking the 'Download Full CV' button located in the statistics box near the top of the page (in the Hero section).";
-            else return "That's a very specific question! While my offline memory is limited to key highlights of Dr. Shaban's profile, you can easily find exact details by exploring the sections above or using the search bar at the top right.";
+            const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); 
+            const prompt = `You are a helpful AI assistant for Dr. Shaban Ahmad's academic portfolio website. Use the following context from his website to answer the user's question. Keep answers concise and professional.\n\nContext: ${pageContent}\n\nUser Question: ${query}`;
+            return await fetchFromBackend(prompt);
         }
                 
         /**
          * 9.11: Pre-computed AI Email Drafter Logic
          */
-        let aiDrafts = [], currentDraftIndex = 0;
         async function draftEmail() {
             const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message'), ctrl = document.getElementById('ai-draft-controls'), ui = msgBox.value.trim();
-            if (!ui || ui === aiDrafts[currentDraftIndex]) { msgBox.placeholder = "Please type a few rough notes first! (e.g., 'postdoc inquiry')"; msgBox.value = ''; msgBox.focus(); return; }
-            btn.innerHTML = '...'; btn.disabled = true;
-            setTimeout(() => {
-                aiDrafts = [ `Dear Dr. Shaban Ahmad,\n\nI am writing to you regarding: ${ui}.\n\nI have reviewed your impressive portfolio and would love to discuss this further at your earliest convenience.\n\nBest regards,\n[Your Name]`, `Hello Dr. Ahmad,\n\nI hope this email finds you well.\n\nI wanted to reach out concerning ${ui}. Your recent work in AI and bioinformatics is fascinating, and I’d be keen to explore potential opportunities.\n\nSincerely,\n[Your Name]`, `Dear Dr. Shaban,\n\nI am reaching out to formally discuss ${ui}.\n\nI am very impressed by your academic background and publications. Please let me know if you are available for a brief chat to discuss this.\n\nWarm regards,\n[Your Name]` ];
-                currentDraftIndex = 0; msgBox.value = aiDrafts[currentDraftIndex]; btn.innerHTML = '✨ Polish'; btn.disabled = false; ctrl.style.display = 'flex';
-            }, 600);
+            if (!ui) { msgBox.placeholder = "Please type a few rough notes first! (e.g., 'postdoc inquiry')"; msgBox.value = ''; msgBox.focus(); return; }
+            
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = 'Polishing...'; btn.disabled = true;
+            
+            const prompt = `You are an AI assistant helping a user write a highly professional, polite email to Dr. Shaban Ahmad. The user provided these rough notes: "${ui}". Draft a concise email based on these notes. Do not include placeholders like [Your Name] or [Date], just write the body and standard sign-off.`;
+            
+            try {
+                const polishedText = await fetchFromBackend(prompt);
+                msgBox.value = polishedText.trim();
+                btn.innerHTML = '✨ Polished!';
+                ctrl.style.display = 'none'; // Hide cycle controls
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 3000);
+            } catch(e) {
+                console.error("Drafting failed", e);
+                btn.innerHTML = 'Error';
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+            }
+            btn.disabled = false;
         }
-        function nextDraft() { if(aiDrafts.length === 0) return; currentDraftIndex = (currentDraftIndex + 1) % aiDrafts.length; document.getElementById('contact-message').value = aiDrafts[currentDraftIndex]; }
-        function prevDraft() { if(aiDrafts.length === 0) return; currentDraftIndex = (currentDraftIndex - 1 + aiDrafts.length) % aiDrafts.length; document.getElementById('contact-message').value = aiDrafts[currentDraftIndex]; }
+        function nextDraft() { }
+        function prevDraft() { }
 
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
