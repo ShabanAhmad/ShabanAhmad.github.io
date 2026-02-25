@@ -1,13 +1,9 @@
 <!-- 
   ========================================================================
-  ACADEMIC PORTFOLIO - DR. SHABAN AHMAD
-  ========================================================================
-  Description: A comprehensive, single-file academic portfolio containing 
-  HTML structure, cascading style sheets (CSS), and JavaScript logic.
-  Features: Custom DOM search, automated citation generation, offline AI 
-  assistant, and multi-language localisation.
+  ACADEMIC PORTFOLIO of Dr SHABAN AHMAD, Postdoc at UCPH, Denmark. 
   ========================================================================
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,7 +150,7 @@
         .hero-img { width: 190px; height: 190px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse-shadow 2s infinite; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .hero-img:hover { transform: scale(1.05); }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 0.5rem; }
-        .hero-name-link { color: var(--white); text-decoration: none; transition: color 0.3s; } .hero-name-link:hover { color: var(--accent); }
+        .hero-name-span { transition: color 0.3s ease; cursor: default; } .hero-name-span:hover { color: var(--accent); }
         .hero-role-link { font-weight: 300; font-size: 1.25rem; color: #eee; border-bottom: 1px dotted #aaa; display: inline-block; margin-top: 5px; transition: 0.3s; } .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
         .hero-sub-role { font-size: 1rem; color: var(--accent); margin-top: 8px; font-weight: 400; letter-spacing: 0.5px; font-style: italic; }
         .hero-contact { margin-top: 15px; font-size: 0.95rem; color: rgba(255,255,255,0.9); }
@@ -207,15 +203,28 @@
         /* Distinct Subtle Separator */
         .subtle-separator { border: none; height: 1.5px; background: linear-gradient(90deg, transparent, rgba(39, 3, 200, 0.4), transparent); margin: 1.1rem 0; }
         
+        /* --- AI MAGIC BUTTONS (Explain Like I'm 5 & AI Summary) --- */
+        .ai-magic-btn { background-color: #6f42c1; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2); }
+        .ai-magic-btn:hover, .ai-magic-btn.processing-gold { background-color: var(--accent) !important; color: var(--primary-dark) !important; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4); }
+        .ai-magic-btn .ai-logo-svg { width: 16px; height: 16px; fill: currentColor; margin: 0; }
+
+        /* Dedicated class for the rotated Matcher button */
+        .ai-magic-btn-vertical { background-color: #6f42c1; color: #fff; border: none; padding: 10px 8px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 1px; margin: 0; }
+        .ai-magic-btn-vertical:hover, .ai-magic-btn-vertical.processing-gold { background-color: var(--accent) !important; color: var(--primary-dark) !important; transform: rotate(180deg) scale(1.03); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4); }
+
         /* --- AI RECRUITER (Subtle & Professional UI) --- */
         .ai-matcher-box { background: #ffffff; border: 1px solid rgba(220, 161, 29, 0.4); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; transition: all 0.3s ease; border-left: 5px solid var(--accent); }
         .ai-matcher-box:hover { border-color: var(--primary); border-left-color: var(--primary); box-shadow: 0 8px 25px rgba(0, 46, 95, 0.1); transform: translateY(-2px); }
         
-        .ai-matcher-box textarea::placeholder { color: #64748b !important; font-weight: 400; font-style: italic; transition: color 0.3s ease; line-height: 1.5; }
+        .ai-matcher-title { text-align: center; font-weight: 900; color: var(--primary); font-size: 1.35rem; margin-bottom: 15px; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase; }
+        .ai-matcher-title i { color: var(--accent); font-size: 1.5rem; }
+        
+        .ai-matcher-box textarea::placeholder { color: #ea2608 !important; font-weight: 400; font-style: italic; transition: color 0.3s ease; line-height: 1.5; }
         .ai-matcher-box textarea:focus::placeholder { color: transparent !important; }
         .ai-matcher-box textarea { transition: all 0.3s ease; background: #f8fafc; border: 1px dashed #cbd5e1 !important; cursor: text; font-size: 0.95rem; position: relative; z-index: 10; }
         .ai-matcher-box textarea:hover { border-color: var(--accent) !important; background: #fff; }
-        .ai-matcher-box textarea:focus { border-color: var(--primary) !important; border-style: solid !important; background: #fff; box-shadow: 0 0 0 3px rgba(0, 46, 95, 0.1); outline: none; }
+        .ai-matcher-box textarea:focus { border-color: var(--primary) !important; border-style: solid !important; background: #fff; box-shadow: 0 0 0 3px rgba(223, 2, 197, 0.1); outline: none; }
+
         
         /* --- 4.10: Scientific Frontiers Interactive Slider --- */
         .marquee-wrapper { position: relative; overflow: hidden; padding: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -262,24 +271,24 @@
 
         /* --- 4.11: Dynamic Grid & Profile Cards --- */
         
-        /* 1. TIMELINE: EXPERIENCES (LEFT SIDE) */
-        .exp-grid-vertical { 
+        /* 1. TIMELINE: ACADEMIC QUALIFICATIONS (LEFT SIDE) */
+        .edu-grid { 
             display: flex; flex-direction: column; gap: 1rem; 
             position: relative; 
             padding-left: 40px; 
             margin-left: 5px; 
         }
-        .exp-grid-vertical::before { 
-            content: ''; position: absolute; top: 15px; bottom: 15px; left: 0; width: 2px; 
-            background: linear-gradient(to bottom, var(--accent) 0%, rgba(220,161,29,0.1) 100%); 
-            border-radius: 2px; 
+        .edu-grid::before { 
+            content: ''; position: absolute; top: 15px; bottom: 15px; left: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--accent) 90%, rgba(220,161,29,0.1) 100%); 
+            border-radius: 2px;  
         }
-        .exp-grid-vertical .exp-box { 
+        .edu-grid .edu-card { 
             position: relative; 
-            padding: 0.8rem 1rem; 
+            padding: 1.5rem 1rem; 
             padding-right: 2.2rem; /* Keep right padding for badge */
         }
-        .exp-grid-vertical .exp-box::before { 
+        .edu-grid .edu-card::before { 
             content: ''; position: absolute; 
             left: -39px; 
             top: 50%; transform: translate(-50%, -50%); 
@@ -287,44 +296,43 @@
             border: 2px solid var(--accent); border-radius: 50%; 
             z-index: 2; transition: all 0.3s ease; 
         }
-        .exp-grid-vertical .exp-box:hover::before { 
+        .edu-grid .edu-card:hover::before { 
             transform: translate(-50%, -50%) scale(1.3); 
         }
 
-        /* 2. TIMELINE: ACADEMIC QUALIFICATIONS (RIGHT SIDE) */
-        .edu-grid { 
+        /* 2. TIMELINE: EXPERIENCES (RIGHT SIDE) */
+        .exp-grid-vertical { 
             display: flex; flex-direction: column; gap: 1rem; 
             position: relative; 
             padding-right: 40px; /* Moved timeline space to right */
             margin-right: 5px; 
         }
-        
-        .edu-grid::before { 
-            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px;
-            background: linear-gradient(to bottom, #28a745 0%, #6f42c1 100%); /* Green to Purple Gradient */
-            border-radius: 2px;  
+        .exp-grid-vertical::before { 
+            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px; 
+            background: linear-gradient(to bottom, var(--accent) 90%, rgba(220,161,29,0.1) 100%); 
+            border-radius: 2px; 
         }
-        .edu-grid .edu-card { 
+        .exp-grid-vertical .exp-box { 
             position: relative; 
-            padding: 1.5rem 1rem; 
-            padding-left: 2.2rem; /* Moved internal space to left to accommodate the shifted number badge */
+            padding: 0.8rem 1rem; 
+            padding-left: 2.2rem; /* Move internal space to left for shifted number badge */
             padding-right: 1rem;
         }
-        .edu-grid .edu-card::before { 
+        .exp-grid-vertical .exp-box::before { 
             content: ''; position: absolute; 
-            right: -39.5px; /* Moved dot to right */
+            right: -39.5px; /* Move dot to right */
             top: 50%; transform: translate(50%, -50%); 
             width: 14px; height: 14px; background: var(--white); 
             border: 2px solid var(--accent); border-radius: 50%; 
             z-index: 2; transition: all 0.3s ease; 
         }
-        .edu-grid .edu-card:hover::before { 
+        .exp-grid-vertical .exp-box:hover::before { 
             transform: translate(50%, -50%) scale(1.3); 
         }
 
-        /* Shift the Edu-card number badge to the left to avoid overlapping the right-side timeline */
-        .edu-grid .edu-card::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; }
-        .edu-grid .edu-card:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
+        /* Shift the Exp-box number badge to the left to avoid overlapping the right-side timeline */
+        .exp-grid-vertical .exp-box::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; }
+        .exp-grid-vertical .exp-box:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
         
         /* 3. Specific dynamic hover colours for timeline circles */
         .exp-grid-vertical .exp-full:hover::before { background: var(--exp-full); border-color: var(--exp-full); box-shadow: 0 0 10px rgba(40,167,69,0.5); }
@@ -430,7 +438,7 @@
         .f-soc-link { color: #94a3b8; font-size: 1.3rem; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); } .f-soc-link:hover { color: var(--accent); transform: translateY(-6px) scale(1.25); text-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .msg-success-box { position: relative; padding: 10px 15px; background-color: rgba(40, 167, 69, 0.1); color: #28a745; border-radius: 4px; text-align: center; font-size: 0.95rem; font-weight: 600; display: none; margin-left: 10px; }
         .msg-success-box span { position: absolute; background-color: #28a745; display: block; } .msg-success-box span:nth-child(1) { top: 0; left: 0; width: 0%; height: 2px; } .msg-success-box span:nth-child(2) { top: 0; right: 0; width: 2px; height: 0%; } .msg-success-box span:nth-child(3) { bottom: 0; right: 0; width: 0%; height: 2px; } .msg-success-box span:nth-child(4) { bottom: 0; left: 0; width: 2px; height: 0%; }
-        @keyframes runWidth { from { width: 0%; } to { width: 100%; } } @keyframes runHeight { from { height: 0%; } to { height: 100%; } } @keyframes reverseWidth { from { width: 100%; } to { width: 0%; } } @keyframes reverseHeight { from { height: 100%; } to { height: 0%; } } @keyframes fadeInMsg { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } } @keyframes fadeOutMsg { from { opacity: 1; } to { opacity: 0; display: none; } }
+        @keyframes runWidth { from { width: 0%; } to { width: 100%; } } @keyframes runHeight { from { height: 0%; } to { height: 100%; } } @keyframes reverseWidth { from { width: 100%; } to { width: 0%; } } @keyframes reverseHeight { from { height: 100%; } to { height: 100%; } } @keyframes fadeInMsg { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } } @keyframes fadeOutMsg { from { opacity: 1; } to { opacity: 0; display: none; } }
         .msg-success-box.anim-start { display: block; animation: fadeInMsg 0.5s forwards; }
         .msg-success-box.anim-running span:nth-child(1) { animation: runWidth 0.3s linear forwards; } .msg-success-box.anim-running span:nth-child(2) { animation: runHeight 0.3s linear 0.3s forwards; } .msg-success-box.anim-running span:nth-child(3) { animation: runWidth 0.3s linear 0.6s forwards; } .msg-success-box.anim-running span:nth-child(4) { animation: runHeight 0.3s linear 0.9s forwards; }
         .msg-success-box.anim-reverse span:nth-child(1) { animation: reverseWidth 0.3s linear 0.9s forwards; } .msg-success-box.anim-reverse span:nth-child(2) { animation: reverseHeight 0.3s linear 0.6s forwards; } .msg-success-box.anim-reverse span:nth-child(3) { animation: reverseWidth 0.3s linear 0.3s forwards; } .msg-success-box.anim-reverse span:nth-child(4) { animation: reverseHeight 0.3s linear forwards; } .msg-success-box.anim-end { animation: fadeOutMsg 0.5s forwards; }
@@ -439,7 +447,7 @@
         /* AI Drafting Interface */
         .vertical-btn { writing-mode: vertical-rl; transform: rotate(180deg); padding: 10px 6px !important; height: 100%; min-width: 42px; flex-shrink: 0; border-radius: 8px; letter-spacing: 1px; text-align: center; justify-content: center; font-weight: 700; white-space: nowrap; }
         .ai-cycle-btn { background: rgba(220, 161, 29, 0.2); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; padding: 4px; font-size: 0.7rem; transition: 0.2s; } .ai-cycle-btn:hover { background: var(--accent); color: #fff; }
-        .ai-polish-btn { background: rgba(220, 161, 29, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; font-weight: 600; } .ai-polish-btn:hover { background: var(--accent); color: #fff; }
+        .ai-polish-btn { background: rgba(220, 161, 29, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; font-weight: 600; } .ai-polish-btn:hover { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
 
         /* --- 4.16: Artificial Intelligence Chat Module --- */
         #ai-widget-toggle { position: fixed; bottom: 30px; right: 90px; width: 50px; height: 50px; background-color: var(--primary); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 10002; transition: all 0.3s ease; border: 2px solid var(--accent); } #ai-widget-toggle:hover { transform: scale(1.1); background-color: var(--accent); }
@@ -541,10 +549,14 @@
         </div>
         <div class="chat-body" id="chat-body">
             <div class="msg msg-bot">
-                Hello! I am an AI assistant trained on Dr. Shaban's portfolio. Ask me anything, and click the 🎤 to speak to me directly!
-                <br>
-                <button class="quick-action-btn" onclick="sendQuickMessage('Summarize Dr. Shaban\'s research focus')">✨ Summarize Research</button>
-                <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key Publications</button>
+                I am AI bot, ask me anything about Shaban or click the🎙️to speak to me directly!
+                <div style="display:flex; flex-wrap:wrap; margin-top:8px; gap:4px;">
+                    <button class="quick-action-btn" onclick="sendQuickMessage('Summarize Dr. Shaban\'s research focus')">✨ Summarize Research</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key Publications</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about his Postdoc at UCPH')">🔬 Postdoc Work</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('What is his experience with AI in Drug Design?')">💊 AI Drug Design</button>
+                    <button class="quick-action-btn" onclick="sendQuickMessage('List his Academic Qualifications')">🎓 Qualifications</button>
+                </div>
             </div>
         </div>
         <div class="chat-footer">
@@ -675,15 +687,15 @@
     <div class="hero-section-wrapper reveal" id="hero-section">
         <section class="hero">
             <div class="hero-main">
-                <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.src='https://via.placeholder.com/190?text=SA'">
-                <h1><a href="" class="hero-name-link">Dr Shaban Ahmad</a></h1>
+                <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at University of Copenhagen</a>
                 <div class="hero-sub-role">Bioinformatician with Expertise in Artificial Intelligence</div>
 
                 <div class="hero-contact">
                     <i class="fas fa-envelope"></i> 
-                    <span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
-                    <span class="email-click" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                    <span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban@plen.ku.dk');}" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
+                    <span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban.ucph@gmail.com');}" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
                 </div>
             </div>
             
@@ -732,7 +744,7 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
                     <h2 class="section-title" style="margin-top:0; margin-bottom:0;">About Me</h2>
                     <!-- ✨ ELI5 Bio Button -->
-                    <button onclick="simplifyBio()" class="quick-action-btn" id="simplify-btn" style="margin:0; background: rgba(220, 161, 29, 0.1); border-color: var(--accent);"> ✨ Explain Like I'm 5</button>
+                    <button onclick="simplifyBio()" class="ai-magic-btn" id="simplify-btn" style="margin:0;"> ✨ Explain Like I'm 5</button>
                 </div>
                 
                 <!-- ELI5 Output Box -->
@@ -770,13 +782,12 @@
                     <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;">Scientific Frontiers</h3>
 
                     <!-- ✨ Summarizer for Frontiers -->
-                    <button onclick="summarizeFrontiers()" class="btn-data" style="background-color: #6f42c1; border: none; cursor: pointer; margin:0;">
-                    <svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> 
-                    AI Summary 
+                    <button onclick="summarizeFrontiers()" id="sf-btn" class="ai-magic-btn" style="margin:0;">
+                    ✨ AI Summary 
                     </button>                  
-                    <div style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
+                    <div id="sf-status" style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
                 </div>
-                
+
                 <!-- 2. LARGER SCIENTIFIC FRONTIERS SLIDER & BUTTONS -->
                 <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%;">
                     <div class="marquee-track" id="sf-track">
@@ -790,20 +801,9 @@
                         <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
                         <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
                         <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
-                        <!-- DUPLICATES FOR SEAMLESS LOOP -->
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-pills"></i></div><div class="ic-title">AI in Drug Design</div><div class="ic-desc">Deep generative models for de novo ligand design & hit-to-lead optimisation.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-dna"></i></div><div class="ic-title">AI in Genomics</div><div class="ic-desc">Deep learning for variant calling, pathogenicity prediction & GWAS integration.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-atom"></i></div><div class="ic-title">Molecular Modelling</div><div class="ic-desc">All-atom MD simulations, conformational sampling & MM/PBSA free energy calculations.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-project-diagram"></i></div><div class="ic-title">Computational Genomics</div><div class="ic-desc">Network-based stratification & multi-omics integration.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-code-branch"></i></div><div class="ic-title">Phylogenetics</div><div class="ic-desc">Maximum likelihood inference & Bayesian phylogenomic reconstruction.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-syringe"></i></div><div class="ic-title">Immunoinformatics</div><div class="ic-desc">Reverse vaccinology, T/B-cell epitope prediction & HLA docking.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-heartbeat"></i></div><div class="ic-title">Translational Bioinformatics</div><div class="ic-desc">Biomarker discovery & genotype-phenotype mapping for clinical oncology.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-leaf"></i></div><div class="ic-title">PFAS Biodegradation</div><div class="ic-desc">Enzyme mining using homology search & structural activity prediction.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-brain"></i></div><div class="ic-title">Deep Learning</div><div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div></div>
-                        <div class="interest-card"><div class="ic-icon-box"><i class="fas fa-flask"></i></div><div class="ic-title">Computational Chemistry</div><div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div></div>
                     </div>
                     
-                    <!-- NEW Navigation Buttons Below Slider -->
+                    <!-- Navigation Buttons Below Slider -->
                     <div class="sf-nav-controls">
                         <button class="sf-nav-btn" onclick="scrollSF(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
                         <button class="sf-nav-btn" onclick="scrollSF(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
@@ -815,16 +815,22 @@
             <div class="about-right" style="min-width: 0;">
                 
                 <!-- 1. AI RECRUITER SKILL MATCHER (ROTATED BUTTON & LAYOUT) -->
-                <div class="ai-matcher-box">                   
+                <div class="ai-matcher-box">
+                    <div class="ai-matcher-title"><i class="fas fa-handshake"></i> Are You Hiring?</div>
                     <div style="display: flex; gap: 10px; align-items: stretch; width: 100%;">
-                        <textarea id="job-desc-input" style="flex: 1; min-height: 90px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.9rem; resize: vertical; outline: none; transition: border 0.3s;" placeholder="Hiring? Paste your job description here, and my AI will instantly analyse how well my skills match your requirements..."></textarea>
                         
-                        <button onclick="matchSkills()" id="match-btn" class="cf-btn" style="writing-mode: vertical-rl; transform: rotate(180deg); padding: 10px 8px; font-size: 0.9rem; margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 6px; letter-spacing: 1px;">
-                           ✨ Analyse Match <i class="fas fa-magic" style="transform: rotate(90deg);"></i>
+                        <button onclick="matchSkills()" id="match-btn" class="ai-magic-btn-vertical" title="Analyse Match">
+                           ✨Analyse Match<i style="transform: rotate(90deg);"></i>
                         </button>
+
+                        <textarea id="job-desc-input" style="flex: 1; min-height: 90px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.9rem; resize: vertical; outline: none; transition: border 0.3s; text-align: justify;" placeholder="Paste your job description here, and AI will instantly analyse how well my skills match your requirements..."></textarea>
+                        
+                        <button onclick="generateInterviewQs()" id="interview-btn" class="ai-magic-btn-vertical" style="background-color: #0dadbc;" title="Generate Interview Questions">
+                           ✨Interview Qs<i style="transform: rotate(90deg);"></i>
+                        </button>
+                        
                     </div>
-                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
-                    
+                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>                    
                 </div>
 
                 <!-- 3. RESEARCH EXPERIENCES & TIMELINE FIX -->
@@ -836,7 +842,7 @@
                     <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">Project Assistant</div><span class="type-badge bg-full">FULL TIME</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Nov 2020 - Sept 2021</div><div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div></div>
                     <div class="exp-box exp-full"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-full">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.iari.res.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICAR - IARI    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2020 - June 2020</div><div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div></div>
                     <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">Research Trainee</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.icgeb.org/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> ICGEB    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">Jan 2019 - Dec 2019</div><div class="exp-desc">NGS analysis of WGS, Complete chloroplast genome of <em>Vigna umbellata</em>.</div></div>
-                    <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://jamiahamdard.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Hamdard University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">March 2019 - April 2019</div><div class="exp-desc">Comparative Genomics study of <em>Plasmodium vivax</em> and <em>P. falciparum</em>.</div></div>
+                    <div class="exp-box exp-trainee"><div class="exp-header"><div class="exp-role">DBT-Studentship</div><span class="type-badge bg-trainee">TRAINEE</span></div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://jamiahamdard.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Hamdard University    </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="exp-date">March 2019 - April 2019</div><div class="exp-desc">Comparative Genomics of <em>Plasmodium spp</em>.</div></div>
                 </div>
             </div>
             
@@ -904,7 +910,7 @@
                         <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley-Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data"><i class="ai ai-figshare"></i> Data</a>  <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data"><i class="fab fa-github"></i> Code</a> </li>
                         <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank">DOI</a> <a href="http://dx.doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data"><i class="ai ai-researchgate"></i> Data</a></li>
                         <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em> <a class="pub-doi" href="http://doi.org/10.1080/1061186X.2025.2530656" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Correction: Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1662748" target="_blank">DOI</a></li>
+                        <li class="pub-item"><strong>Correction: Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/33.389/fchem.2025.1662748" target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>FDA-approved Levophed as an alternative multitargeted therapeutic against cervical cancer transferase, cell cycle, and regulatory proteins</strong><br><em>Computers in Biology and Medicine (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.compbiomed.2025.110163" target="_blank">DOI</a> <a href="http://dx.doi.org/10.13140/RG.2.2.17248.34566" target="_blank" class="btn-data"><i class="ai ai-researchgate"></i> Data</a></li>
                         <li class="pub-item"><strong>Probing the multitargeted potency of Theodrenaline and its comparative evaluation with Crizotinib against transferase, hydrolase, signalling, and apoptosis-related proteins to overcome lung cancer drug resistance</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank">DOI</a> <a href="http://dx.doi.org/10.13140/RG.2.2.30670.11846" target="_blank" class="btn-data"><i class="ai ai-researchgate"></i> Data- 1</a> <a href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data"><i class="ai ai-researchgate"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Integrative Computational Approaches Identify Haptoglobin Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and Haematological Malignancies</strong><br><em>Frontiers in Chemistry (2025)</em> <a class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1611972" target="_blank">DOI</a> <a href="https://www.frontiersin.org/journals/chemistry/articles/10.3389/fchem.2025.1611972/full#supplementary-material" target="_blank" class="btn-data"><i class="fas fa-flask"></i> Data</a></li>
@@ -1260,12 +1266,12 @@
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
-            <div class="referee-card ref-1"><div class="ref-header"><div class="referee-name"><a href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Dr Tue K. Nielsen</a></div><span class="referee-role">(Postdoc PI)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Copenhagen</a><img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'tkn@plen.ku.dk')">tkn@plen.ku.dk</span></div></div>
-            <div class="referee-card ref-2"><div class="ref-header"><div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a></div><span class="referee-role">(PhD Supervisor)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'kraza@jmi.ac.in')">kraza@jmi.ac.in</span></div></div>
-            <div class="referee-card ref-5"><div class="ref-header"><div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div><span class="referee-role">(Mentor)</span></div><div class="referee-title-line">Assistant Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> More School of Medicine</a><img src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US" title="United States"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div></div>
-            <div class="referee-card ref-3"><div class="ref-header"><div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a></div><span class="referee-role">(JYU Visiting PI)</span></div><div class="referee-title-line">Research Director</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Jyväskylä</a><img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi')">tiina.a.jokela@jyu.fi</span></div></div>
-            <div class="referee-card ref-4"><div class="ref-header"><div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a></div><span class="referee-role">(PI- SARS-CoV-2)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in')">manoj.yadav@srmuniversity.ac.in</span></div></div>
-            <div class="referee-card ref-6"><div class="ref-header"><div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div><span class="referee-role">(MSc Supervisor)</span></div><div class="referee-title-line">Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" onclick="copyEmail(this, 'malam2@jmi.ac.in')">malam2@jmi.ac.in</span></div></div>
+            <div class="referee-card ref-1"><div class="ref-header"><div class="referee-name"><a href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/" target="_blank">Dr Tue K. Nielsen</a></div><span class="referee-role">(Postdoc PI)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Copenhagen</a><img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tkn@plen.ku.dk');}" onclick="copyEmail(this, 'tkn@plen.ku.dk')">tkn@plen.ku.dk</span></div></div>
+            <div class="referee-card ref-2"><div class="ref-header"><div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza" target="_blank">Dr Khalid Raza</a></div><span class="referee-role">(PhD Supervisor)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'kraza@jmi.ac.in');}" onclick="copyEmail(this, 'kraza@jmi.ac.in')">kraza@jmi.ac.in</span></div></div>
+            <div class="referee-card ref-5"><div class="ref-header"><div class="referee-name"><a href="https://www.msm.edu/" target="_blank">Dr Murugesh Eswaran</a></div><span class="referee-role">(Mentor)</span></div><div class="referee-title-line">Assistant Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> More School of Medicine</a><img src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US" title="United States"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'meswaran@msm.edu');}" onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div></div>
+            <div class="referee-card ref-3"><div class="ref-header"><div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank">Dr Tiina Jokela</a></div><span class="referee-role">(JYU Visiting PI)</span></div><div class="referee-title-line">Research Director</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University of Jyväskylä</a><img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI" title="Finland"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tiina.a.jokela@jyu.fi');}" onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi')">tiina.a.jokela@jyu.fi</span></div></div>
+            <div class="referee-card ref-4"><div class="ref-header"><div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/" target="_blank">Dr Manoj K Yadav</a></div><span class="referee-role">(PI- SARS-CoV-2)</span></div><div class="referee-title-line">Associate Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> SRM University</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'manoj.yadav@srmuniversity.ac.in');}" onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in')">manoj.yadav@srmuniversity.ac.in</span></div></div>
+            <div class="referee-card ref-6"><div class="ref-header"><div class="referee-name"><a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam" target="_blank">Dr Mansaf Alam</a></div><span class="referee-role">(MSc Supervisor)</span></div><div class="referee-title-line">Professor</div><div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN" title="India"></div><div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'malam2@jmi.ac.in');}" onclick="copyEmail(this, 'malam2@jmi.ac.in')">malam2@jmi.ac.in</span></div></div>
         </div>
         <hr class="separator">
     </section>
@@ -1278,7 +1284,7 @@
                     <h2>Let's Collaborate</h2>
                     <p class="contact-desc-anim">I am always open to discussing new research opportunities, collaborations, or speaking engagements.</p>
                     
-                    <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span></div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban@plen.ku.dk');}" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban.ucph@gmail.com');}" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span></div>
                     <div class="contact-item"><i class="fas fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow" style="color: inherit; text-decoration: none;">MEB Section, PLEN, University of Copenhagen, Denmark</a></div>
 
                     <div class="footer-socials">
@@ -1303,15 +1309,12 @@
                             <input type="email" name="entry.1398368038" class="cf-input" placeholder="Email" required>
                         </div>
                         
-                        <!-- 1. RESTORED FULL-WIDTH MESSAGE BOX -->
                         <textarea name="entry.1216360893" id="contact-message" class="cf-textarea" placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ to instantly get a professional draft..." required></textarea>
                         
                         <div class="form-actions">
-                            <!-- 2. ADDED ID TO SEND BUTTON -->
                             <button type="submit" class="cf-btn" id="submit-btn">Send Message</button>
-                            
-                            <!-- 3. MOVED AI BUTTON NEXT TO SEND BUTTON WITH COMPACT BORDER -->
                             <button type="button" onclick="draftEmail()" id="draft-email-btn" class="ai-polish-btn" title="Draft a professional email using AI" style="padding: 10px 14px; font-size: 1.1rem; border-radius: 8px;">✨</button>
+                            <button type="button" onclick="findSynergy()" id="synergy-btn" class="ai-polish-btn" title="Propose a joint research project based on your notes" style="padding: 10px 14px; font-size: 0.9rem; border-radius: 8px; background: rgba(13, 173, 188, 0.1); border-color: #0dadbc; color: #0dadbc; font-weight: bold;">🤝✨ Find Synergy</button>
                             
                             <div id="msg-success-box" class="msg-success-box">
                                 <span></span><span></span><span></span><span></span>
@@ -1338,6 +1341,7 @@
         </div>
     </div>
 
+
     <!-- === SECTION 9: INTERACTIVE BEHAVIOUR & LOGIC (JAVASCRIPT) === -->
     <script>
         /**
@@ -1352,6 +1356,18 @@
             assignReverseBadges();
             reveal(); 
             startSFScroll(); // Starts the Scientific Frontiers auto-slider
+            
+            // Auto-apply keyboard accessibility to ALL email spans dynamically!
+            document.querySelectorAll('.email-click').forEach(el => {
+                el.setAttribute('role', 'button');
+                el.setAttribute('tabindex', '0');
+                el.addEventListener('keydown', (e) => {
+                    if(e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        el.click(); // Triggers the inline onclick event automatically
+                    }
+                });
+            });
         });
 
         function updateJournalCount() {
@@ -1385,24 +1401,68 @@
                 const doiBtn = pub.querySelector('.pub-doi');
                 if (!doiBtn) return;
                 
-                const controls = document.createElement('span'); controls.className = 'pub-controls';
-                let doiUrl = doiBtn.getAttribute('href'); controls.appendChild(doiBtn);
+                const controls = document.createElement('span'); 
+                controls.className = 'pub-controls';
 
-                // Auto-generate the AI TL;DR Button next to DOI
+                // 1. Move existing Data/Code buttons into controls
+                const dataBtns = Array.from(pub.querySelectorAll('.btn-data'));
+                dataBtns.forEach(btn => {
+                    btn.style.margin = '0'; // Let flex gap handle spacing cleanly
+                    controls.appendChild(btn);
+                });
+
+                // 2. Gold separator between Data and DOI/CITE
+                if (dataBtns.length > 0) {
+                    const sep1 = document.createElement('span');
+                    sep1.style.color = '#dc3545'; 
+                    sep1.style.fontWeight = '900';
+                    sep1.style.margin = '0 6px';
+                    sep1.innerHTML = '|';
+                    controls.appendChild(sep1);
+                }
+                
+                // 3. DOI and CITE Buttons
+                let doiUrl = doiBtn.getAttribute('href'); 
+                doiBtn.style.margin = '0'; // Clear inherited margins
+                controls.appendChild(doiBtn);
+
+                const citeBtn = document.createElement('button'); citeBtn.className = 'btn-cite';
+                citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>'; 
+                citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn);
+                controls.appendChild(citeBtn);
+
+                // 4. Gold separator before AI features
+                const sep2 = document.createElement('span');
+                sep2.style.color = '#dc3545'; 
+                sep2.style.fontWeight = '900';
+                sep2.style.margin = '0 6px';
+                sep2.innerHTML = '|';
+                controls.appendChild(sep2);
+
+                // 5. Auto-generate the AI TL;DR Button
                 const pubTitle = pub.querySelector('strong')?.innerText.trim() || "";
                 const tldrBtn = document.createElement('button');
                 tldrBtn.className = 'btn-data';
                 tldrBtn.style.backgroundColor = '#dc3545'; tldrBtn.style.color = '#fff';
                 tldrBtn.style.border = 'none';
-                tldrBtn.style.marginLeft = '8px';
+                tldrBtn.style.margin = '0';
                 tldrBtn.innerHTML = '✨';
+                tldrBtn.title = "Generate AI Summary";
                 tldrBtn.onclick = () => tldrPaper(tldrBtn, pubTitle);
                 controls.appendChild(tldrBtn);
 
+                // 6. Auto-generate Social Post Button
+                const socialBtn = document.createElement('button');
+                socialBtn.className = 'btn-data';
+                socialBtn.style.backgroundColor = '#1DA1F2'; socialBtn.style.color = '#fff';
+                socialBtn.style.border = 'none';
+                socialBtn.style.margin = '0';
+                socialBtn.innerHTML = '<i class="fab fa-twitter"></i>';
+                socialBtn.title = "Draft Social Media Post";
+                socialBtn.onclick = () => generateSocialPost(socialBtn, pubTitle);
+                controls.appendChild(socialBtn);
 
-                const citeBtn = document.createElement('button'); citeBtn.className = 'btn-cite';
-                citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>'; citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn);
-
+                // 7. Hidden Citation Dropdown Menu
                 const dropdown = document.createElement('div'); dropdown.className = 'cite-dropdown-menu'; dropdown.id = `cite-menu-${index}`;
 
                 const optCopy = document.createElement('button'); optCopy.className = 'cite-option'; optCopy.innerHTML = '<i class="fas fa-copy"></i> Copy APA Format'; optCopy.onclick = () => handleCitationAction(pub, doiUrl, optCopy, 'copy');
@@ -1411,7 +1471,8 @@
 
                 dropdown.appendChild(optCopy); dropdown.appendChild(document.createElement('div')).className = 'cite-divider';
                 dropdown.appendChild(optBib); dropdown.appendChild(optRis);
-                controls.appendChild(citeBtn); controls.appendChild(dropdown); pub.appendChild(controls);
+                controls.appendChild(dropdown); 
+                pub.appendChild(controls);
             });
         }
 
@@ -1432,7 +1493,8 @@
             if (doiUrl && doiUrl.includes('doi.org')) {
                 const doi = doiUrl.split('doi.org/')[1];
                 try {
-                    const response = await fetch(`https://api.crossref.org/works/${doi}`);
+                    // Added mailto parameter for Crossref's Polite Pool to prevent rate limits
+                    const response = await fetch(`https://api.crossref.org/works/${doi}?mailto=shaban.ucph@gmail.com`);
                     if (response.ok) meta = parseCrossRefData((await response.json()).message, doiUrl);
                 } catch (e) { console.warn("API Fetch failed, using fallback", e); }
             }
@@ -1638,18 +1700,11 @@
             else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; }
         }
 
-        function toggleNestedMobile(e, link) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault(); e.stopPropagation(); const w = link.closest('.dropdown-item-wrapper'), sm = w.querySelector('.sub-dropdown-content'), a = link.querySelector('.nested-arrow');
-                if (sm.classList.contains('show-nested')) { sm.classList.remove('show-nested'); if(a) a.classList.remove('rotated'); link.classList.remove('active-parent'); } 
-                else { document.querySelectorAll('.sub-dropdown-content.show-nested').forEach(el => { el.classList.remove('show-nested'); const pw = el.closest('.dropdown-item-wrapper'), pa = pw.querySelector('.nested-arrow'), pl = pw.querySelector('a'); if(pa) pa.classList.remove('rotated'); if(pl) pl.classList.remove('active-parent'); }); sm.classList.add('show-nested'); if(a) a.classList.add('rotated'); link.classList.add('active-parent'); }
-            }
-        }
         document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
 
         // 5. FIX FOR MISSING NUMBERING (Added .exp-grid-vertical)
         function assignReverseBadges() {
-            [document.querySelector('.exp-grid-vertical'), document.querySelector('.exp-grid'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cards = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cards.forEach((cd, i) => cd.setAttribute('data-badge', cards.length - i)); });
+            [document.querySelector('.exp-grid-vertical'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cards = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cards.forEach((cd, i) => cd.setAttribute('data-badge', cards.length - i)); });
         }
 
         const acc = document.getElementsByClassName("accordion-btn");
@@ -1745,14 +1800,17 @@
         function removeMessage(el) { if (el && el.parentNode) el.parentNode.removeChild(el); }
 
     
-        async function fetchFromBackend(promptText, retries = 3, delay = 2000) {
+        async function fetchFromBackend(promptText, retries = 3, delay = 2000, signal = null) {
             try {
                 // Connect to Vercel
-                const response = await fetch('https://shaban-ahmad-github-io.vercel.app/api/gemini', {
+                const fetchOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ prompt: promptText })
-                });
+                };
+                if (signal) fetchOptions.signal = signal;
+
+                const response = await fetch('https://shaban-ahmad-github-io.vercel.app/api/gemini', fetchOptions);
                 
                 const data = await response.json();
                 
@@ -1761,7 +1819,7 @@
                     if (response.status === 429 && retries > 0) {
                         console.warn(`AI Rate Limit Hit. Silently retrying in ${delay/1000} seconds...`);
                         await new Promise(resolve => setTimeout(resolve, delay));
-                        return fetchFromBackend(promptText, retries - 1, delay * 2); // Wait longer on next retry
+                        return fetchFromBackend(promptText, retries - 1, delay * 2, signal); // Wait longer on next retry
                     }
                     throw new Error(data.error?.message || data.error || 'Backend request failed with status ' + response.status);
                 }
@@ -1775,6 +1833,7 @@
                     throw new Error("Unexpected response format from AI backend.");
                 }
             } catch (error) {
+                if (error.name === 'AbortError') throw error; // Let abort bubble up silently
                 console.error("AI Connection Error:", error);
                 
                 // Show the user a friendly rate limit error instead of "disconnected"
@@ -1784,6 +1843,7 @@
                 throw error; // Pass real error to UI
             }
         }
+
 
         async function callGeminiAPI(query) {
             const pageContent = document.body.innerText.replace(/\s+/g, ' ').substring(0, 10000); 
@@ -1797,8 +1857,137 @@
             return await fetchFromBackend(prompt);
         }
 
+        // --- ✨ NEW: AI Interview Question Generator ---
+        let interviewAbortController = null;
+        async function generateInterviewQs() {
+            const input = document.getElementById('job-desc-input');
+            const resultBox = document.getElementById('match-result');
+            const btn = document.getElementById('interview-btn');
+            
+            if (!input.value.trim()) {
+                input.value = "";
+                input.placeholder = "⚠️ Please paste a job description here first!";
+                input.style.border = "2px solid red";
+                setTimeout(() => input.style.border = "2px dashed #cbd5e1", 2000);
+                input.focus();
+                return;
+            }
+
+            if (interviewAbortController) {
+                interviewAbortController.abort();
+                interviewAbortController = null;
+                btn.classList.remove('processing-gold');
+                btn.innerHTML = `✨Interview Qs <i style="transform: rotate(90deg);"></i>`;
+                if(resultBox) resultBox.style.display = 'none';
+                return;
+            }
+            
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="transform: rotate(90deg);"></i>';
+            btn.classList.add('processing-gold');
+            if(resultBox) resultBox.style.display = 'none';
+            
+            interviewAbortController = new AbortController();
+            const signal = interviewAbortController.signal;
+
+            const prompt = `Act as a highly technical Hiring Manager. Based on this job description and Dr. Shaban Ahmad's bioinformatics and AI profile, generate exactly 3 challenging, specific interview questions you should ask him to test his fit for this role. 
+            Keep it professional. Use HTML <b> tags for the questions. DO NOT use markdown.
+            Job Description: ${input.value}`;
+            
+            try {
+                const response = await fetchFromBackend(prompt, 3, 2000, signal);
+                let cleanRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>');
+                resultBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong style="color:#0dadbc; display:flex; align-items:center; gap:8px;"><i class="fas fa-user-tie"></i> Custom Interview Prep:</strong><br><br>${cleanRes}`;
+                resultBox.style.display = 'block';
+            } catch(e) {
+                if (e.name === 'AbortError') {
+                    console.log('Interview action aborted.');
+                } else if(resultBox) {
+                    resultBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>❌ Error:</strong> ${e.message}`;
+                    resultBox.style.display = 'block';
+                }
+            } finally {
+                if (interviewAbortController && !signal.aborted) {
+                    btn.classList.remove('processing-gold');
+                    btn.innerHTML = originalHtml; 
+                    interviewAbortController = null;
+                }
+            }
+        }
+
+        // --- ✨ NEW: AI Social Media Post Generator ---
+        async function generateSocialPost(btnElement, paperTitle) {
+            const originalHtml = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; 
+            btnElement.disabled = true;
+            
+            const prompt = `Write a catchy, professional social media post (Twitter/LinkedIn) to announce the publication of this scientific paper: "${paperTitle}". Include 1 or 2 relevant emojis and 3 trending scientific hashtags. Max 280 characters. Output plain text with standard line breaks only, absolutely no markdown or HTML tags.`;
+            
+            try {
+                const response = await fetchFromBackend(prompt);
+                
+                // Add a copy button directly inside the modal!
+                const modalHtml = `
+                    <strong>🐦 Social Media Draft:</strong><br><br>
+                    <div id="social-post-text" style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #1DA1F2; margin-top: 10px; font-style: italic;">${response.replace(/\n/g, '<br>')}</div>
+                    <br>
+                    <button onclick="navigator.clipboard.writeText(document.getElementById('social-post-text').innerText); this.innerHTML='<i class=\\'fas fa-check\\'></i> Copied!';" class="btn-data" style="background-color: #1DA1F2; border: none; padding: 8px 15px; cursor: pointer; float: right;">
+                        <i class="fas fa-copy"></i> Copy Post
+                    </button>
+                    <div style="clear: both;"></div>
+                `;
+                showAIModal(modalHtml);
+                btnElement.innerHTML = originalHtml; 
+            } catch(e) { 
+                btnElement.innerHTML = '❌'; 
+                setTimeout(() => { btnElement.innerHTML = originalHtml; }, 3000);
+            } finally {
+                btnElement.disabled = false;
+            }
+        }
+
+        // --- ✨ NEW: Research Synergy Finder ---
+        async function findSynergy() {
+            const btn = document.getElementById('synergy-btn'), msgBox = document.getElementById('contact-message');
+            if(!msgBox) return;
+            const ui = msgBox.value.trim();
+            if (!ui) { msgBox.placeholder = "Please describe your research area first! (e.g., 'I work on marine biology and plastics')"; msgBox.value = ''; msgBox.focus(); return; }
+            
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; 
+            btn.disabled = true;
+            
+            const prompt = `You are an academic grant writer. Dr. Shaban Ahmad's expertise is in AI, bioinformatics, MD simulations, and PFAS Biodegradation. A visiting researcher has this expertise: "${ui}". 
+            Propose ONE highly innovative, multidisciplinary joint research project they could collaborate on. 
+            Keep it to 3 sentences max, highly professional and exciting. Use HTML formatting, no markdown.`;
+            
+            try {
+                const response = await fetchFromBackend(prompt);
+                
+                const modalHtml = `
+                    <strong>🤝 Collaborative Synergy Idea:</strong><br><br>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #0dadbc; margin-top: 10px;">${response.replace(/\n/g, '<br>')}</div>
+                    <br>
+                    <button onclick="document.getElementById('contact-message').value = 'Hello Dr. Shaban,\\n\\nI saw the AI synergy suggestion regarding my work and would love to collaborate on the proposed idea!'; closeAIModal();" class="cf-btn" style="background-color: #0dadbc; border: none; padding: 8px 15px; cursor: pointer; float: right;">
+                        <i class="fas fa-pencil-alt"></i> Use as Email Draft
+                    </button>
+                    <div style="clear: both;"></div>
+                `;
+                showAIModal(modalHtml);
+                btn.innerHTML = originalHtml;
+            } catch(e) {
+                console.error("Synergy failed", e);
+                const oldVal = msgBox.value;
+                msgBox.value = `❌ Error connecting to AI: ${e.message}\n\n---\n${oldVal}`;
+                btn.innerHTML = '❌';
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 4000);
+            } finally {
+                btn.disabled = false;
+            }
+        }
 
         // --- AI FEATURE LOGIC (Matcher, ELI5, TL;DR) ---
+        let matchAbortController = null;
         async function matchSkills() {
             const input = document.getElementById('job-desc-input');
             const resultBox = document.getElementById('match-result');
@@ -1808,15 +1997,29 @@
                 input.value = "";
                 input.placeholder = "⚠️ Please paste a job description here first!";
                 input.style.border = "2px solid red";
-                setTimeout(() => input.style.border = "1px dashed #cbd5e1", 2000);
+                setTimeout(() => input.style.border = "2px dashed #cbd5e1", 2000);
                 input.focus();
+                return;
+            }
+
+            // Terminate action if clicked while processing
+            if (matchAbortController) {
+                matchAbortController.abort();
+                matchAbortController = null;
+                btn.classList.remove('processing-gold');
+                btn.innerHTML = `✨Analyse Match<i style="transform: rotate(90deg);"></i>`;
+                if(resultBox) resultBox.style.display = 'none';
                 return;
             }
             
             const originalHtml = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="transform: rotate(90deg);"></i>';
-            btn.disabled = true;
+            btn.classList.add('processing-gold');
+            if(resultBox) resultBox.style.display = 'none';
             
+            matchAbortController = new AbortController();
+            const signal = matchAbortController.signal;
+
             const prompt = `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's skills.
             CRITICAL INSTRUCTIONS:
             1. Start with a visual rating: "⭐ Rating: 5/5 Excellent Match" (or appropriate score).
@@ -1827,18 +2030,25 @@
             Job Description: ${input.value}`;
             
             try {
-                const response = await fetchFromBackend(prompt);
+                const response = await fetchFromBackend(prompt, 3, 2000, signal);
                 // Regex safety to strip any accidental markdown bolding
                 let cleanRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>');
-                resultBox.innerHTML = `<strong style="color:var(--primary); display:flex; align-items:center; gap:8px;"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Recruiter Analysis:</strong><br><br>${cleanRes}`;
+                resultBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary); display:flex; align-items:center; gap:8px;"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> Recruiter Analysis:</strong><br><br>${cleanRes}`;
                 resultBox.style.display = 'block';
             } catch(e) {
-               
-                resultBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`;
-                resultBox.style.display = 'block';
-                setTimeout(() => { if (resultBox.innerHTML.includes('❌ Error:')) resultBox.style.display = 'none'; }, 30000);
+                if (e.name === 'AbortError') {
+                    console.log('Match action aborted.');
+                } else if(resultBox) {
+                    resultBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>❌ Error:</strong> ${e.message}`;
+                    resultBox.style.display = 'block';
+                }
+            } finally {
+                if (matchAbortController && !signal.aborted) {
+                    btn.classList.remove('processing-gold');
+                    btn.innerHTML = originalHtml; 
+                    matchAbortController = null;
+                }
             }
-            btn.innerHTML = originalHtml; btn.disabled = false;
         }
 
         // --- AI Popup Modal Controllers ---
@@ -1851,12 +2061,15 @@
             document.getElementById('ai-modal').classList.remove('show');
         }
 
-        // --- Mic Interaction (Web Speech API) ---
+        // --- Mic Interaction (ChatGPT Style Voice-to-Text) ---
         let recognition;
+        let isListening = false;
         function toggleMic() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                showAIModal("Voice input is not supported in this browser. Try Chrome or Safari.");
+                const chatBody = document.getElementById('chat-body');
+                chatBody.innerHTML += '<div class="msg msg-bot">❌ Voice input is not supported in this browser. Please try Chrome or Safari.</div>';
+                chatBody.scrollTop = chatBody.scrollHeight;
                 return;
             }
 
@@ -1865,99 +2078,221 @@
 
             if (!recognition) {
                 recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
+                recognition.continuous = true; // Stay active to capture full phrases naturally
+                recognition.interimResults = true;
                 recognition.lang = 'en-US';
 
-                recognition.onstart = () => { micBtn.style.color = '#dc3545'; chatInput.placeholder = "Listening to you..."; };
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    chatInput.value = transcript;
-                    sendUserMessage(); 
+                let silenceTimer;
+                let finalTranscript = '';
+
+                recognition.onstart = () => { 
+                    isListening = true;
+                    micBtn.style.color = '#dc3545'; 
+                    chatInput.placeholder = "Listening... Speak now"; 
+                    chatInput.value = "";
+                    finalTranscript = '';
                 };
-                recognition.onend = () => { micBtn.style.color = '#555'; chatInput.placeholder = "Type or say a question..."; };
-                recognition.onerror = (e) => { console.error("Speech Error:", e); micBtn.style.color = '#555'; };
+                
+                recognition.onresult = (event) => {
+                    clearTimeout(silenceTimer);
+                    
+                    let interimTranscript = '';
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            finalTranscript += event.results[i][0].transcript;
+                        } else {
+                            interimTranscript += event.results[i][0].transcript;
+                        }
+                    }
+                    chatInput.value = finalTranscript + interimTranscript;
+
+                    // Automatically submit if silence is detected for 2 seconds
+                    silenceTimer = setTimeout(() => {
+                        if (isListening && chatInput.value.trim().length > 0) {
+                            recognition.stop();
+                        }
+                    }, 2000);
+                };
+                
+                recognition.onend = () => { 
+                    isListening = false;
+                    micBtn.style.color = '#555'; 
+                    chatInput.placeholder = "Type or say a question..."; 
+                    if(chatInput.value.trim().length > 0 && chatInput.value !== "Listening... Speak now") {
+                        sendUserMessage();
+                    }
+                };
+                
+                recognition.onerror = (e) => { 
+                    console.error("Speech Error:", e.error); 
+                    if (e.error !== 'no-speech') {
+                        isListening = false;
+                        micBtn.style.color = '#555'; 
+                        chatInput.placeholder = "Type or say a question...";
+                    }
+                };
             }
 
-            try {
-                recognition.start();
-            } catch (e) {
-                recognition.stop(); // If already running, stop it
+            if (isListening) {
+                recognition.stop();
+            } else {
+                try { recognition.start(); } catch (e) { recognition.stop(); }
             }
         }
 
-        
         // --- Scientific Frontiers Summary ---
+        let sfAbortController = null;
         async function summarizeFrontiers() {
+            const btn = document.getElementById('sf-btn'), status = document.getElementById('sf-status');
+            if(!btn) return;
+            
+            // Terminate action if clicked while processing
+            if (sfAbortController) {
+                sfAbortController.abort();
+                sfAbortController = null;
+                btn.classList.remove('processing-gold');
+                btn.innerHTML = `<svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> ✨ AI Summary`;
+                if(status) status.style.display = 'none';
+                return;
+            }
+
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Synthesizing...'; 
+            btn.classList.add('processing-gold');
+            if(status) status.style.display = 'none';
+
+            sfAbortController = new AbortController();
+            const signal = sfAbortController.signal;
+
             const prompt = `Summarize the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. 
             Explain how these connect for a sustainable future.
             FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. Use HTML only. Max 150 words.`;
 
-            showAIModal(`<div style="text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem; color:var(--accent);"></i><br><br>Synthesizing Research Frontiers...</div>`);
             try {
-                const response = await fetchFromBackend(prompt);
+                const response = await fetchFromBackend(prompt, 3, 2000, signal);
                 let cleanRes = response.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-                showAIModal(`<strong>🔬 Research Frontiers Summary:</strong><br><br>${cleanRes}`);
-            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
+                
+                // Show success inline with a dismiss 'X' button (No Popup Modal!)
+                if(status) {
+                    status.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${cleanRes}`;
+                    status.style.display = 'block';
+                }
+            } catch(e) { 
+                if (e.name === 'AbortError') {
+                    console.log('Summarize action aborted.');
+                } else if(status) {
+                    status.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>❌ AI Error:</strong> ${e.message}`;
+                    status.style.display = 'block';
+                }
+            } finally {
+                if (sfAbortController && !signal.aborted) {
+                    btn.classList.remove('processing-gold');
+                    btn.innerHTML = original; 
+                    sfAbortController = null;
+                }
+            }
         }
-        
+                
         // --- Updated AI Features ---
+        let simplifyAbortController = null;
         async function simplifyBio() {
-            const btn = document.getElementById('simplify-btn');
-            const originalHtml = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Explaining...'; btn.disabled = true;
+            const btn = document.getElementById('simplify-btn'), resBox = document.getElementById('eli5-result');
+            if(!btn) return;
+
+            // Terminate action if clicked while processing
+            if (simplifyAbortController) {
+                simplifyAbortController.abort();
+                simplifyAbortController = null;
+                btn.classList.remove('processing-gold');
+                btn.innerHTML = `✨ Explain Like I'm 5`;
+                if(resBox) resBox.style.display = 'none';
+                return;
+            }
+
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Explaining...'; 
+            btn.classList.add('processing-gold');
+            if(resBox) resBox.style.display = 'none';
             
+            simplifyAbortController = new AbortController();
+            const signal = simplifyAbortController.signal;
+
             const prompt = "Explain Dr. Shaban Ahmad's research in AI, bioinformatics, and PFAS biodegradation like I am 5 years old. Make it fun, engaging, and very short (3 sentences max).";
             
             try {
-                const response = await fetchFromBackend(prompt);
-                showAIModal(`<strong>👶 Explain Like I'm 5:</strong><br><br>${response}`);
-            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
-            
-            btn.innerHTML = originalHtml; btn.disabled = false;
+                const response = await fetchFromBackend(prompt, 3, 2000, signal);
+                if(resBox) {
+                    resBox.style.display = 'block';
+                    resBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>👶 Explain Like I'm 5:</strong><br><br>${response}`;
+                }
+            } catch(e) { 
+                if (e.name === 'AbortError') {
+                    console.log('Simplify action aborted.');
+                } else if(resBox) {
+                    resBox.style.display = 'block';
+                    resBox.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888; font-size:1.1rem; padding:4px;" onclick="this.parentElement.style.display='none'"></i><strong>❌ Error:</strong> ${e.message}`;
+                }
+            } finally {
+                if (simplifyAbortController && !signal.aborted) {
+                    btn.classList.remove('processing-gold');
+                    btn.innerHTML = original; 
+                    simplifyAbortController = null;
+                }
+            }
         }
+
 
         async function tldrPaper(btnElement, paperTitle) {
             const originalHtml = btnElement.innerHTML;
-            btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...'; btnElement.disabled = true;
+            btnElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; 
+            btnElement.disabled = true;
             
-            const prompt = `Provide a very short, 2-sentence "TL;DR" summary for this scientific paper title: "${paperTitle}". Make it easy to understand for a non-expert.`;
+            const prompt = `Provide a very short, 2-sentence summary for this scientific paper title: "${paperTitle}". Make it easy to understand for a non-expert.`;
             
             try {
                 const response = await fetchFromBackend(prompt);
-                showAIModal(`<strong>📄 Paper:</strong> <em>${paperTitle}</em><br><br><strong>✨ TL;DR Summary:</strong><br>${response}`);
-            } catch(e) { showAIModal(`<strong>❌ Error:</strong> ${e.message}`); }
-            
-            btnElement.innerHTML = originalHtml; btnElement.disabled = false;
+                showAIModal(`<strong>📄 ${paperTitle}</strong><br><br><strong>✨ Summary:</strong><br>${response}`);
+                btnElement.innerHTML = originalHtml; 
+            } catch(e) { 
+                // Inline error inside the tiny button, naturally disappears after 3s
+                btnElement.innerHTML = '❌'; 
+                setTimeout(() => { btnElement.innerHTML = originalHtml; }, 3000);
+            } finally {
+                btnElement.disabled = false;
+            }
         }
                 
         /**
          * 9.11: Draft Email
          */
         async function draftEmail() {
-            const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message'), ui = msgBox.value.trim();
+            const btn = document.getElementById('draft-email-btn'), msgBox = document.getElementById('contact-message');
+            if(!msgBox) return;
+            const ui = msgBox.value.trim();
             if (!ui) { msgBox.placeholder = "Please type a few rough notes first! (e.g., 'postdoc inquiry')"; msgBox.value = ''; msgBox.focus(); return; }
             
             const originalHtml = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; 
+            btn.disabled = true;
             
             const prompt = `You are an AI assistant helping a user write a highly professional, polite email to Dr. Shaban Ahmad. The user provided these rough notes: "${ui}". Draft a concise email based on these notes. Do not include placeholders like [Your Name] or [Date], just write the body and standard sign-off.`;
             
             try {
                 const polishedText = await fetchFromBackend(prompt);
                 msgBox.value = polishedText.trim();
-                btn.innerHTML = '✨';
+                btn.innerHTML = '✨ Success';
                 setTimeout(() => { btn.innerHTML = originalHtml; }, 3000);
             } catch(e) {
                 console.error("Drafting failed", e);
-                alert("Failed to draft email: " + e.message);
+                // Inject the error straight into the textbox, no alert popups!
+                const oldVal = msgBox.value;
+                msgBox.value = `❌ Error connecting to AI: ${e.message}\n\n---\n${oldVal}`;
                 btn.innerHTML = '❌';
-                setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+                setTimeout(() => { btn.innerHTML = originalHtml; }, 4000);
+            } finally {
+                btn.disabled = false;
             }
-            btn.disabled = false;
         }
-        function nextDraft() { }
-        function prevDraft() { }
 
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
