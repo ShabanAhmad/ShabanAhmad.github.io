@@ -46,7 +46,7 @@
         :root {
             --primary: #002e5f; --primary-dark: #001a36; --accent: #dca11d; --text: #333; --light-bg: #f8f9fa; --white: #ffffff;        
             --inst-font: 'Merriweather', serif; --transition: all 0.3s ease;        
-            --edu-phd: #28a745; --edu-msc: #dc3545; --edu-bsc: #6f42c1;     
+            --edu-phd: #007bff; --edu-msc: #17a2b8; --edu-bsc: #e83e8c;     
             --exp-full: #28a745; --exp-trainee: #6f42c1;   
             --ref-1: #002e5f; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
         }
@@ -62,12 +62,11 @@
         /* Mitigating Google Translate layout disruptions */
         .goog-te-banner-frame, .goog-te-banner-frame.skiptranslate, body > .skiptranslate { display: none !important; }
 
-        /* --- 4.3: Custom Scrollbars & Progress Indicators --- */
+        /* --- 4.3: Custom Scrollbars --- */
         ::-webkit-scrollbar, *::-webkit-scrollbar, html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track, *::-webkit-scrollbar-track, html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
         ::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; border: 2px solid #f9f9f9; }
         ::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: #b8860b; }
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent); width: 0%; z-index: 10005; transition: width 0.1s ease-out; }
 
         /* --- 4.4: Utility Animations & Search Highlighting --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -203,14 +202,46 @@
         /* Distinct Subtle Separator */
         .subtle-separator { border: none; height: 1.5px; background: linear-gradient(90deg, transparent, rgba(39, 3, 200, 0.4), transparent); margin: 1.1rem 0; }
         
-        /* --- AI MAGIC BUTTONS (Explain Like I'm 5 & AI Summary) --- */
-        .ai-magic-btn { background-color: #6f42c1; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2); }
-        .ai-magic-btn:hover, .ai-magic-btn.processing-gold { background-color: var(--accent) !important; color: var(--primary-dark) !important; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4); }
-        .ai-magic-btn .ai-logo-svg { width: 16px; height: 16px; fill: currentColor; margin: 0; }
-
-        /* Dedicated class for the rotated Matcher button */
-        .ai-magic-btn-vertical { background-color: #6f42c1; color: #fff; border: none; padding: 10px 8px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 1px; margin: 0; }
-        .ai-magic-btn-vertical:hover, .ai-magic-btn-vertical.processing-gold { background-color: var(--accent) !important; color: var(--primary-dark) !important; transform: rotate(180deg) scale(1.03); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4); }
+        /* --- AI EXPANDABLE MAGIC BUTTONS --- */
+        .ai-magic-btn { background-color: #6f42c1; color: #fff; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2); }
+        .ai-magic-btn:hover, .ai-magic-btn.processing-gold { background-color: var(--accent) !important; color: var(--primary-dark) !important; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4) !important; }
+        .ai-polish-btn { background: rgba(220, 161, 29, 0.1); border: 1px solid var(--accent); color: var(--accent); font-size: 0.9rem; cursor: pointer; font-weight: 600; }
+        .ai-polish-btn:hover, .ai-polish-btn.processing-gold { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(220, 161, 29, 0.4) !important; }
+        
+        /* Expandable Button Core Logic */
+        .ai-expand-btn {
+            border-radius: 30px !important;
+            padding: 10px !important;
+            max-width: 44px; /* Default collapsed circle/square */
+            height: 44px;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: flex-start; /* Keeps icon left-aligned while expanding */
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            gap: 0 !important;
+        }
+        .ai-expand-btn .btn-icon {
+            min-width: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-style: normal;
+        }
+        .ai-expand-btn .btn-text {
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 0.3s ease, margin-left 0.3s ease;
+        }
+        .ai-expand-btn:hover, .ai-expand-btn.processing-gold {
+            max-width: 250px; /* Allows full expansion */
+            padding: 10px 20px !important;
+        }
+        .ai-expand-btn:hover .btn-text, .ai-expand-btn.processing-gold .btn-text {
+            opacity: 1;
+            margin-left: 8px; /* Separates icon from text */
+        }
 
         /* --- AI RECRUITER (Subtle & Professional UI) --- */
         .ai-matcher-box { background: #ffffff; border: 1px solid rgba(220, 161, 29, 0.4); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; transition: all 0.3s ease; border-left: 5px solid var(--accent); }
@@ -225,7 +256,6 @@
         .ai-matcher-box textarea:hover { border-color: var(--accent) !important; background: #fff; }
         .ai-matcher-box textarea:focus { border-color: var(--primary) !important; border-style: solid !important; background: #fff; box-shadow: 0 0 0 3px rgba(223, 2, 197, 0.1); outline: none; }
 
-        
         /* --- 4.10: Scientific Frontiers Interactive Slider --- */
         .marquee-wrapper { position: relative; overflow: hidden; padding: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
@@ -271,40 +301,43 @@
 
         /* --- 4.11: Dynamic Grid & Profile Cards --- */
         
-        /* 1. TIMELINE: ACADEMIC QUALIFICATIONS (LEFT SIDE) */
+        /* 1. TIMELINE: ACADEMIC QUALIFICATIONS (RIGHT SIDE) */
         .edu-grid { 
             display: flex; flex-direction: column; gap: 1rem; 
             position: relative; 
-            padding-left: 40px; 
-            margin-left: 5px; 
+            padding-right: 40px; 
+            margin-right: 5px; 
+            padding-left: 0;
+            margin-left: 0;
         }
         .edu-grid::before { 
-            content: ''; position: absolute; top: 15px; bottom: 15px; left: 0; width: 2px;
+            content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px;
             background: linear-gradient(to bottom, var(--accent) 90%, rgba(220,161,29,0.1) 100%); 
             border-radius: 2px;  
         }
         .edu-grid .edu-card { 
             position: relative; 
             padding: 1.5rem 1rem; 
-            padding-right: 2.2rem; /* Keep right padding for badge */
+            padding-left: 2.2rem; 
+            padding-right: 1rem;
         }
         .edu-grid .edu-card::before { 
             content: ''; position: absolute; 
-            left: -39px; 
-            top: 50%; transform: translate(-50%, -50%); 
+            right: -39.5px; 
+            top: 50%; transform: translate(50%, -50%); 
             width: 14px; height: 14px; background: var(--white); 
             border: 2px solid var(--accent); border-radius: 50%; 
             z-index: 2; transition: all 0.3s ease; 
         }
         .edu-grid .edu-card:hover::before { 
-            transform: translate(-50%, -50%) scale(1.3); 
+            transform: translate(50%, -50%) scale(1.3); 
         }
 
         /* 2. TIMELINE: EXPERIENCES (RIGHT SIDE) */
         .exp-grid-vertical { 
             display: flex; flex-direction: column; gap: 1rem; 
             position: relative; 
-            padding-right: 40px; /* Moved timeline space to right */
+            padding-right: 40px; 
             margin-right: 5px; 
         }
         .exp-grid-vertical::before { 
@@ -315,12 +348,12 @@
         .exp-grid-vertical .exp-box { 
             position: relative; 
             padding: 0.8rem 1rem; 
-            padding-left: 2.2rem; /* Move internal space to left for shifted number badge */
+            padding-left: 2.2rem; 
             padding-right: 1rem;
         }
         .exp-grid-vertical .exp-box::before { 
             content: ''; position: absolute; 
-            right: -39.5px; /* Move dot to right */
+            right: -39.5px; 
             top: 50%; transform: translate(50%, -50%); 
             width: 14px; height: 14px; background: var(--white); 
             border: 2px solid var(--accent); border-radius: 50%; 
@@ -330,17 +363,17 @@
             transform: translate(50%, -50%) scale(1.3); 
         }
 
-        /* Shift the Exp-box number badge to the left to avoid overlapping the right-side timeline */
-        .exp-grid-vertical .exp-box::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; }
-        .exp-grid-vertical .exp-box:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
+        /* Shift both Exp-box and Edu-card number badges to the left to avoid overlapping the timeline */
+        .exp-grid-vertical .exp-box::after, .edu-grid .edu-card::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; }
+        .exp-grid-vertical .exp-box:hover::after, .edu-grid .edu-card:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
         
         /* 3. Specific dynamic hover colours for timeline circles */
         .exp-grid-vertical .exp-full:hover::before { background: var(--exp-full); border-color: var(--exp-full); box-shadow: 0 0 10px rgba(40,167,69,0.5); }
         .exp-grid-vertical .exp-part:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(253,126,20,0.5); }
         .exp-grid-vertical .exp-trainee:hover::before { background: var(--exp-trainee); border-color: var(--exp-trainee); box-shadow: 0 0 10px rgba(111,66,193,0.5); }
-        .edu-grid .edu-phd:hover::before { background: var(--edu-phd); border-color: var(--edu-phd); box-shadow: 0 0 10px rgba(220,53,69,0.5); }
-        .edu-grid .edu-msc:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(253,126,20,0.5); }
-        .edu-grid .edu-bsc:hover::before { background: var(--edu-bsc); border-color: var(--edu-bsc); box-shadow: 0 0 10px rgba(32,201,151,0.5); }
+        .edu-grid .edu-phd:hover::before { background: var(--edu-phd); border-color: var(--edu-phd); box-shadow: 0 0 10px rgba(0,123,255,0.5); }
+        .edu-grid .edu-msc:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(23,162,184,0.5); }
+        .edu-grid .edu-bsc:hover::before { background: var(--edu-bsc); border-color: var(--edu-bsc); box-shadow: 0 0 10px rgba(232,62,140,0.5); }
         
         .referee-grid, .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
 
@@ -423,7 +456,8 @@
         .contact-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 0; }
         .contact-left h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: #fff; } .contact-left p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.6; }
         .contact-item { display: flex; align-items: center; margin-bottom: 0.5rem; color: #cbd5e1; } .contact-item i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; width: 20px; } .contact-item a:hover { color: #fff; }
-        .contact-desc-anim { position: relative; display: inline-block; padding-left: 10px; padding-bottom: 5px; } .contact-desc-anim::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background-color: var(--accent); transition: height 0.4s linear; } .contact-desc-anim::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.4s linear 0.4s; } .contact-desc-anim:hover::before { height: 100%; } .contact-desc-anim:hover::after { width: 100%; }
+        .contact-desc-anim { position: relative; display: inline-block; padding-left: 15px; padding-bottom: 8px; margin-bottom: 1.5rem; } .contact-desc-anim::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background-color: var(--accent); transition: height 0.3s linear; } .contact-desc-anim::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.4s linear 0.3s; } .contact-desc-anim:hover::before { height: 100%; } .contact-desc-anim:hover::after { width: 100%; } .contact-desc-anim:hover .anim-arrow { left: calc(100% - 2px); opacity: 1; }
+        .anim-arrow { position: absolute; bottom: -4px; left: 0; width: 10px; height: 10px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transform: rotate(45deg); opacity: 0; pointer-events: none; transition: left 0.4s linear 0.3s, opacity 0.1s linear 0.3s; }
         .link-anim-slow { position: relative; text-decoration: none; color: inherit; display: inline-block; transition: color 0.3s ease; } .link-anim-slow:hover { color: var(--accent) !important; } .link-anim-slow::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--accent); transition: width 0.6s ease; } .link-anim-slow:hover::after { width: 100%; }
         .footer-copyright { display: inline-block; position: relative; color: #94a3b8; font-size: 0.9rem; margin-top: 5px; cursor: pointer; transition: color 0.3s; } .footer-copyright:hover { color: var(--accent); } .footer-copyright::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; } .footer-copyright:hover::after { width: 100%; }
         
@@ -444,11 +478,6 @@
         .msg-success-box.anim-reverse span:nth-child(1) { animation: reverseWidth 0.3s linear 0.9s forwards; } .msg-success-box.anim-reverse span:nth-child(2) { animation: reverseHeight 0.3s linear 0.6s forwards; } .msg-success-box.anim-reverse span:nth-child(3) { animation: reverseWidth 0.3s linear 0.3s forwards; } .msg-success-box.anim-reverse span:nth-child(4) { animation: reverseHeight 0.3s linear forwards; } .msg-success-box.anim-end { animation: fadeOutMsg 0.5s forwards; }
         .copy-feedback { position: absolute; background: #333; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; top: -30px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; } .copy-feedback.show { opacity: 1; }
 
-        /* AI Drafting Interface */
-        .vertical-btn { writing-mode: vertical-rl; transform: rotate(180deg); padding: 10px 6px !important; height: 100%; min-width: 42px; flex-shrink: 0; border-radius: 8px; letter-spacing: 1px; text-align: center; justify-content: center; font-weight: 700; white-space: nowrap; }
-        .ai-cycle-btn { background: rgba(220, 161, 29, 0.2); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; padding: 4px; font-size: 0.7rem; transition: 0.2s; } .ai-cycle-btn:hover { background: var(--accent); color: #fff; }
-        .ai-polish-btn { background: rgba(220, 161, 29, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; font-weight: 600; } .ai-polish-btn:hover { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
-
         /* --- 4.16: Artificial Intelligence Chat Module --- */
         #ai-widget-toggle { position: fixed; bottom: 30px; right: 90px; width: 50px; height: 50px; background-color: var(--primary); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 10002; transition: all 0.3s ease; border: 2px solid var(--accent); } #ai-widget-toggle:hover { transform: scale(1.1); background-color: var(--accent); }
         #ai-chat-window { position: fixed; bottom: 90px; right: 30px; width: 350px; height: 500px; max-height: 80vh; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10002; display: none; flex-direction: column; overflow: hidden; border: 1px solid #ddd; animation: slideUp 0.3s ease-out; }
@@ -461,7 +490,7 @@
 
         /* --- 4.17: Citation Generation Engine UI --- */
         .pub-controls { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; vertical-align: middle; position: relative; flex-wrap: wrap; }
-        .btn-cite { font-size: 0.75rem; color: #555; background-color: #f0f0f0; padding: 3px 10px; border-radius: 6px; border: 1px solid #ddd; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-transform: uppercase; transition: all 0.2s; } .btn-cite:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); } .btn-cite i { font-size: 0.7rem; }
+        .btn-cite { font-size: 0.75rem; color: #555; background-color: #f0f0f0; padding: 3px 10px; border-radius: 6px; border: 1px solid #ddd; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-transform: uppercase; transition: all 0.2s; } .btn-cite:hover { background: var(--primary); color: #fff; border-color: var(--primary); } .btn-cite i { font-size: 0.7rem; }
         .cite-dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 6px; min-width: 200px; z-index: 1000; display: none; flex-direction: column; margin-top: 5px; overflow: hidden; } .cite-dropdown-menu.show { display: flex; animation: fadeIn 0.2s ease-out; }
         .pub-item.z-active { z-index: 50 !important; position: relative; border-color: var(--accent); }
         .cite-option { padding: 10px 15px; font-size: 0.85rem; color: #333; background: none; border: none; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.2s; text-decoration: none; width: 100%; } .cite-option:hover { background-color: #f5f5f5; color: var(--accent); } .cite-option i { width: 16px; text-align: center; color: var(--primary); } .cite-option:hover i { color: var(--accent); } .cite-divider { height: 1px; background-color: #eee; margin: 0; }
@@ -524,9 +553,6 @@
     
     <!-- Print Footer (Hidden on Web) -->
     <div id="print-footer" style="display:none;">Downloaded from https://shabanahmad.github.io/</div>
-
-    <!-- Reading Progress Tracker -->
-    <div id="scroll-progress"></div>
 
     <!-- Floating Social & Contact Sidebar -->
     <div class="sticky-sidebar">
@@ -743,8 +769,10 @@
                 <!-- About Me -->
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
                     <h2 class="section-title" style="margin-top:0; margin-bottom:0;">About Me</h2>
-                    <!-- ✨ ELI5 Bio Button -->
-                    <button onclick="simplifyBio()" class="ai-magic-btn" id="simplify-btn" style="margin:0;"> ✨ Explain Like I'm 5</button>
+                    <!-- ✨ ELI5 Bio Button (Expandable) -->
+                    <button onclick="simplifyBio()" class="ai-magic-btn ai-expand-btn" id="simplify-btn" style="margin:0;">
+                        <span class="btn-icon">✨</span><span class="btn-text">Explain Like I'm 5</span>
+                    </button>
                 </div>
                 
                 <!-- ELI5 Output Box -->
@@ -758,7 +786,10 @@
                 <hr class="subtle-separator">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 10px;">
                     <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;">Scientific Frontiers</h3>
-                    <button onclick="summarizeFrontiers()" id="sf-btn" class="ai-magic-btn" style="margin:0;"><svg class="ai-logo-svg" viewBox="0 0 24 24"><path d="M11.64 5.23a.75.75 0 0 1 1.36 0l2.36 5.3 5.3 2.36a.75.75 0 0 1 0 1.36l-5.3 2.36-2.36 5.3a.75.75 0 0 1-1.36 0l-2.36-5.3-5.3-2.36a.75.75 0 0 1 0-1.36l5.3-2.36 2.36-5.3zm.68 1.94L10.3 11.7l-4.52 2.01 4.52 2.02 2.02 4.52 2.02-4.52 4.52-2.02-4.52-2.01-2.02-4.53z"/></svg> ✨ AI Summary</button>                  
+                    <!-- ✨ AI Summary Button (Expandable) -->
+                    <button onclick="summarizeFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn" style="margin:0;">
+                        <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
+                    </button>                  
                     <div id="sf-status" style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
                 </div>
                 <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%;">
@@ -786,19 +817,20 @@
                 <p style="font-style: italic; color: #666; margin-top: 0.5rem; margin-bottom: 2.5rem; text-align: left; font-size: 0.95rem;">Honorary Alumnus of <a href="https://niperahm.ac.in/" target="_blank" class="niper-hover">NIPER-Ahmedabad</a>.</p>
             </div>
 
+            <!-- RIGHT COLUMN: AI Matcher & Research Experiences -->
             <div class="about-right" style="min-width: 0;">
                 <div class="ai-matcher-box">
                     <div class="ai-matcher-title"><i class="fas fa-handshake"></i> Are You Hiring?</div>
-                    <div style="display: flex; gap: 10px; align-items: stretch; width: 100%;">
+                    <div style="display: flex; gap: 10px; align-items: flex-start; width: 100%;">
                         
-                        <button onclick="matchSkills()" id="match-btn" class="ai-magic-btn-vertical" title="Analyse Match">
-                           ✨Analyse Match<i style="transform: rotate(90deg);"></i>
+                        <button onclick="matchSkills()" id="match-btn" class="ai-magic-btn ai-expand-btn" title="Analyse Match" style="margin-top: 5px;">
+                           <span class="btn-icon">✨</span><span class="btn-text">Analyse Match</span>
                         </button>
 
                         <textarea id="job-desc-input" style="flex: 1; min-height: 90px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Roboto', sans-serif; font-size: 0.9rem; resize: vertical; outline: none; transition: border 0.3s; text-align: justify;" placeholder="Paste your job description here, and AI will instantly analyse how well my skills match your requirements..."></textarea>
                         
-                        <button onclick="generateInterviewQs()" id="interview-btn" class="ai-magic-btn-vertical" style="background-color: #0dadbc;" title="Generate Interview Questions">
-                           ✨Interview Qs<i style="transform: rotate(90deg);"></i>
+                        <button onclick="generateInterviewQs()" id="interview-btn" class="ai-magic-btn ai-expand-btn" style="background-color: #0dadbc; margin-top: 5px;" title="Generate Interview Questions">
+                           <span class="btn-icon">✨</span><span class="btn-text">Interview Qs</span>
                         </button>
                         
                     </div>
@@ -1254,7 +1286,7 @@
             <div class="contact-grid-layout">
                 <div class="contact-left">
                     <h2>Let's Collaborate</h2>
-                    <p class="contact-desc-anim">I am always open to discussing new research opportunities, collaborations, or speaking engagements.</p>
+                    <p class="contact-desc-anim">I am always open to discussing new research opportunities, collaborations, or speaking engagements.<span class="anim-arrow"></span></p>
                     
                     <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban@plen.ku.dk');}" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'shaban.ucph@gmail.com');}" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span></div>
                     <div class="contact-item"><i class="fas fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow" style="color: inherit; text-decoration: none;">MEB Section, PLEN, University of Copenhagen, Denmark</a></div>
