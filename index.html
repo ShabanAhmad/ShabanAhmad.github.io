@@ -1379,7 +1379,30 @@
         const handleChatKey = (e) => { if (e.key === 'Enter') sendUserMessage(); };
         const addMessage = (t, type) => { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = t.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); b.appendChild(d); b.scrollTop = b.scrollHeight; return d; };
         const removeMessage = (el) => { if (el && el.parentNode) el.parentNode.removeChild(el); };
-        const sendUserMessage = async () => { const inp = document.getElementById('chat-input'), msg = inp.value.trim(); if (!msg) return; addMessage(msg, 'user'); inp.value = ''; const loadMsg = addMessage('Thinking', 'loading'); try { const res = await fetchFromBackend(`Act as AI assistant for Dr. Shaban Ahmad's portfolio. Use HTML for format. Query: ${msg}`); removeMessage(loadMsg); addMessage(res, 'bot'); } catch (err) { removeMessage(loadMsg); addMessage("<strong>❌ Error:</strong> " + err.message, 'bot'); } };
+        
+        const sendUserMessage = async () => { 
+            const inp = document.getElementById('chat-input'), msg = inp.value.trim(); 
+            if (!msg) return; 
+            addMessage(msg, 'user'); 
+            inp.value = ''; 
+            const loadMsg = addMessage('Thinking', 'loading'); 
+            
+            // Injected Context so the AI doesn't hallucinate your background!
+            const systemContext = `You are the AI assistant for Dr. Shaban Ahmad. He is currently a Postdoctoral Researcher at the University of Copenhagen (UCPH) in Denmark, working on AI-driven bioinformatics to identify PFAS-degrading enzymes. He has a PhD in AI in Biology from Jamia Millia Islamia. He built DrLungker and DeepEntXAI for precision oncology. Answer the user's query enthusiastically but concisely based strictly on this info. CRITICAL: Provide raw HTML output ONLY. Do NOT wrap your response in markdown code blocks like \`\`\`html.`;
+            
+            try { 
+                const res = await fetchFromBackend(`${systemContext} User Query: ${msg}`); 
+                removeMessage(loadMsg); 
+                
+                // Strip out markdown formatting if the AI disobeys the prompt
+                const cleanHTML = res.replace(/```html/gi, '').replace(/```/g, '').trim();
+                addMessage(cleanHTML, 'bot'); 
+            } catch (err) { 
+                removeMessage(loadMsg); 
+                addMessage("<strong>❌ Error:</strong> " + err.message, 'bot'); 
+            } 
+        };
+        
         const sendQuickMessage = (t) => { document.getElementById('chat-input').value = t; sendUserMessage(); };
         
         let recognition, isListening = false;
@@ -1388,6 +1411,11 @@
             const mb = document.getElementById('mic-btn'), ci = document.getElementById('chat-input');
             if (!recognition) { recognition = new SR(); recognition.continuous = true; recognition.interimResults = true; let st, ft = ''; recognition.onstart = () => { isListening = true; mb.style.color = '#dc3545'; ci.placeholder = "Listening..."; ci.value = ""; ft = ''; }; recognition.onresult = (e) => { clearTimeout(st); let it = ''; for (let i = e.resultIndex; i < e.results.length; ++i) e.results[i].isFinal ? ft += e.results[i][0].transcript : it += e.results[i][0].transcript; ci.value = ft + it; st = setTimeout(() => { if (isListening && ci.value.trim()) recognition.stop(); }, 2000); }; recognition.onend = () => { isListening = false; mb.style.color = '#555'; ci.placeholder = "Type or say..."; if(ci.value.trim() && ci.value !== "Listening...") sendUserMessage(); }; recognition.onerror = () => { isListening = false; mb.style.color = '#555'; ci.placeholder = "Type or say..."; }; }
             isListening ? recognition.stop() : recognition.start();
+        };
+
+        // Fix: Make Google Translate Init a globally accessible window function
+        window.googleTranslateElementInit = function() { 
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element'); 
         };
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
