@@ -391,7 +391,10 @@
             .nav-item-dropdown { display: flex; flex-wrap: wrap; width: 100%; border-bottom: 1px solid #eee; align-items: center; } .nav-item-dropdown .nav-link { border-bottom: none; flex-grow: 1; width: auto; display: flex; align-items: center; order: 2; padding-left: 20px; }
             .mobile-dropdown-toggle { display: flex; align-items: center; justify-content: center; width: 50px; height: 45px; font-size: 1.2rem; color: var(--primary); cursor: pointer; border-left: none; border-right: 1px solid #f0f0f0; transition: background 0.2s, color 0.2s; order: 1; background-color: #fafafa; } .mobile-dropdown-toggle:hover, .mobile-dropdown-toggle.active { background-color: #f0f4f8; color: var(--accent); }
             .desktop-arrow { display: none; }
-            .nav-dropdown-content { position: static; box-shadow: none; border: none; border-left: 3px solid #eee; background: #f9f9f9; width: 100%; padding-left: 25px; display: none; order: 3; } .nav-dropdown-content.show-mobile { display: block; } .dropdown-item-wrapper:hover .sub-dropdown-content { position: static; display: none; }
+            /* Updated Mobile Dropdown Content for smoother transitions */
+            .nav-dropdown-content { position: static; box-shadow: none; border: none; border-left: 3px solid #eee; background: #f9f9f9; width: 100%; padding-left: 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease; display: block; order: 3; opacity: 0; } 
+            .nav-dropdown-content.show-mobile { max-height: 600px; padding-top: 5px; padding-bottom: 5px; opacity: 1; }
+            .dropdown-item-wrapper:hover .sub-dropdown-content { position: static; display: none; }
             .dropdown-item-wrapper > a { display: flex; align-items: center; padding: 0 !important; height: 40px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s, color 0.2s; } .dropdown-item-wrapper > a.active-parent { color: var(--accent); background-color: #f0f4f8; } .dropdown-item-wrapper > a > span { order: 2; padding-left: 10px; flex: 1; font-size: 0.9rem; font-weight: 500; }
             .nested-arrow { order: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-right: none; background-color: transparent; color: var(--primary); font-size: 0.8rem; margin: 0; transition: transform 0.3s ease; } .nested-arrow.rotated { transform: rotate(-180deg); color: var(--accent); }
             .sub-dropdown-content.show-nested { display: block !important; position: static; box-shadow: none; border: none; padding-left: 15px; background-color: #f9f9f9; border-left: 3px solid #e0e0e0; margin-top: 5px; margin-bottom: 5px; }
@@ -426,6 +429,10 @@
         .ai-modal-header { padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
         .ai-modal-body { padding: 25px 20px; font-size: 1.05rem; color: #333; line-height: 1.6; max-height: 60vh; overflow-y: auto; }
         .ai-close-btn { cursor: pointer; color: #888; transition: 0.3s; font-size: 1.3rem; } .ai-close-btn:hover { color: #dc3545; }
+        
+        /* New Editable AI Content Block */
+        .ai-generated-content { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--accent); font-family: inherit; font-size: 0.95rem; line-height: 1.5; outline: none; min-height: 120px; transition: box-shadow 0.3s; margin-top: 10px; margin-bottom: 10px; white-space: pre-wrap; }
+        .ai-generated-content:focus { box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
     </style>
 </head>
 
@@ -1000,6 +1007,7 @@
                 </div>
             </div>
         </div>
+
 
         <button class="accordion-btn" id="pubs-attend"><span><i class="fas fa-users acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Conferences Attended</span><i class="fas fa-chevron-down"></i></button>
         <div class="panel">
