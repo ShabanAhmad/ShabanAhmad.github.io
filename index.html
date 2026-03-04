@@ -100,7 +100,8 @@
         .mobile-dropdown-toggle, .mobile-controls-container { display: none; }
 
         /* --- 4.6: Desktop Utilities (Search & Localisation) --- */
-        .header-controls { display: flex; align-items: center; gap: 15px; margin-left: 15px; border-left: 1px solid #ddd; padding-left: 15px; height: 30px; }
+        .header-controls { display: flex; align-items: center; gap: 18px; margin-left: 15px; border-left: 1px solid #ddd; padding-left: 15px; height: 30px; }
+        .header-sep { color: #dc3545; opacity: 0.5; font-size: 1.1rem; font-weight: 300; user-select: none; }
         .control-icon { cursor: pointer; color: var(--primary); transition: 0.3s; font-size: 1rem; } .control-icon:hover { color: var(--accent); }
         .search-container { position: relative; display: flex; align-items: center; }
         .search-dropdown { position: absolute; right: 15px; top: 100%; width: max-content; min-width: 320px; max-width: 90vw; background: #fff; border: 1px solid #e2e8f0; border-top: none; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; padding: 12px 15px; display: none; z-index: 3000; animation: fadeSlideDown 0.2s ease-out; }
@@ -126,7 +127,7 @@
 
         /* --- 4.8: Hero Landing Section --- */
         .hero-section-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); width: 100%; display: flex; justify-content: center; }
-        .hero { color: var(--white); padding: 2rem 1rem; position: relative; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
+        .hero { color: #ffffff; padding: 2rem 1rem; position: relative; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
         .hero-main { text-align: center; flex: 1; max-width: 600px; }
         @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(220, 161, 29, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0); } }
         .hero-img { width: 190px; height: 190px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse-shadow 2s infinite; transition: transform 0.3s ease, box-shadow 0.3s ease; } .hero-img:hover { transform: scale(1.05); }
@@ -151,18 +152,24 @@
 
         /* --- Apple-Style 4-Bento Box Grid --- */
         .bento-grid { display: grid; grid-template-columns: 1.35fr 1fr; grid-auto-rows: minmax(210px, auto); gap: 1.5rem; margin-top: 1.5rem; }
-        .bento-card { border-radius: 20px; padding: 2.2rem; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; text-align: left; }
+        .bento-card { border-radius: 24px; padding: 2.2rem; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; text-align: left; }
         .bento-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
         
+        /* Premium 3D Inner Light Overlay */
+        .bento-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 35%); pointer-events: none; z-index: 1; border-radius: 24px; }
+
         /* Background Watermark Icon Restored */
         .bento-card::before { content: ''; position: absolute; right: -20px; bottom: -20px; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 8.5rem; z-index: 0; transition: all 0.5s ease; transform: rotate(-15deg); opacity: 0.08; pointer-events: none; }
         .bento-card:hover::before { transform: rotate(0deg) scale(1.1); opacity: 0.15; }
         
         /* Ensure Text content floats above the watermark */
-        .bento-icon, .bento-title, .bento-desc, .bento-tags { position: relative; z-index: 2; }
+        .bento-icon-wrapper, .bento-title, .bento-desc, .bento-tags { position: relative; z-index: 2; }
         
-        .bento-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: inline-block; transition: transform 0.3s ease; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
-        .bento-card:hover .bento-icon { transform: scale(1.15) rotate(5deg); filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2)); }
+        /* Glass App-Style Icon Badges */
+        .bento-icon-wrapper { width: 55px; height: 55px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); backdrop-filter: blur(4px); }
+        .bento-card:hover .bento-icon-wrapper { transform: scale(1.15) rotate(5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .bento-icon { font-size: 1.8rem; margin: 0; display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        
         .bento-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; line-height: 1.2; }
         .bento-desc { font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem; }
         .bento-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
@@ -171,6 +178,7 @@
         /* Dark Horizontal 1: AI Precision Oncology */
         .bento-h1 { grid-column: 1 / 2; grid-row: 1 / 2; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2); }
         .bento-h1::before { content: '\f544'; color: #fff; } /* Robot icon */
+        .bento-h1 .bento-icon-wrapper { background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); }
         .bento-h1 .bento-icon { color: #38bdf8; }
         .bento-h1 .bento-title { color: #fff; font-size: 1.5rem; }
         .bento-h1 .bento-desc { color: #cbd5e1; }
@@ -180,6 +188,7 @@
         /* Dark Horizontal 2: Environmental Biotech */
         .bento-h2 { grid-column: 1 / 2; grid-row: 2 / 3; background: linear-gradient(135deg, #064e3b 0%, #0f766e 100%); color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(6, 78, 59, 0.2); }
         .bento-h2::before { content: '\f06c'; color: #fff; } /* Leaf icon */
+        .bento-h2 .bento-icon-wrapper { background: rgba(52, 211, 153, 0.2); border: 1px solid rgba(52, 211, 153, 0.4); }
         .bento-h2 .bento-icon { color: #34d399; }
         .bento-h2 .bento-title { color: #fff; font-size: 1.5rem; }
         .bento-h2 .bento-desc { color: #a7f3d0; }
@@ -189,6 +198,7 @@
         /* Dark Vertical 1: Molecular Modelling */
         .bento-v1 { grid-column: 2 / 3; grid-row: 1 / 2; background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%); color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(76, 29, 149, 0.2); }
         .bento-v1::before { content: '\f5d2'; color: #fff; } /* Atom icon */
+        .bento-v1 .bento-icon-wrapper { background: rgba(192, 132, 252, 0.2); border: 1px solid rgba(192, 132, 252, 0.4); }
         .bento-v1 .bento-icon { color: #c084fc; }
         .bento-v1 .bento-title { color: #fff; }
         .bento-v1 .bento-desc { color: #e9d5ff; }
@@ -198,6 +208,7 @@
         /* Dark Vertical 2: Computational Genomics */
         .bento-v2 { grid-column: 2 / 3; grid-row: 2 / 3; background: linear-gradient(135deg, #4c0519 0%, #881337 100%); color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(136, 19, 55, 0.2); }
         .bento-v2::before { content: '\f471'; color: #fff; } /* DNA icon */
+        .bento-v2 .bento-icon-wrapper { background: rgba(251, 113, 133, 0.2); border: 1px solid rgba(251, 113, 133, 0.4); }
         .bento-v2 .bento-icon { color: #fb7185; }
         .bento-v2 .bento-title { color: #fff; }
         .bento-v2 .bento-desc { color: #fecdd3; }
@@ -347,13 +358,26 @@
         .contact-footer-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; padding: 2rem 0; margin-top: 3rem; } .contact-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 0; }
         .contact-left h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: #fff; } .contact-left p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.6; }
         .contact-item { display: flex; align-items: center; margin-bottom: 0.5rem; color: #cbd5e1; } .contact-item i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; width: 20px; } .contact-item a:hover { color: #fff; }
-        .contact-desc-anim { position: relative; display: inline-block; padding-left: 15px; padding-bottom: 8px; margin-bottom: 1.5rem; } .contact-desc-anim::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background-color: var(--accent); transition: height 0.3s linear; } .contact-desc-anim::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent); transition: width 0.4s linear 0.3s; } .contact-desc-anim:hover::before { height: 100%; } .contact-desc-anim:hover::after { width: 100%; } .contact-desc-anim:hover .anim-arrow { left: calc(100% - 2px); opacity: 1; }
-        .anim-arrow { position: absolute; bottom: -4px; left: 0; width: 10px; height: 10px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transform: rotate(45deg); opacity: 0; pointer-events: none; transition: left 0.4s linear 0.3s, opacity 0.1s linear 0.3s; }
+        
+        /* 4. Full Length Animated Arrow for Contact Section - THINNER & LESS PADDING & ALIGN START */
+        .contact-left { position: relative; padding-left: 15px; padding-bottom: 12px; align-self: start; }
+        .contact-arrow-v { position: absolute; top: 0; left: 0; width: 1.5px; height: 0; background-color: var(--accent); transition: height 0.4s ease-out 0.6s; }
+        .contact-arrow-h { position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background-color: var(--accent); transition: width 0.6s ease-in; }
+        .contact-arrow-head { position: absolute; bottom: -3.5px; left: 0; width: 8px; height: 8px; border-top: 1.5px solid var(--accent); border-right: 1.5px solid var(--accent); transform: rotate(45deg); opacity: 0; transition: left 0.6s ease-in, opacity 0.1s 0.5s; pointer-events: none; }
+        
+        .contact-left:hover .contact-arrow-v { height: 100%; transition: height 0.4s ease-in; }
+        .contact-left:hover .contact-arrow-h { width: 100%; transition: width 0.6s ease-out 0.4s; }
+        .contact-left:hover .contact-arrow-head { left: calc(100% - 2px); opacity: 1; transition: left 0.6s ease-out 0.4s, opacity 0.1s 0.4s; }
+
         .link-anim-slow { position: relative; text-decoration: none; color: inherit; display: inline-block; transition: color 0.3s ease; } .link-anim-slow:hover { color: var(--accent) !important; } .link-anim-slow::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--accent); transition: width 0.6s ease; } .link-anim-slow:hover::after { width: 100%; }
         .footer-copyright { display: inline-block; position: relative; color: #94a3b8; font-size: 0.9rem; margin-top: 5px; cursor: pointer; transition: color 0.3s; } .footer-copyright:hover { color: var(--accent); } .footer-copyright::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; } .footer-copyright:hover::after { width: 100%; }
         
-        .cf-input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } .cf-input, .cf-textarea { width: 100%; background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px 16px; color: #fff; font-family: 'Roboto', sans-serif; outline: none; transition: border-color 0.3s; }
-        .cf-input:focus, .cf-textarea:focus { border-color: var(--accent); } .cf-textarea { resize: vertical; min-height: 150px; margin-bottom: 1rem; } .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(255, 255, 255, 0.8) !important; font-weight: 300; }
+        .cf-input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } 
+        .cf-input, .cf-textarea { width: 100%; background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: 'Roboto', sans-serif; outline: none; transition: border-color 0.3s; }
+        .cf-input { padding: 10px 14px; height: 42px; }
+        .cf-input:focus, .cf-textarea:focus { border-color: var(--accent); } 
+        .cf-textarea { padding: 12px 14px; resize: vertical; min-height: 120px; margin-bottom: 1rem; } 
+        .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(255, 255, 255, 0.8) !important; font-weight: 300; }
         .cf-btn { background-color: var(--accent); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s; width: auto; } .cf-btn:hover { background-color: #b8860b; } .form-actions { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         
         .footer-socials { display: inline-flex; gap: 15px; justify-content: flex-start; margin-bottom: 5px; margin-top: 5px; padding: 8px 20px; border-radius: 50px; border: 1px solid transparent; transition: all 0.4s ease; margin-left: -15px; } .footer-socials:has(.f-soc-link:hover) { border-color: rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.1); } .f-soc-link { color: #94a3b8; font-size: 1.3rem; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); } .f-soc-link:hover { color: var(--accent); transform: translateY(-6px) scale(1.25); text-shadow: 0 10px 20px rgba(0,0,0,0.5); }
@@ -398,7 +422,7 @@
             .dropdown-item-wrapper > a { display: flex; align-items: center; padding: 0 !important; height: 40px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s, color 0.2s; } .dropdown-item-wrapper > a.active-parent { color: var(--accent); background-color: #f0f4f8; } .dropdown-item-wrapper > a > span { order: 2; padding-left: 10px; flex: 1; font-size: 0.9rem; font-weight: 500; }
             .nested-arrow { order: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-right: none; background-color: transparent; color: var(--primary); font-size: 0.8rem; margin: 0; transition: transform 0.3s ease; } .nested-arrow.rotated { transform: rotate(-180deg); color: var(--accent); }
             .sub-dropdown-content.show-nested { display: block !important; position: static; box-shadow: none; border: none; padding-left: 15px; background-color: #f9f9f9; border-left: 3px solid #e0e0e0; margin-top: 5px; margin-bottom: 5px; }
-            .mobile-controls-container { display: flex; align-items: center; gap: 25px; margin-left: 0; z-index: 2002; flex-shrink: 0; } .nav-toggle { display: block; position: relative; margin-left: 20px; font-size: 1.4rem; cursor: pointer; color: var(--primary); transition: transform 0.3s ease; } .nav-toggle.open { transform: rotate(90deg); }            
+            .mobile-controls-container { display: flex; align-items: center; gap: 12px; margin-left: 0; z-index: 2002; flex-shrink: 0; } .nav-toggle { display: block; position: relative; margin-left: 20px; font-size: 1.4rem; cursor: pointer; color: var(--primary); transition: transform 0.3s ease; } .nav-toggle.open { transform: rotate(90deg); }            
             .sticky-sidebar { display: flex; left: auto; right: 0; top: 50%; border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee; padding: 6px 3px; box-shadow: -2px 0 8px rgba(0,0,0,0.1); } .sticky-sidebar .h-social { font-size: 1.05rem; margin: 2px 0; }
             .header-controls { display: none; } .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; } .hero-stats { width: 100%; max-width: 400px; animation: none; }
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; } .contact-grid-layout { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem;} .cf-input-group { grid-template-columns: 1fr; } .footer-bottom { align-items: center; } .footer-content { flex-direction: column; gap: 15px; } .form-footer { flex-direction: column; align-items: stretch; } .btn-send { width: 100%; justify-content: center; } .msg-success-box { max-width: 100%; }
@@ -433,6 +457,91 @@
         /* New Editable AI Content Block */
         .ai-generated-content { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--accent); font-family: inherit; font-size: 0.95rem; line-height: 1.5; outline: none; min-height: 120px; transition: box-shadow 0.3s; margin-top: 10px; margin-bottom: 10px; white-space: pre-wrap; }
         .ai-generated-content:focus { box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+        
+        /* --- 2. Global Dark Mode Framework --- */
+        body.dark-mode { --text: #e2e8f0; --light-bg: #0f172a; --white: #1e293b; --sub-heading: #38bdf8; }
+        body.dark-mode, body.dark-mode .panel, body.dark-mode .nav-dropdown-content, body.dark-mode .search-dropdown, body.dark-mode .custom-lang-dropdown, body.dark-mode .sticky-sidebar, body.dark-mode .ai-modal-box, body.dark-mode #ai-chat-window, body.dark-mode .chat-footer { background-color: var(--light-bg); color: var(--text); border-color: #334155; }
+        body.dark-mode .tech-card, body.dark-mode .edu-card, body.dark-mode .exp-box, body.dark-mode .referee-card, body.dark-mode .award-card, body.dark-mode .patent-box, body.dark-mode .accordion-btn, body.dark-mode .interest-card, body.dark-mode .ai-matcher-box { background-color: var(--white); color: var(--text); border-color: #334155; }
+        
+        /* Fixed Backgrounds for Hero & Footer */
+        body.dark-mode .hero-section-wrapper, body.dark-mode .contact-footer-section { background: linear-gradient(135deg, #0f172a 0%, #020617 100%); border-bottom: 1px solid #1e293b; }
+        body.dark-mode .hero-stats { background: rgba(30, 41, 59, 0.7); border-color: rgba(255,255,255,0.1); }
+        
+        /* Enhanced Typography Contrast */
+        body.dark-mode .section-title { color: #f8fafc; }
+        body.dark-mode .profile-text { color: #cbd5e1; }
+        body.dark-mode h4, body.dark-mode .exp-role, body.dark-mode .referee-name, body.dark-mode .award-top, body.dark-mode .ic-title, body.dark-mode .patent-box h4 { color: #f8fafc; }
+        body.dark-mode .exp-desc, body.dark-mode .referee-title-line, body.dark-mode .referee-role, body.dark-mode .award-bottom, body.dark-mode .ic-desc, body.dark-mode .year-span, body.dark-mode .referee-contact, body.dark-mode .event-meta, body.dark-mode .tech-ul li { color: #94a3b8; }
+        body.dark-mode .inst-link, body.dark-mode .ref-inst-row, body.dark-mode .ref-inst-row a { color: #38bdf8 !important; }
+        body.dark-mode .accordion-btn { color: #f8fafc; }
+        body.dark-mode .pub-item strong { color: #e2e8f0; }
+        body.dark-mode .contact-left h2 { color: #f8fafc; }
+        
+        /* Fix Header, Nav, and Sidebar legibility in Dark Mode */
+        body.dark-mode .nav-list, body.dark-mode .mobile-dropdown-toggle { background-color: var(--white); border-color: #334155; }
+        body.dark-mode .nav-link, body.dark-mode .control-icon, body.dark-mode .lang-wrapper, body.dark-mode .header-name, body.dark-mode .h-social, body.dark-mode .desktop-arrow, body.dark-mode .mobile-dropdown-toggle, body.dark-mode .nav-toggle { color: #e2e8f0 !important; }
+        body.dark-mode .nav-link:hover, body.dark-mode .nav-link.active-section, body.dark-mode .control-icon:hover, body.dark-mode .lang-wrapper:hover, body.dark-mode .header-name:hover, body.dark-mode .h-social:hover, body.dark-mode .mobile-dropdown-toggle:hover { color: var(--accent) !important; }
+        body.dark-mode .header-sep { opacity: 0.8; }
+        body.dark-mode .mini-search-btn:hover { color: #fff; }
+        
+        /* Badge & Component Polish */
+        body.dark-mode .award-card::after, body.dark-mode .referee-card::after, body.dark-mode .edu-card::after, body.dark-mode .exp-box::after { background: #0f172a; color: #94a3b8; border-color: #334155; }
+        body.dark-mode .pr-badge-item { background: #0f172a; border-color: #334155; color: #cbd5e1; }
+        body.dark-mode .ic-icon-box { background: #0f172a; }
+        
+        /* RESTORE DARK MODE HOVERS FOR CARDS */
+        body.dark-mode .edu-phd { border-top-color: var(--edu-phd); } body.dark-mode .edu-msc { border-top-color: var(--edu-msc); } body.dark-mode .edu-bsc { border-top-color: var(--edu-bsc); }
+        body.dark-mode .exp-full { border-top-color: var(--exp-full); } body.dark-mode .exp-part { border-top-color: var(--exp-part); } body.dark-mode .exp-trainee { border-top-color: var(--exp-trainee); }
+        body.dark-mode .ref-1 { border-top-color: #38bdf8; } body.dark-mode .ref-2 { border-top-color: var(--ref-2); } body.dark-mode .ref-3 { border-top-color: var(--ref-3); } body.dark-mode .ref-4 { border-top-color: var(--ref-4); } body.dark-mode .ref-5 { border-top-color: var(--ref-5); } body.dark-mode .ref-6 { border-top-color: var(--ref-6); }
+        body.dark-mode .tc-blue { border-top-color: var(--primary); } body.dark-mode .tc-green { border-top-color: #20c997; } body.dark-mode .tc-purple { border-top-color: #6f42c1; } body.dark-mode .tc-orange { border-top-color: #fd7e14; }
+
+        body.dark-mode .exp-full:hover { border-color: var(--exp-full); box-shadow: 0 10px 25px rgba(40,167,69,0.25); } body.dark-mode .exp-part:hover { border-color: var(--exp-part); box-shadow: 0 10px 25px rgba(111,66,193,0.25); } body.dark-mode .exp-trainee:hover { border-color: var(--exp-trainee); box-shadow: 0 10px 25px rgba(220,53,69,0.25); }
+        body.dark-mode .edu-phd:hover { border-color: var(--edu-phd); box-shadow: 0 10px 25px rgba(40,167,69,0.25); } body.dark-mode .edu-msc:hover { border-color: var(--edu-msc); box-shadow: 0 10px 25px rgba(220,53,69,0.25); } body.dark-mode .edu-bsc:hover { border-color: var(--edu-bsc); box-shadow: 0 10px 25px rgba(32,176,201,0.25); }
+        body.dark-mode .ref-1:hover { border-color: #38bdf8; box-shadow: 0 10px 25px rgba(56,189,248,0.25); } body.dark-mode .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220,53,69,0.25); } body.dark-mode .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111,66,193,0.25); } body.dark-mode .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13,173,188,0.25); } body.dark-mode .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40,167,69,0.25); } body.dark-mode .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159,15,133,0.25); }
+        body.dark-mode .tc-blue:hover { border-color: #38bdf8; box-shadow: 0 10px 20px rgba(56,189,248,0.2); } body.dark-mode .tc-green:hover { border-color: #20c997; box-shadow: 0 10px 20px rgba(32,201,151,0.2); } body.dark-mode .tc-purple:hover { border-color: #6f42c1; box-shadow: 0 10px 20px rgba(111,66,193,0.2); } body.dark-mode .tc-orange:hover { border-color: #fd7e14; box-shadow: 0 10px 20px rgba(253,126,20,0.2); }
+
+        body.dark-mode .exp-full:hover::after, body.dark-mode .exp-part:hover::after, body.dark-mode .exp-trainee:hover::after, body.dark-mode .edu-phd:hover::after, body.dark-mode .edu-msc:hover::after, body.dark-mode .edu-bsc:hover::after, body.dark-mode .ref-2:hover::after, body.dark-mode .ref-3:hover::after, body.dark-mode .ref-4:hover::after, body.dark-mode .ref-5:hover::after, body.dark-mode .ref-6:hover::after { color: #fff; }
+        body.dark-mode .exp-full:hover::after, body.dark-mode .edu-phd:hover::after, body.dark-mode .ref-5:hover::after { background: var(--exp-full); border-color: var(--exp-full); }
+        body.dark-mode .exp-part:hover::after, body.dark-mode .ref-3:hover::after { background: var(--exp-part); border-color: var(--exp-part); }
+        body.dark-mode .exp-trainee:hover::after, body.dark-mode .edu-msc:hover::after, body.dark-mode .ref-2:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
+        body.dark-mode .edu-bsc:hover::after { background: var(--edu-bsc); border-color: var(--edu-bsc); }
+        body.dark-mode .ref-1:hover::after { background: #38bdf8; border-color: #38bdf8; color: #0f172a; }
+        body.dark-mode .ref-4:hover::after { background: var(--ref-4); border-color: var(--ref-4); }
+        body.dark-mode .ref-6:hover::after { background: var(--ref-6); border-color: var(--ref-6); }
+
+        /* Fix Award Cards Dark Mode Hover */
+        body.dark-mode .award-card:nth-child(10n+1):hover { background: linear-gradient(135deg, #e63946 0%, #b02a2a 100%); border-color: #e63946; }
+        body.dark-mode .award-card:nth-child(10n+2):hover { background: linear-gradient(135deg, #2a9d8f 0%, #1e7166 100%); border-color: #2a9d8f; }
+        body.dark-mode .award-card:nth-child(10n+3):hover { background: linear-gradient(135deg, #457b9d 0%, #2d556d 100%); border-color: #457b9d; }
+        body.dark-mode .award-card:nth-child(10n+4):hover { background: linear-gradient(135deg, #f4a261 0%, #c4824e 100%); border-color: #f4a261; }
+        body.dark-mode .award-card:nth-child(10n+5):hover { background: linear-gradient(135deg, #9d4edd 0%, #7637a8 100%); border-color: #9d4edd; }
+        body.dark-mode .award-card:nth-child(10n+6):hover { background: linear-gradient(135deg, #e83e8c 0%, #ad2462 100%); border-color: #e83e8c; }
+        body.dark-mode .award-card:nth-child(10n+7):hover { background: linear-gradient(135deg, #4caf50 0%, #1e7e34 100%); border-color: #4caf50; }
+        body.dark-mode .award-card:nth-child(10n+8):hover { background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%); border-color: #ffc107; }
+        body.dark-mode .award-card:nth-child(10n+9):hover { background: linear-gradient(135deg, #6610f2 0%, #4709aa 100%); border-color: #6610f2; }
+        body.dark-mode .award-card:nth-child(10n+10):hover { background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%); border-color: #17a2b8; }
+        
+        body.dark-mode .award-card:nth-child(10n+1):hover::after { background: #b02a2a; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+2):hover::after { background: #1e7166; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+3):hover::after { background: #2d556d; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+4):hover::after { background: #c4824e; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+5):hover::after { background: #7637a8; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+6):hover::after { background: #ad2462; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+7):hover::after { background: #1e7e34; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+8):hover::after { background: #d39e00; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+9):hover::after { background: #4709aa; border-color: #fff; color: #fff; }
+        body.dark-mode .award-card:nth-child(10n+10):hover::after { background: #117a8b; border-color: #fff; color: #fff; }
+
+        /* Existing Dark Mode Overrides */
+        body.dark-mode header { background: rgba(15, 23, 42, 0.95); }
+        body.dark-mode .accordion-btn.active { background: var(--primary); color: #fff; }
+        body.dark-mode .pub-item:hover, body.dark-mode .nav-dropdown-content a:hover, body.dark-mode .lang-option:hover { background-color: #334155; }
+        body.dark-mode .ai-generated-content, body.dark-mode .chat-body, body.dark-mode .ai-matcher-box textarea, body.dark-mode .search-input-wrapper, body.dark-mode .ai-modal-body input, body.dark-mode .ai-modal-body textarea { background-color: #020617; color: var(--text); border-color: #334155; }
+        body.dark-mode .chat-header { border-bottom-color: var(--primary-dark); }
+        body.dark-mode .cite-dropdown-menu { background: var(--white); border-color: #334155; }
+        body.dark-mode .cite-option { color: var(--text); } body.dark-mode .cite-option:hover { background-color: #334155; }
+        body.dark-mode .subtle-separator { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), var(--accent), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent); }
+        body.dark-mode .header-search-input { color: #e2e8f0; } body.dark-mode .ai-modal-header { background: #1e293b; border-bottom-color: #334155; } body.dark-mode .ai-modal-body { color: #cbd5e1; } body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
     </style>
 </head>
 
@@ -479,7 +588,10 @@
             <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="header-name">Dr Shaban <i class="fas fa-home"></i></a>
 
             <div class="mobile-controls-container">
+                <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
+                <span class="header-sep">|</span>
                 <i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" aria-label="Search" tabindex="0" role="button"></i>            
+                <span class="header-sep">|</span>
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                     <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
@@ -525,8 +637,7 @@
                         <a href="#professional" onclick="triggerAccordion('prof-ment')">Mentorship</a>
                     </div>
                 </li>
-                <li class="nav-item nav-item-dropdown">
-                    <a href="#technical" class="nav-link">Expertise <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                <li class="nav-item"><a href="#technical" class="nav-link">Expertise <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
                     <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'exp-dd')"><i class="fas fa-chevron-down"></i></div>
                     <div class="nav-dropdown-content" id="exp-dd">
                         <a href="#technical" onclick="triggerAccordion('tech-ml')">Machine Learning</a>
@@ -537,8 +648,11 @@
                 </li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
                 <li class="header-controls">
+                    <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
+                    <span class="header-sep">|</span>
                     <div class="search-container"><i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" title="Search" aria-label="Search" tabindex="0" role="button"></i></div>
-                    <div class="lang-wrapper notranslate" style="margin-left:15px;" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
+                    <span class="header-sep">|</span>
+                    <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                          <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
                             <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)"><img src="https://flagcdn.com/w40/gb.png" class="flag-img" loading="lazy" alt="UK"> English</div>
@@ -703,7 +817,7 @@
             
             <!-- Bento Box 1: Horizontal Wide Top -->
             <div class="bento-card bento-h1">
-                <i class="fas fa-brain bento-icon"></i>
+                <div class="bento-icon-wrapper"><i class="fas fa-brain bento-icon"></i></div>
                 <div class="bento-title">AI Precision Oncology</div>
                 <div class="bento-desc">Developed predictive models like <strong>DrLungker</strong> and <strong>DeepEntXAI</strong> using Deep Ensemble Learning and Hybrid CNN-LSTMs. These frameworks accurately classify drug activity and validate multitarget potency against resilient lung cancer variants.</div>
                 <div class="bento-tags">
@@ -717,7 +831,7 @@
 
             <!-- Bento Box 2: Horizontal Wide Bottom -->
             <div class="bento-card bento-h2">
-                <i class="fas fa-globe-europe bento-icon"></i>
+                <div class="bento-icon-wrapper"><i class="fas fa-globe-europe bento-icon"></i></div>
                 <div class="bento-title">Environmental Biotech & PFAS</div>
                 <div class="bento-desc">Pioneering AI-guided enzyme mining and homology search strategies at UCPH. My current focus is identifying and optimizing novel biocatalysts capable of degrading "forever chemicals" (PFAS), promoting sustainable bioremediation.</div>
                 <div class="bento-tags">
@@ -731,7 +845,7 @@
 
             <!-- Bento Box 3: Vertical Stack Top -->
             <div class="bento-card bento-v1">
-                <i class="fas fa-atom bento-icon"></i>
+                <div class="bento-icon-wrapper"><i class="fas fa-atom bento-icon"></i></div>
                 <div class="bento-title">Advanced Molecular Modelling</div>
                 <div class="bento-desc">Conducted extensive structural analyses through multitarget docking, all-atom MD simulations, DFT, and MM/PBSA free energy calculations to discover polypharmacological candidates for pathogens and tumours.</div>
                 <div class="bento-tags">
@@ -744,7 +858,7 @@
 
             <!-- Bento Box 4: Vertical Stack Bottom -->
             <div class="bento-card bento-v2">
-                <i class="fas fa-dna bento-icon"></i>
+                <div class="bento-icon-wrapper"><i class="fas fa-dna bento-icon"></i></div>
                 <div class="bento-title">Computational Genomics</div>
                 <div class="bento-desc">Unravelling complex genomic data using WGS/WES processing, variant pathogenicity prediction, and phylogenomic evolutionary mapping to combat diverse pathogens and diseases.</div>
                 <div class="bento-tags">
@@ -1192,26 +1306,32 @@
         <div class="container">
             <div class="contact-grid-layout">
                 <div class="contact-left">
+                    <div class="contact-arrow-v"></div><div class="contact-arrow-h"></div><div class="contact-arrow-head"></div>
                     <h2>Let's Collaborate</h2>
-                    <p class="contact-desc-anim">I am always open to discussing new research opportunities, collaborations, or speaking engagements.<span class="anim-arrow"></span></p>
+                    <p style="margin-bottom: 1.5rem;">I am always open to discussing new research opportunities, collaborations, or speaking engagements.</p>
                     <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span></div>
                     <div class="contact-item"><i class="fas fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow">MEB Section, PLEN, University of Copenhagen, Denmark</a></div>
-                    <div class="footer-socials">
-                        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="f-soc-link" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-                        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="f-soc-link" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-                        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link" title="ORCID"><i class="ai ai-orcid"></i></a>
-                        <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="f-soc-link" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-                        <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="f-soc-link" title="Scopus"><i class="ai ai-scopus"></i></a>
-                        <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    
+                    <!-- Unified Footer Line: Social Icons & Copyright (Forced Single Line) -->
+                    <div style="display: flex; align-items: center; flex-wrap: nowrap; white-space: nowrap; margin-top: 15px; width: 100%;">
+                        <div class="footer-socials" style="margin: 0; padding: 5px 10px; gap: 12px; display: inline-flex; align-items: center;">
+                            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="f-soc-link" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="f-soc-link" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
+                            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link" title="ORCID"><i class="ai ai-orcid"></i></a>
+                            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="f-soc-link" title="Web of Science"><i class="ai ai-clarivate"></i></a>
+                            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="f-soc-link" title="Scopus"><i class="ai ai-scopus"></i></a>
+                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <div class="footer-copyright" style="margin: 0 0 0 10px;">&copy; 2026 Dr Shaban | All rights reserved.</div>
                     </div>
-                    <div class="footer-copyright">&copy; 2026 Dr Shaban | All rights reserved.</div>
                 </div>
 
                 <div class="contact-right">
                     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
                     <form action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse" method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
                         <div class="cf-input-group"><input type="text" name="entry.323008242" class="cf-input" placeholder="Name" required> <input type="email" name="entry.1398368038" class="cf-input" placeholder="Email" required></div>
+                        <input type="text" id="contact-subject" name="entry.1980791409" class="cf-input" placeholder="Subject" style="margin-bottom: 1rem;" required>
                         <textarea name="entry.1216360893" id="contact-message" class="cf-textarea" placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ to instantly get a professional draft..." required></textarea>
                         <div class="form-actions">
                             <button type="submit" class="cf-btn" id="submit-btn">Send Message</button>
@@ -1238,8 +1358,20 @@
     <script>
         /* --- 17.1: Global Initialisation & Utilities --- */
         var submitted = false; 
-        document.addEventListener('DOMContentLoaded', () => { updateJournalCount(); initCitationButtons(); assignReverseBadges(); reveal(); startSFScroll(); document.querySelectorAll('.email-click').forEach(el => { el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } }); }); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeAIModal(); closeSearch(); } });
+        document.addEventListener('DOMContentLoaded', () => { if(localStorage.getItem('theme') === 'dark') toggleTheme(); updateJournalCount(); initCitationButtons(); assignReverseBadges(); reveal(); startSFScroll(); document.querySelectorAll('.email-click').forEach(el => { el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } }); }); });
+        
+        const trapFocus = (e, container) => { if (e.key !== 'Tab') return; const focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [contenteditable]'); if (!focusable.length) return; const first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey) { if (document.activeElement === first) { last.focus(); e.preventDefault(); } } else { if (document.activeElement === last) { first.focus(); e.preventDefault(); } } };
+        
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape') { closeAIModal(); closeSearch(); } 
+            const aiModal = document.getElementById('ai-modal');
+            if (aiModal && aiModal.classList.contains('show')) trapFocus(e, aiModal);
+            const chatWindow = document.getElementById('ai-chat-window');
+            if (chatWindow && chatWindow.style.display === 'flex') trapFocus(e, chatWindow);
+        });
+
+        const toggleTheme = () => { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); document.querySelectorAll('.theme-toggle').forEach(el => el.className = isDark ? 'fas fa-sun control-icon theme-toggle' : 'fas fa-moon control-icon theme-toggle'); };
+        
         const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if(c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 450+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
         const copyEmail = (el, email) => { navigator.clipboard.writeText(email).then(() => { let fb = document.createElement("span"); fb.className = "copy-feedback"; fb.innerText = "Email copied!"; fb.style.whiteSpace = "nowrap"; el.appendChild(fb); setTimeout(() => fb.classList.add("show"), 10); setTimeout(() => { fb.classList.remove("show"); setTimeout(() => fb.remove(), 300); }, 1500); }); };
 
@@ -1379,8 +1511,24 @@
         const summarizeFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesizing...', "Summarize the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
         const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Analyse Match', 'Analysing...', `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's skills. CRITICAL: 1. Start with visual rating "⭐ Rating". 2. Provide exactly 3 bullet points WHY he fits. 3. HTML tags ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Recruiter Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
         const generateInterviewQs = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('interview-btn', 'match-result', '🎙️', 'Interview Qs', 'Generating...', `Act as a Hiring Manager. Based on this job description and Dr. Shaban Ahmad's AI profile, generate 3 specific interview questions. HTML ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:#0dadbc;">Custom Interview Prep:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
-        const findSynergy = () => { const mb = document.getElementById('contact-message'); if(!mb.value.trim()) { mb.placeholder = "⚠️ Describe your area first!"; return; } triggerAIFeature('synergy-btn', null, '🤝', 'Synergy', 'Finding...', `Propose ONE highly innovative joint research project for Dr. Shaban Ahmad (AI/Bioinformatics) and a researcher with expertise in: "${mb.value.trim()}". Draft a formal email proposing this. Plain text only.`, (res) => showAIModal(`<strong>🤝 Collaborative Synergy Idea:</strong><br><br><textarea id="syn-gen" style="width:100%; min-height:250px; background:#f8fafc; padding:15px; border-radius:8px;">${res.trim()}</textarea><br><br><div style="display:flex; gap:10px; justify-content:flex-end;"><button onclick="document.getElementById('contact-message').value = document.getElementById('syn-gen').value; closeAIModal();" class="cf-btn" style="background:#0dadbc; border:none; padding:8px 15px;">Use as Email Draft</button></div>`) ); };
-        const draftEmail = () => { const mb = document.getElementById('contact-message'); if(!mb.value.trim()) { mb.placeholder = "⚠️ Type notes first!"; return; } triggerAIFeature('draft-email-btn', null, '✨', 'AI Draft', 'Drafting...', `Rewrite these notes into a polite academic email addressed to Dr. Shaban Ahmad: "${mb.value.trim()}". Plain text only.`, (res) => { mb.value = res.trim(); }); };
+        
+        const extractEmailParts = (text) => {
+            let s = "", b = text;
+            const m = text.match(/SUBJECT:\s*([^\n]*)\n+BODY:\s*([\s\S]*)/i);
+            if(m) { s = m[1].replace(/^["']|["']$/g, '').trim(); b = m[2].trim(); }
+            else {
+                const parts = text.split('\n\n');
+                if(parts[0].toLowerCase().includes('subject:')) {
+                    s = parts[0].replace(/Subject:\s*/i, '').replace(/^["']|["']$/g, '').trim();
+                    b = parts.slice(1).join('\n\n').trim();
+                }
+            }
+            return { subject: s, body: b };
+        };
+
+        const findSynergy = () => { const mb = document.getElementById('contact-message'); if(!mb.value.trim()) { mb.placeholder = "⚠️ Describe your area first!"; return; } triggerAIFeature('synergy-btn', null, '🤝', 'Synergy', 'Finding...', `Propose ONE highly innovative joint research project for Dr. Shaban Ahmad (AI/Bioinformatics) and a researcher with expertise in: "${mb.value.trim()}". Draft a formal email proposing this. CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const {subject, body} = extractEmailParts(res); showAIModal(`<strong>🤝 Collaborative Synergy Idea:</strong><br><br><label style="font-size:0.85rem;font-weight:bold;color:#555;">Subject:</label><input type="text" id="syn-gen-sub" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit;" value="${escapeHTML(subject)}"><label style="font-size:0.85rem;font-weight:bold;color:#555;">Body:</label><textarea id="syn-gen-body" style="width:100%; min-height:200px; padding:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit; resize:vertical;">${escapeHTML(body)}</textarea><br><br><div style="display:flex; gap:10px; justify-content:flex-end;"><button onclick="document.getElementById('contact-subject').value = document.getElementById('syn-gen-sub').value; document.getElementById('contact-message').value = document.getElementById('syn-gen-body').value; closeAIModal();" class="cf-btn" style="background:var(--accent); border:none; padding:8px 15px;">Use as Email Draft</button></div>`); } ); };
+        const draftEmail = () => { const mb = document.getElementById('contact-message'); if(!mb.value.trim()) { mb.placeholder = "⚠️ Type notes first!"; return; } triggerAIFeature('draft-email-btn', null, '✨', 'AI Draft', 'Drafting...', `Rewrite these notes into a polite academic email addressed to Dr. Shaban Ahmad: "${mb.value.trim()}". CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const {subject, body} = extractEmailParts(res); if(subject) document.getElementById('contact-subject').value = subject; mb.value = body; }); };
+
 
         /* --- 17.5: Conversational Chatbot & Voice --- */
         const toggleChatWindow = () => { const w = document.getElementById('ai-chat-window'); w.style.display = w.style.display === 'flex' ? 'none' : 'flex'; };
@@ -1388,10 +1536,14 @@
         const addMessage = (t, type) => { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = t.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); b.appendChild(d); b.scrollTop = b.scrollHeight; return d; };
         const removeMessage = (el) => { if (el && el.parentNode) el.parentNode.removeChild(el); };
         
+        // 1. Chatbot Escaping Tool for Security Polish
+        const escapeHTML = (str) => { return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag])); };
+        
         const sendUserMessage = async () => { 
             const inp = document.getElementById('chat-input'), msg = inp.value.trim(); 
             if (!msg) return; 
-            addMessage(msg, 'user'); 
+            const safeMsg = escapeHTML(msg);
+            addMessage(safeMsg, 'user'); 
             inp.value = ''; 
             const loadMsg = addMessage('Thinking', 'loading'); 
             
