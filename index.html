@@ -413,7 +413,7 @@
             .header-content { justify-content: space-between; gap: 5px; padding: 0 15px; }
             
             /* Fixed Header Name constraints to prevent overlap */
-            .header-name { display: block !important; opacity: 1 !important; transform: none !important; pointer-events: auto !important; color: var(--accent) !important; font-size: 1.25rem; position: static !important; margin: 0; flex: 1 1 auto; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 1002; max-width: 140px; } .header-name i { display: none !important; } 
+            .header-name { display: block !important; opacity: 1 !important; transform: none !important; pointer-events: auto !important; color: var(--accent) !important; font-size: 1.6rem; position: static !important; margin: 0; flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 1002; max-width: none; } .header-name i { display: none !important; } 
             
             /* Enhanced Breathing Room for Header Icons & Strict Separator Removal */
             .header-sep { display: none !important; }
@@ -422,7 +422,7 @@
             .control-icon { font-size: 1.15rem; }
             
             /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
-            .nav-list { position: fixed; top: 60px; right: -100%; width: 260px; max-width: 85vw; height: auto; min-height: 300px; background: var(--white); flex-direction: column; justify-content: flex-start; padding: 0; box-shadow: -4px 4px 10px rgba(0,0,0,0.1); transition: right 0.3s ease-in-out; z-index: 2000; display: flex; border-radius: 0 0 0 15px; border: 1px solid #eee; border-top: none; border-right: none; align-items: flex-start; } 
+            .nav-list { position: fixed; top: 60px; right: -100%; width: 200px; max-width: 85vw; height: auto; min-height: 300px; background: var(--white); flex-direction: column; justify-content: flex-start; padding: 0; box-shadow: -4px 4px 10px rgba(0,0,0,0.1); transition: right 0.3s ease-in-out; z-index: 2000; display: flex; border-radius: 0 0 0 15px; border: 1px solid #eee; border-top: none; border-right: none; align-items: flex-start; } 
             .nav-list.active { right: 0; }
             .nav-item { width: 100%; display: block; }
             
@@ -457,6 +457,10 @@
             .form-footer { flex-direction: column; align-items: stretch; } .btn-send { width: 100%; justify-content: center; } .msg-success-box { max-width: 100%; }
             .back-to-top { bottom: 20px; right: 15px; left: auto; width: 38px; height: 38px; font-size: 1rem; } #ai-widget-toggle { position: fixed; bottom: 20px; right: 65px; width: 42px; height: 42px; font-size: 1.05rem; } #ai-chat-window { bottom: 75px; right: 15px; left: auto; width: calc(100vw - 30px); max-width: 320px; }
             .contact-footer-section { padding: 2rem 0; } .about-split-layout { grid-template-columns: 1fr; gap: 2rem; } .profile-text { text-align: justify; }
+            
+            /* Mobile Bento Overrides (Forced Column Stack) */
+            .bento-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+            .bento-card { width: 100%; margin: 0; }
         }
 
         /* --- 4.19: Print Output Configuration --- */
