@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr Shaban | Aspiring Assistant Professor & Postdoc at UCPH</title>
+    <title>Dr Shaban | Postdoc at UCPH (Aspiring Assistant Professor)</title>
     <meta name="description" content="Academic Portfolio of Dr Shaban - Postdoctoral Researcher at University of Copenhagen and Aspiring Assistant Professor (TCP Group) specialising in AI in Biology, Genomics, Drug Design & PFAS Biodegradation.">
     
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
@@ -50,7 +50,8 @@
             --edu-phd: #28a745; --edu-msc: #dc3545; --edu-bsc: #20b0c9;  
             --exp-full: #28a745; --exp-part: #6f42c1; --exp-trainee: #dc3545; 
             --sub-heading: #047857; 
-            --ref-1: #064e3b; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
+            --ref-1: #06134e; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
+            --vision-color-1: #eef7f6; --vision-color-2: #fef8e7; --vision-color-3: #f5f3ff; --vision-color-4: #fef2f2; --vision-color-5: #f0fdfa; --vision-color-6: #f0f5ff;
         }
 
         /* --- 4.2: Resets & Accessibility Enhancements --- */
@@ -91,8 +92,8 @@
 
         @keyframes gradientRun { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
         .separator { height: 4px; border: none; background: linear-gradient(90deg, #0d0b0c, var(--accent), #f3071f); background-size: 200% 100%; animation: gradientRun 3s linear infinite; margin: 3rem 0; opacity: 0.9; }
-        .highlight-match { background-color: yellow; color: black; font-weight: bold; }
-        .highlight-match.active { background-color: orange; outline: 2px solid red; }
+        .highlight-match { background-color: rgba(245,158,11,0.22); color: inherit; font-weight: 700; border-radius: 3px; padding: 0 2px; }
+        .highlight-match.active { background-color: rgba(245,158,11,0.75); color: #1a1a1a; outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 3px; }
 
         /* --- 4.5: Primary Navigation Header --- */
         header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 10001; height: 60px; transition: all 0.3s ease; }
@@ -122,13 +123,16 @@
         .header-sep { color: #dc3545; opacity: 0.5; font-size: 1.1rem; font-weight: 300; user-select: none; }
         .control-icon { cursor: pointer; color: var(--primary); transition: 0.3s; font-size: 1rem; } .control-icon:hover { color: var(--accent); }
         .search-container { position: relative; display: flex; align-items: center; }
-        .search-dropdown { position: absolute; right: 15px; top: 100%; width: max-content; min-width: 320px; max-width: 90vw; background: #fff; border: 1px solid #e2e8f0; border-top: none; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; padding: 12px 15px; display: none; z-index: 3000; animation: fadeSlideDown 0.2s ease-out; }
-        @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .search-input-wrapper { position: relative; display: flex; align-items: center; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; }
-        .header-search-input { width: 100%; border: none; background: transparent; padding: 10px 12px; font-size: 0.95rem; outline: none; color: #334155; }
-        .search-controls { display: flex; gap: 5px; padding-right: 8px; align-items: center; }
-        .mini-search-btn { background: none; border: none; cursor: pointer; color: #94a3b8; font-size: 0.8rem; transition: color 0.2s; } .mini-search-btn:hover { color: var(--primary); }
-        .search-count { font-size: 0.75rem; color: #94a3b8; font-weight: 600; margin-right: 5px; min-width: 25px; text-align: center; } .clear-search-btn { color: #ef4444; } .clear-search-btn:hover { color: #dc2626; }
+        .search-dropdown { position: absolute; right: 0; top: 100%; min-width: 300px; max-width: 90vw; background: #fff; border: 1.5px solid rgba(245,158,11,0.45); border-top: 3px solid rgba(245,158,11,0.75); box-shadow: 0 10px 24px rgba(0,0,0,0.13); border-radius: 0 0 10px 10px; padding: 10px 12px; display: none; z-index: 3000; animation: fadeSlideDown 0.18s ease-out; }
+        @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .search-input-wrapper { display: flex; align-items: center; background: transparent; border: none; box-shadow: none; outline: none; }
+        .search-input-wrapper:focus-within { background: transparent; box-shadow: none; border: none; }
+        .header-search-input { width: 100%; border: none !important; background: transparent; padding: 9px 12px; font-size: 0.92rem; outline: none !important; box-shadow: none !important; color: #334155; }
+        .search-controls { display: flex; gap: 3px; padding-right: 6px; align-items: center; }
+        .mini-search-btn { background: none; border: 1px solid transparent; cursor: pointer; color: #94a3b8; font-size: 0.78rem; width: 24px; height: 24px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
+        .mini-search-btn:hover { color: var(--primary); background: #f1f5f9; border-color: #e2e8f0; }
+        .search-count { font-size: 0.7rem; color: #64748b; font-weight: 700; margin-right: 3px; min-width: 30px; text-align: center; background: #f1f5f9; border-radius: 20px; padding: 2px 5px; }
+        .clear-search-btn { color: #ef4444 !important; } .clear-search-btn:hover { background: #fef2f2 !important; border-color: #fecaca !important; color: #dc2626 !important; }
 
         .lang-wrapper { position: relative; display: inline-block; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); } .lang-wrapper:hover { color: var(--accent); }
         .lang-current-display { display: flex; align-items: center; gap: 5px; } .flag-xs { width: 18px; height: auto; border-radius: 2px; }
@@ -322,9 +326,11 @@
         .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); } .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
         .exp-full { border-top-color: var(--exp-full); } .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-full); } .exp-part { border-top-color: var(--exp-part); } .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-part); } .exp-trainee { border-top-color: var(--exp-trainee); } .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-trainee); }
         
-        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; } .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; } .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; } .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; transition: color 0.3s ease; } .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+        .edu-phd:hover h4 { color: var(--edu-phd); } .edu-msc:hover h4 { color: var(--edu-msc); } .edu-bsc:hover h4 { color: var(--edu-bsc); }
         .inst-link, .exp-inst { font-family: var(--inst-font); font-size: 1rem; color: var(--primary); display: block; margin-bottom: 5px; text-decoration: none; font-weight: 600; transition: color 0.2s; } .inst-link:hover, .exp-inst:hover { color: var(--accent); }
-        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%; } .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0; }
+        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%; } .exp-role { font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0; transition: color 0.3s ease; }
+        .exp-full:hover .exp-role { color: var(--exp-full); } .exp-part:hover .exp-role { color: var(--exp-part); } .exp-trainee:hover .exp-role { color: var(--exp-trainee); }
         .type-badge { font-size: 0.75rem; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 3px; align-self: center; white-space: nowrap; } .bg-full { background: var(--exp-full); } .bg-part { background: var(--exp-part); color: #fff; } .bg-trainee { background: var(--exp-trainee); color: #fff; }
         .exp-date { font-size: 0.85rem; color: #777; font-weight: bold; margin-bottom: 8px;} .exp-desc { font-size: 0.9rem; color: #555; line-height: 1.4; margin-bottom: 10px;}
         
@@ -334,7 +340,13 @@
         .referee-card { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 12px; border: 1px solid #eee; border-top: 5px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; } .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .referee-card::after { content: attr(data-badge); position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; z-index: 10; transition: all 0.3s ease; }
         .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15); } .ref-1:hover::after { background: var(--ref-1); border-color: var(--ref-1); color: #fff; } .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15); } .ref-2:hover::after { background: var(--ref-2); border-color: var(--ref-2); color: #fff; } .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15); } .ref-3:hover::after { background: var(--ref-3); border-color: var(--ref-3); color: #fff; } .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15); } .ref-4:hover::after { background: var(--ref-4); border-color: var(--ref-4); color: #fff; } .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15); } .ref-5:hover::after { background: var(--ref-5); border-color: var(--ref-5); color: #fff; } .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15); } .ref-6:hover::after { background: var(--ref-6); border-color: var(--ref-6); color: #fff; }
-        .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; } .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; } .referee-name a { color: var(--primary); transition: 0.3s; } .referee-name a:hover { color: var(--accent); } .referee-role { font-size: 0.85rem; font-weight: bold; color: #888; } .referee-title-line { font-weight: 600; color: #444; font-size: 0.95rem; margin-bottom: 5px; } .ref-inst-row, .ref-inst-row a { font-family: var(--inst-font) !important; font-size: 1rem !important; color: var(--primary) !important; font-weight: 600 !important; transition: color 0.3s; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; } .ref-inst-row:hover, .ref-inst-row a:hover { color: var(--accent) !important; } .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; } .email-badge { color: var(--accent); font-size: 1.1rem; transition: all 0.3s ease; } .flag-img { width: 22px; height: auto; vertical-align: middle; margin-left: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); border-radius: 2px; }
+        .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; } .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; transition: color 0.3s ease; } .referee-name a { color: var(--primary); transition: color 0.3s ease; } .referee-name a:hover { color: var(--accent); }
+        .ref-1:hover .referee-name, .ref-1:hover .referee-name a { color: var(--ref-1); }
+        .ref-2:hover .referee-name, .ref-2:hover .referee-name a { color: var(--ref-2); }
+        .ref-3:hover .referee-name, .ref-3:hover .referee-name a { color: var(--ref-3); }
+        .ref-4:hover .referee-name, .ref-4:hover .referee-name a { color: var(--ref-4); }
+        .ref-5:hover .referee-name, .ref-5:hover .referee-name a { color: var(--ref-5); }
+        .ref-6:hover .referee-name, .ref-6:hover .referee-name a { color: var(--ref-6); } .referee-role { font-size: 0.85rem; font-weight: bold; color: #888; } .referee-title-line { font-weight: 600; color: #444; font-size: 0.95rem; margin-bottom: 5px; } .ref-inst-row, .ref-inst-row a { font-family: var(--inst-font) !important; font-size: 1rem !important; color: var(--primary) !important; font-weight: 600 !important; transition: color 0.3s; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; } .ref-inst-row:hover, .ref-inst-row a:hover { color: var(--accent) !important; } .referee-contact { font-size: 0.9rem; color: #444; margin-top: 5px; display: flex; align-items: center; gap: 8px; } .email-badge { color: var(--accent); font-size: 1.1rem; transition: all 0.3s ease; } .flag-img { width: 22px; height: auto; vertical-align: middle; margin-left: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); border-radius: 2px; }
 
         /* --- 4.12: Accolades & IPR --- */
         .award-card { background: var(--white); padding: 1.2rem; border-radius: 0 25px 0 25px; border: 1px solid #ccc; border-left: 5px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.4s ease; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px; text-align: left; position: relative; } .award-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); } .award-card:hover .award-top { color: #fff; } .award-card:hover .award-bottom { color: #f8fafc; } .award-card:hover .award-badge-icon { transform: scale(1.25) rotate(15deg); color: #fff !important; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
@@ -422,7 +434,7 @@
         .tcp-desc { font-size: 1.05rem; color: #555; line-height: 1.8; text-align: justify; margin: 0; }
         
         .tcp-focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; padding: 10px 5px; }
-        .tcp-focus-card { background: var(--white); padding: 3rem 2.5rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .tcp-focus-card { background: var(--white); padding: 1.5rem 2rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
         .tcp-focus-card::before { content: ''; position: absolute; inset: 0; border-radius: 20px; padding: 3px; background: linear-gradient(135deg, transparent, transparent); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; transition: all 0.5s ease; pointer-events: none; }
         .tcp-focus-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); z-index: -1; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.98; }
         .tcp-focus-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(6,78,59,0.15); border-color: transparent; }
@@ -431,7 +443,7 @@
         .tcp-focus-card:hover .tfc-icon { color: #fff; transform: scale(1.2) rotate(10deg); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4)); margin-bottom: 25px; }
         .tcp-focus-card:hover .tfc-title { color: #fff; }
         .tcp-focus-card:hover .tfc-desc { color: rgba(255,255,255,0.9); }
-        .tfc-icon { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-flex; justify-content: center; align-items: center; width: 90px; height: 90px; border-radius: 20px; background: rgba(6,78,59,0.05); }
+        .tfc-icon { font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-flex; justify-content: center; align-items: center; width: 90px; height: 90px; border-radius: 20px; background: rgba(6,78,59,0.05); }
         .tcp-focus-card:hover .tfc-icon { background: rgba(255,255,255,0.1); border-radius: 50%; }
         .tfc-title { font-weight: 800; color: var(--primary); font-size: 1.45rem; margin-bottom: 15px; transition: color 0.4s ease; }
         .tfc-desc { font-size: 1.05rem; color: #555; line-height: 1.7; transition: color 0.4s ease; text-align: justify; margin: 0; }
@@ -688,7 +700,9 @@
         body.dark-mode .tcp-grid-modern .tfc-icon { color: var(--accent); }
 
         body.dark-mode .pub-item:hover, body.dark-mode .nav-dropdown-content a:hover, body.dark-mode .lang-option:hover { background-color: #334155; }
-        body.dark-mode .ai-generated-content, body.dark-mode .chat-body, body.dark-mode .ai-matcher-box textarea, body.dark-mode .search-input-wrapper, body.dark-mode .ai-modal-body input, body.dark-mode .ai-modal-body textarea { background-color: #020617; color: var(--text); border-color: #334155; }
+        body.dark-mode .ai-generated-content, body.dark-mode .chat-body, body.dark-mode .ai-matcher-box textarea, body.dark-mode .ai-modal-body input, body.dark-mode .ai-modal-body textarea { background-color: #020617; color: var(--text); border-color: #334155; }
+        body.dark-mode .search-input-wrapper { background: transparent !important; border: none !important; box-shadow: none !important; }
+        body.dark-mode .header-search-input { background: transparent !important; border: none !important; outline: none !important; }
         body.dark-mode .chat-header { border-bottom-color: var(--primary-dark); }
         body.dark-mode .cite-dropdown-menu { background: var(--white); border-color: #334155; }
         body.dark-mode .cite-option { color: var(--text); } body.dark-mode .cite-option:hover { background-color: #334155; }
@@ -776,6 +790,7 @@
     color: #1e293b;
     font-size: 1.05rem;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .strategy-card-item p,
@@ -808,6 +823,8 @@
     content: '▸';
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--panel-accent);
     font-weight: bold;
 }
@@ -891,6 +908,8 @@
     content: '→';
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--panel-accent);
     font-weight: bold;
 }
@@ -919,6 +938,30 @@
     --panel-accent: #0284c7;
     --panel-bg: linear-gradient(135deg, #eff6ff 0%, #f8fbff 100%);
 }
+
+.centered-card {
+    text-align: center;
+}
+
+.centered-card ul {
+    display: inline-block;
+    text-align: left;
+    padding: 0;
+}
+
+.centered-card li {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 8px 20px;
+}
+
+.centered-card li:last-child {
+    border-bottom: none;
+}
+
+.centered-card li::before {
+    top: 10px;
+}
+
 
         /* === TCP RESEARCH VISION & LEADERSHIP ENHANCEMENTS === */
         @keyframes tcpFloat {
@@ -1060,459 +1103,8 @@
             transform: translateY(-6px);
             box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
         }
-
-        .tcp-kpi-label {
-            display: block;
-            margin-bottom: 0.35rem;
-            color: #047857;
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .tcp-kpi strong {
-            display: block;
-            margin-bottom: 0.35rem;
-            color: #0f172a;
-            font-size: 1.08rem;
-        }
-
-        .tcp-kpi p {
-            margin: 0;
-            color: #64748b;
-            font-size: 0.92rem;
-            line-height: 1.55;
-        }
-
-        .tcp-summary-grid,
-        .tcp-impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
-        .tcp-summary-card,
-        .tcp-impact-card {
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 1.2rem;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .tcp-summary-card:hover,
-        .tcp-impact-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 28px rgba(15, 23, 42, 0.1);
-            border-color: rgba(6, 78, 59, 0.18);
-        }
-
-        .tcp-summary-card::before,
-        .tcp-impact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-        }
-
-        .tcp-summary-card h4,
-        .tcp-impact-card h4 {
-            margin: 0 0 0.65rem 0;
-            color: #0f172a;
-            font-size: 1.02rem;
-            font-weight: 700;
-        }
-
-        .tcp-summary-card p,
-        .tcp-impact-card p {
-            margin: 0;
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.65;
-            text-align: justify;
-        }
-
-        .tcp-summary-card-1::before,
-        .tcp-impact-card-1::before {
-            background: linear-gradient(90deg, #0f766e, #14b8a6);
-        }
-
-        .tcp-summary-card-2::before,
-        .tcp-impact-card-2::before {
-            background: linear-gradient(90deg, #f59e0b, #f97316);
-        }
-
-        .tcp-summary-card-3::before,
-        .tcp-impact-card-3::before {
-            background: linear-gradient(90deg, #7c3aed, #a855f7);
-        }
-
-        .tcp-impact-card-4::before {
-            background: linear-gradient(90deg, #dc2626, #fb7185);
-        }
-
-        .tcp-pillar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .tcp-pillar-card {
-            min-height: 260px;
-            padding: 1.4rem;
-            border-radius: 24px;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .tcp-pillar-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 40px rgba(15, 23, 42, 0.18);
-        }
-
-        .tcp-pillar-card::before,
-        .tcp-pillar-card::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .tcp-pillar-card::before {
-            width: 180px;
-            height: 180px;
-            top: -100px;
-            right: -70px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .tcp-pillar-card::after {
-            width: 120px;
-            height: 120px;
-            bottom: -50px;
-            left: -30px;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .tcp-pillar-card>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .tcp-pillar-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 1.25rem;
-        }
-
-        .tcp-pillar-card h4 {
-            margin: 0 0 0.7rem 0;
-            font-size: 1.15rem;
-            line-height: 1.3;
-        }
-
-        .tcp-pillar-card p {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-            line-height: 1.65;
-            text-align: justify;
-        }
-
-        .tcp-pillar-points {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-        }
-
-        .tcp-pillar-points li {
-            margin-bottom: 0.55rem;
-            padding-left: 18px;
-            position: relative;
-            color: rgba(255, 255, 255, 0.94);
-            font-size: 0.92rem;
-            line-height: 1.55;
-        }
-
-        .tcp-pillar-points li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.58em;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        .tcp-pillar-card-1 {
-            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
-        }
-
-        .tcp-pillar-card-2 {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
-        }
-
-        .tcp-pillar-card-3 {
-            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
-        }
-
-        .tcp-roadmap {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.2rem;
-            position: relative;
-            padding-top: 0.6rem;
-        }
-
-        .tcp-roadmap::before {
-            content: '';
-            position: absolute;
-            left: 4%;
-            right: 4%;
-            top: 26px;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(6, 78, 59, 0.2), rgba(245, 158, 11, 0.35), rgba(124, 58, 237, 0.25));
-            z-index: 0;
-        }
-
-        .tcp-phase-card {
-            --phase-color: var(--primary);
-            position: relative;
-            z-index: 1;
-            padding: 1.4rem 1.2rem 1.2rem;
-            border-radius: 22px;
-            border: 1px solid #e2e8f0;
-            border-top: 4px solid var(--phase-color);
-            background: #fff;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .tcp-phase-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 32px rgba(15, 23, 42, 0.14);
-        }
-
-        .tcp-phase-card::before {
-            content: attr(data-phase);
-            position: absolute;
-            top: -18px;
-            left: 18px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--phase-color);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 800;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
-        }
-
-        .tcp-phase-range {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 0.6rem;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #f8fafc;
-            color: #475569;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .tcp-phase-card h4 {
-            margin: 0.8rem 0 0.55rem 0;
-            color: #0f172a;
-            font-size: 1.08rem;
-            font-weight: 700;
-            line-height: 1.35;
-        }
-
-        .tcp-phase-card p {
-            margin: 0;
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            text-align: justify;
-        }
-
-        .tcp-phase-list {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-        }
-
-        .tcp-phase-list li {
-            margin-bottom: 0.55rem;
-            padding-left: 18px;
-            position: relative;
-            color: #555;
-            font-size: 0.92rem;
-            line-height: 1.55;
-        }
-
-        .tcp-phase-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.58em;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--phase-color);
-        }
-
-        .tcp-phase-1 {
-            --phase-color: #0f766e;
-        }
-
-        .tcp-phase-2 {
-            --phase-color: #f59e0b;
-        }
-
-        .tcp-phase-3 {
-            --phase-color: #7c3aed;
-        }
-
-        @media (max-width: 900px) {
-        .tcp-vision-hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.9fr);
-            gap: 1.5rem;
-            margin-bottom: 1.8rem;
-            padding: 1.9rem;
-            border-radius: 28px;
-            background:
-                radial-gradient(circle at top right, rgba(245, 158, 11, 0.18), transparent 26%),
-                linear-gradient(135deg, #f6f8f4 0%, #edf7f2 55%, #fff9ef 100%);
-            border: 1px solid rgba(6, 78, 59, 0.12);
-            box-shadow: 0 18px 45px rgba(6, 78, 59, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tcp-vision-hero::before,
-        .tcp-vision-hero::after {
-            content: '';
-            position: absolute;
-            border-radius: 999px;
-            pointer-events: none;
-        }
-
-        .tcp-vision-hero::before {
-            width: 260px;
-            height: 260px;
-            top: -120px;
-            right: -70px;
-            background: rgba(6, 78, 59, 0.08);
-            animation: tcpFloat 12s ease-in-out infinite;
-        }
-
-        .tcp-vision-hero::after {
-            width: 180px;
-            height: 180px;
-            bottom: -80px;
-            left: -50px;
-            background: rgba(245, 158, 11, 0.12);
-            animation: tcpFloat 10s ease-in-out infinite reverse;
-        }
-
-        .tcp-vision-copy,
-        .tcp-vision-kpis {
-            position: relative;
-            z-index: 1;
-        }
-
-        .tcp-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            margin-bottom: 1rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.88);
-            border: 1px solid rgba(6, 78, 59, 0.12);
-            color: var(--primary);
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .tcp-vision-copy h3 {
-            margin: 0 0 1rem 0;
-            color: var(--primary-dark);
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            line-height: 1.2;
-        }
-
-        .tcp-vision-copy p {
-            margin: 0 0 0.9rem 0;
-            color: #475569;
-            font-size: 1rem;
-            line-height: 1.75;
-            text-align: justify;
-        }
-
-        .tcp-tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1.2rem;
-        }
-
-        .tcp-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: rgba(6, 78, 59, 0.08);
-            border: 1px solid rgba(6, 78, 59, 0.1);
-            color: var(--primary);
-            font-size: 0.82rem;
-            font-weight: 700;
-        }
-
-        .tcp-vision-kpis {
-            display: grid;
-            gap: 1rem;
-            align-content: start;
-        }
-
-        .tcp-kpi {
-            padding: 1.1rem 1.15rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(6, 78, 59, 0.1);
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .tcp-kpi:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
+        .tcp-kpi:hover .tcp-kpi-label {
+            text-decoration: underline;
         }
 
         .tcp-kpi-label {
@@ -1848,1396 +1440,11 @@
             --phase-color: #7c3aed;
         }
 
-        /* --- 4.14: Reviewer Badges & Tech Grids --- */
-        .peer-review-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: flex-start;
-            margin-top: 10px;
-        }
-
-        .pr-badge-item {
-            background-color: #fff;
-            border: 1px solid #eee;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #555;
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-
-        .pr-badge-item:hover {
-            background-color: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .verified-badge {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            vertical-align: middle;
-            margin-left: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .scrollable-grid {
-            max-height: 380px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 10px 5px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .tech-panel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 0.5rem 0.5rem;
-        }
-
-        .tech-card {
-            background: #fff;
-            padding: 1.2rem 1rem;
-            border-radius: 8px;
-            border-top: 5px solid #ccc;
-            border-left: 1px solid #eee;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .tc-blue {
-            border-top-color: var(--primary);
-        }
-
-        .tc-blue:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .tc-green {
-            border-top-color: #20c997;
-        }
-
-        .tc-green:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border-color: #20c997;
-        }
-
-        .tc-purple {
-            border-top-color: #6f42c1;
-        }
-
-        .tc-purple:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border-color: #6f42c1;
-        }
-
-        .tc-orange {
-            border-top-color: #fd7e14;
-        }
-
-        .tc-orange:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border-color: #fd7e14;
-        }
-
-        .tech-sub-title {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tech-sub-title i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .tech-ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .tech-ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.4;
-        }
-
-        .tech-ul li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 3px;
-            color: var(--accent);
-            font-size: 0.7rem;
-        }
-
-        /* --- 4.15: Contact Platform & Forms --- */
-        .contact-footer-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #fff;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        .contact-grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 0;
-        }
-
-        .contact-left h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-family: 'Playfair Display', serif;
-            color: #fff;
-        }
-
-        .contact-left p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            color: #cbd5e1;
-        }
-
-        .contact-item i {
-            color: var(--accent);
-            margin-right: 15px;
-            font-size: 1.2rem;
-            width: 20px;
-        }
-
-        .contact-item a:hover {
-            color: #fff;
-        }
-
-        /* 4. Full Length Animated Arrow for Contact Section - THINNER & LESS PADDING & ALIGN START */
-        .contact-left {
-            position: relative;
-            padding-left: 15px;
-            padding-bottom: 12px;
-            align-self: start;
-        }
-
-        .contact-arrow-v {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1.5px;
-            height: 0;
-            background-color: var(--accent);
-            transition: height 0.4s ease-out 0.6s;
-        }
-
-        .contact-arrow-h {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background-color: var(--accent);
-            transition: width 0.6s ease-in;
-        }
-
-        .contact-arrow-head {
-            position: absolute;
-            bottom: -3.5px;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            border-top: 1.5px solid var(--accent);
-            border-right: 1.5px solid var(--accent);
-            transform: rotate(45deg);
-            opacity: 0;
-            transition: left 0.6s ease-in, opacity 0.1s 0.5s;
-            pointer-events: none;
-        }
-
-        .contact-left:hover .contact-arrow-v {
-            height: 100%;
-            transition: height 0.4s ease-in;
-        }
-
-        .contact-left:hover .contact-arrow-h {
-            width: 100%;
-            transition: width 0.6s ease-out 0.4s;
-        }
-
-        .contact-left:hover .contact-arrow-head {
-            left: calc(100% - 2px);
-            opacity: 1;
-            transition: left 0.6s ease-out 0.4s, opacity 0.1s 0.4s;
-        }
-
-        .link-anim-slow {
-            position: relative;
-            text-decoration: none;
-            color: inherit;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
-
-        .link-anim-slow:hover {
-            color: var(--accent) !important;
-        }
-
-        .link-anim-slow::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.6s ease;
-        }
-
-        .link-anim-slow:hover::after {
-            width: 100%;
-        }
-
-        .footer-copyright {
-            display: inline-block;
-            position: relative;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .footer-copyright:hover {
-            color: var(--accent);
-        }
-
-        .footer-copyright::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .footer-copyright:hover::after {
-            width: 100%;
-        }
-
-        .footer-bottom-wrapper {
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            white-space: nowrap;
-            margin-top: 15px;
-            width: 100%;
-        }
-
-        .contact-right {
-            position: relative;
-        }
-
-        .cf-input-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .cf-input,
-        .cf-textarea {
-            width: 100%;
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .cf-input {
-            padding: 10px 14px;
-            height: 42px;
-        }
-
-        .cf-input:focus,
-        .cf-textarea:focus {
-            border-color: var(--accent);
-        }
-
-        .cf-textarea {
-            padding: 12px 14px;
-            resize: vertical;
-            min-height: 120px;
-            margin-bottom: 1rem;
-        }
-
-        .cf-input::placeholder,
-        .cf-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.8) !important;
-            font-weight: 300;
-        }
-
-        .cf-btn {
-            background-color: var(--accent);
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: auto;
-        }
-
-        .cf-btn:hover {
-            background-color: #b8860b;
-        }
-
-        .form-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .footer-socials {
-            display: inline-flex;
-            gap: 15px;
-            justify-content: flex-start;
-            margin-bottom: 5px;
-            margin-top: 5px;
-            padding: 8px 20px;
-            border-radius: 50px;
-            border: 1px solid transparent;
-            transition: all 0.4s ease;
-            margin-left: -15px;
-        }
-
-        .footer-socials:has(.f-soc-link:hover) {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .f-soc-link {
-            color: #94a3b8;
-            font-size: 1.3rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .f-soc-link:hover {
-            color: var(--accent);
-            transform: translateY(-6px) scale(1.25);
-            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .msg-success-box {
-            position: relative;
-            padding: 10px 15px;
-            background-color: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: none;
-            margin-left: 10px;
-        }
-
-        .msg-success-box span {
-            position: absolute;
-            background-color: #28a745;
-            display: block;
-        }
-
-        .msg-success-box span:nth-child(1) {
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-        }
-
-        .msg-success-box span:nth-child(2) {
-            top: 0;
-            right: 0;
-            width: 2px;
-            height: 0%;
-        }
-
-        .msg-success-box span:nth-child(3) {
-            bottom: 0;
-            right: 0;
-            width: 0%;
-            height: 2px;
-        }
-
-        .msg-success-box span:nth-child(4) {
-            bottom: 0;
-            left: 0;
-            width: 2px;
-            height: 0%;
-        }
-
-        @keyframes runWidth {
-            from {
-                width: 0%;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes runHeight {
-            from {
-                height: 0%;
-            }
-
-            to {
-                height: 100%;
-            }
-        }
-
-        @keyframes reverseWidth {
-            from {
-                width: 100%;
-            }
-
-            to {
-                width: 0%;
-            }
-        }
-
-        @keyframes reverseHeight {
-            from {
-                height: 100%;
-            }
-
-            to {
-                height: 100%;
-            }
-        }
-
-        @keyframes fadeInMsg {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeOutMsg {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-                display: none;
-            }
-        }
-
-        .msg-success-box.anim-start {
-            display: block;
-            animation: fadeInMsg 0.5s forwards;
-        }
-
-        .msg-success-box.anim-running span:nth-child(1) {
-            animation: runWidth 0.3s linear forwards;
-        }
-
-        .msg-success-box.anim-running span:nth-child(2) {
-            animation: runHeight 0.3s linear 0.3s forwards;
-        }
-
-        .msg-success-box.anim-running span:nth-child(3) {
-            animation: runWidth 0.3s linear 0.6s forwards;
-        }
-
-        .msg-success-box.anim-running span:nth-child(4) {
-            animation: runHeight 0.3s linear 0.9s forwards;
-        }
-
-        .msg-success-box.anim-reverse span:nth-child(1) {
-            animation: reverseWidth 0.3s linear 0.9s forwards;
-        }
-
-        .msg-success-box.anim-reverse span:nth-child(2) {
-            animation: reverseHeight 0.3s linear 0.6s forwards;
-        }
-
-        .msg-success-box.anim-reverse span:nth-child(3) {
-            animation: reverseWidth 0.3s linear 0.3s forwards;
-        }
-
-        .msg-success-box.anim-reverse span:nth-child(4) {
-            animation: reverseHeight 0.3s linear forwards;
-        }
-
-        .msg-success-box.anim-end {
-            animation: fadeOutMsg 0.5s forwards;
-        }
-
-        .copy-feedback {
-            position: absolute;
-            background: #333;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .copy-feedback.show {
-            opacity: 1;
-        }
-
-        /* --- 4.16: Artificial Intelligence Chat Module --- */
-        #ai-widget-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 90px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            z-index: 10002;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-
-        #ai-widget-toggle:hover {
-            transform: scale(1.1);
-            background-color: var(--accent);
-        }
-
-        #ai-chat-window {
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            max-height: 80vh;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 10002;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .chat-header {
-            background: var(--primary);
-            color: #fff;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid var(--accent);
-        }
-
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: #f9f9f9;
-        }
-
-        .chat-footer {
-            padding: 10px;
-            background: #fff;
-            border-top: 1px solid #eee;
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            outline: none;
-            font-size: 0.9rem;
-            width: 100%;
-        }
-
-        .chat-send-btn {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-            flex-shrink: 0;
-        }
-
-        .chat-send-btn:hover {
-            background: var(--accent);
-        }
-
-        .msg {
-            max-width: 80%;
-            padding: 8px 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .msg-bot {
-            background: #e2e8f0;
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-            color: #333;
-        }
-
-        .msg-user {
-            background: var(--primary);
-            color: #fff;
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-        }
-
-        .msg-loading {
-            font-style: italic;
-            color: #888;
-            font-size: 0.8rem;
-            align-self: flex-start;
-        }
-
-        .msg-loading::after {
-            content: '.';
-            animation: dots 1.5s steps(5, end) infinite;
-        }
-
-        @keyframes dots {
-
-            0%,
-            20% {
-                color: rgba(0, 0, 0, 0);
-                text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
-            }
-
-            40% {
-                color: #888;
-                text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
-            }
-
-            60% {
-                text-shadow: .25em 0 0 #888, .5em 0 0 rgba(0, 0, 0, 0);
-            }
-
-            80%,
-            100% {
-                text-shadow: .25em 0 0 #888, .5em 0 0 #888;
-            }
-        }
-
-        .quick-action-btn {
-            background: #fff;
-            border: 1px solid var(--accent);
-            color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            margin-top: 5px;
-            display: inline-block;
-            transition: 0.2s;
-            margin-right: 5px;
-        }
-
-        .quick-action-btn:hover {
-            background: var(--accent);
-            color: #fff;
-        }
-
-        /* --- 4.17: Citation Generation Engine UI --- */
-        .pub-controls {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 10px;
-            vertical-align: middle;
-            position: relative;
-            flex-wrap: wrap;
-        }
-
-        .btn-cite {
-            font-size: 0.75rem;
-            color: #555;
-            background-color: #f0f0f0;
-            padding: 3px 10px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-
-        .btn-cite:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        .btn-cite i {
-            font-size: 0.7rem;
-        }
-
-        .cite-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-radius: 6px;
-            min-width: 200px;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        .cite-dropdown-menu.show {
-            display: flex;
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        .pub-item.z-active {
-            z-index: 50 !important;
-            position: relative;
-            border-color: var(--accent);
-        }
-
-        .cite-option {
-            padding: 10px 15px;
-            font-size: 0.85rem;
-            color: #333;
-            background: none;
-            border: none;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-            text-decoration: none;
-            width: 100%;
-        }
-
-        .cite-option:hover {
-            background-color: #f5f5f5;
-            color: var(--accent);
-        }
-
-        .cite-option i {
-            width: 16px;
-            text-align: center;
-            color: var(--primary);
-        }
-
-        .cite-option:hover i {
-            color: var(--accent);
-        }
-
-        .cite-divider {
-            height: 1px;
-            background-color: #eee;
-            margin: 0;
-        }
-
-        /* --- 4.18: Mobile Responsive Scaling Media Queries --- */
-        .mobile-only-separator {
-            display: none;
-        }
-
         @media (max-width: 900px) {
-            body {
-                max-width: 100vw;
-                overflow-x: hidden;
-            }
-
-            /* Removed html constraint to restore iOS momentum scroll */
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .mobile-only-separator {
-                display: block;
-                border: none;
-                height: 3px;
-                background: linear-gradient(90deg, transparent, var(--accent), transparent);
-                margin: 3rem auto 1rem auto;
-                width: 85%;
-                opacity: 0.7;
-                border-radius: 50%;
-            }
-
-            .header-content {
-                justify-content: space-between;
-                gap: 5px;
-                padding: 0 15px;
-            }
-
-            /* Fixed Header Name constraints to prevent overlap */
-            .header-name {
-                display: block !important;
-                opacity: 1 !important;
-                transform: none !important;
-                pointer-events: auto !important;
-                color: var(--accent) !important;
-                font-size: 1.6rem;
-                position: static !important;
-                margin: 0;
-                flex: 1;
-                text-align: center;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                z-index: 1002;
-                max-width: none;
-            }
-
-            .header-name i {
-                display: none !important;
-            }
-
-            /* Enhanced Breathing Room for Header Icons & Strict Separator Removal */
-            .header-sep {
-                display: none !important;
-            }
-
-            .mobile-controls-container {
-                display: flex;
-                align-items: center;
-                gap: 24px;
-                margin-left: auto;
-                z-index: 2002;
-                flex-shrink: 0;
-            }
-
-            .nav-toggle {
-                display: block;
-                position: relative;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--primary);
-                transition: transform 0.3s ease;
-                margin-left: 0;
-            }
-
-            .nav-toggle.open {
-                transform: rotate(90deg);
-            }
-
-            .control-icon {
-                font-size: 1.15rem;
-            }
-
-            /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
-            .nav-list {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                width: 200px;
-                max-width: 85vw;
-                height: auto;
-                min-height: 300px;
-                background: var(--white);
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 0;
-                box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease-in-out;
-                z-index: 2000;
-                display: flex;
-                border-radius: 0 0 0 15px;
-                border: 1px solid #eee;
-                border-top: none;
-                border-right: none;
-                align-items: flex-start;
-            }
-
-            .nav-list.active {
-                right: 0;
-            }
-
-            .nav-item {
-                width: 100%;
-                display: block;
-            }
-
-            /* 70px left padding guarantees perfect text alignment down the entire menu */
-            .nav-link {
-                color: var(--primary) !important;
-                text-align: left;
-                font-size: 0.95rem;
-                padding: 14px 20px 14px 70px;
-                border-bottom: 1px solid #eee;
-                border-radius: 0;
-                width: 100%;
-                display: block;
-                box-sizing: border-box;
-            }
-
-            /* MUST Wrap to allow dropdown sub-menu to fall to the next line */
-            .nav-item-dropdown {
-                display: flex;
-                flex-wrap: wrap !important;
-                width: 100%;
-                border-bottom: 1px solid #eee;
-                align-items: stretch;
-                padding: 0;
-            }
-
-            /* 15px padding + 55px toggle box = Exactly 70px offset to match regular links */
-            .nav-item-dropdown .nav-link {
-                border-bottom: none;
-                flex: 0 0 calc(100% - 55px);
-                width: calc(100% - 55px);
-                display: flex;
-                align-items: center;
-                order: 2;
-                padding-left: 15px;
-                box-sizing: border-box;
-                white-space: normal;
-            }
-
-            .mobile-dropdown-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex: 0 0 55px;
-                width: 55px;
-                height: auto;
-                font-size: 1.1rem;
-                color: var(--primary);
-                cursor: pointer;
-                border-right: 1px solid #eee;
-                border-left: none;
-                transition: background 0.2s, color 0.2s;
-                order: 1;
-                background-color: transparent;
-            }
-
-            .mobile-dropdown-toggle:hover,
-            .mobile-dropdown-toggle.active {
-                background-color: #f0f4f8;
-                color: var(--accent);
-            }
-
-            .desktop-arrow {
-                display: none;
-            }
-
-            /* Updated Mobile Dropdown Sub-menu */
-            .nav-dropdown-content {
-                position: static;
-                box-shadow: none;
-                border: none;
-                border-left: 3px solid var(--accent);
-                background: #f8fafc;
-                flex: 0 0 100%;
-                width: 100%;
-                box-sizing: border-box;
-                padding-left: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease, opacity 0.3s ease;
-                display: block;
-                order: 3;
-                opacity: 0;
-            }
-
-            .nav-dropdown-content.show-mobile {
-                max-height: 600px;
-                padding-top: 0;
-                padding-bottom: 0;
-                opacity: 1;
-            }
-
-            /* 67px padding + 3px accent border = 70px offset to perfectly align sub-links */
-            .nav-dropdown-content a {
-                padding: 12px 20px 12px 67px;
-                text-align: left;
-                border-bottom: 1px solid #f0f0f0;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .dropdown-item-wrapper:hover .sub-dropdown-content {
-                position: static;
-                display: none;
-            }
-
-            .dropdown-item-wrapper>a {
-                display: flex;
-                align-items: center;
-                padding: 0 !important;
-                height: 40px;
-                border-bottom: 1px solid #f0f0f0;
-                transition: background-color 0.2s, color 0.2s;
-            }
-
-            .dropdown-item-wrapper>a.active-parent {
-                color: var(--accent);
-                background-color: #f0f4f8;
-            }
-
-            .dropdown-item-wrapper>a>span {
-                order: 2;
-                padding-left: 10px;
-                flex: 1;
-                font-size: 0.9rem;
-                font-weight: 500;
-            }
-
-            .nested-arrow {
-                order: 1;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-right: none;
-                background-color: transparent;
-                color: var(--primary);
-                font-size: 0.8rem;
-                margin: 0;
-                transition: transform 0.3s ease;
-            }
-
-            .nested-arrow.rotated {
-                transform: rotate(-180deg);
-                color: var(--accent);
-            }
-
-            .sub-dropdown-content.show-nested {
-                display: block !important;
-                position: static;
-                box-shadow: none;
-                border: none;
-                padding-left: 15px;
-                background-color: #f9f9f9;
-                border-left: 3px solid #e0e0e0;
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-
-            .sticky-sidebar {
-                display: flex;
-                left: auto;
-                right: 0;
-                top: 50%;
-                border-radius: 12px 0 0 12px;
-                background-color: var(--white);
-                border: 1px solid #eee;
-                padding: 6px 3px;
-                box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-            }
-
-            .sticky-sidebar .h-social {
-                font-size: 1.05rem;
-                margin: 2px 0;
-            }
-
-            .header-controls {
-                display: none;
-            }
-
-            .hero {
-                flex-direction: column;
-                gap: 2rem;
-                padding: 2rem 1rem;
-            }
-
-            .hero-stats {
-                width: 100%;
-                max-width: 400px;
-                animation: none;
-            }
-
-            .exp-grid,
-            .award-box-grid,
-            .grid-container,
-            .tech-panel-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-bottom: 2rem;
-                position: relative;
-                padding-left: 20px;
-            }
-
-            .contact-grid-layout::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 1.5px;
-                height: 0;
-                background: var(--accent);
-                opacity: 0;
-                transition: height 0.35s ease, opacity 0.2s ease;
-                pointer-events: none;
-            }
-
-            .contact-grid-layout.mobile-arrow-active::before {
-                height: calc(100% - 26px);
-                opacity: 0.95;
-            }
-
-            .contact-left {
-                padding-left: 0;
-                padding-bottom: 0;
-            }
-
-            .contact-arrow-v,
-            .contact-arrow-h,
-            .contact-arrow-head {
-                display: none;
-            }
-
-            .contact-right {
-                padding-left: 18px;
-            }
-
-            .form-actions {
-                position: relative;
-                padding-left: 18px;
-            }
-
-            .form-actions::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: -18px;
-                width: 0;
-                height: 1.5px;
-                background: var(--accent);
-                opacity: 0;
-                transform: translateY(-50%);
-                transition: width 0.35s ease 0.15s, opacity 0.2s ease 0.1s;
-                pointer-events: none;
-            }
-
-            .contact-grid-layout.mobile-arrow-active .form-actions::before {
-                width: 18px;
-                opacity: 0.95;
-            }
-
-            .form-actions::after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: -10px;
-                width: 8px;
-                height: 8px;
-                border-top: 1.5px solid var(--accent);
-                border-right: 1.5px solid var(--accent);
-                opacity: 0;
-                transform: translateY(-50%) rotate(45deg) scale(0.75);
-                transition: left 0.35s ease 0.15s, opacity 0.1s ease 0.15s, transform 0.2s ease 0.15s;
-                pointer-events: none;
-            }
-
-            .contact-grid-layout.mobile-arrow-active .form-actions::after {
-                left: -2px;
-                opacity: 1;
-                transform: translateY(-50%) rotate(45deg) scale(1);
-            }
-
-            .cf-input-group {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom-wrapper {
-                flex-wrap: wrap;
-                white-space: normal;
-                justify-content: flex-start;
-            }
-
-            .footer-copyright {
-                margin-left: 0 !important;
-                margin-top: 10px;
-                width: 100%;
-            }
-
-            .form-footer {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn-send {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .msg-success-box {
-                max-width: 100%;
-            }
-
-            .back-to-top {
-                bottom: 20px;
-                right: 15px;
-                left: auto;
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-
-            #ai-widget-toggle {
-                position: fixed;
-                bottom: 20px;
-                right: 65px;
-                width: 42px;
-                height: 42px;
-                font-size: 1.05rem;
-            }
-
-            #ai-chat-window {
-                bottom: 75px;
-                right: 15px;
-                left: auto;
-                width: calc(100vw - 30px);
-                max-width: 320px;
-            }
-
-            .contact-footer-section {
-                padding: 2rem 0;
-            }
-
-            .about-split-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .profile-text {
-                text-align: justify;
-            }
-
-
-            .tcp-vision-hero {
-                grid-template-columns: 1fr;
-                padding: 1.35rem;
-                border-radius: 22px;
-            }
-
-            .tcp-vision-copy h3 {
-                font-size: 1.6rem;
-            }
-
-            .tcp-vision-kpis,
-            .tcp-summary-grid,
-            .tcp-pillar-grid,
-            .tcp-impact-grid,
-            .tcp-roadmap {
-                grid-template-columns: 1fr;
-            }
-
-            .tcp-roadmap::before {
-                display: none;
-            }
-
-            .tcp-kpi,
-            .tcp-summary-card,
-            .tcp-phase-card,
-            .tcp-impact-card {
-                padding: 1.1rem;
-            }
+            .tcp-vision-hero{grid-template-columns:1fr;padding:1.35rem;border-radius:22px;background:linear-gradient(135deg,#f6f8f4 0%,#edf7f2 55%,#fff9ef 100%);}.tcp-vision-hero::before,.tcp-vision-hero::after{display:none;}.tcp-vision-copy h3{font-size:1.6rem;}.tcp-vision-kpis,.tcp-summary-grid,.tcp-pillar-grid,.tcp-impact-grid,.tcp-roadmap{grid-template-columns:1fr;}.tcp-roadmap::before{display:none;}.tcp-kpi,.tcp-summary-card,.tcp-phase-card,.tcp-impact-card{padding:1.1rem;}
         }
 
-/* TCP and leadership section dark mode */
+        /* TCP and leadership section dark mode */
         body.dark-mode .tcp-vision-hero {
             background:
                 radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 28%),
@@ -3272,10 +1479,78 @@
         body.dark-mode .timeline-item,
         body.dark-mode .lab-section,
         body.dark-mode .dei-card,
-        body.dark-mode .team-hierarchy {
+        body.dark-mode .team-hierarchy,
+        body.dark-mode .tcp-roadmap .exp-box {
             background: var(--white);
             border-color: #334155;
         }
+
+        body.dark-mode .tcp-focus-card:hover { background-color: #0f172a; }
+        body.dark-mode .tcp-focus-card-1:hover { border-color: #0ea5e9; }
+        body.dark-mode .tcp-focus-card-2:hover { border-color: #10b981; }
+        body.dark-mode .tcp-focus-card-3:hover { border-color: #f43f5e; }
+        body.dark-mode .tcp-focus-card-4:hover { border-color: #8b5cf6; }
+        body.dark-mode .tcp-focus-card-5:hover { border-color: #f59e0b; }
+        body.dark-mode .tcp-focus-card-6:hover { border-color: #14b8a6; }
+
+        body.dark-mode .tcp-card-1:hover { border-color: #38bdf8 !important; background-color: #1e293b; }
+        body.dark-mode .tcp-card-2:hover { border-color: #34d399 !important; background-color: #1e293b; }
+        body.dark-mode .tcp-card-3:hover { border-color: #c084fc !important; background-color: #1e293b; }
+        
+        body.dark-mode .tcp-card-1:hover h4 { color: #38bdf8 !important; }
+        body.dark-mode .tcp-card-2:hover h4 { color: #34d399 !important; }
+        body.dark-mode .tcp-card-3:hover h4 { color: #c084fc !important; }
+
+        body.dark-mode .tcp-roadmap .tcp-ph-1 { border-top-color: #38bdf8; } body.dark-mode .tcp-roadmap .tcp-ph-1::before { border-color: #38bdf8; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-1:hover::before { background: #38bdf8; } body.dark-mode .tcp-roadmap .tcp-ph-1:hover { border-color: #38bdf8; }
+        body.dark-mode .tcp-roadmap .tcp-ph-2 { border-top-color: #fbbf24; } body.dark-mode .tcp-roadmap .tcp-ph-2::before { border-color: #fbbf24; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-2:hover::before { background: #fbbf24; } body.dark-mode .tcp-roadmap .tcp-ph-2:hover { border-color: #fbbf24; }
+        body.dark-mode .tcp-roadmap .tcp-ph-3 { border-top-color: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3::before { border-color: #c084fc; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover::before { background: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover { border-color: #c084fc; }
+
+        .typewriter-box {
+            background: linear-gradient(#fff, #fff) padding-box,
+                        linear-gradient(135deg, rgba(6,78,59,0.55) 0%, rgba(245,158,11,0.65) 100%) border-box;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 1.5rem 1.8rem 1.4rem 2rem;
+            font-size: 1.08rem;
+            line-height: 1.85;
+            color: var(--text);
+            position: relative;
+            font-style: italic;
+            box-shadow: 0 6px 32px rgba(6,78,59,0.08), 0 2px 8px rgba(245,158,11,0.07);
+            overflow: hidden;
+        }
+        .typewriter-box::before {
+            content: '\201C';
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: absolute;
+            top: -12px;
+            right: 18px;
+            line-height: 1;
+            pointer-events: none;
+            opacity: 0.18;
+        }
+        .typewriter-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(6,78,59,0.3), rgba(245,158,11,0.5), rgba(6,78,59,0.2));
+            border-radius: 0 0 20px 20px;
+        }
+        .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.75s step-end infinite; }
+        @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        body.dark-mode .typewriter-box {
+            background: linear-gradient(#1e293b, #1e293b) padding-box,
+                        linear-gradient(135deg, rgba(6,78,59,0.7) 0%, rgba(245,158,11,0.8) 100%) border-box;
+            color: #e2e8f0;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(245,158,11,0.1);
+        }
+        body.dark-mode .typewriter-box::after { background: linear-gradient(90deg, rgba(6,78,59,0.5), rgba(245,158,11,0.7), rgba(6,78,59,0.4)); }
 
         body.dark-mode .timeline-item-1 {
             background: linear-gradient(180deg, #1e293b 0%, rgba(34, 197, 94, 0.1) 100%);
@@ -3311,29 +1586,133 @@
         body.dark-mode .timeline-content p,
         body.dark-mode .lab-section li,
         body.dark-mode .lab-section p,
-        body.dark-mode .team-level,
-        body.dark-mode .dei-card p {
-            color: #cbd5e1;
+        body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
+        
+        /* TCP Vision Boxes & Hovers Dark Mode */
+        body.dark-mode .tcp-focus-card-1:hover { background-color: #0c4a6e; border-color: #0ea5e9; }
+        body.dark-mode .tcp-focus-card-2:hover { background-color: #064e3b; border-color: #10b981; }
+        body.dark-mode .tcp-focus-card-3:hover { background-color: #881337; border-color: #f43f5e; }
+        body.dark-mode .tcp-focus-card-4:hover { background-color: #4c1d95; border-color: #8b5cf6; }
+        body.dark-mode .tcp-focus-card-5:hover { background-color: #78350f; border-color: #f59e0b; }
+        body.dark-mode .tcp-focus-card-6:hover { background-color: #134e4a; border-color: #14b8a6; }
+        
+        body.dark-mode .tcp-impact-card:nth-child(3n+1):hover, body.dark-mode .strategy-card-item:nth-child(3n+1):hover, body.dark-mode .culture-card:nth-child(3n+1):hover, body.dark-mode .lab-section:nth-child(3n+1):hover { border-top-color: #38bdf8; background-color: #1e293b; }
+        body.dark-mode .tcp-impact-card:nth-child(3n+2):hover, body.dark-mode .strategy-card-item:nth-child(3n+2):hover, body.dark-mode .culture-card:nth-child(3n+2):hover, body.dark-mode .lab-section:nth-child(3n+2):hover { border-top-color: #34d399; background-color: #1e293b; }
+        body.dark-mode .tcp-impact-card:nth-child(3n+3):hover, body.dark-mode .strategy-card-item:nth-child(3n+3):hover, body.dark-mode .culture-card:nth-child(3n+3):hover, body.dark-mode .lab-section:nth-child(3n+3):hover { border-top-color: #c084fc; background-color: #1e293b; }
+        
+        body.dark-mode .tcp-impact-card:nth-child(3n+1):hover h4, body.dark-mode .strategy-card-item:nth-child(3n+1):hover h4, body.dark-mode .culture-card:nth-child(3n+1):hover h4, body.dark-mode .lab-section:nth-child(3n+1):hover h4 { color: #38bdf8; }
+        body.dark-mode .tcp-impact-card:nth-child(3n+2):hover h4, body.dark-mode .strategy-card-item:nth-child(3n+2):hover h4, body.dark-mode .culture-card:nth-child(3n+2):hover h4, body.dark-mode .lab-section:nth-child(3n+2):hover h4 { color: #34d399; }
+        body.dark-mode .tcp-impact-card:nth-child(3n+3):hover h4, body.dark-mode .strategy-card-item:nth-child(3n+3):hover h4, body.dark-mode .culture-card:nth-child(3n+3):hover h4, body.dark-mode .lab-section:nth-child(3n+3):hover h4 { color: #c084fc; }
+
+        body.dark-mode .tcp-roadmap-vertical .tcp-ph-1 { border-top-color: #38bdf8; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-1::before { border-color: #38bdf8; background: #0f172a; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-1:hover::before { background: #38bdf8; }
+        body.dark-mode .tcp-roadmap-vertical .tcp-ph-2 { border-top-color: #fbbf24; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-2::before { border-color: #fbbf24; background: #0f172a; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-2:hover::before { background: #fbbf24; }
+        body.dark-mode .tcp-roadmap-vertical .tcp-ph-3 { border-top-color: #c084fc; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-3::before { border-color: #c084fc; background: #0f172a; } body.dark-mode .tcp-roadmap-vertical .tcp-ph-3:hover::before { background: #c084fc; }
+
+        /* --- Custom User Styles --- */
+
+        .tcp-summary-card h4 {
+            position: relative;
         }
 
-        body.dark-mode .tcp-kpi-label {
-            color: #67e8f9;
+        .tcp-summary-card:hover h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
         }
 
-        body.dark-mode .tcp-phase-range {
-            background: #0f172a;
-            color: #cbd5e1;
-        }
+        /* Request 3: Vision & Research Themes colors */
+        .tcp-focus-card:nth-child(1) { background-color: var(--vision-color-1); }
+        .tcp-focus-card:nth-child(2) { background-color: var(--vision-color-2); }
+        .tcp-focus-card:nth-child(3) { background-color: var(--vision-color-3); }
+        .tcp-focus-card:nth-child(4) { background-color: var(--vision-color-4); }
+        .tcp-focus-card:nth-child(5) { background-color: var(--vision-color-5); }
+        .tcp-focus-card:nth-child(6) { background-color: var(--vision-color-6); }
 
-        body.dark-mode .timeline-marker {
-            background: #020617;
-        }
+        /* Vision cards: refined hover — darken slightly + colored border, no dark overlay */
+        .tcp-focus-card:hover::after { transform: translateY(100%) !important; }
+        .tcp-focus-card:hover::before { background: linear-gradient(135deg, transparent, transparent) !important; }
+        .tcp-focus-card:hover { border-width: 2px; }
+        .tcp-focus-card:hover .tfc-icon { color: var(--primary) !important; background: rgba(6,78,59,0.1) !important; border-radius: 20px !important; filter: none !important; margin-bottom: 15px !important; }
+        .tcp-focus-card:hover .tfc-title { color: var(--primary) !important; }
+        .tcp-focus-card:hover .tfc-desc { color: #555 !important; }
+        .tcp-focus-card:hover .tech-ul li { color: var(--text) !important; }
 
-        body.dark-mode .strategy-card-item::before,
-        body.dark-mode .lab-section::before,
-        body.dark-mode .dei-card::before {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent 46%);
-        }
+        /* Vision cards: list alignment, separators & tick centering */
+        .tcp-focus-card .tech-ul { text-align: left; width: 100%; margin-top: 4px; }
+        .tcp-focus-card .tech-ul li { padding: 7px 0 7px 22px; margin-bottom: 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .tcp-focus-card .tech-ul li:last-child { border-bottom: none; padding-bottom: 0; }
+        .tcp-focus-card .tech-ul li::before { top: 50%; transform: translateY(-50%); }
+        .tcp-focus-card-1:hover { background-color: #c5e5e2 !important; border-color: #0ea5e9 !important; }
+        .tcp-focus-card-2:hover { background-color: #fde49e !important; border-color: #d97706 !important; }
+        .tcp-focus-card-3:hover { background-color: #dbd5ff !important; border-color: #8b5cf6 !important; }
+        .tcp-focus-card-4:hover { background-color: #fcc4c4 !important; border-color: #f43f5e !important; }
+        .tcp-focus-card-5:hover { background-color: #a8ede5 !important; border-color: #14b8a6 !important; }
+        .tcp-focus-card-6:hover { background-color: #c2d4ff !important; border-color: #6366f1 !important; }
+
+        /* Request 4b: Funding hover border colors */
+        .strategy-card-item:nth-child(1):hover { border-color: #0ea5e9; }
+        .strategy-card-item:nth-child(2):hover { border-color: #10b981; }
+        .strategy-card-item:nth-child(3):hover { border-color: #f43f5e; }
+
+        /* Roadmap Phase boxes: thin separators + centred tick */
+        #roadmap-funding .edu-card .tech-ul li { padding: 7px 0 7px 22px; margin-bottom: 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #roadmap-funding .edu-card .tech-ul li:last-child { border-bottom: none; padding-bottom: 0; }
+        #roadmap-funding .edu-card .tech-ul li::before { top: 50%; transform: translateY(-50%); }
+
+        /* Roadmap Funding Logic boxes: thin separators */
+        #roadmap-funding .strategy-card-item li { border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #roadmap-funding .strategy-card-item li:last-child { border-bottom: none; }
+
+        /* Lab Model: per-box accent colours */
+        #lab-model .lab-section:nth-child(1) { --panel-accent: #0ea5e9; }
+        #lab-model .lab-section:nth-child(2) { --panel-accent: #10b981; }
+        #lab-model .lab-section:nth-child(3) { --panel-accent: #8b5cf6; }
+
+        /* Request 5: Teaching colors */
+        .culture-card:nth-child(1) { border-left-color: #22c55e; }
+        .culture-card:nth-child(2) { border-left-color: #f59e0b; }
+        .culture-card:nth-child(3) { border-left-color: #8b5cf6; }
+
+        .culture-card:nth-child(1):hover { border-color: #22c55e; }
+        .culture-card:nth-child(2):hover { border-color: #f59e0b; }
+        .culture-card:nth-child(3):hover { border-color: #8b5cf6; }
+
+        /* Teaching & Culture: per-card accents, hover heading = border colour, bullet centering */
+        #tcp-culture + .panel .strategy-card-item:nth-child(1) { --panel-accent: #0ea5e9; }
+        #tcp-culture + .panel .strategy-card-item:nth-child(2) { --panel-accent: #10b981; }
+        #tcp-culture + .panel .strategy-card-item:nth-child(3) { --panel-accent: #f43f5e; }
+        #tcp-culture + .panel .strategy-card-item h4 { transition: color 0.3s ease; font-size: 1.25rem; }
+        #tcp-culture + .panel .strategy-card-item:hover h4 { color: var(--panel-accent); }
+        #tcp-culture + .panel .tech-ul li::before { top: 50%; transform: translateY(-50%); }
+
+        /* Core Lab Culture: hover heading = border colour + separators */
+        .culture-card:nth-child(1):hover h4 { color: #22c55e; }
+        .culture-card:nth-child(2):hover h4 { color: #f59e0b; }
+        .culture-card:nth-child(3):hover h4 { color: #8b5cf6; }
+        .culture-card .tech-ul li { padding: 7px 0 7px 22px; margin-bottom: 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .culture-card .tech-ul li:last-child { border-bottom: none; padding-bottom: 0; }
+        .culture-card .tech-ul li::before { top: 50%; transform: translateY(-50%); }
+
+        /* Roadmap phases: hover heading = border colour */
+        #roadmap-funding .edu-card h4 { transition: color 0.3s ease; font-size: 1.25rem; }
+        #roadmap-funding .edu-card.edu-phd:hover h4 { color: var(--edu-phd); }
+        #roadmap-funding .edu-card.edu-msc:hover h4 { color: var(--edu-msc); }
+        #roadmap-funding .edu-card.edu-bsc:hover h4 { color: var(--edu-bsc); }
+
+        /* Roadmap Funding Logic: per-card accents, hover heading = border colour */
+        #roadmap-funding .strategy-card-item:nth-child(1) { --panel-accent: #0ea5e9; }
+        #roadmap-funding .strategy-card-item:nth-child(2) { --panel-accent: #10b981; }
+        #roadmap-funding .strategy-card-item:nth-child(3) { --panel-accent: #f43f5e; }
+        #roadmap-funding .strategy-card-item h5 { transition: color 0.3s ease; font-size: 1.25rem; }
+        #roadmap-funding .strategy-card-item:hover h5 { color: var(--panel-accent); }
+
+        /* Lab Model: hover heading = border colour */
+        #lab-model .lab-section h4 { transition: color 0.3s ease; font-size: 1.25rem; }
+        #lab-model .lab-section:hover h4 { color: var(--panel-accent); }
     </style>
 </head>
 
@@ -3439,17 +1818,13 @@
                     </div>
                 </li>
                 <li class="nav-item nav-item-dropdown">
-                    <a href="#research-strategy" class="nav-link">Prospects <span class="desktop-arrow"><i
-                                class="fas fa-chevron-down"></i></span></a>
-                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'strat-dd')"><i
-                            class="fas fa-chevron-down"></i></div>
+                    <a href="#research-vision" class="nav-link">Prospects <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'strat-dd')"><i class="fas fa-chevron-down"></i></div>
                     <div class="nav-dropdown-content" id="strat-dd">
-                        
-                        <a href="#research-strategy" onclick="triggerAccordion('strat-research')">Research</a>
-                        <a href="#research-strategy" onclick="triggerAccordion('strat-lab')">Partnerships</a>
-                        <a href="#research-strategy" onclick="triggerAccordion('strat-funding')">Funding</a>
-                        <a href="#research-strategy" onclick="triggerAccordion('strat-teaching')">Teaching</a>
-                        <a href="#research-strategy" onclick="triggerAccordion('strat-diversity')">Mentorship</a>
+                        <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Vision</a>
+                        <a href="#roadmap-funding" onclick="triggerAccordion('tcp-timeline-btn')">Roadmap</a>
+                        <a href="#lab-model" onclick="triggerAccordion('strat-lab')">Lab Model</a>
+                        <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')">Mentorship</a>
                     </div>
                 </li>
 
@@ -3502,11 +1877,10 @@
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
                 <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
                 <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at UCPH & Aspiring Assistant Professor</a>
-                <div class="hero-sub-role">Postdoctoral scientist developing AI-driven computational frameworks to decode complex biological systems, seeking an Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group.</div>
-                <div class="hero-contact">
+                <div class="hero-contact" style="margin-top: 25px;">
                     <i class="fas fa-envelope"></i> 
-                    <span class="email-click" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
-                    <span class="email-click" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                    <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
+                    <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
                 </div>
             </div>
             
@@ -3538,6 +1912,11 @@
             </div>
         </section>
     </div>
+
+    <!-- === SECTION 7.1: STATEMENT === -->
+    <section class="container reveal" style="margin-top: 3rem; margin-bottom: -1rem;">
+        <div class="typewriter-box" id="tw-box" data-text="Postdoctoral scientist developing AI-driven computational frameworks to decode complex biological systems, seeking an Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group."></div>
+    </section>
 
     <!-- 7.2: Unified Profile & Experience Layout -->
     <section id="profile-experience" class="container reveal" style="margin-top: 2rem;">
@@ -3620,7 +1999,11 @@
 
     <!-- === SECTION 8: KEY SCIENTIFIC CONTRIBUTIONS === -->
     <section id="contributions" class="container reveal">
-        <h2 class="section-title">Key Scientific Contributions</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
+            <h2 class="section-title" style="margin-bottom:0;">Key Scientific Contributions</h2>
+            <button onclick="summarizeContributions()" class="ai-magic-btn ai-expand-btn" id="summarize-contributions-btn"><span class="btn-icon">✨</span><span class="btn-text">AI Summary</span></button>
+        </div>
+        <div id="contributions-summary" style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
         <div class="bento-grid">
             
             <!-- Bento Box 1: Horizontal Wide Top -->
@@ -4045,7 +2428,7 @@
             <div class="panel-content">
                 <div class="scrollable-grid">
                     <div class="tech-panel-grid">
-                        <div class="tech-card tc-blue"><div class="tech-sub-title"><i class="fas fa-robot"></i> Agentic AI & Generative Models</div><ul class="tech-ul"><li>Autonomous Agent Workflows (LangChain, AutoGPT)</li><li>Retrieval-Augmented Generation (RAG) architecture</li><li>Fine-tuning Large Language Models (LLMs) for biology</li><li>Multi-agent simulations for complex data parsing</li></ul></div>
+                        <div class="tech-card tc-blue"><div class="tech-sub-title"><i class="fas fa-robot"></i> Agentic AI & GenAI</div><ul class="tech-ul"><li>Autonomous Agent Workflows (LangChain, AutoGPT)</li><li>Retrieval-Augmented Generation (RAG) architecture</li><li>Fine-tuning Large Language Models (LLMs) for biology</li><li>Multi-agent simulations for complex data parsing</li></ul></div>
                         <div class="tech-card tc-green"><div class="tech-sub-title"><i class="fas fa-brain"></i> Deep Learning & ML</div><ul class="tech-ul"><li>Advanced Architectures: Transformers, CNNs, LSTMs</li><li>Classical ML pipelines: Scikit-learn, XGBoost, LightGBM</li><li>Explainable AI (XAI) algorithms: LIME, SHAP</li><li>Hyperparameter optimization and cross-validation</li></ul></div>
                         <div class="tech-card tc-purple"><div class="tech-sub-title"><i class="fas fa-code"></i> Scientific Computing</div><ul class="tech-ul"><li>Python Ecosystem: NumPy, Pandas, SciPy, PyTorch, Keras</li><li>R Bioconductor & Tidyverse integration</li><li>Complex data visualization: Seaborn, Plotly, Matplotlib</li><li>MATLAB for specialized mathematical modelling</li></ul></div>
                     </div>
@@ -4073,7 +2456,7 @@
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue"><div class="tech-sub-title"><i class="fas fa-dna"></i> Advanced Omics Analysis</div><ul class="tech-ul"><li>WGS/WES data processing & variant annotation</li><li>Single-cell RNA-seq (scRNA-seq) trajectory inference</li><li>Alignment (Bowtie2, BWA) & Variant calling (GATK)</li><li>AI-based variant pathogenicity prediction frameworks</li></ul></div>
                         <div class="tech-card tc-green"><div class="tech-sub-title"><i class="fas fa-project-diagram"></i> Systems Biology & Networks</div><ul class="tech-ul"><li>Multi-omics data integration and harmonization</li><li>Protein-protein interaction mapping (Cytoscape, STRING)</li><li>Gene regulatory network reconstruction & pathway mining</li><li>Biomarker discovery via systems-level interpretation</li></ul></div>
-                        <div class="tech-card tc-purple"><div class="tech-sub-title"><i class="fas fa-align-left"></i> Evolutionary & Sequence Analytics</div><ul class="tech-ul"><li>Phylogenomics and maximum likelihood estimations</li><li>Multiple sequence alignment (Clustal, MAFFT, MUSCLE)</li><li>Motif discovery and hidden Markov models (HMMs)</li><li>Comprehensive BLAST and FASTA heuristic searches</li></ul></div>
+                        <div class="tech-card tc-purple"><div class="tech-sub-title"><i class="fas fa-align-left"></i> Evolutionary & Sequences</div><ul class="tech-ul"><li>Phylogenomics and maximum likelihood estimations</li><li>Multiple sequence alignment (Clustal, MAFFT, MUSCLE)</li><li>Motif discovery and hidden Markov models (HMMs)</li><li>Comprehensive BLAST and FASTA heuristic searches</li></ul></div>
                     </div>
                 </div>
             </div>
@@ -4086,7 +2469,7 @@
                     <div class="tech-panel-grid">
                         <div class="tech-card tc-blue"><div class="tech-sub-title"><i class="fas fa-server"></i> HPC & Cloud Infrastructure</div><ul class="tech-ul"><li>Linux/Unix architectures and system administration</li><li>HPC job scheduling (SLURM, PBS Pro)</li><li>Cloud computing platforms (AWS, Google Cloud)</li><li>Parallel computing and GPU acceleration strategies</li></ul></div>
                         <div class="tech-card tc-green"><div class="tech-sub-title"><i class="fas fa-cogs"></i> MLOps & Containerization</div><ul class="tech-ul"><li>Deploying AI models in production environments</li><li>Containerized scientific workflows (Docker, Singularity)</li><li>CI/CD pipelines for automated testing & deployment</li><li>Bash scripting for scalable batch automation</li></ul></div>
-                        <div class="tech-card tc-purple"><div class="tech-sub-title"><i class="fab fa-git-alt"></i> Version Control & Dev Standards</div><ul class="tech-ul"><li>Git/GitHub for collaborative code management</li><li>Building reproducible, modular scientific codebases</li><li>Strict documentation and Jupyter Notebook integration</li><li>Agile methodologies in computational research</li></ul></div>
+                        <div class="tech-card tc-purple"><div class="tech-sub-title"><i class="fab fa-git-alt"></i> Version & Dev Standards</div><ul class="tech-ul"><li>Git/GitHub for collaborative code management</li><li>Building reproducible, modular scientific codebases</li><li>Strict documentation and Jupyter Notebook integration</li><li>Agile methodologies in computational research</li></ul></div>
                     </div>
                 </div>
             </div>
@@ -4095,346 +2478,291 @@
     </section>
 
     <!-- === SECTION 9: RESEARCH VISION & STRATEGY (TCP Group) === -->
-<section id="research-strategy" class="container reveal">
-    <h2 class="section-title">Academic Vision & Group Strategy (TCP Group)</h2>
+    <section id="research-vision" class="container reveal">
+        <h2 class="section-title">Academic Vision & Group Strategy (TCP Group)</h2>
 
-    <div class="tcp-vision-hero">
-        <div class="tcp-vision-copy">
-            <span class="tcp-eyebrow"><i class="fas fa-compass"></i> Future Academic Vision</span>
-            <h3>Establishing the Translational Computational Pharmacology (TCP) Group</h3>
-            <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
-            <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognizable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
-            <div class="tcp-tag-row">
-                <span class="tcp-tag">#Mechanism-aware AI</span>
-                <span class="tcp-tag">#Computational pharmacology</span>
-                <span class="tcp-tag">#Precision genomics</span>
-                <span class="tcp-tag">#Reproducible training</span>
-                <span class="tcp-tag">#Sustainable biotechnology</span>
-            </div>
-        </div>
-        <div class="tcp-vision-kpis">
-            <div class="tcp-kpi">
-                <span class="tcp-kpi-label">Research Signature</span>
-                <strong>Prediction anchored in mechanism</strong>
-                <p>Every computational result should be interpretable enough to guide validation, not just improve a benchmark.</p>
-            </div>
-            <div class="tcp-kpi">
-                <span class="tcp-kpi-label">Academic Mission</span>
-                <strong>Discovery plus training</strong>
-                <p>The group should produce strong science while also training students to think across data, structure, and biology.</p>
-            </div>
-            <div class="tcp-kpi">
-                <span class="tcp-kpi-label">Long-Term Outcome</span>
-                <strong>A durable, collaborative lab identity</strong>
-                <p>TCP should become a recognizable research home with clear themes, strong partnerships, and scalable mentoring.</p>
-            </div>
-        </div>
-    </div>
-
-        <button class="accordion-btn" id="strat-research"><span><i class="fas fa-brain acc-badge-icon"
-                style="color:var(--accent); margin-right:10px;"></i> Research Identity & Strategic Pillars</span><i
-            class="fas fa-chevron-down"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <div class="tcp-summary-grid">
-                <div class="tcp-summary-card tcp-summary-card-1">
-                    <h4>What TCP is built to answer</h4>
-                    <p>How can AI and computation move from static prediction toward mechanism-led, decision-ready science in drug discovery, disease biology, and environmentally responsible design?</p>
-                </div>
-                <div class="tcp-summary-card tcp-summary-card-2">
-                    <h4>How the programme will operate</h4>
-                    <p>By combining machine learning, structural modelling, molecular simulations, genomics, and partner-led validation inside one coherent workflow rather than isolated methods.</p>
-                </div>
-                <div class="tcp-summary-card tcp-summary-card-3">
-                    <h4>Why the direction is distinctive</h4>
-                    <p>The programme joins therapeutic innovation with sustainability, explainability, and reproducibility, creating a research identity that is broad in application but sharp in method.</p>
+        <div class="tcp-vision-hero">
+            <div class="tcp-vision-copy">
+                <span class="tcp-eyebrow"><i class="fas fa-compass"></i> Future Academic Vision</span>
+                <h3>Establishing the Translational Computational Pharmacology (TCP) Group</h3>
+                <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
+                <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognizable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
+                <div class="tcp-tag-row">
+                    <span class="tcp-tag">#Mechanism-aware AI</span>
+                    <span class="tcp-tag">#Computational pharmacology</span>
+                    <span class="tcp-tag">#Precision genomics</span>
+                    <span class="tcp-tag">#Reproducible training</span>
+                    <span class="tcp-tag">#Sustainable biotechnology</span>
                 </div>
             </div>
-
-            <div class="tcp-pillar-grid" style="margin-top: 1.2rem;">
-                <div class="tcp-pillar-card tcp-pillar-card-1">
-                    <div class="tcp-pillar-icon"><i class="fas fa-pills"></i></div>
-                    <h4>AI-guided therapeutic design</h4>
-                    <p>Build computational pipelines that support target prioritization, polypharmacology, hit-to-mechanism analysis, and translational decision-making in modern drug discovery.</p>
-                    <ul class="tcp-pillar-points">
-                        <li>Lead prioritization beyond single-target scoring.</li>
-                        <li>Explainable modelling connected to structural reasoning.</li>
-                        <li>Clear hand-off points for wet-lab validation.</li>
-                    </ul>
+            <div class="tcp-vision-kpis">
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Research Signature</span>
+                    <strong>Prediction anchored in mechanism</strong>
+                    <p>Every computational result should be interpretable enough to guide validation, not just improve a benchmark.</p>
                 </div>
-                <div class="tcp-pillar-card tcp-pillar-card-2">
-                    <div class="tcp-pillar-icon"><i class="fas fa-dna"></i></div>
-                    <h4>Computational genomics & disease modelling</h4>
-                    <p>Translate complex genomic and multi-omic data into biologically meaningful signals for precision medicine, systems biology, and disease risk interpretation.</p>
-                    <ul class="tcp-pillar-points">
-                        <li>Variant prioritization and disease modelling.</li>
-                        <li>AI frameworks for clinically relevant genomics.</li>
-                        <li>Integration of network, sequence, and phenotype evidence.</li>
-                    </ul>
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Academic Mission</span>
+                    <strong>Discovery plus training</strong>
+                    <p>The group should produce strong science while also training students to think across data, structure, and biology.</p>
                 </div>
-                <div class="tcp-pillar-card tcp-pillar-card-3">
-                    <div class="tcp-pillar-icon"><i class="fas fa-leaf"></i></div>
-                    <h4>Sustainable biotechnology & PFAS discovery</h4>
-                    <p>Extend the same computational logic to enzyme discovery, biodegradation, and responsible molecular innovation where environmental relevance is part of the scientific design.</p>
-                    <ul class="tcp-pillar-points">
-                        <li>AI-assisted enzyme mining and functional prediction.</li>
-                        <li>Biotechnology pipelines linked to sustainability questions.</li>
-                        <li>A distinctive bridge between therapeutics and environmental biology.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tcp-impact-grid" style="margin-top: 1.2rem;">
-                <div class="tcp-impact-card tcp-impact-card-1">
-                    <h4>Expected scientific outputs</h4>
-                    <p>High-value publications, reusable computational workflows, curated datasets, and methodological frameworks that other groups can adopt or extend.</p>
-                </div>
-                <div class="tcp-impact-card tcp-impact-card-2">
-                    <h4>Expected translational outputs</h4>
-                    <p>Prioritized candidates, mechanism-focused hypotheses, and collaboration-ready packages that accelerate experimental follow-up and partner engagement.</p>
-                </div>
-                <div class="tcp-impact-card tcp-impact-card-3">
-                    <h4>Expected academic identity</h4>
-                    <p>A research programme that is memorable because it joins technical depth, biological reasoning, and long-range societal relevance inside one group philosophy.</p>
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Long-Term Outcome</span>
+                    <strong>A durable, collaborative lab identity</strong>
+                    <p>TCP should become a recognizable research home with clear themes, strong partnerships, and scalable mentoring.</p>
                 </div>
             </div>
         </div>
-    </div>
 
-
-
-    <button class="accordion-btn" id="strat-lab"><span><i class="fas fa-sitemap acc-badge-icon"
-                style="color:var(--accent); margin-right:10px;"></i> TCP Lab Model & Partnerships</span><i
-            class="fas fa-chevron-down"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <div class="lab-structure">
-                <div class="lab-section">
-                    <h5>Team architecture</h5>
-                    <div class="team-hierarchy">
-                        <div class="team-level"><strong>PI:</strong> scientific direction, mentoring standards, and partnership development</div>
-                        <div class="team-level"><strong>Postdocs / Research Staff:</strong> method leadership across AI, genomics, structural biology, or translational themes</div>
-                        <div class="team-level"><strong>PhD / MSc / Project Students:</strong> work-package-driven projects with clear technical and biological ownership</div>
-                    </div>
-                    <p style="margin-top: 15px; color: #555;"><em>A compact, high-trust structure designed to grow with funding while keeping mentoring quality high.</em></p>
-                </div>
-                <div class="lab-section">
-                    <h5>Collaboration model</h5>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li>Structural biology, pharmacology, and assay partners for mechanism-led validation.</li>
-                        <li>Genomics, systems biology, and disease-focused collaborators for multi-omic interpretation.</li>
-                        <li>Environmental biotechnology collaborators where enzyme discovery and sustainability intersect.</li>
-                        <li>International co-supervision and consortium-style projects where the scientific logic is strong.</li>
-                    </ul>
-                </div>
-                <div class="lab-section">
-                    <h5>Infrastructure & operating model</h5>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li>Reproducible codebases, documented pipelines, and shared analysis standards from day one.</li>
-                        <li>HPC-enabled workflows for AI, simulation, and large-scale biological data processing.</li>
-                        <li>Project reviews that balance scientific ambition, feasibility, and translational relevance.</li>
-                        <li>Open, collaboration-ready outputs that make the group easy to engage with externally.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <button class="accordion-btn" id="strat-funding"><span><i class="fas fa-piggy-bank acc-badge-icon"
-                style="color:var(--accent); margin-right:10px;"></i> Funding & Growth Roadmap</span><i
-            class="fas fa-chevron-down"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <div class="funding-timeline">
-                <div class="timeline-item timeline-item-1">
-                    <div class="timeline-marker">Phase 1</div>
-                    <div class="timeline-content">
-                        <h5>Seed the platform</h5>
-                        <p><strong>Priority:</strong> startup support, pilot grants, and focused collaborative calls that can generate early datasets and visible first outputs.</p>
-                        <p><strong>Goal:</strong> establish the computational core, publish early work, and make the programme immediately fundable.</p>
-                    </div>
-                </div>
-                <div class="timeline-item timeline-item-2">
-                    <div class="timeline-marker">Phase 2</div>
-                    <div class="timeline-content">
-                        <h5>Expand people and validation</h5>
-                        <p><strong>Priority:</strong> early-career investigator schemes, foundation grants, and research council opportunities that support PhD and postdoctoral recruitment.</p>
-                        <p><strong>Goal:</strong> deepen validation, broaden partnerships, and turn pilot themes into stable work packages.</p>
-                    </div>
-                </div>
-                <div class="timeline-item timeline-item-3">
-                    <div class="timeline-marker">Phase 3</div>
-                    <div class="timeline-content">
-                        <h5>Scale into a durable programme</h5>
-                        <p><strong>Priority:</strong> larger national and international grants, consortium participation, and translational partnerships with strong scientific fit.</p>
-                        <p><strong>Goal:</strong> position TCP as a mature programme with its own people, infrastructure, and long-term collaborative relevance.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tcp-impact-grid" style="margin-top: 1.2rem;">
-                <div class="tcp-impact-card tcp-impact-card-1">
-                    <h4>Funding logic</h4>
-                    <p>Each grant stage should unlock the next one: pilot data supports people, people support validation, and validated outputs support larger multi-year programmes.</p>
-                </div>
-                <div class="tcp-impact-card tcp-impact-card-2">
-                    <h4>Partnership strategy</h4>
-                    <p>I want funding to be linked to collaborations that are scientifically additive, especially with experimental, translational, and infrastructure partners.</p>
-                </div>
-                <div class="tcp-impact-card tcp-impact-card-3">
-                    <h4>Growth discipline</h4>
-                    <p>The group should expand responsibly, adding themes and people when there is enough mentorship capacity, validation bandwidth, and strategic coherence.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <button class="accordion-btn" id="strat-teaching"><span><i class="fas fa-chalkboard-teacher acc-badge-icon"
-                style="color:var(--accent); margin-right:10px;"></i> Teaching, Training & Mentorship</span><i
-            class="fas fa-chevron-down"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <div class="strategy-cards-grid">
-                <div class="strategy-card-item">
-                    <h5>Teaching philosophy</h5>
-                    <p>I teach with the assumption that modern life science students must be both conceptually strong and computationally confident. My courses aim to move students from passive learning toward active problem solving with real biological data, real uncertainty, and real scientific trade-offs.</p>
-                </div>
-                <div class="strategy-card-item">
-                    <h5>Training portfolio</h5>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li>AI in drug discovery, structural bioinformatics, and computational pharmacology.</li>
-                        <li>Computational genomics, precision medicine, and systems biology.</li>
-                        <li>Reproducible workflows, Python/R, HPC usage, and research software practice.</li>
-                    </ul>
-                </div>
-                <div class="strategy-card-item">
-                    <h5>Mentorship model</h5>
-                    <p><strong>Structured at the start, independent over time.</strong> I want trainees to begin with strong onboarding, shared tools, and clear milestones, then grow into researchers who can frame questions, interpret results critically, and lead collaborative projects with confidence.</p>
-                </div>
-            </div>
-
-            <div class="tcp-summary-grid" style="margin-top: 1.2rem;">
-                <div class="tcp-summary-card tcp-summary-card-1">
-                    <h4>BSc and MSc teaching</h4>
-                    <p>Foundational courses in computational biology, genomics, bioinformatics, and data-driven reasoning for students entering modern biomedical science.</p>
-                </div>
-                <div class="tcp-summary-card tcp-summary-card-2">
-                    <h4>Project-based supervision</h4>
-                    <p>Students will work on clearly scoped TCP projects so coursework, thesis work, and research outputs are connected rather than isolated experiences.</p>
-                </div>
-                <div class="tcp-summary-card tcp-summary-card-3">
-                    <h4>Research training culture</h4>
-                    <p>Training will emphasize scientific writing, presentation, code quality, reproducibility, and collaborative professionalism alongside technical methods.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <button class="accordion-btn" id="strat-diversity"><span><i class="fas fa-heart acc-badge-icon"
-                style="color:var(--accent); margin-right:10px;"></i> Leadership Values & Inclusive Culture</span><i
-            class="fas fa-chevron-down"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <div class="dei-cards">
-                <div class="dei-card dei-card-1">
-                    <h5>High standards, low ego</h5>
-                    <p>I want the group to be ambitious without becoming intimidating: rigorous science, honest feedback, and a culture where asking early questions is seen as strength rather than weakness.</p>
-                </div>
-                <div class="dei-card dei-card-2">
-                    <h5>Transparent mentoring</h5>
-                    <p>Students and staff should know what is expected, how decisions are made, and what support exists for improving writing, presentations, coding, and independent scientific judgment.</p>
-                </div>
-                <div class="dei-card dei-card-3">
-                    <h5>Inclusive research practice</h5>
-                    <p>I am especially motivated to support researchers navigating international transitions, uneven prior training, or hidden barriers to confidence and participation in academic life.</p>
-                </div>
-                <div class="dei-card dei-card-4">
-                    <h5>Visibility and opportunity</h5>
-                    <p>The group should actively help people grow through authorship guidance, presentation opportunities, conference exposure, and access to networks that matter for long-term careers.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-        <button class="accordion-btn" id="tcp-vision"><span><i class="fas fa-bullseye acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Vision & Research Themes</span><i class="fas fa-chevron-down"></i></button>
+        <!-- Pillar 1: Core Research Vision -->
+        <button class="accordion-btn" id="tcp-vision-button"><span><i class="fas fa-bullseye acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Vision & Research Themes</span><i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="tcp-focus-grid">
-                    <div class="tcp-focus-card">
-                        <div class="tfc-icon"><i class="fas fa-network-wired"></i></div>
-                        <div class="tfc-title">Explainable AI (XAI) in Medicine</div>
-                        <div class="tfc-desc">We will move beyond traditional "black box" algorithms by deploying advanced hybrid CNN-LSTMs and Generative Pre-trained Transformers coupled with robust LIME/SHAP mapping. This ensures clinical trustworthiness while uncovering causal pathways in complex diseases. By elucidating elusive drug resistance mechanisms in oncology, our XAI frameworks will provide clinicians with interpretable, data-driven insights that directly inform personalized treatment strategies.</div>
+                    <div class="tcp-focus-card tcp-focus-card-1">
+                        <div class="tfc-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="tfc-title">AI Precision Oncology</div>
+                        <ul class="tech-ul">
+                            <li>Developing deep ensemble architectures (DrLungker, DeepEntXAI).</li>
+                            <li>Integrating Hybrid CNN-LSTMs for high-accuracy drug activity classification.</li>
+                            <li>Utilizing LIME/SHAP mapping to ensure clinical explainability.</li>
+                            <li>Deciphering complex drug resistance mechanisms in mutative cancers.</li>
+                        </ul>
                     </div>
-                    <div class="tcp-focus-card">
+                    <div class="tcp-focus-card tcp-focus-card-2">
                         <div class="tfc-icon"><i class="fas fa-capsules"></i></div>
                         <div class="tfc-title">Multitarget Polypharmacology</div>
-                        <div class="tfc-desc">Leveraging dynamic network pharmacology, molecular dynamics, and generative AI to design singular therapeutic agents computationally tailored to modulate multiple pathological targets concurrently. This polypharmacological approach fundamentally reduces clinical toxicity, minimizes adverse side effects, and elegantly circumvents acquired drug resistance typically seen in monotherapies against hyper-mutative cancer profiles.</div>
+                        <ul class="tech-ul">
+                            <li>Designing singular therapeutics to modulate multiple targets concurrently.</li>
+                            <li>Targeting key pathway proteins (EGFR, CDK2, STAT3, TrkA, KRAS).</li>
+                            <li>Hit-to-lead optimization of compounds like FEDPN and Imidurea.</li>
+                            <li>Reducing clinical toxicity and circumventing acquired drug resistance.</li>
+                        </ul>
                     </div>
-                    <div class="tcp-focus-card">
-                        <div class="tfc-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="tfc-title">Precision Biocatalysis & PFAS</div>
-                        <div class="tfc-desc">Engineering highly resilient microbial enzymes through AI-guided structural mining, homology searching, and extensive QM/MM molecular dynamics simulations. Our goal is to discover and optimize novel biocatalysts for the accelerated, sustainable biodegradation of persistent environmental toxins, specifically targeting "forever chemicals" (PFAS) to restore ecological balance.</div>
+                    <div class="tcp-focus-card tcp-focus-card-3">
+                        <div class="tfc-icon"><i class="fas fa-draw-polygon"></i></div>
+                        <div class="tfc-title">MD & QM/MM Simulations</div>
+                        <ul class="tech-ul">
+                            <li>Executing High-Throughput Virtual Screening (HTVS) pipelines.</li>
+                            <li>Conducting All-atom MD trajectory dynamics via Desmond & GROMACS.</li>
+                            <li>Employing Density Functional Theory (DFT) calculations.</li>
+                            <li>Running rigorous MM/PBSA and MM/GBSA free energy profiling.</li>
+                        </ul>
                     </div>
-                    <div class="tcp-focus-card">
+                    <div class="tcp-focus-card tcp-focus-card-4">
                         <div class="tfc-icon"><i class="fas fa-microscope"></i></div>
                         <div class="tfc-title">Translational Bioinformatics</div>
-                        <div class="tfc-desc">Bridging the bench-to-bedside gap by integrating high-dimensional multi-omics data (genomics, transcriptomics, proteomics) with real-world clinical patient profiles. We aim to discover actionable novel biomarkers, unearth genotype-phenotype correlations, and drive the next generation of highly tailored, personalized therapeutic regimens for precision oncology.</div>
+                        <ul class="tech-ul">
+                            <li>Bridging bench-to-bedside with multi-omics data integration.</li>
+                            <li>Executing actionable biomarker discovery from clinical cohorts.</li>
+                            <li>Correlating complex genotype-phenotype mappings.</li>
+                            <li>Stratifying disease networks to drive personalized therapeutic regimens.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-5">
+                        <div class="tfc-icon"><i class="fas fa-fingerprint"></i></div>
+                        <div class="tfc-title">Evolutionary Genomics</div>
+                        <ul class="tech-ul">
+                            <li>Processing WGS/WES data for precise variant annotation.</li>
+                            <li>Utilizing AI frameworks for variant pathogenicity prediction.</li>
+                            <li>Mapping phylogenomic evolution (e.g., <em>Vigna umbellata</em>).</li>
+                            <li>Analyzing domestication genes and sequence analytics.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-6">
+                        <div class="tfc-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="tfc-title">Precision Biocatalysis & PFAS</div>
+                        <ul class="tech-ul">
+                            <li>Executing AI-guided enzyme mining and homology searching.</li>
+                            <li>Engineering resilient microbial enzymes for targeted bioremediation.</li>
+                            <li>Predicting structural activity of biocatalysts via AI.</li>
+                            <li>Targeting the sustainable degradation of persistent "forever chemicals".</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <button class="accordion-btn" id="tcp-timeline-btn"><span><i class="fas fa-stream acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> 5-Year Strategic Roadmap</span><i class="fas fa-chevron-down"></i></button>
+    <section id="roadmap-funding" class="container reveal">
+
+        <!-- Pillar 2: Timeline & Funding Roadmap -->
+        <button class="accordion-btn" id="tcp-timeline-btn"><span><i class="fas fa-stream acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> 5-Year Strategic Roadmap & Funding</span><i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content" style="padding-top: 15px;">
-                <div class="tcp-timeline">
-                    <div class="tcp-time-node">
-                        <div class="tcp-year"><i class="fas fa-flag-checkered" style="color:var(--accent); margin-right:12px;"></i> Phase 1: Lab Inception & Core Infrastructure (Years 1-2)</div>
-                        <div class="tcp-desc">The immediate focus will be establishing the TCP lab's high-performance computational infrastructure, including GPU clusters and secure data pipelines for omics integration. We will aggressively pursue early-career funding (e.g., ERC Starting Grant, national research fellowships) to fund fundamental operations. During this foundational phase, we will recruit highly motivated, interdisciplinary PhD scholars and Postdocs. Scientifically, we will launch the baseline version of our proprietary XAI-driven drug discovery pipeline, generating our first wave of lead compounds and engineered enzyme models.</div>
+                
+                <!-- Rewritten Timeline using Left-Aligned Roadmap aesthetics -->
+                <div class="edu-grid">
+                    <div class="edu-card edu-phd">
+                        <div class="edu-header">
+                            <h4>Phase 1: Foundation & Discovery</h4>
+                            <span class="year-span">Years 1-2</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Infrastructure:</strong> Establish high-performance computational GPU clusters and secure omics pipelines.</li>
+                            <li><strong>Funding:</strong> Aggressively pursue early-career funding like ERC Starting Grants and national fellowships.</li>
+                            <li><strong>Recruitment:</strong> Build the core team by hiring highly motivated, interdisciplinary PhD scholars and Postdocs.</li>
+                            <li><strong>Outputs:</strong> Launch the baseline version of our proprietary XAI-driven drug discovery pipeline.</li>
+                        </ul>
                     </div>
-                    <div class="tcp-time-node">
-                        <div class="tcp-year"><i class="fas fa-flask" style="color:var(--accent); margin-right:12px;"></i> Phase 2: Validation & Interdisciplinary Expansion (Years 3-4)</div>
-                        <div class="tcp-desc">With robust infrastructure in place, we will scale our polypharmacological deep-learning models to analyze massive, pan-cancer datasets. A critical milestone will be the transition from <em>in silico</em> predictions to rigorous <em>in vitro</em> and <em>in vivo</em> validation. This will be achieved through strategic, cross-disciplinary collaborations with wet-lab experimentalists and clinical oncologists globally. We aim to publish our validated findings in top-tier, high-impact journals and actively file provisional patents for our novel biocatalysts and therapeutic drug hits.</div>
+                    <div class="edu-card edu-msc">
+                        <div class="edu-header">
+                            <h4>Phase 2: Validation & Expansion</h4>
+                            <span class="year-span">Years 2-4</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Scaling:</strong> Expand polypharmacological deep-learning models to analyze massive, pan-cancer datasets.</li>
+                            <li><strong>Validation:</strong> Transition from <em>in silico</em> predictions to rigorous <em>in vitro / in vivo</em> validation.</li>
+                            <li><strong>Collaboration:</strong> Establish cross-disciplinary ties with wet-lab experimentalists and clinical oncologists globally.</li>
+                            <li><strong>IPR & Publishing:</strong> Publish in high-impact journals and file provisional patents for biocatalysts and drug hits.</li>
+                        </ul>
                     </div>
-                    <div class="tcp-time-node">
-                        <div class="tcp-year"><i class="fas fa-globe-europe" style="color:var(--accent); margin-right:12px;"></i> Phase 3: Clinical Translation & Global Impact (Year 5+)</div>
-                        <div class="tcp-desc">The final phase of our 5-year vision is pure translation and real-world application. We will advance our most successful, experimentally validated computationally designed leads into rigorous preclinical trials. By forging robust, sustainable industrial partnerships with leading pharmaceutical corporations and biotechnology startups, we will ensure our research navigates the pipeline from the lab to the market. Ultimately, this phase will solidify the TCP Group as a globally recognized, premier European center of excellence for translational bioinformatics and computational pharmacology.</div>
+                    <div class="edu-card edu-bsc">
+                        <div class="edu-header">
+                            <h4>Phase 3: Translation & Leadership</h4>
+                            <span class="year-span">Years 4-5</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Translation:</strong> Focus on translating validated models into real-world clinical or industrial applications.</li>
+                            <li><strong>Leadership:</strong> Establish the TCP Group as a leading international hub for computational pharmacology.</li>
+                            <li><strong>Mentorship:</strong> Proactively guide senior lab members toward their own successful independent careers.</li>
+                            <li><strong>Legacy:</strong> Ensure all tools and models are open-source to maximize community and clinical impact.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Funding Logic & Growth Strategy</h3>
+                <div class="strategy-cards-grid">
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-coins" style="color:var(--accent); margin-right:8px;"></i> Funding Logic</h5>
+                        <ul>
+                            <li>Pilot data directly supports people and initial validation frameworks.</li>
+                            <li>Team members drive robust <em>in vitro / in vivo</em> validation of computational hits.</li>
+                            <li>Validated outputs secure larger multi-year European/National programmes.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-handshake" style="color:var(--accent); margin-right:8px;"></i> Partnership Strategy</h5>
+                        <ul>
+                            <li>Link funding closely to collaborations that are scientifically additive.</li>
+                            <li>Focus heavily on experimental, translational, and infrastructure partners.</li>
+                            <li>Target joint industry-academia consortium grants.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-chart-line" style="color:var(--accent); margin-right:8px;"></i> Growth Discipline</h5>
+                        <ul>
+                            <li>Expand the group responsibly rather than aggressively.</li>
+                            <li>Add novel themes and people only when mentorship capacity is secure.</li>
+                            <li>Ensure validation bandwidth and overarching strategic coherence.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Mentorship & Lab Culture</span><i class="fas fa-chevron-down"></i></button>
+    <section id="lab-model" class="container reveal">
+        <!-- Pillar 3: Lab Structure & Partnerships -->
+        <button class="accordion-btn" id="strat-lab"><span><i class="fas fa-sitemap acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> TCP Lab Model & Partnerships</span><i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text); line-height: 1.7;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers. The lab will operate strictly on a foundation of <strong>inclusion, rigorous scientific ethics, and open communication</strong>.</p>
-                
-                <div class="culture-grid">
-                    <div class="culture-card">
-                        <h4><i class="fas fa-comments" style="color: #20b0c9; font-size: 1.4rem;"></i> Collaborative Environment</h4>
-                        <p>We will maintain a strictly flat-hierarchy, ensuring cross-disciplinary dialogue where computer scientists, theoretical chemists, and wet-lab biologists speak a shared language. This psychological safety fosters genuine innovation without disciplinary barriers.</p>
+                <div class="tcp-impact-grid">
+                    <div class="lab-section">
+                        <h4><i class="fas fa-sitemap" style="margin-right:8px;"></i> Team Architecture</h4>
+                        <ul class="tech-ul">
+                            <li><strong>PI:</strong> Directs scientific vision, mentoring standards, and partnership development.</li>
+                            <li><strong>Postdocs:</strong> Provides method leadership across AI, genomics, and translational themes.</li>
+                            <li><strong>Students:</strong> Leads work-package-driven projects with clear technical ownership.</li>
+                        </ul>
                     </div>
-                    <div class="culture-card">
-                        <h4><i class="fas fa-chart-line" style="color: #dca11d; font-size: 1.4rem;"></i> Career Development</h4>
-                        <p>Mentorship extends far beyond publications. I will establish meticulously tailored Individual Development Plans (IDPs), actively facilitating grant-writing workshops, independent networking, and international conference opportunities.</p>
+                    <div class="lab-section">
+                        <h4><i class="fas fa-globe" style="margin-right:8px;"></i> Collaboration Model</h4>
+                        <ul class="tech-ul">
+                            <li>Structural biology, pharmacology, and assay partners for validation.</li>
+                            <li>Genomics and disease-focused collaborators for multi-omic interpretation.</li>
+                            <li>Environmental biotechnology collaborators for enzyme discovery.</li>
+                        </ul>
                     </div>
-                    <div class="culture-card">
-                        <h4><i class="fas fa-lock-open" style="color: #28a745; font-size: 1.4rem;"></i> Open Science Principles</h4>
-                        <p>We will uphold a steadfast commitment to scientific transparency. This includes prioritizing open-access publishing, adhering strictly to FAIR data principles, and maintaining well-documented, public GitHub repositories to accelerate global scientific discovery.</p>
+                    <div class="lab-section">
+                        <h4><i class="fas fa-server" style="margin-right:8px;"></i> Operating Model</h4>
+                        <ul class="tech-ul">
+                            <li>Reproducible codebases and shared analysis standards from day one.</li>
+                            <li>HPC-enabled workflows for AI and large-scale biological data processing.</li>
+                            <li>Open, collaboration-ready outputs to boost external engagement.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-    <hr class="separator">
-</section>
+    <section id="teaching-mentorship" class="container reveal">
+        <!-- Pillar 4: Teaching & Mentorship -->
+        <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Teaching, Mentorship & Lab Culture</span><i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text); line-height: 1.7;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers.</p>
+                
+                <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 1rem; text-align: left;">Teaching & Training Philosophy</h3>
+                <div class="strategy-cards-grid">
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-lightbulb" style="margin-right:8px;"></i> Teaching Approach</h4>
+                        <ul class="tech-ul">
+                            <li>Foster dual competency: conceptually strong and computationally confident.</li>
+                            <li>Transition students from passive learning to active problem solving.</li>
+                            <li>Utilize real biological data to navigate real uncertainty and scientific trade-offs.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-book" style="margin-right:8px;"></i> Training Portfolio</h4>
+                        <ul class="tech-ul">
+                            <li>AI in drug discovery and computational pharmacology.</li>
+                            <li>Computational genomics and precision medicine data science.</li>
+                            <li>Reproducible workflows, Python/R, HPC usage, and MLOps.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-user-graduate" style="margin-right:8px;"></i> Mentorship Model</h4>
+                        <ul class="tech-ul">
+                            <li>Structured at the start, independent over time.</li>
+                            <li>Provide strong onboarding, shared tools, and clear milestones.</li>
+                            <li>Empower trainees to frame their own unique biological questions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Core Lab Culture</h3>
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <h4><i class="fas fa-comments" style="margin-right:8px;"></i> Collaborative Environment</h4>
+                        <ul class="tech-ul">
+                            <li>Maintain a strictly flat hierarchy to empower all voices.</li>
+                            <li>Ensure seamless dialogue across diverse computational fields.</li>
+                            <li>Cultivate psychological safety to foster genuine innovation.</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card">
+                        <h4><i class="fas fa-chart-line" style="margin-right:8px;"></i> Career Development</h4>
+                        <ul class="tech-ul">
+                            <li>Establish meticulously tailored Individual Development Plans (IDPs).</li>
+                            <li>Actively facilitate critical grant-writing workshops.</li>
+                            <li>Ensure robust international conference and networking opportunities.</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card">
+                        <h4><i class="fas fa-lock-open" style="margin-right:8px;"></i> Open Science</h4>
+                        <ul class="tech-ul">
+                            <li>Uphold a steadfast commitment to scientific transparency.</li>
+                            <li>Adhere strictly to FAIR data and reproducible code principles.</li>
+                            <li>Maintain well-documented, public GitHub repositories for all outputs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
 
     <!-- === SECTION 14: ACADEMIC REFERENCES AND NETWORKING === -->
     <section id="referees" class="container">
@@ -4522,6 +2850,59 @@
                 }); 
             }); 
             
+            // Continuous Infinite Typewriter Animation
+            const twBox = document.getElementById('tw-box');
+            if (twBox) {
+                const twText = twBox.getAttribute('data-text');
+                let i = 0;
+                let isDeleting = false;
+                
+                const twKeywords = [
+                    ['AI-driven', '#0ea5e9'],
+                    ['computational frameworks', '#10b981'],
+                    ['TCP Group', 'var(--accent)'],
+                    ['Translational Computational Pharmacology', 'var(--accent)'],
+                    ['Assistant Professorship', '#8b5cf6'],
+                    ['biological systems', '#f43f5e'],
+                ];
+                const twColorize = (text) => {
+                    let out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                    twKeywords.forEach(([kw, color]) => {
+                        out = out.replace(new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
+                            `<strong style="color:${color};font-style:normal;font-weight:700;">${kw}</strong>`);
+                    });
+                    return out;
+                };
+
+                const typeWriter = () => {
+                    if (!isDeleting && i <= twText.length) {
+                        const written = twText.substring(0, i);
+                        twBox.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
+                        i++;
+                        setTimeout(typeWriter, 38);
+                    } else if (!isDeleting && i > twText.length) {
+                        isDeleting = true;
+                        twBox.classList.add('typewriter-done');
+                        setTimeout(typeWriter, 5500);
+                    } else if (isDeleting && i > 0) {
+                        twBox.classList.remove('typewriter-done');
+                        const written = twText.substring(0, i);
+                        twBox.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
+                        i -= 2;
+                        setTimeout(typeWriter, 12);
+                    } else {
+                        isDeleting = false;
+                        i = 0;
+                        setTimeout(typeWriter, 900);
+                    }
+                };
+                
+                const observer = new IntersectionObserver(e => {
+                    if (e[0].isIntersecting) { typeWriter(); observer.disconnect(); }
+                });
+                observer.observe(twBox);
+            }
+
             // Instantly set hero stats to 0, then wait 5 seconds before animating sequentially
             initCountersToZero('.stat-row > .stat-value');
             setTimeout(() => {
@@ -4574,12 +2955,12 @@
         };
 
         const runSequentialCounters = async (selector, duration = 3000) => {
-            initCountersToZero(selector); // Set all in group to 0 instantly to avoid sitting at final values
-            const elements = document.querySelectorAll(selector);
-            // Wait for the previous counter to finish before starting the next
-            for (const el of elements) {
-                if(el.hasAttribute('data-target-num')) {
-                    await animateCountUp(el, duration);
+            initCountersToZero(selector);
+            const elements = Array.from(document.querySelectorAll(selector)).filter(el => el.hasAttribute('data-target-num'));
+            for (let i = 0; i < elements.length; i++) {
+                animateCountUp(elements[i], duration); // fire — don't await full completion
+                if (i < elements.length - 1) {
+                    await new Promise(r => setTimeout(r, Math.round(duration * 0.72))); // next starts at ~72%
                 }
             }
         };
@@ -4642,7 +3023,7 @@
 
         /* --- 17.3: UI Interactions, Accordions & Search Engine --- */
         window.addEventListener('click', (e) => { if(!e.target.closest('.btn-cite')) document.querySelectorAll('.cite-dropdown-menu').forEach(m => { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); }); if (!e.target.closest('.lang-wrapper') && !e.target.closest('.search-container') && !e.target.closest('#search-dropdown') && !e.target.closest('.control-icon') && !e.target.closest('.mobile-dropdown-toggle') && !e.target.closest('.accordion-btn')) closeAllDropdowns(); if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb && nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } } if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) { const cw = document.getElementById('ai-chat-window'); if (cw && cw.style.display === 'flex') cw.style.display = 'none'; } const pb = document.getElementById('pub-breakdown'), pc = pb ? pb.closest('.stat-row-link') : null; if (pb && pb.classList.contains('open') && pc && !pc.contains(e.target)) { pb.classList.remove('open'); pb.style.maxHeight = "0"; const ti = pc.querySelector('.stat-toggle i'); if (ti) { ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); } pc.classList.remove('active-box'); } });
-        const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'), s = document.getElementById('search-dropdown'); if(d && d !== x) d.classList.remove('show'); if(m && m !== x) m.classList.remove('show'); if(s && s !== x) s.style.display = 'none'; ['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if(r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if(t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
+        const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'), s = document.getElementById('search-dropdown'); if(d && d !== x) d.classList.remove('show'); if(m && m !== x) m.classList.remove('show'); if(s && s !== x) { s.style.display = 'none'; document.querySelectorAll('.highlight-match').forEach(h => { h.parentNode.replaceChild(document.createTextNode(h.textContent), h); h.parentNode.normalize(); }); sm = []; cmi = -1; lq = ""; const si = document.getElementById('search-input'); if(si) { si.value = ''; si.style.width = '100%'; } const csEl = document.getElementById('search-count'); if(csEl) csEl.innerText = ''; } ['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if(r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if(t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
         const handleFormSubmit = () => { document.getElementById('contact-form').reset(); const fb = document.getElementById('msg-success-box'), sb = document.getElementById('submit-btn'), ab = document.getElementById('draft-email-btn'); if(sb) sb.style.display = 'none'; if(ab) ab.style.display = 'none'; fb.classList.add('anim-start'); setTimeout(() => fb.classList.add('anim-running'), 100); setTimeout(() => { fb.classList.remove('anim-running'); fb.classList.add('anim-reverse'); }, 3000); setTimeout(() => { fb.classList.remove('anim-start', 'anim-reverse'); fb.style.display = 'none'; if(sb) sb.style.display = 'block'; if(ab) ab.style.display = 'inline-flex'; submitted = false; }, 5000); };
         
         let isScrolling = false;
@@ -4667,8 +3048,47 @@
         
         let sm = [], cmi = -1, lq = ""; const toggleSearchDropdown = (e) => { e.stopPropagation(); const dd = document.getElementById('search-dropdown'), inP = document.getElementById('search-input'), lD = document.getElementById('desktop-lang-dd'); if(lD) lD.classList.remove('show'); if (dd.style.display === 'block') { dd.style.display = 'none'; clearHighlights(); } else { dd.style.display = 'block'; setTimeout(() => inP.focus(), 100); } }; const closeSearch = (e) => { if(e) e.stopPropagation(); document.getElementById('search-dropdown').style.display = 'none'; clearHighlights(); document.getElementById('search-input').value = ''; document.getElementById('search-input').style.width = '100%'; const c = document.getElementById('search-count'); if(c) c.innerText = ''; lq = ""; }; const clearSearch = (e) => { if(e) e.stopPropagation(); document.getElementById('search-input').value = ''; document.getElementById('search-input').style.width = '100%'; document.getElementById('search-input').focus(); clearHighlights(); lq = ""; }; const handleSearchKey = (e) => { if (e.key === 'Enter') { if (document.getElementById('search-input').value.trim() !== lq || sm.length === 0) performCustomSearch(); else nextMatch(); } else if (e.key === 'Escape') closeSearch(e); };
         const performCustomSearch = () => { clearHighlights(); const q = document.getElementById('search-input').value.trim(); if (!q) { lq = ""; return; } lq = q; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: (n) => { if (n.parentElement.tagName === 'SCRIPT' || n.parentElement.tagName === 'STYLE' || n.parentElement.closest('#main-header')) return NodeFilter.FILTER_REJECT; return n.nodeValue.trim() === '' ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; }}); const ns = []; while(w.nextNode()) if (w.currentNode.nodeValue.toLowerCase().includes(q.toLowerCase())) ns.push(w.currentNode); sm = []; ns.forEach(n => { const s = document.createElement('span'); s.innerHTML = n.nodeValue.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<span class="highlight-match">$1</span>'); n.replaceWith(document.createRange().createContextualFragment(s.innerHTML)); }); sm = Array.from(document.querySelectorAll('.highlight-match')); if (sm.length > 0) { cmi = 0; updateMatchView(); } else { const cs = document.getElementById('search-count'); if(cs) cs.innerText = "0/0"; } };
-        const updateMatchView = () => { sm.forEach(m => m.classList.remove('active')); if (cmi >= 0 && cmi < sm.length) { const ce = sm[cmi]; ce.classList.add('active'); const pp = ce.closest('.panel'); if (pp) { const tb = pp.previousElementSibling; if (tb && tb.classList.contains('accordion-btn') && !tb.classList.contains('active')) tb.click(); } setTimeout(() => ce.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300); const cs = document.getElementById('search-count'); if(cs) cs.innerText = `${cmi + 1}/${sm.length}`; } }; const nextMatch = () => { if (sm.length === 0) return; cmi = (cmi + 1) % sm.length; updateMatchView(); }; const prevMatch = () => { if (sm.length === 0) return; cmi = (cmi - 1 + sm.length) % sm.length; updateMatchView(); }; const clearHighlights = () => { document.querySelectorAll('.highlight-match').forEach(h => { h.parentNode.replaceChild(document.createTextNode(h.textContent), h); h.parentNode.normalize(); }); sm = []; cmi = -1; const cs = document.getElementById('search-count'); if(cs) cs.innerText = ""; };
-        const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); }; const googleTranslateElementInit = () => new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element');
+        const clearHighlights = () => { document.querySelectorAll('.highlight-match').forEach(h => { h.parentNode.replaceChild(document.createTextNode(h.textContent), h); h.parentNode.normalize(); }); sm = []; cmi = -1; const cs = document.getElementById('search-count'); if(cs) cs.innerText = ""; };
+
+        const updateMatchView = () => {
+            if (!sm.length) return;
+            sm.forEach(m => m.classList.remove('active'));
+            const cur = sm[cmi];
+            cur.classList.add('active');
+            const cs = document.getElementById('search-count');
+            if (cs) cs.innerText = `${cmi + 1}/${sm.length}`;
+            // Open accordion panel if match is inside a collapsed one
+            let accordionOpened = false;
+            let el = cur.parentElement;
+            while (el && el !== document.body) {
+                if (el.classList.contains('panel')) {
+                    const btn = el.previousElementSibling;
+                    if (btn && btn.classList.contains('accordion-btn') && !btn.classList.contains('active')) {
+                        btn.click();
+                        accordionOpened = true;
+                    }
+                    break;
+                }
+                el = el.parentElement;
+            }
+            setTimeout(() => cur.scrollIntoView({ behavior: 'smooth', block: 'center' }), accordionOpened ? 650 : 150);
+        };
+
+        const nextMatch = () => {
+            if (!sm.length) { performCustomSearch(); return; }
+            cmi = (cmi + 1) % sm.length;
+            updateMatchView();
+        };
+
+        const prevMatch = () => {
+            if (!sm.length) return;
+            cmi = (cmi - 1 + sm.length) % sm.length;
+            updateMatchView();
+        };
+
+        const languages = { 'en': { flag: 'gb', code: 'EN' }, 'da': { flag: 'dk', code: 'DA' }, 'es': { flag: 'es', code: 'ES' }, 'fr': { flag: 'fr', code: 'FR' }, 'de': { flag: 'de', code: 'DE' }, 'hi': { flag: 'in', code: 'HI' }, 'zh-CN': { flag: 'cn', code: 'ZH' }, 'ar': { flag: 'sa', code: 'AR' }, 'ur': { flag: 'pk', code: 'UR' }, 'ru': { flag: 'ru', code: 'RU' }, 'ja': { flag: 'jp', code: 'JA' } };
+        const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
+        const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
         const toggleMenu = (e) => { if(e) e.stopPropagation(); const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'), mDD = document.getElementById('mobile-lang-dd'); if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns(); nb.classList.toggle('active'); tb.classList.toggle('open'); }; const toggleMobileSubmenu = (e, tId) => { e.stopPropagation(); const dd = document.getElementById(tId), tb = e.currentTarget; closeAllDropdowns(dd); if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; } }; document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
         const assignReverseBadges = () => [document.querySelector('.exp-grid-vertical'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cs = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cs.forEach((cd, i) => cd.setAttribute('data-badge', cs.length - i)); });
         const acc = document.getElementsByClassName("accordion-btn"); for (let i = 0; i < acc.length; i++) acc[i].addEventListener("click", function() { for (let j = 0; j < acc.length; j++) if (acc[j] !== this && acc[j].classList.contains("active")) { acc[j].classList.remove("active"); acc[j].nextElementSibling.style.maxHeight = null; } this.classList.toggle("active"); const p = this.nextElementSibling; if (p.style.maxHeight) p.style.maxHeight = null; else { p.style.maxHeight = p.scrollHeight + "px"; setTimeout(() => this.scrollIntoView({ behavior: "smooth", block: "nearest" }), 300); } }); const triggerAccordion = (id) => { const btn = document.getElementById(id); if (btn) { if (!btn.classList.contains('active')) btn.click(); setTimeout(() => btn.scrollIntoView({ behavior: "smooth", block: "center" }), 300); } };
@@ -4695,6 +3115,23 @@
             else if (platform === 'instagram') shareLink = `https://www.instagram.com/`; // Opens IG (user pastes text)
             
             if (shareLink) window.open(shareLink, '_blank', 'width=600,height=600');
+        };
+
+        const summarizeContributions = () => {
+            const contributionsText = Array.from(document.querySelectorAll('.bento-card .bento-desc')).map(el => el.innerText).join(' ');
+            triggerAIFeature(
+                'summarize-contributions-btn', 
+                'contributions-summary', 
+                '✨', 
+                'AI Summary', 
+                'Summarizing...', 
+                `Summarize these key scientific contributions in 3-4 concise bullet points. Use HTML for formatting, with <strong> for emphasis. Contributions: ${contributionsText}`,
+                (res) => {
+                    const rb = document.getElementById('contributions-summary');
+                    rb.style.display = 'block';
+                    rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>✨ AI Summary of Contributions:</strong><br><br><ul>${res}</ul>`;
+                }
+            );
         };
 
         const fetchFromBackend = async (prompt, retries = 3, delay = 2000, signal = null) => {
@@ -4753,10 +3190,10 @@
         const triggerAIFeature = async (btnId, resultId, icon, btnText, loadingText, prompt, formatCallback) => {
             const btn = document.getElementById(btnId), resBox = document.getElementById(resultId); if(!btn) return;
             if (activeAbort && activeAbort.id === btnId) { activeAbort.ctrl.abort(); activeAbort = null; btn.classList.remove('processing-gold'); btn.innerHTML = `<span class="btn-icon">${icon}</span><span class="btn-text">${btnText}</span>`; if(resBox) resBox.style.display = 'none'; return; }
-            if (activeAbort) { activeAbort.ctrl.abort(); document.getElementById(activeAbort.id).classList.remove('processing-gold'); document.getElementById(activeAbort.id).innerHTML = activeAbort.html; }
+            if (activeAbort) { activeAbort.ctrl.abort(); const oldBtn = document.getElementById(activeAbort.id); if(oldBtn){ oldBtn.classList.remove('processing-gold'); oldBtn.innerHTML = activeAbort.html; } }
             btn.innerHTML = `<span class="btn-icon"><i class="fas fa-spinner fa-spin"></i></span><span class="btn-text">${loadingText}</span>`; btn.classList.add('processing-gold'); if(resBox) resBox.style.display = 'none';
             const ctrl = new AbortController(); activeAbort = { id: btnId, ctrl, html: `<span class="btn-icon">${icon}</span><span class="btn-text">${btnText}</span>` };
-            try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); formatCallback(res); } catch(e) { if (e.name !== 'AbortError') { if(resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
+            try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if(activeAbort && activeAbort.id === btnId) formatCallback(res); } catch(e) { if (e.name !== 'AbortError' && resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
         };
 
         const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Explain Like I'm 5", 'Explaining...', "Explain Dr. Shaban Ahmad's research in AI, bioinformatics, and PFAS biodegradation like I am 5 years old. Make it fun, engaging, and very short (3 sentences max).", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>👶 Explain Like I'm 5:</strong><br><br>${res}`; });
