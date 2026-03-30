@@ -25,7 +25,6 @@
     <link rel="icon" href="shaban.png" type="image/png">
     
     <!-- === SECTION 2: EXTERNAL DEPENDENCIES & TYPOGRAPHY === -->
-    <!-- Updated FontAwesome to 6.5.2 to correctly render the new X (Twitter) logo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -73,7 +72,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* NEW: Staggered Cascade Entrances for Grids */
         @keyframes cascadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .reveal .edu-card, .reveal .exp-box, .reveal .bento-card, .reveal .patent-box, .reveal .award-card, .reveal .referee-card { opacity: 0; }
         .reveal.active .edu-card, .reveal.active .exp-box, .reveal.active .bento-card, .reveal.active .patent-box, .reveal.active .award-card, .reveal.active .referee-card { opacity: 1; animation: cascadeUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards; }
@@ -86,7 +84,6 @@
         .reveal.active .exp-box:nth-child(7), .reveal.active .award-card:nth-child(7) { animation-delay: 0.65s; }
         .reveal.active .award-card:nth-child(n+8) { animation-delay: 0.75s; }
 
-        /* NEW: Continuous Metallic Shimmer Keyframes */
         @keyframes metallicShimmer { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
         @keyframes goldShine { 0% { background-position: -200% center; } 20% { background-position: 200% center; } 100% { background-position: 200% center; } }
 
@@ -150,15 +147,22 @@
         /* --- 4.8: Hero Landing Section --- */
         .hero-section-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); width: 100%; display: flex; justify-content: center; }
         .hero { color: #ffffff; padding: 2rem 1rem; position: relative; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
-        .hero-main { text-align: center; flex: 1; max-width: 600px; }
+        .hero-main { flex: 1; max-width: 700px; }
+        
+        /* NEW: Hero Side-by-Side Profile Layout */
+        .hero-profile-group { display: flex; align-items: center; gap: 2.5rem; text-align: left; margin-bottom: 1.5rem; }
+        .hero-text-group { display: flex; flex-direction: column; justify-content: center; }
+        
         @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(220, 161, 29, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0); } }
-        .hero-img { width: 190px; height: 190px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 1rem; background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse-shadow 2s infinite; transition: transform 0.3s ease, box-shadow 0.3s ease; } .hero-img:hover { transform: scale(1.05); }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 0.5rem; }
+        .hero-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse-shadow 2s infinite; transition: transform 0.3s ease, box-shadow 0.3s ease; flex-shrink: 0; } 
+        .hero-img:hover { transform: scale(1.05); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; margin-bottom: 0.2rem; line-height: 1.1; }
         .hero-name-span { transition: color 0.3s ease; cursor: default; } .hero-name-span:hover { color: var(--accent); }
-        .hero-role-link { font-weight: 300; font-size: 1.25rem; color: #eee; border-bottom: 1px dotted #aaa; display: inline-block; margin-top: 5px; transition: 0.3s; } .hero-role-link:hover { color: var(--accent); border-color: var(--accent); }
-        .hero-sub-role { font-size: 1rem; color: var(--accent); margin-top: 8px; font-weight: 400; letter-spacing: 0.5px; font-style: italic; }
-        .hero-contact { margin-top: 15px; font-size: 0.95rem; color: rgba(255,255,255,0.9); } .hero-contact i { color: var(--accent); margin-right: 5px; }
-        .email-click { color: inherit; border-bottom: 1px dashed rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; position: relative; } .hero-contact .email-click { border-bottom-color: rgba(255,255,255,0.4); color: #fff; } .email-click:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+        .hero-contact { margin-top: 12px; font-size: 0.95rem; color: rgba(255,255,255,0.9); } 
+        .hero-contact i { color: var(--accent); margin-right: 5px; }
+        .email-click { color: inherit; border-bottom: 1px dashed rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; position: relative; } 
+        .hero-contact .email-click { border-bottom-color: rgba(255,255,255,0.4); color: #fff; } 
+        .email-click:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
 
         .hero-stats { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem; width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left; animation: float 4s ease-in-out infinite; }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
@@ -320,11 +324,8 @@
         .exp-box::after, .edu-card::after { content: attr(data-badge); position: absolute; right: 0; left: auto; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 10; transition: all 0.3s ease; }
         .exp-box:hover::after, .edu-card:hover::after { color: #fff; background: var(--accent); border-color: var(--accent); transform: translate(50%, -50%) scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
         
-        .exp-full:hover::after { background: var(--exp-full); border-color: var(--exp-full); } .exp-part:hover::after { background: var(--exp-part); border-color: var(--exp-part); } .exp-trainee:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
-        .edu-phd:hover::after { background: var(--edu-phd); border-color: var(--edu-phd); } .edu-msc:hover::after { background: var(--edu-msc); border-color: var(--edu-msc); } .edu-bsc:hover::after { background: var(--edu-bsc); border-color: var(--edu-bsc); }
-        
-        .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); } .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
         .exp-full { border-top-color: var(--exp-full); } .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-full); } .exp-part { border-top-color: var(--exp-part); } .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-part); } .exp-trainee { border-top-color: var(--exp-trainee); } .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-trainee); }
+        .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); } .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
         
         .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; } .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; transition: color 0.3s ease; } .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
         .edu-phd:hover h4 { color: var(--edu-phd); } .edu-msc:hover h4 { color: var(--edu-msc); } .edu-bsc:hover h4 { color: var(--edu-bsc); }
@@ -339,7 +340,7 @@
 
         .referee-card { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 12px; border: 1px solid #eee; border-top: 5px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; } .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .referee-card::after { content: attr(data-badge); position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; z-index: 10; transition: all 0.3s ease; }
-        .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15); } .ref-1:hover::after { background: var(--ref-1); border-color: var(--ref-1); color: #fff; } .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15); } .ref-2:hover::after { background: var(--ref-2); border-color: var(--ref-2); color: #fff; } .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15); } .ref-3:hover::after { background: var(--ref-3); border-color: var(--ref-3); color: #fff; } .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15); } .ref-4:hover::after { background: var(--ref-4); border-color: var(--ref-4); color: #fff; } .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15); } .ref-5:hover::after { background: var(--ref-5); border-color: var(--ref-5); color: #fff; } .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15); } .ref-6:hover::after { background: var(--ref-6); border-color: var(--ref-6); color: #fff; }
+        .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15); } .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15); } .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15); } .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15); } .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15); } .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15); } 
         .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; } .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; transition: color 0.3s ease; } .referee-name a { color: var(--primary); transition: color 0.3s ease; } .referee-name a:hover { color: var(--accent); }
         .ref-1:hover .referee-name, .ref-1:hover .referee-name a { color: var(--ref-1); }
         .ref-2:hover .referee-name, .ref-2:hover .referee-name a { color: var(--ref-2); }
@@ -460,7 +461,6 @@
         .contact-left h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: #fff; } .contact-left p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.6; }
         .contact-item { display: flex; align-items: center; margin-bottom: 0.5rem; color: #cbd5e1; } .contact-item i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; width: 20px; } .contact-item a:hover { color: #fff; }
         
-        /* 4. Full Length Animated Arrow for Contact Section - THINNER & LESS PADDING & ALIGN START */
         .contact-left { position: relative; padding-left: 15px; padding-bottom: 12px; align-self: start; }
         .contact-arrow-v { position: absolute; top: 0; left: 0; width: 1.5px; height: 0; background-color: var(--accent); transition: height 0.4s ease-out 0.6s; }
         .contact-arrow-h { position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background-color: var(--accent); transition: width 0.6s ease-in; }
@@ -552,7 +552,16 @@
             .sub-dropdown-content.show-nested { display: block !important; position: static; box-shadow: none; border: none; padding-left: 15px; background-color: #f9f9f9; border-left: 3px solid #e0e0e0; margin-top: 5px; margin-bottom: 5px; }
             
             .sticky-sidebar { display: flex; left: auto; right: 0; top: 50%; border-radius: 12px 0 0 12px; background-color: var(--white); border: 1px solid #eee; padding: 6px 3px; box-shadow: -2px 0 8px rgba(0,0,0,0.1); } .sticky-sidebar .h-social { font-size: 1.05rem; margin: 2px 0; }
-            .header-controls { display: none; } .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; } .hero-stats { width: 100%; max-width: 400px; animation: none; }
+            .header-controls { display: none; } 
+            
+            /* Responsive Hero Updates */
+            .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; } 
+            .hero-profile-group { flex-direction: column; text-align: center; gap: 1.5rem; margin-bottom: 2rem; }
+            .hero-text-group { align-items: center; }
+            .hero h1 { font-size: 2.6rem; }
+            .typewriter-box { text-align: justify; margin: 0 auto; }
+            .hero-img { width: 160px; height: 160px; }
+            .hero-stats { width: 100%; max-width: 400px; animation: none; }
             
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; } 
             
@@ -585,7 +594,7 @@
         @media print {
             #main-header, .sticky-sidebar, .back-to-top, .accordion-btn i, .nav-toggle, .mobile-controls-container, .header-search-bar, .search-tools, .form-footer, .contact-form-box, .cv-btn-group, .hero-contact, footer, .control-icon, #ai-widget-toggle, #ai-chat-window, .ai-modal-overlay, .sf-nav-controls, .ai-expand-btn { display: none !important; }
             body { padding-top: 0; background: #fff; color: #000; font-size: 11pt; } .container { max-width: 100%; padding: 0; margin: 0; }
-            .hero-section-wrapper { background: none; color: #000; } .hero { padding: 0; gap: 20px; justify-content: flex-start; text-align: left; } .hero h1 { color: #000; font-size: 24pt; margin: 0; } .hero-role-link { color: #333; border: none; } .hero-img { border-color: #000; width: 120px; height: 120px; } .hero-stats { display: none; }
+            .hero-section-wrapper { background: none; color: #000; } .hero { padding: 0; gap: 20px; justify-content: flex-start; text-align: left; } .hero h1 { color: #000; font-size: 24pt; margin: 0; } .hero-img { border-color: #000; width: 120px; height: 120px; } .hero-stats { display: none; }
             .section-title { font-size: 16pt; border-left: none; border-bottom: 2px solid #000; padding-left: 0; margin-top: 20px; }
             .accordion-btn { background: none; border: none; padding: 0; margin: 10px 0 5px 0; font-weight: 800; font-size: 13pt; color: #000; } .panel { max-height: none !important; opacity: 1 !important; border: none !important; display: block !important; margin-bottom: 10px; } .panel-content { padding: 0; }
             .scrollable-list, .scrollable-grid { max-height: none !important; overflow: visible !important; padding: 0; }
@@ -650,38 +659,6 @@
         body.dark-mode .ref-1:hover { border-color: #38bdf8; box-shadow: 0 10px 25px rgba(56,189,248,0.25); } body.dark-mode .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220,53,69,0.25); } body.dark-mode .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111,66,193,0.25); } body.dark-mode .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13,173,188,0.25); } body.dark-mode .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40,167,69,0.25); } body.dark-mode .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159,15,133,0.25); }
         body.dark-mode .tc-blue:hover { border-color: #38bdf8; box-shadow: 0 10px 20px rgba(56,189,248,0.2); } body.dark-mode .tc-green:hover { border-color: #20c997; box-shadow: 0 10px 20px rgba(32,201,151,0.2); } body.dark-mode .tc-purple:hover { border-color: #6f42c1; box-shadow: 0 10px 20px rgba(111,66,193,0.2); } body.dark-mode .tc-orange:hover { border-color: #fd7e14; box-shadow: 0 10px 20px rgba(253,126,20,0.2); }
 
-        body.dark-mode .exp-full:hover::after, body.dark-mode .exp-part:hover::after, body.dark-mode .exp-trainee:hover::after, body.dark-mode .edu-phd:hover::after, body.dark-mode .edu-msc:hover::after, body.dark-mode .edu-bsc:hover::after, body.dark-mode .ref-2:hover::after, body.dark-mode .ref-3:hover::after, body.dark-mode .ref-4:hover::after, body.dark-mode .ref-5:hover::after, body.dark-mode .ref-6:hover::after { color: #fff; }
-        body.dark-mode .exp-full:hover::after, body.dark-mode .edu-phd:hover::after, body.dark-mode .ref-5:hover::after { background: var(--exp-full); border-color: var(--exp-full); }
-        body.dark-mode .exp-part:hover::after, body.dark-mode .ref-3:hover::after { background: var(--exp-part); border-color: var(--exp-part); }
-        body.dark-mode .exp-trainee:hover::after, body.dark-mode .edu-msc:hover::after, body.dark-mode .ref-2:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
-        body.dark-mode .edu-bsc:hover::after { background: var(--edu-bsc); border-color: var(--edu-bsc); }
-        body.dark-mode .ref-1:hover::after { background: #38bdf8; border-color: #38bdf8; color: #0f172a; }
-        body.dark-mode .ref-4:hover::after { background: var(--ref-4); border-color: var(--ref-4); }
-        body.dark-mode .ref-6:hover::after { background: var(--ref-6); border-color: var(--ref-6); }
-
-        /* Fix Award Cards Dark Mode Hover */
-        body.dark-mode .award-card:nth-child(10n+1):hover { background: linear-gradient(135deg, #e63946 0%, #b02a2a 100%); border-color: #e63946; }
-        body.dark-mode .award-card:nth-child(10n+2):hover { background: linear-gradient(135deg, #2a9d8f 0%, #1e7166 100%); border-color: #2a9d8f; }
-        body.dark-mode .award-card:nth-child(10n+3):hover { background: linear-gradient(135deg, #457b9d 0%, #2d556d 100%); border-color: #457b9d; }
-        body.dark-mode .award-card:nth-child(10n+4):hover { background: linear-gradient(135deg, #f4a261 0%, #c4824e 100%); border-color: #f4a261; }
-        body.dark-mode .award-card:nth-child(10n+5):hover { background: linear-gradient(135deg, #9d4edd 0%, #7637a8 100%); border-color: #9d4edd; }
-        body.dark-mode .award-card:nth-child(10n+6):hover { background: linear-gradient(135deg, #e83e8c 0%, #ad2462 100%); border-color: #e83e8c; }
-        body.dark-mode .award-card:nth-child(10n+7):hover { background: linear-gradient(135deg, #4caf50 0%, #1e7e34 100%); border-color: #4caf50; }
-        body.dark-mode .award-card:nth-child(10n+8):hover { background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%); border-color: #ffc107; }
-        body.dark-mode .award-card:nth-child(10n+9):hover { background: linear-gradient(135deg, #6610f2 0%, #4709aa 100%); border-color: #6610f2; }
-        body.dark-mode .award-card:nth-child(10n+10):hover { background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%); border-color: #17a2b8; }
-        
-        body.dark-mode .award-card:nth-child(10n+1):hover::after { background: #b02a2a; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+2):hover::after { background: #1e7166; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+3):hover::after { background: #2d556d; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+4):hover::after { background: #c4824e; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+5):hover::after { background: #7637a8; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+6):hover::after { background: #ad2462; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+7):hover::after { background: #1e7e34; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+8):hover::after { background: #d39e00; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+9):hover::after { background: #4709aa; border-color: #fff; color: #fff; }
-        body.dark-mode .award-card:nth-child(10n+10):hover::after { background: #117a8b; border-color: #fff; color: #fff; }
-
         /* Existing Dark Mode Overrides */
         body.dark-mode header { background: rgba(15, 23, 42, 0.95); }
         body.dark-mode .accordion-btn.active { background: var(--primary); color: #fff; }
@@ -709,7 +686,6 @@
         body.dark-mode .subtle-separator { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), var(--accent), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent); }
         body.dark-mode .header-search-input { color: #e2e8f0; } body.dark-mode .ai-modal-header { background: #1e293b; border-bottom-color: #334155; } body.dark-mode .ai-modal-body { color: #cbd5e1; } body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
     
-
 /* === STRATEGY SECTION STYLES === */
 .strategy-cards-grid,
 .funding-timeline,
@@ -1549,7 +1525,8 @@
             font-weight: 400;
             text-align: justify;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            margin: 1.5rem auto 0;
+            margin: 0;
+            width: 100%;
         }
         .tw-link { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(245, 158, 11, 0.8); transition: color 0.3s ease, border-color 0.3s ease; }
         .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
@@ -1938,15 +1915,19 @@
     <div class="hero-section-wrapper reveal" id="hero-section">
         <section class="hero">
             <div class="hero-main">
-                <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
-                <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
+                <div class="hero-profile-group">
+                    <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                    <div class="hero-text-group">
+                        <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
+                        <div class="hero-contact">
+                            <i class="fas fa-envelope"></i> 
+                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
+                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="typewriter-box" id="tw-box">
                     <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="tw-link">Postdoctoral Scientist at Københavns Universitet</a><span id="tw-dynamic" data-text=" developing AI-driven frameworks for complex biological systems, seeking Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group."></span>
-                </div>
-                <div class="hero-contact" style="margin-top: 25px;">
-                    <i class="fas fa-envelope"></i> 
-                    <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
-                    <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
                 </div>
             </div>
             
@@ -1974,7 +1955,7 @@
                 <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span><span class="stat-value">1700+</span></div></a>
                 <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span><span class="stat-value">27</span></div></a>
                 <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer Reviews</span><span class="stat-value">490+</span></div></a>
-                <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
+                             <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
             </div>
         </section>
     </div>
