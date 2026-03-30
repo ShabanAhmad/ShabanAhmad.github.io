@@ -110,10 +110,10 @@
         .nav-link.active-section { color: var(--accent) !important; }
 
         .nav-item-dropdown { position: relative; display: inline-block; height: 100%; display: flex; align-items: center; }
-        .nav-dropdown-content { display: none; position: absolute; background-color: #fff; min-width: 180px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); z-index: 2005; border-left: 3px solid var(--accent); border-top: none; border-radius: 0 0 4px 4px; top: 100%; left: 0; padding-top: 5px; }
+        .nav-dropdown-content { display: none; position: absolute; background-color: #fff; min-width: max-content; width: auto; box-shadow: 0 8px 16px rgba(0,0,0,0.15); z-index: 2005; border-left: 3px solid var(--accent); border-top: none; border-radius: 0 0 4px 4px; top: 100%; left: 0; padding-top: 5px; }
         @media (min-width: 901px) { .nav-item-dropdown:hover .nav-dropdown-content { display: block; } }
         .dropdown-item-wrapper { position: relative; }
-        .nav-dropdown-content a { color: var(--primary); padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f9f9f9; transition: all 0.2s; }
+        .nav-dropdown-content a { color: var(--primary); padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f9f9f9; transition: all 0.2s; white-space: nowrap; }
         .nav-dropdown-content a:hover, .dropdown-item-wrapper:hover > a { background-color: #f0f4f8; color: var(--accent); padding-left: 20px; }
         .desktop-arrow { display: inline-block; margin-left: 5px; font-size: 0.7em; transition: transform 0.3s; }
         .mobile-dropdown-toggle, .mobile-controls-container { display: none; }
@@ -540,7 +540,7 @@
             .desktop-arrow { display: none; }
             
             /* Updated Mobile Dropdown Sub-menu */
-            .nav-dropdown-content { position: static; box-shadow: none; border: none; border-left: 3px solid var(--accent); background: #f8fafc; flex: 0 0 100%; width: 100%; box-sizing: border-box; padding-left: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; display: block; order: 3; opacity: 0; } 
+            .nav-dropdown-content { position: static; box-shadow: none; border: none; border-left: 3px solid var(--accent); background: #f8fafc; flex: 0 0 100%; width: 100%; min-width: auto; box-sizing: border-box; padding-left: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; display: block; order: 3; opacity: 0; } 
             .nav-dropdown-content.show-mobile { max-height: 600px; padding-top: 0; padding-bottom: 0; opacity: 1; }
             
             /* 67px padding + 3px accent border = 70px offset to perfectly align sub-links */
@@ -825,8 +825,12 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--panel-accent);
+    color: #1e293b;
+    transition: color 0.3s ease;
     font-weight: bold;
+}
+.strategy-card-item:hover li::before {
+    color: var(--panel-accent);
 }
 
 .timeline-item {
@@ -910,8 +914,12 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--panel-accent);
+    color: #1e293b;
+    transition: color 0.3s ease;
     font-weight: bold;
+}
+.lab-section:hover li::before {
+    color: var(--panel-accent);
 }
 
 .dei-card {
@@ -989,6 +997,13 @@
             box-shadow: 0 18px 45px rgba(6, 78, 59, 0.08);
             position: relative;
             overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease, border-color 0.5s ease;
+        }
+        
+        .tcp-vision-hero:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(6, 78, 59, 0.15);
+            border-color: rgba(6, 78, 59, 0.25);
         }
 
         .tcp-vision-hero::before,
@@ -1022,6 +1037,9 @@
             position: relative;
             z-index: 1;
         }
+
+        .tcp-eyebrow i { transition: transform 0.4s ease, color 0.4s ease; }
+        .tcp-vision-hero:hover .tcp-eyebrow i { transform: scale(1.3) rotate(15deg); color: var(--accent); }
 
         .tcp-eyebrow {
             display: inline-flex;
@@ -1072,16 +1090,24 @@
             color: var(--primary);
             font-size: 0.82rem;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: default;
         }
-        .tcp-tag:hover {
+        
+        .tcp-vision-hero:hover .tcp-tag, .tcp-tag:hover {
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.2);
+            box-shadow: 0 6px 15px rgba(6, 78, 59, 0.2);
         }
+        
+        /* Cascading highlight effect on hero hover */
+        .tcp-vision-hero:hover .tcp-tag:nth-child(1) { transition-delay: 0.05s; }
+        .tcp-vision-hero:hover .tcp-tag:nth-child(2) { transition-delay: 0.10s; }
+        .tcp-vision-hero:hover .tcp-tag:nth-child(3) { transition-delay: 0.15s; }
+        .tcp-vision-hero:hover .tcp-tag:nth-child(4) { transition-delay: 0.20s; }
+        .tcp-vision-hero:hover .tcp-tag:nth-child(5) { transition-delay: 0.25s; }
 
         .tcp-vision-kpis {
             display: grid;
@@ -1464,11 +1490,15 @@
             border-color: rgba(56, 189, 248, 0.24);
             color: #7dd3fc;
         }
-        body.dark-mode .tcp-tag:hover {
+        body.dark-mode .tcp-vision-hero:hover .tcp-tag, body.dark-mode .tcp-tag:hover {
             background: #38bdf8;
             color: #0f172a;
             border-color: #38bdf8;
             box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        }
+        body.dark-mode .tcp-vision-hero:hover {
+            box-shadow: 0 25px 50px rgba(2, 6, 23, 0.6);
+            border-color: #475569;
         }
 
         body.dark-mode .tcp-kpi,
@@ -1506,51 +1536,32 @@
         body.dark-mode .tcp-roadmap .tcp-ph-3 { border-top-color: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3::before { border-color: #c084fc; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover::before { background: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover { border-color: #c084fc; }
 
         .typewriter-box {
-            background: linear-gradient(#fff, #fff) padding-box,
-                        linear-gradient(135deg, rgba(6,78,59,0.55) 0%, rgba(245,158,11,0.65) 100%) border-box;
-            border: 2px solid transparent;
-            border-radius: 20px;
-            padding: 1.5rem 1.8rem 1.4rem 2rem;
-            font-size: 1.08rem;
-            line-height: 1.85;
-            color: var(--text);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border-left: 4px solid var(--accent);
+            border-right: 4px solid var(--accent);
+            border-radius: 24px 0 24px 0;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #f8fafc;
             position: relative;
-            font-style: italic;
-            box-shadow: 0 6px 32px rgba(6,78,59,0.08), 0 2px 8px rgba(245,158,11,0.07);
-            overflow: hidden;
+            font-weight: 400;
+            text-align: justify;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin: 1.5rem auto 0;
         }
-        .typewriter-box::before {
-            content: '\201C';
-            font-family: 'Playfair Display', serif;
-            font-size: 7rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: absolute;
-            top: -12px;
-            right: 18px;
-            line-height: 1;
-            pointer-events: none;
-            opacity: 0.18;
-        }
-        .typewriter-box::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(6,78,59,0.3), rgba(245,158,11,0.5), rgba(6,78,59,0.2));
-            border-radius: 0 0 20px 20px;
-        }
+        .tw-link { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(245, 158, 11, 0.8); transition: color 0.3s ease, border-color 0.3s ease; }
+        .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
         .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.75s step-end infinite; }
         @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         body.dark-mode .typewriter-box {
-            background: linear-gradient(#1e293b, #1e293b) padding-box,
-                        linear-gradient(135deg, rgba(6,78,59,0.7) 0%, rgba(245,158,11,0.8) 100%) border-box;
-            color: #e2e8f0;
-            box-shadow: 0 6px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(245,158,11,0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: #f8fafc;
+            border-left-color: var(--accent);
+            border-right-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
-        body.dark-mode .typewriter-box::after { background: linear-gradient(90deg, rgba(6,78,59,0.5), rgba(245,158,11,0.7), rgba(6,78,59,0.4)); }
 
         body.dark-mode .timeline-item-1 {
             background: linear-gradient(180deg, #1e293b 0%, rgba(34, 197, 94, 0.1) 100%);
@@ -1713,6 +1724,59 @@
         /* Lab Model: hover heading = border colour */
         #lab-model .lab-section h4 { transition: color 0.3s ease; font-size: 1.25rem; }
         #lab-model .lab-section:hover h4 { color: var(--panel-accent); }
+
+        /* Dynamic Bullet Colors for TCP Sections (Default Black/Dark, hover to Accent) */
+        #research-vision .tcp-focus-card .tech-ul li::before,
+        #roadmap-funding .edu-card .tech-ul li::before,
+        #teaching-mentorship .culture-card .tech-ul li::before,
+        #teaching-mentorship .strategy-card-item .tech-ul li::before {
+            color: #1e293b;
+            transition: color 0.3s ease;
+        }
+
+        #teaching-mentorship .strategy-card-item:hover .tech-ul li::before { color: var(--panel-accent); }
+
+        #research-vision .tcp-focus-card-1:hover .tech-ul li::before { color: #0ea5e9; }
+        #research-vision .tcp-focus-card-2:hover .tech-ul li::before { color: #d97706; }
+        #research-vision .tcp-focus-card-3:hover .tech-ul li::before { color: #8b5cf6; }
+        #research-vision .tcp-focus-card-4:hover .tech-ul li::before { color: #f43f5e; }
+        #research-vision .tcp-focus-card-5:hover .tech-ul li::before { color: #14b8a6; }
+        #research-vision .tcp-focus-card-6:hover .tech-ul li::before { color: #6366f1; }
+
+        #roadmap-funding .edu-card.edu-phd:hover .tech-ul li::before { color: var(--edu-phd); }
+        #roadmap-funding .edu-card.edu-msc:hover .tech-ul li::before { color: var(--edu-msc); }
+        #roadmap-funding .edu-card.edu-bsc:hover .tech-ul li::before { color: var(--edu-bsc); }
+
+        #teaching-mentorship .culture-card:nth-child(1):hover .tech-ul li::before { color: #22c55e; }
+        #teaching-mentorship .culture-card:nth-child(2):hover .tech-ul li::before { color: #f59e0b; }
+        #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li::before { color: #8b5cf6; }
+
+        /* Dark Mode Equivalents */
+        body.dark-mode #research-vision .tcp-focus-card .tech-ul li::before,
+        body.dark-mode #roadmap-funding .edu-card .tech-ul li::before,
+        body.dark-mode #teaching-mentorship .culture-card .tech-ul li::before,
+        body.dark-mode #teaching-mentorship .strategy-card-item .tech-ul li::before,
+        body.dark-mode .strategy-card-item li::before,
+        body.dark-mode .lab-section li::before {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .strategy-card-item:hover li::before,
+        body.dark-mode .lab-section:hover li::before,
+        body.dark-mode #teaching-mentorship .strategy-card-item:hover .tech-ul li::before {
+            color: var(--panel-accent);
+        }
+
+        body.dark-mode #research-vision .tcp-focus-card-1:hover .tech-ul li::before { color: #0ea5e9; }
+        body.dark-mode #research-vision .tcp-focus-card-2:hover .tech-ul li::before { color: #10b981; }
+        body.dark-mode #research-vision .tcp-focus-card-3:hover .tech-ul li::before { color: #f43f5e; }
+        body.dark-mode #research-vision .tcp-focus-card-4:hover .tech-ul li::before { color: #8b5cf6; }
+        body.dark-mode #research-vision .tcp-focus-card-5:hover .tech-ul li::before { color: #f59e0b; }
+        body.dark-mode #research-vision .tcp-focus-card-6:hover .tech-ul li::before { color: #14b8a6; }
+        
+        body.dark-mode #teaching-mentorship .culture-card:nth-child(1):hover .tech-ul li::before { color: #38bdf8; }
+        body.dark-mode #teaching-mentorship .culture-card:nth-child(2):hover .tech-ul li::before { color: #34d399; }
+        body.dark-mode #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li::before { color: #c084fc; }
     </style>
 </head>
 
@@ -1876,7 +1940,9 @@
             <div class="hero-main">
                 <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
                 <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
-                <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="hero-role-link">Postdoctoral Researcher at UCPH & Aspiring Assistant Professor</a>
+                <div class="typewriter-box" id="tw-box">
+                    <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="tw-link">Postdoctoral Scientist at Københavns Universitet</a><span id="tw-dynamic" data-text=" developing AI-driven frameworks for complex biological systems, seeking Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group."></span>
+                </div>
                 <div class="hero-contact" style="margin-top: 25px;">
                     <i class="fas fa-envelope"></i> 
                     <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
@@ -1913,11 +1979,6 @@
         </section>
     </div>
 
-    <!-- === SECTION 7.1: STATEMENT === -->
-    <section class="container reveal" style="margin-top: 3rem; margin-bottom: -1rem;">
-        <div class="typewriter-box" id="tw-box" data-text="Postdoctoral scientist developing AI-driven computational frameworks to decode complex biological systems, seeking an Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group."></div>
-    </section>
-
     <!-- 7.2: Unified Profile & Experience Layout -->
     <section id="profile-experience" class="container reveal" style="margin-top: 2rem;">
         <div class="about-split-layout">
@@ -1928,9 +1989,9 @@
                 </div>
                 <div id="eli5-result" style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
                 <div class="profile-text">
-                    <p style="margin-top:0;">I am currently a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> at the <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen (UCPH)</a>, Denmark. Building upon a robust foundation in AI-driven bioinformatics and molecular modelling, I am actively applying for <strong>Assistant Professor positions</strong> with the profound ambition to transition into an independent Principal Investigator role.</p>
-                    <p style="margin-top:10px;">Upon establishing my independence, I will launch the <strong>Translational Computational Pharmacology (TCP) Group</strong>. The TCP lab's core mission is to seamlessly bridge the gap between highly abstract artificial intelligence architectures and actionable, real-world clinical and environmental solutions through rigorous interdisciplinary science.</p>
-                    <p style="margin-top:10px;">My expertise spans the entire spectrum of computational biology—from designing generative AI predictive models (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>) and complex protein simulations, to discovering sustainable PFAS-degrading enzymes. Having trained at leading institutions across India, Finland, and Denmark, I am poised to lead a dynamic research team dedicated to therapeutic innovation.</p>
+                    <p style="margin-top:0;">I am currently a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> at the <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen (UCPH)</a>, Denmark. Building upon a robust foundation in AI-driven bioinformatics and molecular modelling, I am actively seeking <strong>Assistant Professorship</strong> with the profound ambition to transition into an independent Principal Investigator role.</p>
+                    <p style="margin-top:10px;">Upon establishing my independence, I will launch the <strong><a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')" class="niper-hover">Translational Computational Pharmacology (TCP) Group</a></strong>. The TCP lab's core mission is to seamlessly bridge the gap between highly abstract artificial intelligence architectures and actionable, real-world clinical and environmental solutions through rigorous interdisciplinary science.</p>
+                    <p style="margin-top:10px;">My expertise spans the entire spectrum of computational biology—from designing generative AI predictive models (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>) and complex protein simulations, to discovering sustainable PFAS-degrading enzymes. Having trained at leading institutions across India, Finland, and Denmark, I am poised to lead a dynamic research team dedicated to therapeutic innovation.</p>
                 </div>
                 <hr class="subtle-separator">
 
@@ -2024,7 +2085,7 @@
             <div class="bento-card bento-h2">
                 <div class="bento-icon-wrapper"><i class="fas fa-seedling bento-icon"></i></div>
                 <div class="bento-title">Environmental Biotech & PFAS</div>
-                <div class="bento-desc">Pioneering AI-guided enzyme mining and homology search strategies at UCPH. My current focus is identifying and optimizing novel biocatalysts capable of degrading "forever chemicals" (PFAS), promoting sustainable bioremediation.</div>
+                <div class="bento-desc">Pioneering AI-guided enzyme mining and homology search strategies at UCPH. My current focus is identifying and optimising novel biocatalysts capable of degrading "forever chemicals" (PFAS), promoting sustainable bioremediation.</div>
                 <div class="bento-tags">
                     <span class="bento-tag">#EnzymeMining</span>
                     <span class="bento-tag">#PFASDegradation</span>
@@ -2297,7 +2358,7 @@
                         <li class="pub-item"><strong>Accelerate your Research Using Elsevier’s Science Direct and Scopus</strong><div class="event-meta">NIPER-Ahmedabad | Jan 31, 2023</div></li>
                         <li class="pub-item"><strong>Application of High-Performance Computing in Drug Designing</strong><div class="event-meta">SERB, MNNIT Allahabad | Aug 06, 2022</div></li>
                         <li class="pub-item"><strong>BioC2022- Bioconductor Conference 2022</strong><div class="event-meta">Seattle Children’s Hospital (Virtual) | July 27-29, 2022</div></li>
-                        <li class="pub-item"><strong>Cloud-based Hands-on Workshop on Molecular Docking, Pharmacophore Modeling and Machine Learning</strong><div class="event-meta">ICMR-NICPR & Schrodinger Inc, Noida | Mar 15-16, 2022</div></li>
+                        <li class="pub-item"><strong>Cloud-based Hands-on Workshop on Molecular Docking, Pharmacophore Modelling and Machine Learning</strong><div class="event-meta">ICMR-NICPR & Schrodinger Inc, Noida | Mar 15-16, 2022</div></li>
                         <li class="pub-item"><strong>Discovery of Vaccines and Drugs for Infectious Diseases</strong><div class="event-meta">ICGEB, New Delhi | Dec 06-09, 2021</div></li>
                         <li class="pub-item"><strong>7 days International Workshop on Artificial Intelligence</strong><div class="event-meta">AiCHEF & St Claret College, Bengaluru | Nov 15-21, 2021</div></li>
                         <li class="pub-item"><strong>2-days Cloud-based Hands-on Workshop: Computational SBDD & MD Simulations</strong><div class="event-meta">SRM University & Schrodinger Inc | Sep 02-03, 2021</div></li>
@@ -2486,7 +2547,7 @@
                 <span class="tcp-eyebrow"><i class="fas fa-compass"></i> Future Academic Vision</span>
                 <h3>Establishing the Translational Computational Pharmacology (TCP) Group</h3>
                 <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
-                <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognizable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
+                <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognisable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
                 <div class="tcp-tag-row">
                     <span class="tcp-tag">#Mechanism-aware AI</span>
                     <span class="tcp-tag">#Computational pharmacology</span>
@@ -2509,7 +2570,7 @@
                 <div class="tcp-kpi">
                     <span class="tcp-kpi-label">Long-Term Outcome</span>
                     <strong>A durable, collaborative lab identity</strong>
-                    <p>TCP should become a recognizable research home with clear themes, strong partnerships, and scalable mentoring.</p>
+                    <p>TCP should become a recognisable research home with clear themes, strong partnerships, and scalable mentoring.</p>
                 </div>
             </div>
         </div>
@@ -2523,9 +2584,9 @@
                         <div class="tfc-icon"><i class="fas fa-microchip"></i></div>
                         <div class="tfc-title">AI Precision Oncology</div>
                         <ul class="tech-ul">
-                            <li>Developing deep ensemble architectures (DrLungker, DeepEntXAI).</li>
+                            <li>Developing deep ensemble architectures (DrLungker, DeepEntXAI, LungXAI etc).</li>
                             <li>Integrating Hybrid CNN-LSTMs for high-accuracy drug activity classification.</li>
-                            <li>Utilizing LIME/SHAP mapping to ensure clinical explainability.</li>
+                            <li>Utilising LIME/SHAP mapping to ensure clinical explainability.</li>
                             <li>Deciphering complex drug resistance mechanisms in mutative cancers.</li>
                         </ul>
                     </div>
@@ -2535,7 +2596,7 @@
                         <ul class="tech-ul">
                             <li>Designing singular therapeutics to modulate multiple targets concurrently.</li>
                             <li>Targeting key pathway proteins (EGFR, CDK2, STAT3, TrkA, KRAS).</li>
-                            <li>Hit-to-lead optimization of compounds like FEDPN and Imidurea.</li>
+                            <li>Hit-to-lead optimisation of compounds like FEDPN and Imidurea.</li>
                             <li>Reducing clinical toxicity and circumventing acquired drug resistance.</li>
                         </ul>
                     </div>
@@ -2556,7 +2617,7 @@
                             <li>Bridging bench-to-bedside with multi-omics data integration.</li>
                             <li>Executing actionable biomarker discovery from clinical cohorts.</li>
                             <li>Correlating complex genotype-phenotype mappings.</li>
-                            <li>Stratifying disease networks to drive personalized therapeutic regimens.</li>
+                            <li>Stratifying disease networks to drive personalised therapeutic regimens.</li>
                         </ul>
                     </div>
                     <div class="tcp-focus-card tcp-focus-card-5">
@@ -2611,7 +2672,7 @@
                             <span class="year-span">Years 2-4</span>
                         </div>
                         <ul class="tech-ul" style="margin-top: 8px;">
-                            <li><strong>Scaling:</strong> Expand polypharmacological deep-learning models to analyze massive, pan-cancer datasets.</li>
+                            <li><strong>Scaling:</strong> Expand polypharmacological deep-learning models to analyse massive, pan-cancer datasets.</li>
                             <li><strong>Validation:</strong> Transition from <em>in silico</em> predictions to rigorous <em>in vitro / in vivo</em> validation.</li>
                             <li><strong>Collaboration:</strong> Establish cross-disciplinary ties with wet-lab experimentalists and clinical oncologists globally.</li>
                             <li><strong>IPR & Publishing:</strong> Publish in high-impact journals and file provisional patents for biocatalysts and drug hits.</li>
@@ -2711,7 +2772,7 @@
                         <ul class="tech-ul">
                             <li>Foster dual competency: conceptually strong and computationally confident.</li>
                             <li>Transition students from passive learning to active problem solving.</li>
-                            <li>Utilize real biological data to navigate real uncertainty and scientific trade-offs.</li>
+                            <li>Utilise real biological data to navigate real uncertainty and scientific trade-offs.</li>
                         </ul>
                     </div>
                     <div class="strategy-card-item centered-card">
@@ -2852,16 +2913,16 @@
             
             // Continuous Infinite Typewriter Animation
             const twBox = document.getElementById('tw-box');
-            if (twBox) {
-                const twText = twBox.getAttribute('data-text');
+            const twDynamic = document.getElementById('tw-dynamic');
+            if (twBox && twDynamic) {
+                const twText = twDynamic.getAttribute('data-text');
                 let i = 0;
                 let isDeleting = false;
                 
                 const twKeywords = [
                     ['AI-driven', '#0ea5e9'],
-                    ['computational frameworks', '#10b981'],
-                    ['TCP Group', 'var(--accent)'],
-                    ['Translational Computational Pharmacology', 'var(--accent)'],
+                    ['frameworks', '#10b981'],
+                    ['Translational Computational Pharmacology (TCP) Group', 'var(--accent)'],
                     ['Assistant Professorship', '#8b5cf6'],
                     ['biological systems', '#f43f5e'],
                 ];
@@ -2877,7 +2938,7 @@
                 const typeWriter = () => {
                     if (!isDeleting && i <= twText.length) {
                         const written = twText.substring(0, i);
-                        twBox.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
+                        twDynamic.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
                         i++;
                         setTimeout(typeWriter, 38);
                     } else if (!isDeleting && i > twText.length) {
@@ -2887,7 +2948,7 @@
                     } else if (isDeleting && i > 0) {
                         twBox.classList.remove('typewriter-done');
                         const written = twText.substring(0, i);
-                        twBox.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
+                        twDynamic.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
                         i -= 2;
                         setTimeout(typeWriter, 12);
                     } else {
@@ -3124,8 +3185,8 @@
                 'contributions-summary', 
                 '✨', 
                 'AI Summary', 
-                'Summarizing...', 
-                `Summarize these key scientific contributions in 3-4 concise bullet points. Use HTML for formatting, with <strong> for emphasis. Contributions: ${contributionsText}`,
+                'Summarising...', 
+                `Summarise these key scientific contributions in 3-4 concise bullet points. Use HTML for formatting, with <strong> for emphasis. Contributions: ${contributionsText}`,
                 (res) => {
                     const rb = document.getElementById('contributions-summary');
                     rb.style.display = 'block';
@@ -3197,7 +3258,7 @@
         };
 
         const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Explain Like I'm 5", 'Explaining...', "Explain Dr. Shaban Ahmad's research in AI, bioinformatics, and PFAS biodegradation like I am 5 years old. Make it fun, engaging, and very short (3 sentences max).", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>👶 Explain Like I'm 5:</strong><br><br>${res}`; });
-        const summarizeFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesizing...', "Summarize the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
+        const summarizeFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
         const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Analyse Match', 'Analysing...', `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's skills. CRITICAL: 1. Start with visual rating "⭐ Rating". 2. Provide exactly 3 bullet points WHY he fits. 3. HTML tags ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Recruiter Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
         const generateInterviewQs = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('interview-btn', 'match-result', '🎙️', 'Interview Qs', 'Generating...', `Act as a Hiring Manager. Based on this job description and Dr. Shaban Ahmad's AI profile, generate 3 specific interview questions. HTML ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:#0dadbc;">Custom Interview Prep:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
         
