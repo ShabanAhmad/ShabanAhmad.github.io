@@ -148,14 +148,6 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <h2>📊 Academic Impact</h2>
 <div style="width:220px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Publications-100+-0A66C2?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Citations-1700+-1E90FF?style=for-the-badge">
-  <img src="https://img.shields.io/badge/h--index-27-FF8C00?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Peer_Reviews-490+-8A2BE2?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Patents-1%20Granted%20%7C%206%20Filed-2E8B57?style=for-the-badge">
-</p>
-
 <table align="center">
 <tr>
 <td align="center"><b>📄 Publications</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=100%2B" /></td>
@@ -208,9 +200,6 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white">
 </a>
 
-<a href="https://www.webofscience.com/wos/author/record/2415769">
-<img src="https://img.shields.io/badge/Web_of_Science-Researcher-blue?style=for-the-badge">
-</a>
 
 <a href="https://orcid.org/0000-0001-9832-2830">
 <img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white">
