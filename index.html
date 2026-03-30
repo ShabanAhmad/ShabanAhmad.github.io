@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr Shaban | Postdoc at UCPH (Aspiring Assistant Professor)</title>
+    <title>Dr Shaban | Postdoc at UCPH | Aspiring Assistant Professor</title>
     <meta name="description" content="Academic Portfolio of Dr Shaban - Postdoctoral Researcher at University of Copenhagen and Aspiring Assistant Professor (TCP Group) specialising in AI in Biology, Genomics, Drug Design & PFAS Biodegradation.">
     
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
@@ -44,13 +44,14 @@
     <style>
         /* --- 4.1: Core Variables & Root Configuration --- */
         :root {
-            --primary: #064e3b; --primary-dark: #022c22; --accent: #f59e0b; --text: #292524; --light-bg: #fafaf9; --white: #ffffff;        
-            --inst-font: 'Merriweather', serif; --transition: all 0.3s ease;        
-            --edu-phd: #28a745; --edu-msc: #dc3545; --edu-bsc: #20b0c9;  
-            --exp-full: #28a745; --exp-part: #6f42c1; --exp-trainee: #dc3545; 
-            --sub-heading: #047857; 
-            --ref-1: #06134e; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85; 
+            --primary: #064e3b; --primary-dark: #022c22; --accent: #f59e0b; --text: #292524; --light-bg: #fafaf9; --white: #ffffff;
+            --inst-font: 'Merriweather', serif; --transition: all 0.3s ease;
+            --edu-phd: #28a745; --edu-msc: #dc3545; --edu-bsc: #20b0c9;
+            --exp-full: #28a745; --exp-part: #6f42c1; --exp-trainee: #dc3545;
+            --sub-heading: #047857;
+            --ref-1: #06134e; --ref-2: #dc3545; --ref-3: #6f42c1; --ref-4: #0dadbc; --ref-5: #28a745; --ref-6: #9f0f85;
             --vision-color-1: #eef7f6; --vision-color-2: #fef8e7; --vision-color-3: #f5f3ff; --vision-color-4: #fef2f2; --vision-color-5: #f0fdfa; --vision-color-6: #f0f5ff;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px rgba(0,0,0,0.1); --shadow-lg: 0 20px 40px rgba(0,0,0,0.15); /* shared shadow scale */
         }
 
         /* --- 4.2: Resets & Accessibility Enhancements --- */
@@ -63,10 +64,10 @@
         .goog-te-banner-frame, .goog-te-banner-frame.skiptranslate, body > .skiptranslate { display: none !important; }
 
         /* --- 4.3: Custom Scrollbars --- */
-        ::-webkit-scrollbar, *::-webkit-scrollbar, html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track, *::-webkit-scrollbar-track, html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
-        ::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; border: 2px solid #f9f9f9; }
-        ::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #f9f9f9; border-left: 1px solid #eee; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; border: 2px solid #f9f9f9; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
 
         /* --- 4.4: Utility Animations & Search Highlighting --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -120,7 +121,7 @@
         .header-sep { color: #dc3545; opacity: 0.5; font-size: 1.1rem; font-weight: 300; user-select: none; }
         .control-icon { cursor: pointer; color: var(--primary); transition: 0.3s; font-size: 1rem; } .control-icon:hover { color: var(--accent); }
         .search-container { position: relative; display: flex; align-items: center; }
-        .search-dropdown { position: absolute; right: 0; top: 100%; min-width: 300px; max-width: 90vw; background: #fff; border: 1.5px solid rgba(245,158,11,0.45); border-top: 3px solid rgba(245,158,11,0.75); box-shadow: 0 10px 24px rgba(0,0,0,0.13); border-radius: 0 0 10px 10px; padding: 10px 12px; display: none; z-index: 3000; animation: fadeSlideDown 0.18s ease-out; }
+        .search-dropdown { position: absolute; right: 0; top: 100%; min-width: 300px; max-width: 90vw; background: #fff; border: 2px solid rgba(245,158,11,0.6); box-shadow: 0 10px 24px rgba(0,0,0,0.13); border-radius: 0 0 10px 10px; padding: 10px 12px; display: none; z-index: 3000; animation: fadeSlideDown 0.18s ease-out; }
         @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
         .search-input-wrapper { display: flex; align-items: center; background: transparent; border: none; box-shadow: none; outline: none; }
         .search-input-wrapper:focus-within { background: transparent; box-shadow: none; border: none; }
@@ -319,13 +320,17 @@
         .edu-grid .edu-phd:hover::before { background: var(--edu-phd); border-color: var(--edu-phd); box-shadow: 0 0 10px rgba(0,123,255,0.5); } .edu-grid .edu-msc:hover::before { background: var(--edu-msc); border-color: var(--edu-msc); box-shadow: 0 0 10px rgba(23,162,184,0.5); } .edu-grid .edu-bsc:hover::before { background: var(--edu-bsc); border-color: var(--edu-bsc); box-shadow: 0 0 10px rgba(232,62,140,0.5); }
         
         .referee-grid, .award-box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-        .edu-card, .exp-box { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 8px; border-top: 6px solid #ccc; border: 1px solid #eee; border-top-width: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; }
+        .edu-card, .exp-box { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 8px; border-top: 6px solid #ccc; border: 1px solid #eee; border-top-width: 6px; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; }
         
         .exp-box::after, .edu-card::after { content: attr(data-badge); position: absolute; right: 0; left: auto; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 10; transition: all 0.3s ease; }
-        .exp-box:hover::after, .edu-card:hover::after { color: #fff; background: var(--accent); border-color: var(--accent); transform: translate(50%, -50%) scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        
-        .exp-full { border-top-color: var(--exp-full); } .exp-full:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-full); } .exp-part { border-top-color: var(--exp-part); } .exp-part:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-part); } .exp-trainee { border-top-color: var(--exp-trainee); } .exp-trainee:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--exp-trainee); }
-        .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-msc); } .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--edu-bsc); }
+        /* Shared scale-up on hover; each card type fills with its own border colour below */
+        .exp-box:hover::after, .edu-card:hover::after { color: #fff; transform: translate(50%, -50%) scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .exp-full:hover::after { background: var(--exp-full); border-color: var(--exp-full); } .exp-part:hover::after { background: var(--exp-part); border-color: var(--exp-part); } .exp-trainee:hover::after { background: var(--exp-trainee); border-color: var(--exp-trainee); }
+        .edu-phd:hover::after { background: var(--edu-phd); border-color: var(--edu-phd); } .edu-msc:hover::after { background: var(--edu-msc); border-color: var(--edu-msc); } .edu-bsc:hover::after { background: var(--edu-bsc); border-color: var(--edu-bsc); }
+        /* Shared hover lift — exp/edu cards specialise only border-color per variant */
+        .exp-full:hover, .exp-part:hover, .exp-trainee:hover, .edu-phd:hover, .edu-msc:hover, .edu-bsc:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .exp-full { border-top-color: var(--exp-full); } .exp-full:hover { border-color: var(--exp-full); } .exp-part { border-top-color: var(--exp-part); } .exp-part:hover { border-color: var(--exp-part); } .exp-trainee { border-top-color: var(--exp-trainee); } .exp-trainee:hover { border-color: var(--exp-trainee); }
+        .edu-phd { border-top-color: var(--edu-phd); } .edu-phd:hover { border-color: var(--edu-phd); } .edu-msc { border-top-color: var(--edu-msc); } .edu-msc:hover { border-color: var(--edu-msc); } .edu-bsc { border-top-color: var(--edu-bsc); } .edu-bsc:hover { border-color: var(--edu-bsc); }
         
         .edu-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; } .edu-card h4 { font-size: 1.15rem; color: var(--text); font-weight: 700; line-height: 1.3; margin: 0; flex: 1; padding-right: 10px; transition: color 0.3s ease; } .year-span { color: #888; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
         .edu-phd:hover h4 { color: var(--edu-phd); } .edu-msc:hover h4 { color: var(--edu-msc); } .edu-bsc:hover h4 { color: var(--edu-bsc); }
@@ -338,9 +343,12 @@
         .badge-gold-inline { color: #dca11d; margin-left: 6px; font-size: 1.25rem; filter: drop-shadow(0px 2px 3px rgba(218, 165, 32, 0.5)); transition: transform 0.3s ease; display: inline-block; } .badge-gold-inline:hover { transform: scale(1.2) rotate(10deg); filter: drop-shadow(0px 4px 6px rgba(218, 165, 32, 0.8)); }
         .badge-gold-inline i { background: linear-gradient(110deg, #dca11d 30%, #fff 50%, #dca11d 70%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: goldShine 3s linear infinite; }
 
-        .referee-card { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 12px; border: 1px solid #eee; border-top: 5px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; } .referee-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .referee-card { background: var(--white); padding: 1.2rem 1rem 1.2rem 2.2rem; border-radius: 12px; border: 1px solid #eee; border-top: 5px solid #ccc; box-shadow: var(--shadow-sm); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; overflow: visible; } .referee-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
         .referee-card::after { content: attr(data-badge); position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 24px; height: 24px; background: #fff; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #555; z-index: 10; transition: all 0.3s ease; }
-        .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15); } .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15); } .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15); } .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15); } .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15); } .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15); } 
+        .ref-1 { border-top-color: var(--ref-1); } .ref-1:hover { border-color: var(--ref-1); box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15); } .ref-2 { border-top-color: var(--ref-2); } .ref-2:hover { border-color: var(--ref-2); box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15); } .ref-3 { border-top-color: var(--ref-3); } .ref-3:hover { border-color: var(--ref-3); box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15); } .ref-4 { border-top-color: var(--ref-4); } .ref-4:hover { border-color: var(--ref-4); box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15); } .ref-5 { border-top-color: var(--ref-5); } .ref-5:hover { border-color: var(--ref-5); box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15); } .ref-6 { border-top-color: var(--ref-6); } .ref-6:hover { border-color: var(--ref-6); box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15); }
+        /* Badge fills with the card's accent colour on hover — matching edu/exp/award card behaviour */
+        .ref-1:hover::after, .ref-2:hover::after, .ref-3:hover::after, .ref-4:hover::after, .ref-5:hover::after, .ref-6:hover::after { color: #fff; transform: translate(50%, -50%) scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .ref-1:hover::after { background: var(--ref-1); border-color: var(--ref-1); } .ref-2:hover::after { background: var(--ref-2); border-color: var(--ref-2); } .ref-3:hover::after { background: var(--ref-3); border-color: var(--ref-3); } .ref-4:hover::after { background: var(--ref-4); border-color: var(--ref-4); } .ref-5:hover::after { background: var(--ref-5); border-color: var(--ref-5); } .ref-6:hover::after { background: var(--ref-6); border-color: var(--ref-6); }
         .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; } .referee-name { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0; transition: color 0.3s ease; } .referee-name a { color: var(--primary); transition: color 0.3s ease; } .referee-name a:hover { color: var(--accent); }
         .ref-1:hover .referee-name, .ref-1:hover .referee-name a { color: var(--ref-1); }
         .ref-2:hover .referee-name, .ref-2:hover .referee-name a { color: var(--ref-2); }
@@ -400,6 +408,7 @@
         .panel-content { padding: 20px; } .panel-content a:not(.pub-doi):not(.btn-send):not(.btn-data):not(.btn-cite):hover { color: var(--accent) !important; text-decoration: none; }
         
         /* FIX: Accordion Slide-in Animation (Uses 'backwards' to unlock smooth hovers) */
+        /* Accordion panel slide-in delays — 5 card types share these delays (already maximally consolidated) */
         @keyframes slideInLeftAnim { 0% { opacity: 0; transform: translateX(-30px); } 100% { opacity: 1; transform: translateX(0); } }
         .accordion-btn.active + .panel .pub-item, .accordion-btn.active + .panel .tech-card, .accordion-btn.active + .panel .culture-card, .accordion-btn.active + .panel .tcp-time-node, .accordion-btn.active + .panel .tcp-focus-card { opacity: 1; animation: slideInLeftAnim 0.5s ease-out backwards; }
         .accordion-btn.active + .panel .pub-item:nth-child(1), .accordion-btn.active + .panel .tech-card:nth-child(1), .accordion-btn.active + .panel .culture-card:nth-child(1), .accordion-btn.active + .panel .tcp-time-node:nth-child(1), .accordion-btn.active + .panel .tcp-focus-card:nth-child(1) { animation-delay: 0.05s; }
@@ -417,7 +426,9 @@
         .peer-review-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-top: 10px; } .pr-badge-item { background-color: #fff; border: 1px solid #eee; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem; color: #555; transition: all 0.2s ease; cursor: default; } .pr-badge-item:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); } .verified-badge { background-color: var(--primary); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; vertical-align: middle; margin-left: 10px; display: inline-flex; align-items: center; gap: 4px; }
         .scrollable-grid { max-height: 380px; overflow-y: auto; overflow-x: hidden; padding: 10px 5px; -webkit-overflow-scrolling: touch; } .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 0.5rem 0.5rem; }
         .tech-card { background: #fff; padding: 1.2rem 1rem; border-radius: 8px; border-top: 5px solid #ccc; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.3s ease, border-color 0.3s ease; }
-        .tc-blue { border-top-color: var(--primary); } .tc-blue:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); } .tc-green { border-top-color: #20c997; } .tc-green:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #20c997; } .tc-purple { border-top-color: #6f42c1; } .tc-purple:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #6f42c1; } .tc-orange { border-top-color: #fd7e14; } .tc-orange:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #fd7e14; }
+        /* Shared hover lift — tech cards specialise only border-color per variant */
+        .tc-blue:hover, .tc-green:hover, .tc-purple:hover, .tc-orange:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .tc-blue { border-top-color: var(--primary); } .tc-blue:hover { border-color: var(--primary); } .tc-green { border-top-color: #20c997; } .tc-green:hover { border-color: #20c997; } .tc-purple { border-top-color: #6f42c1; } .tc-purple:hover { border-color: #6f42c1; } .tc-orange { border-top-color: #fd7e14; } .tc-orange:hover { border-color: #fd7e14; }
         .tech-sub-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; } .tech-sub-title i { color: var(--accent); font-size: 1.2rem; } .tech-ul { list-style: none; padding: 0; margin: 0; } .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; } .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
 
         /* --- 4.14.5: Premium TCP Group UI (Timeline & Focus Cards) --- */
@@ -478,7 +489,7 @@
         .cf-input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; } 
         .cf-input, .cf-textarea { width: 100%; background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: 'Roboto', sans-serif; outline: none; transition: border-color 0.3s; }
         .cf-input { padding: 10px 14px; height: 42px; }
-        .cf-input:focus, .cf-textarea:focus { border-color: var(--accent); } 
+        .cf-input:focus, .cf-textarea:focus { border-color: var(--accent); outline: none !important; }
         .cf-textarea { padding: 12px 14px; resize: vertical; min-height: 120px; margin-bottom: 1rem; } 
         .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(255, 255, 255, 0.8) !important; font-weight: 300; }
         .cf-btn { background-color: var(--accent); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s; width: auto; } .cf-btn:hover { background-color: #b8860b; } .form-actions { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
@@ -565,8 +576,9 @@
             
             .exp-grid, .award-box-grid, .grid-container, .tech-panel-grid { grid-template-columns: 1fr; } 
             
-            .contact-grid-layout { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; position: relative; } 
+            .contact-grid-layout { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; position: relative; }
             .contact-left { position: static; padding-left: 12px; }
+            .contact-right { padding-left: 15px; } /* offset form inputs from the arrow line running at left:0 */
             
             /* Precision targeting for mobile arrow to hit the centered Send Message button */
             .contact-arrow-h { bottom: 25px; }
@@ -686,265 +698,265 @@
         body.dark-mode .subtle-separator { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), var(--accent), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent); }
         body.dark-mode .header-search-input { color: #e2e8f0; } body.dark-mode .ai-modal-header { background: #1e293b; border-bottom-color: #334155; } body.dark-mode .ai-modal-body { color: #cbd5e1; } body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
     
-/* === STRATEGY SECTION STYLES === */
-.strategy-cards-grid,
-.funding-timeline,
-.lab-structure,
-.dei-cards {
-    display: grid;
-    gap: 1.5rem;
-    padding: 15px 0;
-}
+        /* === STRATEGY SECTION STYLES === */
+        .strategy-cards-grid,
+        .funding-timeline,
+        .lab-structure,
+        .dei-cards {
+            display: grid;
+            gap: 1.5rem;
+            padding: 15px 0;
+        }
 
-.strategy-cards-grid,
-.lab-structure {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+        .strategy-cards-grid,
+        .lab-structure {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
 
-.funding-timeline,
-.dei-cards {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
+        .funding-timeline,
+        .dei-cards {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
 
-.strategy-card-item,
-.timeline-item,
-.lab-section,
-.dei-card {
-    --panel-accent: var(--accent);
-    --panel-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    --panel-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-    --panel-shadow-hover: 0 18px 32px rgba(15, 23, 42, 0.12);
-    background: var(--panel-bg);
-    padding: 1.35rem;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    border-top: 4px solid var(--panel-accent);
-    box-shadow: var(--panel-shadow);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
+        .strategy-card-item,
+        .timeline-item,
+        .lab-section,
+        .dei-card {
+            --panel-accent: var(--accent);
+            --panel-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            --panel-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            --panel-shadow-hover: 0 18px 32px rgba(15, 23, 42, 0.12);
+            background: var(--panel-bg);
+            padding: 1.35rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid var(--panel-accent);
+            box-shadow: var(--panel-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
 
-.strategy-card-item:hover,
-.timeline-item:hover,
-.lab-section:hover,
-.dei-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--panel-shadow-hover);
-    border-color: var(--panel-accent);
-}
+        .strategy-card-item:hover,
+        .timeline-item:hover,
+        .lab-section:hover,
+        .dei-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--panel-shadow-hover);
+            border-color: var(--panel-accent);
+        }
 
-.strategy-card-item::before,
-.lab-section::before,
-.dei-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(6, 78, 59, 0.05), transparent 46%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .strategy-card-item::before,
+        .lab-section::before,
+        .dei-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.05), transparent 46%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.strategy-card-item:hover::before,
-.lab-section:hover::before,
-.dei-card:hover::before {
-    opacity: 1;
-}
+        .strategy-card-item:hover::before,
+        .lab-section:hover::before,
+        .dei-card:hover::before {
+            opacity: 1;
+        }
 
-.strategy-card-item > *,
-.lab-section > *,
-.dei-card > * {
-    position: relative;
-    z-index: 1;
-}
+        .strategy-card-item > *,
+        .lab-section > *,
+        .dei-card > * {
+            position: relative;
+            z-index: 1;
+        }
 
-.strategy-card-item h5,
-.timeline-content h5,
-.lab-section h5,
-.dei-card h5 {
-    margin: 0 0 12px 0;
-    color: #1e293b;
-    font-size: 1.05rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
+        .strategy-card-item h5,
+        .timeline-content h5,
+        .lab-section h5,
+        .dei-card h5 {
+            margin: 0 0 12px 0;
+            color: #1e293b;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
 
-.strategy-card-item p,
-.timeline-content p,
-.lab-section p,
-.dei-card p,
-.team-level {
-    margin: 8px 0;
-    color: #555;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
+        .strategy-card-item p,
+        .timeline-content p,
+        .lab-section p,
+        .dei-card p,
+        .team-level {
+            margin: 8px 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
-.strategy-card-item ul,
-.lab-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+        .strategy-card-item ul,
+        .lab-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.strategy-card-item li,
-.lab-section li {
-    padding: 8px 0 8px 20px;
-    color: #555;
-    font-size: 0.95rem;
-    position: relative;
-}
+        .strategy-card-item li,
+        .lab-section li {
+            padding: 8px 0 8px 20px;
+            color: #555;
+            font-size: 0.95rem;
+            position: relative;
+        }
 
-.strategy-card-item li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #1e293b;
-    transition: color 0.3s ease;
-    font-weight: bold;
-}
-.strategy-card-item:hover li::before {
-    color: var(--panel-accent);
-}
+        .strategy-card-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1e293b;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+        .strategy-card-item:hover li::before {
+            color: var(--panel-accent);
+        }
 
-.timeline-item {
-    --panel-accent: #0284c7;
-    --panel-bg: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-    --panel-shadow-hover: 0 18px 34px rgba(2, 132, 199, 0.16);
-}
+        .timeline-item {
+            --panel-accent: #0284c7;
+            --panel-bg: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+            --panel-shadow-hover: 0 18px 34px rgba(2, 132, 199, 0.16);
+        }
 
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    top: -45px;
-    right: -35px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.65);
-}
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            top: -45px;
+            right: -35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.65);
+        }
 
-.timeline-item-1 {
-    --panel-accent: #22c55e;
-    --panel-bg: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
-    --panel-shadow-hover: 0 18px 34px rgba(34, 197, 94, 0.16);
-}
+        .timeline-item-1 {
+            --panel-accent: #22c55e;
+            --panel-bg: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+            --panel-shadow-hover: 0 18px 34px rgba(34, 197, 94, 0.16);
+        }
 
-.timeline-item-2 {
-    --panel-accent: #f59e0b;
-    --panel-bg: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
-    --panel-shadow-hover: 0 18px 34px rgba(245, 158, 11, 0.16);
-}
+        .timeline-item-2 {
+            --panel-accent: #f59e0b;
+            --panel-bg: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+            --panel-shadow-hover: 0 18px 34px rgba(245, 158, 11, 0.16);
+        }
 
-.timeline-item-3 {
-    --panel-accent: #8b5cf6;
-    --panel-bg: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%);
-    --panel-shadow-hover: 0 18px 34px rgba(139, 92, 246, 0.16);
-}
+        .timeline-item-3 {
+            --panel-accent: #8b5cf6;
+            --panel-bg: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%);
+            --panel-shadow-hover: 0 18px 34px rgba(139, 92, 246, 0.16);
+        }
 
-.timeline-marker {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #0f172a;
-    color: #fff;
-    padding: 7px 13px;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 12px;
-}
+        .timeline-marker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+            color: #fff;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 12px;
+        }
 
-.lab-section {
-    --panel-accent: var(--primary);
-}
+        .lab-section {
+            --panel-accent: var(--primary);
+        }
 
-.team-hierarchy {
-    background: #fff;
-    padding: 12px;
-    border-radius: 12px;
-    border-left: 3px solid var(--accent);
-}
+        .team-hierarchy {
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+        }
 
-.team-level {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
+        .team-level {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
 
-.team-level:last-child,
-.lab-section li:last-child {
-    border-bottom: none;
-}
+        .team-level:last-child,
+        .lab-section li:last-child {
+            border-bottom: none;
+        }
 
-.lab-section li {
-    border-bottom: 1px solid #eee;
-}
+        .lab-section li {
+            border-bottom: 1px solid #eee;
+        }
 
-.lab-section li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #1e293b;
-    transition: color 0.3s ease;
-    font-weight: bold;
-}
-.lab-section:hover li::before {
-    color: var(--panel-accent);
-}
+        .lab-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1e293b;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+        .lab-section:hover li::before {
+            color: var(--panel-accent);
+        }
 
-.dei-card {
-    padding: 1.5rem;
-    border-radius: 18px;
-}
+        .dei-card {
+            padding: 1.5rem;
+            border-radius: 18px;
+        }
 
-.dei-card-1 {
-    --panel-accent: #dc2626;
-    --panel-bg: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%);
-}
+        .dei-card-1 {
+            --panel-accent: #dc2626;
+            --panel-bg: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%);
+        }
 
-.dei-card-2 {
-    --panel-accent: #f59e0b;
-    --panel-bg: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
-}
+        .dei-card-2 {
+            --panel-accent: #f59e0b;
+            --panel-bg: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+        }
 
-.dei-card-3 {
-    --panel-accent: #22c55e;
-    --panel-bg: linear-gradient(135deg, #f0fdf4 0%, #f8fcf7 100%);
-}
+        .dei-card-3 {
+            --panel-accent: #22c55e;
+            --panel-bg: linear-gradient(135deg, #f0fdf4 0%, #f8fcf7 100%);
+        }
 
-.dei-card-4 {
-    --panel-accent: #0284c7;
-    --panel-bg: linear-gradient(135deg, #eff6ff 0%, #f8fbff 100%);
-}
+        .dei-card-4 {
+            --panel-accent: #0284c7;
+            --panel-bg: linear-gradient(135deg, #eff6ff 0%, #f8fbff 100%);
+        }
 
-.centered-card {
-    text-align: center;
-}
+        .centered-card {
+            text-align: center;
+        }
 
-.centered-card ul {
-    display: inline-block;
-    text-align: left;
-    padding: 0;
-}
+        .centered-card ul {
+            display: inline-block;
+            text-align: left;
+            padding: 0;
+        }
 
-.centered-card li {
-    border-bottom: 1px solid #eee;
-    padding: 8px 0 8px 20px;
-}
+        .centered-card li {
+            border-bottom: 1px solid #eee;
+            padding: 8px 0 8px 20px;
+        }
 
-.centered-card li:last-child {
-    border-bottom: none;
-}
+        .centered-card li:last-child {
+            border-bottom: none;
+        }
 
-.centered-card li::before {
-    top: 10px;
-}
+        .centered-card li::before {
+            top: 10px;
+        }
 
 
         /* === TCP RESEARCH VISION & LEADERSHIP ENHANCEMENTS === */
@@ -1806,17 +1818,7 @@
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                     <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
-                        <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)"><img src="https://flagcdn.com/w40/gb.png" class="flag-img" loading="lazy" alt="UK"> English</div>
-                        <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)"><img src="https://flagcdn.com/w40/dk.png" class="flag-img" loading="lazy" alt="DK"> Dansk</div>
-                        <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)"><img src="https://flagcdn.com/w40/es.png" class="flag-img" loading="lazy" alt="ES"> Español</div>
-                        <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)"><img src="https://flagcdn.com/w40/fr.png" class="flag-img" loading="lazy" alt="FR"> Français</div>
-                        <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)"><img src="https://flagcdn.com/w40/de.png" class="flag-img" loading="lazy" alt="DE"> Deutsch</div>
-                        <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)"><img src="https://flagcdn.com/w40/in.png" class="flag-img" loading="lazy" alt="IN"> हिन्दी</div>
-                        <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)"><img src="https://flagcdn.com/w40/cn.png" class="flag-img" loading="lazy" alt="CN"> 中文</div>
-                        <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)"><img src="https://flagcdn.com/w40/sa.png" class="flag-img" loading="lazy" alt="SA"> العربية</div>
-                         <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (India/Pakistan)"><img src="https://flagcdn.com/w40/pk.png" class="flag-img" loading="lazy" alt="PK"> اردو</div>
-                        <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)"><img src="https://flagcdn.com/w40/ru.png" class="flag-img" loading="lazy" alt="RU"> Русский</div>
-                        <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)"><img src="https://flagcdn.com/w40/jp.png" class="flag-img" loading="lazy" alt="JP"> 日本語</div>
+                        <!-- lang options populated by buildLangOptions() -->
                     </div>
                 </div>
                 <div class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu Toggle" tabindex="0" role="button"><i class="fas fa-bars"></i></div>
@@ -1879,17 +1881,7 @@
                     <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                          <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
-                            <div class="lang-option" onclick="changeLanguage('en')" title="English (UK)"><img src="https://flagcdn.com/w40/gb.png" class="flag-img" loading="lazy" alt="UK"> English</div>
-                            <div class="lang-option" onclick="changeLanguage('da')" title="Danish (Denmark)"><img src="https://flagcdn.com/w40/dk.png" class="flag-img" loading="lazy" alt="DK"> Dansk</div>
-                            <div class="lang-option" onclick="changeLanguage('es')" title="Spanish (Spain)"><img src="https://flagcdn.com/w40/es.png" class="flag-img" loading="lazy" alt="ES"> Español</div>
-                            <div class="lang-option" onclick="changeLanguage('fr')" title="French (France)"><img src="https://flagcdn.com/w40/fr.png" class="flag-img" loading="lazy" alt="FR"> Français</div>
-                            <div class="lang-option" onclick="changeLanguage('de')" title="German (Germany)"><img src="https://flagcdn.com/w40/de.png" class="flag-img" loading="lazy" alt="DE"> Deutsch</div>
-                            <div class="lang-option" onclick="changeLanguage('hi')" title="Hindi (India)"><img src="https://flagcdn.com/w40/in.png" class="flag-img" loading="lazy" alt="IN"> हिन्दी</div>
-                            <div class="lang-option" onclick="changeLanguage('zh-CN')" title="Chinese (China)"><img src="https://flagcdn.com/w40/cn.png" class="flag-img" loading="lazy" alt="CN"> 中文</div>
-                            <div class="lang-option" onclick="changeLanguage('ar')" title="Arabic (Saudi Arabia)"><img src="https://flagcdn.com/w40/sa.png" class="flag-img" loading="lazy" alt="SA"> العربية</div>
-                            <div class="lang-option" onclick="changeLanguage('ur')" title="Urdu (India/Pakistan)"><img src="https://flagcdn.com/w40/pk.png" class="flag-img" loading="lazy" alt="PK"> اردو</div>
-                            <div class="lang-option" onclick="changeLanguage('ru')" title="Russian (Russia)"><img src="https://flagcdn.com/w40/ru.png" class="flag-img" loading="lazy" alt="RU"> Русский</div>
-                            <div class="lang-option" onclick="changeLanguage('ja')" title="Japanese (Japan)"><img src="https://flagcdn.com/w40/jp.png" class="flag-img" loading="lazy" alt="JP"> 日本語</div>
+                            <!-- lang options populated by buildLangOptions() -->
                         </div>
                     </div>
                 </li>
@@ -1971,7 +1963,7 @@
                 <div id="eli5-result" style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
                 <div class="profile-text">
                     <p style="margin-top:0;">I am currently a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> at the <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen (UCPH)</a>, Denmark. Building upon a robust foundation in AI-driven bioinformatics and molecular modelling, I am actively seeking <strong>Assistant Professorship</strong> with the profound ambition to transition into an independent Principal Investigator role.</p>
-                    <p style="margin-top:10px;">Upon establishing my independence, I will launch the <strong><a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')" class="niper-hover">Translational Computational Pharmacology (TCP) Group</a></strong>. The TCP lab's core mission is to seamlessly bridge the gap between highly abstract artificial intelligence architectures and actionable, real-world clinical and environmental solutions through rigorous interdisciplinary science.</p>
+                    <p style="margin-top:10px;">Upon establishing my independence, I will launch the <strong><a href="#research-vision" class="niper-hover">Translational Computational Pharmacology (TCP) Group</a></strong>. The TCP lab's core mission is to seamlessly bridge the gap between highly abstract artificial intelligence architectures and actionable, real-world clinical and environmental solutions through rigorous interdisciplinary science.</p>
                     <p style="margin-top:10px;">My expertise spans the entire spectrum of computational biology—from designing generative AI predictive models (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>) and complex protein simulations, to discovering sustainable PFAS-degrading enzymes. Having trained at leading institutions across India, Finland, and Denmark, I am poised to lead a dynamic research team dedicated to therapeutic innovation.</p>
                 </div>
                 <hr class="subtle-separator">
@@ -2635,7 +2627,7 @@
                 
                 <!-- Rewritten Timeline using Left-Aligned Roadmap aesthetics -->
                 <div class="edu-grid">
-                    <div class="edu-card edu-phd">
+                    <div class="edu-card edu-phd" data-badge="1">
                         <div class="edu-header">
                             <h4>Phase 1: Foundation & Discovery</h4>
                             <span class="year-span">Years 1-2</span>
@@ -2647,7 +2639,7 @@
                             <li><strong>Outputs:</strong> Launch the baseline version of our proprietary XAI-driven drug discovery pipeline.</li>
                         </ul>
                     </div>
-                    <div class="edu-card edu-msc">
+                    <div class="edu-card edu-msc" data-badge="2">
                         <div class="edu-header">
                             <h4>Phase 2: Validation & Expansion</h4>
                             <span class="year-span">Years 2-4</span>
@@ -2659,7 +2651,7 @@
                             <li><strong>IPR & Publishing:</strong> Publish in high-impact journals and file provisional patents for biocatalysts and drug hits.</li>
                         </ul>
                     </div>
-                    <div class="edu-card edu-bsc">
+                    <div class="edu-card edu-bsc" data-badge="3">
                         <div class="edu-header">
                             <h4>Phase 3: Translation & Leadership</h4>
                             <span class="year-span">Years 4-5</span>
@@ -3129,6 +3121,11 @@
         };
 
         const languages = { 'en': { flag: 'gb', code: 'EN' }, 'da': { flag: 'dk', code: 'DA' }, 'es': { flag: 'es', code: 'ES' }, 'fr': { flag: 'fr', code: 'FR' }, 'de': { flag: 'de', code: 'DE' }, 'hi': { flag: 'in', code: 'HI' }, 'zh-CN': { flag: 'cn', code: 'ZH' }, 'ar': { flag: 'sa', code: 'AR' }, 'ur': { flag: 'pk', code: 'UR' }, 'ru': { flag: 'ru', code: 'RU' }, 'ja': { flag: 'jp', code: 'JA' } };
+
+        /* Builds both lang dropdowns from one source — add/remove a language here, not in HTML */
+        const LANGS = [{code:'en',flag:'gb',title:'English (UK)',label:'English'},{code:'da',flag:'dk',title:'Danish (Denmark)',label:'Dansk'},{code:'es',flag:'es',title:'Spanish (Spain)',label:'Español'},{code:'fr',flag:'fr',title:'French (France)',label:'Français'},{code:'de',flag:'de',title:'German (Germany)',label:'Deutsch'},{code:'hi',flag:'in',title:'Hindi (India)',label:'हिन्दी'},{code:'zh-CN',flag:'cn',title:'Chinese (China)',label:'中文'},{code:'ar',flag:'sa',title:'Arabic (Saudi Arabia)',label:'العربية'},{code:'ur',flag:'pk',title:'Urdu (India/Pakistan)',label:'اردو'},{code:'ru',flag:'ru',title:'Russian (Russia)',label:'Русский'},{code:'ja',flag:'jp',title:'Japanese (Japan)',label:'日本語'}];
+        const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" title="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
+
         const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
         const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
         const toggleMenu = (e) => { if(e) e.stopPropagation(); const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'), mDD = document.getElementById('mobile-lang-dd'); if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns(); nb.classList.toggle('active'); tb.classList.toggle('open'); }; const toggleMobileSubmenu = (e, tId) => { e.stopPropagation(); const dd = document.getElementById(tId), tb = e.currentTarget; closeAllDropdowns(dd); if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; } }; document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
