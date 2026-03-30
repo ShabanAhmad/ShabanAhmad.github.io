@@ -1,6 +1,8 @@
 <div align="center">
 
-# <b>Dr Shaban Ahmad</b>
+# <b><a href="https://shabanahmad.github.io/" style="text-decoration:none; color:inherit;">Dr Shaban Ahmad</a></b>
+
+<b>AI Scientist bridging Biology, Medicine, and Sustainability</b>
 
 <p align="center">
   <a href="https://shabanahmad.github.io/">
@@ -17,11 +19,8 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://shabanahmad.github.io/">https://shabanahmad.github.io/</a>
-</p>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2400&pause=700&color=00A6FF&center=true&vCenter=true&width=850&lines=Artificial+Intelligence+in+Biology;Precision+Oncology+%7C+Computational+Drug+Discovery;PFAS+Biodegradation+%7C+Environmental+Sustainability;Explainable+AI+%7C+Generative+AI+in+Life+Sciences;Multi-Omics+Integration+%7C+Systems+Biology;Molecular+Modelling+%7C+Simulation+Science;Translational+Computational+Pharmacology" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2400&pause=700&color=22C55E&center=true&vCenter=true&width=700&lines=Artificial+Intelligence+in+Biology;Precision+Oncology+%7C+Computational+Drug+Discovery;PFAS+Biodegradation+%7C+Environmental+Sustainability;Explainable+AI+%7C+Generative+AI+in+Life+Sciences;Multi-Omics+Integration+%7C+Systems+Biology;Molecular+Modelling+%7C+Simulation+Science;Translational+Computational+Pharmacology" />
 
 <p align="center">
 <b>Translational Computational Pharmacology • AI for Precision Medicine • Environmental Intelligence</b>
@@ -29,11 +28,12 @@
 
 </div>
 
-<hr style="border: 0; height: 1px; background: #2e3440;">
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
-## 👨‍🔬 About Me
+<h2>👨‍🔬 About Me</h2>
+<div style="width:180px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
-I am a <b>Postdoctoral Researcher</b> at the <b>University of Copenhagen (UCPH), Denmark</b>, working at the intersection of <span style="color:#00A6FF;"><b>Artificial Intelligence</b></span>, <span style="color:#00A6FF;"><b>Bioinformatics</b></span>, and <span style="color:#00A6FF;"><b>Environmental Biotechnology</b></span>.
+I am a <b>Postdoctoral Researcher</b> at the <b>University of Copenhagen (UCPH), Denmark</b>, working at the intersection of <span style="color:#22C55E;"><b>Artificial Intelligence</b></span>, <span style="color:#22C55E;"><b>Bioinformatics</b></span>, and <span style="color:#22C55E;"><b>Environmental Biotechnology</b></span>.
 
 My research focuses on designing <b>AI-driven computational frameworks</b> that translate complex biological data into <b>clinically and environmentally actionable insights</b>.
 
@@ -45,13 +45,35 @@ I actively work on:
 
 With expertise spanning <b>deep learning, molecular modelling, and multi-omics</b>, my long-term goal is to establish an independent research group in <b>Translational Computational Pharmacology (TCP)</b>, bridging <i>AI innovation → biological understanding → real-world impact</i>.
 
----
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
-## 🚀 Key Contributions
+<h2>🔭 Research Vision</h2>
+<div style="width:220px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
+
+
+To build AI systems that seamlessly connect **biological complexity** with **real-world clinical and environmental impact**, enabling scalable solutions in **precision medicine and sustainability**.
+
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
+
+<h2>⭐ Featured Projects</h2>
+<div style="width:240px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
+
+
+* 🫁 **[DrLungker](https://github.com/ShabanAhmad/DrLungker)** – AI-driven resistance aware multitargeted lung cancer drug developement
+* 🔬 **[DeepEntXAI](https://github.com/ShabanAhmad/DeepEntXAI)** – Explainable AI for AMR awared drug prediction in Enterobacteriaceae
+* 🫁 **[LungXAI](https://github.com/SyeddNaseer/LUNGXAI)** – Explainable AI for Lung Cancer Prediction with RNA-Seq datasets
+* 🌍 **[PFAS Enzyme Discovery Pipeline](https://github.com/ShabanAhmad)** – AI-guided biodegradation
+
+➡️ Explore more: https://github.com/ShabanAhmad
+
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
+
+<h2>🚀 Key Contributions</h2>
+<div style="width:230px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
 <p align="center"><i>Bridging AI, Biology, and Sustainability through interdisciplinary research</i></p>
 
-<table align="center" style="border-collapse: separate; border-spacing: 15px;">
+<table align="center" style="border-collapse: separate; border-spacing: 20px;">
 
 <tr>
 <td width="50%" valign="top">
@@ -121,9 +143,10 @@ With expertise spanning <b>deep learning, molecular modelling, and multi-omics</
 
 </table>
 
-<hr style="border: 0; height: 1px; background: #2e3440;">
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
-## 📊 Academic Impact
+<h2>📊 Academic Impact</h2>
+<div style="width:220px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Publications-100+-0A66C2?style=for-the-badge">
@@ -135,19 +158,20 @@ With expertise spanning <b>deep learning, molecular modelling, and multi-omics</
 
 <table align="center">
 <tr>
-<td align="center"><b>📄 Publications</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=0A66C2&center=true&vCenter=true&width=120&lines=100%2B" /></td>
+<td align="center"><b>📄 Publications</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=100%2B" /></td>
 
-<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=1E90FF&center=true&vCenter=true&width=140&lines=1700%2B" /></td>
+<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=140&lines=1700%2B" /></td>
 
-<td align="center"><b>📊 h-index</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=FF8C00&center=true&vCenter=true&width=100&lines=27" /></td>
+<td align="center"><b>📊 h-index</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=100&lines=27" /></td>
 
-<td align="center"><b>🧪 Reviews</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=120&lines=490%2B" /></td>
+<td align="center"><b>🧪 Reviews</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=490%2B" /></td>
 </tr>
 </table>
 
-<hr style="border: 0; height: 1px; background: #2e3440;">
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
-## 🧾 Achievements & Recognition
+<h2>🧾 Achievements & Recognition</h2>
+<div style="width:320px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
 * 🏅 <b>World’s Top 2% Scientists</b> — Stanford–Elsevier (2025)
 * 🌍 <b>Visiting Researcher</b> — University of Jyväskylä, Finland
@@ -155,50 +179,63 @@ With expertise spanning <b>deep learning, molecular modelling, and multi-omics</
 * 🎓 <b>Mentorship</b> — 15+ undergraduate & postgraduate researchers
 * 🔬 <b>Scholarly Output</b> — 100+ publications, 30+ datasets, extensive peer review
 
-<hr style="border: 0; height: 1px; background: #2e3440;">
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
-## 🤝 Collaboration
+<h2>📫 Connect to Collaborate 🤝</h2>
+<div style="width:320px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
-* 🤖 <b>AI + Life Sciences</b>
-* 💊 <b>Drug Discovery & Precision Medicine</b>
-* 🌍 <b>Environmental Biotechnology</b>
-* 🧬 <b>Interdisciplinary Computational Biology</b>
+💡 **Open to collaborations in:**
 
-<hr style="border: 0; height: 1px; background: #2e3440;">
+* 🤖 AI + Life Sciences
+* 💊 Drug Discovery & Precision Medicine
+* 🌍 Environmental Biotechnology
+* 🧬 Interdisciplinary Computational Biology
 
-## 📫 Connect
 
-<p align="center">
-  <a href="mailto:shaban@plen.ku.dk">
-    <img src="https://img.shields.io/badge/email-D14836?style=for-the-badge&logo=gmail&logoColor=white">
-  </a>
-  <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ">
-    <img src="https://img.shields.io/badge/scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white">
-  </a>
-  <a href="https://www.scopus.com/authid/detail.uri?authorId=57201656170">
-    <img src="https://img.shields.io/badge/scopus-orange?style=for-the-badge">
-  </a>
-  <a href="https://www.webofscience.com/wos/author/record/AAK-XXXX-2020">
-    <img src="https://img.shields.io/badge/web_of_science-red?style=for-the-badge">
-  </a>
-  <a href="https://orcid.org/0000-0001-9832-2830">
-    <img src="https://img.shields.io/badge/orcid-A6CE39?style=for-the-badge&logo=orcid&logoColor=white">
-  </a>
-  <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2">
-    <img src="https://img.shields.io/badge/researchgate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white">
-  </a>
-  <a href="https://github.com/shabanahmad">
-    <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github">
-  </a>
-  <a href="https://www.linkedin.com/in/drshabanahmad/">
-    <img src="https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin">
-  </a>
+<div align="center" style="border:1px solid #EF4444; padding:15px 10px; border-radius:10px; width:90%; margin:auto;">
+
+<p>
+
+<a href="mailto:shaban@plen.ku.dk">
+<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+
+<a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en">
+<img src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white">
+</a>
+
+<a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288">
+<img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white">
+</a>
+
+<a href="https://www.webofscience.com/wos/author/record/2415769">
+<img src="https://img.shields.io/badge/Web_of_Science-Researcher-blue?style=for-the-badge">
+</a>
+
+<a href="https://orcid.org/0000-0001-9832-2830">
+<img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white">
+</a>
+
+<a href="https://www.researchgate.net/profile/Shaban-Ahmad-2">
+<img src="https://img.shields.io/badge/ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white">
+</a>
+
+<a href="https://github.com/ShabanAhmad">
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://www.linkedin.com/in/drshabanahmad/">
+<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin">
+</a>
+
 </p>
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=shabanahmad&label=Profile+Views&color=0e75b6&style=flat" />
-</p>
+</div>
 
 <p align="center">
-© 2026 <b>Dr Shaban Ahmad</b>
+  <img src="https://komarev.com/ghpvc/?username=ShabanAhmad&label=Profile+Views&color=22C55E&style=flat" />
+  <span style="margin: 0 8px;">|</span>
+  © 2026 <b>Dr Shaban Ahmad</b>
 </p>
+
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
