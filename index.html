@@ -248,7 +248,7 @@
         .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem; border-left: 6px solid var(--accent); padding-left: 18px; letter-spacing: 0.5px; }
         .about-split-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; } .about-left, .about-right { min-width: 0; }
         .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
-        .niper-hover { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(6, 78, 59, 0.5); transition: all 0.2s ease-in-out; padding: 0 2px; display: inline-block; line-height: 1.2; font-weight: inherit; } .niper-hover:hover { background-color: transparent; color: var(--accent) !important; border-bottom: 1px dashed var(--accent); text-decoration: none; box-shadow: none; }
+        .niper-hover { color: inherit; text-decoration: underline; text-decoration-style: dashed; text-decoration-color: rgba(6, 78, 59, 0.5); text-underline-offset: 3px; transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out; padding: 0 2px; font-weight: inherit; } .niper-hover:hover { color: var(--accent) !important; text-decoration-color: var(--accent); }
         .unified-sub-heading { margin-top: 0; border-left: none; padding-left: 0; font-size: 1.5rem; font-family: 'Roboto', sans-serif; font-weight: 700; position: relative; display: inline-block; cursor: default; margin-bottom: 1.2rem; } .ush-primary { color: var(--sub-heading); } .ush-accent { color: var(--accent); } .unified-sub-heading::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0; background-color: currentColor; transition: width 0.5s ease; } .unified-sub-heading:hover::after { width: 100%; }
 
         @keyframes subtleRun { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
@@ -1544,7 +1544,7 @@
         .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
         .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.75s step-end infinite; }
         @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        #tw-line1, #tw-line2 { min-height: 1.6em; }
+        #tw-line1, #tw-line2 { min-height: 0; }
         .tw-separator { position: relative; height: 1px; margin: 0.7rem 0; background: rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; opacity: 0; transition: opacity 0.4s ease; }
         .tw-separator.visible { opacity: 1; }
         .tw-sep-runner { position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: linear-gradient(to right, transparent, var(--accent), transparent); animation: twSepRun 2.2s linear infinite; }
@@ -1771,6 +1771,21 @@
         body.dark-mode #teaching-mentorship .culture-card:nth-child(1):hover .tech-ul li::before { color: #38bdf8; }
         body.dark-mode #teaching-mentorship .culture-card:nth-child(2):hover .tech-ul li::before { color: #34d399; }
         body.dark-mode #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li::before { color: #c084fc; }
+        /* === Orbit Badges === */
+        /* === Single Orbit Ring — 3 badges, 120° apart, clockwise === */
+        .orbit-wrapper { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
+        .orbit-ring { position: absolute; top: 50%; left: 50%; width: 206px; height: 206px; border: 1px dashed rgba(245,158,11,0.32); border-radius: 50%; transform: translate(-50%,-50%); animation: orbitSpin 10s linear infinite; pointer-events: none; }
+        @keyframes orbitSpin { from{transform:translate(-50%,-50%) rotate(0deg);} to{transform:translate(-50%,-50%) rotate(360deg);} }
+        .orbit-badge { position: absolute; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; box-shadow: 0 2px 8px rgba(0,0,0,0.45); animation: counterOrbit 10s linear infinite; }
+        @keyframes counterOrbit { from{transform:rotate(0deg);} to{transform:rotate(-360deg);} }
+        /* 0° top, 120° right-bottom, 240° left-bottom */
+        .ob-dna   { top: -13px; left:  90px; background: #10b981; color: #fff; }
+        .ob-brain { top: 142px; left: 180px; background: #0ea5e9; color: #fff; }
+        .ob-flask { top: 142px; left:   2px; background: var(--accent); color: #1a1a1a; }
+        @media (max-width: 700px) { .orbit-ring { display: none; } }
+
+        /* === Typewriter Box Dynamic Sizing === */
+        .typewriter-box { transition: padding 0.35s ease; }
     </style>
 </head>
 
@@ -1913,7 +1928,14 @@
         <section class="hero">
             <div class="hero-main">
                 <div class="hero-profile-group">
-                    <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                    <div class="orbit-wrapper">
+                        <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                        <div class="orbit-ring">
+                            <span class="orbit-badge ob-dna"><i class="fas fa-dna"></i></span>
+                            <span class="orbit-badge ob-brain"><i class="fas fa-brain"></i></span>
+                            <span class="orbit-badge ob-flask"><i class="fas fa-flask"></i></span>
+                        </div>
+                    </div>
                     <div class="hero-text-group">
                         <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
                         <div class="hero-contact">
@@ -3019,6 +3041,9 @@
                         window.requestAnimationFrame(step);
                     } else {
                         el.innerText = num + suffix;
+                        el.style.color = '#ffffff';
+                        el.style.textShadow = '0 0 14px rgba(255,255,255,0.9)';
+                        setTimeout(() => { el.style.color = ''; el.style.textShadow = ''; }, 420);
                         resolve(); // Tell the sequence this animation has fully finished
                     }
                 };
