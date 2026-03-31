@@ -1544,6 +1544,11 @@
         .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
         .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.75s step-end infinite; }
         @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        #tw-line1, #tw-line2 { min-height: 1.6em; }
+        .tw-separator { position: relative; height: 1px; margin: 0.7rem 0; background: rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; opacity: 0; transition: opacity 0.4s ease; }
+        .tw-separator.visible { opacity: 1; }
+        .tw-sep-runner { position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: linear-gradient(to right, transparent, var(--accent), transparent); animation: twSepRun 2.2s linear infinite; }
+        @keyframes twSepRun { 0% { left: -30%; } 100% { left: 130%; } }
         body.dark-mode .typewriter-box {
             background: rgba(0, 0, 0, 0.2);
             color: #f8fafc;
@@ -1912,14 +1917,20 @@
                     <div class="hero-text-group">
                         <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
                         <div class="hero-contact">
-                            <i class="fas fa-envelope"></i> 
-                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> | 
+                            <i class="fas fa-envelope"></i>
+                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> |
                             <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                        </div>
+                        <div class="hero-contact" style="margin-top: 6px;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4);">Postdoctoral Scientist, University of Copenhagen, Denmark</a>
                         </div>
                     </div>
                 </div>
                 <div class="typewriter-box" id="tw-box">
-                    <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="tw-link">Postdoctoral Scientist at Københavns Universitet</a><span id="tw-dynamic" data-text=" developing AI-driven frameworks for complex biological systems, seeking Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group."></span>
+                    <div id="tw-line1"></div>
+                    <div class="tw-separator"><span class="tw-sep-runner"></span></div>
+                    <div id="tw-line2"></div>
                 </div>
             </div>
             
@@ -2884,58 +2895,85 @@
                 }); 
             }); 
             
-            // Continuous Infinite Typewriter Animation
-            const twBox = document.getElementById('tw-box');
-            const twDynamic = document.getElementById('tw-dynamic');
-            if (twBox && twDynamic) {
-                const twText = twDynamic.getAttribute('data-text');
-                let i = 0;
-                let isDeleting = false;
-                
-                const twKeywords = [
-                    ['AI-driven', '#0ea5e9'],
-                    ['frameworks', '#10b981'],
-                    ['Translational Computational Pharmacology (TCP) Group', 'var(--accent)'],
-                    ['Assistant Professorship', '#8b5cf6'],
-                    ['biological systems', '#f43f5e'],
-                ];
-                const twColorize = (text) => {
-                    let out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-                    twKeywords.forEach(([kw, color]) => {
-                        out = out.replace(new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
-                            `<strong style="color:${color};font-style:normal;font-weight:700;">${kw}</strong>`);
+            // Continuous Infinite Typewriter Animation — two independent lines
+            (function() {
+                var el1 = document.getElementById('tw-line1');
+                var el2 = document.getElementById('tw-line2');
+                var sep = document.querySelector('.tw-separator');
+                if (!el1 || !el2) return;
+
+                var LINE1 = 'I develop AI-driven approaches to advance discovery across complex biology \u2014 from molecules to medicine and sustainability.';
+                var LINE2 = 'Seeking Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group.';
+                var KW1 = [['AI-driven','#0ea5e9'],['complex biology','#f43f5e']];
+                var KW2 = [['Assistant Professorship','#8b5cf6'],['Translational Computational Pharmacology (TCP) Group','var(--accent)']];
+
+                function colorize(text, kws) {
+                    var out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                    kws.forEach(function(pair) {
+                        var re = new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+                        out = out.replace(re, '<strong style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</strong>');
                     });
                     return out;
-                };
+                }
 
-                const typeWriter = () => {
-                    if (!isDeleting && i <= twText.length) {
-                        const written = twText.substring(0, i);
-                        twDynamic.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
-                        i++;
-                        setTimeout(typeWriter, 38);
-                    } else if (!isDeleting && i > twText.length) {
-                        isDeleting = true;
-                        twBox.classList.add('typewriter-done');
-                        setTimeout(typeWriter, 5500);
-                    } else if (isDeleting && i > 0) {
-                        twBox.classList.remove('typewriter-done');
-                        const written = twText.substring(0, i);
-                        twDynamic.innerHTML = `${twColorize(written)}<span class="tw-cursor"></span>`;
-                        i -= 2;
-                        setTimeout(typeWriter, 12);
-                    } else {
-                        isDeleting = false;
-                        i = 0;
-                        setTimeout(typeWriter, 900);
+                var CURSOR = '<span class="tw-cursor"></span>';
+                var state = 'TYPING1', i1 = 0, i2 = 0;
+
+                function tw() {
+                    if (state === 'TYPING1') {
+                        el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
+                        i1++;
+                        if (i1 <= LINE1.length) {
+                            setTimeout(tw, 38);
+                        } else {
+                            el1.innerHTML = colorize(LINE1, KW1);
+                            if (sep) sep.classList.add('visible');
+                            state = 'TYPING2';
+                            i2 = 0;
+                            setTimeout(tw, 400);
+                        }
+                    } else if (state === 'TYPING2') {
+                        el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
+                        i2++;
+                        if (i2 <= LINE2.length) {
+                            setTimeout(tw, 38);
+                        } else {
+                            state = 'PAUSE';
+                            setTimeout(tw, 5000);
+                        }
+                    } else if (state === 'PAUSE') {
+                        state = 'DEL2';
+                        i2 = LINE2.length;
+                        setTimeout(tw, 0);
+                    } else if (state === 'DEL2') {
+                        if (i2 > 0) {
+                            el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
+                            i2 = Math.max(0, i2 - 2);
+                            setTimeout(tw, 14);
+                        } else {
+                            el2.innerHTML = '';
+                            if (sep) sep.classList.remove('visible');
+                            state = 'DEL1';
+                            i1 = LINE1.length;
+                            setTimeout(tw, 200);
+                        }
+                    } else if (state === 'DEL1') {
+                        if (i1 > 0) {
+                            el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
+                            i1 = Math.max(0, i1 - 2);
+                            setTimeout(tw, 14);
+                        } else {
+                            el1.innerHTML = '';
+                            state = 'TYPING1';
+                            i1 = 0;
+                            i2 = 0;
+                            setTimeout(tw, 800);
+                        }
                     }
-                };
-                
-                const observer = new IntersectionObserver(e => {
-                    if (e[0].isIntersecting) { typeWriter(); observer.disconnect(); }
-                });
-                observer.observe(twBox);
-            }
+                }
+
+                setTimeout(tw, 900);
+            })();
 
             // Instantly set hero stats to 0, then wait 5 seconds before animating sequentially
             initCountersToZero('.stat-row > .stat-value');
