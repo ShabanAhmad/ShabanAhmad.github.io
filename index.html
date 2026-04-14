@@ -121,16 +121,56 @@
         .header-sep { color: #dc3545; opacity: 0.5; font-size: 1.1rem; font-weight: 300; user-select: none; }
         .control-icon { cursor: pointer; color: var(--primary); transition: 0.3s; font-size: 1rem; } .control-icon:hover { color: var(--accent); }
         .search-container { position: relative; display: flex; align-items: center; }
-        .search-dropdown { position: absolute; right: 0; top: 100%; min-width: 300px; max-width: 90vw; background: #fff; border: 2px solid rgba(245,158,11,0.6); box-shadow: 0 10px 24px rgba(0,0,0,0.13); border-radius: 0 0 10px 10px; padding: 10px 12px; display: none; z-index: 3000; animation: fadeSlideDown 0.18s ease-out; }
-        @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-        .search-input-wrapper { display: flex; align-items: center; background: transparent; border: none; box-shadow: none; outline: none; }
-        .search-input-wrapper:focus-within { background: transparent; box-shadow: none; border: none; }
-        .header-search-input { width: 100%; border: none !important; background: transparent; padding: 9px 12px; font-size: 0.92rem; outline: none !important; box-shadow: none !important; color: #334155; }
-        .search-controls { display: flex; gap: 3px; padding-right: 6px; align-items: center; }
-        .mini-search-btn { background: none; border: 1px solid transparent; cursor: pointer; color: #94a3b8; font-size: 0.78rem; width: 24px; height: 24px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.18s; }
-        .mini-search-btn:hover { color: var(--primary); background: #f1f5f9; border-color: #e2e8f0; }
-        .search-count { font-size: 0.7rem; color: #64748b; font-weight: 700; margin-right: 3px; min-width: 30px; text-align: center; background: #f1f5f9; border-radius: 20px; padding: 2px 5px; }
-        .clear-search-btn { color: #ef4444 !important; } .clear-search-btn:hover { background: #fef2f2 !important; border-color: #fecaca !important; color: #dc2626 !important; }
+
+        /* ===== COMMAND PALETTE / SPOTLIGHT SEARCH ===== */
+        .srch-overlay { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: flex-start; justify-content: center; padding-top: clamp(48px, 8vh, 90px); opacity: 0; pointer-events: none; transition: opacity 0.18s ease; background: rgba(10,18,38,0.60); }
+        .srch-overlay.srch-open { opacity: 1; pointer-events: auto; }
+        .srch-box { width: min(640px, 92vw); background: #fff; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.18), 0 0 0 1px rgba(245,158,11,0.3); overflow: hidden; display: flex; flex-direction: column; max-height: 72vh; transform: translateY(-16px) scale(0.97); transition: transform 0.24s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease; opacity: 0; }
+        .srch-overlay.srch-open .srch-box { transform: translateY(0) scale(1); opacity: 1; }
+        .srch-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; }
+        .srch-icon-lbl { color: #94a3b8; font-size: 1rem; flex-shrink: 0; }
+        .srch-input { flex: 1; border: none; background: transparent; font-size: 1rem; color: #0f172a; outline: none; font-family: inherit; }
+        .srch-input::placeholder { color: #94a3b8; }
+        .srch-kbd { display: flex; gap: 4px; flex-shrink: 0; }
+        .srch-key { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 5px; padding: 2px 7px; font-size: 0.7rem; color: #64748b; font-family: monospace; cursor: default; white-space: nowrap; }
+        .srch-body { overflow-y: auto; flex: 1; }
+        .srch-section-hd { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 4px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; position: sticky; top: 0; background: #fff; z-index: 1; }
+        .srch-badge { background: var(--accent, #f59e0b); color: #fff; border-radius: 20px; padding: 1px 7px; font-size: 0.65rem; font-weight: 700; min-width: 18px; text-align: center; }
+        .srch-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; cursor: pointer; transition: background 0.12s; border-left: 3px solid transparent; }
+        .srch-item:hover, .srch-item.srch-active { background: #f8fafc; border-left-color: var(--accent, #f59e0b); }
+        .srch-item-icon { width: 34px; height: 34px; border-radius: 8px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--primary, #1e3a5f); flex-shrink: 0; }
+        .srch-item-body { flex: 1; min-width: 0; }
+        .srch-item-title { font-size: 0.88rem; font-weight: 600; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .srch-item-title mark { background: rgba(245,158,11,0.3); color: inherit; border-radius: 2px; font-style: normal; }
+        .srch-item-excerpt { font-size: 0.75rem; color: #64748b; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .srch-item-excerpt mark { background: rgba(245,158,11,0.2); color: inherit; border-radius: 2px; font-style: normal; }
+        .srch-item-cat { font-size: 0.63rem; font-weight: 600; color: var(--primary, #1e3a5f); background: rgba(30,58,95,0.07); border-radius: 20px; padding: 2px 7px; white-space: nowrap; flex-shrink: 0; }
+        .srch-pills { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid #f1f5f9; flex-shrink: 0; }
+        .srch-pill { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 20px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; color: var(--primary, #1e3a5f); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+        .srch-pill:hover { background: var(--accent, #f59e0b); border-color: var(--accent, #f59e0b); color: #fff; }
+        .srch-footer { display: flex; gap: 14px; padding: 8px 16px; border-top: 1px solid #f1f5f9; flex-shrink: 0; background: #f8fafc; flex-wrap: wrap; }
+        .srch-hint { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: #94a3b8; }
+        .srch-hint .srch-key { background: #fff; }
+        .srch-empty { text-align: center; padding: 32px 20px; color: #94a3b8; font-size: 0.88rem; }
+        .srch-empty i { font-size: 2rem; margin-bottom: 8px; display: block; }
+        .srch-flash { outline: 2px solid var(--accent, #f59e0b) !important; outline-offset: 4px !important; }
+        body.dark-mode .srch-overlay { background: rgba(0,0,0,0.72); }
+        body.dark-mode .srch-box { background: #1e293b; box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,158,11,0.2); }
+        body.dark-mode .srch-header { border-bottom-color: #334155; }
+        body.dark-mode .srch-input { color: #f1f5f9; }
+        body.dark-mode .srch-key { background: #334155; border-color: #475569; color: #94a3b8; }
+        body.dark-mode .srch-section-hd { background: #1e293b; color: #64748b; }
+        body.dark-mode .srch-item:hover, body.dark-mode .srch-item.srch-active { background: #0f172a; }
+        body.dark-mode .srch-item-icon { background: #0f172a; color: #f59e0b; }
+        body.dark-mode .srch-item-title { color: #f1f5f9; }
+        body.dark-mode .srch-item-excerpt { color: #64748b; }
+        body.dark-mode .srch-item-cat { color: #f59e0b; background: rgba(245,158,11,0.1); }
+        body.dark-mode .srch-pills { border-bottom-color: #334155; }
+        body.dark-mode .srch-pill { background: #334155; border-color: #475569; color: #94a3b8; }
+        body.dark-mode .srch-footer { background: #0f172a; border-top-color: #334155; }
+        body.dark-mode .srch-hint .srch-key { background: #1e293b; }
+        body.dark-mode .srch-empty { color: #475569; }
+        @media (max-width: 600px) { .srch-overlay { align-items: flex-end; padding-top: 0; } .srch-box { width: 100%; border-radius: 18px 18px 0 0; max-height: 80vh; } }
 
         .lang-wrapper { position: relative; display: inline-block; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: var(--primary); } .lang-wrapper:hover { color: var(--accent); }
         .lang-current-display { display: flex; align-items: center; gap: 5px; } .flag-xs { width: 18px; height: auto; border-radius: 2px; }
@@ -146,8 +186,9 @@
         .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; } .back-to-top:hover { background-color: var(--primary); color: var(--accent); transform: translateY(-5px); }
 
         /* --- 4.8: Hero Landing Section --- */
-        .hero-section-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); width: 100%; display: flex; justify-content: center; }
-        .hero { color: #ffffff; padding: 2rem 1rem; position: relative; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
+        .hero-section-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); width: 100%; display: flex; justify-content: center; position: relative; overflow: hidden; }
+        #mol-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.3; }
+        .hero { color: #ffffff; padding: 2rem 1rem; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
         .hero-main { flex: 1; max-width: 700px; }
         
         /* NEW: Hero Side-by-Side Profile Layout */
@@ -628,7 +669,7 @@
         
         /* --- 2. Global Dark Mode Framework --- */
         body.dark-mode { --text: #e2e8f0; --light-bg: #0f172a; --white: #1e293b; --sub-heading: #38bdf8; }
-        body.dark-mode, body.dark-mode .panel, body.dark-mode .nav-dropdown-content, body.dark-mode .search-dropdown, body.dark-mode .custom-lang-dropdown, body.dark-mode .sticky-sidebar, body.dark-mode .ai-modal-box, body.dark-mode #ai-chat-window, body.dark-mode .chat-footer { background-color: var(--light-bg); color: var(--text); border-color: #334155; }
+        body.dark-mode, body.dark-mode .panel, body.dark-mode .nav-dropdown-content, body.dark-mode .custom-lang-dropdown, body.dark-mode .sticky-sidebar, body.dark-mode .ai-modal-box, body.dark-mode #ai-chat-window, body.dark-mode .chat-footer { background-color: var(--light-bg); color: var(--text); border-color: #334155; }
         body.dark-mode .tech-card, body.dark-mode .edu-card, body.dark-mode .exp-box, body.dark-mode .referee-card, body.dark-mode .award-card, body.dark-mode .patent-box, body.dark-mode .accordion-btn, body.dark-mode .interest-card, body.dark-mode .ai-matcher-box { background-color: var(--white); color: var(--text); border-color: #334155; }
         
         /* Fixed Backgrounds for Hero & Footer */
@@ -690,13 +731,11 @@
 
         body.dark-mode .pub-item:hover, body.dark-mode .nav-dropdown-content a:hover, body.dark-mode .lang-option:hover { background-color: #334155; }
         body.dark-mode .ai-generated-content, body.dark-mode .chat-body, body.dark-mode .ai-matcher-box textarea, body.dark-mode .ai-modal-body input, body.dark-mode .ai-modal-body textarea { background-color: #020617; color: var(--text); border-color: #334155; }
-        body.dark-mode .search-input-wrapper { background: transparent !important; border: none !important; box-shadow: none !important; }
-        body.dark-mode .header-search-input { background: transparent !important; border: none !important; outline: none !important; }
         body.dark-mode .chat-header { border-bottom-color: var(--primary-dark); }
         body.dark-mode .cite-dropdown-menu { background: var(--white); border-color: #334155; }
         body.dark-mode .cite-option { color: var(--text); } body.dark-mode .cite-option:hover { background-color: #334155; }
         body.dark-mode .subtle-separator { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), var(--accent), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent); }
-        body.dark-mode .header-search-input { color: #e2e8f0; } body.dark-mode .ai-modal-header { background: #1e293b; border-bottom-color: #334155; } body.dark-mode .ai-modal-body { color: #cbd5e1; } body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
+        body.dark-mode .ai-modal-header { background: #1e293b; border-bottom-color: #334155; } body.dark-mode .ai-modal-body { color: #cbd5e1; } body.dark-mode .tech-sub-title { border-bottom-color: #334155; }
     
         /* === STRATEGY SECTION STYLES === */
         .strategy-cards-grid,
@@ -1798,6 +1837,7 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
+        <a href="https://github.com/ShabanAhmad" target="_blank" class="h-social" title="GitHub" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
     </div>
 
     <!-- Interface Triggers -->
@@ -1833,7 +1873,7 @@
             <div class="mobile-controls-container">
                 <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
                 <span class="header-sep">|</span>
-                <i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" aria-label="Search" tabindex="0" role="button"></i>            
+                <i class="fas fa-search control-icon" onclick="openSearchModal()" aria-label="Search" tabindex="0" role="button"></i>            
                 <span class="header-sep">|</span>
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                     <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
@@ -1846,6 +1886,16 @@
 
             <ul class="nav-list" id="nav-menu">
                 <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#research-vision" class="nav-link">Prospects <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'strat-dd')"><i class="fas fa-chevron-down"></i></div>
+                    <div class="nav-dropdown-content" id="strat-dd">
+                        <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Vision</a>
+                        <a href="#roadmap-funding" onclick="triggerAccordion('tcp-timeline-btn')">Roadmap</a>
+                        <a href="#lab-model" onclick="triggerAccordion('strat-lab')">Lab Model</a>
+                        <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')">Mentorship</a>
+                    </div>
+                </li>
                 <li class="nav-item"><a href="#awards" class="nav-link">Awards</a></li>
                 <li class="nav-item"><a href="#patents" class="nav-link">Patents</a></li>
                 <li class="nav-item nav-item-dropdown">
@@ -1880,23 +1930,11 @@
                         <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
                     </div>
                 </li>
-                <li class="nav-item nav-item-dropdown">
-                    <a href="#research-vision" class="nav-link">Prospects <span class="desktop-arrow"><i class="fas fa-chevron-down"></i></span></a>
-                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'strat-dd')"><i class="fas fa-chevron-down"></i></div>
-                    <div class="nav-dropdown-content" id="strat-dd">
-                        <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Vision</a>
-                        <a href="#roadmap-funding" onclick="triggerAccordion('tcp-timeline-btn')">Roadmap</a>
-                        <a href="#lab-model" onclick="triggerAccordion('strat-lab')">Lab Model</a>
-                        <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')">Mentorship</a>
-                    </div>
-                </li>
-
-                
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
                 <li class="header-controls">
                     <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
                     <span class="header-sep">|</span>
-                    <div class="search-container"><i class="fas fa-search control-icon" onclick="toggleSearchDropdown(event)" title="Search" aria-label="Search" tabindex="0" role="button"></i></div>
+                    <div class="search-container"><i class="fas fa-search control-icon" onclick="openSearchModal()" title="Search" aria-label="Search" tabindex="0" role="button"></i></div>
                     <span class="header-sep">|</span>
                     <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector">
                          <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
@@ -1907,17 +1945,6 @@
                 </li>
             </ul>
 
-            <div class="search-dropdown" id="search-dropdown">
-                <div class="search-input-wrapper">
-                    <input type="text" class="header-search-input" id="search-input" placeholder="Find on page..." onkeydown="handleSearchKey(event)" oninput="this.style.width = Math.max(150, this.value.length * 8 + 50) + 'px'; if(this.value.trim() === '') clearSearch(event);">
-                    <div class="search-controls">
-                        <span id="search-count" class="search-count"></span>
-                        <button class="mini-search-btn" onclick="prevMatch()" title="Previous Match"><i class="fas fa-chevron-up"></i></button>
-                        <button class="mini-search-btn" onclick="nextMatch()" title="Next Match"><i class="fas fa-chevron-down"></i></button>
-                        <button class="mini-search-btn clear-search-btn" onclick="clearSearch(event)" title="Clear Search"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -1925,6 +1952,7 @@
 
     <!-- === SECTION 7: CORE CONTENT PRESENTATION === -->
     <div class="hero-section-wrapper reveal" id="hero-section">
+        <canvas id="mol-canvas" aria-hidden="true"></canvas>
         <section class="hero">
             <div class="hero-main">
                 <div class="hero-profile-group">
@@ -2131,6 +2159,293 @@
         <hr class="separator">
     </section>
     
+    <!-- === SECTION 9: RESEARCH VISION & STRATEGY (TCP Group) === -->
+    <section id="research-vision" class="container reveal">
+        <h2 class="section-title">Academic Vision & Group Strategy (TCP Group)</h2>
+
+        <div class="tcp-vision-hero">
+            <div class="tcp-vision-copy">
+                <span class="tcp-eyebrow"><i class="fas fa-compass"></i> Future Academic Vision</span>
+                <h3>Establishing the Translational Computational Pharmacology (TCP) Group</h3>
+                <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
+                <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognisable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
+                <div class="tcp-tag-row">
+                    <span class="tcp-tag">#Mechanism-aware AI</span>
+                    <span class="tcp-tag">#Computational pharmacology</span>
+                    <span class="tcp-tag">#Precision genomics</span>
+                    <span class="tcp-tag">#Reproducible training</span>
+                    <span class="tcp-tag">#Sustainable biotechnology</span>
+                </div>
+            </div>
+            <div class="tcp-vision-kpis">
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Research Signature</span>
+                    <strong>Prediction anchored in mechanism</strong>
+                    <p>Every computational result should be interpretable enough to guide validation, not just improve a benchmark.</p>
+                </div>
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Academic Mission</span>
+                    <strong>Discovery plus training</strong>
+                    <p>The group should produce strong science while also training students to think across data, structure, and biology.</p>
+                </div>
+                <div class="tcp-kpi">
+                    <span class="tcp-kpi-label">Long-Term Outcome</span>
+                    <strong>A durable, collaborative lab identity</strong>
+                    <p>TCP should become a recognisable research home with clear themes, strong partnerships, and scalable mentoring.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 1: Core Research Vision -->
+        <button class="accordion-btn" id="tcp-vision-button"><span><i class="fas fa-bullseye acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Vision & Research Themes</span><i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tcp-focus-grid">
+                    <div class="tcp-focus-card tcp-focus-card-1">
+                        <div class="tfc-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="tfc-title">AI Precision Oncology</div>
+                        <ul class="tech-ul">
+                            <li>Developing deep ensemble architectures (DrLungker, DeepEntXAI, LungXAI etc).</li>
+                            <li>Integrating Hybrid CNN-LSTMs for high-accuracy drug activity classification.</li>
+                            <li>Utilising LIME/SHAP mapping to ensure clinical explainability.</li>
+                            <li>Deciphering complex drug resistance mechanisms in mutative cancers.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-2">
+                        <div class="tfc-icon"><i class="fas fa-capsules"></i></div>
+                        <div class="tfc-title">Multitarget Polypharmacology</div>
+                        <ul class="tech-ul">
+                            <li>Designing singular therapeutics to modulate multiple targets concurrently.</li>
+                            <li>Targeting key pathway proteins (EGFR, CDK2, STAT3, TrkA, KRAS).</li>
+                            <li>Hit-to-lead optimisation of compounds like FEDPN and Imidurea.</li>
+                            <li>Reducing clinical toxicity and circumventing acquired drug resistance.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-3">
+                        <div class="tfc-icon"><i class="fas fa-draw-polygon"></i></div>
+                        <div class="tfc-title">MD & QM/MM Simulations</div>
+                        <ul class="tech-ul">
+                            <li>Executing High-Throughput Virtual Screening (HTVS) pipelines.</li>
+                            <li>Conducting All-atom MD trajectory dynamics via Desmond & GROMACS.</li>
+                            <li>Employing Density Functional Theory (DFT) calculations.</li>
+                            <li>Running rigorous MM/PBSA and MM/GBSA free energy profiling.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-4">
+                        <div class="tfc-icon"><i class="fas fa-microscope"></i></div>
+                        <div class="tfc-title">Translational Bioinformatics</div>
+                        <ul class="tech-ul">
+                            <li>Bridging bench-to-bedside with multi-omics data integration.</li>
+                            <li>Executing actionable biomarker discovery from clinical cohorts.</li>
+                            <li>Correlating complex genotype-phenotype mappings.</li>
+                            <li>Stratifying disease networks to drive personalised therapeutic regimens.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-5">
+                        <div class="tfc-icon"><i class="fas fa-fingerprint"></i></div>
+                        <div class="tfc-title">Evolutionary Genomics</div>
+                        <ul class="tech-ul">
+                            <li>Processing WGS/WES data for precise variant annotation.</li>
+                            <li>Utilizing AI frameworks for variant pathogenicity prediction.</li>
+                            <li>Mapping phylogenomic evolution (e.g., <em>Vigna umbellata</em>).</li>
+                            <li>Analyzing domestication genes and sequence analytics.</li>
+                        </ul>
+                    </div>
+                    <div class="tcp-focus-card tcp-focus-card-6">
+                        <div class="tfc-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="tfc-title">Precision Biocatalysis & PFAS</div>
+                        <ul class="tech-ul">
+                            <li>Executing AI-guided enzyme mining and homology searching.</li>
+                            <li>Engineering resilient microbial enzymes for targeted bioremediation.</li>
+                            <li>Predicting structural activity of biocatalysts via AI.</li>
+                            <li>Targeting the sustainable degradation of persistent "forever chemicals".</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap-funding" class="container reveal">
+
+        <!-- Pillar 2: Timeline & Funding Roadmap -->
+        <button class="accordion-btn" id="tcp-timeline-btn"><span><i class="fas fa-stream acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> 5-Year Strategic Roadmap & Funding</span><i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content" style="padding-top: 15px;">
+                
+                <!-- Rewritten Timeline using Left-Aligned Roadmap aesthetics -->
+                <div class="edu-grid">
+                    <div class="edu-card edu-phd" data-badge="1">
+                        <div class="edu-header">
+                            <h4>Phase 1: Foundation & Discovery</h4>
+                            <span class="year-span">Years 1-2</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Infrastructure:</strong> Establish high-performance computational GPU clusters and secure omics pipelines.</li>
+                            <li><strong>Funding:</strong> Aggressively pursue early-career funding like ERC Starting Grants and national fellowships.</li>
+                            <li><strong>Recruitment:</strong> Build the core team by hiring highly motivated, interdisciplinary PhD scholars and Postdocs.</li>
+                            <li><strong>Outputs:</strong> Launch the baseline version of our proprietary XAI-driven drug discovery pipeline.</li>
+                        </ul>
+                    </div>
+                    <div class="edu-card edu-msc" data-badge="2">
+                        <div class="edu-header">
+                            <h4>Phase 2: Validation & Expansion</h4>
+                            <span class="year-span">Years 2-4</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Scaling:</strong> Expand polypharmacological deep-learning models to analyse massive, pan-cancer datasets.</li>
+                            <li><strong>Validation:</strong> Transition from <em>in silico</em> predictions to rigorous <em>in vitro / in vivo</em> validation.</li>
+                            <li><strong>Collaboration:</strong> Establish cross-disciplinary ties with wet-lab experimentalists and clinical oncologists globally.</li>
+                            <li><strong>IPR & Publishing:</strong> Publish in high-impact journals and file provisional patents for biocatalysts and drug hits.</li>
+                        </ul>
+                    </div>
+                    <div class="edu-card edu-bsc" data-badge="3">
+                        <div class="edu-header">
+                            <h4>Phase 3: Translation & Leadership</h4>
+                            <span class="year-span">Years 4-5</span>
+                        </div>
+                        <ul class="tech-ul" style="margin-top: 8px;">
+                            <li><strong>Translation:</strong> Focus on translating validated models into real-world clinical or industrial applications.</li>
+                            <li><strong>Leadership:</strong> Establish the TCP Group as a leading international hub for computational pharmacology.</li>
+                            <li><strong>Mentorship:</strong> Proactively guide senior lab members toward their own successful independent careers.</li>
+                            <li><strong>Legacy:</strong> Ensure all tools and models are open-source to maximize community and clinical impact.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Funding Logic & Growth Strategy</h3>
+                <div class="strategy-cards-grid">
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-coins" style="color:var(--accent); margin-right:8px;"></i> Funding Logic</h5>
+                        <ul>
+                            <li>Pilot data directly supports people and initial validation frameworks.</li>
+                            <li>Team members drive robust <em>in vitro / in vivo</em> validation of computational hits.</li>
+                            <li>Validated outputs secure larger multi-year European/National programmes.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-handshake" style="color:var(--accent); margin-right:8px;"></i> Partnership Strategy</h5>
+                        <ul>
+                            <li>Link funding closely to collaborations that are scientifically additive.</li>
+                            <li>Focus heavily on experimental, translational, and infrastructure partners.</li>
+                            <li>Target joint industry-academia consortium grants.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item">
+                        <h5><i class="fas fa-chart-line" style="color:var(--accent); margin-right:8px;"></i> Growth Discipline</h5>
+                        <ul>
+                            <li>Expand the group responsibly rather than aggressively.</li>
+                            <li>Add novel themes and people only when mentorship capacity is secure.</li>
+                            <li>Ensure validation bandwidth and overarching strategic coherence.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lab-model" class="container reveal">
+        <!-- Pillar 3: Lab Structure & Partnerships -->
+        <button class="accordion-btn" id="strat-lab"><span><i class="fas fa-sitemap acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> TCP Lab Model & Partnerships</span><i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="tcp-impact-grid">
+                    <div class="lab-section">
+                        <h4><i class="fas fa-sitemap" style="margin-right:8px;"></i> Team Architecture</h4>
+                        <ul class="tech-ul">
+                            <li><strong>PI:</strong> Directs scientific vision, mentoring standards, and partnership development.</li>
+                            <li><strong>Postdocs:</strong> Provides method leadership across AI, genomics, and translational themes.</li>
+                            <li><strong>Students:</strong> Leads work-package-driven projects with clear technical ownership.</li>
+                        </ul>
+                    </div>
+                    <div class="lab-section">
+                        <h4><i class="fas fa-globe" style="margin-right:8px;"></i> Collaboration Model</h4>
+                        <ul class="tech-ul">
+                            <li>Structural biology, pharmacology, and assay partners for validation.</li>
+                            <li>Genomics and disease-focused collaborators for multi-omic interpretation.</li>
+                            <li>Environmental biotechnology collaborators for enzyme discovery.</li>
+                        </ul>
+                    </div>
+                    <div class="lab-section">
+                        <h4><i class="fas fa-server" style="margin-right:8px;"></i> Operating Model</h4>
+                        <ul class="tech-ul">
+                            <li>Reproducible codebases and shared analysis standards from day one.</li>
+                            <li>HPC-enabled workflows for AI and large-scale biological data processing.</li>
+                            <li>Open, collaboration-ready outputs to boost external engagement.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teaching-mentorship" class="container reveal">
+        <!-- Pillar 4: Teaching & Mentorship -->
+        <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Teaching, Mentorship & Lab Culture</span><i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text); line-height: 1.7;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers.</p>
+                
+                <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 1rem; text-align: left;">Teaching & Training Philosophy</h3>
+                <div class="strategy-cards-grid">
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-lightbulb" style="margin-right:8px;"></i> Teaching Approach</h4>
+                        <ul class="tech-ul">
+                            <li>Foster dual competency: conceptually strong and computationally confident.</li>
+                            <li>Transition students from passive learning to active problem solving.</li>
+                            <li>Utilise real biological data to navigate real uncertainty and scientific trade-offs.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-book" style="margin-right:8px;"></i> Training Portfolio</h4>
+                        <ul class="tech-ul">
+                            <li>AI in drug discovery and computational pharmacology.</li>
+                            <li>Computational genomics and precision medicine data science.</li>
+                            <li>Reproducible workflows, Python/R, HPC usage, and MLOps.</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-card-item centered-card">
+                        <h4><i class="fas fa-user-graduate" style="margin-right:8px;"></i> Mentorship Model</h4>
+                        <ul class="tech-ul">
+                            <li>Structured at the start, independent over time.</li>
+                            <li>Provide strong onboarding, shared tools, and clear milestones.</li>
+                            <li>Empower trainees to frame their own unique biological questions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Core Lab Culture</h3>
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <h4><i class="fas fa-comments" style="margin-right:8px;"></i> Collaborative Environment</h4>
+                        <ul class="tech-ul">
+                            <li>Maintain a strictly flat hierarchy to empower all voices.</li>
+                            <li>Ensure seamless dialogue across diverse computational fields.</li>
+                            <li>Cultivate psychological safety to foster genuine innovation.</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card">
+                        <h4><i class="fas fa-chart-line" style="margin-right:8px;"></i> Career Development</h4>
+                        <ul class="tech-ul">
+                            <li>Establish meticulously tailored Individual Development Plans (IDPs).</li>
+                            <li>Actively facilitate critical grant-writing workshops.</li>
+                            <li>Ensure robust international conference and networking opportunities.</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card">
+                        <h4><i class="fas fa-lock-open" style="margin-right:8px;"></i> Open Science</h4>
+                        <ul class="tech-ul">
+                            <li>Uphold a steadfast commitment to scientific transparency.</li>
+                            <li>Adhere strictly to FAIR data and reproducible code principles.</li>
+                            <li>Maintain well-documented, public GitHub repositories for all outputs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="separator">
+    </section>
+
     <!-- === SECTION 9: AWARDS AND RECOGRNITIONS === -->
     <section id="awards" class="container reveal">
         <h2 class="section-title">Awards & Recognitions</h2>
@@ -2544,293 +2859,6 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 9: RESEARCH VISION & STRATEGY (TCP Group) === -->
-    <section id="research-vision" class="container reveal">
-        <h2 class="section-title">Academic Vision & Group Strategy (TCP Group)</h2>
-
-        <div class="tcp-vision-hero">
-            <div class="tcp-vision-copy">
-                <span class="tcp-eyebrow"><i class="fas fa-compass"></i> Future Academic Vision</span>
-                <h3>Establishing the Translational Computational Pharmacology (TCP) Group</h3>
-                <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
-                <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognisable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
-                <div class="tcp-tag-row">
-                    <span class="tcp-tag">#Mechanism-aware AI</span>
-                    <span class="tcp-tag">#Computational pharmacology</span>
-                    <span class="tcp-tag">#Precision genomics</span>
-                    <span class="tcp-tag">#Reproducible training</span>
-                    <span class="tcp-tag">#Sustainable biotechnology</span>
-                </div>
-            </div>
-            <div class="tcp-vision-kpis">
-                <div class="tcp-kpi">
-                    <span class="tcp-kpi-label">Research Signature</span>
-                    <strong>Prediction anchored in mechanism</strong>
-                    <p>Every computational result should be interpretable enough to guide validation, not just improve a benchmark.</p>
-                </div>
-                <div class="tcp-kpi">
-                    <span class="tcp-kpi-label">Academic Mission</span>
-                    <strong>Discovery plus training</strong>
-                    <p>The group should produce strong science while also training students to think across data, structure, and biology.</p>
-                </div>
-                <div class="tcp-kpi">
-                    <span class="tcp-kpi-label">Long-Term Outcome</span>
-                    <strong>A durable, collaborative lab identity</strong>
-                    <p>TCP should become a recognisable research home with clear themes, strong partnerships, and scalable mentoring.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pillar 1: Core Research Vision -->
-        <button class="accordion-btn" id="tcp-vision-button"><span><i class="fas fa-bullseye acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Vision & Research Themes</span><i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="tcp-focus-grid">
-                    <div class="tcp-focus-card tcp-focus-card-1">
-                        <div class="tfc-icon"><i class="fas fa-microchip"></i></div>
-                        <div class="tfc-title">AI Precision Oncology</div>
-                        <ul class="tech-ul">
-                            <li>Developing deep ensemble architectures (DrLungker, DeepEntXAI, LungXAI etc).</li>
-                            <li>Integrating Hybrid CNN-LSTMs for high-accuracy drug activity classification.</li>
-                            <li>Utilising LIME/SHAP mapping to ensure clinical explainability.</li>
-                            <li>Deciphering complex drug resistance mechanisms in mutative cancers.</li>
-                        </ul>
-                    </div>
-                    <div class="tcp-focus-card tcp-focus-card-2">
-                        <div class="tfc-icon"><i class="fas fa-capsules"></i></div>
-                        <div class="tfc-title">Multitarget Polypharmacology</div>
-                        <ul class="tech-ul">
-                            <li>Designing singular therapeutics to modulate multiple targets concurrently.</li>
-                            <li>Targeting key pathway proteins (EGFR, CDK2, STAT3, TrkA, KRAS).</li>
-                            <li>Hit-to-lead optimisation of compounds like FEDPN and Imidurea.</li>
-                            <li>Reducing clinical toxicity and circumventing acquired drug resistance.</li>
-                        </ul>
-                    </div>
-                    <div class="tcp-focus-card tcp-focus-card-3">
-                        <div class="tfc-icon"><i class="fas fa-draw-polygon"></i></div>
-                        <div class="tfc-title">MD & QM/MM Simulations</div>
-                        <ul class="tech-ul">
-                            <li>Executing High-Throughput Virtual Screening (HTVS) pipelines.</li>
-                            <li>Conducting All-atom MD trajectory dynamics via Desmond & GROMACS.</li>
-                            <li>Employing Density Functional Theory (DFT) calculations.</li>
-                            <li>Running rigorous MM/PBSA and MM/GBSA free energy profiling.</li>
-                        </ul>
-                    </div>
-                    <div class="tcp-focus-card tcp-focus-card-4">
-                        <div class="tfc-icon"><i class="fas fa-microscope"></i></div>
-                        <div class="tfc-title">Translational Bioinformatics</div>
-                        <ul class="tech-ul">
-                            <li>Bridging bench-to-bedside with multi-omics data integration.</li>
-                            <li>Executing actionable biomarker discovery from clinical cohorts.</li>
-                            <li>Correlating complex genotype-phenotype mappings.</li>
-                            <li>Stratifying disease networks to drive personalised therapeutic regimens.</li>
-                        </ul>
-                    </div>
-                    <div class="tcp-focus-card tcp-focus-card-5">
-                        <div class="tfc-icon"><i class="fas fa-fingerprint"></i></div>
-                        <div class="tfc-title">Evolutionary Genomics</div>
-                        <ul class="tech-ul">
-                            <li>Processing WGS/WES data for precise variant annotation.</li>
-                            <li>Utilizing AI frameworks for variant pathogenicity prediction.</li>
-                            <li>Mapping phylogenomic evolution (e.g., <em>Vigna umbellata</em>).</li>
-                            <li>Analyzing domestication genes and sequence analytics.</li>
-                        </ul>
-                    </div>
-                    <div class="tcp-focus-card tcp-focus-card-6">
-                        <div class="tfc-icon"><i class="fas fa-seedling"></i></div>
-                        <div class="tfc-title">Precision Biocatalysis & PFAS</div>
-                        <ul class="tech-ul">
-                            <li>Executing AI-guided enzyme mining and homology searching.</li>
-                            <li>Engineering resilient microbial enzymes for targeted bioremediation.</li>
-                            <li>Predicting structural activity of biocatalysts via AI.</li>
-                            <li>Targeting the sustainable degradation of persistent "forever chemicals".</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap-funding" class="container reveal">
-
-        <!-- Pillar 2: Timeline & Funding Roadmap -->
-        <button class="accordion-btn" id="tcp-timeline-btn"><span><i class="fas fa-stream acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> 5-Year Strategic Roadmap & Funding</span><i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content" style="padding-top: 15px;">
-                
-                <!-- Rewritten Timeline using Left-Aligned Roadmap aesthetics -->
-                <div class="edu-grid">
-                    <div class="edu-card edu-phd" data-badge="1">
-                        <div class="edu-header">
-                            <h4>Phase 1: Foundation & Discovery</h4>
-                            <span class="year-span">Years 1-2</span>
-                        </div>
-                        <ul class="tech-ul" style="margin-top: 8px;">
-                            <li><strong>Infrastructure:</strong> Establish high-performance computational GPU clusters and secure omics pipelines.</li>
-                            <li><strong>Funding:</strong> Aggressively pursue early-career funding like ERC Starting Grants and national fellowships.</li>
-                            <li><strong>Recruitment:</strong> Build the core team by hiring highly motivated, interdisciplinary PhD scholars and Postdocs.</li>
-                            <li><strong>Outputs:</strong> Launch the baseline version of our proprietary XAI-driven drug discovery pipeline.</li>
-                        </ul>
-                    </div>
-                    <div class="edu-card edu-msc" data-badge="2">
-                        <div class="edu-header">
-                            <h4>Phase 2: Validation & Expansion</h4>
-                            <span class="year-span">Years 2-4</span>
-                        </div>
-                        <ul class="tech-ul" style="margin-top: 8px;">
-                            <li><strong>Scaling:</strong> Expand polypharmacological deep-learning models to analyse massive, pan-cancer datasets.</li>
-                            <li><strong>Validation:</strong> Transition from <em>in silico</em> predictions to rigorous <em>in vitro / in vivo</em> validation.</li>
-                            <li><strong>Collaboration:</strong> Establish cross-disciplinary ties with wet-lab experimentalists and clinical oncologists globally.</li>
-                            <li><strong>IPR & Publishing:</strong> Publish in high-impact journals and file provisional patents for biocatalysts and drug hits.</li>
-                        </ul>
-                    </div>
-                    <div class="edu-card edu-bsc" data-badge="3">
-                        <div class="edu-header">
-                            <h4>Phase 3: Translation & Leadership</h4>
-                            <span class="year-span">Years 4-5</span>
-                        </div>
-                        <ul class="tech-ul" style="margin-top: 8px;">
-                            <li><strong>Translation:</strong> Focus on translating validated models into real-world clinical or industrial applications.</li>
-                            <li><strong>Leadership:</strong> Establish the TCP Group as a leading international hub for computational pharmacology.</li>
-                            <li><strong>Mentorship:</strong> Proactively guide senior lab members toward their own successful independent careers.</li>
-                            <li><strong>Legacy:</strong> Ensure all tools and models are open-source to maximize community and clinical impact.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Funding Logic & Growth Strategy</h3>
-                <div class="strategy-cards-grid">
-                    <div class="strategy-card-item">
-                        <h5><i class="fas fa-coins" style="color:var(--accent); margin-right:8px;"></i> Funding Logic</h5>
-                        <ul>
-                            <li>Pilot data directly supports people and initial validation frameworks.</li>
-                            <li>Team members drive robust <em>in vitro / in vivo</em> validation of computational hits.</li>
-                            <li>Validated outputs secure larger multi-year European/National programmes.</li>
-                        </ul>
-                    </div>
-                    <div class="strategy-card-item">
-                        <h5><i class="fas fa-handshake" style="color:var(--accent); margin-right:8px;"></i> Partnership Strategy</h5>
-                        <ul>
-                            <li>Link funding closely to collaborations that are scientifically additive.</li>
-                            <li>Focus heavily on experimental, translational, and infrastructure partners.</li>
-                            <li>Target joint industry-academia consortium grants.</li>
-                        </ul>
-                    </div>
-                    <div class="strategy-card-item">
-                        <h5><i class="fas fa-chart-line" style="color:var(--accent); margin-right:8px;"></i> Growth Discipline</h5>
-                        <ul>
-                            <li>Expand the group responsibly rather than aggressively.</li>
-                            <li>Add novel themes and people only when mentorship capacity is secure.</li>
-                            <li>Ensure validation bandwidth and overarching strategic coherence.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="lab-model" class="container reveal">
-        <!-- Pillar 3: Lab Structure & Partnerships -->
-        <button class="accordion-btn" id="strat-lab"><span><i class="fas fa-sitemap acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> TCP Lab Model & Partnerships</span><i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="tcp-impact-grid">
-                    <div class="lab-section">
-                        <h4><i class="fas fa-sitemap" style="margin-right:8px;"></i> Team Architecture</h4>
-                        <ul class="tech-ul">
-                            <li><strong>PI:</strong> Directs scientific vision, mentoring standards, and partnership development.</li>
-                            <li><strong>Postdocs:</strong> Provides method leadership across AI, genomics, and translational themes.</li>
-                            <li><strong>Students:</strong> Leads work-package-driven projects with clear technical ownership.</li>
-                        </ul>
-                    </div>
-                    <div class="lab-section">
-                        <h4><i class="fas fa-globe" style="margin-right:8px;"></i> Collaboration Model</h4>
-                        <ul class="tech-ul">
-                            <li>Structural biology, pharmacology, and assay partners for validation.</li>
-                            <li>Genomics and disease-focused collaborators for multi-omic interpretation.</li>
-                            <li>Environmental biotechnology collaborators for enzyme discovery.</li>
-                        </ul>
-                    </div>
-                    <div class="lab-section">
-                        <h4><i class="fas fa-server" style="margin-right:8px;"></i> Operating Model</h4>
-                        <ul class="tech-ul">
-                            <li>Reproducible codebases and shared analysis standards from day one.</li>
-                            <li>HPC-enabled workflows for AI and large-scale biological data processing.</li>
-                            <li>Open, collaboration-ready outputs to boost external engagement.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="teaching-mentorship" class="container reveal">
-        <!-- Pillar 4: Teaching & Mentorship -->
-        <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Teaching, Mentorship & Lab Culture</span><i class="fas fa-chevron-down"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text); line-height: 1.7;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers.</p>
-                
-                <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 1rem; text-align: left;">Teaching & Training Philosophy</h3>
-                <div class="strategy-cards-grid">
-                    <div class="strategy-card-item centered-card">
-                        <h4><i class="fas fa-lightbulb" style="margin-right:8px;"></i> Teaching Approach</h4>
-                        <ul class="tech-ul">
-                            <li>Foster dual competency: conceptually strong and computationally confident.</li>
-                            <li>Transition students from passive learning to active problem solving.</li>
-                            <li>Utilise real biological data to navigate real uncertainty and scientific trade-offs.</li>
-                        </ul>
-                    </div>
-                    <div class="strategy-card-item centered-card">
-                        <h4><i class="fas fa-book" style="margin-right:8px;"></i> Training Portfolio</h4>
-                        <ul class="tech-ul">
-                            <li>AI in drug discovery and computational pharmacology.</li>
-                            <li>Computational genomics and precision medicine data science.</li>
-                            <li>Reproducible workflows, Python/R, HPC usage, and MLOps.</li>
-                        </ul>
-                    </div>
-                    <div class="strategy-card-item centered-card">
-                        <h4><i class="fas fa-user-graduate" style="margin-right:8px;"></i> Mentorship Model</h4>
-                        <ul class="tech-ul">
-                            <li>Structured at the start, independent over time.</li>
-                            <li>Provide strong onboarding, shared tools, and clear milestones.</li>
-                            <li>Empower trainees to frame their own unique biological questions.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Core Lab Culture</h3>
-                <div class="culture-grid">
-                    <div class="culture-card">
-                        <h4><i class="fas fa-comments" style="margin-right:8px;"></i> Collaborative Environment</h4>
-                        <ul class="tech-ul">
-                            <li>Maintain a strictly flat hierarchy to empower all voices.</li>
-                            <li>Ensure seamless dialogue across diverse computational fields.</li>
-                            <li>Cultivate psychological safety to foster genuine innovation.</li>
-                        </ul>
-                    </div>
-                    <div class="culture-card">
-                        <h4><i class="fas fa-chart-line" style="margin-right:8px;"></i> Career Development</h4>
-                        <ul class="tech-ul">
-                            <li>Establish meticulously tailored Individual Development Plans (IDPs).</li>
-                            <li>Actively facilitate critical grant-writing workshops.</li>
-                            <li>Ensure robust international conference and networking opportunities.</li>
-                        </ul>
-                    </div>
-                    <div class="culture-card">
-                        <h4><i class="fas fa-lock-open" style="margin-right:8px;"></i> Open Science</h4>
-                        <ul class="tech-ul">
-                            <li>Uphold a steadfast commitment to scientific transparency.</li>
-                            <li>Adhere strictly to FAIR data and reproducible code principles.</li>
-                            <li>Maintain well-documented, public GitHub repositories for all outputs.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="separator">
-    </section>
-
     <!-- === SECTION 14: ACADEMIC REFERENCES AND NETWORKING === -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
@@ -3074,7 +3102,7 @@
         const trapFocus = (e, container) => { if (e.key !== 'Tab') return; const focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [contenteditable]'); if (!focusable.length) return; const first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey) { if (document.activeElement === first) { last.focus(); e.preventDefault(); } } else { if (document.activeElement === last) { first.focus(); e.preventDefault(); } } };
         
         document.addEventListener('keydown', (e) => { 
-            if (e.key === 'Escape') { closeAIModal(); closeSearch(); } 
+            if (e.key === 'Escape') { closeAIModal(); closeSearchModal(); } 
             const aiModal = document.getElementById('ai-modal');
             if (aiModal && aiModal.classList.contains('show')) trapFocus(e, aiModal);
             const chatWindow = document.getElementById('ai-chat-window');
@@ -3119,8 +3147,8 @@
         const downloadFile = (c, f, t) => { const b = new Blob([c], { type: t }), l = document.createElement("a"); l.href = URL.createObjectURL(b); l.download = f; document.body.appendChild(l); l.click(); document.body.removeChild(l); };
 
         /* --- 17.3: UI Interactions, Accordions & Search Engine --- */
-        window.addEventListener('click', (e) => { if(!e.target.closest('.btn-cite')) document.querySelectorAll('.cite-dropdown-menu').forEach(m => { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); }); if (!e.target.closest('.lang-wrapper') && !e.target.closest('.search-container') && !e.target.closest('#search-dropdown') && !e.target.closest('.control-icon') && !e.target.closest('.mobile-dropdown-toggle') && !e.target.closest('.accordion-btn')) closeAllDropdowns(); if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb && nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } } if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) { const cw = document.getElementById('ai-chat-window'); if (cw && cw.style.display === 'flex') cw.style.display = 'none'; } const pb = document.getElementById('pub-breakdown'), pc = pb ? pb.closest('.stat-row-link') : null; if (pb && pb.classList.contains('open') && pc && !pc.contains(e.target)) { pb.classList.remove('open'); pb.style.maxHeight = "0"; const ti = pc.querySelector('.stat-toggle i'); if (ti) { ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); } pc.classList.remove('active-box'); } });
-        const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'), s = document.getElementById('search-dropdown'); if(d && d !== x) d.classList.remove('show'); if(m && m !== x) m.classList.remove('show'); if(s && s !== x) { s.style.display = 'none'; document.querySelectorAll('.highlight-match').forEach(h => { h.parentNode.replaceChild(document.createTextNode(h.textContent), h); h.parentNode.normalize(); }); sm = []; cmi = -1; lq = ""; const si = document.getElementById('search-input'); if(si) { si.value = ''; si.style.width = '100%'; } const csEl = document.getElementById('search-count'); if(csEl) csEl.innerText = ''; } ['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if(r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if(t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
+        window.addEventListener('click', (e) => { if(!e.target.closest('.btn-cite')) document.querySelectorAll('.cite-dropdown-menu').forEach(m => { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); }); if (!e.target.closest('.lang-wrapper') && !e.target.closest('.search-container') && !e.target.closest('#srch-overlay') && !e.target.closest('.control-icon') && !e.target.closest('.mobile-dropdown-toggle') && !e.target.closest('.accordion-btn')) closeAllDropdowns(); if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb && nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } } if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) { const cw = document.getElementById('ai-chat-window'); if (cw && cw.style.display === 'flex') cw.style.display = 'none'; } const pb = document.getElementById('pub-breakdown'), pc = pb ? pb.closest('.stat-row-link') : null; if (pb && pb.classList.contains('open') && pc && !pc.contains(e.target)) { pb.classList.remove('open'); pb.style.maxHeight = "0"; const ti = pc.querySelector('.stat-toggle i'); if (ti) { ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); } pc.classList.remove('active-box'); } });
+        const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'); if(d && d !== x) d.classList.remove('show'); if(m && m !== x) m.classList.remove('show'); ['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if(r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if(t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
         const handleFormSubmit = () => { document.getElementById('contact-form').reset(); const fb = document.getElementById('msg-success-box'), sb = document.getElementById('submit-btn'), ab = document.getElementById('draft-email-btn'); if(sb) sb.style.display = 'none'; if(ab) ab.style.display = 'none'; fb.classList.add('anim-start'); setTimeout(() => fb.classList.add('anim-running'), 100); setTimeout(() => { fb.classList.remove('anim-running'); fb.classList.add('anim-reverse'); }, 3000); setTimeout(() => { fb.classList.remove('anim-start', 'anim-reverse'); fb.style.display = 'none'; if(sb) sb.style.display = 'block'; if(ab) ab.style.display = 'inline-flex'; submitted = false; }, 5000); };
         
         let isScrolling = false;
@@ -3143,45 +3171,239 @@
         const revealObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add("active"); revealObserver.unobserve(e.target); }}); }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObserver.observe(r));
         
-        let sm = [], cmi = -1, lq = ""; const toggleSearchDropdown = (e) => { e.stopPropagation(); const dd = document.getElementById('search-dropdown'), inP = document.getElementById('search-input'), lD = document.getElementById('desktop-lang-dd'); if(lD) lD.classList.remove('show'); if (dd.style.display === 'block') { dd.style.display = 'none'; clearHighlights(); } else { dd.style.display = 'block'; setTimeout(() => inP.focus(), 100); } }; const closeSearch = (e) => { if(e) e.stopPropagation(); document.getElementById('search-dropdown').style.display = 'none'; clearHighlights(); document.getElementById('search-input').value = ''; document.getElementById('search-input').style.width = '100%'; const c = document.getElementById('search-count'); if(c) c.innerText = ''; lq = ""; }; const clearSearch = (e) => { if(e) e.stopPropagation(); document.getElementById('search-input').value = ''; document.getElementById('search-input').style.width = '100%'; document.getElementById('search-input').focus(); clearHighlights(); lq = ""; }; const handleSearchKey = (e) => { if (e.key === 'Enter') { if (document.getElementById('search-input').value.trim() !== lq || sm.length === 0) performCustomSearch(); else nextMatch(); } else if (e.key === 'Escape') closeSearch(e); };
-        const performCustomSearch = () => { clearHighlights(); const q = document.getElementById('search-input').value.trim(); if (!q) { lq = ""; return; } lq = q; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: (n) => { if (n.parentElement.tagName === 'SCRIPT' || n.parentElement.tagName === 'STYLE' || n.parentElement.closest('#main-header')) return NodeFilter.FILTER_REJECT; return n.nodeValue.trim() === '' ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; }}); const ns = []; while(w.nextNode()) if (w.currentNode.nodeValue.toLowerCase().includes(q.toLowerCase())) ns.push(w.currentNode); sm = []; ns.forEach(n => { const s = document.createElement('span'); s.innerHTML = n.nodeValue.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<span class="highlight-match">$1</span>'); n.replaceWith(document.createRange().createContextualFragment(s.innerHTML)); }); sm = Array.from(document.querySelectorAll('.highlight-match')); if (sm.length > 0) { cmi = 0; updateMatchView(); } else { const cs = document.getElementById('search-count'); if(cs) cs.innerText = "0/0"; } };
-        const clearHighlights = () => { document.querySelectorAll('.highlight-match').forEach(h => { h.parentNode.replaceChild(document.createTextNode(h.textContent), h); h.parentNode.normalize(); }); sm = []; cmi = -1; const cs = document.getElementById('search-count'); if(cs) cs.innerText = ""; };
+        /* ===== COMMAND PALETTE SEARCH ENGINE ===== */
+        (function() {
+            const RECENT_KEY = 'srch_recent_v1';
+            let idx = [], results = [], active = -1, debTimer = null, indexed = false;
 
-        const updateMatchView = () => {
-            if (!sm.length) return;
-            sm.forEach(m => m.classList.remove('active'));
-            const cur = sm[cmi];
-            cur.classList.add('active');
-            const cs = document.getElementById('search-count');
-            if (cs) cs.innerText = `${cmi + 1}/${sm.length}`;
-            // Open accordion panel if match is inside a collapsed one
-            let accordionOpened = false;
-            let el = cur.parentElement;
-            while (el && el !== document.body) {
-                if (el.classList.contains('panel')) {
-                    const btn = el.previousElementSibling;
-                    if (btn && btn.classList.contains('accordion-btn') && !btn.classList.contains('active')) {
-                        btn.click();
-                        accordionOpened = true;
-                    }
-                    break;
-                }
-                el = el.parentElement;
+            const ov   = () => document.getElementById('srch-overlay');
+            const inp  = () => document.getElementById('srch-input');
+            const body = () => document.getElementById('srch-body');
+
+            /* Section map — matches section IDs in the actual HTML */
+            const SECTIONS = [
+                { id: 'prospects',    label: 'Research Vision',    icon: 'fas fa-microscope',     sels: ['#prospects'] },
+                { id: 'publications', label: 'Publications',        icon: 'fas fa-book-open',      sels: ['#publications'] },
+                { id: 'experience',   label: 'Research Experience', icon: 'fas fa-flask',          sels: ['#experience'] },
+                { id: 'education',    label: 'Education',           icon: 'fas fa-graduation-cap', sels: ['#education'] },
+                { id: 'awards',       label: 'Awards',              icon: 'fas fa-trophy',         sels: ['#awards'] },
+                { id: 'patents',      label: 'Patents',             icon: 'fas fa-certificate',    sels: ['#patents'] },
+                { id: 'expertise',    label: 'Skills & Tools',      icon: 'fas fa-tools',          sels: ['#expertise'] },
+                { id: 'activities',   label: 'Activities',          icon: 'fas fa-star',           sels: ['#activities'] },
+                { id: 'referees',     label: 'Referees',            icon: 'fas fa-users',          sels: ['#referees'] },
+                { id: 'contact',      label: 'Contact',             icon: 'fas fa-envelope',       sels: ['#contact'] },
+            ];
+
+            /* ── Indexer ─────────────────────────────────────── */
+            function buildIndex() {
+                if (indexed) return;
+                indexed = true;
+                idx = [];
+                const seen = new Set();
+
+                SECTIONS.forEach(sec => {
+                    sec.sels.forEach(sel => {
+                        const root = document.querySelector(sel);
+                        if (!root) return;
+
+                        /* Headings as first-class results */
+                        root.querySelectorAll('h2, h3, h4, h5').forEach(h => {
+                            const txt = h.textContent.trim();
+                            if (!txt || txt.length < 3 || seen.has(h)) return;
+                            seen.add(h);
+                            idx.push({ title: txt, excerpt: siblingExcerpt(h), el: h, section: sec.label, icon: sec.icon, type: 'heading' });
+                        });
+
+                        /* Cards / items */
+                        const cardSel = '.pub-item,.exp-box,.edu-card,.award-card,.referee-card,.patent-card,.tcp-card,.act-card,.skill-category,.interest-item';
+                        root.querySelectorAll(cardSel).forEach(card => {
+                            if (seen.has(card)) return;
+                            seen.add(card);
+                            const titleEl = card.querySelector('h3,h4,.pub-title,.exp-title,.card-title,.tcp-card-title');
+                            const title = (titleEl ? titleEl.textContent : card.textContent).trim().slice(0, 100);
+                            if (!title || title.length < 3) return;
+                            idx.push({ title, excerpt: cardExcerpt(card), el: card, section: sec.label, icon: sec.icon, type: 'card' });
+                        });
+                    });
+                });
             }
-            setTimeout(() => cur.scrollIntoView({ behavior: 'smooth', block: 'center' }), accordionOpened ? 650 : 150);
-        };
 
-        const nextMatch = () => {
-            if (!sm.length) { performCustomSearch(); return; }
-            cmi = (cmi + 1) % sm.length;
-            updateMatchView();
-        };
+            function siblingExcerpt(el) {
+                const next = el.nextElementSibling;
+                if (next) { const t = next.textContent.trim(); if (t.length > 8) return t.slice(0, 130); }
+                const t = (el.parentElement || el).textContent.replace(el.textContent, '').trim();
+                return t.slice(0, 130);
+            }
 
-        const prevMatch = () => {
-            if (!sm.length) return;
-            cmi = (cmi - 1 + sm.length) % sm.length;
-            updateMatchView();
-        };
+            function cardExcerpt(card) {
+                const clone = card.cloneNode(true);
+                clone.querySelectorAll('button,.cite-dropdown-menu,.badge,.year-badge,script,style').forEach(n => n.remove());
+                return clone.textContent.replace(/\s+/g, ' ').trim().slice(0, 140);
+            }
+
+            /* ── Scorer ──────────────────────────────────────── */
+            function scoreItem(item, ql) {
+                const tl = item.title.toLowerCase();
+                const el = (item.excerpt || '').toLowerCase();
+                const words = ql.split(/\s+/).filter(Boolean);
+                let s = 0;
+                if (tl === ql) s += 100;
+                else if (tl.startsWith(ql)) s += 60;
+                else if (tl.includes(ql)) s += 40;
+                else if (words.every(w => tl.includes(w))) s += 25;
+                if (el.includes(ql)) s += 10;
+                else if (words.every(w => el.includes(w))) s += 5;
+                if (item.type === 'heading') s += 2;
+                return s;
+            }
+
+            /* ── Highlight ───────────────────────────────────── */
+            function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+            function mark(text, q) {
+                if (!q) return esc(text);
+                return esc(text).replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<mark>$1</mark>');
+            }
+
+            /* ── Recent Searches ─────────────────────────────── */
+            function getRecent() { try { return JSON.parse(sessionStorage.getItem(RECENT_KEY) || '[]'); } catch { return []; } }
+            function addRecent(q) {
+                if (!q || q.length < 2) return;
+                let r = getRecent().filter(x => x !== q);
+                r.unshift(q); r = r.slice(0, 5);
+                try { sessionStorage.setItem(RECENT_KEY, JSON.stringify(r)); } catch {}
+            }
+
+            /* ── Render ──────────────────────────────────────── */
+            function renderBody(q) {
+                const b = body(); if (!b) return;
+                if (!q) {
+                    const recent = getRecent();
+                    if (recent.length) {
+                        b.innerHTML = '<div class="srch-section-hd">Recent Searches</div>' +
+                            recent.map(r => `<div class="srch-item srch-recent" data-q="${esc(r)}"><div class="srch-item-icon"><i class="fas fa-clock"></i></div><div class="srch-item-body"><div class="srch-item-title">${esc(r)}</div></div></div>`).join('');
+                        b.querySelectorAll('.srch-recent').forEach(el => el.addEventListener('click', () => { inp().value = el.dataset.q; runSearch(el.dataset.q); }));
+                    } else {
+                        b.innerHTML = '<div class="srch-empty"><i class="fas fa-search"></i>Type to search publications, awards, skills&hellip;<br><small style="margin-top:6px;display:block">Or use Ctrl+K to toggle</small></div>';
+                    }
+                    return;
+                }
+                if (!results.length) { b.innerHTML = `<div class="srch-empty"><i class="fas fa-circle-xmark"></i>No results for "<strong>${esc(q)}</strong>"</div>`; return; }
+
+                const groups = {};
+                results.forEach(r => { (groups[r.section] = groups[r.section] || []).push(r); });
+                let html = '', gi = 0;
+                Object.entries(groups).forEach(([sec, items]) => {
+                    html += `<div class="srch-section-hd">${esc(sec)}<span class="srch-badge">${items.length}</span></div>`;
+                    items.forEach(item => {
+                        const i = gi++;
+                        html += `<div class="srch-item${i===active?' srch-active':''}" data-idx="${i}">
+                            <div class="srch-item-icon"><i class="${item.icon}"></i></div>
+                            <div class="srch-item-body">
+                                <div class="srch-item-title">${mark(item.title.slice(0,80), q)}</div>
+                                ${item.excerpt ? `<div class="srch-item-excerpt">${mark(item.excerpt.slice(0,120), q)}</div>` : ''}
+                            </div>
+                            <span class="srch-item-cat">${esc(sec)}</span>
+                        </div>`;
+                    });
+                });
+                b.innerHTML = html;
+                b.querySelectorAll('.srch-item[data-idx]').forEach(el => el.addEventListener('click', () => navigateTo(parseInt(el.dataset.idx), q)));
+            }
+
+            /* ── Search ──────────────────────────────────────── */
+            function runSearch(q) {
+                buildIndex();
+                active = -1;
+                q = q.trim();
+                if (!q) { results = []; renderBody(''); return; }
+                const ql = q.toLowerCase();
+                results = idx
+                    .map(item => ({ ...item, _s: scoreItem(item, ql) }))
+                    .filter(item => item._s > 0)
+                    .sort((a, b) => b._s - a._s)
+                    .slice(0, 40);
+                renderBody(q);
+            }
+
+            /* ── Navigate to result ──────────────────────────── */
+            function navigateTo(i, q) {
+                if (i < 0 || i >= results.length) return;
+                const item = results[i];
+                addRecent(q || (inp() && inp().value.trim()));
+                closeSearchModal();
+                let target = item.el, panelOpened = false;
+                let p = target.parentElement;
+                while (p && p !== document.body) {
+                    if (p.classList.contains('panel')) {
+                        const btn = p.previousElementSibling;
+                        if (btn && btn.classList.contains('accordion-btn') && !btn.classList.contains('active')) { btn.click(); panelOpened = true; }
+                        break;
+                    }
+                    p = p.parentElement;
+                }
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    target.classList.add('srch-flash');
+                    setTimeout(() => target.classList.remove('srch-flash'), 1800);
+                }, panelOpened ? 650 : 200);
+            }
+
+            /* ── Keyboard nav ────────────────────────────────── */
+            function moveActive(delta) {
+                if (!results.length) return;
+                active = Math.max(0, Math.min(results.length - 1, active + delta));
+                const items = body() && body().querySelectorAll('.srch-item[data-idx]');
+                if (!items) return;
+                items.forEach((el, i) => el.classList.toggle('srch-active', i === active));
+                if (items[active]) items[active].scrollIntoView({ block: 'nearest' });
+            }
+
+            /* ── Open / Close ────────────────────────────────── */
+            window.openSearchModal = function() {
+                buildIndex();
+                const o = ov(); if (!o) return;
+                o.classList.add('srch-open');
+                setTimeout(() => { const i = inp(); if (i) { i.focus(); i.select(); } }, 80);
+                runSearch(inp() ? inp().value : '');
+            };
+            window.closeSearchModal = function() {
+                const o = ov(); if (!o) return;
+                o.classList.remove('srch-open');
+                setTimeout(() => { const i = inp(); if (i) i.value = ''; results = []; active = -1; }, 220);
+            };
+
+            /* ── Wire events after DOM ready ─────────────────── */
+            function wireEvents() {
+                const i = inp(), o = ov(); if (!i || !o) return;
+                i.addEventListener('input', () => { clearTimeout(debTimer); debTimer = setTimeout(() => runSearch(i.value), 120); });
+                i.addEventListener('keydown', e => {
+                    if (e.key === 'ArrowDown') { e.preventDefault(); moveActive(1); }
+                    else if (e.key === 'ArrowUp') { e.preventDefault(); moveActive(-1); }
+                    else if (e.key === 'Enter') { e.preventDefault(); if (active >= 0) navigateTo(active, i.value.trim()); else if (results.length) navigateTo(0, i.value.trim()); }
+                    else if (e.key === 'Escape') closeSearchModal();
+                });
+                o.addEventListener('click', e => { if (e.target === o) closeSearchModal(); });
+                document.querySelectorAll('.srch-pill').forEach(pill => {
+                    pill.addEventListener('click', () => {
+                        closeSearchModal();
+                        const el = document.getElementById(pill.dataset.section);
+                        if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 220);
+                    });
+                });
+            }
+
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireEvents);
+            else wireEvents();
+
+            /* Ctrl+K / Cmd+K */
+            document.addEventListener('keydown', e => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    const o = ov();
+                    if (o && o.classList.contains('srch-open')) closeSearchModal(); else openSearchModal();
+                }
+            });
+        })();
 
         const languages = { 'en': { flag: 'gb', code: 'EN' }, 'da': { flag: 'dk', code: 'DA' }, 'es': { flag: 'es', code: 'ES' }, 'fr': { flag: 'fr', code: 'FR' }, 'de': { flag: 'de', code: 'DE' }, 'hi': { flag: 'in', code: 'HI' }, 'zh-CN': { flag: 'cn', code: 'ZH' }, 'ar': { flag: 'sa', code: 'AR' }, 'ur': { flag: 'pk', code: 'UR' }, 'ru': { flag: 'ru', code: 'RU' }, 'ja': { flag: 'jp', code: 'JA' } };
 
@@ -3364,6 +3586,174 @@
             isListening ? recognition.stop() : recognition.start();
         };
 
+        /* ── MOLECULAR NETWORK CANVAS ─────────────────────────────
+           Atom types: C (white), N (cyan), O (rose), H (yellow), P (orange)
+           Bonds: single (thin gold) and double (two parallel lines)
+           Motion: slow Brownian drift with wall bounce
+           Interaction: paused via IntersectionObserver when off-screen
+        ──────────────────────────────────────────────────────────── */
+        (() => {
+            const canvas = document.getElementById('mol-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            // ── Atom types [label, fill, glow, radius, frequency weight]
+            const TYPES = [
+                { l:'C', fill:'rgba(220,220,220,0.92)', glow:'rgba(200,200,200,0.25)', r:4.2, w:38 },
+                { l:'N', fill:'rgba(80,200,255,0.92)',  glow:'rgba(80,200,255,0.25)',  r:5.0, w:22 },
+                { l:'O', fill:'rgba(255,100,110,0.92)', glow:'rgba(255,100,110,0.25)', r:5.2, w:18 },
+                { l:'H', fill:'rgba(255,230,100,0.88)', glow:'rgba(255,220,80,0.2)',   r:2.2, w:28 },
+                { l:'P', fill:'rgba(255,155,60,0.92)',  glow:'rgba(255,140,40,0.25)',  r:5.5, w:10 }, // phosphorus (DNA backbone)
+            ];
+            const BOND_DIST  = 88;   // max px to draw a bond
+            const COUNT      = 52;   // number of atoms
+            const SPEED      = 0.22; // base drift speed
+            const BROWNIAN   = 0.03; // random nudge per frame
+
+            let W, H, atoms = [], RAF = null;
+            let mouse = { x: -9999, y: -9999 }; // off-screen default
+            const REPEL_RADIUS = 110;
+            const REPEL_FORCE  = 2.2;
+
+            const rand   = (a, b) => Math.random() * (b - a) + a;
+            const clamp  = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+            // Weighted random atom type picker
+            const pickType = () => {
+                const total = TYPES.reduce((s, t) => s + t.w, 0);
+                let r = Math.random() * total;
+                for (const t of TYPES) { r -= t.w; if (r <= 0) return t; }
+                return TYPES[0];
+            };
+
+            const resize = () => {
+                W = canvas.width  = canvas.parentElement.offsetWidth;
+                H = canvas.height = canvas.parentElement.offsetHeight;
+            };
+
+            const init = () => {
+                atoms = [];
+                for (let i = 0; i < COUNT; i++) {
+                    const type = pickType();
+                    const angle = rand(0, Math.PI * 2);
+                    atoms.push({
+                        x: rand(type.r + 5, W - type.r - 5),
+                        y: rand(type.r + 5, H - type.r - 5),
+                        vx: Math.cos(angle) * rand(0.05, SPEED),
+                        vy: Math.sin(angle) * rand(0.05, SPEED),
+                        type,
+                        // pre-assign which bonds are "double" bonds (deterministic so they don't flicker)
+                        doubleMask: Math.floor(rand(0, 8)),
+                    });
+                }
+            };
+
+            resize();
+            init();
+            window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
+
+            // ── Mouse repulsion: track cursor relative to canvas
+            canvas.parentElement.addEventListener('mousemove', e => {
+                const r = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - r.left;
+                mouse.y = e.clientY - r.top;
+            }, { passive: true });
+            canvas.parentElement.addEventListener('mouseleave', () => {
+                mouse.x = -9999; mouse.y = -9999;
+            }, { passive: true });
+
+            // Draw a double bond (two parallel thin lines offset by 2px each side)
+            const drawDouble = (x1, y1, x2, y2, op) => {
+                const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy);
+                const nx = (-dy / len) * 2.2, ny = (dx / len) * 2.2;
+                ctx.lineWidth = 0.8;
+                ctx.strokeStyle = `rgba(245,158,11,${op * 0.75})`;
+                for (const sign of [1, -1]) {
+                    ctx.beginPath();
+                    ctx.moveTo(x1 + nx * sign, y1 + ny * sign);
+                    ctx.lineTo(x2 + nx * sign, y2 + ny * sign);
+                    ctx.stroke();
+                }
+            };
+
+            const draw = () => {
+                ctx.clearRect(0, 0, W, H);
+
+                // ── Move atoms (Brownian drift + wall bounce)
+                atoms.forEach(a => {
+                    a.vx += rand(-BROWNIAN, BROWNIAN);
+                    a.vy += rand(-BROWNIAN, BROWNIAN);
+                    // ── Mouse repulsion
+                    const mdx = a.x - mouse.x, mdy = a.y - mouse.y;
+                    const mdist = Math.hypot(mdx, mdy);
+                    if (mdist < REPEL_RADIUS && mdist > 0.5) {
+                        const force = ((REPEL_RADIUS - mdist) / REPEL_RADIUS) * REPEL_FORCE;
+                        a.vx += (mdx / mdist) * force;
+                        a.vy += (mdy / mdist) * force;
+                    }
+                    // clamp speed (higher cap so repulsion feels snappy, not stiff)
+                    const spd = Math.hypot(a.vx, a.vy);
+                    if (spd > SPEED * 6) { a.vx *= (SPEED * 6) / spd; a.vy *= (SPEED * 6) / spd; }
+                    a.x += a.vx; a.y += a.vy;
+                    if (a.x < a.type.r + 2 || a.x > W - a.type.r - 2) { a.vx *= -1; a.x = clamp(a.x, a.type.r + 2, W - a.type.r - 2); }
+                    if (a.y < a.type.r + 2 || a.y > H - a.type.r - 2) { a.vy *= -1; a.y = clamp(a.y, a.type.r + 2, H - a.type.r - 2); }
+                });
+
+                // ── Draw bonds first (underneath atoms)
+                for (let i = 0; i < atoms.length; i++) {
+                    let bondsDrawn = 0;
+                    for (let j = i + 1; j < atoms.length; j++) {
+                        const dx = atoms[i].x - atoms[j].x, dy = atoms[i].y - atoms[j].y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < BOND_DIST && bondsDrawn < 3) {
+                            bondsDrawn++;
+                            const op = (1 - dist / BOND_DIST) * 0.9;
+                            // A small deterministic mix of bonds are double bonds
+                            const isDouble = ((i * 5 + j * 3 + atoms[i].doubleMask) % 7 === 0);
+                            if (isDouble) {
+                                drawDouble(atoms[i].x, atoms[i].y, atoms[j].x, atoms[j].y, op);
+                            } else {
+                                ctx.beginPath();
+                                ctx.moveTo(atoms[i].x, atoms[i].y);
+                                ctx.lineTo(atoms[j].x, atoms[j].y);
+                                ctx.strokeStyle = `rgba(245,158,11,${op})`;
+                                ctx.lineWidth = 1.1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                // ── Draw atoms (glow halo + solid circle)
+                atoms.forEach(a => {
+                    // Soft glow
+                    const grad = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.type.r * 3.2);
+                    grad.addColorStop(0, a.type.glow);
+                    grad.addColorStop(1, 'transparent');
+                    ctx.beginPath();
+                    ctx.arc(a.x, a.y, a.type.r * 3.2, 0, Math.PI * 2);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+
+                    // Atom circle
+                    ctx.beginPath();
+                    ctx.arc(a.x, a.y, a.type.r, 0, Math.PI * 2);
+                    ctx.fillStyle = a.type.fill;
+                    ctx.fill();
+                });
+
+                RAF = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            // Pause animation when hero scrolls out of view (saves CPU)
+            new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) { if (!RAF) draw(); }
+                else { cancelAnimationFrame(RAF); RAF = null; }
+            }, { threshold: 0.01 }).observe(canvas.parentElement);
+        })();
+
         // Fix: Make Google Translate Init a globally accessible window function
         window.googleTranslateElementInit = function() { 
             new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element'); 
@@ -3371,5 +3761,31 @@
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+
+    <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
+    <div id="srch-overlay" class="srch-overlay" role="dialog" aria-modal="true" aria-label="Search">
+        <div class="srch-box" role="document">
+            <div class="srch-header">
+                <i class="fas fa-search srch-icon-lbl"></i>
+                <input type="text" id="srch-input" class="srch-input" placeholder="Search publications, awards, skills…" autocomplete="off" spellcheck="false" aria-label="Search">
+                <div class="srch-kbd"><span class="srch-key">Esc</span></div>
+            </div>
+            <div class="srch-pills" id="srch-pills">
+                <span class="srch-pill" data-section="prospects">Research Vision</span>
+                <span class="srch-pill" data-section="publications">Publications</span>
+                <span class="srch-pill" data-section="awards">Awards</span>
+                <span class="srch-pill" data-section="expertise">Skills</span>
+                <span class="srch-pill" data-section="referees">Referees</span>
+                <span class="srch-pill" data-section="contact">Contact</span>
+            </div>
+            <div class="srch-body" id="srch-body"></div>
+            <div class="srch-footer">
+                <span class="srch-hint"><span class="srch-key">↑↓</span> Navigate</span>
+                <span class="srch-hint"><span class="srch-key">↵</span> Go to</span>
+                <span class="srch-hint"><span class="srch-key">Esc</span> Close</span>
+                <span class="srch-hint" style="margin-left:auto"><span class="srch-key">Ctrl K</span> Toggle</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
