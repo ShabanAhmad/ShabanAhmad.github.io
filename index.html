@@ -9,18 +9,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr Shaban | Postdoc at UCPH | Aspiring Assistant Professor</title>
-    <meta name="description" content="Academic Portfolio of Dr Shaban - Postdoctoral Researcher at University of Copenhagen and Aspiring Assistant Professor (TCP Group) specialising in AI in Biology, Genomics, Drug Design & PFAS Biodegradation.">
+    <title>Dr Shaban | Postdoc at UCPH </title>
+    <meta name="description" content="Academic Portfolio of Dr Shaban Ahmad — Postdoctoral Researcher at the University of Copenhagen specialising in AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
     
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
-    <meta property="og:title" content="Dr Shaban | Postdoc Scientist & Future PI">
-    <meta property="og:description" content="Academic Portfolio: AI in Biology, Genomics, Drug Design & PFAS Biodegradation. Exploring the TCP Group vision.">
+    <meta property="og:title" content="Dr Shaban Ahmad | Postdoctoral Researcher | Computational Pharmacology">
+    <meta property="og:description" content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation research at the University of Copenhagen.">
     <meta property="og:image" content="shaban.png">
     <meta property="og:url" content="https://shabanahmad.github.io/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dr Shaban | Postdoc Scientist">
-    <meta name="twitter:description" content="Academic Portfolio: AI in Biology, Genomics, Drug Design.">
+    <meta name="twitter:title" content="Dr Shaban Ahmad | Postdoctoral Researcher">
+    <meta name="twitter:description" content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
     <meta name="twitter:image" content="shaban.png">
     <link rel="icon" href="shaban.png" type="image/png">
     
@@ -219,37 +219,41 @@
         .stat-row-link.active-box { border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.05); border-radius: 8px; margin: 10px 0; padding-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 
         /* --- Apple-Style 4-Bento Box Grid --- */
-        .bento-grid { display: grid; grid-template-columns: 1.35fr 1fr; grid-auto-rows: minmax(210px, auto); gap: 1.5rem; margin-top: 1.5rem; }
-        .bento-card { border-radius: 24px; padding: 2.2rem; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; text-align: left; }
+        .bento-grid { display: grid; grid-template-columns: 1.35fr 1fr; grid-auto-rows: auto; gap: 1.4rem; margin-top: 1.5rem; }
+        .bento-card { border-radius: 20px; padding: 1.25rem 1.35rem; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; text-align: left; }
         .bento-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        
-        /* Premium 3D Inner Light Overlay */
-        .bento-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 35%); pointer-events: none; z-index: 1; border-radius: 24px; }
 
-        /* NEW: Breathing Background Watermark Icon */
+        /* Premium 3D Inner Light Overlay */
+        .bento-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 35%); pointer-events: none; z-index: 1; border-radius: 20px; }
+
+        /* Breathing Background Watermark Icon */
         @keyframes watermarkBreathe { 0%, 100% { transform: rotate(-15deg) scale(1); opacity: 0.06; } 50% { transform: rotate(-12deg) scale(1.05); opacity: 0.12; } }
         .bento-card::before { content: ''; position: absolute; right: -20px; bottom: -20px; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 8.5rem; z-index: 0; transition: all 0.5s ease; transform: rotate(-15deg); opacity: 0.06; pointer-events: none; animation: watermarkBreathe 6s ease-in-out infinite; }
         .bento-card:hover::before { animation: none; transform: rotate(0deg) scale(1.2) translate(-10px, -10px); opacity: 0.15; }
-        
-        /* Ensure Text content floats above the watermark */
-        .bento-icon-wrapper, .bento-title, .bento-desc, .bento-tags { position: relative; z-index: 2; }
-        
-        /* Glass App-Style Icon Badges */
-        .bento-icon-wrapper { width: 55px; height: 55px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); backdrop-filter: blur(4px); }
+
+        /* Content above watermark */
+        .bento-header, .bento-title, .bento-desc, .bento-tags { position: relative; z-index: 2; }
+
+        /* Header row: title on left, icon on right */
+        .bento-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.55rem; }
+        .bento-header-text { flex: 1; min-width: 0; }
+
+        /* Compact icon badge */
+        .bento-icon-wrapper { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); backdrop-filter: blur(4px); }
         .bento-card:hover .bento-icon-wrapper { transform: scale(1.15) rotate(5deg); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-        .bento-icon { font-size: 1.8rem; margin: 0; display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        
-        .bento-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; line-height: 1.2; }
-        .bento-desc { font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem; }
-        .bento-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-        .bento-tag { font-size: 0.7rem; font-weight: 800; padding: 5px 12px; border-radius: 20px; transition: all 0.3s ease; letter-spacing: 0.5px; text-transform: uppercase; backdrop-filter: blur(4px); }
+        .bento-icon { font-size: 1.4rem; margin: 0; display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+
+        .bento-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.3rem; line-height: 1.25; }
+        .bento-desc { font-size: 0.87rem; line-height: 1.58; flex-grow: 1; margin-bottom: 0.9rem; }
+        .bento-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+        .bento-tag { font-size: 0.68rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; transition: all 0.3s ease; letter-spacing: 0.5px; text-transform: uppercase; backdrop-filter: blur(4px); }
 
         /* Dark Horizontal 1: AI Precision Oncology */
         .bento-h1 { grid-column: 1 / 2; grid-row: 1 / 2; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2); }
         .bento-h1::before { content: '\f544'; color: #fff; } /* Robot icon */
         .bento-h1 .bento-icon-wrapper { background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); }
         .bento-h1 .bento-icon { color: #38bdf8; }
-        .bento-h1 .bento-title { color: #fff; font-size: 1.5rem; }
+        .bento-h1 .bento-title { color: #fff; }
         .bento-h1 .bento-desc { color: #cbd5e1; }
         .bento-h1 .bento-tag { background: rgba(56, 189, 248, 0.12); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.25); }
         .bento-h1:hover .bento-tag { background: #38bdf8; color: #0f172a; border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
@@ -259,7 +263,7 @@
         .bento-h2::before { content: '\f06c'; color: #fff; } /* Leaf icon */
         .bento-h2 .bento-icon-wrapper { background: rgba(52, 211, 153, 0.2); border: 1px solid rgba(52, 211, 153, 0.4); }
         .bento-h2 .bento-icon { color: #34d399; }
-        .bento-h2 .bento-title { color: #fff; font-size: 1.5rem; }
+        .bento-h2 .bento-title { color: #fff; }
         .bento-h2 .bento-desc { color: #a7f3d0; }
         .bento-h2 .bento-tag { background: rgba(52, 211, 153, 0.12); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.25); }
         .bento-h2:hover .bento-tag { background: #34d399; color: #064e3b; border-color: #34d399; box-shadow: 0 0 10px rgba(52, 211, 153, 0.4); }
@@ -1563,11 +1567,10 @@
         body.dark-mode .tcp-roadmap .tcp-ph-3 { border-top-color: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3::before { border-color: #c084fc; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover::before { background: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover { border-color: #c084fc; }
 
         .typewriter-box {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px);
-            border-left: 4px solid var(--accent);
-            border-right: 4px solid var(--accent);
-            border-radius: 24px 0 24px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
             padding: 1.2rem 1.5rem;
             font-size: 1.05rem;
             line-height: 1.6;
@@ -1579,9 +1582,20 @@
             margin: 0;
             width: 100%;
         }
+        /* Corner-bracket accents — grow on hover */
+        .typewriter-box::before, .typewriter-box::after { content:''; position:absolute; width:20px; height:20px; pointer-events:none; transition:width 0.35s ease, height 0.35s ease; }
+        .typewriter-box::before { top:-1px; left:-1px; border-top:3px solid var(--accent); border-left:3px solid var(--accent); border-radius:4px 0 0 0; }
+        .typewriter-box::after  { bottom:-1px; right:-1px; border-bottom:3px solid var(--accent); border-right:3px solid var(--accent); border-radius:0 0 4px 0; }
+        .typewriter-box:hover::before, .typewriter-box:hover::after { width:34px; height:34px; }
         .tw-link { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(245, 158, 11, 0.8); transition: color 0.3s ease, border-color 0.3s ease; }
         .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
-        .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.75s step-end infinite; }
+        /* Block cursor */
+        .tw-cursor { display: inline-block; width: 0.58em; height: 1.12em; background: rgba(245,158,11,0.78); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.85s step-end infinite; border-radius: 2px; }
+        /* Fill/unfill ghost layer */
+        .tw-line-wrap { position: relative; }
+        .tw-ghost { color: rgba(255,255,255,0.22); pointer-events: none; word-break: break-word; font-weight: 400; }
+        .tw-ghost strong { font-weight: 700; }  /* preserves bold so line-breaks match active */
+        .tw-active { position: absolute; top: 0; left: 0; width: 100%; word-break: break-word; }
         @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         #tw-line1, #tw-line2 { min-height: 0; }
         .tw-separator { position: relative; height: 1px; margin: 0.7rem 0; background: rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; opacity: 0; transition: opacity 0.4s ease; }
@@ -1810,21 +1824,104 @@
         body.dark-mode #teaching-mentorship .culture-card:nth-child(1):hover .tech-ul li::before { color: #38bdf8; }
         body.dark-mode #teaching-mentorship .culture-card:nth-child(2):hover .tech-ul li::before { color: #34d399; }
         body.dark-mode #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li::before { color: #c084fc; }
-        /* === Orbit Badges === */
-        /* === Single Orbit Ring — 3 badges, 120° apart, clockwise === */
-        .orbit-wrapper { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
-        .orbit-ring { position: absolute; top: 50%; left: 50%; width: 206px; height: 206px; border: 1px dashed rgba(245,158,11,0.32); border-radius: 50%; transform: translate(-50%,-50%); animation: orbitSpin 10s linear infinite; pointer-events: none; }
-        @keyframes orbitSpin { from{transform:translate(-50%,-50%) rotate(0deg);} to{transform:translate(-50%,-50%) rotate(360deg);} }
-        .orbit-badge { position: absolute; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; box-shadow: 0 2px 8px rgba(0,0,0,0.45); animation: counterOrbit 10s linear infinite; }
-        @keyframes counterOrbit { from{transform:rotate(0deg);} to{transform:rotate(-360deg);} }
-        /* 0° top, 120° right-bottom, 240° left-bottom */
-        .ob-dna   { top: -13px; left:  90px; background: #10b981; color: #fff; }
-        .ob-brain { top: 142px; left: 180px; background: #0ea5e9; color: #fff; }
-        .ob-flask { top: 142px; left:   2px; background: var(--accent); color: #1a1a1a; }
-        @media (max-width: 700px) { .orbit-ring { display: none; } }
+        /* === Hero Floating Icons Layer === */
+        #hi-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .hero-img-wrap { position: relative; flex-shrink: 0; }
 
         /* === Typewriter Box Dynamic Sizing === */
         .typewriter-box { transition: padding 0.35s ease; }
+
+        /* === 4.18.5: Course Cards === */
+        .course-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+        .course-card { background: #fff; border-radius: 14px; border: 1px solid #e5e7eb; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+        .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .course-card-top { padding: 1.1rem 1.2rem 0.7rem; display: flex; align-items: flex-start; gap: 0.9rem; }
+        .course-icon-box { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+        .course-title { font-weight: 700; font-size: 0.97rem; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+        .course-level-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.3px; }
+        .course-body { padding: 0.6rem 1.2rem 1rem; flex: 1; }
+        .course-desc { font-size: 0.85rem; color: #555; line-height: 1.55; margin-bottom: 0.7rem; }
+        .course-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .course-tag { font-size: 0.73rem; background: #f3f4f6; color: #374151; padding: 3px 8px; border-radius: 12px; font-weight: 500; }
+        /* Per-card accent colours */
+        .cc-blue  .course-icon-box { background: #dbeafe; color: #1d4ed8; }
+        .cc-blue  .course-level-badge { background: #dbeafe; color: #1d4ed8; }
+        .cc-blue:hover  { border-color: #93c5fd; }
+        .cc-green .course-icon-box { background: #d1fae5; color: #065f46; }
+        .cc-green .course-level-badge { background: #d1fae5; color: #065f46; }
+        .cc-green:hover { border-color: #6ee7b7; }
+        .cc-purple .course-icon-box { background: #ede9fe; color: #5b21b6; }
+        .cc-purple .course-level-badge { background: #ede9fe; color: #5b21b6; }
+        .cc-purple:hover { border-color: #c4b5fd; }
+        .cc-amber .course-icon-box { background: #fef3c7; color: #92400e; }
+        .cc-amber .course-level-badge { background: #fef3c7; color: #92400e; }
+        .cc-amber:hover { border-color: #fcd34d; }
+        /* Inner-element transitions for smooth accent-cascade on hover */
+        .course-title  { transition: color 0.25s ease; }
+        .course-tag    { transition: background 0.25s ease, color 0.25s ease; }
+        /* Hover: title + icon bg + tags adopt the card's accent colour */
+        .cc-blue:hover .course-title    { color: #1d4ed8; }
+        .cc-blue:hover .course-tag      { background: #dbeafe; color: #1d4ed8; }
+        .cc-blue:hover .course-icon-box { background: #bfdbfe; }
+        .cc-green:hover .course-title   { color: #065f46; }
+        .cc-green:hover .course-tag     { background: #d1fae5; color: #065f46; }
+        .cc-green:hover .course-icon-box{ background: #a7f3d0; }
+        .cc-purple:hover .course-title  { color: #5b21b6; }
+        .cc-purple:hover .course-tag    { background: #ede9fe; color: #5b21b6; }
+        .cc-purple:hover .course-icon-box{ background: #ddd6fe; }
+        .cc-amber:hover .course-title   { color: #92400e; }
+        .cc-amber:hover .course-tag     { background: #fef3c7; color: #92400e; }
+        .cc-amber:hover .course-icon-box{ background: #fde68a; }
+        body.dark-mode .course-card { background: #1e293b; border-color: #334155; }
+        body.dark-mode .course-desc { color: #94a3b8; }
+        body.dark-mode .course-tag { background: #334155; color: #cbd5e1; }
+
+        /* === 4.19.0: Conferences older-entry toggle === */
+        #attended-list .older-entry { display: none; }
+        #attended-list.show-older .older-entry { display: list-item; }
+
+        /* === 4.19: Selected Key Publications (in-contributions) === */
+        .sel-pub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.1rem; }
+        @media (max-width: 700px) { .sel-pub-grid { grid-template-columns: 1fr; } }
+        .sel-pub-card { background: #fff; border: 1px solid #e5e7eb; border-left: 4px solid var(--primary); border-radius: 10px; padding: 1.1rem 1.3rem; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+        .sel-pub-card:hover { transform: translateY(-3px); border-left-color: var(--accent); box-shadow: var(--shadow-md); }
+        .sel-pub-title { font-weight: 700; font-size: 0.97rem; color: var(--text); line-height: 1.5; margin-bottom: 4px; }
+        .sel-pub-meta { font-size: 0.83rem; color: #666; margin-bottom: 6px; }
+        .sel-pub-impact { font-size: 0.87rem; color: var(--primary); background: rgba(6,78,59,0.06); border-radius: 6px; padding: 5px 10px; line-height: 1.5; }
+        .sel-pub-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+        body.dark-mode .sel-pub-card { background: #1e293b; border-color: #334155; }
+        body.dark-mode .sel-pub-impact { background: rgba(6,78,59,0.18); color: #6ee7b7; }
+        body.dark-mode .sel-pub-title { color: #e2e8f0; }
+        body.dark-mode .sel-pub-meta { color: #94a3b8; }
+
+        /* === 4.20: About Me Hero Card === */
+        .about-hero-card { display:block; padding:1.6rem; border-radius:24px; margin-bottom:1.5rem; background: radial-gradient(circle at top right,rgba(245,158,11,0.14),transparent 30%), linear-gradient(135deg,#edf7f2 0%,#f6f8f4 55%,#fff9ef 100%); border:1px solid rgba(6,78,59,0.12); box-shadow:0 12px 35px rgba(6,78,59,0.08); position:relative; overflow:hidden; transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.4s ease, border-color 0.4s ease; }
+        .about-hero-card:hover { transform:translateY(-5px); box-shadow:0 22px 48px rgba(6,78,59,0.13); border-color:rgba(6,78,59,0.22); }
+        .about-hero-card::before { content:''; position:absolute; border-radius:999px; pointer-events:none; width:200px; height:200px; top:-90px; right:-60px; background:rgba(6,78,59,0.07); animation:tcpFloat 13s ease-in-out infinite; }
+        .about-hero-card::after  { content:''; position:absolute; border-radius:999px; pointer-events:none; width:130px; height:130px; bottom:-55px; left:-40px; background:rgba(245,158,11,0.1); animation:tcpFloat 10s ease-in-out infinite reverse; }
+        .about-hero-copy { position:relative; z-index:1; }
+        .about-hero-copy .section-title { border-left:none; padding-left:0; font-size:1.85rem; margin-bottom:0; }
+        body.dark-mode .about-hero-card { background: radial-gradient(circle at top right,rgba(245,158,11,0.09),transparent 30%), linear-gradient(135deg,#162219 0%,#1a2b1f 55%,#221f0e 100%); border-color:rgba(110,231,183,0.12); }
+
+        /* === 4.21: Highlighted Publications Marquee === */
+        .pub-mq-wrapper { position:relative; width:100%; }
+        .pub-mq-track   { display:flex; width:100%; overflow-x:auto; gap:18px; align-items:stretch; mask-image:linear-gradient(to right,transparent,black 4%,black 96%,transparent); -webkit-mask-image:linear-gradient(to right,transparent,black 4%,black 96%,transparent); scrollbar-width:none; padding:14px 0 18px; }
+        .pub-mq-track::-webkit-scrollbar { display:none; }
+        .pub-mq-card { background:#fff; border:1px solid #e5e7eb; border-left:4px solid var(--primary); border-radius:12px; padding:1rem 1.1rem; min-width:288px; max-width:288px; flex-shrink:0; display:flex; flex-direction:column; gap:0.5rem; box-shadow:0 4px 14px rgba(0,0,0,0.06); transition:transform 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease; }
+        .pub-mq-card:hover { transform:translateY(-4px); border-left-color:var(--accent); box-shadow:0 12px 28px rgba(0,0,0,0.1); }
+        .pub-mq-journal { display:inline-block; font-size:0.71rem; font-weight:700; background:rgba(245,158,11,0.1); color:#92400e; border-radius:20px; padding:2px 9px; border:1px solid rgba(245,158,11,0.28); width:fit-content; }
+        .pub-mq-title   { font-weight:700; font-size:0.89rem; line-height:1.45; color:var(--text); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; flex:1; }
+        .pub-mq-desc    { font-size:0.8rem; color:#555; line-height:1.5; font-style:italic; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height:2.5rem; }
+        .pub-mq-actions { display:flex; gap:6px; flex-wrap:wrap; margin-top:auto; padding-top:6px; border-top:1px solid #f1f5f9; }
+        body.dark-mode .pub-mq-card { background:#1e293b; border-color:#334155; border-left-color:var(--primary); }
+        body.dark-mode .pub-mq-journal { background:rgba(245,158,11,0.14); color:#fbbf24; border-color:rgba(245,158,11,0.22); }
+        body.dark-mode .pub-mq-title { color:#e2e8f0; }
+        body.dark-mode .pub-mq-desc  { color:#94a3b8; }
+        body.dark-mode .pub-mq-actions { border-top-color:#334155; }
+
+        /* AI description injected into list-view items */
+        .pub-list-ai-desc { font-size:0.82rem; color:#555; font-style:italic; margin:3px 0 5px 0; line-height:1.5; }
+        body.dark-mode .pub-list-ai-desc { color:#94a3b8; }
     </style>
 </head>
 
@@ -1837,18 +1934,17 @@
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social" title="Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social" title="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
         <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
-        <a href="https://github.com/ShabanAhmad" target="_blank" class="h-social" title="GitHub" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
     </div>
 
     <!-- Interface Triggers -->
     <div class="back-to-top" id="back-to-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></div>
-    <div id="ai-widget-toggle" tabindex="0" onclick="toggleChatWindow()" title="Ask Dr. Shaban AI" role="button" aria-label="AI Chat Assistant"><i class="fas fa-robot"></i></div>
+    <div id="ai-widget-toggle" tabindex="0" onclick="toggleChatWindow()" title="Shaban's AI Assistant" role="button" aria-label="Shaban's AI Assistant"><i class="fas fa-robot"></i></div>
 
     <!-- Artificial Intelligence Assistant Pane -->
     <div id="ai-chat-window">
-        <div class="chat-header"><span>✨ Dr. Shaban AI</span><i class="fas fa-times" onclick="toggleChatWindow()" style="cursor:pointer;" tabindex="0" role="button" aria-label="Close Chat"></i></div>
+        <div class="chat-header"><span><i class="fas fa-robot" style="font-size:0.85em; margin-right:6px; opacity:0.9;"></i> Shaban's AI Assistant</span><i class="fas fa-times" onclick="toggleChatWindow()" style="cursor:pointer;" tabindex="0" role="button" aria-label="Close Chat"></i></div>
         <div class="chat-body" id="chat-body">
-            <div class="msg msg-bot">I am AI bot, ask me anything about Shaban or click the🎙️to speak to me directly!
+            <div class="msg msg-bot">This is a technology demonstration. Ask me about Shaban's research, publications, or background — or use the 🎙️ for voice input.
                 <div style="display:flex; flex-wrap:wrap; margin-top:8px; gap:4px;">
                     <button class="quick-action-btn" onclick="sendQuickMessage('Summarise Dr. Shaban\'s research focus')">✨ Summarise Research</button>
                     <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key Publications</button>
@@ -1953,16 +2049,12 @@
     <!-- === SECTION 7: CORE CONTENT PRESENTATION === -->
     <div class="hero-section-wrapper reveal" id="hero-section">
         <canvas id="mol-canvas" aria-hidden="true"></canvas>
+        <div id="hi-layer" aria-hidden="true"></div>
         <section class="hero">
             <div class="hero-main">
                 <div class="hero-profile-group">
-                    <div class="orbit-wrapper">
+                    <div class="hero-img-wrap">
                         <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
-                        <div class="orbit-ring">
-                            <span class="orbit-badge ob-dna"><i class="fas fa-dna"></i></span>
-                            <span class="orbit-badge ob-brain"><i class="fas fa-brain"></i></span>
-                            <span class="orbit-badge ob-flask"><i class="fas fa-flask"></i></span>
-                        </div>
                     </div>
                     <div class="hero-text-group">
                         <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
@@ -1978,16 +2070,22 @@
                     </div>
                 </div>
                 <div class="typewriter-box" id="tw-box">
-                    <div id="tw-line1"></div>
+                    <div class="tw-line-wrap">
+                        <div class="tw-ghost" id="tw-ghost1"></div>
+                        <div id="tw-line1" class="tw-active"></div>
+                    </div>
                     <div class="tw-separator"><span class="tw-sep-runner"></span></div>
-                    <div id="tw-line2"></div>
+                    <div class="tw-line-wrap">
+                        <div class="tw-ghost" id="tw-ghost2"></div>
+                        <div id="tw-line2" class="tw-active"></div>
+                    </div>
                 </div>
             </div>
             
             <div class="hero-stats">
                 <div class="stat-row-link" style="padding:0;">
                     <div class="stat-row" onclick="togglePubStats(event)">
-                        <div class="stat-label"><i class="fas fa-book"></i> Publications</div><span class="stat-toggle"><i class="fas fa-chevron-down"></i></span><span class="stat-value">100+</span>
+                        <div class="stat-label"><i class="fas fa-file-alt"></i>Publications</div><span class="stat-toggle"><i class="fas fa-chevron-down"></i></span><span class="stat-value">100+</span>
                     </div>
                     <div class="pub-breakdown" id="pub-breakdown">
                         <div class="stat-group">
@@ -2005,9 +2103,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span><span class="stat-value">1700+</span></div></a>
+                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i> Citations</span><span class="stat-value">1750+</span></div></a>
                 <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span><span class="stat-value">27</span></div></a>
-                <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer Reviews</span><span class="stat-value">490+</span></div></a>
+                <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" class="stat-row-link"><div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer Reviews</span><span class="stat-value">510+</span></div></a>
                              <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank" class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
             </div>
         </section>
@@ -2017,15 +2115,19 @@
     <section id="profile-experience" class="container reveal" style="margin-top: 2rem;">
         <div class="about-split-layout">
             <div class="about-left" style="min-width: 0;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
-                    <h2 class="section-title" style="margin-top:0; margin-bottom:0;">About Me</h2>
-                    <button onclick="simplifyBio()" class="ai-magic-btn ai-expand-btn" id="simplify-btn" style="margin:0;"><span class="btn-icon">✨</span><span class="btn-text">Explain Like I'm 5</span></button>
-                </div>
-                <div id="eli5-result" style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
-                <div class="profile-text">
-                    <p style="margin-top:0;">I am currently a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> at the <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen (UCPH)</a>, Denmark. Building upon a robust foundation in AI-driven bioinformatics and molecular modelling, I am actively seeking <strong>Assistant Professorship</strong> with the profound ambition to transition into an independent Principal Investigator role.</p>
-                    <p style="margin-top:10px;">Upon establishing my independence, I will launch the <strong><a href="#research-vision" class="niper-hover">Translational Computational Pharmacology (TCP) Group</a></strong>. The TCP lab's core mission is to seamlessly bridge the gap between highly abstract artificial intelligence architectures and actionable, real-world clinical and environmental solutions through rigorous interdisciplinary science.</p>
-                    <p style="margin-top:10px;">My expertise spans the entire spectrum of computational biology—from designing generative AI predictive models (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>) and complex protein simulations, to discovering sustainable PFAS-degrading enzymes. Having trained at leading institutions across India, Finland, and Denmark, I am poised to lead a dynamic research team dedicated to therapeutic innovation.</p>
+                <div class="about-hero-card">
+                    <div class="about-hero-copy">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                            <h2 class="section-title" style="margin-top:0;">About Me</h2>
+                            <button onclick="simplifyBio()" class="ai-magic-btn ai-expand-btn" id="simplify-btn" style="margin:0;"><span class="btn-icon">✨</span><span class="btn-text">Lay Summary</span></button>
+                        </div>
+                        <div id="eli5-result" style="display:none; background:rgba(255,249,219,0.9); padding:15px; border-radius:8px; border-left:4px solid var(--accent); margin-bottom:1rem; font-size:0.95rem; color:#333; line-height:1.5;"></div>
+                        <div class="profile-text">
+                            <p style="margin-top:0;">I am currently a <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank" class="niper-hover">Postdoctoral Scientist</a> at the <a href="https://www.ku.dk/en" target="_blank" class="niper-hover">University of Copenhagen (UCPH)</a>, Denmark. Building on a foundation in AI-driven bioinformatics and molecular modelling, I am actively seeking an <strong>Assistant Professorship</strong> with the clear objective of establishing an independent research group.</p>
+                            <p style="margin-top:10px;">My research programme centres on the <strong><a href="#research-vision" class="niper-hover">Translational Computational Pharmacology (TCP) Group</a></strong>. The core aim is to connect AI architectures with real-world clinical and environmental challenges—producing results that are mechanistically interpretable, reproducible, and experimentally actionable.</p>
+                            <p style="margin-top:10px;">My expertise spans computational biology—from building AI predictive models (<a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="niper-hover">DrLungker</a>, <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" class="niper-hover">DeepEntXAI</a>, <a href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="niper-hover">LungXAI</a>) and molecular simulations, to discovering PFAS-degrading enzymes. Trained at institutions across India, Finland, and Denmark, I am building towards leading an independent research group focused on therapeutic innovation.</p>
+                        </div>
+                    </div>
                 </div>
                 <hr class="subtle-separator">
 
@@ -2078,14 +2180,14 @@
 
                 <div class="ai-matcher-box">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                        <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-handshake"></i> Are You Hiring?</div>
+                        <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-handshake"></i> Open to Collaboration</div>
                         <div style="display: flex; gap: 5px; align-items: center;">
-                            <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" title="Analyse Match"><span class="btn-icon">✨</span><span class="btn-text">Analyse Match</span></button>
-                            <button onclick="generateInterviewQs()" id="interview-btn" class="ai-expand-btn" title="Generate Interview Questions"><span class="btn-icon">🎙️</span><span class="btn-text">Interview Qs</span></button>
+                            <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" title="Check Research Fit"><span class="btn-icon">✨</span><span class="btn-text">Research Fit</span></button>
                         </div>
                     </div>
-                    <textarea id="job-desc-input" placeholder="Paste your job description here, and AI will instantly analyse how well my skills match your requirements..."></textarea>
-                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>                    
+                    <p style="font-size:0.92rem; color:#555; margin-bottom:10px; line-height:1.5;">Interested in discussing a position, collaboration, or joint project? Share the context below and I will get back to you directly.</p>
+                    <textarea id="job-desc-input" placeholder="Briefly describe the opportunity or research context..."></textarea>
+                    <div id="match-result" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
                 </div>
             </div>
         </div>
@@ -2103,62 +2205,160 @@
             
             <!-- Bento Box 1: Horizontal Wide Top -->
             <div class="bento-card bento-h1">
-                <div class="bento-icon-wrapper"><i class="fas fa-microchip bento-icon"></i></div>
-                <div class="bento-title">AI Precision Oncology</div>
+                <div class="bento-header">
+                    <div class="bento-header-text">
+                        <div class="bento-title">AI Precision Oncology</div>
+                    </div>
+                    <div class="bento-icon-wrapper"><i class="fas fa-microchip bento-icon"></i></div>
+                </div>
                 <div class="bento-desc">Developed predictive models like <strong>DrLungker</strong> and <strong>DeepEntXAI</strong> using Deep Ensemble Learning and Hybrid CNN-LSTMs. These frameworks accurately classify drug activity and validate multitarget potency against resilient lung cancer variants.</div>
                 <div class="bento-tags">
-                    <span class="bento-tag">#DeepLearning</span>
-                    <span class="bento-tag">#CNN-LSTM</span>
-                    <span class="bento-tag">#PredictiveOncology</span>
-                    <span class="bento-tag">#DrugDiscovery</span>
-                    <span class="bento-tag">#ExplainableAI</span>
+                    <span class="bento-tag">Deep Learning</span>
+                    <span class="bento-tag">CNN-LSTM</span>
+                    <span class="bento-tag">Predictive Oncology</span>
+                    <span class="bento-tag">Drug Discovery</span>
+                    <span class="bento-tag">Explainable AI</span>
                 </div>
             </div>
 
             <!-- Bento Box 2: Horizontal Wide Bottom -->
             <div class="bento-card bento-h2">
-                <div class="bento-icon-wrapper"><i class="fas fa-seedling bento-icon"></i></div>
-                <div class="bento-title">Environmental Biotech & PFAS</div>
+                <div class="bento-header">
+                    <div class="bento-header-text">
+                        <div class="bento-title">Environmental Biotech & PFAS</div>
+                    </div>
+                    <div class="bento-icon-wrapper"><i class="fas fa-seedling bento-icon"></i></div>
+                </div>
                 <div class="bento-desc">Pioneering AI-guided enzyme mining and homology search strategies at UCPH. My current focus is identifying and optimising novel biocatalysts capable of degrading "forever chemicals" (PFAS), promoting sustainable bioremediation.</div>
                 <div class="bento-tags">
-                    <span class="bento-tag">#EnzymeMining</span>
-                    <span class="bento-tag">#PFASDegradation</span>
-                    <span class="bento-tag">#Bioremediation</span>
-                    <span class="bento-tag">#GreenTech</span>
-                    <span class="bento-tag">#Sustainability</span>
+                    <span class="bento-tag">Enzyme Mining</span>
+                    <span class="bento-tag">PFAS Degradation</span>
+                    <span class="bento-tag">Bioremediation</span>
+                    <span class="bento-tag">Green Biotechnology</span>
+                    <span class="bento-tag">Sustainability</span>
                 </div>
             </div>
 
             <!-- Bento Box 3: Vertical Stack Top -->
             <div class="bento-card bento-v1">
-                <div class="bento-icon-wrapper"><i class="fas fa-draw-polygon bento-icon"></i></div>
-                <div class="bento-title">Advanced Molecular Modelling</div>
+                <div class="bento-header">
+                    <div class="bento-header-text">
+                        <div class="bento-title">Advanced Molecular Modelling</div>
+                    </div>
+                    <div class="bento-icon-wrapper"><i class="fas fa-draw-polygon bento-icon"></i></div>
+                </div>
                 <div class="bento-desc">Conducted extensive structural analyses through multitarget docking, all-atom MD simulations, DFT, and MM/PBSA free energy calculations to discover polypharmacological candidates for pathogens and tumours.</div>
                 <div class="bento-tags">
-                    <span class="bento-tag">#MDSimulations</span>
-                    <span class="bento-tag">#DFTCalculations</span>
-                    <span class="bento-tag">#Polypharmacology</span>
-                    <span class="bento-tag">#QM/MM</span>
+                    <span class="bento-tag">MD Simulations</span>
+                    <span class="bento-tag">DFT Calculations</span>
+                    <span class="bento-tag">Polypharmacology</span>
+                    <span class="bento-tag">QM/MM</span>
                 </div>
             </div>
 
             <!-- Bento Box 4: Vertical Stack Bottom -->
             <div class="bento-card bento-v2">
-                <div class="bento-icon-wrapper"><i class="fas fa-fingerprint bento-icon"></i></div>
-                <div class="bento-title">Computational Genomics</div>
+                <div class="bento-header">
+                    <div class="bento-header-text">
+                        <div class="bento-title">Computational Genomics</div>
+                    </div>
+                    <div class="bento-icon-wrapper"><i class="fas fa-fingerprint bento-icon"></i></div>
+                </div>
                 <div class="bento-desc">Unravelling complex genomic data using WGS/WES processing, variant pathogenicity prediction, and phylogenomic evolutionary mapping to combat diverse pathogens and diseases.</div>
                 <div class="bento-tags">
-                    <span class="bento-tag">#WGS</span>
-                    <span class="bento-tag">#VariantCalling</span>
-                    <span class="bento-tag">#Phylogenomics</span>
-                    <span class="bento-tag">#NGSData</span>
+                    <span class="bento-tag">WGS/WES</span>
+                    <span class="bento-tag">Variant Calling</span>
+                    <span class="bento-tag">Phylogenomics</span>
+                    <span class="bento-tag">NGS Data</span>
                 </div>
             </div>
 
         </div>
+
+        <!-- Highlighted Publications sub-section -->
+        <div style="margin-top:2.2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                <h3 class="unified-sub-heading ush-primary" style="margin:0;"><i class="fas fa-star" style="margin-right:8px;"></i>Highlighted Publications</h3>
+                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    <button onclick="togglePubView()" id="pub-view-btn" class="ai-expand-btn"><span class="btn-icon"><i class="fas fa-th-large"></i></span><span class="btn-text">View as Grid</span></button>
+                    <a href="#publications" onclick="triggerAccordion('pubs-journal')" style="font-size:0.85rem; color:var(--primary); border-bottom:1px dashed var(--accent); padding-bottom:1px;">View all articles →</a>
+                </div>
+            </div>
+
+            <!-- Marquee view (default — auto-built by buildPubMarquee()) -->
+            <div id="pub-marquee-wrapper" class="pub-mq-wrapper">
+                <div class="pub-mq-track" id="pub-mq-track"></div>
+            </div>
+
+            <!-- Card / Grid view (hidden by default) -->
+            <div id="contrib-pub-cards" class="sel-pub-grid" style="display:none;">
+
+                <div class="sel-pub-card">
+                    <div class="sel-pub-title">DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</div>
+                    <div class="sel-pub-meta"><em>Wiley — Advanced Theory and Simulations</em> (2025)</div>
+                    <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);"></i>Flagship AI work: deep ensemble model that predicts drug activity and provides mechanistic validation. Open-source pipeline with all data archived.</div>
+                    <div class="sel-pub-actions">
+                        <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a>
+                        <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data"><i class="ai ai-figshare"></i> Data</a>
+                    </div>
+                </div>
+
+                <div class="sel-pub-card">
+                    <div class="sel-pub-title">Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</div>
+                    <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2025)</div>
+                    <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);"></i>Rigorous structure-based drug discovery — from target identification to MD-validated binding — applied to a clinically relevant inflammatory pathway.</div>
+                    <div class="sel-pub-actions">
+                        <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank">DOI</a>
+                        <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data</a>
+                    </div>
+                </div>
+
+                <div class="sel-pub-card">
+                    <div class="sel-pub-title">In-silico and in-vitro studies reveal ziprasidone as a potential aromatase inhibitor against breast carcinoma</div>
+                    <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2023)</div>
+                    <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);"></i>Bridges computational prediction with wet-lab validation — a critical differentiator for translational credibility in a hiring context.</div>
+                    <div class="sel-pub-actions">
+                        <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank">DOI</a>
+                        <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx" target="_blank" class="btn-data"><i class="fas fa-database"></i> Data</a>
+                    </div>
+                </div>
+
+                <div class="sel-pub-card">
+                    <div class="sel-pub-title">SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity — A Minimal Number Genome-Based Approach</div>
+                    <div class="sel-pub-meta"><em>Inflammation</em> (2022)</div>
+                    <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);"></i>Genome-wide comparative analysis using a novel minimal-number approach — showcases the computational genomics pillar with clear epidemiological translation.</div>
+                    <div class="sel-pub-actions">
+                        <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a>
+                    </div>
+                </div>
+
+                <div class="sel-pub-card">
+                    <div class="sel-pub-title">Machine Learning for Genomic Profiling and Drug Discovery in Personalised Lung Cancer Therapeutics</div>
+                    <div class="sel-pub-meta"><em>Journal of Drug Targeting</em> (2025)</div>
+                    <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);"></i>Integrative review linking ML-based genomic profiling with drug discovery — articulates the conceptual bridge between the genomics and pharmacology pillars of TCP.</div>
+                    <div class="sel-pub-actions">
+                        <a class="pub-doi" href="http://doi.org/10.1080/1061186X.2025.2530656" target="_blank">DOI</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- List view (hidden by default) -->
+            <div id="contrib-pub-list" style="display:none;">
+                <ol class="pub-list">
+                    <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data"><i class="fab fa-github"></i> Code</a></li>
+                    <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</strong><br><em>Nature — Scientific Reports (2025)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank">DOI</a></li>
+                    <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential aromatase inhibitor against breast carcinoma</strong><br><em>Nature — Scientific Reports (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank">DOI</a></li>
+                    <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation — A Minimal Number Genome-Based Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank">DOI</a></li>
+                    <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em> <a class="pub-doi" href="http://doi.org/10.1080/1061186X.2025.2530656" target="_blank">DOI</a></li>
+                </ol>
+            </div>
+        </div>
+
         <hr class="separator">
     </section>
-    
+
     <!-- === SECTION 9: RESEARCH VISION & STRATEGY (TCP Group) === -->
     <section id="research-vision" class="container reveal">
         <h2 class="section-title">Academic Vision & Group Strategy (TCP Group)</h2>
@@ -2170,11 +2370,11 @@
                 <p>As an aspiring Assistant Professor, my goal is to establish the <strong>TCP Group</strong> at the intersection of AI, computational pharmacology, genomics, and sustainable biotechnology. The aim is to create models and workflows that do more than rank candidates: they explain mechanisms, support experimental decision-making, and generate outputs that are scientifically rigorous and practically useful.</p>
                 <p>This vision is portable and aligned with host institutions focused on precision medicine, biological data science, or environmental sustainability. It brings a recognisable signature: mechanism-aware AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
                 <div class="tcp-tag-row">
-                    <span class="tcp-tag">#Mechanism-aware AI</span>
-                    <span class="tcp-tag">#Computational pharmacology</span>
-                    <span class="tcp-tag">#Precision genomics</span>
-                    <span class="tcp-tag">#Reproducible training</span>
-                    <span class="tcp-tag">#Sustainable biotechnology</span>
+                    <span class="tcp-tag">Mechanism-aware AI</span>
+                    <span class="tcp-tag">Computational Pharmacology</span>
+                    <span class="tcp-tag">Precision Genomics</span>
+                    <span class="tcp-tag">Reproducible Pipelines</span>
+                    <span class="tcp-tag">Sustainable Biotechnology</span>
                 </div>
             </div>
             <div class="tcp-vision-kpis">
@@ -2225,8 +2425,8 @@
                         <div class="tfc-icon"><i class="fas fa-draw-polygon"></i></div>
                         <div class="tfc-title">MD & QM/MM Simulations</div>
                         <ul class="tech-ul">
-                            <li>Executing High-Throughput Virtual Screening (HTVS) pipelines.</li>
-                            <li>Conducting All-atom MD trajectory dynamics via Desmond & GROMACS.</li>
+                            <li>Building High-Throughput Virtual Screening (HTVS) pipelines.</li>
+                            <li>All-atom MD trajectory dynamics via Desmond & GROMACS.</li>
                             <li>Employing Density Functional Theory (DFT) calculations.</li>
                             <li>Running rigorous MM/PBSA and MM/GBSA free energy profiling.</li>
                         </ul>
@@ -2236,7 +2436,7 @@
                         <div class="tfc-title">Translational Bioinformatics</div>
                         <ul class="tech-ul">
                             <li>Bridging bench-to-bedside with multi-omics data integration.</li>
-                            <li>Executing actionable biomarker discovery from clinical cohorts.</li>
+                            <li>Driving biomarker discovery from clinical cohorts toward therapeutic application.</li>
                             <li>Correlating complex genotype-phenotype mappings.</li>
                             <li>Stratifying disease networks to drive personalised therapeutic regimens.</li>
                         </ul>
@@ -2255,7 +2455,7 @@
                         <div class="tfc-icon"><i class="fas fa-seedling"></i></div>
                         <div class="tfc-title">Precision Biocatalysis & PFAS</div>
                         <ul class="tech-ul">
-                            <li>Executing AI-guided enzyme mining and homology searching.</li>
+                            <li>AI-guided enzyme mining and homology searching for biocatalyst discovery.</li>
                             <li>Engineering resilient microbial enzymes for targeted bioremediation.</li>
                             <li>Predicting structural activity of biocatalysts via AI.</li>
                             <li>Targeting the sustainable degradation of persistent "forever chemicals".</li>
@@ -2282,7 +2482,7 @@
                         </div>
                         <ul class="tech-ul" style="margin-top: 8px;">
                             <li><strong>Infrastructure:</strong> Establish high-performance computational GPU clusters and secure omics pipelines.</li>
-                            <li><strong>Funding:</strong> Aggressively pursue early-career funding like ERC Starting Grants and national fellowships.</li>
+                            <li><strong>Funding:</strong> Strategically target early-career funding including ERC Starting Grants and national fellowships.</li>
                             <li><strong>Recruitment:</strong> Build the core team by hiring highly motivated, interdisciplinary PhD scholars and Postdocs.</li>
                             <li><strong>Outputs:</strong> Launch the baseline version of our proprietary XAI-driven drug discovery pipeline.</li>
                         </ul>
@@ -2307,7 +2507,7 @@
                         <ul class="tech-ul" style="margin-top: 8px;">
                             <li><strong>Translation:</strong> Focus on translating validated models into real-world clinical or industrial applications.</li>
                             <li><strong>Leadership:</strong> Establish the TCP Group as a leading international hub for computational pharmacology.</li>
-                            <li><strong>Mentorship:</strong> Proactively guide senior lab members toward their own successful independent careers.</li>
+                            <li><strong>Mentorship:</strong> Guide and support senior lab members toward their own independent careers.</li>
                             <li><strong>Legacy:</strong> Ensure all tools and models are open-source to maximize community and clinical impact.</li>
                         </ul>
                     </div>
@@ -2414,6 +2614,87 @@
                     </div>
                 </div>
 
+                <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1.1rem; text-align: left;">Courses I Can Teach</h3>
+                <div class="course-cards-grid">
+
+                    <div class="course-card cc-blue">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-pills"></i></div>
+                            <div>
+                                <div class="course-title">Computational Drug Discovery</div>
+                                <span class="course-level-badge">UG / Graduate</span>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">Structure-based drug design, molecular docking, MD simulations, free energy calculations, and AI-assisted lead optimisation. Lab component uses open-source tools (AutoDock, GROMACS).</div>
+                            <div class="course-tags">
+                                <span class="course-tag">Molecular Docking</span>
+                                <span class="course-tag">MD Simulations</span>
+                                <span class="course-tag">SBDD</span>
+                                <span class="course-tag">AutoDock</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card cc-green">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-brain"></i></div>
+                            <div>
+                                <div class="course-title">Machine Learning for Biological Data</div>
+                                <span class="course-level-badge">Graduate</span>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">Supervised, unsupervised, and deep learning applied to genomics, proteomics, and drug discovery data. Includes XAI methods (SHAP/LIME) and hands-on Python/scikit-learn practicals.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">Deep Learning</span>
+                                <span class="course-tag">XAI / SHAP</span>
+                                <span class="course-tag">Python</span>
+                                <span class="course-tag">Scikit-learn</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card cc-purple">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-dna"></i></div>
+                            <div>
+                                <div class="course-title">Bioinformatics & Computational Genomics</div>
+                                <span class="course-level-badge">UG / Graduate</span>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">NGS data processing, variant annotation, WGS/WES pipelines, phylogenomics, and multi-omics integration. Focus on reproducible workflows using Snakemake and R/Bioconductor.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">NGS / WGS</span>
+                                <span class="course-tag">Variant Annotation</span>
+                                <span class="course-tag">R / Bioconductor</span>
+                                <span class="course-tag">Snakemake</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card cc-amber">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-seedling"></i></div>
+                            <div>
+                                <div class="course-title">AI in Precision Medicine & Environmental Biotech</div>
+                                <span class="course-level-badge">Advanced / Elective</span>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">AI-guided enzyme discovery, PFAS bioremediation, translational biomarker pipelines, and the clinical-to-bench data flow. Interdisciplinary seminar format with case studies.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">PFAS / Enzymes</span>
+                                <span class="course-tag">Biomarkers</span>
+                                <span class="course-tag">Precision Medicine</span>
+                                <span class="course-tag">Translational AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Core Lab Culture</h3>
                 <div class="culture-grid">
                     <div class="culture-card">
@@ -2427,7 +2708,7 @@
                     <div class="culture-card">
                         <h4><i class="fas fa-chart-line" style="margin-right:8px;"></i> Career Development</h4>
                         <ul class="tech-ul">
-                            <li>Establish meticulously tailored Individual Development Plans (IDPs).</li>
+                            <li>Establish tailored Individual Development Plans (IDPs) for each lab member.</li>
                             <li>Actively facilitate critical grant-writing workshops.</li>
                             <li>Ensure robust international conference and networking opportunities.</li>
                         </ul>
@@ -2435,7 +2716,7 @@
                     <div class="culture-card">
                         <h4><i class="fas fa-lock-open" style="margin-right:8px;"></i> Open Science</h4>
                         <ul class="tech-ul">
-                            <li>Uphold a steadfast commitment to scientific transparency.</li>
+                            <li>Maintain a strong commitment to scientific transparency.</li>
                             <li>Adhere strictly to FAIR data and reproducible code principles.</li>
                             <li>Maintain well-documented, public GitHub repositories for all outputs.</li>
                         </ul>
@@ -2476,7 +2757,6 @@
         </div>
         <hr class="separator">
     </section>
-
 
     <!-- === SECTION 10: SCIENTIFIC PUBLICATION FRAMEWORK === -->
     <section id="publications" class="container reveal">
@@ -2700,40 +2980,36 @@
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
-                    <ol class="pub-list" reversed>
+                    <ol class="pub-list" reversed id="attended-list">
                         <li class="pub-item"><strong>3rd Symposium on Applied Deep Learning in Bioinformatics</strong><div class="event-meta">Faculty of Health and Medical Sciences, University of Copenhagen, Denmark | Aug 15, 2025</div></li>
                         <li class="pub-item"><strong>Springer Nature: Navigate the World of Scientific Article Writing</strong><div class="event-meta">Online Session | May 15, 2025</div></li>
                         <li class="pub-item"><strong>Springer Nature: How to Navigate Platforms to Access all Journals</strong><div class="event-meta">Online Session | Mar 19, 2025</div></li>
                         <li class="pub-item"><strong>The 3rd International Electronic Conference on Cancers</strong><div class="event-meta">MDPI | Mar 16-30, 2023</div></li>
                         <li class="pub-item"><strong>The 2nd International Electronic Conference on Biomedicines</strong><div class="event-meta">MDPI | Mar 01-31, 2023</div></li>
-                        <li class="pub-item"><strong>MDPI Webinar: GIS in the Management of Sustainable and Smart Cities</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
-                        <li class="pub-item"><strong>Entropy Webinar | Entropy Measures to Assess Irregularity and Complexity of Time Series and Multidimensional Data</strong><div class="event-meta">Online | Mar 09, 2023</div></li>
                         <li class="pub-item"><strong>Seminar: Recent Advances in Translational Cancer Research</strong><div class="event-meta">IGNTU, Amarkantak | Feb 08, 2023</div></li>
-                        <li class="pub-item"><strong>MDPI Webinar: Screening for miRNA With Essentiality in Cancer</strong><div class="event-meta">Online | Dec 13, 2022</div></li>
-                        <li class="pub-item"><strong>MDPI Webinar: Cardio-Oncology: From Adverse Outcome Pathways to Treatments to Mitigate Cardiotoxicity of Anticancer Therapies</strong><div class="event-meta">Online | Dec 07, 2022</div></li>
-                        <li class="pub-item"><strong>National Webinar on Emotional Intelligence</strong><div class="event-meta">MQI College, Bangalore | Dec 07, 2022</div></li>
                         <li class="pub-item"><strong>21st International Conference on Bioinformatics (InCoB)</strong><div class="event-meta">KAUST, Saudi Arabia | Nov 21-23, 2022</div></li>
                         <li class="pub-item"><strong>Seminar on Intellectual Property Rights</strong><div class="event-meta">Jamia Millia Islamia, New Delhi | Feb 28, 2022</div></li>
                         <li class="pub-item"><strong>3rd ICGA 2022 Virtual Conference: Biobanking to Omics</strong><div class="event-meta">Online | Jan 13-14, 2022</div></li>
-                        <li class="pub-item"><strong>Economic botany and plant genetic resources: National Perspective</strong><div class="event-meta">Deshbandhu College, New Delhi | Jan 18, 2022</div></li>
-                        <li class="pub-item"><strong>ISCBSC- RSG India Student Symposium 2019</strong><div class="event-meta">JNU, New Delhi | Nov 22, 2019</div></li>
-                        <li class="pub-item"><strong>Young Scientist Conference - India International Science Festival (YSC-IISF)</strong><div class="event-meta">Kolkata | Nov 05-07, 2019</div></li>
-                        <li class="pub-item"><strong>Interdisciplinary Science Conference: Big Data and Computational Biology</strong><div class="event-meta">JMI, New Delhi | Oct 21-22, 2019</div></li>
-                        <li class="pub-item"><strong>DST-PURSE National Seminar on Biophysics</strong><div class="event-meta">JMI, New Delhi</div></li>
-                        <li class="pub-item"><strong>Mini-symposium on Tracking Antimicrobial Drug Resistance Tuberculosis</strong><div class="event-meta">VPCI, Delhi University</div></li>
-                        <li class="pub-item"><strong>20th Distinguished Lecture by Sir Prof. Tom Blundell</strong><div class="event-meta">Jamia Hamdard, New Delhi | Mar 20, 2019</div></li>
-                        <li class="pub-item"><strong>Symposium on Avenues in Plants Sciences</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
-                        <li class="pub-item"><strong>National Conference on CCSMAP</strong><div class="event-meta">MRIIRS | Feb 21-22, 2019</div></li>
-                        <li class="pub-item"><strong>Fourth National Symposium on "Environment: Green Technology..."</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
-                        <li class="pub-item"><strong>National Science Congress Association Delhi Chapter</strong><div class="event-meta">Zakir Hussain Delhi College | Oct 25, 2017</div></li>
-                        <li class="pub-item"><strong>PARIVARTAN 2K18</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
-                        <li class="pub-item"><strong>26th World Environmental Congress (WEED)</strong><div class="event-meta">India International Centre, New Delhi | Nov 08, 2017</div></li>
-                        <li class="pub-item"><strong>BIOTIKOS 2017</strong><div class="event-meta">TERI School of Advanced Sciences | Sep 28-29, 2017</div></li>
-                        <li class="pub-item"><strong>Conference on Growth control in development and disease</strong><div class="event-meta">NII, New Delhi | Oct 07, 2016</div></li>
-                        <li class="pub-item"><strong>National Conference on Galapagos Island and Darwin's Theory of Evolution"</strong><div class="event-meta">NII, New Delhi | Oct 06, 2016</div></li>
-                        <li class="pub-item"><strong>ICSSR-sponsored seminar Emerging Issues of Climate change</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
-                        <li class="pub-item"><strong>Environmental Concerns of the 21st century</strong><div class="event-meta">Zakir Hussain Delhi College</div></li>
+                        <li class="pub-item older-entry"><strong>Economic botany and plant genetic resources: National Perspective</strong><div class="event-meta">Deshbandhu College, New Delhi | Jan 18, 2022</div></li>
+                        <li class="pub-item older-entry"><strong>ISCBSC- RSG India Student Symposium 2019</strong><div class="event-meta">JNU, New Delhi | Nov 22, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>Young Scientist Conference - India International Science Festival (YSC-IISF)</strong><div class="event-meta">Kolkata | Nov 05-07, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>Interdisciplinary Science Conference: Big Data and Computational Biology</strong><div class="event-meta">JMI, New Delhi | Oct 21-22, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>DST-PURSE National Seminar on Biophysics</strong><div class="event-meta">JMI, New Delhi</div></li>
+                        <li class="pub-item older-entry"><strong>Mini-symposium on Tracking Antimicrobial Drug Resistance Tuberculosis</strong><div class="event-meta">VPCI, Delhi University</div></li>
+                        <li class="pub-item older-entry"><strong>20th Distinguished Lecture by Sir Prof. Tom Blundell</strong><div class="event-meta">Jamia Hamdard, New Delhi | Mar 20, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>Symposium on Avenues in Plants Sciences</strong><div class="event-meta">Deshbandhu College, New Delhi | Mar 08-09, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>National Conference on CCSMAP</strong><div class="event-meta">MRIIRS | Feb 21-22, 2019</div></li>
+                        <li class="pub-item older-entry"><strong>Fourth National Symposium on "Environment: Green Technology..."</strong><div class="event-meta">Deshbandhu College, New Delhi | Sep 25, 2018</div></li>
+                        <li class="pub-item older-entry"><strong>National Science Congress Association Delhi Chapter</strong><div class="event-meta">Zakir Hussain Delhi College | Oct 25, 2017</div></li>
+                        <li class="pub-item older-entry"><strong>PARIVARTAN 2K18</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Apr 13, 2018</div></li>
+                        <li class="pub-item older-entry"><strong>26th World Environmental Congress (WEED)</strong><div class="event-meta">India International Centre, New Delhi | Nov 08, 2017</div></li>
+                        <li class="pub-item older-entry"><strong>BIOTIKOS 2017</strong><div class="event-meta">TERI School of Advanced Sciences | Sep 28-29, 2017</div></li>
+                        <li class="pub-item older-entry"><strong>Conference on Growth control in development and disease</strong><div class="event-meta">NII, New Delhi | Oct 07, 2016</div></li>
+                        <li class="pub-item older-entry"><strong>National Conference on Galapagos Island and Darwin's Theory of Evolution"</strong><div class="event-meta">NII, New Delhi | Oct 06, 2016</div></li>
+                        <li class="pub-item older-entry"><strong>ICSSR-sponsored seminar Emerging Issues of Climate change</strong><div class="event-meta">Sri Aurobindo College, New Delhi | Oct 21-22, 2016</div></li>
+                        <li class="pub-item older-entry"><strong>Environmental Concerns of the 21st century</strong><div class="event-meta">Zakir Hussain Delhi College</div></li>
                     </ol>
+                    <button id="older-toggle-btn" onclick="toggleOlderAttended(this)" style="margin-top:12px; background:none; border:1px solid var(--accent); color:var(--accent); padding:6px 14px; border-radius:20px; cursor:pointer; font-size:0.85rem; font-weight:600; transition:all 0.2s;">▼ Show older entries (2016–2021)</button>
                 </div>
             </div>
         </div>
@@ -2779,7 +3055,8 @@
                 <div class="scrollable-list">
                     <p id="peer-review-count-text" style="margin-bottom:15px; font-weight:bold; color:var(--primary);"><a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 490+ Verified</span> Peer Reviews on Publons (WoS)</a></p>
                     <div class="peer-review-container">
-                        <span class="pr-badge-item">Accreditation and Quality Assurance</span><span class="pr-badge-item">Archives of Computational Methods in Engineering</span><span class="pr-badge-item">Archives of Microbiology</span><span class="pr-badge-item">Biochemical and Biophysical Research Communications</span><span class="pr-badge-item">Biochemical Genetics</span><span class="pr-badge-item">Bioinformatics and Biology Insights</span><span class="pr-badge-item">Biomedical Reports</span><span class="pr-badge-item">BMC Artificial Intelligence</span><span class="pr-badge-item">BMC Infectious Diseases</span><span class="pr-badge-item">BMC Veterinary Research</span><span class="pr-badge-item">Brazilian Journal of Biology</span><span class="pr-badge-item">Cancer Investigation</span><span class="pr-badge-item">Cancer Medicine</span><span class="pr-badge-item">Cancer Reports</span><span class="pr-badge-item">Cell Biochemistry and Biophysics</span><span class="pr-badge-item">Chemistry and Biodiversity</span><span class="pr-badge-item">Computer Methods in Biomechanics and Biomedical Engineering</span><span class="pr-badge-item">Computers in Biology and Medicine</span><span class="pr-badge-item">Crop Protection</span><span class="pr-badge-item">Current Cancer Drug Targets</span> <span class="pr-badge-item">Biochemical Genetics</span> <span class="pr-badge-item">Current Medicinal Chemistry</span><span class="pr-badge-item">Current Plant Biology</span><span class="pr-badge-item">Digital Health</span><span class="pr-badge-item">Discover Applied Sciences</span><span class="pr-badge-item">Discover Oncology</span><span class="pr-badge-item">Drug Development Research</span><span class="pr-badge-item">European Journal of Medicinal Chemistry</span><span class="pr-badge-item">Experimental and Therapeutic Medicine</span><span class="pr-badge-item">F1000Research</span><span class="pr-badge-item">Frontiers in Dental Medicine</span><span class="pr-badge-item">Frontiers in Immunology</span><span class="pr-badge-item">Frontiers in Radiology</span><span class="pr-badge-item">Future Medicinal Chemistry</span><span class="pr-badge-item">Heliyon</span><span class="pr-badge-item">In Silico Pharmacology</span><span class="pr-badge-item">In Silico Research in Biomedicine</span><span class="pr-badge-item">Intelligence-Based Medicine</span><span class="pr-badge-item">International Journal of Oncology</span><span class="pr-badge-item">IScience</span><span class="pr-badge-item">Journal of Biological Research and Reviews</span><span class="pr-badge-item">Journal of Biomolecular Structure and Dynamics</span><span class="pr-badge-item">Journal of Chemistry</span><span class="pr-badge-item">Journal of Computational Biophysics and Chemistry</span><span class="pr-badge-item">Journal of Computational Science</span><span class="pr-badge-item">Journal of Computer-Aided Molecular Design</span><span class="pr-badge-item">Journal of Drug Targeting</span><span class="pr-badge-item">Journal of Experimental & Clinical Cancer Research</span><span class="pr-badge-item">Journal of Molecular Modeling</span><span class="pr-badge-item">Journal of Pharmaceutical Analysis</span><span class="pr-badge-item">Journal of Pharmaceutical Innovation</span><span class="pr-badge-item">Journal of Proteins and Proteomics</span><span class="pr-badge-item">Journal of the Brazilian Chemical Society</span><span class="pr-badge-item">Journal of the Egyptian National Cancer Institute</span><span class="pr-badge-item">Journal of Translational Medicine</span><span class="pr-badge-item">Knowledge-Based Systems</span><span class="pr-badge-item">Letters in Drug Design & Discovery</span><span class="pr-badge-item">Lung Cancer: Targets and Therapy</span><span class="pr-badge-item">Medical Oncology</span><span class="pr-badge-item">Mini-Reviews in Medicinal Chemistry</span><span class="pr-badge-item">Molecular Diversity</span><span class="pr-badge-item">Molecular Medicine Reports</span><span class="pr-badge-item">Natural Resources for Human Health</span><span class="pr-badge-item">Naunyn-Schmiedeberg's Archives of Pharmacology</span><span class="pr-badge-item">Neural Computing and Applications</span><span class="pr-badge-item">Npj Precision Oncology</span><span class="pr-badge-item">Oncology Letters</span><span class="pr-badge-item">Open Chemistry</span><span class="pr-badge-item">PeerJ</span><span class="pr-badge-item">Pharmacological Research</span><span class="pr-badge-item">Pharmacological Research - Modern Chinese Medicine</span><span class="pr-badge-item">PLoS Neglected Tropical Diseases</span><span class="pr-badge-item">Plos One</span><span class="pr-badge-item">Qeios</span><span class="pr-badge-item">Results in Chemistry</span><span class="pr-badge-item">Saudi Medical Journal</span><span class="pr-badge-item">Scientific African</span><span class="pr-badge-item">Scientific Reports</span><span class="pr-badge-item">SN Applied Sciences</span><span class="pr-badge-item">Structural Chemistry</span><span class="pr-badge-item">VEGETOS</span><span class="pr-badge-item">Virology</span><span class="pr-badge-item">Virulence</span> 
+                        <span class="pr-badge-item">Accreditation and Quality Assurance</span> <span class="pr-badge-item">Applied Mathematics and Information Sciences</span> <span class="pr-badge-item">Archives of Computational Methods in Engineering</span> <span class="pr-badge-item">Archives of Microbiology</span> <span class="pr-badge-item">Biochemical and Biophysical Research Communications</span> <span class="pr-badge-item">Biochemical Genetics</span> <span class="pr-badge-item">Bioinformatics and Biology Insights</span> <span class="pr-badge-item">Biomedical Reports</span> <span class="pr-badge-item">BMC Artificial Intelligence</span> <span class="pr-badge-item">BMC Infectious Diseases</span> <span class="pr-badge-item">BMC Veterinary Research</span> <span class="pr-badge-item">Brazilian Journal of Biology</span> <span class="pr-badge-item">Cancer Investigation</span> <span class="pr-badge-item">Cancer Medicine</span> <span class="pr-badge-item">Cancer Reports</span> <span class="pr-badge-item">Cell Biochemistry and Biophysics</span> <span class="pr-badge-item">Chemical Engineering Journal Advances</span> <span class="pr-badge-item">Chemistry and Biodiversity</span> <span class="pr-badge-item">Computational Biology and Chemistry</span> <span class="pr-badge-item">Computer Methods in Biomechanics and Biomedical Engineering</span> <span class="pr-badge-item">Computers in Biology and Medicine</span> <span class="pr-badge-item">Crop Protection</span> <span class="pr-badge-item">Current Cancer Drug Targets</span> <span class="pr-badge-item">Current Medicinal Chemistry</span> <span class="pr-badge-item">Current Plant Biology</span> <span class="pr-badge-item">Digital Health</span> <span class="pr-badge-item">Discover Applied Sciences</span> <span class="pr-badge-item">Discover Oncology</span> <span class="pr-badge-item">Drug Development Research</span> <span class="pr-badge-item">European Journal of Medicinal Chemistry</span> <span class="pr-badge-item">Experimental and Therapeutic Medicine</span> <span class="pr-badge-item">Expert Systems with Applications</span> <span class="pr-badge-item">F1000Research</span> <span class="pr-badge-item">Frontiers in Artificial Intelligence</span> <span class="pr-badge-item">Frontiers in Dental Medicine</span> <span class="pr-badge-item">Frontiers in Immunology</span> <span class="pr-badge-item">Frontiers in Radiology</span> <span class="pr-badge-item">Future Medicinal Chemistry</span> <span class="pr-badge-item">Heliyon</span> <span class="pr-badge-item">In Silico Pharmacology</span> <span class="pr-badge-item">In Silico Research in Biomedicine</span> <span class="pr-badge-item">Intelligence-Based Medicine</span> <span class="pr-badge-item">International Journal of Oncology</span> <span class="pr-badge-item">IScience</span> <span class="pr-badge-item">Journal of Biological Research and Reviews</span> <span class="pr-badge-item">Journal of Biomolecular Structure and Dynamics</span> <span class="pr-badge-item">Journal of Chemistry</span> <span class="pr-badge-item">Journal of Computational Biophysics and Chemistry</span> <span class="pr-badge-item">Journal of Computational Science</span> <span class="pr-badge-item">Journal of Computer-Aided Molecular Design</span> <span class="pr-badge-item">Journal of Drug Targeting</span> <span class="pr-badge-item">Journal of Experimental & Clinical Cancer Research</span> <span class="pr-badge-item">Journal of Genetic Engineering and Biotechnology</span> <span class="pr-badge-item">Journal of Molecular Modeling</span> <span class="pr-badge-item">Journal of Pharmaceutical Analysis</span> <span class="pr-badge-item">Journal of Pharmaceutical Innovation</span> <span class="pr-badge-item">Journal of Proteins and Proteomics</span> <span class="pr-badge-item">Journal of the Brazilian Chemical Society</span> <span class="pr-badge-item">Journal of the Egyptian National Cancer Institute</span> <span class="pr-badge-item">Journal of Translational Medicine</span> <span class="pr-badge-item">Knowledge-Based Systems</span> <span class="pr-badge-item">Letters in Drug Design & Discovery</span> <span class="pr-badge-item">Lung Cancer: Targets and Therapy</span> <span class="pr-badge-item">Medical Oncology</span> <span class="pr-badge-item">Mini-Reviews in Medicinal Chemistry</span> <span class="pr-badge-item">Molecular Diversity</span> <span class="pr-badge-item">Molecular Medicine Reports</span> <span class="pr-badge-item">Natural Resources for Human Health</span> <span class="pr-badge-item">Naunyn-Schmiedeberg's Archives of Pharmacology</span> <span class="pr-badge-item">Neural Computing and Applications</span> <span class="pr-badge-item">Npj Precision Oncology</span> <span class="pr-badge-item">Oncology Letters</span> <span class="pr-badge-item">Open Chemistry</span> <span class="pr-badge-item">PeerJ</span> <span class="pr-badge-item">Pharmacological Research</span> <span class="pr-badge-item">Pharmacological Research - Modern Chinese Medicine</span> <span class="pr-badge-item">PLoS Neglected Tropical Diseases</span> <span class="pr-badge-item">Plos One</span> <span class="pr-badge-item">Qeios</span> <span class="pr-badge-item">Results in Chemistry</span> <span class="pr-badge-item">Saudi Medical Journal</span> <span class="pr-badge-item">Scientific African</span> <span class="pr-badge-item">Scientific Reports</span> <span class="pr-badge-item">SN Applied Sciences</span> <span class="pr-badge-item">Structural Chemistry</span> <span class="pr-badge-item">VEGETOS</span> <span class="pr-badge-item">Virology</span> <span class="pr-badge-item">Virulence</span> 
+
                     </div>
                 </div>
             </div>
@@ -2936,7 +3213,8 @@
             initCitationButtons(); 
             assignReverseBadges(); 
             reveal(); 
-            startSFScroll(); 
+            startSFScroll();
+            buildPubMarquee();
             document.querySelectorAll('.email-click').forEach(el => { 
                 el.setAttribute('role', 'button'); 
                 el.setAttribute('tabindex', '0'); 
@@ -2945,23 +3223,39 @@
                 }); 
             }); 
             
-            // Continuous Infinite Typewriter Animation — two independent lines
+            // Continuous Infinite Typewriter with fill/unfill ghost effect
             (function() {
-                var el1 = document.getElementById('tw-line1');
-                var el2 = document.getElementById('tw-line2');
-                var sep = document.querySelector('.tw-separator');
+                var el1    = document.getElementById('tw-line1');
+                var el2    = document.getElementById('tw-line2');
+                var ghost1 = document.getElementById('tw-ghost1');
+                var ghost2 = document.getElementById('tw-ghost2');
+                var sep    = document.querySelector('.tw-separator');
                 if (!el1 || !el2) return;
 
                 var LINE1 = 'I develop AI-driven approaches to advance discovery across complex biology \u2014 from molecules to medicine and sustainability.';
-                var LINE2 = 'Seeking Assistant Professorship to establish the Translational Computational Pharmacology (TCP) Group.';
+                var LINE2 = 'Seeking Assistant Professorship to establish the TCP Research Group.';
                 var KW1 = [['AI-driven','#0ea5e9'],['complex biology','#f43f5e']];
-                var KW2 = [['Assistant Professorship','#8b5cf6'],['Translational Computational Pharmacology (TCP) Group','var(--accent)']];
+                var KW2 = [['Assistant Professorship','#8b5cf6'],['TCP Research Group','var(--accent)','#research-vision']];
 
+                // Full-colour rendering (active layer)
                 function colorize(text, kws) {
                     var out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
                     kws.forEach(function(pair) {
                         var re = new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
-                        out = out.replace(re, '<strong style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</strong>');
+                        var rep = pair[2]
+                            ? '<a href="' + pair[2] + '" class="tw-link" style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</a>'
+                            : '<strong style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</strong>';
+                        out = out.replace(re, rep);
+                    });
+                    return out;
+                }
+
+                // Grey/ghost rendering — same bold structure so line-breaks match exactly
+                function colorizeGhost(text, kws) {
+                    var out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                    kws.forEach(function(pair) {
+                        var re = new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+                        out = out.replace(re, '<strong>' + pair[0] + '</strong>');
                     });
                     return out;
                 }
@@ -2971,6 +3265,8 @@
 
                 function tw() {
                     if (state === 'TYPING1') {
+                        // Show grey ghost immediately when line 1 starts
+                        if (i1 === 0 && ghost1) ghost1.innerHTML = colorizeGhost(LINE1, KW1);
                         el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
                         i1++;
                         if (i1 <= LINE1.length) {
@@ -2978,11 +3274,12 @@
                         } else {
                             el1.innerHTML = colorize(LINE1, KW1);
                             if (sep) sep.classList.add('visible');
-                            state = 'TYPING2';
-                            i2 = 0;
+                            state = 'TYPING2'; i2 = 0;
                             setTimeout(tw, 400);
                         }
                     } else if (state === 'TYPING2') {
+                        // Show grey ghost for line 2 immediately when it starts
+                        if (i2 === 0 && ghost2) ghost2.innerHTML = colorizeGhost(LINE2, KW2);
                         el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
                         i2++;
                         if (i2 <= LINE2.length) {
@@ -2992,31 +3289,33 @@
                             setTimeout(tw, 5000);
                         }
                     } else if (state === 'PAUSE') {
-                        state = 'DEL2';
-                        i2 = LINE2.length;
+                        state = 'DEL2'; i2 = LINE2.length;
                         setTimeout(tw, 0);
                     } else if (state === 'DEL2') {
                         if (i2 > 0) {
+                            // Erase active — ghost2 stays visible (grey skeleton shows through)
                             el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
                             i2 = Math.max(0, i2 - 2);
-                            setTimeout(tw, 14);
+                            setTimeout(tw, 16);
                         } else {
                             el2.innerHTML = '';
                             if (sep) sep.classList.remove('visible');
-                            state = 'DEL1';
-                            i1 = LINE1.length;
+                            state = 'DEL1'; i1 = LINE1.length;
                             setTimeout(tw, 200);
                         }
                     } else if (state === 'DEL1') {
                         if (i1 > 0) {
+                            // Erase active — ghost1 stays visible (grey skeleton shows through)
                             el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
                             i1 = Math.max(0, i1 - 2);
-                            setTimeout(tw, 14);
+                            setTimeout(tw, 16);
                         } else {
                             el1.innerHTML = '';
-                            state = 'TYPING1';
-                            i1 = 0;
-                            i2 = 0;
+                            // Keep ghost1 visible during pause so box doesn't collapse in height.
+                            // Clear ghost2 only (otherwise LINE2 ghost bleeds into TYPING1 phase).
+                            // ghost1 will be refreshed at i1===0 in the next TYPING1 tick.
+                            if (ghost2) ghost2.innerHTML = '';
+                            state = 'TYPING1'; i1 = 0; i2 = 0;
                             setTimeout(tw, 800);
                         }
                     }
@@ -3111,7 +3410,7 @@
 
         const toggleTheme = () => { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); document.querySelectorAll('.theme-toggle').forEach(el => el.className = isDark ? 'fas fa-sun control-icon theme-toggle' : 'fas fa-moon control-icon theme-toggle'); };
         
-        const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if(c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 490+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
+        const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if(c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 510+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
         const copyEmail = (el, email) => { navigator.clipboard.writeText(email).then(() => { let fb = document.createElement("span"); fb.className = "copy-feedback"; fb.innerText = "Email copied!"; fb.style.whiteSpace = "nowrap"; el.appendChild(fb); setTimeout(() => fb.classList.add("show"), 10); setTimeout(() => { fb.classList.remove("show"); setTimeout(() => fb.remove(), 300); }, 1500); }); };
 
         /* --- 17.2: Automated Citation & DOI Logic Engine --- */
@@ -3520,10 +3819,214 @@
             try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if(activeAbort && activeAbort.id === btnId) formatCallback(res); } catch(e) { if (e.name !== 'AbortError' && resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
         };
 
-        const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Explain Like I'm 5", 'Explaining...', "Explain Dr. Shaban Ahmad's research in AI, bioinformatics, and PFAS biodegradation like I am 5 years old. Make it fun, engaging, and very short (3 sentences max).", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>👶 Explain Like I'm 5:</strong><br><br>${res}`; });
+        function toggleOlderAttended(btn) {
+            var list = document.getElementById('attended-list');
+            var showing = list.classList.toggle('show-older');
+            btn.textContent = showing ? '▲ Hide older entries (2016–2021)' : '▼ Show older entries (2016–2021)';
+        }
+
+        // Cycles: Marquee → Grid → List → Marquee
+        function togglePubView() {
+            var mq    = document.getElementById('pub-marquee-wrapper');
+            var cards = document.getElementById('contrib-pub-cards');
+            var list  = document.getElementById('contrib-pub-list');
+            var btn   = document.getElementById('pub-view-btn');
+            var icon  = btn.querySelector('.btn-icon i');
+            var text  = btn.querySelector('.btn-text');
+            var mqVisible = mq && mq.style.display !== 'none';
+            if (mqVisible) {                                  // Marquee → Grid
+                if (mq) mq.style.display = 'none';
+                cards.style.display = 'grid';
+                list.style.display  = 'none';
+                icon.className = 'fas fa-list';
+                text.textContent = 'View as List';
+            } else if (cards.style.display === 'grid') {     // Grid → List
+                cards.style.display = 'none';
+                list.style.display  = 'block';
+                icon.className = 'fas fa-film';
+                text.textContent = 'View as Marquee';
+            } else {                                          // List → Marquee
+                if (mq) mq.style.display = '';
+                cards.style.display = 'none';
+                list.style.display  = 'none';
+                icon.className = 'fas fa-th-large';
+                text.textContent = 'View as Grid';
+            }
+        }
+
+        /* ===== HIGHLIGHTED PUBLICATIONS — DATA-DRIVEN MARQUEE =====
+         * Edit HIGHLIGHTED_PUB_TITLES below to change which papers appear.
+         * Use a distinctive substring of the title (first 30–40 chars is enough).
+         * Everything else (journal, year, DOI, code/data links, AI description)
+         * is auto-fetched from the Publications section DOM and the AI backend. */
+        const HIGHLIGHTED_PUB_TITLES = [
+            "DrLungker: A Deep Ensemble Learning Framework",
+            "Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB",
+            "In-silico and in-vitro studies reveal ziprasidone",
+            "SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity",
+            "Machine Learning for Genomic Profiling and Drug Discovery"
+        ];
+
+        function scrapePubData(keyword) {
+            const kw = keyword.toLowerCase().substring(0, 40);
+            for (const item of document.querySelectorAll('.pub-item')) {
+                const titleEl = item.querySelector('strong');
+                if (!titleEl) continue;
+                const fullTitle = titleEl.textContent.trim();
+                if (fullTitle.toLowerCase().includes(kw)) {
+                    const emEl    = item.querySelector('em');
+                    const doiEl   = item.querySelector('.pub-doi');
+                    const allData = Array.from(item.querySelectorAll('.btn-data'));
+                    const codeEl  = allData.find(a => a.href && a.href.includes('github'));
+                    const dataEl  = allData.find(a => a.href && !a.href.includes('github'));
+                    const emText  = emEl ? emEl.textContent.trim() : '';
+                    const yrMatch = emText.match(/\((\d{4})\)/);
+                    const journal = emText.replace(/\s*\(\d{4}\)\s*$/, '').replace(/\s*\(\d{4}\)\s*/g, '').trim();
+                    // Shorten: take part after em-dash/hyphen if present (publisher — Journal → Journal)
+                    const jrnlShort = journal.includes('—') ? journal.split('—').pop().trim() : journal;
+                    const year    = yrMatch ? yrMatch[1] : '';
+                    return { fullTitle, journal: jrnlShort, year, doi: doiEl ? doiEl.href : null, codeHref: codeEl ? codeEl.href : null, dataHref: dataEl ? dataEl.href : null };
+                }
+            }
+            return null;
+        }
+
+        function getPubCacheKey(title) {
+            return 'pmq_v2_' + title.replace(/[^a-zA-Z0-9]/g, '').substring(0, 44);
+        }
+
+        // Updates the .pub-mq-desc in EVERY card (original + clones) matching this title
+        function setPubDescInTrack(track, encodedTitle, html) {
+            track.querySelectorAll(`.pub-mq-card[data-pub-key="${encodedTitle}"]`).forEach(card => {
+                const el = card.querySelector('.pub-mq-desc');
+                if (el) el.innerHTML = html;
+            });
+        }
+
+        // Injects AI description into the matching <li> in the list view
+        function updateListDesc(fullTitle, descHtml) {
+            const listEl = document.querySelector('#contrib-pub-list');
+            if (!listEl) return;
+            const kw = fullTitle.toLowerCase().substring(0, 35);
+            for (const li of listEl.querySelectorAll('.pub-item')) {
+                const strong = li.querySelector('strong');
+                if (!strong || !strong.textContent.toLowerCase().includes(kw)) continue;
+                let descDiv = li.querySelector('.pub-list-ai-desc');
+                if (!descDiv) {
+                    descDiv = document.createElement('div');
+                    descDiv.className = 'pub-list-ai-desc';
+                    const br = li.querySelector('br');
+                    if (br) br.after(descDiv); else li.appendChild(descDiv);
+                }
+                descDiv.innerHTML = descHtml;
+                return;
+            }
+        }
+
+        let pmqAId, pmqSpd = 0.55, isPmqPaused = false;
+        const startPubMarquee = () => {
+            const t = document.getElementById('pub-mq-track');
+            if (!t || !t.children.length) return;
+            if (!t.dataset.cloned) {
+                Array.from(t.querySelectorAll('.pub-mq-card')).forEach(c => t.appendChild(c.cloneNode(true)));
+                t.dataset.cloned = 'true';
+            }
+            cancelAnimationFrame(pmqAId);
+            const step = () => {
+                if (!t.matches(':hover') && !isPmqPaused) {
+                    t.scrollLeft += pmqSpd;
+                    const cs = t.querySelectorAll('.pub-mq-card');
+                    if (cs.length >= 2) {
+                        const half = Math.floor(cs.length / 2);
+                        const jump = cs[half].offsetLeft - cs[0].offsetLeft;
+                        if (t.scrollLeft >= jump) t.scrollLeft -= jump;
+                    }
+                }
+                pmqAId = requestAnimationFrame(step);
+            };
+            pmqAId = requestAnimationFrame(step);
+        };
+
+        // Extract the hardcoded impact text from the grid card matching keyword
+        function getGridCardDesc(keyword) {
+            const kw = keyword.toLowerCase().substring(0, 40);
+            for (const card of document.querySelectorAll('#contrib-pub-cards .sel-pub-card')) {
+                const titleEl = card.querySelector('.sel-pub-title');
+                if (!titleEl || !titleEl.textContent.toLowerCase().includes(kw)) continue;
+                const impactEl = card.querySelector('.sel-pub-impact');
+                if (!impactEl) continue;
+                const clone = impactEl.cloneNode(true);
+                const icon = clone.querySelector('i');
+                if (icon) icon.remove();
+                return clone.textContent.trim();
+            }
+            return null;
+        }
+
+        async function buildPubMarquee() {
+            const track = document.getElementById('pub-mq-track');
+            if (!track) return;
+
+            // 1. Scrape all data and check cache/grid upfront
+            const items = [];
+            for (const keyword of HIGHLIGHTED_PUB_TITLES) {
+                const d = scrapePubData(keyword);
+                if (!d) continue;
+                const cacheKey  = getPubCacheKey(d.fullTitle);
+                const gridDesc  = getGridCardDesc(keyword);         // grid card text = priority source
+                const cachedAI  = localStorage.getItem(cacheKey);
+                const cachedDesc = gridDesc || cachedAI || null;    // grid > AI cache > fetch
+                items.push({ ...d, cacheKey, cachedDesc, gridDesc, encKey: encodeURIComponent(cacheKey) });
+            }
+            if (!items.length) return;
+
+            // 2. Build HTML — use best available description; spinner only if nothing found
+            let html = '';
+            for (const d of items) {
+                const doi  = d.doi      ? `<a class="pub-doi" href="${d.doi}" target="_blank" rel="noopener">DOI</a>` : '';
+                const code = d.codeHref ? `<a href="${d.codeHref}" target="_blank" class="btn-data" rel="noopener"><i class="fab fa-github"></i> Code</a>` : '';
+                const dat  = d.dataHref ? `<a href="${d.dataHref}" target="_blank" class="btn-data" rel="noopener"><i class="fas fa-database"></i> Data</a>` : '';
+                const jrnl = d.journal  ? (d.journal + (d.year ? ' · ' + d.year : '')) : (d.year || '');
+                const desc = d.cachedDesc
+                    ? d.cachedDesc
+                    : '<i class="fas fa-spinner fa-spin" style="color:#aaa;font-size:0.78rem;"></i>';
+                html += `<div class="pub-mq-card" data-pub-key="${d.encKey}">
+                    ${jrnl ? `<span class="pub-mq-journal">${jrnl}</span>` : ''}
+                    <div class="pub-mq-title">${d.fullTitle}</div>
+                    <div class="pub-mq-desc">${desc}</div>
+                    <div class="pub-mq-actions">${doi}${code}${dat}</div>
+                </div>`;
+            }
+            track.innerHTML = html;
+
+            // 3. Start marquee (clones cards — data-pub-key is preserved on clones)
+            startPubMarquee();
+
+            // 4a. Populate list view with any already-available descriptions immediately
+            for (const d of items) {
+                if (d.cachedDesc) updateListDesc(d.fullTitle, d.cachedDesc);
+            }
+
+            // 4b. Fetch AI only for items with no grid desc AND no cached AI
+            for (const d of items) {
+                if (d.cachedDesc) continue;   // grid desc or cached AI already covers this
+                try {
+                    const res   = await fetchFromBackend(`In one sentence (max 20 words), state the scientific significance of this paper for a faculty hiring committee: "${d.fullTitle}"`);
+                    const clean = res.replace(/<[^>]*>/g, '').trim().replace(/^["']|["']$/g, '');
+                    localStorage.setItem(d.cacheKey, clean);
+                    setPubDescInTrack(track, d.encKey, clean);
+                    updateListDesc(d.fullTitle, clean);
+                } catch(e) {
+                    const fallback = '<em style="color:#aaa;">Description unavailable.</em>';
+                    setPubDescInTrack(track, d.encKey, fallback);
+                    updateListDesc(d.fullTitle, fallback);
+                }
+            }
+        }
+
+        const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Dr. Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>📄 Lay Summary:</strong><br><br>${res}`; });
         const summarizeFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
-        const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Analyse Match', 'Analysing...', `Act as an AI Recruiter. Match this job description with Dr. Shaban Ahmad's skills. CRITICAL: 1. Start with visual rating "⭐ Rating". 2. Provide exactly 3 bullet points WHY he fits. 3. HTML tags ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Recruiter Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
-        const generateInterviewQs = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Paste job description first!"; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('interview-btn', 'match-result', '🎙️', 'Interview Qs', 'Generating...', `Act as a Hiring Manager. Based on this job description and Dr. Shaban Ahmad's AI profile, generate 3 specific interview questions. HTML ONLY. Job: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:#0dadbc;">Custom Interview Prep:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
+        const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if(!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(()=>inp.style.border="2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Dr. Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Research Fit Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
         
         const extractEmailParts = (text) => {
             let s = "", b = text;
@@ -3752,6 +4255,125 @@
                 if (entry.isIntersecting) { if (!RAF) draw(); }
                 else { cancelAnimationFrame(RAF); RAF = null; }
             }, { threshold: 0.01 }).observe(canvas.parentElement);
+        })();
+
+        /* ────────────────────────────────────────────────────────────
+           FLOATING ICONS LAYER — DOM icons drifting freely over the
+           hero background, sharing mouse repulsion with mol-canvas.
+           Icons chosen to represent Shaban's research identity.
+        ──────────────────────────────────────────────────────────── */
+        (() => {
+            const layer = document.getElementById('hi-layer');
+            const hero  = document.getElementById('hero-section');
+            if (!layer || !hero) return;
+
+            // [FA class, color, size-px]
+            const ICONS = [
+                ['fa-brain',           'rgba(167,139,250,0.55)', 15],  // ML / deep learning
+                ['fa-dna',             'rgba(80,200,255,0.55)',  14],  // genomics
+                ['fa-atom',            'rgba(245,158,11,0.60)',  16],  // molecular dynamics
+                ['fa-pills',           'rgba(248,113,113,0.55)', 14],  // drug design
+                ['fa-robot',           'rgba(167,139,250,0.50)', 15],  // agentic AI
+                ['fa-microscope',      'rgba(255,255,255,0.40)', 14],  // experimental
+                ['fa-project-diagram', 'rgba(52,211,153,0.55)',  13],  // systems biology
+                ['fa-code',            'rgba(255,255,255,0.42)', 14],  // programming
+                ['fa-chart-line',      'rgba(245,158,11,0.52)',  14],  // data science
+                ['fa-leaf',            'rgba(52,211,153,0.58)',  14],  // PFAS / sustainability
+                ['fa-syringe',         'rgba(248,113,113,0.50)', 13],  // immunoinformatics
+                ['fa-database',        'rgba(255,255,255,0.38)', 13],  // data / HPC
+                ['fa-code-branch',     'rgba(80,200,255,0.48)',  13],  // phylogenetics
+                ['fa-heartbeat',       'rgba(248,113,113,0.55)', 14],  // translational bioinformatics
+                ['fa-virus',           'rgba(255,230,100,0.48)', 14],  // SARS-CoV-2 work
+                ['fa-flask',           'rgba(245,158,11,0.55)',  13],  // computational chemistry
+                ['fa-fingerprint',     'rgba(167,139,250,0.48)', 14],  // biomarker discovery
+                ['fa-sitemap',         'rgba(52,211,153,0.48)',  13],  // genomics networks
+                ['fa-graduation-cap',  'rgba(255,255,255,0.38)', 15],  // academia
+                ['fa-network-wired',   'rgba(80,200,255,0.48)',  13],  // network biology
+                ['fa-vial',            'rgba(248,113,113,0.45)', 13],  // wet-lab validation
+                ['fa-laptop-code',     'rgba(255,255,255,0.40)', 14],  // scientific computing
+            ];
+
+            const SPEED        = 0.26;
+            const BROWNIAN     = 0.025;
+            const REPEL_RADIUS = 130;
+            const REPEL_FORCE  = 3.0;
+
+            let W, H, nodes = [], hiRAF = null;
+            let mouse = { x: -9999, y: -9999 };
+
+            const rand  = (a, b) => Math.random() * (b - a) + a;
+            const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+            function resize() {
+                W = layer.offsetWidth  || hero.offsetWidth;
+                H = layer.offsetHeight || hero.offsetHeight;
+            }
+
+            function init() {
+                layer.innerHTML = '';
+                nodes = [];
+                resize();
+                ICONS.forEach(([cls, color, size]) => {
+                    const el = document.createElement('i');
+                    el.className = `fas ${cls}`;
+                    // Set initial position via transform immediately (fixes 1-frame pile-up at 0,0)
+                    const startX = rand(20, W - 24);
+                    const startY = rand(20, H - 24);
+                    el.style.cssText = `position:absolute;left:0;top:0;font-size:${size}px;color:${color};pointer-events:none;will-change:transform;transform:translate(${startX}px,${startY}px);`;
+                    layer.appendChild(el);
+                    const angle = rand(0, Math.PI * 2);
+                    nodes.push({
+                        el,
+                        x: startX,
+                        y: startY,
+                        vx: Math.cos(angle) * rand(0.05, SPEED),
+                        vy: Math.sin(angle) * rand(0.05, SPEED),
+                    });
+                });
+            }
+
+            function step() {
+                nodes.forEach(n => {
+                    n.vx += rand(-BROWNIAN, BROWNIAN);
+                    n.vy += rand(-BROWNIAN, BROWNIAN);
+                    // mouse repulsion
+                    const mdx = n.x - mouse.x, mdy = n.y - mouse.y;
+                    const mdist = Math.hypot(mdx, mdy);
+                    if (mdist < REPEL_RADIUS && mdist > 0.5) {
+                        const force = ((REPEL_RADIUS - mdist) / REPEL_RADIUS) * REPEL_FORCE;
+                        n.vx += (mdx / mdist) * force;
+                        n.vy += (mdy / mdist) * force;
+                    }
+                    // speed cap
+                    const spd = Math.hypot(n.vx, n.vy);
+                    if (spd > SPEED * 7) { n.vx *= (SPEED * 7) / spd; n.vy *= (SPEED * 7) / spd; }
+                    n.x += n.vx; n.y += n.vy;
+                    // wall bounce — right/bottom margin accounts for icon width (~20px)
+                    if (n.x < 8 || n.x > W - 24)  { n.vx *= -1; n.x = clamp(n.x, 8, W - 24); }
+                    if (n.y < 8 || n.y > H - 24)  { n.vy *= -1; n.y = clamp(n.y, 8, H - 24); }
+                    n.el.style.transform = `translate(${n.x}px,${n.y}px)`;
+                });
+                hiRAF = requestAnimationFrame(step);
+            }
+
+            // Mouse tracking on the hero wrapper (same element as mol-canvas listener)
+            hero.addEventListener('mousemove', e => {
+                const r = hero.getBoundingClientRect();
+                mouse.x = e.clientX - r.left;
+                mouse.y = e.clientY - r.top;
+            }, { passive: true });
+            hero.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
+
+            window.addEventListener('resize', () => { init(); }, { passive: true });
+
+            init();
+            step();
+
+            // Pause when off-screen (saves CPU, mirrors mol-canvas pattern)
+            new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) { if (!hiRAF) step(); }
+                else { cancelAnimationFrame(hiRAF); hiRAF = null; }
+            }, { threshold: 0.01 }).observe(hero);
         })();
 
         // Fix: Make Google Translate Init a globally accessible window function
