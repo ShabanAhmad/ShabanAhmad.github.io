@@ -61,6 +61,8 @@
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ::selection { background: var(--accent); color: #fff; }
         :focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; border-radius: 4px; }
+        .accordion-btn:focus-visible, .cv-btn-half:focus-visible, .ai-expand-btn:focus-visible,
+        .sf-nav-btn:focus-visible, .back-to-top:focus-visible, #ai-widget-toggle:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
         .goog-te-banner-frame, .goog-te-banner-frame.skiptranslate, body > .skiptranslate { display: none !important; }
 
         /* --- 4.3: Custom Scrollbars --- */
@@ -70,8 +72,8 @@
         ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
 
         /* --- 4.4: Utility Animations & Search Highlighting --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: transform, opacity; }
+        .reveal.active { opacity: 1; transform: translateY(0); will-change: auto; }
         
         @keyframes cascadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .reveal .edu-card, .reveal .exp-box, .reveal .bento-card, .reveal .patent-box, .reveal .award-card, .reveal .referee-card { opacity: 0; }
@@ -188,7 +190,7 @@
         /* --- 4.8: Hero Landing Section --- */
         .hero-section-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); width: 100%; display: flex; justify-content: center; position: relative; overflow: hidden; }
         #mol-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.3; }
-        .hero { color: #ffffff; padding: 2rem 1rem; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: auto; }
+        .hero { color: #ffffff; padding: 2.5rem 1rem; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; width: 100%; min-height: 340px; }
         .hero-main { flex: 1; max-width: 700px; }
         
         /* NEW: Hero Side-by-Side Profile Layout */
@@ -198,16 +200,66 @@
         @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(220, 161, 29, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 161, 29, 0); } }
         .hero-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; background-color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: pulse-shadow 2s infinite; transition: transform 0.3s ease, box-shadow 0.3s ease; flex-shrink: 0; } 
         .hero-img:hover { transform: scale(1.05); }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; margin-bottom: 0.2rem; line-height: 1.1; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4.5vw, 3.2rem); margin-bottom: 0.2rem; line-height: 1.1; }
         .hero-name-span { transition: color 0.3s ease; cursor: default; } .hero-name-span:hover { color: var(--accent); }
-        .hero-contact { margin-top: 12px; font-size: 0.95rem; color: rgba(255,255,255,0.9); } 
+        .hero-contact { margin-top: 12px; font-size: 0.95rem; color: rgba(255,255,255,0.9); }
         .hero-contact i { color: var(--accent); margin-right: 5px; }
+        .hero-seeking-line {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.88);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3em;
+            flex-wrap: wrap;
+            width: fit-content;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-left: 3px solid rgba(216,180,254,0.6);
+            border-radius: 6px;
+            padding: 0.38rem 0.85rem 0.38rem 0.7rem;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        /* Sweep animation: fires after 10s then repeats every ~14s */
+        @keyframes seekPillSweep {
+            0%, 70%  { transform: translateX(130%); opacity: 0; }
+            78%      { transform: translateX(-10%);  opacity: 1; }
+            85%      { transform: translateX(-10%);  opacity: 1; }
+            95%      { transform: translateX(-130%); opacity: 0; }
+            100%     { transform: translateX(130%);  opacity: 0; }
+        }
+        .hero-seeking-line::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(216,180,254,0.35) 30%,
+                rgba(245,158,11,0.28) 60%,
+                rgba(255,255,255,0.18) 80%,
+                transparent 100%);
+            transform: translateX(130%);
+            animation: seekPillSweep 14s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            border-radius: inherit;
+        }
+        .hero-seeking-line > * { position: relative; z-index: 1; }
+        .hsl-ap { color: #d8b4fe; font-weight: 700; font-style: normal; text-decoration: none; border-bottom: 1px dashed rgba(216,180,254,0.45); transition: color 0.2s, border-color 0.2s; }
+        .hsl-tcp { color: var(--accent); font-weight: 700; font-style: normal; text-decoration: none; border-bottom: 1px dashed rgba(245,158,11,0.5); transition: color 0.2s, border-color 0.2s; }
+        .hsl-ap:hover { color: #f3e8ff; border-color: #f3e8ff; }
+        .hsl-tcp:hover { color: #fcd34d; border-color: #fcd34d; }
         .email-click { color: inherit; border-bottom: 1px dashed rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; position: relative; } 
         .hero-contact .email-click { border-bottom-color: rgba(255,255,255,0.4); color: #fff; } 
         .email-click:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
 
         .hero-stats { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 2rem; width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left; animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0px); } }
         .stat-row-link, .stat-row-container { display: block; border-bottom: 1px solid rgba(255,255,255,0.1); transition: transform 0.2s ease, background 0.2s; border-radius: 4px; } .stat-row-link:last-of-type { border-bottom: none; } .stat-row-link:hover { transform: translateX(5px); background: rgba(255,255,255,0.05); } .stat-row-link:hover .stat-value { color: #fff; }
         .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 5px; font-size: 1.05rem; }
         .stat-label { font-weight: 400; color: #ddd; display: flex; align-items: center; gap: 10px; } .stat-value { font-weight: 700; color: var(--accent); font-size: 1.2rem; transition: color 0.2s; }
@@ -291,8 +343,13 @@
         /* --- 4.9: Standard Content Layouts & Typography --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem; border-left: 6px solid var(--accent); padding-left: 18px; letter-spacing: 0.5px; }
+        /* Global h3 — consistent sub-section heading across all sections */
+        h3:not([class]) { font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--sub-heading); margin-bottom: 0.75rem; line-height: 1.3; }
+        body.dark-mode h3:not([class]) { color: #38bdf8; }
         .about-split-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; } .about-left, .about-right { min-width: 0; }
-        .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; }
+        .profile-text { text-align: justify; font-size: 1.05rem; color: #444; margin-bottom: 1.5rem; line-height: 1.85; }
+        .profile-text p { margin-bottom: 1rem; }
+        .profile-text p:last-child { margin-bottom: 0; }
         .niper-hover { color: inherit; text-decoration: underline; text-decoration-style: dashed; text-decoration-color: rgba(6, 78, 59, 0.5); text-underline-offset: 3px; transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out; padding: 0 2px; font-weight: inherit; } .niper-hover:hover { color: var(--accent) !important; text-decoration-color: var(--accent); }
         .unified-sub-heading { margin-top: 0; border-left: none; padding-left: 0; font-size: 1.5rem; font-family: 'Roboto', sans-serif; font-weight: 700; position: relative; display: inline-block; cursor: default; margin-bottom: 1.2rem; } .ush-primary { color: var(--sub-heading); } .ush-accent { color: var(--accent); } .unified-sub-heading::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0; background-color: currentColor; transition: width 0.5s ease; } .unified-sub-heading:hover::after { width: 100%; }
 
@@ -302,7 +359,8 @@
         /* AI Elements */
         @keyframes aiSparkle { 0%, 100% { filter: drop-shadow(0 0 4px rgba(245,158,11,0.4)); transform: scale(1); } 50% { filter: drop-shadow(0 0 15px rgba(245,158,11,1)); transform: scale(1.2); color: #ffd000 !important; } }
         .ai-expand-btn { background-color: transparent !important; color: var(--accent) !important; border: 1px solid transparent !important; box-shadow: none !important; border-radius: 30px !important; padding: 8px !important; max-width: 44px; height: 44px; display: inline-flex !important; align-items: center; justify-content: flex-start; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; gap: 0 !important; white-space: nowrap; cursor: pointer; }
-        .ai-expand-btn .btn-icon { min-width: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.35rem; font-style: normal; transition: color 0.3s; animation: aiSparkle 3s infinite ease-in-out; }
+        .ai-expand-btn .btn-icon { min-width: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.35rem; font-style: normal; transition: color 0.3s; animation: aiSparkle 4s infinite ease-in-out; }
+        .ai-expand-btn:hover .btn-icon, .ai-expand-btn.processing-gold .btn-icon { animation: none; filter: none; }
         .ai-expand-btn .btn-text { opacity: 0; transition: opacity 0.3s ease, margin-left 0.3s ease; display: inline-block; width: 0; font-weight: 700; font-size: 0.9rem; }
         .ai-expand-btn:hover, .ai-expand-btn.processing-gold { max-width: 250px; padding: 8px 18px !important; background-color: var(--accent) !important; color: #fff !important; box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important; }
         .ai-expand-btn:hover .btn-icon, .ai-expand-btn.processing-gold .btn-icon { color: #fff !important; animation: none; filter: none; }
@@ -352,12 +410,12 @@
         /* --- 4.11: Dynamic Grid & Profile Cards --- */
         .edu-grid { display: flex; flex-direction: column; gap: 1rem; position: relative; padding-right: 40px; margin-right: 5px; padding-left: 0; margin-left: 0; }
         .edu-grid::before { content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px; background: linear-gradient(to bottom, var(--accent) 90%, rgba(220,161,29,0.1) 100%); border-radius: 2px; }
-        .edu-grid .edu-card { position: relative; padding: 1.5rem 1rem 1.5rem 2.2rem; }
+        .edu-grid .edu-card { position: relative; padding: 1rem 1rem 1rem 2.2rem; box-shadow: var(--shadow-sm); }
         .edu-grid .edu-card::before { content: ''; position: absolute; right: -39.5px; top: 50%; transform: translate(50%, -50%); width: 14px; height: 14px; background: var(--white); border: 2px solid var(--accent); border-radius: 50%; z-index: 2; transition: all 0.3s ease; } .edu-grid .edu-card:hover::before { transform: translate(50%, -50%) scale(1.3); }
 
         .exp-grid-vertical { display: flex; flex-direction: column; gap: 1rem; position: relative; padding-right: 40px; margin-right: 5px; }
         .exp-grid-vertical::before { content: ''; position: absolute; top: 15px; bottom: 15px; right: 0; width: 2px; background: linear-gradient(to bottom, var(--accent) 90%, rgba(220,161,29,0.1) 100%); border-radius: 2px; }
-        .exp-grid-vertical .exp-box { position: relative; padding: 0.8rem 1rem 0.8rem 2.2rem; }
+        .exp-grid-vertical .exp-box { position: relative; padding: 1rem 1rem 1rem 2.2rem; box-shadow: var(--shadow-sm); }
         .exp-grid-vertical .exp-box::before { content: ''; position: absolute; right: -39.5px; top: 50%; transform: translate(50%, -50%); width: 14px; height: 14px; background: var(--white); border: 2px solid var(--accent); border-radius: 50%; z-index: 2; transition: all 0.3s ease; } .exp-grid-vertical .exp-box:hover::before { transform: translate(50%, -50%) scale(1.3); }
         .exp-grid-vertical .exp-box::after, .edu-grid .edu-card::after { right: auto !important; left: 0 !important; transform: translate(-50%, -50%) !important; } .exp-grid-vertical .exp-box:hover::after, .edu-grid .edu-card:hover::after { transform: translate(-50%, -50%) scale(1.15) !important; }
         
@@ -421,7 +479,7 @@
         
         .patent-box { background: #fff; padding: 1.5rem; margin-bottom: 1rem; border-radius: 20px 5px 20px 5px; border: 1px solid #ccc; border-right: 5px solid #ccc; display: flex; align-items: center; gap: 20px; transition: all 0.4s ease; } .patent-box:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); } .patent-box:hover h4, .patent-box:hover p, .patent-box:hover .patent-link { color: #fff !important; } .patent-box:hover .patent-icon { transform: scale(1.2) rotate(-15deg); color: #fff !important; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); } .patent-box:hover .grant-badge { background: rgba(255,255,255,0.2); color: #fff; border-color: #fff; } .patent-icon { font-size: 3rem; transition: all 0.4s ease; } 
         .patent-box:nth-child(odd) { border-color: rgba(16,185,129,0.3); border-right-color: #10B981; } .patent-box:nth-child(odd) .patent-icon { color: #10B981; } .patent-box:nth-child(odd):hover { background: linear-gradient(135deg, #10B981 0%, #047857 100%); border-color: #047857; }
-        .patent-box:nth-child(even) { border-color: rgba(59,130,246,0.3); border-right-color: #3b82f6; } .patent-box:nth-child(even) .patent-icon { color: #3b82f6; } .patent-box:nth-child(even):hover { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-color: #1d4ed8; }
+        .patent-box:nth-child(even) { border-color: rgba(6,78,59,0.25); border-right-color: var(--accent); } .patent-box:nth-child(even) .patent-icon { color: var(--accent); } .patent-box:nth-child(even):hover { background: linear-gradient(135deg, var(--accent) 0%, #b45309 100%); border-color: #b45309; }
         
         .grant-badge { background-color: #f0fdf4; color: #047857; border: 1px solid #6ee7b7; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-right: 8px; display: inline-block; vertical-align: middle; transition: all 0.4s ease; position: relative; overflow: hidden; }
         .grant-badge::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9), transparent); transform: skewX(-20deg); animation: metallicShimmer 3s infinite linear; }
@@ -461,20 +519,35 @@
         .accordion-btn.active + .panel .pub-item:nth-child(3), .accordion-btn.active + .panel .tech-card:nth-child(3), .accordion-btn.active + .panel .culture-card:nth-child(3), .accordion-btn.active + .panel .tcp-time-node:nth-child(3), .accordion-btn.active + .panel .tcp-focus-card:nth-child(3) { animation-delay: 0.25s; }
         .accordion-btn.active + .panel .pub-item:nth-child(4), .accordion-btn.active + .panel .tech-card:nth-child(4), .accordion-btn.active + .panel .culture-card:nth-child(4) { animation-delay: 0.35s; }
         .accordion-btn.active + .panel .pub-item:nth-child(n+5), .accordion-btn.active + .panel .tech-card:nth-child(n+5) { animation-delay: 0.45s; }
+        .accordion-btn.active + .panel .course-card { opacity: 1; animation: cascadeUp 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards; }
+        .accordion-btn.active + .panel .course-card:nth-child(1) { animation-delay: 0.05s; }
+        .accordion-btn.active + .panel .course-card:nth-child(2) { animation-delay: 0.18s; }
+        .accordion-btn.active + .panel .course-card:nth-child(3) { animation-delay: 0.31s; }
+        .accordion-btn.active + .panel .course-card:nth-child(4) { animation-delay: 0.44s; }
+        .accordion-btn.active + .panel .course-card:nth-child(5) { animation-delay: 0.57s; }
+        .accordion-btn.active + .panel .course-card:nth-child(6) { animation-delay: 0.70s; }
+        .accordion-btn.active + .panel .strategy-card-item { opacity: 1; animation: cascadeUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards; }
+        .accordion-btn.active + .panel .strategy-card-item:nth-child(1) { animation-delay: 0.05s; }
+        .accordion-btn.active + .panel .strategy-card-item:nth-child(2) { animation-delay: 0.18s; }
+        .accordion-btn.active + .panel .strategy-card-item:nth-child(3) { animation-delay: 0.31s; }
 
         .scrollable-list { max-height: 450px; overflow-y: auto; padding: 10px 20px 10px 10px; -webkit-overflow-scrolling: touch; } .pub-list { padding-left: 30px; } .pub-list li::marker { font-weight: 700; color: var(--primary); font-size: 1.05rem; } 
         .pub-item { margin-bottom: 1rem; padding: 12px; border-bottom: 1px dashed #eee; border: 1px solid transparent; border-bottom-color: #eee; border-radius: 6px; font-size: 0.95rem; transition: all 0.3s ease; } .pub-item:hover { transform: translateY(-3px); background: #fff; border-color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-bottom-color: var(--accent); z-index: 10; position: relative; }
         
-        .pub-doi, .btn-data { font-size: 0.75rem; color: #fff !important; padding: 3px 8px; border-radius: 6px; margin-left: 8px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; text-transform: uppercase; transition: transform 0.2s; border: none; cursor: pointer; } .pub-doi { background-color: #dca11d; } .pub-doi::after { content: '\f35d'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 0.7rem; margin-left: 6px; } .btn-data { background-color: #28a745; } .pub-doi:hover, .btn-data:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); } .btn-data i { font-size: 0.7rem; } .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 4px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
+        .pub-doi, .btn-data { font-size: 0.75rem; color: #fff !important; padding: 3px 8px; border-radius: 6px; margin-left: 8px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; text-transform: uppercase; transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; } .pub-doi { background-color: var(--accent); } .pub-doi::after { content: '\f35d'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 0.7rem; margin-left: 6px; } .btn-data { background-color: var(--primary); } .pub-doi:hover, .btn-data:hover { transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); } .btn-data i { font-size: 0.7rem; } .event-meta { display: block; color: #666; font-size: 0.9rem; margin-top: 4px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 8px; margin-left: 2px; }
 
         /* --- 4.14: Reviewer Badges & Tech Grids --- */
         .peer-review-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-top: 10px; } .pr-badge-item { background-color: #fff; border: 1px solid #eee; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem; color: #555; transition: all 0.2s ease; cursor: default; } .pr-badge-item:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); } .verified-badge { background-color: var(--primary); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; vertical-align: middle; margin-left: 10px; display: inline-flex; align-items: center; gap: 4px; }
         .scrollable-grid { max-height: 380px; overflow-y: auto; overflow-x: hidden; padding: 10px 5px; -webkit-overflow-scrolling: touch; } .tech-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 0.5rem 0.5rem; }
-        .tech-card { background: #fff; padding: 1.2rem 1rem; border-radius: 8px; border-top: 5px solid #ccc; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.3s ease, border-color 0.3s ease; }
-        /* Shared hover lift — tech cards specialise only border-color per variant */
-        .tc-blue:hover, .tc-green:hover, .tc-purple:hover, .tc-orange:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .tc-blue { border-top-color: var(--primary); } .tc-blue:hover { border-color: var(--primary); } .tc-green { border-top-color: #20c997; } .tc-green:hover { border-color: #20c997; } .tc-purple { border-top-color: #6f42c1; } .tc-purple:hover { border-color: #6f42c1; } .tc-orange { border-top-color: #fd7e14; } .tc-orange:hover { border-color: #fd7e14; }
-        .tech-sub-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; } .tech-sub-title i { color: var(--accent); font-size: 1.2rem; } .tech-ul { list-style: none; padding: 0; margin: 0; } .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; } .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; }
+        .tech-card { --tc-accent: #9ca3af; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding: 1.35rem 1.2rem; border-radius: 20px; border: 1px solid #e2e8f0; border-top: 4px solid var(--tc-accent); box-shadow: 0 10px 24px rgba(15,23,42,0.06); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+        .tech-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(6,78,59,0.05), transparent 46%); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .tech-card:hover { transform: translateY(-6px); box-shadow: 0 18px 32px rgba(15,23,42,0.12); border-color: var(--tc-accent); }
+        .tech-card:hover::before { opacity: 1; }
+        .tech-card:hover .tech-sub-title { color: var(--tc-accent); transition: color 0.3s ease; }
+        .tech-card:hover .tech-sub-title i { color: var(--tc-accent); transition: color 0.3s ease; }
+        .tech-card:hover .tech-ul li::before { color: var(--tc-accent); transition: color 0.3s ease; }
+        .tc-blue { --tc-accent: var(--primary); } .tc-green { --tc-accent: #20c997; } .tc-purple { --tc-accent: #6f42c1; } .tc-orange { --tc-accent: #fd7e14; }
+        .tech-sub-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; transition: color 0.3s ease; } .tech-sub-title i { color: var(--accent); font-size: 1.2rem; transition: color 0.3s ease; } .tech-ul { list-style: none; padding: 0; margin: 0; } .tech-ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.9rem; color: #555; line-height: 1.4; } .tech-ul li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; top: 3px; color: var(--accent); font-size: 0.7rem; transition: color 0.3s ease; }
 
         /* --- 4.14.5: Premium TCP Group UI (Timeline & Focus Cards) --- */
         .tcp-timeline { position: relative; padding-left: 45px; margin: 30px 0 10px 0; }
@@ -544,7 +617,9 @@
         .msg-success-box span { position: absolute; background-color: #28a745; display: block; } .msg-success-box span:nth-child(1) { top: 0; left: 0; width: 0%; height: 2px; } .msg-success-box span:nth-child(2) { top: 0; right: 0; width: 2px; height: 0%; } .msg-success-box span:nth-child(3) { bottom: 0; right: 0; width: 0%; height: 2px; } .msg-success-box span:nth-child(4) { bottom: 0; left: 0; width: 2px; height: 0%; }
         @keyframes runWidth { from { width: 0%; } to { width: 100%; } } @keyframes runHeight { from { height: 0%; } to { height: 100%; } } @keyframes reverseWidth { from { width: 100%; } to { width: 0%; } } @keyframes reverseHeight { from { height: 100%; } to { height: 100%; } } @keyframes fadeInMsg { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } } @keyframes fadeOutMsg { from { opacity: 1; } to { opacity: 0; display: none; } }
         .msg-success-box.anim-start { display: block; animation: fadeInMsg 0.5s forwards; } .msg-success-box.anim-running span:nth-child(1) { animation: runWidth 0.3s linear forwards; } .msg-success-box.anim-running span:nth-child(2) { animation: runHeight 0.3s linear 0.3s forwards; } .msg-success-box.anim-running span:nth-child(3) { animation: runWidth 0.3s linear 0.6s forwards; } .msg-success-box.anim-running span:nth-child(4) { animation: runHeight 0.3s linear 0.9s forwards; } .msg-success-box.anim-reverse span:nth-child(1) { animation: reverseWidth 0.3s linear 0.9s forwards; } .msg-success-box.anim-reverse span:nth-child(2) { animation: reverseHeight 0.3s linear 0.6s forwards; } .msg-success-box.anim-reverse span:nth-child(3) { animation: reverseWidth 0.3s linear 0.3s forwards; } .msg-success-box.anim-reverse span:nth-child(4) { animation: reverseHeight 0.3s linear forwards; } .msg-success-box.anim-end { animation: fadeOutMsg 0.5s forwards; }
-        .copy-feedback { position: absolute; background: #333; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; top: -30px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; } .copy-feedback.show { opacity: 1; }
+        .copy-feedback { position: absolute; background: var(--primary); color: #fff; padding: 5px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em; top: -34px; left: 50%; transform: translateX(-50%) translateY(4px); opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; pointer-events: none; z-index: 100; white-space: nowrap; box-shadow: 0 3px 10px rgba(6,78,59,0.35); }
+        .copy-feedback::before { content: '✓ '; }
+        .copy-feedback.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
         /* --- 4.16: Artificial Intelligence Chat Module --- */
         #ai-widget-toggle { position: fixed; bottom: 30px; right: 90px; width: 50px; height: 50px; background-color: var(--primary); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 10002; transition: all 0.3s ease; border: 2px solid var(--accent); } #ai-widget-toggle:hover { transform: scale(1.1); background-color: var(--accent); }
@@ -614,8 +689,7 @@
             .hero { flex-direction: column; gap: 2rem; padding: 2rem 1rem; } 
             .hero-profile-group { flex-direction: column; text-align: center; gap: 1.5rem; margin-bottom: 2rem; }
             .hero-text-group { align-items: center; }
-            .hero h1 { font-size: 2.6rem; }
-            .typewriter-box { text-align: justify; margin: 0 auto; }
+            /* hero h1 handled by clamp() — no override needed */
             .hero-img { width: 160px; height: 160px; }
             .hero-stats { width: 100%; max-width: 400px; animation: none; }
             
@@ -664,7 +738,11 @@
         .ai-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 10005; align-items: center; justify-content: center; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s ease; } .ai-modal-overlay.show { display: flex; opacity: 1; }
         .ai-modal-box { background: #fff; width: 90%; max-width: 550px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border-top: 4px solid var(--accent); transform: scale(0.9); transition: transform 0.3s ease; overflow: hidden; display: flex; flex-direction: column; } .ai-modal-overlay.show .ai-modal-box { transform: scale(1); }
         .ai-modal-header { padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
-        .ai-modal-body { padding: 25px 20px; font-size: 1.05rem; color: #333; line-height: 1.6; max-height: 60vh; overflow-y: auto; }
+        .ai-modal-body { padding: 22px 24px; font-size: 0.95rem; color: #374151; line-height: 1.65; max-height: 65vh; overflow-y: auto; }
+        .ai-modal-body ol { padding-left: 1.5rem; margin: 0.4rem 0 0.9rem; }
+        .ai-modal-body ul { padding-left: 1.4rem; margin: 0.4rem 0 0.9rem; list-style: disc; }
+        .ai-modal-body li { margin-bottom: 0.3rem; font-size: 0.9rem; line-height: 1.55; }
+        .ai-modal-body p { margin-bottom: 0.75rem; text-align: justify; }
         .ai-close-btn { cursor: pointer; color: #888; transition: 0.3s; font-size: 1.3rem; } .ai-close-btn:hover { color: #dc3545; }
         
         /* New Editable AI Content Block */
@@ -674,7 +752,8 @@
         /* --- 2. Global Dark Mode Framework --- */
         body.dark-mode { --text: #e2e8f0; --light-bg: #0f172a; --white: #1e293b; --sub-heading: #38bdf8; }
         body.dark-mode, body.dark-mode .panel, body.dark-mode .nav-dropdown-content, body.dark-mode .custom-lang-dropdown, body.dark-mode .sticky-sidebar, body.dark-mode .ai-modal-box, body.dark-mode #ai-chat-window, body.dark-mode .chat-footer { background-color: var(--light-bg); color: var(--text); border-color: #334155; }
-        body.dark-mode .tech-card, body.dark-mode .edu-card, body.dark-mode .exp-box, body.dark-mode .referee-card, body.dark-mode .award-card, body.dark-mode .patent-box, body.dark-mode .accordion-btn, body.dark-mode .interest-card, body.dark-mode .ai-matcher-box { background-color: var(--white); color: var(--text); border-color: #334155; }
+        body.dark-mode .edu-card, body.dark-mode .exp-box, body.dark-mode .referee-card, body.dark-mode .award-card, body.dark-mode .patent-box, body.dark-mode .accordion-btn, body.dark-mode .interest-card, body.dark-mode .ai-matcher-box { background-color: var(--white); color: var(--text); border-color: #334155; }
+        body.dark-mode .tech-card { background: linear-gradient(180deg, #1e293b 0%, #172032 100%); color: var(--text); border-color: #334155; }
         
         /* Fixed Backgrounds for Hero & Footer */
         body.dark-mode .hero-section-wrapper, body.dark-mode .contact-footer-section { background: linear-gradient(135deg, #0f172a 0%, #020617 100%); border-bottom: 1px solid #1e293b; }
@@ -734,6 +813,11 @@
         body.dark-mode .tcp-grid-modern .tfc-icon { color: var(--accent); }
 
         body.dark-mode .pub-item:hover, body.dark-mode .nav-dropdown-content a:hover, body.dark-mode .lang-option:hover { background-color: #334155; }
+        body.dark-mode .pub-doi { background-color: #b45309; }
+        body.dark-mode .btn-data { background-color: #166534; }
+        body.dark-mode .edu-grid::before { background: linear-gradient(to bottom, var(--accent) 90%, rgba(245,158,11,0.15) 100%); }
+        body.dark-mode .pub-item { border-bottom-color: #334155; }
+        body.dark-mode .pub-item:hover { background: #1e293b; border-color: var(--accent); }
         body.dark-mode .ai-generated-content, body.dark-mode .chat-body, body.dark-mode .ai-matcher-box textarea, body.dark-mode .ai-modal-body input, body.dark-mode .ai-modal-body textarea { background-color: #020617; color: var(--text); border-color: #334155; }
         body.dark-mode .chat-header { border-bottom-color: var(--primary-dark); }
         body.dark-mode .cite-dropdown-menu { background: var(--white); border-color: #334155; }
@@ -1566,48 +1650,68 @@
         body.dark-mode .tcp-roadmap .tcp-ph-2 { border-top-color: #fbbf24; } body.dark-mode .tcp-roadmap .tcp-ph-2::before { border-color: #fbbf24; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-2:hover::before { background: #fbbf24; } body.dark-mode .tcp-roadmap .tcp-ph-2:hover { border-color: #fbbf24; }
         body.dark-mode .tcp-roadmap .tcp-ph-3 { border-top-color: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3::before { border-color: #c084fc; background: #0f172a; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover::before { background: #c084fc; } body.dark-mode .tcp-roadmap .tcp-ph-3:hover { border-color: #c084fc; }
 
-        .typewriter-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 6px;
-            padding: 1.2rem 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #f8fafc;
-            position: relative;
-            font-weight: 400;
-            text-align: justify;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        /* === Hero Tagline Bridge Section === */
+        .hero-bridge-section {
+            background: none;
+            border: none;
+            padding: 0.6rem 0 0;
             margin: 0;
-            width: 100%;
+            text-align: center;
         }
-        /* Corner-bracket accents — grow on hover */
-        .typewriter-box::before, .typewriter-box::after { content:''; position:absolute; width:20px; height:20px; pointer-events:none; transition:width 0.35s ease, height 0.35s ease; }
-        .typewriter-box::before { top:-1px; left:-1px; border-top:3px solid var(--accent); border-left:3px solid var(--accent); border-radius:4px 0 0 0; }
-        .typewriter-box::after  { bottom:-1px; right:-1px; border-bottom:3px solid var(--accent); border-right:3px solid var(--accent); border-radius:0 0 4px 0; }
-        .typewriter-box:hover::before, .typewriter-box:hover::after { width:34px; height:34px; }
-        .tw-link { color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(245, 158, 11, 0.8); transition: color 0.3s ease, border-color 0.3s ease; }
-        .tw-link:hover { color: var(--accent) !important; border-bottom: 1px dashed var(--accent); }
-        /* Block cursor */
-        .tw-cursor { display: inline-block; width: 0.58em; height: 1.12em; background: rgba(245,158,11,0.78); vertical-align: text-bottom; margin-left: 2px; animation: twBlink 0.85s step-end infinite; border-radius: 2px; }
-        /* Fill/unfill ghost layer */
-        .tw-line-wrap { position: relative; }
-        .tw-ghost { color: rgba(255,255,255,0.22); pointer-events: none; word-break: break-word; font-weight: 400; }
-        .tw-ghost strong { font-weight: 700; }  /* preserves bold so line-breaks match active */
-        .tw-active { position: absolute; top: 0; left: 0; width: 100%; word-break: break-word; }
-        @keyframes twBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        #tw-line1, #tw-line2 { min-height: 0; }
-        .tw-separator { position: relative; height: 1px; margin: 0.7rem 0; background: rgba(255,255,255,0.12); border-radius: 1px; overflow: hidden; opacity: 0; transition: opacity 0.4s ease; }
-        .tw-separator.visible { opacity: 1; }
-        .tw-sep-runner { position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: linear-gradient(to right, transparent, var(--accent), transparent); animation: twSepRun 2.2s linear infinite; }
-        @keyframes twSepRun { 0% { left: -30%; } 100% { left: 130%; } }
-        body.dark-mode .typewriter-box {
-            background: rgba(0, 0, 0, 0.2);
-            color: #f8fafc;
-            border-left-color: var(--accent);
-            border-right-color: var(--accent);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        .hero-bridge-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-bridge-text {
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 0.01em;
+            white-space: normal;
+            text-align: center;
+        }
+        /* Grey base — always visible */
+        .hero-bridge-grey {
+            color: #9ca3af;
+        }
+        .hero-bridge-grey span { color: #9ca3af; font-style: normal; font-weight: 700; }
+        body.dark-mode .hero-bridge-grey { color: #4b5563; }
+        body.dark-mode .hero-bridge-grey span { color: #4b5563; }
+
+        /* Coloured overlay — animates on top via clip-path */
+        .hero-bridge-colour {
+            position: absolute;
+            inset: 0;
+            color: var(--primary-dark);
+            /* clip-path reveal: right side clipped → fully revealed → wipe out left → reset */
+            animation: bridgeColourCycle 20s cubic-bezier(0.4, 0, 0.2, 1) 0.5s infinite;
+        }
+        .hero-bridge-colour .btw-kw1 { color: #0ea5e9; font-style: normal; font-weight: 700; }
+        .hero-bridge-colour .btw-kw2 { color: var(--accent); font-style: normal; font-weight: 700; }
+        .hero-bridge-colour .btw-kw3 { color: #10b981; font-style: normal; font-weight: 700; }
+        body.dark-mode .hero-bridge-colour { color: #94a3b8; }
+
+        @keyframes bridgeColourCycle {
+            /* Hold coloured */
+            0%, 16%  { clip-path: inset(0 0% 0 0); opacity: 1; }
+            /* Fade colour out */
+            28%      { clip-path: inset(0 0% 0 0); opacity: 0; }
+            /* Jump clip to right (invisible, so seamless) */
+            28.5%    { clip-path: inset(0 100% 0 0); opacity: 0; }
+            /* Begin fill from left */
+            30%      { clip-path: inset(0 100% 0 0); opacity: 1; }
+            /* Fully filled */
+            50%      { clip-path: inset(0 0% 0 0); opacity: 1; }
+            /* Hold coloured until cycle end */
+            100%     { clip-path: inset(0 0% 0 0); opacity: 1; }
         }
 
         body.dark-mode .timeline-item-1 {
@@ -1828,53 +1932,117 @@
         #hi-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
         .hero-img-wrap { position: relative; flex-shrink: 0; }
 
-        /* === Typewriter Box Dynamic Sizing === */
-        .typewriter-box { transition: padding 0.35s ease; }
-
         /* === 4.18.5: Course Cards === */
         .course-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
         .course-card { background: #fff; border-radius: 14px; border: 1px solid #e5e7eb; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
-        .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .course-card:hover { transform: translateY(-5px); }
         .course-card-top { padding: 1.1rem 1.2rem 0.7rem; display: flex; align-items: flex-start; gap: 0.9rem; }
+        .course-card-info { flex: 1; min-width: 0; }
         .course-icon-box { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
-        .course-title { font-weight: 700; font-size: 0.97rem; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+        /* Merged: course-title base + transition */
+        .course-title { font-weight: 700; font-size: 0.97rem; color: var(--text); line-height: 1.4; margin-bottom: 4px; transition: color 0.25s ease; }
+        .course-card-meta { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
         .course-level-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.3px; }
+        .ccard-sep { color: rgba(0,0,0,0.22); font-size: 0.75rem; line-height: 1; user-select: none; }
+        body.dark-mode .ccard-sep { color: rgba(255,255,255,0.2); }
+        /* Inline AI Syllabus button — collapses to ✨ icon, expands on hover like ai-expand-btn */
+        .course-ai-btn { background: transparent; color: var(--accent); border: 1px solid transparent; border-radius: 20px; padding: 3px; max-width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: flex-start; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); gap: 0; white-space: nowrap; cursor: pointer; vertical-align: middle; }
+        .course-ai-btn .btn-icon { min-width: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem; animation: aiSparkle 4s infinite ease-in-out; }
+        .course-ai-btn:hover .btn-icon, .course-ai-btn.processing-gold .btn-icon { color: #fff; animation: none; filter: none; }
+        .course-ai-btn .btn-text { opacity: 0; width: 0; display: inline-block; font-weight: 700; font-size: 0.72rem; transition: opacity 0.3s ease, margin-left 0.3s ease; white-space: nowrap; }
+        .course-ai-btn:hover, .course-ai-btn.processing-gold { max-width: 120px; padding: 3px 8px; background-color: var(--accent); color: #fff; box-shadow: 0 3px 8px rgba(220,161,29,0.3); }
+        .course-ai-btn:hover .btn-icon, .course-ai-btn.processing-gold .btn-icon { color: #fff; }
+        .course-ai-btn:hover .btn-text, .course-ai-btn.processing-gold .btn-text { opacity: 1; margin-left: 4px; width: auto; }
         .course-body { padding: 0.6rem 1.2rem 1rem; flex: 1; }
         .course-desc { font-size: 0.85rem; color: #555; line-height: 1.55; margin-bottom: 0.7rem; }
         .course-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-        .course-tag { font-size: 0.73rem; background: #f3f4f6; color: #374151; padding: 3px 8px; border-radius: 12px; font-weight: 500; }
-        /* Per-card accent colours */
-        .cc-blue  .course-icon-box { background: #dbeafe; color: #1d4ed8; }
+        .course-tag { font-size: 0.73rem; background: #f3f4f6; color: #374151; padding: 3px 8px; border-radius: 12px; font-weight: 500; transition: background 0.25s ease, color 0.25s ease; }
+
+        /* Per-card accent: RIGHT border + gradient header background */
+        .cc-blue   { border-right: 4px solid #3b82f6; }
+        .cc-green  { border-right: 4px solid #10b981; }
+        .cc-purple { border-right: 4px solid #7c3aed; }
+        .cc-amber  { border-right: 4px solid var(--accent); }
+        .cc-teal   { border-right: 4px solid #14b8a6; }
+        .cc-rose   { border-right: 4px solid #f43f5e; }
+
+        .cc-blue .course-card-top   { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); }
+        .cc-green .course-card-top  { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); }
+        .cc-purple .course-card-top { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); }
+        .cc-amber .course-card-top  { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+        .cc-teal .course-card-top   { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); }
+        .cc-rose .course-card-top   { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); }
+
+        .cc-blue  .course-icon-box { background: #bfdbfe; color: #1d4ed8; }
         .cc-blue  .course-level-badge { background: #dbeafe; color: #1d4ed8; }
-        .cc-blue:hover  { border-color: #93c5fd; }
-        .cc-green .course-icon-box { background: #d1fae5; color: #065f46; }
+        .cc-blue:hover  { border-color: #3b82f6; box-shadow: 0 8px 28px rgba(59,130,246,0.18); }
+        .cc-blue:hover .course-title { color: #1d4ed8; }
+        .cc-blue:hover .course-tag   { background: #dbeafe; color: #1d4ed8; }
+        .cc-blue:hover .course-icon-box { background: #93c5fd; }
+
+        .cc-green .course-icon-box { background: #a7f3d0; color: #065f46; }
         .cc-green .course-level-badge { background: #d1fae5; color: #065f46; }
-        .cc-green:hover { border-color: #6ee7b7; }
-        .cc-purple .course-icon-box { background: #ede9fe; color: #5b21b6; }
+        .cc-green:hover { border-color: #10b981; box-shadow: 0 8px 28px rgba(16,185,129,0.18); }
+        .cc-green:hover .course-title { color: #065f46; }
+        .cc-green:hover .course-tag   { background: #d1fae5; color: #065f46; }
+        .cc-green:hover .course-icon-box { background: #6ee7b7; }
+
+        .cc-purple .course-icon-box { background: #ddd6fe; color: #5b21b6; }
         .cc-purple .course-level-badge { background: #ede9fe; color: #5b21b6; }
-        .cc-purple:hover { border-color: #c4b5fd; }
-        .cc-amber .course-icon-box { background: #fef3c7; color: #92400e; }
+        .cc-purple:hover { border-color: #7c3aed; box-shadow: 0 8px 28px rgba(124,58,237,0.18); }
+        .cc-purple:hover .course-title { color: #5b21b6; }
+        .cc-purple:hover .course-tag   { background: #ede9fe; color: #5b21b6; }
+        .cc-purple:hover .course-icon-box { background: #c4b5fd; }
+
+        .cc-amber .course-icon-box { background: #fde68a; color: #92400e; }
         .cc-amber .course-level-badge { background: #fef3c7; color: #92400e; }
-        .cc-amber:hover { border-color: #fcd34d; }
-        /* Inner-element transitions for smooth accent-cascade on hover */
-        .course-title  { transition: color 0.25s ease; }
-        .course-tag    { transition: background 0.25s ease, color 0.25s ease; }
-        /* Hover: title + icon bg + tags adopt the card's accent colour */
-        .cc-blue:hover .course-title    { color: #1d4ed8; }
-        .cc-blue:hover .course-tag      { background: #dbeafe; color: #1d4ed8; }
-        .cc-blue:hover .course-icon-box { background: #bfdbfe; }
-        .cc-green:hover .course-title   { color: #065f46; }
-        .cc-green:hover .course-tag     { background: #d1fae5; color: #065f46; }
-        .cc-green:hover .course-icon-box{ background: #a7f3d0; }
-        .cc-purple:hover .course-title  { color: #5b21b6; }
-        .cc-purple:hover .course-tag    { background: #ede9fe; color: #5b21b6; }
-        .cc-purple:hover .course-icon-box{ background: #ddd6fe; }
-        .cc-amber:hover .course-title   { color: #92400e; }
-        .cc-amber:hover .course-tag     { background: #fef3c7; color: #92400e; }
-        .cc-amber:hover .course-icon-box{ background: #fde68a; }
+        .cc-amber:hover { border-color: var(--accent); box-shadow: 0 8px 28px rgba(245,158,11,0.18); }
+        .cc-amber:hover .course-title { color: #92400e; }
+        .cc-amber:hover .course-tag   { background: #fef3c7; color: #92400e; }
+        .cc-amber:hover .course-icon-box { background: #fcd34d; }
+
+        .cc-teal .course-icon-box  { background: #99f6e4; color: #0f766e; }
+        .cc-teal .course-level-badge { background: #ccfbf1; color: #0f766e; }
+        .cc-teal:hover { border-color: #14b8a6; box-shadow: 0 8px 28px rgba(20,184,166,0.18); }
+        .cc-teal:hover .course-title { color: #0f766e; }
+        .cc-teal:hover .course-tag   { background: #ccfbf1; color: #0f766e; }
+        .cc-teal:hover .course-icon-box { background: #5eead4; }
+
+        .cc-rose .course-icon-box  { background: #fecdd3; color: #be123c; }
+        .cc-rose .course-level-badge { background: #ffe4e6; color: #be123c; }
+        .cc-rose:hover { border-color: #f43f5e; box-shadow: 0 8px 28px rgba(244,63,94,0.18); }
+        .cc-rose:hover .course-title { color: #be123c; }
+        .cc-rose:hover .course-tag   { background: #ffe4e6; color: #be123c; }
+        .cc-rose:hover .course-icon-box { background: #fda4af; }
+
+        /* Dark mode course cards */
         body.dark-mode .course-card { background: #1e293b; border-color: #334155; }
+        body.dark-mode .course-title { color: #e2e8f0; }
         body.dark-mode .course-desc { color: #94a3b8; }
         body.dark-mode .course-tag { background: #334155; color: #cbd5e1; }
+        body.dark-mode .cc-blue .course-card-top   { background: linear-gradient(135deg, rgba(59,130,246,0.18) 0%, rgba(59,130,246,0.08) 100%); }
+        body.dark-mode .cc-green .course-card-top  { background: linear-gradient(135deg, rgba(16,185,129,0.18) 0%, rgba(16,185,129,0.08) 100%); }
+        body.dark-mode .cc-purple .course-card-top { background: linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(124,58,237,0.08) 100%); }
+        body.dark-mode .cc-amber .course-card-top  { background: linear-gradient(135deg, rgba(245,158,11,0.18) 0%, rgba(245,158,11,0.08) 100%); }
+        body.dark-mode .cc-teal .course-card-top   { background: linear-gradient(135deg, rgba(20,184,166,0.18) 0%, rgba(20,184,166,0.08) 100%); }
+        body.dark-mode .cc-rose .course-card-top   { background: linear-gradient(135deg, rgba(244,63,94,0.18) 0%, rgba(244,63,94,0.08) 100%); }
+
+        /* Syllabus modal content */
+        .syllabus-modal-content { font-size: 0.9rem; }
+        .syllabus-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem; padding-bottom: 0.85rem; border-bottom: 2px solid var(--accent); }
+        .syllabus-icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+        .syllabus-title { font-size: 1.05rem; font-weight: 800; color: var(--primary); line-height: 1.3; }
+        .syllabus-subtitle { font-size: 0.78rem; color: #94a3b8; margin-top: 3px; }
+        .syllabus-body { font-size: 0.9rem; line-height: 1.7; color: #374151; }
+        .syllabus-body ol { padding-left: 1.5rem; margin: 0.35rem 0 1rem; }
+        .syllabus-body ul { padding-left: 1.4rem; margin: 0.35rem 0 1rem; list-style: disc; }
+        .syllabus-body li { margin-bottom: 0.3rem; line-height: 1.55; }
+        .syllabus-body strong { display: block; color: var(--primary); font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 1rem; margin-bottom: 0.3rem; padding-bottom: 0.25rem; border-bottom: 1px solid #f1f5f9; }
+        .syllabus-body strong:first-child { margin-top: 0; }
+        .syllabus-disclaimer { margin-top: 0.9rem; font-size: 0.73rem; color: #94a3b8; font-style: italic; border-top: 1px solid #f1f5f9; padding-top: 0.6rem; margin-bottom: 0; }
+        body.dark-mode .syllabus-title { color: #7dd3fc; }
+        body.dark-mode .syllabus-body { color: #cbd5e1; }
+        body.dark-mode .syllabus-body strong { color: #38bdf8; border-bottom-color: #1e293b; }
 
         /* === 4.19.0: Conferences older-entry toggle === */
         #attended-list .older-entry { display: none; }
@@ -1900,7 +2068,7 @@
         .about-hero-card::before { content:''; position:absolute; border-radius:999px; pointer-events:none; width:200px; height:200px; top:-90px; right:-60px; background:rgba(6,78,59,0.07); animation:tcpFloat 13s ease-in-out infinite; }
         .about-hero-card::after  { content:''; position:absolute; border-radius:999px; pointer-events:none; width:130px; height:130px; bottom:-55px; left:-40px; background:rgba(245,158,11,0.1); animation:tcpFloat 10s ease-in-out infinite reverse; }
         .about-hero-copy { position:relative; z-index:1; }
-        .about-hero-copy .section-title { border-left:none; padding-left:0; font-size:1.85rem; margin-bottom:0; }
+        .about-hero-copy .section-title { border-left:none; padding-left:0; font-size:2.5rem; margin-bottom:0; }
         body.dark-mode .about-hero-card { background: radial-gradient(circle at top right,rgba(245,158,11,0.09),transparent 30%), linear-gradient(135deg,#162219 0%,#1a2b1f 55%,#221f0e 100%); border-color:rgba(110,231,183,0.12); }
 
         /* === 4.21: Highlighted Publications Marquee === */
@@ -1922,6 +2090,37 @@
         /* AI description injected into list-view items */
         .pub-list-ai-desc { font-size:0.82rem; color:#555; font-style:italic; margin:3px 0 5px 0; line-height:1.5; }
         body.dark-mode .pub-list-ai-desc { color:#94a3b8; }
+
+        /* Bento card tags — boost opacity in dark mode so they stay legible */
+        body.dark-mode .bento-h1 .bento-tag { background: rgba(56,189,248,0.2); color: #bae6fd; border-color: rgba(56,189,248,0.4); }
+        body.dark-mode .bento-h2 .bento-tag { background: rgba(52,211,153,0.2); color: #a7f3d0; border-color: rgba(52,211,153,0.4); }
+        body.dark-mode .bento-v1 .bento-tag { background: rgba(192,132,252,0.2); color: #e9d5ff; border-color: rgba(192,132,252,0.4); }
+        body.dark-mode .bento-v2 .bento-tag { background: rgba(251,113,133,0.2); color: #fecdd3; border-color: rgba(251,113,133,0.4); }
+
+        /* =====================================================
+           ACCESSIBILITY: prefers-reduced-motion
+           Stops all decorative animations for users who
+           have enabled "reduce motion" in their OS settings.
+           ===================================================== */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            /* Reveal elements appear instantly */
+            .reveal { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
+            .reveal .edu-card, .reveal .exp-box, .reveal .bento-card,
+            .reveal .patent-box, .reveal .award-card, .reveal .referee-card { opacity: 1 !important; }
+            /* Hide purely decorative canvas/icon layers */
+            #mol-canvas, #hi-layer { display: none !important; }
+            /* Stop infinite looping animations */
+            .hero-img, .hero-stats, .separator, .subtle-separator,
+            .bento-card::before, .about-hero-card::before, .about-hero-card::after { animation: none !important; }
+            /* Stop bridge and pill sweep animations */
+            .hero-bridge-colour, .hero-seeking-line::before { animation: none !important; }
+        }
     </style>
 </head>
 
@@ -2054,14 +2253,14 @@
             <div class="hero-main">
                 <div class="hero-profile-group">
                     <div class="hero-img-wrap">
-                        <img src="shaban.png" alt="Dr Shaban" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                        <img src="shaban.png" alt="Dr Shaban Ahmad, Postdoctoral Researcher at the University of Copenhagen" class="hero-img" loading="eager" width="190" height="190" onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
                     </div>
                     <div class="hero-text-group">
                         <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
                         <div class="hero-contact">
                             <i class="fas fa-envelope"></i>
-                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span> |
-                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span>
+                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')" aria-label="Copy email shaban@plen.ku.dk">shaban@plen.ku.dk</span> |
+                            <span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')" aria-label="Copy email shaban.ucph@gmail.com">shaban.ucph@gmail.com</span>
                         </div>
                         <div class="hero-contact" style="margin-top: 6px;">
                             <i class="fas fa-map-marker-alt"></i>
@@ -2069,19 +2268,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="typewriter-box" id="tw-box">
-                    <div class="tw-line-wrap">
-                        <div class="tw-ghost" id="tw-ghost1"></div>
-                        <div id="tw-line1" class="tw-active"></div>
-                    </div>
-                    <div class="tw-separator"><span class="tw-sep-runner"></span></div>
-                    <div class="tw-line-wrap">
-                        <div class="tw-ghost" id="tw-ghost2"></div>
-                        <div id="tw-line2" class="tw-active"></div>
-                    </div>
+                <div class="hero-seeking-line">
+                    🎓 Seeking <a href="#research-vision" class="hsl-ap">Assistant Professorship</a> to establish the <a href="#research-vision" class="hsl-tcp">TCP Research Group</a> 🔬
                 </div>
             </div>
-            
+
             <div class="hero-stats">
                 <div class="stat-row-link" style="padding:0;">
                     <div class="stat-row" onclick="togglePubStats(event)">
@@ -2111,8 +2302,18 @@
         </section>
     </div>
 
+    <!-- 7.1b: Tagline Bridge -->
+    <div class="hero-bridge-section">
+        <div class="hero-bridge-inner">
+            <!-- Grey base: always visible -->
+            <p class="hero-bridge-text hero-bridge-grey" aria-hidden="true">I develop <span>AI-driven</span> approaches to advance discovery across complex biology — from <span>molecules to medicine</span> and <span>sustainability</span>.</p>
+            <!-- Coloured overlay: clip-path fill cycle -->
+            <p class="hero-bridge-text hero-bridge-colour">I develop <span class="btw-kw1">AI-driven</span> approaches to advance discovery across complex biology — from <span class="btw-kw2">molecules to medicine</span> and <span class="btw-kw3">sustainability</span>.</p>
+        </div>
+    </div>
+
     <!-- 7.2: Unified Profile & Experience Layout -->
-    <section id="profile-experience" class="container reveal" style="margin-top: 2rem;">
+    <section id="profile-experience" class="container reveal" style="margin-top: 1rem;">
         <div class="about-split-layout">
             <div class="about-left" style="min-width: 0;">
                 <div class="about-hero-card">
@@ -2275,12 +2476,14 @@
 
         </div>
 
+        <hr class="subtle-separator">
         <!-- Highlighted Publications sub-section -->
         <div style="margin-top:2.2rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
-                <h3 class="unified-sub-heading ush-primary" style="margin:0;"><i class="fas fa-star" style="margin-right:8px;"></i>Highlighted Publications</h3>
+                <h3 class="unified-sub-heading ush-primary" style="margin:0;"><i class="fas fa-star" style="margin-right:8px;"></i>Highlighted/Recent Publications</h3>
                 <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
                     <button onclick="togglePubView()" id="pub-view-btn" class="ai-expand-btn"><span class="btn-icon"><i class="fas fa-th-large"></i></span><span class="btn-text">View as Grid</span></button>
+                    <span style="color:#ef4444; font-weight:300; line-height:1; user-select:none;">|</span>
                     <a href="#publications" onclick="triggerAccordion('pubs-journal')" style="font-size:0.85rem; color:var(--primary); border-bottom:1px dashed var(--accent); padding-bottom:1px;">View all articles →</a>
                 </div>
             </div>
@@ -2513,6 +2716,7 @@
                     </div>
                 </div>
 
+                <hr class="subtle-separator">
                 <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Funding Logic & Growth Strategy</h3>
                 <div class="strategy-cards-grid">
                     <div class="strategy-card-item">
@@ -2584,9 +2788,13 @@
         <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon" style="color:var(--accent); margin-right:10px;"></i> Teaching, Mentorship & Lab Culture</span><i class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
-                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text); line-height: 1.7;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers.</p>
+                <p style="margin-bottom: 20px; font-size: 1.05rem; font-family: 'Roboto', sans-serif; color: #444; line-height: 1.85;">The TCP group will not just be a hub for high-impact scientific output; it will be a dynamic, nurturing training ground. Having proudly mentored and guided numerous students globally, I am deeply committed to empowering the next generation of independent, ethical, and innovative researchers.</p>
                 
-                <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 1rem; text-align: left;">Teaching & Training Philosophy</h3>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 0; text-align: left;">Teaching & Training Philosophy</h3>
+                    <button onclick="generateTeachingStatement()" id="gen-teaching-btn" class="ai-expand-btn" title="Generate formal teaching statement with AI" aria-label="Generate AI Teaching Statement"><span class="btn-icon">✨</span><span class="btn-text">Teaching Statement</span></button>
+                </div>
+                <div id="teaching-statement-result" style="display:none; margin-bottom: 1.2rem; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid var(--accent); border-radius: 10px; padding: 1.1rem 1.4rem; font-size: 0.92rem; line-height: 1.72; color: var(--text);"></div>
                 <div class="strategy-cards-grid">
                     <div class="strategy-card-item centered-card">
                         <h4><i class="fas fa-lightbulb" style="margin-right:8px;"></i> Teaching Approach</h4>
@@ -2614,87 +2822,151 @@
                     </div>
                 </div>
 
+                <hr class="subtle-separator">
                 <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1.1rem; text-align: left;">Courses I Can Teach</h3>
                 <div class="course-cards-grid">
 
                     <div class="course-card cc-blue">
                         <div class="course-card-top">
-                            <div class="course-icon-box"><i class="fas fa-pills"></i></div>
-                            <div>
-                                <div class="course-title">Computational Drug Discovery</div>
-                                <span class="course-level-badge">UG / Graduate</span>
+                            <div class="course-icon-box"><i class="fas fa-dna"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">Basics to Advanced Bioinformatics</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">UG / Graduate</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('bioinformatics')" id="syllabus-bioinformatics" class="course-ai-btn" aria-label="Generate AI Syllabus for Bioinformatics"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="course-body">
-                            <div class="course-desc">Structure-based drug design, molecular docking, MD simulations, free energy calculations, and AI-assisted lead optimisation. Lab component uses open-source tools (AutoDock, GROMACS).</div>
+                            <div class="course-desc">From DNA sequence analysis and BLAST to multi-omics integration. Covers NGS quality control, read alignment, variant calling, WGS/WES pipelines, and phylogenomics using R/Bioconductor and Snakemake.</div>
                             <div class="course-tags">
-                                <span class="course-tag">Molecular Docking</span>
-                                <span class="course-tag">MD Simulations</span>
-                                <span class="course-tag">SBDD</span>
-                                <span class="course-tag">AutoDock</span>
+                                <span class="course-tag">NGS / WGS</span>
+                                <span class="course-tag">Variant Calling</span>
+                                <span class="course-tag">R / Bioconductor</span>
+                                <span class="course-tag">Multi-Omics</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="course-card cc-green">
                         <div class="course-card-top">
-                            <div class="course-icon-box"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <div class="course-title">Machine Learning for Biological Data</div>
-                                <span class="course-level-badge">Graduate</span>
+                            <div class="course-icon-box"><i class="fas fa-pills"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">Computational Drug Design</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">UG / Graduate</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('drug-design')" id="syllabus-drug-design" class="course-ai-btn" aria-label="Generate AI Syllabus for Computational Drug Design"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="course-body">
-                            <div class="course-desc">Supervised, unsupervised, and deep learning applied to genomics, proteomics, and drug discovery data. Includes XAI methods (SHAP/LIME) and hands-on Python/scikit-learn practicals.</div>
+                            <div class="course-desc">Structure-based drug design, molecular docking, virtual high-throughput screening, MD simulations, and free energy calculations. Lab-based practicals using AutoDock Vina, GROMACS, and PyMOL.</div>
                             <div class="course-tags">
-                                <span class="course-tag">Deep Learning</span>
-                                <span class="course-tag">XAI / SHAP</span>
-                                <span class="course-tag">Python</span>
-                                <span class="course-tag">Scikit-learn</span>
+                                <span class="course-tag">Molecular Docking</span>
+                                <span class="course-tag">SBDD</span>
+                                <span class="course-tag">MD Simulations</span>
+                                <span class="course-tag">Virtual Screening</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="course-card cc-purple">
                         <div class="course-card-top">
-                            <div class="course-icon-box"><i class="fas fa-dna"></i></div>
-                            <div>
-                                <div class="course-title">Bioinformatics & Computational Genomics</div>
-                                <span class="course-level-badge">UG / Graduate</span>
+                            <div class="course-icon-box"><i class="fas fa-robot"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">ML in Drug Design</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">Graduate</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('ml-drug-design')" id="syllabus-ml-drug-design" class="course-ai-btn" aria-label="Generate AI Syllabus for ML in Drug Design"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="course-body">
-                            <div class="course-desc">NGS data processing, variant annotation, WGS/WES pipelines, phylogenomics, and multi-omics integration. Focus on reproducible workflows using Snakemake and R/Bioconductor.</div>
+                            <div class="course-desc">Graph neural networks, QSAR modelling, generative AI for de novo molecule design, and AI-assisted lead optimisation. Hands-on with DeepChem, RDKit, and PyTorch Geometric.</div>
                             <div class="course-tags">
-                                <span class="course-tag">NGS / WGS</span>
-                                <span class="course-tag">Variant Annotation</span>
-                                <span class="course-tag">R / Bioconductor</span>
-                                <span class="course-tag">Snakemake</span>
+                                <span class="course-tag">GNNs</span>
+                                <span class="course-tag">QSAR</span>
+                                <span class="course-tag">Generative AI</span>
+                                <span class="course-tag">DeepChem</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="course-card cc-amber">
                         <div class="course-card-top">
-                            <div class="course-icon-box"><i class="fas fa-seedling"></i></div>
-                            <div>
-                                <div class="course-title">AI in Precision Medicine & Environmental Biotech</div>
-                                <span class="course-level-badge">Advanced / Elective</span>
+                            <div class="course-icon-box"><i class="fas fa-brain"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">Machine Learning in Genomics</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">Graduate</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('ml-genomics')" id="syllabus-ml-genomics" class="course-ai-btn" aria-label="Generate AI Syllabus for Machine Learning in Genomics"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="course-body">
-                            <div class="course-desc">AI-guided enzyme discovery, PFAS bioremediation, translational biomarker pipelines, and the clinical-to-bench data flow. Interdisciplinary seminar format with case studies.</div>
+                            <div class="course-desc">Supervised and deep learning for genomics, transcriptomics, and epigenomics. Covers SHAP/LIME explainability, Python/scikit-learn practicals, and reproducible MLOps workflows for biological data.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">Deep Learning</span>
+                                <span class="course-tag">XAI / SHAP</span>
+                                <span class="course-tag">Transcriptomics</span>
+                                <span class="course-tag">MLOps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card cc-teal">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-heartbeat"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">AI in Precision Medicine</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">Advanced / Elective</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('precision-medicine')" id="syllabus-precision-medicine" class="course-ai-btn" aria-label="Generate AI Syllabus for AI in Precision Medicine"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">AI-guided biomarker discovery, patient stratification, translational omics pipelines, and clinical-to-bench data integration. Seminar-based with real clinical datasets and case studies from oncology and metabolic disease.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">Biomarkers</span>
+                                <span class="course-tag">Patient Stratification</span>
+                                <span class="course-tag">Translational AI</span>
+                                <span class="course-tag">Omics Integration</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card cc-rose">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-leaf"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title">AI in Biological Degradations & Biotech</div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge">Advanced / Elective</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('bio-degradation')" id="syllabus-bio-degradation" class="course-ai-btn" aria-label="Generate AI Syllabus for AI in Biological Degradations and Biotech"><span class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">AI-guided enzyme engineering, PFAS bioremediation, metabolic pathway modelling, and sustainable biotechnology. Case studies from computational environmental biology and directed evolution research.</div>
                             <div class="course-tags">
                                 <span class="course-tag">PFAS / Enzymes</span>
-                                <span class="course-tag">Biomarkers</span>
-                                <span class="course-tag">Precision Medicine</span>
-                                <span class="course-tag">Translational AI</span>
+                                <span class="course-tag">Bioremediation</span>
+                                <span class="course-tag">Enzyme Engineering</span>
+                                <span class="course-tag">Environmental AI</span>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
+                <hr class="subtle-separator">
                 <h3 class="unified-sub-heading ush-primary" style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Core Lab Culture</h3>
                 <div class="culture-grid">
                     <div class="culture-card">
@@ -3158,19 +3430,19 @@
                     <div class="contact-arrow-v"></div><div class="contact-arrow-h"></div><div class="contact-arrow-head"></div>
                     <h2>Let's Collaborate</h2>
                     <p style="margin-bottom: 1.5rem;">I am always open to discussing new research opportunities, collaborations, or speaking engagements.</p>
-                    <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')">shaban.ucph@gmail.com</span></div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')" aria-label="Copy email shaban@plen.ku.dk">shaban@plen.ku.dk</span><span style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button" tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')" aria-label="Copy email shaban.ucph@gmail.com">shaban.ucph@gmail.com</span></div>
                     <div class="contact-item"><i class="fas fa-map-marker-alt"></i><a href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow">MEB Section, PLEN, University of Copenhagen, Denmark</a></div>
                     
                     <!-- Unified Footer Line: Social Icons & Copyright (Responsive Wrapper) -->
                     <div class="footer-bottom-wrapper">
                         <div class="footer-socials" style="margin: 0; padding: 5px 10px; gap: 12px; display: inline-flex; align-items: center;">
-                            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="f-soc-link" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-                            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="f-soc-link" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
-                            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link" title="ORCID"><i class="ai ai-orcid"></i></a>
-                            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="f-soc-link" title="Web of Science"><i class="ai ai-clarivate"></i></a>
-                            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="f-soc-link" title="Scopus"><i class="ai ai-scopus"></i></a>
-                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="f-soc-link" title="Google Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
+                            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="f-soc-link" title="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
+                            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link" title="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
+                            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" class="f-soc-link" title="Web of Science" aria-label="Web of Science Profile"><i class="ai ai-clarivate"></i></a>
+                            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" class="f-soc-link" title="Scopus" aria-label="Scopus Profile"><i class="ai ai-scopus"></i></a>
+                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" title="GitHub" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
                         </div>
                         <div class="footer-copyright" style="margin: 0 0 0 10px;">&copy; 2026 Dr Shaban | All rights reserved.</div>
                     </div>
@@ -3202,7 +3474,6 @@
         </div>
     </div>
 
-
     <!-- === SECTION 17: INTERACTIVE JAVASCRIPT LOGIC === -->
     <script>
         /* --- 17.1: Global Initialisation & Utilities --- */
@@ -3223,106 +3494,8 @@
                 }); 
             }); 
             
-            // Continuous Infinite Typewriter with fill/unfill ghost effect
-            (function() {
-                var el1    = document.getElementById('tw-line1');
-                var el2    = document.getElementById('tw-line2');
-                var ghost1 = document.getElementById('tw-ghost1');
-                var ghost2 = document.getElementById('tw-ghost2');
-                var sep    = document.querySelector('.tw-separator');
-                if (!el1 || !el2) return;
 
-                var LINE1 = 'I develop AI-driven approaches to advance discovery across complex biology \u2014 from molecules to medicine and sustainability.';
-                var LINE2 = 'Seeking Assistant Professorship to establish the TCP Research Group.';
-                var KW1 = [['AI-driven','#0ea5e9'],['complex biology','#f43f5e']];
-                var KW2 = [['Assistant Professorship','#8b5cf6'],['TCP Research Group','var(--accent)','#research-vision']];
-
-                // Full-colour rendering (active layer)
-                function colorize(text, kws) {
-                    var out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-                    kws.forEach(function(pair) {
-                        var re = new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
-                        var rep = pair[2]
-                            ? '<a href="' + pair[2] + '" class="tw-link" style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</a>'
-                            : '<strong style="color:' + pair[1] + ';font-weight:700;">' + pair[0] + '</strong>';
-                        out = out.replace(re, rep);
-                    });
-                    return out;
-                }
-
-                // Grey/ghost rendering — same bold structure so line-breaks match exactly
-                function colorizeGhost(text, kws) {
-                    var out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-                    kws.forEach(function(pair) {
-                        var re = new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
-                        out = out.replace(re, '<strong>' + pair[0] + '</strong>');
-                    });
-                    return out;
-                }
-
-                var CURSOR = '<span class="tw-cursor"></span>';
-                var state = 'TYPING1', i1 = 0, i2 = 0;
-
-                function tw() {
-                    if (state === 'TYPING1') {
-                        // Show grey ghost immediately when line 1 starts
-                        if (i1 === 0 && ghost1) ghost1.innerHTML = colorizeGhost(LINE1, KW1);
-                        el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
-                        i1++;
-                        if (i1 <= LINE1.length) {
-                            setTimeout(tw, 38);
-                        } else {
-                            el1.innerHTML = colorize(LINE1, KW1);
-                            if (sep) sep.classList.add('visible');
-                            state = 'TYPING2'; i2 = 0;
-                            setTimeout(tw, 400);
-                        }
-                    } else if (state === 'TYPING2') {
-                        // Show grey ghost for line 2 immediately when it starts
-                        if (i2 === 0 && ghost2) ghost2.innerHTML = colorizeGhost(LINE2, KW2);
-                        el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
-                        i2++;
-                        if (i2 <= LINE2.length) {
-                            setTimeout(tw, 38);
-                        } else {
-                            state = 'PAUSE';
-                            setTimeout(tw, 5000);
-                        }
-                    } else if (state === 'PAUSE') {
-                        state = 'DEL2'; i2 = LINE2.length;
-                        setTimeout(tw, 0);
-                    } else if (state === 'DEL2') {
-                        if (i2 > 0) {
-                            // Erase active — ghost2 stays visible (grey skeleton shows through)
-                            el2.innerHTML = colorize(LINE2.slice(0, i2), KW2) + CURSOR;
-                            i2 = Math.max(0, i2 - 2);
-                            setTimeout(tw, 16);
-                        } else {
-                            el2.innerHTML = '';
-                            if (sep) sep.classList.remove('visible');
-                            state = 'DEL1'; i1 = LINE1.length;
-                            setTimeout(tw, 200);
-                        }
-                    } else if (state === 'DEL1') {
-                        if (i1 > 0) {
-                            // Erase active — ghost1 stays visible (grey skeleton shows through)
-                            el1.innerHTML = colorize(LINE1.slice(0, i1), KW1) + CURSOR;
-                            i1 = Math.max(0, i1 - 2);
-                            setTimeout(tw, 16);
-                        } else {
-                            el1.innerHTML = '';
-                            // Keep ghost1 visible during pause so box doesn't collapse in height.
-                            // Clear ghost2 only (otherwise LINE2 ghost bleeds into TYPING1 phase).
-                            // ghost1 will be refreshed at i1===0 in the next TYPING1 tick.
-                            if (ghost2) ghost2.innerHTML = '';
-                            state = 'TYPING1'; i1 = 0; i2 = 0;
-                            setTimeout(tw, 800);
-                        }
-                    }
-                }
-
-                setTimeout(tw, 900);
-            })();
+            // Bridge tagline: now static HTML with CSS colour-fill animation (no JS needed)
 
             // Instantly set hero stats to 0, then wait 5 seconds before animating sequentially
             initCountersToZero('.stat-row > .stat-value');
@@ -3816,7 +3989,45 @@
             if (activeAbort) { activeAbort.ctrl.abort(); const oldBtn = document.getElementById(activeAbort.id); if(oldBtn){ oldBtn.classList.remove('processing-gold'); oldBtn.innerHTML = activeAbort.html; } }
             btn.innerHTML = `<span class="btn-icon"><i class="fas fa-spinner fa-spin"></i></span><span class="btn-text">${loadingText}</span>`; btn.classList.add('processing-gold'); if(resBox) resBox.style.display = 'none';
             const ctrl = new AbortController(); activeAbort = { id: btnId, ctrl, html: `<span class="btn-icon">${icon}</span><span class="btn-text">${btnText}</span>` };
-            try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if(activeAbort && activeAbort.id === btnId) formatCallback(res); } catch(e) { if (e.name !== 'AbortError' && resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
+            try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if(activeAbort && activeAbort.id === btnId) formatCallback(res); } catch(e) { if (e.name !== 'AbortError') { if (resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } else { showAIModal(`<div style="color:#dc2626;font-weight:700;margin-bottom:8px;">❌ Error</div><p style="margin:0;">${e.message}</p>`); } } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
+        };
+
+        /* --- Teaching Statement Generator --- */
+        const generateTeachingStatement = () => {
+            triggerAIFeature(
+                'gen-teaching-btn',
+                'teaching-statement-result',
+                '✨', 'Teaching Statement', 'Drafting...',
+                `Write a formal 3-paragraph academic teaching statement for Dr. Shaban Ahmad, a Postdoctoral Researcher in computational biology and AI-driven drug discovery at the University of Copenhagen. His philosophy: (1) fosters dual competency — students who are both conceptually strong and computationally confident; (2) transitions students from passive learning to active problem-solving using real biological data and real scientific uncertainty; (3) uses a structured-to-independent mentorship model — strong onboarding, shared tools, clear milestones, then gradual independence. He teaches computational drug discovery (AutoDock, GROMACS, SBDD), machine learning for biological data (deep learning, XAI/SHAP), bioinformatics and computational genomics (NGS, WGS, Snakemake), and AI in precision medicine and environmental biotech. Write in first person, academic register. Use HTML formatting: wrap each paragraph in <p> tags, use <strong> for 2-3 key phrases per paragraph. No section headings needed. Each paragraph 70-90 words.`,
+                (res) => {
+                    const rb = document.getElementById('teaching-statement-result');
+                    rb.style.display = 'block';
+                    rb.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.7rem;"><strong style="color:var(--primary); font-size:0.97rem;">✨ AI Teaching Statement Draft</strong><button onclick="this.closest('[id=teaching-statement-result]').style.display='none'" style="background:none; border:none; cursor:pointer; color:#aaa; font-size:1.3rem; line-height:1; padding:0; margin-left:1rem;" title="Dismiss">×</button></div><div style="border-top:1px solid rgba(0,0,0,0.08); padding-top:0.8rem;">${res}</div><p style="margin-top:0.8rem; font-size:0.75rem; color:#94a3b8; font-style:italic;">AI-generated draft — review and personalise before use.</p>`;
+                }
+            );
+        };
+
+        /* --- Course Syllabus Generator --- */
+        const COURSE_META = {
+            'bioinformatics':     { title: 'Basics to Advanced Bioinformatics',           icon: '🧬', level: 'UG / Graduate' },
+            'drug-design':        { title: 'Computational Drug Design',                   icon: '💊', level: 'UG / Graduate' },
+            'ml-drug-design':     { title: 'ML in Drug Design',                           icon: '🤖', level: 'Graduate' },
+            'ml-genomics':        { title: 'Machine Learning in Genomics',                icon: '🧠', level: 'Graduate' },
+            'precision-medicine': { title: 'AI in Precision Medicine',                    icon: '🏥', level: 'Advanced / Elective' },
+            'bio-degradation':    { title: 'AI in Biological Degradations & Biotech',     icon: '🌿', level: 'Advanced / Elective' }
+        };
+        const generateSyllabus = (courseKey) => {
+            const course = COURSE_META[courseKey];
+            if (!course) return;
+            triggerAIFeature(
+                `syllabus-${courseKey}`,
+                null,
+                '✨', 'AI Syllabus', 'Generating...',
+                `Generate a concise academic syllabus for "${course.title}" (${course.level}) taught by Dr. Shaban Ahmad, computational biologist at UCPH. Output only HTML using these exact tags: <strong>Weekly Topics</strong> then <ol> with 8-10 items, <strong>Learning Outcomes</strong> then <ul> with 3 items, <strong>Assessment</strong> then <ul> with 2-3 methods. Each list item under 10 words. No paragraphs, no intro text.`,
+                (res) => {
+                    showAIModal(`<div class="syllabus-modal-content"><div class="syllabus-header"><span class="syllabus-icon">${course.icon}</span><div><div class="syllabus-title">${course.title}</div><div class="syllabus-subtitle">${course.level} &nbsp;·&nbsp; AI-Generated Syllabus Outline</div></div></div><div class="syllabus-body">${res}</div><p class="syllabus-disclaimer">AI-generated outline — customise as needed before institutional submission.</p></div>`);
+                }
+            );
         };
 
         function toggleOlderAttended(btn) {
@@ -4110,8 +4321,8 @@
             ];
             const BOND_DIST  = 88;   // max px to draw a bond
             const COUNT      = 52;   // number of atoms
-            const SPEED      = 0.22; // base drift speed
-            const BROWNIAN   = 0.03; // random nudge per frame
+            const SPEED      = 0.04; // base drift speed (very slow idle)
+            const BROWNIAN   = 0.004; // tiny random nudge per frame
 
             let W, H, atoms = [], RAF = null;
             let mouse = { x: -9999, y: -9999 }; // off-screen default
@@ -4194,9 +4405,10 @@
                         a.vx += (mdx / mdist) * force;
                         a.vy += (mdy / mdist) * force;
                     }
-                    // clamp speed (higher cap so repulsion feels snappy, not stiff)
+                    // clamp: very slow idle, fast burst when mouse is active
                     const spd = Math.hypot(a.vx, a.vy);
-                    if (spd > SPEED * 6) { a.vx *= (SPEED * 6) / spd; a.vy *= (SPEED * 6) / spd; }
+                    const cap = (mouse.x > -9000) ? 3.0 : SPEED * 3;
+                    if (spd > cap) { a.vx *= cap / spd; a.vy *= cap / spd; }
                     a.x += a.vx; a.y += a.vy;
                     if (a.x < a.type.r + 2 || a.x > W - a.type.r - 2) { a.vx *= -1; a.x = clamp(a.x, a.type.r + 2, W - a.type.r - 2); }
                     if (a.y < a.type.r + 2 || a.y > H - a.type.r - 2) { a.vy *= -1; a.y = clamp(a.y, a.type.r + 2, H - a.type.r - 2); }
@@ -4293,10 +4505,10 @@
                 ['fa-laptop-code',     'rgba(255,255,255,0.40)', 14],  // scientific computing
             ];
 
-            const SPEED        = 0.26;
-            const BROWNIAN     = 0.025;
+            const SPEED        = 0.04; // very slow idle drift
+            const BROWNIAN     = 0.004; // tiny nudge
             const REPEL_RADIUS = 130;
-            const REPEL_FORCE  = 3.0;
+            const REPEL_FORCE  = 3.5; // stronger scatter on mouse
 
             let W, H, nodes = [], hiRAF = null;
             let mouse = { x: -9999, y: -9999 };
@@ -4344,9 +4556,10 @@
                         n.vx += (mdx / mdist) * force;
                         n.vy += (mdy / mdist) * force;
                     }
-                    // speed cap
+                    // clamp: very slow idle, fast burst when mouse is active
                     const spd = Math.hypot(n.vx, n.vy);
-                    if (spd > SPEED * 7) { n.vx *= (SPEED * 7) / spd; n.vy *= (SPEED * 7) / spd; }
+                    const cap = (mouse.x > -9000) ? 3.5 : SPEED * 3;
+                    if (spd > cap) { n.vx *= cap / spd; n.vy *= cap / spd; }
                     n.x += n.vx; n.y += n.vy;
                     // wall bounce — right/bottom margin accounts for icon width (~20px)
                     if (n.x < 8 || n.x > W - 24)  { n.vx *= -1; n.x = clamp(n.x, 8, W - 24); }
