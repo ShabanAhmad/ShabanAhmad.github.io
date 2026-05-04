@@ -16,7 +16,13 @@
 
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
     <meta property="og:title" content="Dr Shaban Ahmad | Postdoctoral Researcher | Computational Pharmacology">
-    <meta property="og:description"
+    <meta property="o Seeking
+Assistant Professorship
+to establish
+TCP Group Seeking
+Assistant Professorship
+to establish
+TCP Groupg:description"
         content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation research at the University of Copenhagen.">
     <meta property="og:image" content="shaban.png">
     <meta property="og:url" content="https://shabanahmad.github.io/">
@@ -957,7 +963,7 @@
         .sticky-sidebar {
             position: fixed;
             top: 50%;
-            left: 0;
+            left: 0; /* Desktop Default: Left */
             transform: translateY(-50%);
             z-index: 1100;
             display: flex;
@@ -968,6 +974,7 @@
             border-radius: 0 12px 12px 0;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
         }
 
         .sticky-sidebar .h-social {
@@ -977,6 +984,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative; 
+        }
+
+        /* Custom Instant Tooltip (Desktop-Left: Tip on Right) */
+        .h-social::after {
+            content: attr(data-tip);
+            position: absolute;
+            left: 100%; /* Default: show on right */
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease, transform 0.1s ease;
+            z-index: 100;
+        }
+
+        .h-social:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(15px);
         }
 
         .sticky-sidebar .h-social:hover {
@@ -1028,17 +1061,7 @@
             overflow: hidden;
         }
 
-        #mol-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.55;
-            cursor: grab;
-            /* Shift protein slightly right AND slightly down */
-            transform: translateX(8%) translateY(4%);
-        }
+
 
         #mol-canvas:active {
             cursor: grabbing;
@@ -1046,53 +1069,149 @@
 
         .hero {
             color: #ffffff;
-            padding: 2.5rem 1rem;
+            padding: 1.5rem 1rem 0.5rem 1rem;
             position: relative;
             z-index: 1;
             display: flex;
-            justify-content: space-between;
+            flex-direction: row; /* Horizontal layout */
+            justify-content: center; /* Group everything in the center */
             align-items: center;
-            gap: 2rem;
-            max-width: 1250px;
+            gap: 5rem; /* Large gap for the wings */
+            max-width: 1800px; /* Wider to allow full protein visibility */
             margin: 0 auto;
             width: 100%;
-            min-height: 340px;
+            min-height: 320px;
             pointer-events: none;
+            overflow: visible; /* Prevent any clipping */
         }
 
-        .hero-main {
-            flex: 1;
-            max-width: none;
-            margin-left: 1rem;
+        .hero-main-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem; /* Tighter gap for the main 3 columns */
+            flex-shrink: 0;
             pointer-events: auto;
         }
 
-        /* --- Floating AI Terminal & 2D Diagram Overlays --- */
-        .ai-terminal {
-            width: fit-content;
-            /* only as wide as the text inside */
-            min-width: 260px;
-            /* never too narrow */
-            max-width: 85%;
-            /* never wider than the column */
-            max-height: 130px;
-            /* ~5 lines max */
-            margin-top: 1rem;
-            margin-left: 1.5rem;
-            background: rgba(0, 0, 0, 0.32);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
-            font-family: 'Courier New', Courier, monospace;
-            color: #4ade80;
-            font-size: 0.76rem;
-            line-height: 1.55;
-            padding: 8px 12px;
-            overflow: hidden;
-            z-index: 5;
-            opacity: 0;
-            transition: opacity 0.4s;
+        .hero-column-side {
+            flex: 0 0 350px; /* Wider for proteins */
+            height: 350px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center; 
+            pointer-events: auto;
+            overflow: visible;
+        }
+
+        .bg-canvas-inline {
+            position: absolute;
+            top: -20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 450px; /* Large area for protein */
+            height: 350px;
+            z-index: -1;
+            opacity: 0.95;
             pointer-events: none;
+        }
+
+        .ai-terminal-inline {
+            width: fit-content;
+            max-width: 340px;
+            min-width: 80px;
+            background: rgba(15, 23, 42, 0.6); 
+            border: none;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            font-size: 0.6rem;
+            line-height: 1.2;
+            padding: 6px 12px;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
+            display: flex;
+            flex-direction: column-reverse;
+            min-height: 0; 
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        /* Show background only when terminal has content */
+        .ai-terminal-inline:not(:empty) {
+            opacity: 1;
+        }
+
+        @media (max-width: 1550px) {
+            .hero {
+                gap: 2rem;
+                max-width: 1400px;
+            }
+            .hero-column-side {
+                flex: 0 0 300px;
+            }
+            .bg-canvas-inline {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 1350px) {
+            .hero-column-side {
+                display: none;
+            }
+            .hero {
+                max-width: 1100px;
+                gap: 2rem;
+            }
+        }
+
+        .hero-text-group {
+            flex: none; /* Keep content tight */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Left-align name, emails, and role */
+            text-align: left; /* Left-align text content */
+            white-space: nowrap;
+            pointer-events: auto;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+            width: 190px;
+            height: 190px;
+            margin: 0;
+            flex-shrink: 0;
+            border-radius: 50%;
+            padding: 0; 
+            z-index: 10;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hero-img-wrap:hover {
+            transform: scale(1.08);
+        }
+
+        .hero-stats {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.6rem; /* Slightly more padding */
+            width: 360px; /* Increased width from 320px */
+            margin: 0;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            animation: float 4s ease-in-out infinite;
+            pointer-events: auto;
         }
 
         .ai-terminal::before {
@@ -1150,51 +1269,35 @@
             font-size: 1.2rem;
         }
 
-        /* NEW: Hero Side-by-Side Profile Layout */
-        .hero-profile-group {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-text-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            white-space: nowrap;
-        }
-
         @keyframes pulse-shadow {
             0% {
                 box-shadow: 0 0 0 0 rgba(220, 161, 29, 0.4);
             }
-
             70% {
                 box-shadow: 0 0 0 10px rgba(220, 161, 29, 0);
             }
-
             100% {
                 box-shadow: 0 0 0 0 rgba(220, 161, 29, 0);
             }
         }
 
         .hero-img {
-            width: 180px;
-            height: 180px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 4px solid var(--accent);
+            border: 4px solid var(--accent); /* Single bold accent border */
             object-fit: cover;
             background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: pulse-shadow 2s infinite;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse-shadow 2s infinite; /* Continuous pulse */
+            transition: all 0.4s ease;
             flex-shrink: 0;
+            margin: 0;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
         }
 
-        .hero-img:hover {
-            transform: scale(1.05);
+        .hero-img-wrap:hover .hero-img {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.7);
+            border-width: 5px;
         }
 
         .hero h1 {
@@ -1205,22 +1308,49 @@
         }
 
         .hero-name-span {
-            transition: all 0.3s ease;
+            display: inline-block; /* Required for transform scale */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: default;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            /* Very subtle glow */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
         .hero-name-span:hover {
             color: var(--accent);
-            text-shadow: 0 0 15px rgba(220, 161, 29, 0.4);
-            /* Glow matching the accent color */
+            transform: scale(1.05);
+            text-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+            /* Stronger glow matching the accent color */
+        }
+
+        .hero-info-combined {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .info-sep {
+            color: var(--accent);
+            opacity: 0.5;
+            font-weight: 300;
+        }
+
+        @media (max-width: 900px) {
+            .info-sep {
+                display: none;
+            }
+            .hero-info-combined {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
 
         .hero-contact {
-            margin-top: 12px;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0; /* reset for combined block */
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .hero-contact i {
@@ -1230,18 +1360,21 @@
 
         @keyframes sweep {
             0% {
-                left: -100%;
+                left: -120%;
+            }
+
+            23% {
+                left: 120%;
             }
 
             100% {
-                left: 200%;
+                left: 120%;
             }
         }
 
         .hero-seeking-line {
-            margin-top: 0.35rem;   /* tight — next line after Postdoctoral */
-            margin-bottom: 0;
-            font-size: 1.05rem;
+            margin: 0;
+            font-size: 0.95rem;
             font-style: italic;
             color: #f1f5f9;
             display: inline-flex;
@@ -1249,7 +1382,7 @@
             align-items: center;
             gap: 0.4em;
             white-space: nowrap;
-            width: 100%;
+            width: auto;
             position: relative;
             overflow: hidden;
         }
@@ -1263,7 +1396,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transform: skewX(-20deg);
-            animation: sweep 3s infinite;
+            animation: sweep 13s infinite;
             pointer-events: none;
         }
 
@@ -1346,9 +1479,9 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            padding: 1.5rem;
-            width: 280px;
-            margin-right: 1rem;
+            padding: 1.1rem;
+            width: 250px;
+            margin: 1.5rem auto 0 auto; /* Centered with top margin */
             flex-shrink: 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             text-align: left;
@@ -1395,8 +1528,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 5px;
-            font-size: 1.05rem;
+            padding: 8px 5px;
+            font-size: 0.95rem;
         }
 
         .stat-label {
@@ -1410,7 +1543,7 @@
         .stat-value {
             font-weight: 700;
             color: var(--accent);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.2s;
         }
 
@@ -2752,6 +2885,12 @@
         .inst-link:hover,
         .exp-inst:hover {
             color: var(--accent);
+        }
+
+        .inst-link i,
+        .exp-inst i,
+        .ref-inst-row i {
+            margin-right: 6px;
         }
 
         .exp-header {
@@ -4605,12 +4744,37 @@
             color: #94a3b8;
             font-size: 1.3rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; /* For tooltip */
+        }
+
+        .f-soc-link::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 10;
+        }
+
+        .f-soc-link:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-8px);
         }
 
         .f-soc-link:hover {
             color: var(--accent);
-            transform: translateY(-6px) scale(1.25);
-            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px) scale(1.1);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .msg-success-box {
@@ -5182,7 +5346,7 @@
                 width: 200px;
                 max-width: 85vw;
                 height: auto;
-                min-height: 300px;
+                min-height: auto; /* Shorter mobile menu */
                 background: var(--white);
                 flex-direction: column;
                 justify-content: flex-start;
@@ -5207,12 +5371,12 @@
                 display: block;
             }
 
-            /* 70px left padding guarantees perfect text alignment down the entire menu */
+            /* Reduced vertical padding for a more compact menu */
             .nav-link {
                 color: var(--primary) !important;
                 text-align: left;
-                font-size: 0.95rem;
-                padding: 14px 20px 14px 70px;
+                font-size: 0.9rem;
+                padding: 10px 20px 10px 70px;
                 border-bottom: 1px solid #eee;
                 border-radius: 0;
                 width: 100%;
@@ -5297,13 +5461,14 @@
                 opacity: 1;
             }
 
-            /* 67px padding + 3px accent border = 70px offset to perfectly align sub-links */
+            /* Compact sub-links for mobile */
             .nav-dropdown-content a {
-                padding: 12px 20px 12px 67px;
+                padding: 8px 20px 8px 67px;
                 text-align: left;
                 border-bottom: 1px solid #f0f0f0;
                 width: 100%;
                 box-sizing: border-box;
+                font-size: 0.85rem;
             }
 
             .dropdown-item-wrapper:hover .sub-dropdown-content {
@@ -5366,20 +5531,36 @@
             }
 
             .sticky-sidebar {
-                display: flex;
                 left: auto;
                 right: 0;
                 top: 50%;
-                border-radius: 12px 0 0 12px;
+                border-radius: 8px 0 0 8px;
                 background-color: var(--white);
                 border: 1px solid #eee;
-                padding: 6px 3px;
-                box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+                padding: 4px 1px; /* Ultra compact */
+                box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
+                display: flex;
+                gap: 2px; /* Minimal gap */
             }
 
             .sticky-sidebar .h-social {
-                font-size: 1.05rem;
-                margin: 2px 0;
+                font-size: 0.95rem; /* Smaller icons */
+                margin: 0;
+                width: 28px;
+                height: 28px;
+                background: none;
+                box-shadow: none;
+            }
+
+            /* Flip Tooltip to Left on Mobile */
+            .h-social::after {
+                left: auto !important;
+                right: 100% !important;
+                transform: translateY(-50%) translateX(-10px) !important;
+            }
+
+            .h-social:hover::after {
+                transform: translateY(-50%) translateX(-15px) !important;
             }
 
             .header-controls {
@@ -5388,32 +5569,67 @@
 
             /* Responsive Hero Updates */
             .hero {
-                flex-direction: column;
-                gap: 2rem;
-                padding: 2rem 1rem;
+                flex-direction: column !important;
+                gap: 2.5rem !important;
+                padding: 3rem 1.5rem !important;
+                text-align: center !important;
+                min-height: auto !important;
+                pointer-events: auto !important;
+                overflow: visible !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 1.5rem !important; /* Reset desktop padding-left */
             }
 
-            .hero-profile-group {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-                margin-bottom: 2rem;
+            .hero-main-group {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 2rem !important;
+                align-items: center !important;
+                width: 100% !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
 
             .hero-text-group {
-                align-items: center;
+                display: flex !important;
+                align-items: center !important;
+                text-align: center !important;
+                white-space: normal !important;
+                width: 100% !important;
             }
 
-            /* hero h1 handled by clamp() — no override needed */
+            .hero-info-combined {
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .hero-img-wrap {
+                display: flex !important;
+                width: 180px !important;
+                height: 180px !important;
+                margin: 0 auto !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+
             .hero-img {
-                width: 160px;
-                height: 160px;
+                width: 100% !important;
+                height: 100% !important;
+                display: block !important;
             }
 
             .hero-stats {
-                width: 100%;
-                max-width: 400px;
-                animation: none;
+                display: block !important;
+                width: 100% !important;
+                max-width: 340px !important;
+                margin: 0 auto !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                animation: none !important; /* Stop float animation but keep box visible */
             }
 
             .exp-grid,
@@ -8870,13 +9086,13 @@
     <!-- === SECTION 5: GLOBAL INTERFACE COMPONENTS === -->
     <div id="print-footer" style="display:none;">Downloaded from https://shabanahmad.github.io/</div>
     <div class="sticky-sidebar">
-        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" title="LinkedIn"
+        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" data-tip="LinkedIn"
             aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social"
-            title="Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
+            data-tip="Google Scholar" aria-label="Google Scholar Profile"><i class="ai ai-google-scholar"></i></a>
         <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social"
-            title="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
-        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" title="ORCID"
+            data-tip="ResearchGate" aria-label="ResearchGate Profile"><i class="ai ai-researchgate"></i></a>
+        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" data-tip="ORCID"
             aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
     </div>
 
@@ -9026,99 +9242,114 @@
 
     <!-- === SECTION 7: CORE CONTENT PRESENTATION === -->
     <div class="hero-section-wrapper reveal" id="hero-section">
-        <div id="mol-canvas" aria-hidden="true"></div>
         <div id="hi-layer" aria-hidden="true"></div>
+        
         <section class="hero">
-            <div class="hero-main">
-                <div class="hero-profile-group">
-                    <div class="hero-img-wrap">
-                        <img src="shaban.png"
-                            alt="Dr Shaban Ahmad, Postdoctoral Researcher at the University of Copenhagen"
-                            class="hero-img" loading="eager" width="190" height="190"
-                            onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
-                    </div>
-                    <div class="hero-text-group">
-                        <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
+            <!-- Column 1: Left Terminal & Visuals -->
+            <div class="hero-column-side">
+                <div id="mol-canvas-left" class="bg-canvas-inline" aria-hidden="true"></div>
+                <div id="ai-terminal-left" class="ai-terminal-inline" aria-hidden="true"></div>
+            </div>
+
+            <!-- Main Central Group (Columns 2, 3, 4) -->
+            <div class="hero-main-group">
+                <!-- Column 2: Photo -->
+                <div class="hero-img-wrap">
+                    <img src="shaban.png"
+                        alt="Dr Shaban Ahmad, Postdoctoral Researcher at the University of Copenhagen"
+                        class="hero-img" loading="eager" width="190" height="190"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
+                </div>
+
+                <!-- Column 3: Name & Info -->
+                <div class="hero-text-group">
+                    <h1><span class="hero-name-span">Dr Shaban Ahmad</span></h1>
+                    <div class="hero-info-combined">
                         <div class="hero-contact">
                             <i class="fas fa-envelope"></i>
                             <span class="email-click" role="button" tabindex="0"
                                 onclick="copyEmail(this, 'shaban@plen.ku.dk')"
-                                aria-label="Copy email shaban@plen.ku.dk">shaban@plen.ku.dk</span> |
+                                aria-label="Copy email shaban@plen.ku.dk">shaban@plen.ku.dk</span>
+                            <span style="color: var(--accent); margin: 0 5px; opacity: 0.8;">|</span>
                             <span class="email-click" role="button" tabindex="0"
                                 onclick="copyEmail(this, 'shaban.ucph@gmail.com')"
                                 aria-label="Copy email shaban.ucph@gmail.com">shaban.ucph@gmail.com</span>
                         </div>
-                        <div class="hero-contact" style="margin-top: 6px;">
+                        <div class="hero-contact">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://researchprofiles.ku.dk/en/persons/shaban-ahmad/" target="_blank"
                                 style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4);">Postdoctoral
                                 Scientist, University of Copenhagen, Denmark</a>
                         </div>
                         <div class="hero-seeking-line">
-                            🚀 Seeking <a href="#research-vision" class="hsl-ap">Assistant Professorship</a> to
-                            establish <a href="#research-vision" class="hsl-tcp">TCP Group</a>
+                            Seeking <a href="#research-vision" class="hsl-ap">Assistant Professorship</a> to
+                            build <a href="#research-vision" class="hsl-tcp">TCP Group</a>
                         </div>
                     </div>
                 </div>
-                <!-- Ai terminal merged into hero area -->
-                <div id="ai-terminal" class="ai-terminal" aria-hidden="true"></div>
+
+                <!-- Column 4: Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stat-row-link" style="padding:0;">
+                        <div class="stat-row" onclick="togglePubStats(event)">
+                            <div class="stat-label"><i class="fas fa-file-alt"></i>Publications</div><span
+                                class="stat-toggle"><i class="fas fa-chevron-down"></i></span><span
+                                class="stat-value">100+</span>
+                        </div>
+                        <div class="pub-breakdown" id="pub-breakdown">
+                            <div class="stat-group">
+                                <div class="stat-group-header">Articles</div>
+                                <a href="#publications" onclick="triggerAccordion('pubs-journal')"
+                                    class="stat-sub-item"><span><i class="fas fa-file-alt"></i> Published
+                                        Articles</span><span class="pub-badge">51+</span></a>
+                                <a href="#publications" onclick="triggerAccordion('pubs-pipeline')"
+                                    class="stat-sub-item"><span><i class="fas fa-paper-plane"></i> Communicated
+                                        Articles</span><span class="pub-badge">4+</span></a>
+                                <a href="#publications" onclick="triggerAccordion('pubs-book')"
+                                    class="stat-sub-item"><span><i class="fas fa-book-open"></i> Published
+                                        Chapters</span><span class="pub-badge">24+</span></a>
+                                <a href="#publications" onclick="triggerAccordion('pubs-conf')"
+                                    class="stat-sub-item"><span><i class="fas fa-microphone"></i> Conference
+                                        Papers</span><span class="pub-badge">14+</span></a>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-group-header">Innovation & Resources</div>
+                                <a href="#patents" class="stat-sub-item"><span><i class="fas fa-stamp"></i> Patents
+                                        Granted</span><span class="pub-badge">1</span></a>
+                                <a href="#patents" class="stat-sub-item"><span><i class="fas fa-file-contract"></i> Patents
+                                        Communicated</span><span class="pub-badge">6</span></a>
+                                <a href="#publications" onclick="triggerAccordion('pubs-data')"
+                                    class="stat-sub-item"><span><i class="fas fa-database"></i> Data & Codes</span><span
+                                        class="pub-badge">31+</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link">
+                        <div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i>
+                                Citations</span><span class="stat-value">1750+</span></div>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
+                        class="stat-row-link">
+                        <div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span><span
+                                class="stat-value">27</span></div>
+                    </a>
+                    <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
+                        class="stat-row-link">
+                        <div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer
+                                Reviews</span><span class="stat-value">530+</span></div>
+                    </a>
+                    <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank"
+                            class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
+                </div>
             </div>
 
-            <div class="hero-stats">
-                <div class="stat-row-link" style="padding:0;">
-                    <div class="stat-row" onclick="togglePubStats(event)">
-                        <div class="stat-label"><i class="fas fa-file-alt"></i>Publications</div><span
-                            class="stat-toggle"><i class="fas fa-chevron-down"></i></span><span
-                            class="stat-value">100+</span>
-                    </div>
-                    <div class="pub-breakdown" id="pub-breakdown">
-                        <div class="stat-group">
-                            <div class="stat-group-header">Articles</div>
-                            <a href="#publications" onclick="triggerAccordion('pubs-journal')"
-                                class="stat-sub-item"><span><i class="fas fa-file-alt"></i> Published
-                                    Articles</span><span class="pub-badge">51+</span></a>
-                            <a href="#publications" onclick="triggerAccordion('pubs-pipeline')"
-                                class="stat-sub-item"><span><i class="fas fa-paper-plane"></i> Communicated
-                                    Articles</span><span class="pub-badge">4+</span></a>
-                            <a href="#publications" onclick="triggerAccordion('pubs-book')"
-                                class="stat-sub-item"><span><i class="fas fa-book-open"></i> Published
-                                    Chapters</span><span class="pub-badge">24+</span></a>
-                            <a href="#publications" onclick="triggerAccordion('pubs-conf')"
-                                class="stat-sub-item"><span><i class="fas fa-microphone"></i> Conference
-                                    Papers</span><span class="pub-badge">14+</span></a>
-                        </div>
-                        <div class="stat-group">
-                            <div class="stat-group-header">Innovation & Resources</div>
-                            <a href="#patents" class="stat-sub-item"><span><i class="fas fa-stamp"></i> Patents
-                                    Granted</span><span class="pub-badge">1</span></a>
-                            <a href="#patents" class="stat-sub-item"><span><i class="fas fa-file-contract"></i> Patents
-                                    Communicated</span><span class="pub-badge">6</span></a>
-                            <a href="#publications" onclick="triggerAccordion('pubs-data')"
-                                class="stat-sub-item"><span><i class="fas fa-database"></i> Data & Codes</span><span
-                                    class="pub-badge">31+</span></a>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link">
-                    <div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i>
-                            Citations</span><span class="stat-value">1750+</span></div>
-                </a>
-                <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
-                    class="stat-row-link">
-                    <div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span><span
-                            class="stat-value">27</span></div>
-                </a>
-                <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
-                    class="stat-row-link">
-                    <div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer
-                            Reviews</span><span class="stat-value">530+</span></div>
-                </a>
-                <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank"
-                        class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
+            <!-- Column 5: Right Terminal & Visuals -->
+            <div class="hero-column-side">
+                <div id="mol-canvas-right" class="bg-canvas-inline" aria-hidden="true"></div>
+                <div id="ai-terminal-right" class="ai-terminal-inline" aria-hidden="true"></div>
             </div>
         </section>
     </div>
-
     <!-- 7.1b: Tagline Bridge -->
     <div class="hero-bridge-section">
         <div class="hero-bridge-inner">
@@ -9182,7 +9413,7 @@
                 </div>
                 <hr class="subtle-separator">
 
-                <h3 class="unified-sub-heading ush-primary" style="margin-top: 1.5rem; text-align: left;">Academic
+                <h3 id="education" class="unified-sub-heading ush-primary" style="margin-top: 1.5rem; text-align: left;">Academic
                     Qualifications</h3>
                 <div class="edu-grid">
                     <div class="edu-card edu-phd">
@@ -9292,7 +9523,7 @@
             <hr class="mobile-only-separator">
 
             <div class="about-right" style="min-width: 0;">
-                <h2 class="section-title" style="margin-top:0;">Research Experiences</h2>
+                <h2 id="experience" class="section-title" style="margin-top:0;">Research Experiences</h2>
                 <div class="exp-grid-vertical">
                     <div class="exp-box exp-full">
                         <div class="exp-header">
@@ -10162,7 +10393,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 9: AWARDS AND RECOGRNITIONS === -->
+    <!-- === SECTION 10: AWARDS AND RECOGNITIONS === -->
     <section id="awards" class="container reveal">
         <h2 class="section-title">Awards & Recognitions</h2>
         <div class="award-box-grid">
@@ -10278,7 +10509,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 10: SCIENTIFIC PUBLICATION FRAMEWORK === -->
+    <!-- === SECTION 11: SCIENTIFIC PUBLICATION FRAMEWORK === -->
     <section id="publications" class="container reveal">
         <h2 class="section-title">Publications & Scholarly Works</h2>
 
@@ -10866,7 +11097,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 11: CONFERENCES, WORKSHOPS AND SYMPOSIA === -->
+    <!-- === SECTION 12: CONFERENCES, WORKSHOPS AND SYMPOSIA === -->
     <section id="conferences" class="container">
         <h2 class="section-title">Conferences & Events</h2>
 
@@ -11145,7 +11376,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 12: PROFESSIONAL ACTIVITIES === -->
+    <!-- === SECTION 13: PROFESSIONAL ACTIVITIES === -->
     <section id="professional" class="container">
         <h2 class="section-title">Professional Activities</h2>
 
@@ -11324,7 +11555,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 13: TECHNICAL PROFICIENCIES AND SKILLS MATRIX === -->
+    <!-- === SECTION 14: TECHNICAL PROFICIENCIES AND SKILLS MATRIX === -->
 
     <section id="technical" class="container">
         <h2 class="section-title">Expertise & Technical Proficiencies</h2>
@@ -11491,7 +11722,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 14: ACADEMIC REFERENCES AND NETWORKING === -->
+    <!-- === SECTION 15: ACADEMIC REFERENCES AND NETWORKING === -->
     <section id="referees" class="container">
         <h2 class="section-title">Academic Referees</h2>
         <div class="referee-grid">
@@ -11594,7 +11825,7 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 15: CONTACT PLATFORM & FOOTER === -->
+    <!-- === SECTION 16: CONTACT PLATFORM & FOOTER === -->
     <section id="contact" class="contact-footer-section reveal">
         <div class="container">
             <div class="contact-grid-layout">
@@ -11620,22 +11851,22 @@
                         <div class="footer-socials"
                             style="margin: 0; padding: 5px 10px; gap: 12px; display: inline-flex; align-items: center;">
                             <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link"
-                                title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                                data-tip="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
-                                class="f-soc-link" title="Google Scholar" aria-label="Google Scholar Profile"><i
+                                class="f-soc-link" data-tip="Google Scholar" aria-label="Google Scholar Profile"><i
                                     class="ai ai-google-scholar"></i></a>
                             <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank"
-                                class="f-soc-link" title="ResearchGate" aria-label="ResearchGate Profile"><i
+                                class="f-soc-link" data-tip="ResearchGate" aria-label="ResearchGate Profile"><i
                                     class="ai ai-researchgate"></i></a>
                             <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link"
-                                title="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
+                                data-tip="ORCID" aria-label="ORCID Profile"><i class="ai ai-orcid"></i></a>
                             <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank"
-                                class="f-soc-link" title="Web of Science" aria-label="Web of Science Profile"><i
+                                class="f-soc-link" data-tip="Web of Science" aria-label="Web of Science Profile"><i
                                     class="ai ai-clarivate"></i></a>
                             <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank"
-                                class="f-soc-link" title="Scopus" aria-label="Scopus Profile"><i
+                                class="f-soc-link" data-tip="Scopus" aria-label="Scopus Profile"><i
                                     class="ai ai-scopus"></i></a>
-                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" title="GitHub"
+                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" data-tip="GitHub"
                                 aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
                         </div>
                         <div class="footer-copyright" style="margin: 0 0 0 10px;">&copy; 2026 Dr Shaban | All rights
@@ -11675,7 +11906,7 @@
         </div>
     </section>
 
-    <!-- === SECTION 16: AI POPUP MODAL === -->
+    <!-- === SECTION 17: AI POPUP MODAL === -->
     <div id="ai-modal" class="ai-modal-overlay" onclick="closeAIModal(event)">
         <div class="ai-modal-box" onclick="event.stopPropagation()">
             <div class="ai-modal-header"><span><svg class="ai-logo-svg" viewBox="0 0 24 24">
@@ -11687,10 +11918,10 @@
         </div>
     </div>
 
-    <!-- === SECTION 17: INTERACTIVE JAVASCRIPT LOGIC === -->
+    <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
     <script>
-        /* --- 17.1: Global Initialisation & Utilities --- */
+        /* --- 18.1: Global Initialisation & Utilities --- */
         var submitted = false;
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('theme') === 'dark') toggleTheme();
@@ -11711,11 +11942,11 @@
 
             // Bridge tagline: now static HTML with CSS colour-fill animation (no JS needed)
 
-            // Instantly set hero stats to 0, then wait 5 seconds before animating sequentially
+            // Instantly set hero stats to 0, then wait 2.5 seconds before animating sequentially
             initCountersToZero('.stat-row > .stat-value');
             setTimeout(() => {
                 runSequentialCounters('.stat-row > .stat-value', 3000);
-            }, 5000);
+            }, 2500);
 
             // Refresh and rerun sequence every 5 minutes (300,000 ms)
             setInterval(refreshHeroCounters, 300000);
@@ -11800,7 +12031,7 @@
         const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if (c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 530+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
         const copyEmail = (el, email) => { navigator.clipboard.writeText(email).then(() => { let fb = document.createElement("span"); fb.className = "copy-feedback"; fb.innerText = "Email copied!"; fb.style.whiteSpace = "nowrap"; el.appendChild(fb); setTimeout(() => fb.classList.add("show"), 10); setTimeout(() => { fb.classList.remove("show"); setTimeout(() => fb.remove(), 300); }, 1500); }); };
 
-        /* --- 17.2: Automated Citation & DOI Logic Engine --- */
+        /* --- 18.2: Automated Citation & DOI Logic Engine --- */
         const initCitationButtons = () => {
             document.querySelectorAll('.pub-item').forEach((pub, i) => {
                 const doiBtn = pub.querySelector('.pub-doi'); if (!doiBtn) return;
@@ -11832,7 +12063,7 @@
         const formatRIS = (m) => { let r = `TY  - JOUR\nTI  - ${m.title}\n`; m.authors.forEach(a => r += `AU  - ${a.last}, ${a.initial}\n`); return r + `JO  - ${m.journal}\nPY  - ${m.year}\nVL  - ${m.volume}\nIS  - ${m.issue}\nSP  - ${m.pages}\nDO  - ${m.doi}\nER  -`; };
         const downloadFile = (c, f, t) => { const b = new Blob([c], { type: t }), l = document.createElement("a"); l.href = URL.createObjectURL(b); l.download = f; document.body.appendChild(l); l.click(); document.body.removeChild(l); };
 
-        /* --- 17.3: UI Interactions, Accordions & Search Engine --- */
+        /* --- 18.3: UI Interactions, Accordions & Search Engine --- */
         window.addEventListener('click', (e) => { if (!e.target.closest('.btn-cite')) document.querySelectorAll('.cite-dropdown-menu').forEach(m => { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); }); if (!e.target.closest('.lang-wrapper') && !e.target.closest('.search-container') && !e.target.closest('#srch-overlay') && !e.target.closest('.control-icon') && !e.target.closest('.mobile-dropdown-toggle') && !e.target.closest('.accordion-btn')) closeAllDropdowns(); if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb && nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } } if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) { const cw = document.getElementById('ai-chat-window'); if (cw && cw.style.display === 'flex') cw.style.display = 'none'; } const pb = document.getElementById('pub-breakdown'), pc = pb ? pb.closest('.stat-row-link') : null; if (pb && pb.classList.contains('open') && pc && !pc.contains(e.target)) { pb.classList.remove('open'); pb.style.maxHeight = "0"; const ti = pc.querySelector('.stat-toggle i'); if (ti) { ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); } pc.classList.remove('active-box'); } });
         const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'); if (d && d !== x) d.classList.remove('show'); if (m && m !== x) m.classList.remove('show');['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if (r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if (t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
         const handleFormSubmit = () => { document.getElementById('contact-form').reset(); const fb = document.getElementById('msg-success-box'), sb = document.getElementById('submit-btn'), ab = document.getElementById('draft-email-btn'); if (sb) sb.style.display = 'none'; if (ab) ab.style.display = 'none'; fb.classList.add('anim-start'); setTimeout(() => fb.classList.add('anim-running'), 100); setTimeout(() => { fb.classList.remove('anim-running'); fb.classList.add('anim-reverse'); }, 3000); setTimeout(() => { fb.classList.remove('anim-start', 'anim-reverse'); fb.style.display = 'none'; if (sb) sb.style.display = 'block'; if (ab) ab.style.display = 'inline-flex'; submitted = false; }, 5000); };
@@ -12105,7 +12336,7 @@
         const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
         let sfAId, sfSpd = 0.8, isSfM = false; const startSFScroll = () => { const t = document.getElementById('sf-track'); if (!t) return; if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } cancelAnimationFrame(sfAId); const step = () => { if (!t.matches(':hover') && !isSfM) { t.scrollLeft += sfSpd; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; } sfAId = requestAnimationFrame(step); }; sfAId = requestAnimationFrame(step); }; const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
 
-        /* --- 17.4: Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) --- */
+        /* --- 18.4: Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) --- */
         const showAIModal = (content) => { document.getElementById('ai-modal-content').innerHTML = content; document.getElementById('ai-modal').classList.add('show'); };
         const closeAIModal = (e) => { if (e && e.target && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return; const m = document.getElementById('ai-modal'); if (m) m.classList.remove('show'); };
 
@@ -12471,7 +12702,7 @@
         const draftEmail = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Type notes first!"; return; } triggerAIFeature('draft-email-btn', null, '✨', 'AI Draft', 'Drafting...', `Rewrite these notes into a polite academic email addressed to Dr. Shaban Ahmad: "${mb.value.trim()}". CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); if (subject) document.getElementById('contact-subject').value = subject; mb.value = body; }); };
 
 
-        /* --- 17.5: Conversational Chatbot & Voice --- */
+        /* --- 18.5: Conversational Chatbot & Voice --- */
         const toggleChatWindow = () => { const w = document.getElementById('ai-chat-window'); w.style.display = w.style.display === 'flex' ? 'none' : 'flex'; };
         const handleChatKey = (e) => { if (e.key === 'Enter') sendUserMessage(); };
         const addMessage = (t, type) => { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = t.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); b.appendChild(d); b.scrollTop = b.scrollHeight; return d; };
@@ -12515,258 +12746,155 @@
         };
 
         /* ── 3D MOLECULAR SIMULATION (3Dmol.js) ───────────────────────
-           Renders an interactive, animated 3D narrative reflecting 
-           Dr. Shaban's core research (Cancer Inhibition & PFAS SN2 Cleavage).
+           Renders dual animated 3D narratives for desktop sidebars.
         ──────────────────────────────────────────────────────────── */
         (() => {
             const init3D = () => {
-                // Disable 3D molecular simulation on mobile devices for performance
-                if (window.innerWidth <= 900) {
-                    const canvas = document.getElementById('mol-canvas');
-                    if (canvas) canvas.style.display = 'none';
-                    return;
-                }
+                if (typeof $3Dmol === 'undefined') { setTimeout(init3D, 100); return; }
+                const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
+                if (!containerL || !containerR) return;
 
-                if (typeof $3Dmol === 'undefined') {
-                    setTimeout(init3D, 100);
-                    return;
-                }
-                const container = document.getElementById('mol-canvas');
-                if (!container) return;
+                const vL = $3Dmol.createViewer(containerL, { alpha: true, antialias: true }), vR = $3Dmol.createViewer(containerR, { alpha: true, antialias: true });
+                const viewers = [vL, vR]; viewers.forEach(v => v.setBackgroundColor(0x000000, 0.0));
 
-                // Initialize 3Dmol viewer with transparent background
-                const viewer = $3Dmol.createViewer(container, {
-                    alpha: true,
-                    antialias: true
-                });
-                viewer.setBackgroundColor(0x000000, 0.0);
+                let proteinModels = [], isAnimating = false, protAtomsList = [];
+                const PFAS_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: 'gray', x: 0, y: 0, z: 0 }, { id: 1, e: 'C', r: 0.45, c: 'gray', x: 1.5, y: 0.5, z: 0 }, { id: 2, e: 'O', r: 0.45, c: 'red', x: 2.2, y: 1.5, z: 0 }, { id: 3, e: 'O', r: 0.45, c: 'red', x: 2.2, y: -0.5, z: 0 }, { id: 4, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: 1.2, z: 0 }, { id: 5, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: 1.0 }, { id: 6, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: -1.0 }], bonds: [[0, 1], [1, 2], [1, 3], [0, 4], [0, 5], [0, 6]] };
+                const DRUG_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: 1.4, z: 0 }, { id: 1, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: 0.7, z: 0 }, { id: 2, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: -0.7, z: 0 }, { id: 3, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: -1.4, z: 0 }, { id: 4, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: -0.7, z: 0 }, { id: 5, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: 0.7, z: 0 }, { id: 6, e: 'N', r: 0.45, c: 'blue', x: 2.4, y: 1.4, z: 0 }, { id: 7, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 0.7, z: 0 }, { id: 8, e: 'C', r: 0.45, c: '#f59e0b', x: 4.8, y: 1.4, z: 0 }, { id: 9, e: 'N', r: 0.45, c: 'blue', x: 4.8, y: 2.8, z: 0 }, { id: 10, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 3.5, z: 0 }, { id: 11, e: 'C', r: 0.45, c: '#f59e0b', x: 2.4, y: 2.8, z: 0 }, { id: 12, e: 'O', r: 0.45, c: 'red', x: -2.4, y: -1.4, z: 0 }], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 7], [4, 12]] };
+                const precalc = (t) => { let cx = 0, cy = 0, cz = 0; t.atoms.forEach(a => { cx += a.x; cy += a.y; cz += a.z; }); cx /= t.atoms.length; cy /= t.atoms.length; cz /= t.atoms.length; t.atoms.forEach(a => { let dx = a.x - cx, dy = a.y - cy, dz = a.z - cz, d = Math.hypot(dx, dy, dz) || 1; a.dx = dx / d; a.dy = dy / d; a.dz = dz / d; }); };
+                precalc(PFAS_TEMPLATE); precalc(DRUG_TEMPLATE);
 
-                let proteinModel = null;
-                let isAnimating = false;
-                let protAtoms = [];
+                $3Dmol.download("pdb:3R3V", vR, {}, function () {
+                    $3Dmol.download("pdb:3R3V", vL, {}, function () {
+                        viewers.forEach(v => { const m = v.getModel(0); proteinModels.push(m); const at = m.selectedAtoms({ atom: 'CA' }); at.forEach(a => { a.vx = (Math.random() - 0.5) * 8; a.vy = (Math.random() - 0.5) * 8; a.vz = (Math.random() - 0.5) * 8; }); protAtomsList.push(at); v.setStyle({ chain: 'B' }, { cross: { hidden: true } }); v.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } }); v.zoomTo({ chain: 'A' }); });
 
-                // ── Molecule Templates ──
-                const PFAS_TEMPLATE = {
-                    atoms: [
-                        { id: 0, e: 'C', r: 0.45, c: 'gray', x: 0, y: 0, z: 0 },
-                        { id: 1, e: 'C', r: 0.45, c: 'gray', x: 1.5, y: 0.5, z: 0 },
-                        { id: 2, e: 'O', r: 0.45, c: 'red', x: 2.2, y: 1.5, z: 0 },
-                        { id: 3, e: 'O', r: 0.45, c: 'red', x: 2.2, y: -0.5, z: 0 },
-                        { id: 4, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: 1.2, z: 0 },
-                        { id: 5, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: 1.0 },
-                        { id: 6, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: -1.0 }
-                    ],
-                    bonds: [[0, 1], [1, 2], [1, 3], [0, 4], [0, 5], [0, 6]]
-                };
+                        const setProteinStyle = (idx, st) => {
+                            const m = proteinModels[idx];
+                            let cf; if (st === 'active') cf = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b'); else if (st === 'inhibited') cf = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a'); else if (st === 'catalyzing') cf = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
+                            m.setStyle({}, { hidden: false }); m.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cf, thickness: 0.4 } }); viewers[idx].render();
+                        };
+                        const setSurface = (idx, ty) => { 
+                            viewers[idx].removeAllSurfaces(); 
+                            if (ty === 'normal') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false }); 
+                            else if (ty === 'inhibited') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false }); 
+                            else if (ty === 'catalyzing') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false }); 
+                        };
 
-                const DRUG_TEMPLATE = {
-                    atoms: [
-                        { id: 0, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: 1.4, z: 0 },
-                        { id: 1, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: 0.7, z: 0 },
-                        { id: 2, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: -0.7, z: 0 },
-                        { id: 3, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: -1.4, z: 0 },
-                        { id: 4, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: -0.7, z: 0 },
-                        { id: 5, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: 0.7, z: 0 },
-                        { id: 6, e: 'N', r: 0.45, c: 'blue', x: 2.4, y: 1.4, z: 0 },
-                        { id: 7, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 0.7, z: 0 },
-                        { id: 8, e: 'C', r: 0.45, c: '#f59e0b', x: 4.8, y: 1.4, z: 0 },
-                        { id: 9, e: 'N', r: 0.45, c: 'blue', x: 4.8, y: 2.8, z: 0 },
-                        { id: 10, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 3.5, z: 0 },
-                        { id: 11, e: 'C', r: 0.45, c: '#f59e0b', x: 2.4, y: 2.8, z: 0 },
-                        { id: 12, e: 'O', r: 0.45, c: 'red', x: -2.4, y: -1.4, z: 0 }
-                    ],
-                    bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 7], [4, 12]]
-                };
+                        setProteinStyle(0, 'active'); setSurface(0, 'normal');
+                        setProteinStyle(1, 'active'); setSurface(1, 'normal');
 
-                // Pre-calculate explosion vectors for SN2 shattering
-                const precalcVectors = (tmpl) => {
-                    let cx = 0, cy = 0, cz = 0;
-                    tmpl.atoms.forEach(a => { cx += a.x; cy += a.y; cz += a.z; });
-                    cx /= tmpl.atoms.length; cy /= tmpl.atoms.length; cz /= tmpl.atoms.length;
-                    tmpl.atoms.forEach(a => {
-                        let dx = a.x - cx, dy = a.y - cy, dz = a.z - cz;
-                        let dist = Math.hypot(dx, dy, dz) || 1;
-                        a.dx = dx / dist; a.dy = dy / dist; a.dz = dz / dist;
+                        let tick = 0; const target = { x: -2, y: -5, z: 12 }, start = { x: 40, y: 20, z: -20 }, exit = { x: -40, y: -20, z: 30 };
+                        const drawLigand = (idx, tmpl, pos, scP = 0) => {
+                            let al = 1.0 - (scP * 1.5); if (al <= 0 && scP > 0) return; const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
+                            const tAt = tmpl.atoms.map(a => { let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c, isSc = false; if (scP > 0 && a.e === 'F') { rx += a.dx * 25 * scP; ry += a.dy * 25 * scP; rz += a.dz * 25 * scP; ry -= scP * 15; isSc = true; } return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isSc }; });
+                            const v = viewers[idx];
+                            tAt.forEach(a => v.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? al : 1.0 })); 
+                            tmpl.bonds.forEach(b => { const p1 = tAt.find(at => at.id === b[0]), p2 = tAt.find(at => at.id === b[1]); if (p1 && p2 && !p1.scattered && !p2.scattered) v.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' }); });
+                        };
+
+                        const termLeft = document.getElementById('ai-terminal-left');
+                        const termRight = document.getElementById('ai-terminal-right');
+                        let logsLeft = [], logsRight = [];
+                        let queueLeft = [], queueRight = [];
+                        let isTypingLeft = false, isTypingRight = false;
+
+                        const toggleTerm = (sh) => { 
+                            [termLeft, termRight].forEach(t => { 
+                                if (!t) return;
+                                t.style.opacity = sh ? '1' : '0'; 
+                                if (!sh) t.innerHTML = ''; 
+                            }); 
+                            if (!sh) { logsLeft = []; logsRight = []; queueLeft = []; queueRight = []; isTypingLeft = false; isTypingRight = false; } 
+                        };
+
+                        const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
+
+                        const typeLog = (side) => {
+                            const q = side === 'L' ? queueLeft : queueRight;
+                            const l = side === 'L' ? logsLeft : logsRight;
+                            const t = side === 'L' ? termLeft : termRight;
+                            let isT = side === 'L' ? isTypingLeft : isTypingRight;
+
+                            if (q.length === 0) { if(side==='L') isTypingLeft=false; else isTypingRight=false; return; }
+                            if(side==='L') isTypingLeft=true; else isTypingRight=true;
+
+                            const msg = q.shift();
+                            l.push(""); if (l.length > 18) l.shift();
+                            let i = 0;
+                            const typeChar = () => {
+                                l[l.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
+                                renderTerm(t, l); i++;
+                                if (i <= msg.length) setTimeout(typeChar, 8);
+                                else { l[l.length - 1] = msg; renderTerm(t, l); setTimeout(() => typeLog(side), 80); }
+                            };
+                            typeChar();
+                        };
+
+                        const addLog = (m, side = 'both') => {
+                            let f = m;
+                            if (m.startsWith('>')) f = `<span style="color:#10b981">${m}</span>`;
+                            else if (m.includes('CRITICAL') || m.includes('ERROR') || m.includes('FAILURE')) f = `<span style="color:#ef4444">${m}</span>`;
+                            else if (m.includes('SUCCESS') || m.includes('COMPLETE')) f = `<span style="color:#10b981">${m}</span>`;
+                            else if (m.includes('WARNING') || m.includes('[CALC]') || m.includes('[INFO]')) f = `<span style="color:#f59e0b">${m}</span>`;
+                            else if (m.includes('[RESULT]')) f = `<span style="color:#38bdf8">${m}</span>`;
+
+                            if (side === 'L' || side === 'both') { queueLeft.push(f); if (!isTypingLeft) typeLog('L'); }
+                            if (side === 'R' || side === 'both') { queueRight.push(f); if (!isTypingRight) typeLog('R'); }
+                        };
+
+                        const animateScene = () => {
+                            if (!isAnimating) return; tick = (tick + 2) % 1800; viewers.forEach(v => v.removeAllShapes());
+                            
+                            // --- LEFT SIDE (VIEWER 0): DRUG DISCOVERY -> PHARMACOGENOMICS ---
+                            if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced", 'L'); }
+                            if (tick === 120) addLog("> loading Lead_Compound_X42...", 'L');
+                            if (tick === 180) addLog("> ligand_docking.start()", 'L');
+                            if (tick === 260) { addLog("[CALC] Bind Energy: -14.2 kcal/mol", 'L'); setProteinStyle(0, 'inhibited'); setSurface(0, 'inhibited'); }
+                            if (tick === 330) addLog("[CRITICAL] Ligand-induced denaturation!", 'L');
+                            if (tick === 420) { addLog("[FAILURE] Lead discarded. Resetting...", 'L'); setSurface(0, 'none'); proteinModels[0].setStyle({}, { hidden: true }); }
+                            if (tick === 550) { setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+                            
+                            if (tick === 620) addLog("> import pharmacogenomics as pgx", 'L');
+                            if (tick === 700) addLog("> patient_profile = pgx.load('PT-29')", 'L');
+                            if (tick === 880) { addLog("[RESULT] Phenotype: Poor Metabolizer", 'L'); setProteinStyle(0, 'catalyzing'); setSurface(0, 'catalyzing'); }
+                            if (tick === 1030) { addLog("[SUCCESS] Optimized regimen active", 'L'); setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+
+                            // --- RIGHT SIDE (VIEWER 1): PFAS BIOREMEDIATION -> STRUCTURAL BIOLOGY ---
+                            if (tick === 50) addLog("> system_status: monitoring node_01", 'R');
+                            if (tick === 120) addLog("[INFO] Proximity alert: 20Å", 'R');
+                            if (tick === 260) addLog("[WARNING] Active site distortion detected", 'R');
+                            if (tick === 420) addLog("[CRITICAL] SYSTEM OVERLOAD: Rebooting", 'R');
+
+                            if (tick === 620) { addLog("> environment: site_alpha_groundwater", 'R'); }
+                            if (tick === 700) addLog("[INFO] Detecting fluorinated bonds", 'R');
+                            if (tick === 780) addLog("> simulate defluorination transition", 'R');
+                            if (tick === 880) { addLog("[INFO] SN2 attack angle: 178°", 'R'); setProteinStyle(1, 'catalyzing'); setSurface(1, 'catalyzing'); }
+                            if (tick === 960) addLog("[SUCCESS] Fluorine ion release detected", 'R');
+                            if (tick === 1030) { addLog("[COMPLETE] Degradation yield: 98.4%", 'R'); setProteinStyle(1, 'active'); setSurface(1, 'normal'); }
+                            
+                            if (tick === 1220) addLog("> model_structure --method 'AlphaFold3'", 'R');
+                            if (tick === 1480) addLog("[INFO] pLDDT score: 94.2 (HIGH)", 'R');
+                            if (tick === 1680) addLog("[SUCCESS] Global report finalized", 'R');
+
+                            // LEFT DRUG ANIMATION (VIEWER 0)
+                            if (tick > 180 && tick <= 330) { let p = (tick - 180) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(0, DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                            else if (tick > 330 && tick <= 420) drawLigand(0, DRUG_TEMPLATE, target);
+                            else if (tick > 420 && tick <= 550) { let p = (tick - 420) / 130; p = Math.pow(p, 1.5); protAtomsList[0].forEach(a => { viewers[0].addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p }); }); drawLigand(0, DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p }); }
+
+                            // RIGHT PFAS ANIMATION (VIEWER 1)
+                            if (tick > 780 && tick <= 930) { let p = (tick - 780) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(1, PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                            else if (tick > 930 && tick <= 1030) drawLigand(1, PFAS_TEMPLATE, target);
+                            else if (tick > 1030 && tick <= 1150) drawLigand(1, PFAS_TEMPLATE, target, Math.pow((tick - 1030) / 120, 2));
+
+                            // GENOMIC SPHERES (VIEWER 0)
+                            if (tick > 750 && tick <= 1000) { let p = (tick - 750) / 250; const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z }); [0, 2.1, 4.2].forEach((a, i) => { const o = orb(a, 20 * p); viewers[0].addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p < 0.8 ? p : (1 - p) * 5 }); }); }
+
+                            if (tick === 1750) toggleTerm(false);
+                            viewers.forEach(v => v.render()); requestAnimationFrame(animateScene);
+                        };
+
+                        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { isAnimating = true; requestAnimationFrame(animateScene); } else { isAnimating = false; } }); }, { threshold: 0.1 });
+                        observer.observe(document.getElementById('hero-section'));
                     });
-                };
-                precalcVectors(PFAS_TEMPLATE); precalcVectors(DRUG_TEMPLATE);
-
-                // ── Load Dehalogenase Protein (3R3V) ──
-                $3Dmol.download("pdb:3R3V", viewer, {}, function () {
-                    proteinModel = viewer.getModel(0);
-
-                    // Cache Alpha-Carbon coordinates to simulate whole protein shatter
-                    protAtoms = proteinModel.selectedAtoms({ atom: 'CA' });
-                    protAtoms.forEach(a => {
-                        a.vx = (Math.random() - 0.5) * 8;
-                        a.vy = (Math.random() - 0.5) * 8;
-                        a.vz = (Math.random() - 0.5) * 8;
-                    });
-
-                    const setProteinStyle = (state) => {
-                        let cFunc;
-                        if (state === 'active') cFunc = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b');
-                        else if (state === 'inhibited') cFunc = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a');
-                        else if (state === 'catalyzing') cFunc = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
-
-                        proteinModel.setStyle({}, { hidden: false }); // ensure visible
-                        proteinModel.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cFunc, thickness: 0.4 } });
-                        viewer.render();
-                    };
-
-                    const setSurface = (type) => {
-                        viewer.removeAllSurfaces();
-                        if (type === 'normal') viewer.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false });
-                        else if (type === 'inhibited') viewer.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false });
-                        else if (type === 'catalyzing') viewer.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false });
-                    };
-
-                    setProteinStyle('active');
-                    setSurface('normal');
-                    viewer.setStyle({ chain: 'B' }, { cross: { hidden: true } });
-                    viewer.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } }); // Hide native ligands
-                    viewer.zoomTo({ chain: 'A' });
-
-                    // ── 3D Animation Engine ──
-                    let tick = 0;
-                    const target = { x: -2, y: -5, z: 12 }; // Active site coordinates
-                    const start = { x: 40, y: 20, z: -20 };
-                    const exit = { x: -40, y: -20, z: 30 };
-
-                    const drawLigand = (template, pos, scatterProgress = 0) => {
-                        let alpha = 1.0 - (scatterProgress * 1.5);
-                        if (alpha <= 0 && scatterProgress > 0) return;
-
-                        // Tumbling effect
-                        const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
-
-                        const tAtoms = template.atoms.map(a => {
-                            let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c;
-                            let isScattered = false;
-                            if (scatterProgress > 0 && a.e === 'F') { // Only shatter the Fluorines!
-                                let speed = 25;
-                                rx += a.dx * speed * scatterProgress; ry += a.dy * speed * scatterProgress; rz += a.dz * speed * scatterProgress;
-                                ry -= scatterProgress * 15; // Gravity fallout
-                                isScattered = true;
-                            }
-                            return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isScattered };
-                        });
-
-                        tAtoms.forEach(a => viewer.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? alpha : 1.0 }));
-
-                        // Only draw bonds between non-scattered atoms! (Snaps the C-F bonds visually)
-                        template.bonds.forEach(b => {
-                            const p1 = tAtoms.find(a => a.id === b[0]), p2 = tAtoms.find(a => a.id === b[1]);
-                            if (p1 && p2 && !p1.scattered && !p2.scattered) viewer.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' });
-                        });
-                    };
-
-                    const term = document.getElementById('ai-terminal');
-                    let logs = [];
-                    const toggleTerm = (show) => { if (term) term.style.opacity = show ? '1' : '0'; };
-                    const addLog = (msg) => {
-                        if (!term) return;
-                        logs.push(msg);
-                        if (logs.length > 6) logs.shift();
-                        term.innerHTML = logs.map(l => {
-                            if (l.startsWith('>')) return `<span style="color:#10b981">${l}</span>`;
-                            if (l.includes('CRITICAL') || l.includes('ERROR')) return `<span style="color:#ef4444">${l}</span>`;
-                            if (l.includes('SUCCESS')) return `<span style="color:#38bdf8">${l}</span>`;
-                            return l;
-                        }).join('<br>');
-                    };
-                    const show2D = (type) => { /* removed interaction-2d box */ };
-                    const hide2D = () => { /* removed interaction-2d box */ };
-
-                    const animateScene = () => {
-                        if (!isAnimating) return;
-                        tick = (tick + 2) % 1500;  // 3 cycles in 1500 ticks
-                        viewer.removeAllShapes();
-
-                        // ── Cycle 1: Cancer Drug → Protein Degradation (ticks 100–450) ──
-                        if (tick === 100) { toggleTerm(true); logs = []; addLog("> import torch, rdkit"); addLog("> model = TCP_Predictor.load('best_model.pt')"); }
-                        if (tick === 160) { addLog("> ligand = rdkit.Chem.MolFromSmiles('Inhibitor_X')"); }
-                        if (tick === 250) { addLog("> affinity = model.predict(protein, ligand)"); setProteinStyle('inhibited'); setSurface('inhibited'); }
-                        if (tick === 300) { addLog("[CALC] Aff: -12.4 kcal/mol (High Toxicity)"); }
-                        if (tick === 350) { addLog("> protein.denature(cause='toxic_ligand')"); addLog("[CRITICAL] Protein structural integrity compromised!"); setSurface('none'); proteinModel.setStyle({}, { hidden: true }); }
-                        if (tick === 420) { addLog("> system.reboot_environment()"); }
-                        if (tick === 450) { toggleTerm(false); setProteinStyle('active'); setSurface('normal'); }
-
-                        // ── Cycle 2: PFAS Biodegradation (ticks 600–950) ──
-                        if (tick === 600) { toggleTerm(true); logs = []; addLog("> import ai_bioremediation"); addLog("> sample = load_environmental_sample('site_A')"); }
-                        if (tick === 660) { addLog("> target = sample.extract('PFAS')"); }
-                        if (tick === 750) { addLog("> enzyme.catalyze(target, mechanism='SN2')"); setProteinStyle('catalyzing'); setSurface('catalyzing'); }
-                        if (tick === 800) { addLog("[COMPUTE] Attack Angle: 178°. Distance: 2.8Å."); }
-                        if (tick === 850) { addLog("> target.cleave_bonds(['C-F'])"); addLog("[SUCCESS] Defluorination complete. PFAS degraded."); setProteinStyle('active'); setSurface('normal'); }
-                        if (tick === 950) { toggleTerm(false); }
-
-                        // ── Cycle 3: Personalised Medicine / Pharmacogenomics (ticks 1050–1400) ──
-                        if (tick === 1050) { toggleTerm(true); logs = []; addLog("> import genomics, pharmacogenomics as pgx"); addLog("> patient = pgx.load_patient(id='PT-2947', vcf='variants.vcf')"); }
-                        if (tick === 1110) { addLog("> variants = patient.get_variants(gene='CYP2D6')"); addLog("[INFO] Found 3 clinically significant variants."); }
-                        if (tick === 1180) { addLog("> drug_resp = pgx.predict_response(patient, drug='Tamoxifen')"); setProteinStyle('catalyzing'); setSurface('catalyzing'); }
-                        if (tick === 1240) { addLog("[RESULT] Metaboliser: Poor | Efficacy Risk: HIGH"); addLog("> alt = pgx.recommend_alternative(patient)"); }
-                        if (tick === 1300) { addLog("[SUCCESS] Personalised regimen: Anastrozole 1mg/day"); addLog("> patient.update_treatment_plan(alt)"); setProteinStyle('active'); setSurface('normal'); }
-                        if (tick === 1400) { toggleTerm(false); }
-
-                        // ── Render Timeline ──
-                        // Cycle 1: Cancer drug
-                        if (tick > 100 && tick <= 250) {
-                            let p = (tick - 100) / 150; p = 1 - Math.pow(1 - p, 3);
-                            drawLigand(DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p });
-                        } else if (tick > 250 && tick <= 400) {
-                            drawLigand(DRUG_TEMPLATE, target);
-                        } else if (tick > 350 && tick <= 450) { // Protein shatters
-                            let p = (tick - 350) / 100; p = Math.pow(p, 1.5);
-                            protAtoms.forEach(a => {
-                                viewer.addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p });
-                            });
-                            drawLigand(DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p });
-                        }
-                        // Cycle 2: PFAS
-                        else if (tick > 600 && tick <= 750) {
-                            let p = (tick - 600) / 150; p = 1 - Math.pow(1 - p, 3);
-                            drawLigand(PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p });
-                        } else if (tick > 750 && tick <= 850) {
-                            drawLigand(PFAS_TEMPLATE, target);
-                        } else if (tick > 850 && tick <= 950) { // PFAS shatters (ligand degraded)
-                            drawLigand(PFAS_TEMPLATE, target, Math.pow((tick - 850) / 100, 2));
-                        }
-                        // Cycle 3: Personalised medicine — gene variant as small spheres orbiting protein
-                        else if (tick > 1050 && tick <= 1200) {
-                            let p = (tick - 1050) / 150; p = 1 - Math.pow(1 - p, 3);
-                            // Visualise three gene variants approaching the protein
-                            const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z });
-                            [0, 2.1, 4.2].forEach((a, i) => {
-                                const o = orb(a, 20 * p); viewer.addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p });
-                            });
-                        } else if (tick > 1200 && tick <= 1300) {
-                            // Variants bound — protein glows cyan (personalised response)
-                            const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z });
-                            [0, 2.1, 4.2].forEach((a, i) => {
-                                const o = orb(a, 20); viewer.addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: 1 });
-                            });
-                        } else if (tick > 1300 && tick <= 1400) {
-                            // Optimal drug delivered — spheres fade, protein back to active
-                            let p = (tick - 1300) / 100;
-                            const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z });
-                            [0, 2.1, 4.2].forEach((a, i) => {
-                                const o = orb(a, 20); viewer.addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#10b981', alpha: 1 - p });
-                            });
-                        }
-
-                        viewer.render();
-                        requestAnimationFrame(animateScene);
-                    };
-
-                    // Optimisation Observer
-                    const hero = document.getElementById('hero-section');
-                    if (hero) {
-                        new IntersectionObserver(([entry]) => {
-                            isAnimating = entry.isIntersecting;
-                            if (isAnimating) { viewer.spin("y", 0.25); animateScene(); }
-                            else { viewer.spin(false); }
-                        }, { threshold: 0.01 }).observe(hero);
-                    }
                 });
             };
             init3D();
@@ -12806,6 +12934,17 @@
                 ['fa-network-wired', 'rgba(80,200,255,0.48)', 13],  // network biology
                 ['fa-vial', 'rgba(248,113,113,0.45)', 13],  // wet-lab validation
                 ['fa-laptop-code', 'rgba(255,255,255,0.40)', 14],  // scientific computing
+                // Additional icons for denser view
+                ['fa-seedling', 'rgba(52,211,153,0.55)', 16],
+                ['fa-chart-pie', 'rgba(245,158,11,0.55)', 15],
+                ['fa-server', 'rgba(80,200,255,0.50)', 14],
+                ['fa-laptop-medical', 'rgba(248,113,113,0.50)', 15],
+                ['fa-capsules', 'rgba(167,139,250,0.50)', 16],
+                ['fa-shield-virus', 'rgba(52,211,153,0.50)', 15],
+                ['fa-square-root-alt', 'rgba(245,158,11,0.50)', 14],
+                ['fa-chart-bar', 'rgba(255,255,255,0.40)', 15],
+                ['fa-bug', 'rgba(248,113,113,0.50)', 13],
+                ['fa-satellite-dish', 'rgba(80,200,255,0.50)', 14]
             ];
 
             const SPEED = 0.05; // very slow idle drift
@@ -12930,7 +13069,6 @@
     </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 
     <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
     <div id="srch-overlay" class="srch-overlay" role="dialog" aria-modal="true" aria-label="Search">
