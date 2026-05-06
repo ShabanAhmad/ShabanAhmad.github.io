@@ -16,13 +16,7 @@
 
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
     <meta property="og:title" content="Dr Shaban Ahmad | Postdoctoral Researcher | Computational Pharmacology">
-    <meta property="o Seeking
-Assistant Professorship
-to establish
-TCP Group Seeking
-Assistant Professorship
-to establish
-TCP Groupg:description"
+    <meta property="og:description"
         content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation research at the University of Copenhagen.">
     <meta property="og:image" content="shaban.png">
     <meta property="og:url" content="https://shabanahmad.github.io/">
@@ -63,15 +57,16 @@ TCP Groupg:description"
             --light-bg: #fafaf9;
             --white: #ffffff;
             --inst-font: 'Merriweather', serif;
-            --transition: all 0.3s ease;
+            --transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+            --transition-fast: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
             --edu-phd: #28a745;
             --edu-msc: #dc3545;
             --edu-bsc: #20b0c9;
             --exp-full: #28a745;
             --exp-part: #6f42c1;
             --exp-trainee: #dc3545;
-            --sub-heading: #047857;
-            --ref-1: #06134e;
+            --sub-heading: #1e40af;
+            --ref-1: #2563eb;
             --ref-2: #dc3545;
             --ref-3: #6f42c1;
             --ref-4: #0dadbc;
@@ -86,7 +81,13 @@ TCP Groupg:description"
             --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
-            /* shared shadow scale */
+            
+            /* Dynamic variables for consolidation */
+            --card-bg: var(--white);
+            --card-text: var(--text);
+            --card-border: #f0f0f0;
+            --card-shadow: var(--shadow-sm);
+            --card-shadow-hover: var(--shadow-md);
         }
 
         /* --- 4.2: Resets & Accessibility Enhancements --- */
@@ -171,23 +172,21 @@ TCP Groupg:description"
         /* --- 4.4: Utility Animations & Search Highlighting --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             will-change: transform, opacity;
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-            will-change: auto;
         }
 
         @keyframes cascadeUp {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -210,61 +209,34 @@ TCP Groupg:description"
         .reveal.active .award-card,
         .reveal.active .referee-card {
             opacity: 1;
-            animation: cascadeUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+            animation: cascadeUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
         }
 
-        .reveal.active .edu-card:nth-child(1),
-        .reveal.active .exp-box:nth-child(1),
-        .reveal.active .bento-card:nth-child(1),
-        .reveal.active .patent-box:nth-child(1),
-        .reveal.active .award-card:nth-child(1),
-        .reveal.active .referee-card:nth-child(1) {
-            animation-delay: 0.05s;
+        /* Consolidated Animation Delays */
+        .reveal.active > *:nth-child(1) { animation-delay: 0.05s; }
+        .reveal.active > *:nth-child(2) { animation-delay: 0.10s; }
+        .reveal.active > *:nth-child(3) { animation-delay: 0.15s; }
+        .reveal.active > *:nth-child(4) { animation-delay: 0.20s; }
+        .reveal.active > *:nth-child(5) { animation-delay: 0.25s; }
+        .reveal.active > *:nth-child(n+6) { animation-delay: 0.30s; }
+
+        /* General Card Utility Class */
+        .ui-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.25rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .reveal.active .edu-card:nth-child(2),
-        .reveal.active .exp-box:nth-child(2),
-        .reveal.active .bento-card:nth-child(2),
-        .reveal.active .patent-box:nth-child(2),
-        .reveal.active .award-card:nth-child(2),
-        .reveal.active .referee-card:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .reveal.active .edu-card:nth-child(3),
-        .reveal.active .exp-box:nth-child(3),
-        .reveal.active .bento-card:nth-child(3),
-        .reveal.active .award-card:nth-child(3),
-        .reveal.active .referee-card:nth-child(3) {
-            animation-delay: 0.25s;
-        }
-
-        .reveal.active .exp-box:nth-child(4),
-        .reveal.active .bento-card:nth-child(4),
-        .reveal.active .award-card:nth-child(4),
-        .reveal.active .referee-card:nth-child(4) {
-            animation-delay: 0.35s;
-        }
-
-        .reveal.active .exp-box:nth-child(5),
-        .reveal.active .award-card:nth-child(5),
-        .reveal.active .referee-card:nth-child(5) {
-            animation-delay: 0.45s;
-        }
-
-        .reveal.active .exp-box:nth-child(6),
-        .reveal.active .award-card:nth-child(6),
-        .reveal.active .referee-card:nth-child(6) {
-            animation-delay: 0.55s;
-        }
-
-        .reveal.active .exp-box:nth-child(7),
-        .reveal.active .award-card:nth-child(7) {
-            animation-delay: 0.65s;
-        }
-
-        .reveal.active .award-card:nth-child(n+8) {
-            animation-delay: 0.75s;
+        .ui-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
         }
 
         @keyframes metallicShimmer {
@@ -342,7 +314,7 @@ TCP Groupg:description"
             width: 100%;
             z-index: 10001;
             height: 60px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .header-content {
@@ -366,7 +338,7 @@ TCP Groupg:description"
             gap: 8px;
             opacity: 0;
             transform: translateX(-20px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
         }
 
@@ -403,7 +375,7 @@ TCP Groupg:description"
             padding: 5px 8px;
             border: none;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             background: transparent;
             display: inline-block;
             position: relative;
@@ -423,7 +395,7 @@ TCP Groupg:description"
             bottom: 2px;
             left: 50%;
             background-color: var(--accent);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             transform: translateX(-50%);
         }
 
@@ -974,7 +946,7 @@ TCP Groupg:description"
             border-radius: 0 12px 12px 0;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #f0f0f0;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .sticky-sidebar .h-social {
@@ -987,29 +959,74 @@ TCP Groupg:description"
             position: relative; 
         }
 
-        /* Custom Instant Tooltip (Desktop-Left: Tip on Right) */
-        .h-social::after {
+        /* Global Instant Tooltip (using data-tip) */
+        [data-tip] {
+            position: relative;
+        }
+
+        [data-tip]::after {
             content: attr(data-tip);
             position: absolute;
-            left: 100%; /* Default: show on right */
+            left: 100%;
             top: 50%;
-            transform: translateY(-50%) translateX(10px);
-            background: rgba(0, 0, 0, 0.85);
+            transform: translateY(-50%) translateX(8px);
+            background: rgba(0, 0, 0, 0.95);
             color: #fff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Roboto', sans-serif !important;
+            font-weight: 500;
+            line-height: 1;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.1s ease, transform 0.1s ease;
-            z-index: 100;
+            transition: opacity 0.05s ease;
+            z-index: 2147483647; /* Absolute maximum z-index */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        [data-tip]:hover::after {
+            opacity: 1;
+        }
+
+        /* Floating Interface Triggers: Flip tooltip to the left to prevent edge clipping */
+        .header-controls [data-tip]::after,
+        .mobile-controls-container [data-tip]::after,
+        #ai-widget-toggle[data-tip]::after,
+        .back-to-top[data-tip]::after {
+            left: auto !important;
+            right: calc(100% + 15px) !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+        }
+
+        /* Tooltip positioning overrides */
+        .h-social::after {
+            left: 100%;
+            transform: translateY(-50%) translateX(10px);
         }
 
         .h-social:hover::after {
-            opacity: 1;
             transform: translateY(-50%) translateX(15px);
+        }
+
+        .f-soc-link::after {
+            left: 50%;
+            top: auto;
+            bottom: 120%;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .f-soc-link:hover::after {
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .flag-wrapper::after {
+            left: 50%;
+            top: auto;
+            bottom: 125%;
+            transform: translateX(-50%);
         }
 
         .sticky-sidebar .h-social:hover {
@@ -1032,7 +1049,7 @@ TCP Groupg:description"
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            z-index: 9999;
+            z-index: 10005; /* Higher than AI widget (10002) */
             opacity: 0;
             transform: translateY(20px);
             pointer-events: none;
@@ -1049,6 +1066,38 @@ TCP Groupg:description"
             background-color: var(--primary);
             color: var(--accent);
             transform: translateY(-5px);
+        }
+
+        /* --- Scroll More Button in Panels (Floating) --- */
+        .panel {
+            position: relative; /* Base for absolute scroll button */
+        }
+
+        .scroll-more-btn {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Controlled via JS based on overflow */
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: none;
+            z-index: 100;
+        }
+
+        .scroll-more-btn:hover {
+            transform: translateX(-50%) translateY(3px) scale(1.1);
+            background: var(--primary);
+            color: var(--accent);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
         /* --- 4.8: Hero Landing Section --- */
@@ -1074,7 +1123,7 @@ TCP Groupg:description"
             z-index: 1;
             display: flex;
             flex-direction: row; /* Horizontal layout */
-            justify-content: center; /* Group everything in the center */
+            justify-content: center; /* Group everything in the centre */
             align-items: center;
             gap: 5rem; /* Large gap for the wings */
             max-width: 1800px; /* Wider to allow full protein visibility */
@@ -1104,6 +1153,15 @@ TCP Groupg:description"
             align-items: center; 
             pointer-events: auto;
             overflow: visible;
+        }
+
+        /* Vertical Separators for Hero */
+        .hero-v-sep {
+            width: 1px;
+            height: 250px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent);
+            flex-shrink: 0;
+            z-index: 10;
         }
 
         .bg-canvas-inline {
@@ -1136,7 +1194,7 @@ TCP Groupg:description"
             display: flex;
             flex-direction: column-reverse;
             min-height: 0; 
-            transition: all 0.3s ease;
+            transition: var(--transition);
             opacity: 0;
         }
 
@@ -1192,7 +1250,7 @@ TCP Groupg:description"
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
         }
 
         .hero-img-wrap:hover {
@@ -1309,7 +1367,7 @@ TCP Groupg:description"
 
         .hero-name-span {
             display: inline-block; /* Required for transform scale */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             cursor: default;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
@@ -1481,7 +1539,7 @@ TCP Groupg:description"
             border-radius: 15px;
             padding: 1.1rem;
             width: 250px;
-            margin: 1.5rem auto 0 auto; /* Centered with top margin */
+            margin: 1.5rem auto 0 auto; /* Centred with top margin */
             flex-shrink: 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             text-align: left;
@@ -1778,7 +1836,7 @@ TCP Groupg:description"
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(4px);
         }
@@ -1821,194 +1879,75 @@ TCP Groupg:description"
             font-weight: 800;
             padding: 4px 10px;
             border-radius: 20px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             letter-spacing: 0.5px;
             text-transform: uppercase;
             backdrop-filter: blur(4px);
         }
 
-        /* Dark Horizontal 1: AI Precision Oncology */
+        /* --- Bento Card Variations --- */
+        .bento-card {
+            background: var(--bento-bg);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .bento-card::before { content: var(--bento-icon-code); color: #fff; }
+        .bento-card .bento-icon-wrapper { background: var(--bento-icon-bg); border: 1px solid var(--bento-icon-border); }
+        .bento-card .bento-icon { color: var(--bento-accent); }
+        .bento-card .bento-tag { background: var(--bento-tag-bg); color: var(--bento-tag-text); border: 1px solid var(--bento-tag-border); }
+        .bento-card:hover .bento-tag { background: var(--bento-accent); color: var(--bento-hover-text); border-color: var(--bento-accent); }
+
         .bento-h1 {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+            --bento-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --bento-icon-code: '\f544';
+            --bento-accent: #38bdf8;
+            --bento-icon-bg: rgba(56, 189, 248, 0.2);
+            --bento-icon-border: rgba(56, 189, 248, 0.4);
+            --bento-tag-bg: rgba(56, 189, 248, 0.12);
+            --bento-tag-text: #7dd3fc;
+            --bento-tag-border: rgba(56, 189, 248, 0.25);
+            --bento-hover-text: #0f172a;
+            grid-column: 1 / 2; grid-row: 1 / 2;
         }
 
-        .bento-h1::before {
-            content: '\f544';
-            color: #fff;
-        }
-
-        /* Robot icon */
-        .bento-h1 .bento-icon-wrapper {
-            background: rgba(56, 189, 248, 0.2);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-        }
-
-        .bento-h1 .bento-icon {
-            color: #38bdf8;
-        }
-
-        .bento-h1 .bento-title {
-            color: #fff;
-        }
-
-        .bento-h1 .bento-desc {
-            color: #cbd5e1;
-        }
-
-        .bento-h1 .bento-tag {
-            background: rgba(56, 189, 248, 0.12);
-            color: #7dd3fc;
-            border: 1px solid rgba(56, 189, 248, 0.25);
-        }
-
-        .bento-h1:hover .bento-tag {
-            background: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-        }
-
-        /* Dark Horizontal 2: Environmental Biotech */
         .bento-h2 {
-            grid-column: 1 / 2;
-            grid-row: 2 / 3;
-            background: linear-gradient(135deg, #064e3b 0%, #0f766e 100%);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(6, 78, 59, 0.2);
+            --bento-bg: linear-gradient(135deg, #064e3b 0%, #0f766e 100%);
+            --bento-icon-code: '\f06c';
+            --bento-accent: #34d399;
+            --bento-icon-bg: rgba(52, 211, 153, 0.2);
+            --bento-icon-border: rgba(52, 211, 153, 0.4);
+            --bento-tag-bg: rgba(52, 211, 153, 0.12);
+            --bento-tag-text: #6ee7b7;
+            --bento-tag-border: rgba(52, 211, 153, 0.25);
+            --bento-hover-text: #064e3b;
+            grid-column: 1 / 2; grid-row: 2 / 3;
         }
 
-        .bento-h2::before {
-            content: '\f06c';
-            color: #fff;
-        }
-
-        /* Leaf icon */
-        .bento-h2 .bento-icon-wrapper {
-            background: rgba(52, 211, 153, 0.2);
-            border: 1px solid rgba(52, 211, 153, 0.4);
-        }
-
-        .bento-h2 .bento-icon {
-            color: #34d399;
-        }
-
-        .bento-h2 .bento-title {
-            color: #fff;
-        }
-
-        .bento-h2 .bento-desc {
-            color: #a7f3d0;
-        }
-
-        .bento-h2 .bento-tag {
-            background: rgba(52, 211, 153, 0.12);
-            color: #6ee7b7;
-            border: 1px solid rgba(52, 211, 153, 0.25);
-        }
-
-        .bento-h2:hover .bento-tag {
-            background: #34d399;
-            color: #064e3b;
-            border-color: #34d399;
-            box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
-        }
-
-        /* Dark Vertical 1: Molecular Modelling */
         .bento-v1 {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-            background: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.2);
+            --bento-bg: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+            --bento-icon-code: '\f5d2';
+            --bento-accent: #c084fc;
+            --bento-icon-bg: rgba(192, 132, 252, 0.2);
+            --bento-icon-border: rgba(192, 132, 252, 0.4);
+            --bento-tag-bg: rgba(192, 132, 252, 0.12);
+            --bento-tag-text: #d8b4fe;
+            --bento-tag-border: rgba(192, 132, 252, 0.25);
+            --bento-hover-text: #2e1065;
+            grid-column: 2 / 3; grid-row: 1 / 2;
         }
 
-        .bento-v1::before {
-            content: '\f5d2';
-            color: #fff;
-        }
-
-        /* Atom icon */
-        .bento-v1 .bento-icon-wrapper {
-            background: rgba(192, 132, 252, 0.2);
-            border: 1px solid rgba(192, 132, 252, 0.4);
-        }
-
-        .bento-v1 .bento-icon {
-            color: #c084fc;
-        }
-
-        .bento-v1 .bento-title {
-            color: #fff;
-        }
-
-        .bento-v1 .bento-desc {
-            color: #e9d5ff;
-        }
-
-        .bento-v1 .bento-tag {
-            background: rgba(192, 132, 252, 0.12);
-            color: #d8b4fe;
-            border: 1px solid rgba(192, 132, 252, 0.25);
-        }
-
-        .bento-v1:hover .bento-tag {
-            background: #c084fc;
-            color: #2e1065;
-            border-color: #c084fc;
-            box-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
-        }
-
-        /* Dark Vertical 2: Computational Genomics */
         .bento-v2 {
-            grid-column: 2 / 3;
-            grid-row: 2 / 3;
-            background: linear-gradient(135deg, #4c0519 0%, #881337 100%);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(136, 19, 55, 0.2);
-        }
-
-        .bento-v2::before {
-            content: '\f471';
-            color: #fff;
-        }
-
-        /* DNA icon */
-        .bento-v2 .bento-icon-wrapper {
-            background: rgba(251, 113, 133, 0.2);
-            border: 1px solid rgba(251, 113, 133, 0.4);
-        }
-
-        .bento-v2 .bento-icon {
-            color: #fb7185;
-        }
-
-        .bento-v2 .bento-title {
-            color: #fff;
-        }
-
-        .bento-v2 .bento-desc {
-            color: #fecdd3;
-        }
-
-        .bento-v2 .bento-tag {
-            background: rgba(251, 113, 133, 0.12);
-            color: #fda4af;
-            border: 1px solid rgba(251, 113, 133, 0.25);
-        }
-
-        .bento-v2:hover .bento-tag {
-            background: #fb7185;
-            color: #4c0519;
-            border-color: #fb7185;
-            box-shadow: 0 0 10px rgba(251, 113, 133, 0.4);
+            --bento-bg: linear-gradient(135deg, #4c0519 0%, #881337 100%);
+            --bento-icon-code: '\f471';
+            --bento-accent: #fb7185;
+            --bento-icon-bg: rgba(251, 113, 133, 0.2);
+            --bento-icon-border: rgba(251, 113, 133, 0.4);
+            --bento-tag-bg: rgba(251, 113, 133, 0.12);
+            --bento-tag-text: #fda4af;
+            --bento-tag-border: rgba(251, 113, 133, 0.25);
+            --bento-hover-text: #4c0519;
+            grid-column: 2 / 3; grid-row: 2 / 3;
         }
 
         /* --- 4.9: Standard Content Layouts & Typography --- */
@@ -2235,7 +2174,7 @@ TCP Groupg:description"
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             position: relative;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-left: 5px solid var(--accent);
         }
 
@@ -2287,7 +2226,7 @@ TCP Groupg:description"
             font-size: 0.95rem;
             resize: vertical;
             outline: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: justify;
             background: #f8fafc;
             cursor: text;
@@ -2361,7 +2300,7 @@ TCP Groupg:description"
             height: 48px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2403,7 +2342,7 @@ TCP Groupg:description"
             flex-direction: column;
             align-items: center;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             position: relative;
             z-index: 2;
             animation: sfWave 4s ease-in-out infinite;
@@ -2589,7 +2528,7 @@ TCP Groupg:description"
             border: 2px solid var(--accent);
             border-radius: 50%;
             z-index: 2;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .edu-grid .edu-card:hover::before {
@@ -2634,7 +2573,7 @@ TCP Groupg:description"
             border: 2px solid var(--accent);
             border-radius: 50%;
             z-index: 2;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .exp-grid-vertical .exp-box:hover::before {
@@ -2698,18 +2637,24 @@ TCP Groupg:description"
 
         .edu-card,
         .exp-box {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.2rem 1rem 1.2rem 2.2rem;
             border-radius: 8px;
-            border-top: 6px solid #ccc;
-            border: 1px solid #eee;
-            border-top-width: 6px;
+            border: 1px solid var(--card-border);
+            border-top: 6px solid var(--variant-color, #ccc);
             box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: var(--transition);
             position: relative;
             display: flex;
             flex-direction: column;
             overflow: visible;
+        }
+
+        .edu-card:hover,
+        .exp-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--variant-color);
+            box-shadow: var(--shadow-md);
         }
 
         .exp-box::after,
@@ -2717,121 +2662,38 @@ TCP Groupg:description"
             content: attr(data-badge);
             position: absolute;
             right: 0;
-            left: auto;
             top: 50%;
             transform: translate(50%, -50%);
             width: 24px;
             height: 24px;
             background: #fff;
-            border: 2px solid #ccc;
+            border: 2px solid var(--variant-color, #ccc);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 800;
-            color: #555;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            color: var(--variant-color, #555);
             z-index: 10;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        /* Shared scale-up on hover; each card type fills with its own border colour below */
         .exp-box:hover::after,
         .edu-card:hover::after {
             color: #fff;
             transform: translate(50%, -50%) scale(1.15);
+            background: var(--variant-color);
+            border-color: var(--variant-color);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .exp-full:hover::after {
-            background: var(--exp-full);
-            border-color: var(--exp-full);
-        }
-
-        .exp-part:hover::after {
-            background: var(--exp-part);
-            border-color: var(--exp-part);
-        }
-
-        .exp-trainee:hover::after {
-            background: var(--exp-trainee);
-            border-color: var(--exp-trainee);
-        }
-
-        .edu-phd:hover::after {
-            background: var(--edu-phd);
-            border-color: var(--edu-phd);
-        }
-
-        .edu-msc:hover::after {
-            background: var(--edu-msc);
-            border-color: var(--edu-msc);
-        }
-
-        .edu-bsc:hover::after {
-            background: var(--edu-bsc);
-            border-color: var(--edu-bsc);
-        }
-
-        /* Shared hover lift — exp/edu cards specialise only border-color per variant */
-        .exp-full:hover,
-        .exp-part:hover,
-        .exp-trainee:hover,
-        .edu-phd:hover,
-        .edu-msc:hover,
-        .edu-bsc:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .exp-full {
-            border-top-color: var(--exp-full);
-        }
-
-        .exp-full:hover {
-            border-color: var(--exp-full);
-        }
-
-        .exp-part {
-            border-top-color: var(--exp-part);
-        }
-
-        .exp-part:hover {
-            border-color: var(--exp-part);
-        }
-
-        .exp-trainee {
-            border-top-color: var(--exp-trainee);
-        }
-
-        .exp-trainee:hover {
-            border-color: var(--exp-trainee);
-        }
-
-        .edu-phd {
-            border-top-color: var(--edu-phd);
-        }
-
-        .edu-phd:hover {
-            border-color: var(--edu-phd);
-        }
-
-        .edu-msc {
-            border-top-color: var(--edu-msc);
-        }
-
-        .edu-msc:hover {
-            border-color: var(--edu-msc);
-        }
-
-        .edu-bsc {
-            border-top-color: var(--edu-bsc);
-        }
-
-        .edu-bsc:hover {
-            border-color: var(--edu-bsc);
-        }
+        .exp-full { --variant-color: var(--exp-full); }
+        .exp-part { --variant-color: var(--exp-part); }
+        .exp-trainee { --variant-color: var(--exp-trainee); }
+        .edu-phd { --variant-color: var(--edu-phd); }
+        .edu-msc { --variant-color: var(--edu-msc); }
+        .edu-bsc { --variant-color: var(--edu-bsc); }
 
         .edu-header {
             display: flex;
@@ -2966,11 +2828,22 @@ TCP Groupg:description"
             filter: drop-shadow(0px 2px 3px rgba(218, 165, 32, 0.5));
             transition: transform 0.3s ease;
             display: inline-block;
+            position: relative;
         }
 
         .badge-gold-inline:hover {
             transform: scale(1.2) rotate(10deg);
             filter: drop-shadow(0px 4px 6px rgba(218, 165, 32, 0.8));
+        }
+
+        /* Specialized Gold Tooltip for PhD Medal */
+        .badge-gold-inline[data-tip]::after {
+            color: #dca11d;
+            background: transparent;
+            box-shadow: none;
+            font-weight: 800;
+            padding: 0;
+            font-size: 14px;
         }
 
         .badge-gold-inline i {
@@ -2983,13 +2856,13 @@ TCP Groupg:description"
         }
 
         .referee-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.2rem 1rem 1.2rem 2.2rem;
             border-radius: 12px;
-            border: 1px solid #eee;
-            border-top: 5px solid #ccc;
+            border: 1px solid var(--card-border);
+            border-top: 5px solid var(--ref-color, #ccc);
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -2998,6 +2871,7 @@ TCP Groupg:description"
 
         .referee-card:hover {
             transform: translateY(-5px);
+            border-color: var(--ref-color);
             box-shadow: var(--shadow-md);
         }
 
@@ -3010,113 +2884,32 @@ TCP Groupg:description"
             width: 24px;
             height: 24px;
             background: #fff;
-            border: 2px solid #ccc;
+            border: 2px solid var(--ref-color, #ccc);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 800;
-            color: #555;
+            color: var(--ref-color, #555);
             z-index: 10;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .ref-1 {
-            border-top-color: var(--ref-1);
-        }
-
-        .ref-1:hover {
-            border-color: var(--ref-1);
-            box-shadow: 0 10px 25px rgba(0, 46, 95, 0.15);
-        }
-
-        .ref-2 {
-            border-top-color: var(--ref-2);
-        }
-
-        .ref-2:hover {
-            border-color: var(--ref-2);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.15);
-        }
-
-        .ref-3 {
-            border-top-color: var(--ref-3);
-        }
-
-        .ref-3:hover {
-            border-color: var(--ref-3);
-            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.15);
-        }
-
-        .ref-4 {
-            border-top-color: var(--ref-4);
-        }
-
-        .ref-4:hover {
-            border-color: var(--ref-4);
-            box-shadow: 0 10px 25px rgba(13, 173, 188, 0.15);
-        }
-
-        .ref-5 {
-            border-top-color: var(--ref-5);
-        }
-
-        .ref-5:hover {
-            border-color: var(--ref-5);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.15);
-        }
-
-        .ref-6 {
-            border-top-color: var(--ref-6);
-        }
-
-        .ref-6:hover {
-            border-color: var(--ref-6);
-            box-shadow: 0 10px 25px rgba(159, 15, 133, 0.15);
-        }
-
-        /* Badge fills with the card's accent colour on hover — matching edu/exp/award card behaviour */
-        .ref-1:hover::after,
-        .ref-2:hover::after,
-        .ref-3:hover::after,
-        .ref-4:hover::after,
-        .ref-5:hover::after,
-        .ref-6:hover::after {
+        .referee-card:hover::after {
             color: #fff;
             transform: translate(50%, -50%) scale(1.15);
+            background: var(--ref-color);
+            border-color: var(--ref-color);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .ref-1:hover::after {
-            background: var(--ref-1);
-            border-color: var(--ref-1);
-        }
-
-        .ref-2:hover::after {
-            background: var(--ref-2);
-            border-color: var(--ref-2);
-        }
-
-        .ref-3:hover::after {
-            background: var(--ref-3);
-            border-color: var(--ref-3);
-        }
-
-        .ref-4:hover::after {
-            background: var(--ref-4);
-            border-color: var(--ref-4);
-        }
-
-        .ref-5:hover::after {
-            background: var(--ref-5);
-            border-color: var(--ref-5);
-        }
-
-        .ref-6:hover::after {
-            background: var(--ref-6);
-            border-color: var(--ref-6);
-        }
+        .ref-1 { --ref-color: var(--ref-1); }
+        .ref-2 { --ref-color: var(--ref-2); }
+        .ref-3 { --ref-color: var(--ref-3); }
+        .ref-4 { --ref-color: var(--ref-4); }
+        .ref-5 { --ref-color: var(--ref-5); }
+        .ref-6 { --ref-color: var(--ref-6); }
 
         .ref-header {
             display: flex;
@@ -3215,7 +3008,7 @@ TCP Groupg:description"
         .email-badge {
             color: var(--accent);
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .flag-img {
@@ -3225,17 +3018,25 @@ TCP Groupg:description"
             margin-left: 5px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             border-radius: 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .flag-wrapper {
+            display: inline-block;
+            position: relative;
+            line-height: 1;
         }
 
         /* --- 4.12: Accolades & IPR --- */
         .award-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.2rem;
             border-radius: 0 25px 0 25px;
-            border: 1px solid #ccc;
-            border-left: 5px solid #ccc;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
+            border: 1px solid var(--card-border);
+            border-left: 5px solid var(--award-color, #ccc);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -3247,19 +3048,18 @@ TCP Groupg:description"
 
         .award-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--award-color) 0%, var(--award-color-dark) 100%);
+            border-color: var(--award-color-dark);
         }
 
-        .award-card:hover .award-top {
+        .award-card:hover .award-top, 
+        .award-card:hover .award-bottom {
             color: #fff;
         }
 
-        .award-card:hover .award-bottom {
-            color: #f8fafc;
-        }
-
         .award-card:hover .award-badge-icon {
-            transform: scale(1.25) rotate(15deg);
+            transform: scale(1.2) rotate(10deg);
             color: #fff !important;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
         }
@@ -3273,284 +3073,42 @@ TCP Groupg:description"
             width: 24px;
             height: 24px;
             background: #fff;
-            border: 2px solid #ccc;
+            border: 2px solid var(--award-color, #ccc);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 800;
-            color: #555;
+            color: var(--award-color, #555);
             z-index: 10;
-            transition: all 0.4s ease;
+            transition: var(--transition);
+        }
+
+        .award-card:hover::after {
+            background: var(--award-color-dark);
+            border-color: #fff;
+            color: #fff;
         }
 
         .award-badge-icon {
             font-size: 2.2rem;
-            transition: all 0.4s ease;
+            color: var(--award-color, #666);
+            transition: var(--transition);
             flex-shrink: 0;
             margin-top: 10px;
         }
 
-        .award-card:nth-child(10n+1) {
-            border-left-color: #e63946;
-            border-color: rgba(230, 57, 70, 0.3);
-        }
-
-        .award-card:nth-child(10n+1) .award-badge-icon {
-            color: #e63946;
-            filter: drop-shadow(0 2px 4px rgba(230, 57, 70, 0.3));
-        }
-
-        .award-card:nth-child(10n+1)::after {
-            border-color: #e63946;
-            color: #e63946;
-        }
-
-        .award-card:nth-child(10n+1):hover {
-            background: linear-gradient(135deg, #e63946 0%, #b02a2a 100%);
-            border-color: #b02a2a;
-        }
-
-        .award-card:nth-child(10n+1):hover::after {
-            background: #b02a2a;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+2) {
-            border-left-color: #2a9d8f;
-            border-color: rgba(42, 157, 143, 0.3);
-        }
-
-        .award-card:nth-child(10n+2) .award-badge-icon {
-            color: #2a9d8f;
-            filter: drop-shadow(0 2px 4px rgba(42, 157, 143, 0.3));
-        }
-
-        .award-card:nth-child(10n+2)::after {
-            border-color: #2a9d8f;
-            color: #2a9d8f;
-        }
-
-        .award-card:nth-child(10n+2):hover {
-            background: linear-gradient(135deg, #2a9d8f 0%, #1e7166 100%);
-            border-color: #1e7166;
-        }
-
-        .award-card:nth-child(10n+2):hover::after {
-            background: #1e7166;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+3) {
-            border-left-color: #457b9d;
-            border-color: rgba(69, 123, 157, 0.3);
-        }
-
-        .award-card:nth-child(10n+3) .award-badge-icon {
-            color: #457b9d;
-            filter: drop-shadow(0 2px 4px rgba(69, 123, 157, 0.3));
-        }
-
-        .award-card:nth-child(10n+3)::after {
-            border-color: #457b9d;
-            color: #457b9d;
-        }
-
-        .award-card:nth-child(10n+3):hover {
-            background: linear-gradient(135deg, #457b9d 0%, #2d556d 100%);
-            border-color: #2d556d;
-        }
-
-        .award-card:nth-child(10n+3):hover::after {
-            background: #2d556d;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+4) {
-            border-left-color: #f4a261;
-            border-color: rgba(244, 162, 97, 0.3);
-        }
-
-        .award-card:nth-child(10n+4) .award-badge-icon {
-            color: #f4a261;
-            filter: drop-shadow(0 2px 4px rgba(244, 162, 97, 0.3));
-        }
-
-        .award-card:nth-child(10n+4)::after {
-            border-color: #f4a261;
-            color: #f4a261;
-        }
-
-        .award-card:nth-child(10n+4):hover {
-            background: linear-gradient(135deg, #f4a261 0%, #c4824e 100%);
-            border-color: #c4824e;
-        }
-
-        .award-card:nth-child(10n+4):hover::after {
-            background: #c4824e;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+5) {
-            border-left-color: #9d4edd;
-            border-color: rgba(157, 78, 221, 0.3);
-        }
-
-        .award-card:nth-child(10n+5) .award-badge-icon {
-            color: #9d4edd;
-            filter: drop-shadow(0 2px 4px rgba(157, 78, 221, 0.3));
-        }
-
-        .award-card:nth-child(10n+5)::after {
-            border-color: #9d4edd;
-            color: #9d4edd;
-        }
-
-        .award-card:nth-child(10n+5):hover {
-            background: linear-gradient(135deg, #9d4edd 0%, #7637a8 100%);
-            border-color: #7637a8;
-        }
-
-        .award-card:nth-child(10n+5):hover::after {
-            background: #7637a8;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+6) {
-            border-left-color: #e83e8c;
-            border-color: rgba(232, 62, 140, 0.3);
-        }
-
-        .award-card:nth-child(10n+6) .award-badge-icon {
-            color: #e83e8c;
-            filter: drop-shadow(0 2px 4px rgba(232, 62, 140, 0.3));
-        }
-
-        .award-card:nth-child(10n+6)::after {
-            border-color: #e83e8c;
-            color: #e83e8c;
-        }
-
-        .award-card:nth-child(10n+6):hover {
-            background: linear-gradient(135deg, #e83e8c 0%, #ad2462 100%);
-            border-color: #ad2462;
-        }
-
-        .award-card:nth-child(10n+6):hover::after {
-            background: #ad2462;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+7) {
-            border-left-color: #4caf50;
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-
-        .award-card:nth-child(10n+7) .award-badge-icon {
-            color: #4caf50;
-            filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
-        }
-
-        .award-card:nth-child(10n+7)::after {
-            border-color: #4caf50;
-            color: #4caf50;
-        }
-
-        .award-card:nth-child(10n+7):hover {
-            background: linear-gradient(135deg, #4caf50 0%, #1e7e34 100%);
-            border-color: #1e7e34;
-        }
-
-        .award-card:nth-child(10n+7):hover::after {
-            background: #1e7e34;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+8) {
-            border-left-color: #ffc107;
-            border-color: rgba(255, 193, 7, 0.3);
-        }
-
-        .award-card:nth-child(10n+8) .award-badge-icon {
-            color: #ffc107;
-            filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
-        }
-
-        .award-card:nth-child(10n+8)::after {
-            border-color: #ffc107;
-            color: #ffc107;
-        }
-
-        .award-card:nth-child(10n+8):hover {
-            background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%);
-            border-color: #d39e00;
-        }
-
-        .award-card:nth-child(10n+8):hover::after {
-            background: #d39e00;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+9) {
-            border-left-color: #6610f2;
-            border-color: rgba(102, 16, 242, 0.3);
-        }
-
-        .award-card:nth-child(10n+9) .award-badge-icon {
-            color: #6610f2;
-            filter: drop-shadow(0 2px 4px rgba(102, 16, 242, 0.3));
-        }
-
-        .award-card:nth-child(10n+9)::after {
-            border-color: #6610f2;
-            color: #6610f2;
-        }
-
-        .award-card:nth-child(10n+9):hover {
-            background: linear-gradient(135deg, #6610f2 0%, #4709aa 100%);
-            border-color: #4709aa;
-        }
-
-        .award-card:nth-child(10n+9):hover::after {
-            background: #4709aa;
-            border-color: #fff;
-            color: #fff;
-        }
-
-        .award-card:nth-child(10n+10) {
-            border-left-color: #17a2b8;
-            border-color: rgba(23, 162, 184, 0.3);
-        }
-
-        .award-card:nth-child(10n+10) .award-badge-icon {
-            color: #17a2b8;
-            filter: drop-shadow(0 2px 4px rgba(23, 162, 184, 0.3));
-        }
-
-        .award-card:nth-child(10n+10)::after {
-            border-color: #17a2b8;
-            color: #17a2b8;
-        }
-
-        .award-card:nth-child(10n+10):hover {
-            background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
-            border-color: #117a8b;
-        }
-
-        .award-card:nth-child(10n+10):hover::after {
-            background: #117a8b;
-            border-color: #fff;
-            color: #fff;
-        }
+        .award-card:nth-child(10n+1) { --award-color: #e63946; --award-color-dark: #b02a2a; }
+        .award-card:nth-child(10n+2) { --award-color: #2a9d8f; --award-color-dark: #1e7166; }
+        .award-card:nth-child(10n+3) { --award-color: #457b9d; --award-color-dark: #2d556d; }
+        .award-card:nth-child(10n+4) { --award-color: #f4a261; --award-color-dark: #c4824e; }
+        .award-card:nth-child(10n+5) { --award-color: #9d4edd; --award-color-dark: #7637a8; }
+        .award-card:nth-child(10n+6) { --award-color: #e83e8c; --award-color-dark: #ad2462; }
+        .award-card:nth-child(10n+7) { --award-color: #4caf50; --award-color-dark: #1e7e34; }
+        .award-card:nth-child(10n+8) { --award-color: #ffc107; --award-color-dark: #d39e00; }
+        .award-card:nth-child(10n+9) { --award-color: #6610f2; --award-color-dark: #4709aa; }
+        .award-card:nth-child(10n+10) { --award-color: #17a2b8; --award-color-dark: #117a8b; }
 
         .award-content-wrapper {
             flex: 1;
@@ -3718,7 +3276,7 @@ TCP Groupg:description"
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
             position: relative;
             overflow: hidden;
@@ -3779,7 +3337,7 @@ TCP Groupg:description"
             justify-content: center;
             border-radius: 12px;
             margin-right: 15px !important;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             color: var(--primary) !important;
             font-size: 1.2rem;
         }
@@ -3853,7 +3411,7 @@ TCP Groupg:description"
         }
 
         .panel-content {
-            padding: 20px;
+            padding: 20px 20px 20px 20px;
         }
 
         .panel-content a:not(.pub-doi):not(.btn-send):not(.btn-data):not(.btn-cite):hover {
@@ -3990,7 +3548,7 @@ TCP Groupg:description"
             border-bottom-color: #eee;
             border-radius: 6px;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .pub-item:hover {
@@ -4700,19 +4258,19 @@ TCP Groupg:description"
         }
 
         .cf-btn {
-            background-color: var(--accent);
+            background-color: #b8860b;
             color: #fff;
             border: none;
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: var(--transition);
             width: auto;
         }
 
         .cf-btn:hover {
-            background-color: #b8860b;
+            background-color: var(--accent);
         }
 
         .form-actions {
@@ -4743,7 +4301,7 @@ TCP Groupg:description"
         .f-soc-link {
             color: #94a3b8;
             font-size: 1.3rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             position: relative; /* For tooltip */
         }
 
@@ -4974,7 +4532,7 @@ TCP Groupg:description"
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             z-index: 10002;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: 2px solid var(--accent);
         }
 
@@ -5260,6 +4818,37 @@ TCP Groupg:description"
                 overflow-x: hidden;
             }
 
+            /* Optimised Mobile Search */
+            .srch-overlay {
+                padding-top: 15px !important;
+                background: rgba(0, 0, 0, 0.4) !important;
+            }
+
+            .hero-v-sep {
+                display: none !important;
+            }
+
+            .srch-box {
+                width: 92% !important;
+                max-height: 85vh !important;
+                border-radius: 12px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+            }
+
+            .srch-footer,
+            .srch-hint,
+            .srch-empty {
+                display: none !important;
+            }
+
+            .srch-input-wrapper {
+                padding: 10px 12px !important;
+            }
+
+            .srch-input {
+                font-size: 1rem !important;
+            }
+
             /* Removed html constraint to restore iOS momentum scroll */
             .section-title {
                 font-size: 2rem;
@@ -5541,6 +5130,13 @@ TCP Groupg:description"
                 box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
                 display: flex;
                 gap: 2px; /* Minimal gap */
+            }
+
+            .sticky-sidebar [data-tip]::after {
+                left: auto !important;
+                right: calc(100% + 15px) !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
             }
 
             .sticky-sidebar .h-social {
@@ -6027,12 +5623,16 @@ TCP Groupg:description"
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
         }
 
-        /* --- 2. Global Dark Mode Framework --- */
+        /* --- 5.0: Global Dark Mode Framework --- */
         body.dark-mode {
             --text: #e2e8f0;
             --light-bg: #0f172a;
             --white: #1e293b;
             --sub-heading: #38bdf8;
+            --card-bg: var(--white);
+            --card-border: #334155;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
         body.dark-mode,
@@ -6045,9 +5645,10 @@ TCP Groupg:description"
         body.dark-mode .chat-footer {
             background-color: var(--light-bg);
             color: var(--text);
-            border-color: #334155;
+            border-color: var(--card-border);
         }
 
+        body.dark-mode .ui-card,
         body.dark-mode .edu-card,
         body.dark-mode .exp-box,
         body.dark-mode .referee-card,
@@ -6058,113 +5659,13 @@ TCP Groupg:description"
         body.dark-mode .ai-matcher-box {
             background-color: var(--white);
             color: var(--text);
-            border-color: #334155;
+            border-color: var(--card-border);
         }
 
-        body.dark-mode .tech-card {
-            background: linear-gradient(180deg, #1e293b 0%, #172032 100%);
-            color: var(--text);
-            border-color: #334155;
-        }
-
-        /* Fixed Backgrounds for Hero & Footer */
         body.dark-mode .hero-section-wrapper,
         body.dark-mode .contact-footer-section {
             background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
             border-bottom: 1px solid #1e293b;
-        }
-
-        body.dark-mode .hero-stats {
-            background: rgba(30, 41, 59, 0.7);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Overlays Dark Mode */
-        body.dark-mode .interaction-2d {
-            background: rgba(15, 23, 42, 0.95);
-            border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
-
-        body.dark-mode .i2d-title {
-            color: #38bdf8;
-            border-bottom-color: #334155;
-        }
-
-        body.dark-mode .i2d-box {
-            background: #1e293b;
-            border-color: #475569;
-            color: #e2e8f0;
-        }
-
-        /* Enhanced Typography Contrast */
-        body.dark-mode .section-title {
-            color: #f8fafc;
-        }
-
-        body.dark-mode .profile-text {
-            color: #cbd5e1;
-        }
-
-        body.dark-mode h4,
-        body.dark-mode .exp-role,
-        body.dark-mode .referee-name,
-        body.dark-mode .award-top,
-        body.dark-mode .ic-title,
-        body.dark-mode .patent-box h4 {
-            color: #f8fafc;
-        }
-
-        body.dark-mode .exp-desc,
-        body.dark-mode .referee-title-line,
-        body.dark-mode .referee-role,
-        body.dark-mode .award-bottom,
-        body.dark-mode .ic-desc,
-        body.dark-mode .year-span,
-        body.dark-mode .referee-contact,
-        body.dark-mode .event-meta,
-        body.dark-mode .tech-ul li {
-            color: #94a3b8;
-        }
-
-        body.dark-mode .inst-link,
-        body.dark-mode .ref-inst-row,
-        body.dark-mode .ref-inst-row a {
-            color: #38bdf8 !important;
-        }
-
-        body.dark-mode .accordion-btn {
-            color: #f8fafc;
-        }
-
-        body.dark-mode .pub-item strong {
-            color: #e2e8f0;
-        }
-
-        body.dark-mode .contact-left h2 {
-            color: #f8fafc;
-        }
-
-        /* Fix Header, Nav, and Sidebar legibility in Dark Mode */
-        body.dark-mode .nav-list {
-            background-color: var(--white);
-            border-color: #334155;
-        }
-
-        body.dark-mode .mobile-dropdown-toggle {
-            border-right-color: #334155;
-            border-left-color: transparent;
-        }
-
-        body.dark-mode .nav-link,
-        body.dark-mode .nav-item-dropdown,
-        body.dark-mode .nav-dropdown-content a {
-            border-bottom-color: #334155;
-        }
-
-        body.dark-mode .nav-dropdown-content {
-            background-color: #0f172a;
-            border-left-color: var(--accent);
         }
 
         body.dark-mode .nav-link,
@@ -6172,282 +5673,13 @@ TCP Groupg:description"
         body.dark-mode .lang-wrapper,
         body.dark-mode .header-name,
         body.dark-mode .h-social,
-        body.dark-mode .desktop-arrow,
         body.dark-mode .mobile-dropdown-toggle,
         body.dark-mode .nav-toggle {
             color: #e2e8f0 !important;
         }
 
-        body.dark-mode .nav-link:hover,
-        body.dark-mode .nav-link.active-section,
-        body.dark-mode .control-icon:hover,
-        body.dark-mode .lang-wrapper:hover,
-        body.dark-mode .header-name:hover,
-        body.dark-mode .h-social:hover,
-        body.dark-mode .mobile-dropdown-toggle:hover {
-            color: var(--accent) !important;
-        }
-
-        body.dark-mode .header-sep {
-            opacity: 0.8;
-        }
-
-        body.dark-mode .mini-search-btn:hover {
-            color: #fff;
-        }
-
-        /* Badge & Component Polish */
-        body.dark-mode .award-card::after,
-        body.dark-mode .referee-card::after,
-        body.dark-mode .edu-card::after,
-        body.dark-mode .exp-box::after {
-            background: #0f172a;
-            color: #94a3b8;
-            border-color: #334155;
-        }
-
-        body.dark-mode .pr-badge-item {
-            background: #0f172a;
-            border-color: #334155;
-            color: #cbd5e1;
-        }
-
-        body.dark-mode .ic-icon-box {
-            background: #0f172a;
-        }
-
-        /* RESTORE DARK MODE HOVERS FOR CARDS */
-        body.dark-mode .edu-phd {
-            border-top-color: var(--edu-phd);
-        }
-
-        body.dark-mode .edu-msc {
-            border-top-color: var(--edu-msc);
-        }
-
-        body.dark-mode .edu-bsc {
-            border-top-color: var(--edu-bsc);
-        }
-
-        body.dark-mode .exp-full {
-            border-top-color: var(--exp-full);
-        }
-
-        body.dark-mode .exp-part {
-            border-top-color: var(--exp-part);
-        }
-
-        body.dark-mode .exp-trainee {
-            border-top-color: var(--exp-trainee);
-        }
-
-        body.dark-mode .ref-1 {
-            border-top-color: #38bdf8;
-        }
-
-        body.dark-mode .ref-2 {
-            border-top-color: var(--ref-2);
-        }
-
-        body.dark-mode .ref-3 {
-            border-top-color: var(--ref-3);
-        }
-
-        body.dark-mode .ref-4 {
-            border-top-color: var(--ref-4);
-        }
-
-        body.dark-mode .ref-5 {
-            border-top-color: var(--ref-5);
-        }
-
-        body.dark-mode .ref-6 {
-            border-top-color: var(--ref-6);
-        }
-
-        body.dark-mode .tc-blue {
-            border-top-color: var(--primary);
-        }
-
-        body.dark-mode .tc-green {
-            border-top-color: #20c997;
-        }
-
-        body.dark-mode .tc-purple {
-            border-top-color: #6f42c1;
-        }
-
-        body.dark-mode .tc-orange {
-            border-top-color: #fd7e14;
-        }
-
-        body.dark-mode .exp-full:hover {
-            border-color: var(--exp-full);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
-        }
-
-        body.dark-mode .exp-part:hover {
-            border-color: var(--exp-part);
-            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.25);
-        }
-
-        body.dark-mode .exp-trainee:hover {
-            border-color: var(--exp-trainee);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.25);
-        }
-
-        body.dark-mode .edu-phd:hover {
-            border-color: var(--edu-phd);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
-        }
-
-        body.dark-mode .edu-msc:hover {
-            border-color: var(--edu-msc);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.25);
-        }
-
-        body.dark-mode .edu-bsc:hover {
-            border-color: var(--edu-bsc);
-            box-shadow: 0 10px 25px rgba(32, 176, 201, 0.25);
-        }
-
-        body.dark-mode .ref-1:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
-        }
-
-        body.dark-mode .ref-2:hover {
-            border-color: var(--ref-2);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.25);
-        }
-
-        body.dark-mode .ref-3:hover {
-            border-color: var(--ref-3);
-            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.25);
-        }
-
-        body.dark-mode .ref-4:hover {
-            border-color: var(--ref-4);
-            box-shadow: 0 10px 25px rgba(13, 173, 188, 0.25);
-        }
-
-        body.dark-mode .ref-5:hover {
-            border-color: var(--ref-5);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
-        }
-
-        body.dark-mode .ref-6:hover {
-            border-color: var(--ref-6);
-            box-shadow: 0 10px 25px rgba(159, 15, 133, 0.25);
-        }
-
-        body.dark-mode .tc-blue:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-        }
-
-        body.dark-mode .tc-green:hover {
-            border-color: #20c997;
-            box-shadow: 0 10px 20px rgba(32, 201, 151, 0.2);
-        }
-
-        body.dark-mode .tc-purple:hover {
-            border-color: #6f42c1;
-            box-shadow: 0 10px 20px rgba(111, 66, 193, 0.2);
-        }
-
-        body.dark-mode .tc-orange:hover {
-            border-color: #fd7e14;
-            box-shadow: 0 10px 20px rgba(253, 126, 20, 0.2);
-        }
-
-        /* Existing Dark Mode Overrides */
-        body.dark-mode header {
-            background: rgba(15, 23, 42, 0.95);
-        }
-
-        body.dark-mode .accordion-btn.active {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        /* TCP Group Dark Mode Polish */
-        body.dark-mode .prospects-wrapper {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 18px 42px rgba(0, 0, 0, 0.5);
-        }
-
-        body.dark-mode .tcp-glass-panel {
-            background: rgba(30, 41, 59, 0.6);
-            border-color: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        body.dark-mode .tcp-glass-panel:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(30, 41, 59, 0.8);
-        }
-
-        body.dark-mode .prospects-wrapper::before {
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 60%);
-        }
-
-        body.dark-mode .timeline-glass-node::before {
-            background: #0f172a;
-            border-color: var(--accent);
-        }
-
-        body.dark-mode .timeline-glass-node:hover::before {
-            background: var(--accent);
-        }
-
-        body.dark-mode .tcp-glass-panel h3,
-        body.dark-mode .tcp-glass-panel h5 {
-            color: #f8fafc !important;
-        }
-
-        body.dark-mode .tcp-glass-panel p {
-            color: #cbd5e1 !important;
-        }
-
-        body.dark-mode .prospects-wrapper>div>h3,
-        body.dark-mode .prospects-wrapper>div>h4 {
-            color: #f8fafc !important;
-        }
-
-        body.dark-mode .prospects-wrapper>div>p {
-            color: #cbd5e1 !important;
-        }
-
-        body.dark-mode .tcp-grid-modern .tfc-icon {
-            color: var(--accent);
-        }
-
-        body.dark-mode .pub-item:hover,
-        body.dark-mode .nav-dropdown-content a:hover,
-        body.dark-mode .lang-option:hover {
-            background-color: #334155;
-        }
-
-        body.dark-mode .pub-doi {
-            background-color: #b45309;
-        }
-
-        body.dark-mode .btn-data {
-            background-color: #166534;
-        }
-
-        body.dark-mode .edu-grid::before {
-            background: linear-gradient(to bottom, var(--accent) 90%, rgba(245, 158, 11, 0.15) 100%);
-        }
-
-        body.dark-mode .pub-item {
-            border-bottom-color: #334155;
-        }
-
-        body.dark-mode .pub-item:hover {
-            background: #1e293b;
-            border-color: var(--accent);
+        body.dark-mode .nav-dropdown-content {
+            background-color: #0f172a;
         }
 
         body.dark-mode .ai-generated-content,
@@ -6460,39 +5692,17 @@ TCP Groupg:description"
             border-color: #334155;
         }
 
-        body.dark-mode .chat-header {
-            border-bottom-color: var(--primary-dark);
-        }
-
-        body.dark-mode .cite-dropdown-menu {
-            background: var(--white);
-            border-color: #334155;
-        }
-
-        body.dark-mode .cite-option {
-            color: var(--text);
-        }
-
-        body.dark-mode .cite-option:hover {
+        body.dark-mode .pub-item:hover,
+        body.dark-mode .nav-dropdown-content a:hover,
+        body.dark-mode .lang-option:hover {
             background-color: #334155;
         }
 
-        body.dark-mode .subtle-separator {
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), var(--accent), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent);
-        }
-
-        body.dark-mode .ai-modal-header {
-            background: #1e293b;
-            border-bottom-color: #334155;
-        }
-
-        body.dark-mode .ai-modal-body {
-            color: #cbd5e1;
-        }
-
-        body.dark-mode .tech-sub-title {
-            border-bottom-color: #334155;
-        }
+        /* Simplified Dark Mode Hover Colours using variables */
+        body.dark-mode .ui-card:hover { border-color: var(--accent); }
+        body.dark-mode .exp-full:hover { border-color: var(--exp-full); }
+        body.dark-mode .exp-part:hover { border-color: var(--exp-part); }
+        body.dark-mode .exp-trainee:hover { border-color: var(--exp-trainee); }
 
         /* === STRATEGY SECTION STYLES === */
         .strategy-cards-grid,
@@ -6883,7 +6093,7 @@ TCP Groupg:description"
             color: var(--primary);
             font-size: 0.82rem;
             font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             cursor: default;
         }
 
@@ -7766,7 +6976,7 @@ TCP Groupg:description"
             background-color: var(--primary);
         }
 
-        /* Request 3: Vision & Research Themes colors */
+        /* Request 3: Vision & Research Themes colours */
         .tcp-focus-card:nth-child(1) {
             background-color: var(--vision-color-1);
         }
@@ -7877,7 +7087,7 @@ TCP Groupg:description"
             border-color: #6366f1 !important;
         }
 
-        /* Request 4b: Funding hover border colors */
+        /* Request 4b: Funding hover border colours */
         .strategy-card-item:nth-child(1):hover {
             border-color: #0ea5e9;
         }
@@ -7929,7 +7139,7 @@ TCP Groupg:description"
             --panel-accent: #8b5cf6;
         }
 
-        /* Request 5: Teaching colors */
+        /* Request 5: Teaching colours */
         .culture-card:nth-child(1) {
             border-left-color: #22c55e;
         }
@@ -8060,7 +7270,7 @@ TCP Groupg:description"
             color: var(--panel-accent);
         }
 
-        /* Dynamic Bullet Colors for TCP Sections (Default Black/Dark, hover to Accent) */
+        /* Dynamic Bullet Colours for TCP Sections (Default Black/Dark, hover to Accent) */
         #research-vision .tcp-focus-card .tech-ul li::before,
         #roadmap-funding .edu-card .tech-ul li::before,
         #teaching-mentorship .culture-card .tech-ul li::before,
@@ -8283,7 +7493,7 @@ TCP Groupg:description"
             align-items: center;
             justify-content: flex-start;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: var(--transition);
             gap: 0;
             white-space: nowrap;
             cursor: pointer;
@@ -8745,18 +7955,29 @@ TCP Groupg:description"
         .sel-pub-card {
             background: #fff;
             border: 1px solid #e5e7eb;
-            border-left: 4px solid var(--primary);
+            border-left: 5px solid var(--primary);
             border-radius: 10px;
             padding: 1.1rem 1.3rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: var(--shadow-sm);
         }
 
+        .sel-pub-card:nth-child(5n+1) { border-left-color: var(--primary); }
+        .sel-pub-card:nth-child(5n+2) { border-left-color: var(--ref-2); }
+        .sel-pub-card:nth-child(5n+3) { border-left-color: var(--ref-3); }
+        .sel-pub-card:nth-child(5n+4) { border-left-color: var(--ref-4); }
+        .sel-pub-card:nth-child(5n+5) { border-left-color: var(--accent); }
+
         .sel-pub-card:hover {
             transform: translateY(-3px);
-            border-left-color: var(--accent);
             box-shadow: var(--shadow-md);
         }
+        
+        .sel-pub-card:nth-child(5n+1):hover { border-color: var(--primary); }
+        .sel-pub-card:nth-child(5n+2):hover { border-color: var(--ref-2); }
+        .sel-pub-card:nth-child(5n+3):hover { border-color: var(--ref-3); }
+        .sel-pub-card:nth-child(5n+4):hover { border-color: var(--ref-4); }
+        .sel-pub-card:nth-child(5n+5):hover { border-color: var(--accent); }
 
         .sel-pub-title {
             font-weight: 700;
@@ -8827,6 +8048,14 @@ TCP Groupg:description"
             border-color: rgba(6, 78, 59, 0.22);
         }
 
+        .about-hero-card:hover::before {
+            transform: scale(1.15);
+        }
+
+        .about-hero-card:hover::after {
+            transform: scale(1.2);
+        }
+
         .about-hero-card::before {
             content: '';
             position: absolute;
@@ -8838,6 +8067,7 @@ TCP Groupg:description"
             right: -60px;
             background: rgba(6, 78, 59, 0.07);
             animation: tcpFloat 13s ease-in-out infinite;
+            transition: transform 0.4s ease;
         }
 
         .about-hero-card::after {
@@ -8851,6 +8081,7 @@ TCP Groupg:description"
             left: -40px;
             background: rgba(245, 158, 11, 0.1);
             animation: tcpFloat 10s ease-in-out infinite reverse;
+            transition: transform 0.4s ease;
         }
 
         .about-hero-copy {
@@ -8895,7 +8126,7 @@ TCP Groupg:description"
         .pub-mq-card {
             background: #fff;
             border: 1px solid #e5e7eb;
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--card-border-color, var(--primary));
             border-radius: 12px;
             padding: 1rem 1.1rem;
             min-width: 288px;
@@ -8905,12 +8136,12 @@ TCP Groupg:description"
             flex-direction: column;
             gap: 0.5rem;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .pub-mq-card:hover {
             transform: translateY(-4px);
-            border-left-color: var(--accent);
+            border-color: var(--card-border-color, var(--accent));
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
         }
 
@@ -9097,8 +8328,8 @@ TCP Groupg:description"
     </div>
 
     <!-- Interface Triggers -->
-    <div class="back-to-top" id="back-to-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></div>
-    <div id="ai-widget-toggle" tabindex="0" onclick="toggleChatWindow()" title="Shaban's AI Assistant" role="button"
+    <div class="back-to-top" id="back-to-top" aria-label="Scroll to top" data-tip="Back to Top"><i class="fas fa-chevron-up"></i></div>
+    <div id="ai-widget-toggle" tabindex="0" onclick="toggleChatWindow()" data-tip="Shaban's AI Assistant" role="button"
         aria-label="Shaban's AI Assistant"><i class="fas fa-robot"></i></div>
 
     <!-- Artificial Intelligence Assistant Pane -->
@@ -9127,7 +8358,7 @@ TCP Groupg:description"
             </div>
         </div>
         <div class="chat-footer">
-            <button id="mic-btn" onclick="toggleMic()" title="Voice Input"
+            <button id="mic-btn" onclick="toggleMic()" data-tip="Voice Input"
                 style="background: none; border: none; cursor: pointer; color: #555; padding: 0 5px; font-size: 1.1rem; transition: color 0.3s;"><i
                     class="fas fa-microphone"></i></button>
             <input type="text" id="chat-input" class="chat-input" placeholder="Type or say a question..."
@@ -9150,7 +8381,7 @@ TCP Groupg:description"
                     role="button"></i>
                 <span class="header-sep">|</span>
                 <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button"
-                    aria-label="Language Selector">
+                    aria-label="Language Selector" data-tip="Select Language">
                     <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                     <div class="custom-lang-dropdown" id="mobile-lang-dd">
                         <!-- lang options populated by buildLangOptions() -->
@@ -9219,14 +8450,14 @@ TCP Groupg:description"
                 </li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
                 <li class="header-controls">
-                    <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode"
+                    <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" data-tip="Dark Mode"
                         aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
                     <span class="header-sep">|</span>
                     <div class="search-container"><i class="fas fa-search control-icon" onclick="openSearchModal()"
-                            title="Search" aria-label="Search" tabindex="0" role="button"></i></div>
+                            data-tip="Search" aria-label="Search" tabindex="0" role="button"></i></div>
                     <span class="header-sep">|</span>
                     <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button"
-                        aria-label="Language Selector">
+                        aria-label="Language Selector" data-tip="Select Language">
                         <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                         <div class="custom-lang-dropdown" id="desktop-lang-dd">
                             <!-- lang options populated by buildLangOptions() -->
@@ -9250,6 +8481,8 @@ TCP Groupg:description"
                 <div id="mol-canvas-left" class="bg-canvas-inline" aria-hidden="true"></div>
                 <div id="ai-terminal-left" class="ai-terminal-inline" aria-hidden="true"></div>
             </div>
+
+            <div class="hero-v-sep"></div>
 
             <!-- Main Central Group (Columns 2, 3, 4) -->
             <div class="hero-main-group">
@@ -9326,22 +8559,24 @@ TCP Groupg:description"
                     </div>
                     <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left"></i>
-                                Citations</span><span class="stat-value">1750+</span></div>
+                                Citations</span><span class="stat-value">1780+</span></div>
                     </a>
                     <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
                         class="stat-row-link">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line"></i> H-index</span><span
-                                class="stat-value">27</span></div>
+                                class="stat-value">28</span></div>
                     </a>
                     <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
                         class="stat-row-link">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle"></i> Peer
-                                Reviews</span><span class="stat-value">530+</span></div>
+                                Reviews</span><span class="stat-value">550+</span></div>
                     </a>
                     <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank"
                             class="cv-btn-half"><i class="fas fa-download"></i> Download Full CV</a></div>
                 </div>
             </div>
+
+            <div class="hero-v-sep"></div>
 
             <!-- Column 5: Right Terminal & Visuals -->
             <div class="hero-column-side">
@@ -9418,22 +8653,22 @@ TCP Groupg:description"
                 <div class="edu-grid">
                     <div class="edu-card edu-phd">
                         <div class="edu-header">
-                            <h4>PhD (AI in Biology) <span class="badge-gold-inline" title="Gold Medallist in PhD"><i
+                            <h4>PhD (AI in Biology) <span class="badge-gold-inline" data-tip="Gold Medallist in PhD"><i
                                         class="fas fa-medal"></i></span></h4><span class="year-span">(2025)</span>
                         </div><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i
-                                class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                                class="fas fa-university"></i> Jamia Millia Islamia <span class="flag-wrapper" data-tip="India"><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></a>
                     </div>
                     <div class="edu-card edu-msc">
                         <div class="edu-header">
                             <h4>MSc Bioinformatics</h4><span class="year-span">(2020)</span>
                         </div><a href="https://www.jmi.ac.in/" target="_blank" class="inst-link"><i
-                                class="fas fa-university"></i> Jamia Millia Islamia, India</a>
+                                class="fas fa-university"></i> Jamia Millia Islamia <span class="flag-wrapper" data-tip="India"><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></a>
                     </div>
                     <div class="edu-card edu-bsc">
                         <div class="edu-header">
                             <h4>BSc (Hons) Botany</h4><span class="year-span">(2018)</span>
                         </div><a href="https://www.du.ac.in/" target="_blank" class="inst-link"><i
-                                class="fas fa-university"></i> University of Delhi, India</a>
+                                class="fas fa-university"></i> University of Delhi <span class="flag-wrapper" data-tip="India"><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></a>
                     </div>
                 </div>
                 <p
@@ -9446,7 +8681,8 @@ TCP Groupg:description"
                     style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 10px;">
                     <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;">Scientific
                         Frontiers</h3>
-                    <button onclick="summarizeFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn"
+                    <button onclick="summariseFrontiers()" id="sf-btn"
+ class="ai-magic-btn ai-expand-btn"
                         style="margin:0;"><span class="btn-icon">✨</span><span class="btn-text">AI
                             Summary</span></button>
                     <div id="sf-status"
@@ -9532,9 +8768,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.ku.dk/en"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> University of Copenhagen </a><img
-                                src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"
-                                title="Denmark"></div>
+                                    class="fas fa-university"></i> University of Copenhagen </a><span class="flag-wrapper" data-tip="Denmark"><img
+                                    src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
                         <div class="exp-date">June 2025 - Present</div>
                         <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
                     </div>
@@ -9545,9 +8780,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> University of Jyväskylä </a><img
-                                src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"
-                                title="Finland"></div>
+                                    class="fas fa-university"></i> University of Jyväskylä </a><span class="flag-wrapper" data-tip="Finland"><img
+                                    src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"></span></div>
                         <div class="exp-date">Jan 2025 - Dec 2025</div>
                         <div class="exp-desc">Predicting Colorectal Cancer susceptibility using AI.</div>
                     </div>
@@ -9557,9 +8791,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> Jamia Millia Islamia </a><img
-                                src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"
-                                title="India"></div>
+                                    class="fas fa-university"></i> Jamia Millia Islamia </a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                         <div class="exp-date">Sept 2021 - Feb 2025</div>
                         <div class="exp-desc">AI-based Predictive Modelling and Molecular Enumeration against Lung
                             Cancer.</div>
@@ -9571,9 +8804,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> SRM University </a><img
-                                src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"
-                                title="India"></div>
+                                    class="fas fa-university"></i> SRM University </a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                         <div class="exp-date">Nov 2020 - Sept 2021</div>
                         <div class="exp-desc">Drug repurposing against COVID-19 using Machine Learning.</div>
                     </div>
@@ -9584,8 +8816,8 @@ TCP Groupg:description"
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.iari.res.in/"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
                                     class="fas fa-university"></i> ICAR - Indian Agricultural Research Institute
-                            </a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"
-                                title="India"></div>
+                            </a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                         <div class="exp-date">Jan 2020 - June 2020</div>
                         <div class="exp-desc">Denovo assembly, annotation of <em>Ralstonia solanacearum</em>.</div>
                     </div>
@@ -9596,9 +8828,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.icgeb.org/"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> International Centre Genetic Eng. & Biotech </a><img
-                                src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"
-                                title="India"></div>
+                                    class="fas fa-university"></i> International Centre Genetic Eng. & Biotech </a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                         <div class="exp-date">Jan 2019 - Dec 2019</div>
                         <div class="exp-desc">Analysis of whole and chloroplast genome of <em>Vigna umbellata</em>.
                         </div>
@@ -9610,9 +8841,8 @@ TCP Groupg:description"
                         </div>
                         <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://jamiahamdard.ac.in/"
                                 target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                                    class="fas fa-university"></i> Hamdard University </a><img
-                                src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"
-                                title="India"></div>
+                                    class="fas fa-university"></i> Hamdard University </a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                         <div class="exp-date">March 2019 - April 2019</div>
                         <div class="exp-desc">Comparative Genomics of <em>Plasmodium spp</em>.</div>
                     </div>
@@ -9627,7 +8857,7 @@ TCP Groupg:description"
                                 class="fas fa-handshake"></i> Open to Collaboration</div>
                         <div style="display: flex; gap: 5px; align-items: center;">
                             <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn"
-                                title="Check Research Fit"><span class="btn-icon">✨</span><span
+                                data-tip="Check Research Fit"><span class="btn-icon">✨</span><span
                                     class="btn-text">Research Fit</span></button>
                         </div>
                     </div>
@@ -9650,8 +8880,9 @@ TCP Groupg:description"
         <div
             style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
             <h2 class="section-title" style="margin-bottom:0;">Key Scientific Contributions</h2>
-            <button onclick="summarizeContributions()" class="ai-magic-btn ai-expand-btn"
-                id="summarize-contributions-btn"><span class="btn-icon">✨</span><span class="btn-text">AI
+            <button onclick="summariseContributions()" class="ai-magic-btn ai-expand-btn"
+                id="summarise-contributions-btn">
+<span class="btn-icon">✨</span><span class="btn-text">AI
                     Summary</span></button>
         </div>
         <div id="contributions-summary"
@@ -9973,7 +9204,7 @@ TCP Groupg:description"
                             <li>Processing WGS/WES data for precise variant annotation.</li>
                             <li>Utilizing AI frameworks for variant pathogenicity prediction.</li>
                             <li>Mapping phylogenomic evolution (e.g., <em>Vigna umbellata</em>).</li>
-                            <li>Analyzing domestication genes and sequence analytics.</li>
+                            <li>Analysing domestication genes and sequence analytics.</li>
                         </ul>
                     </div>
                     <div class="tcp-focus-card tcp-focus-card-6">
@@ -10150,7 +9381,7 @@ TCP Groupg:description"
                     <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 0; text-align: left;">Teaching &
                         Training Philosophy</h3>
                     <button onclick="generateTeachingStatement()" id="gen-teaching-btn" class="ai-expand-btn"
-                        title="Generate formal teaching statement with AI"
+                        data-tip="Generate formal teaching statement with AI"
                         aria-label="Generate AI Teaching Statement"><span class="btn-icon">✨</span><span
                             class="btn-text">Teaching Statement</span></button>
                 </div>
@@ -10520,6 +9751,12 @@ TCP Groupg:description"
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
+                        <li class="pub-item"><strong>Benchmarking inflammation-nutrition and TyG-related indices for
+                                5-year mortality risk in adults with questionnaire-defined obstructive sleep apnea: a
+                                survey-weighted NHANES derivation cohort with multicenter external
+                                validation</strong><br><em>Submitted: JTRM-D-26-08634 (2026)</em> <span
+                                style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In
+                                Pipeline)</span></li>
                         <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework
                                 for Enterobacteriaceae Drug Activity Classification and Efficacy
                                 Prediction</strong><br><em>Submitted: CIBM-D-24-06110 (2026)</em> <span
@@ -10528,10 +9765,6 @@ TCP Groupg:description"
                         <li class="pub-item"><strong>LUNGXAI: A Deep Learning Framework with LIME-based Interpretability
                                 for Gene Expression and Classification</strong><br><em>Submitted: INFFUS-D-25-02490
                                 (2026)</em> <span
-                                style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In
-                                Pipeline)</span></li>
-                        <li class="pub-item"><strong>Nature’s Pharmacy for the Therapeutics of Lung and Respiratory
-                                Diseases</strong><br><em>Submitted: NPX-26-0106 (2026)</em> <span
                                 style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(In
                                 Pipeline)</span></li>
                         <li class="pub-item"><strong>Blind vs LigSite Docking Identifies Oxanthrazole as a Top
@@ -10551,6 +9784,10 @@ TCP Groupg:description"
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
+                        <li class="pub-item"><strong>Natural Products as Therapeutics for Lung and Respiratory
+                                Diseases</strong><br><em>SAGE- Natural Product Communications (2026)</em> <a
+                                class="pub-doi" href="https://doi.org/10.1177/1934578X261450463"
+                                target="_blank">DOI</a></li>
                         <li class="pub-item"><strong>Multitarget docking and molecular enumeration reveal DdpMPyPEPhU as
                                 a potent modulator of cell cycle, glucocorticoid, and estrogen signalling in breast
                                 cancer</strong><br><em>Plos- PlosOne (2026)</em> <a class="pub-doi"
@@ -10842,6 +10079,7 @@ TCP Groupg:description"
                                 href="https://doi.org/10.1080/07391102.2019.1680435" target="_blank">DOI</a></li>
                     </ol>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
 
@@ -10903,7 +10141,7 @@ TCP Groupg:description"
                         <li class="pub-item"><strong>Protein-based Therapeutic Vaccines.</strong><br><em>Springer-
                                 Protein-Based Therapeutics (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1007/978-981-19-8249-1_13" target="_blank">DOI</a></li>
-                        <li class="pub-item"><strong>Nanoinformatics and Nanomodeling: Recent developments in
+                        <li class="pub-item"><strong>Nanoinformatics and Nanomodelling: Recent developments in
                                 computational nanodrug design and delivery systems.</strong><br><em>Elsevier- Emerging
                                 Nanotechnologies for Medical Applications (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/B978-0-323-91182-5.00001-2" target="_blank">DOI</a></li>
@@ -10949,6 +10187,7 @@ TCP Groupg:description"
                                 target="_blank">DOI</a></li>
                     </ol>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
 
@@ -11092,6 +10331,7 @@ TCP Groupg:description"
                                 target="_blank" class="btn-data"><i class="ai ai-researchgate"></i> Data</a></li>
                     </ol>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
         <hr class="separator">
@@ -11173,6 +10413,7 @@ TCP Groupg:description"
                         </li>
                     </ol>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
 
@@ -11260,6 +10501,7 @@ TCP Groupg:description"
                         </li>
                     </ol>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
 
@@ -11371,6 +10613,7 @@ TCP Groupg:description"
                         style="margin-top:12px; background:none; border:1px solid var(--accent); color:var(--accent); padding:6px 14px; border-radius:20px; cursor:pointer; font-size:0.85rem; font-weight:600; transition:all 0.2s;">▼
                         Show older entries (2016–2021)</button>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
         <hr class="separator">
@@ -11503,7 +10746,7 @@ TCP Groupg:description"
                             class="pr-badge-item">Journal of Drug Targeting</span> <span class="pr-badge-item">Journal
                             of Experimental & Clinical Cancer Research</span> <span class="pr-badge-item">Journal of
                             Genetic Engineering and Biotechnology</span> <span class="pr-badge-item">Journal of
-                            Molecular Modeling</span> <span class="pr-badge-item">Journal of Pharmaceutical
+                            Molecular Modelling</span> <span class="pr-badge-item">Journal of Pharmaceutical
                             Analysis</span> <span class="pr-badge-item">Journal of Pharmaceutical Innovation</span>
                         <span class="pr-badge-item">Journal of Proteins and Proteomics</span> <span
                             class="pr-badge-item">Journal of the Brazilian Chemical Society</span> <span
@@ -11532,6 +10775,7 @@ TCP Groupg:description"
 
                     </div>
                 </div>
+                <button class="scroll-more-btn" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
 
@@ -11582,7 +10826,7 @@ TCP Groupg:description"
                                 <li>Advanced Architectures: Transformers, CNNs, LSTMs</li>
                                 <li>Classical ML pipelines: Scikit-learn, XGBoost, LightGBM</li>
                                 <li>Explainable AI (XAI) algorithms: LIME, SHAP</li>
-                                <li>Hyperparameter optimization and cross-validation</li>
+                                <li>Hyperparameter optimisation and cross-validation</li>
                             </ul>
                         </div>
                         <div class="tech-card tc-purple">
@@ -11590,7 +10834,7 @@ TCP Groupg:description"
                             <ul class="tech-ul">
                                 <li>Python Ecosystem: NumPy, Pandas, SciPy, PyTorch, Keras</li>
                                 <li>R Bioconductor & Tidyverse integration</li>
-                                <li>Complex data visualization: Seaborn, Plotly, Matplotlib</li>
+                                <li>Complex data visualisation: Seaborn, Plotly, Matplotlib</li>
                                 <li>MATLAB for specialized mathematical modelling</li>
                             </ul>
                         </div>
@@ -11631,9 +10875,9 @@ TCP Groupg:description"
                             </div>
                             <ul class="tech-ul">
                                 <li>Density Functional Theory (DFT) calculations</li>
-                                <li>Homology modeling & protein refinement (MODELLER)</li>
+                                <li>Homology modelling & protein refinement (MODELLER)</li>
                                 <li>Predictive toxicology and pharmacokinetics (ADMET)</li>
-                                <li>Advanced 3D visualization (PyMOL, UCSF ChimeraX)</li>
+                                <li>Advanced 3D visualisation (PyMOL, UCSF ChimeraX)</li>
                             </ul>
                         </div>
                     </div>
@@ -11735,13 +10979,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Associate Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/"
                         target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                            class="fas fa-university"></i> University of Copenhagen</a><img
-                        src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK" title="Denmark">
-                </div>
+                            class="fas fa-university"></i> University of Copenhagen</a><span class="flag-wrapper" data-tip="Denmark"><img
+                            src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tkn@plen.ku.dk');}"
-                        onclick="copyEmail(this, 'tkn@plen.ku.dk')">tkn@plen.ku.dk</span></div>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)');}"
+                        onclick="copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)')">tkn@plen.ku.dk</span></div>
             </div>
             <div class="referee-card ref-2">
                 <div class="ref-header">
@@ -11752,12 +10995,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Associate Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia
-                        Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy"
-                        alt="IN" title="India"></div>
+                        Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
+                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'kraza@jmi.ac.in');}"
-                        onclick="copyEmail(this, 'kraza@jmi.ac.in')">kraza@jmi.ac.in</span></div>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)');}"
+                        onclick="copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)')">kraza@jmi.ac.in</span></div>
             </div>
             <div class="referee-card ref-5">
                 <div class="ref-header">
@@ -11767,12 +11010,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Assistant Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> More
-                        School of Medicine</a><img src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy"
-                        alt="US" title="United States"></div>
+                        School of Medicine</a><span class="flag-wrapper" data-tip="United States"><img
+                            src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'meswaran@msm.edu');}"
-                        onclick="copyEmail(this, 'meswaran@msm.edu')">meswaran@msm.edu</span></div>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)');}"
+                        onclick="copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)')">meswaran@msm.edu</span></div>
             </div>
             <div class="referee-card ref-3">
                 <div class="ref-header">
@@ -11782,12 +11025,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Research Director</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank"
                         class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> University
-                        of Jyväskylä</a><img src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy"
-                        alt="FI" title="Finland"></div>
+                        of Jyväskylä</a><span class="flag-wrapper" data-tip="Finland"><img
+                            src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tiina.a.jokela@jyu.fi');}"
-                        onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi')">tiina.a.jokela@jyu.fi</span></div>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)');}"
+                        onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)')">tiina.a.jokela@jyu.fi</span></div>
             </div>
             <div class="referee-card ref-4">
                 <div class="ref-header">
@@ -11797,12 +11040,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Associate Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/"
                         target="_blank" class="inst-link" style="display:inline; margin:0;"><i
-                            class="fas fa-university"></i> SRM University</a><img src="https://flagcdn.com/w20/in.png"
-                        class="flag-img" loading="lazy" alt="IN" title="India"></div>
+                            class="fas fa-university"></i> SRM University</a><span class="flag-wrapper" data-tip="India"><img
+                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'manoj.yadav@srmuniversity.ac.in');}"
-                        onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in')">manoj.yadav@srmuniversity.ac.in</span>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)');}"
+                        onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)')">manoj.yadav@srmuniversity.ac.in</span>
                 </div>
             </div>
             <div class="referee-card ref-6">
@@ -11814,12 +11057,12 @@ TCP Groupg:description"
                 <div class="referee-title-line">Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;"><i class="fas fa-university"></i> Jamia
-                        Millia Islamia</a><img src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy"
-                        alt="IN" title="India"></div>
+                        Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
+                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge"></i><span class="email-click"
                         role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'malam2@jmi.ac.in');}"
-                        onclick="copyEmail(this, 'malam2@jmi.ac.in')">malam2@jmi.ac.in</span></div>
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)');}"
+                        onclick="copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)')">malam2@jmi.ac.in</span></div>
             </div>
         </div>
         <hr class="separator">
@@ -11928,6 +11171,7 @@ TCP Groupg:description"
             updateJournalCount();
             initCitationButtons();
             assignReverseBadges();
+            fixReversedListStart();
             reveal();
             startSFScroll();
             buildPubMarquee();
@@ -12028,8 +11272,19 @@ TCP Groupg:description"
 
         const toggleTheme = () => { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); document.querySelectorAll('.theme-toggle').forEach(el => el.className = isDark ? 'fas fa-sun control-icon theme-toggle' : 'fas fa-moon control-icon theme-toggle'); };
 
-        const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if (c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 530+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
-        const copyEmail = (el, email) => { navigator.clipboard.writeText(email).then(() => { let fb = document.createElement("span"); fb.className = "copy-feedback"; fb.innerText = "Email copied!"; fb.style.whiteSpace = "nowrap"; el.appendChild(fb); setTimeout(() => fb.classList.add("show"), 10); setTimeout(() => { fb.classList.remove("show"); setTimeout(() => fb.remove(), 300); }, 1500); }); };
+        const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if (c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 550+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
+        const copyEmail = (el, email, color = null) => {
+            navigator.clipboard.writeText(email).then(() => {
+                let fb = document.createElement("span");
+                fb.className = "copy-feedback";
+                fb.innerText = "Email copied!";
+                fb.style.whiteSpace = "nowrap";
+                if (color) fb.style.background = color;
+                el.appendChild(fb);
+                setTimeout(() => fb.classList.add("show"), 10);
+                setTimeout(() => { fb.classList.remove("show"); setTimeout(() => fb.remove(), 300); }, 1500);
+            });
+        };
 
         /* --- 18.2: Automated Citation & DOI Logic Engine --- */
         const initCitationButtons = () => {
@@ -12099,14 +11354,13 @@ TCP Groupg:description"
 
             /* Section map — matches section IDs in the actual HTML */
             const SECTIONS = [
-                { id: 'prospects', label: 'Research Vision', icon: 'fas fa-microscope', sels: ['#prospects'] },
+                { id: 'research-vision', label: 'Research Vision', icon: 'fas fa-microscope', sels: ['#research-vision', '#roadmap-funding', '#lab-model'] },
+                { id: 'experience', label: 'Research Experience', icon: 'fas fa-flask', sels: ['#profile-experience'] },
                 { id: 'publications', label: 'Publications', icon: 'fas fa-book-open', sels: ['#publications'] },
-                { id: 'experience', label: 'Research Experience', icon: 'fas fa-flask', sels: ['#experience'] },
-                { id: 'education', label: 'Education', icon: 'fas fa-graduation-cap', sels: ['#education'] },
                 { id: 'awards', label: 'Awards', icon: 'fas fa-trophy', sels: ['#awards'] },
                 { id: 'patents', label: 'Patents', icon: 'fas fa-certificate', sels: ['#patents'] },
-                { id: 'expertise', label: 'Skills & Tools', icon: 'fas fa-tools', sels: ['#expertise'] },
-                { id: 'activities', label: 'Activities', icon: 'fas fa-star', sels: ['#activities'] },
+                { id: 'technical', label: 'Skills & Tools', icon: 'fas fa-tools', sels: ['#technical'] },
+                { id: 'professional', label: 'Professional Activities', icon: 'fas fa-briefcase', sels: ['#professional', '#conferences'] },
                 { id: 'referees', label: 'Referees', icon: 'fas fa-users', sels: ['#referees'] },
                 { id: 'contact', label: 'Contact', icon: 'fas fa-envelope', sels: ['#contact'] },
             ];
@@ -12147,14 +11401,13 @@ TCP Groupg:description"
 
             function siblingExcerpt(el) {
                 const next = el.nextElementSibling;
-                if (next) { const t = next.textContent.trim(); if (t.length > 8) return t.slice(0, 130); }
-                const t = (el.parentElement || el).textContent.replace(el.textContent, '').trim();
-                return t.slice(0, 130);
+                if (next) { const t = next.textContent.replace(/\s+/g, ' ').trim(); if (t.length > 8) return t.slice(0, 130); }
+                return "";
             }
 
             function cardExcerpt(card) {
                 const clone = card.cloneNode(true);
-                clone.querySelectorAll('button,.cite-dropdown-menu,.badge,.year-badge,script,style').forEach(n => n.remove());
+                clone.querySelectorAll('button,.cite-dropdown-menu,.badge,.year-badge,.badge-gold-inline,script,style').forEach(n => n.remove());
                 return clone.textContent.replace(/\s+/g, ' ').trim().slice(0, 140);
             }
 
@@ -12162,14 +11415,24 @@ TCP Groupg:description"
             function scoreItem(item, ql) {
                 const tl = item.title.toLowerCase();
                 const el = (item.excerpt || '').toLowerCase();
-                const words = ql.split(/\s+/).filter(Boolean);
+                const words = ql.split(/\s+/).filter(w => w.length > 2);
+                if (words.length === 0) return ql.length > 2 && (tl.includes(ql) || el.includes(ql)) ? 10 : 0;
+
                 let s = 0;
+                // Exact matches
                 if (tl === ql) s += 100;
-                else if (tl.startsWith(ql)) s += 60;
-                else if (tl.includes(ql)) s += 40;
-                else if (words.every(w => tl.includes(w))) s += 25;
-                if (el.includes(ql)) s += 10;
-                else if (words.every(w => el.includes(w))) s += 5;
+                else if (tl.includes(ql)) s += 50;
+                
+                // Word-based scoring
+                let matchCount = 0;
+                words.forEach(w => {
+                    if (tl.includes(w)) { s += 20; matchCount++; }
+                    else if (el.includes(w)) { s += 5; matchCount++; }
+                });
+
+                // All words must match for multi-word queries to avoid noise
+                if (words.length > 1 && matchCount < words.length) return 0;
+                
                 if (item.type === 'heading') s += 2;
                 return s;
             }
@@ -12326,13 +11589,61 @@ TCP Groupg:description"
 
         /* Builds both lang dropdowns from one source — add/remove a language here, not in HTML */
         const LANGS = [{ code: 'en', flag: 'gb', title: 'English (UK)', label: 'English' }, { code: 'da', flag: 'dk', title: 'Danish (Denmark)', label: 'Dansk' }, { code: 'es', flag: 'es', title: 'Spanish (Spain)', label: 'Español' }, { code: 'fr', flag: 'fr', title: 'French (France)', label: 'Français' }, { code: 'de', flag: 'de', title: 'German (Germany)', label: 'Deutsch' }, { code: 'hi', flag: 'in', title: 'Hindi (India)', label: 'हिन्दी' }, { code: 'zh-CN', flag: 'cn', title: 'Chinese (China)', label: '中文' }, { code: 'ar', flag: 'sa', title: 'Arabic (Saudi Arabia)', label: 'العربية' }, { code: 'ur', flag: 'pk', title: 'Urdu (India/Pakistan)', label: 'اردو' }, { code: 'ru', flag: 'ru', title: 'Russian (Russia)', label: 'Русский' }, { code: 'ja', flag: 'jp', title: 'Japanese (Japan)', label: '日本語' }];
-        const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" title="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
+        const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" data-tip="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
 
         const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
         const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
         const toggleMenu = (e) => { if (e) e.stopPropagation(); const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'), mDD = document.getElementById('mobile-lang-dd'); if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns(); nb.classList.toggle('active'); tb.classList.toggle('open'); }; const toggleMobileSubmenu = (e, tId) => { e.stopPropagation(); const dd = document.getElementById(tId), tb = e.currentTarget; closeAllDropdowns(dd); if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; } }; document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
         const assignReverseBadges = () => [document.querySelector('.exp-grid-vertical'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cs = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cs.forEach((cd, i) => cd.setAttribute('data-badge', cs.length - i)); });
-        const acc = document.getElementsByClassName("accordion-btn"); for (let i = 0; i < acc.length; i++) acc[i].addEventListener("click", function () { for (let j = 0; j < acc.length; j++) if (acc[j] !== this && acc[j].classList.contains("active")) { acc[j].classList.remove("active"); acc[j].nextElementSibling.style.maxHeight = null; } this.classList.toggle("active"); const p = this.nextElementSibling; if (p.style.maxHeight) p.style.maxHeight = null; else { p.style.maxHeight = p.scrollHeight + "px"; setTimeout(() => this.scrollIntoView({ behavior: "smooth", block: "nearest" }), 300); } }); const triggerAccordion = (id) => { const btn = document.getElementById(id); if (btn) { if (!btn.classList.contains('active')) btn.click(); setTimeout(() => btn.scrollIntoView({ behavior: "smooth", block: "center" }), 300); } };
+        const fixReversedListStart = () => {
+            const attendedList = document.getElementById('attended-list');
+            if (attendedList) attendedList.setAttribute('start', attendedList.querySelectorAll('li').length);
+        };
+
+        const scrollNextBatch = (btn) => {
+            const panel = btn.closest('.panel');
+            const scrollContainer = panel.querySelector('.scrollable-list, .scrollable-grid');
+            if (!scrollContainer) return;
+            const isGrid = scrollContainer.classList.contains('scrollable-grid');
+            const scrollAmount = isGrid ? 350 : 320; 
+            scrollContainer.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+            if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 20) {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        const updateScrollMoreVisibility = (panel) => {
+            const btn = panel.querySelector('.scroll-more-btn');
+            const container = panel.querySelector('.scrollable-list, .scrollable-grid');
+            if (btn && container) {
+                // Show button only if content is scrollable (overflows)
+                const hasOverflow = container.scrollHeight > container.clientHeight + 10;
+                btn.style.display = hasOverflow ? 'flex' : 'none';
+            }
+        };
+
+        const acc = document.getElementsByClassName("accordion-btn"); 
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () { 
+                for (let j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this && acc[j].classList.contains("active")) { 
+                        acc[j].classList.remove("active"); 
+                        acc[j].nextElementSibling.style.maxHeight = null; 
+                    } 
+                }
+                this.classList.toggle("active"); 
+                const p = this.nextElementSibling; 
+                if (p.style.maxHeight) {
+                    p.style.maxHeight = null; 
+                } else { 
+                    p.style.maxHeight = p.scrollHeight + "px"; 
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                        updateScrollMoreVisibility(p);
+                    }, 450); /* Account for 0.4s CSS transition */
+                } 
+            }); 
+        }
         const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
         let sfAId, sfSpd = 0.8, isSfM = false; const startSFScroll = () => { const t = document.getElementById('sf-track'); if (!t) return; if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } cancelAnimationFrame(sfAId); const step = () => { if (!t.matches(':hover') && !isSfM) { t.scrollLeft += sfSpd; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; } sfAId = requestAnimationFrame(step); }; sfAId = requestAnimationFrame(step); }; const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
 
@@ -12358,10 +11669,10 @@ TCP Groupg:description"
             if (shareLink) window.open(shareLink, '_blank', 'width=600,height=600');
         };
 
-        const summarizeContributions = () => {
+        const summariseContributions = () => {
             const contributionsText = Array.from(document.querySelectorAll('.bento-card .bento-desc')).map(el => el.innerText).join(' ');
             triggerAIFeature(
-                'summarize-contributions-btn',
+                'summarise-contributions-btn',
                 'contributions-summary',
                 '✨',
                 'AI Summary',
@@ -12408,11 +11719,12 @@ TCP Groupg:description"
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; flex-wrap:wrap; gap:15px; border-top:1px solid #eee; padding-top:15px;">
                         <div style="display:flex; gap:10px; align-items:center;">
                             <span style="font-size:0.9rem; color:#444; font-weight:800; margin-right:5px;">Share to:</span>
-                            <button onclick="shareToSocial('linkedin', '${doiUrl}')" title="Share on LinkedIn" style="background:linear-gradient(135deg, #0077b5, #005e93); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(0,119,181,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-linkedin-in"></i></button>
-                            <button onclick="shareToSocial('twitter', '${doiUrl}')" title="Post to X" style="background:linear-gradient(135deg, #333333, #000000); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-x-twitter"></i></button>
-                            <button onclick="shareToSocial('facebook', '${doiUrl}')" title="Share on Facebook" style="background:linear-gradient(135deg, #1877f2, #115cbf); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(24,119,242,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-facebook-f"></i></button>
-                            <button onclick="shareToSocial('whatsapp', '${doiUrl}')" title="Share via WhatsApp" style="background:linear-gradient(135deg, #25d366, #128c7e); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(37,211,102,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-whatsapp"></i></button>
-                            <button onclick="shareToSocial('instagram', '${doiUrl}')" title="Open Instagram" style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(220,39,67,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-instagram"></i></button>
+                            <button onclick="shareToSocial('linkedin', '${doiUrl}')" data-tip="Share on LinkedIn" style="background:linear-gradient(135deg, #0077b5, #005e93);
+ color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(0,119,181,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-linkedin-in"></i></button>
+                            <button onclick="shareToSocial('twitter', '${doiUrl}')" data-tip="Post to X" style="background:linear-gradient(135deg, #333333, #000000); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-x-twitter"></i></button>
+                            <button onclick="shareToSocial('facebook', '${doiUrl}')" data-tip="Share on Facebook" style="background:linear-gradient(135deg, #1877f2, #115cbf); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.15rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(24,119,242,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-facebook-f"></i></button>
+                            <button onclick="shareToSocial('whatsapp', '${doiUrl}')" data-tip="Share via WhatsApp" style="background:linear-gradient(135deg, #25d366, #128c7e); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(37,211,102,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-whatsapp"></i></button>
+                            <button onclick="shareToSocial('instagram', '${doiUrl}')" data-tip="Open Instagram" style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(220,39,67,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-instagram"></i></button>
                         </div>
                         <button onclick="navigator.clipboard.writeText(document.getElementById('ai-gen-text').value); this.innerHTML='<i class=\\'fas fa-check\\'></i> Copied!';" class="btn-data" style="background-color:var(--accent); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(245,158,11,0.3); font-size:0.9rem;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fas fa-copy"></i> Copy Text</button>
                     </div>`;
@@ -12638,7 +11950,9 @@ TCP Groupg:description"
 
             // 2. Build HTML — use best available description; spinner only if nothing found
             let html = '';
-            for (const d of items) {
+            const mqColors = ['var(--primary)', 'var(--ref-2)', 'var(--ref-3)', 'var(--ref-4)', 'var(--accent)'];
+            for (let i = 0; i < items.length; i++) {
+                const d = items[i];
                 const doi = d.doi ? `<a class="pub-doi" href="${d.doi}" target="_blank" rel="noopener">DOI</a>` : '';
                 const code = d.codeHref ? `<a href="${d.codeHref}" target="_blank" class="btn-data" rel="noopener"><i class="fab fa-github"></i> Code</a>` : '';
                 const dat = d.dataHref ? `<a href="${d.dataHref}" target="_blank" class="btn-data" rel="noopener"><i class="fas fa-database"></i> Data</a>` : '';
@@ -12646,7 +11960,8 @@ TCP Groupg:description"
                 const desc = d.cachedDesc
                     ? d.cachedDesc
                     : '<i class="fas fa-spinner fa-spin" style="color:#aaa;font-size:0.78rem;"></i>';
-                html += `<div class="pub-mq-card" data-pub-key="${d.encKey}">
+                const borderColor = mqColors[i % mqColors.length];
+                html += `<div class="pub-mq-card" data-pub-key="${d.encKey}" style="--card-border-color:${borderColor}">
                     ${jrnl ? `<span class="pub-mq-journal">${jrnl}</span>` : ''}
                     <div class="pub-mq-title">${d.fullTitle}</div>
                     <div class="pub-mq-desc">${desc}</div>
@@ -12681,7 +11996,8 @@ TCP Groupg:description"
         }
 
         const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Dr. Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>📄 Lay Summary:</strong><br><br>${res}`; });
-        const summarizeFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
+        const summariseFrontiers = () => triggerAIFeature('sf-btn'
+, 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Dr. Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
         const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Dr. Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Research Fit Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
 
         const extractEmailParts = (text) => {
@@ -12698,377 +12014,232 @@ TCP Groupg:description"
             return { subject: s, body: b };
         };
 
-        const findSynergy = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Describe your area first!"; return; } triggerAIFeature('synergy-btn', null, '🤝', 'Synergy', 'Finding...', `Propose ONE highly innovative joint research project for Dr. Shaban Ahmad (AI/Bioinformatics) and a researcher with expertise in: "${mb.value.trim()}". Draft a formal email proposing this. CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); showAIModal(`<strong>🤝 Collaborative Synergy Idea:</strong><br><br><label style="font-size:0.85rem;font-weight:bold;color:#555;">Subject:</label><input type="text" id="syn-gen-sub" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit;" value="${escapeHTML(subject)}"><label style="font-size:0.85rem;font-weight:bold;color:#555;">Body:</label><textarea id="syn-gen-body" style="width:100%; min-height:200px; padding:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit; resize:vertical;">${escapeHTML(body)}</textarea><br><br><div style="display:flex; gap:10px; justify-content:flex-end;"><button onclick="document.getElementById('contact-subject').value = document.getElementById('syn-gen-sub').value; document.getElementById('contact-message').value = document.getElementById('syn-gen-body').value; closeAIModal();" class="cf-btn" style="background:var(--accent); border:none; padding:8px 15px;">Use as Email Draft</button></div>`); }); };
+        const findSynergy = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Describe your area first!"; return; } triggerAIFeature('synergy-btn', null, '🤝', 'Synergy', 'Finding...', `Propose ONE highly innovative joint research project for Dr. Shaban Ahmad (AI/Bioinformatics) and a researcher with expertise in: "${mb.value.trim()}". Draft a formal email proposing this. CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); showAIModal(`<strong>🤝 Collaborative Synergy Idea:</strong><br><br><label style="font-size:0.85rem;font-weight:bold;color:#555;">Subject:</label><input type="text" id="syn-gen-sub" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit;" value="${escapeHTML(subject)}"><label style="font-size:0.85rem;font-weight:bold;color:#555;">Body:</label><textarea id="syn-gen-body" style="width:100%; min-height:200px; padding:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit; resize:vertical;">${escapeHTML(body)}</textarea><br><br><div style="display:flex; gap:10px; justify-content:flex-end;"><button onclick="document.getElementById('contact-subject').value = document.getElementById('syn-gen-sub').value; document.getElementById('contact-message').value = document.getElementById('syn-gen-body').value; closeAIModal();" class="cf-btn" style="border:none; padding:8px 15px;">Use as Email Draft</button></div>`); }); };
         const draftEmail = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Type notes first!"; return; } triggerAIFeature('draft-email-btn', null, '✨', 'AI Draft', 'Drafting...', `Rewrite these notes into a polite academic email addressed to Dr. Shaban Ahmad: "${mb.value.trim()}". CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); if (subject) document.getElementById('contact-subject').value = subject; mb.value = body; }); };
 
 
         /* --- 18.5: Conversational Chatbot & Voice --- */
         const toggleChatWindow = () => { const w = document.getElementById('ai-chat-window'); w.style.display = w.style.display === 'flex' ? 'none' : 'flex'; };
         const handleChatKey = (e) => { if (e.key === 'Enter') sendUserMessage(); };
-        const addMessage = (t, type) => { const b = document.getElementById('chat-body'), d = document.createElement('div'); d.className = `msg msg-${type}`; d.innerHTML = t.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); b.appendChild(d); b.scrollTop = b.scrollHeight; return d; };
+        const addMessage = (t, type) => {
+            const b = document.getElementById('chat-body'), d = document.createElement('div');
+            d.className = `msg msg-${type}`;
+            d.innerHTML = t.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+            b.appendChild(d);
+            b.scrollTop = b.scrollHeight;
+            return d;
+        };
         const removeMessage = (el) => { if (el && el.parentNode) el.parentNode.removeChild(el); };
-
-        // 1. Chatbot Escaping Tool for Security Polish
-        const escapeHTML = (str) => { return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag])); };
+        const escapeHTML = (str) => str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag]));
 
         const sendUserMessage = async () => {
             const inp = document.getElementById('chat-input'), msg = inp.value.trim();
             if (!msg) return;
-            const safeMsg = escapeHTML(msg);
-            addMessage(safeMsg, 'user');
+            addMessage(escapeHTML(msg), 'user');
             inp.value = '';
-            const loadMsg = addMessage('Thinking', 'loading');
-
-            // Injected Context so the AI doesn't hallucinate your background!
-            const systemContext = `You are the AI assistant for Dr. Shaban Ahmad. He is currently a Postdoctoral Researcher at the University of Copenhagen (UCPH) in Denmark, working on AI-driven bioinformatics to identify PFAS-degrading enzymes. He has a PhD in AI in Biology from Jamia Millia Islamia. He built DrLungker and DeepEntXAI for precision oncology. Answer the user's query enthusiastically but concisely based strictly on this info. CRITICAL: Provide raw HTML output ONLY. Do NOT wrap your response in markdown code blocks like \`\`\`html.`;
-
+            const loadMsg = addMessage('Thinking...', 'loading');
+            const systemContext = "You are the AI assistant for Dr. Shaban Ahmad. He is a Postdoc at UCPH specialising in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Answer concisely in raw HTML.";
             try {
-                const res = await fetchFromBackend(`${systemContext} User Query: ${msg}`);
+                const res = await fetchFromBackend(`${systemContext} User: ${msg}`);
                 removeMessage(loadMsg);
-
-                // Strip out markdown formatting if the AI disobeys the prompt
-                const cleanHTML = res.replace(/```html/gi, '').replace(/```/g, '').trim();
-                addMessage(cleanHTML, 'bot');
+                addMessage(res.replace(/```html|```/gi, '').trim(), 'bot');
             } catch (err) {
                 removeMessage(loadMsg);
-                addMessage("<strong>❌ Error:</strong> " + err.message, 'bot');
+                addMessage(`❌ Error: ${err.message}`, 'bot');
             }
         };
 
-        const sendQuickMessage = (t) => { document.getElementById('chat-input').value = t; sendUserMessage(); };
+        /* --- 19.0: Performance-Optimised 3D & Network Effects --- */
+        const initHeavyFX = () => {
+            // 3D Molecular Simulation
+            (() => {
+                const init3D = () => {
+                    if (typeof $3Dmol === 'undefined') { setTimeout(init3D, 100); return; }
+                    const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
+                    if (!containerL || !containerR) return;
 
-        let recognition, isListening = false;
-        const toggleMic = () => {
-            const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if (!SR) return addMessage('❌ Voice not supported.', 'bot');
-            const mb = document.getElementById('mic-btn'), ci = document.getElementById('chat-input');
-            if (!recognition) { recognition = new SR(); recognition.continuous = true; recognition.interimResults = true; let st, ft = ''; recognition.onstart = () => { isListening = true; mb.style.color = '#dc3545'; ci.placeholder = "Listening..."; ci.value = ""; ft = ''; }; recognition.onresult = (e) => { clearTimeout(st); let it = ''; for (let i = e.resultIndex; i < e.results.length; ++i) e.results[i].isFinal ? ft += e.results[i][0].transcript : it += e.results[i][0].transcript; ci.value = ft + it; st = setTimeout(() => { if (isListening && ci.value.trim()) recognition.stop(); }, 2000); }; recognition.onend = () => { isListening = false; mb.style.color = '#555'; ci.placeholder = "Type or say..."; if (ci.value.trim() && ci.value !== "Listening...") sendUserMessage(); }; recognition.onerror = () => { isListening = false; mb.style.color = '#555'; ci.placeholder = "Type or say..."; }; }
-            isListening ? recognition.stop() : recognition.start();
-        };
+                    const vL = $3Dmol.createViewer(containerL, { alpha: true, antialias: true }), vR = $3Dmol.createViewer(containerR, { alpha: true, antialias: true });
+                    const viewers = [vL, vR]; viewers.forEach(v => v.setBackgroundColor(0x000000, 0.0));
 
-        /* ── 3D MOLECULAR SIMULATION (3Dmol.js) ───────────────────────
-           Renders dual animated 3D narratives for desktop sidebars.
-        ──────────────────────────────────────────────────────────── */
-        (() => {
-            const init3D = () => {
-                if (typeof $3Dmol === 'undefined') { setTimeout(init3D, 100); return; }
-                const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
-                if (!containerL || !containerR) return;
+                    let proteinModels = [], isAnimating = false, protAtomsList = [];
+                    const PFAS_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: 'gray', x: 0, y: 0, z: 0 }, { id: 1, e: 'C', r: 0.45, c: 'gray', x: 1.5, y: 0.5, z: 0 }, { id: 2, e: 'O', r: 0.45, c: 'red', x: 2.2, y: 1.5, z: 0 }, { id: 3, e: 'O', r: 0.45, c: 'red', x: 2.2, y: -0.5, z: 0 }, { id: 4, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: 1.2, z: 0 }, { id: 5, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: 1.0 }, { id: 6, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: -1.0 }], bonds: [[0, 1], [1, 2], [1, 3], [0, 4], [0, 5], [0, 6]] };
+                    const DRUG_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: 1.4, z: 0 }, { id: 1, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: 0.7, z: 0 }, { id: 2, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: -0.7, z: 0 }, { id: 3, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: -1.4, z: 0 }, { id: 4, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: -0.7, z: 0 }, { id: 5, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: 0.7, z: 0 }, { id: 6, e: 'N', r: 0.45, c: 'blue', x: 2.4, y: 1.4, z: 0 }, { id: 7, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 0.7, z: 0 }, { id: 8, e: 'C', r: 0.45, c: '#f59e0b', x: 4.8, y: 1.4, z: 0 }, { id: 9, e: 'N', r: 0.45, c: 'blue', x: 4.8, y: 2.8, z: 0 }, { id: 10, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 3.5, z: 0 }, { id: 11, e: 'C', r: 0.45, c: '#f59e0b', x: 2.4, y: 2.8, z: 0 }, { id: 12, e: 'O', r: 0.45, c: 'red', x: -2.4, y: -1.4, z: 0 }], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 7], [4, 12]] };
+                    const precalc = (t) => { let cx = 0, cy = 0, cz = 0; t.atoms.forEach(a => { cx += a.x; cy += a.y; cz += a.z; }); cx /= t.atoms.length; cy /= t.atoms.length; cz /= t.atoms.length; t.atoms.forEach(a => { let dx = a.x - cx, dy = a.y - cy, dz = a.z - cz, d = Math.hypot(dx, dy, dz) || 1; a.dx = dx / d; a.dy = dy / d; a.dz = dz / d; }); };
+                    precalc(PFAS_TEMPLATE); precalc(DRUG_TEMPLATE);
 
-                const vL = $3Dmol.createViewer(containerL, { alpha: true, antialias: true }), vR = $3Dmol.createViewer(containerR, { alpha: true, antialias: true });
-                const viewers = [vL, vR]; viewers.forEach(v => v.setBackgroundColor(0x000000, 0.0));
+                    $3Dmol.download("pdb:3R3V", vR, {}, function () {
+                        $3Dmol.download("pdb:3R3V", vL, {}, function () {
+                            viewers.forEach(v => { const m = v.getModel(0); proteinModels.push(m); const at = m.selectedAtoms({ atom: 'CA' }); at.forEach(a => { a.vx = (Math.random() - 0.5) * 8; a.vy = (Math.random() - 0.5) * 8; a.vz = (Math.random() - 0.5) * 8; }); protAtomsList.push(at); v.setStyle({ chain: 'B' }, { cross: { hidden: true } }); v.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } }); v.zoomTo({ chain: 'A' }); });
 
-                let proteinModels = [], isAnimating = false, protAtomsList = [];
-                const PFAS_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: 'gray', x: 0, y: 0, z: 0 }, { id: 1, e: 'C', r: 0.45, c: 'gray', x: 1.5, y: 0.5, z: 0 }, { id: 2, e: 'O', r: 0.45, c: 'red', x: 2.2, y: 1.5, z: 0 }, { id: 3, e: 'O', r: 0.45, c: 'red', x: 2.2, y: -0.5, z: 0 }, { id: 4, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: 1.2, z: 0 }, { id: 5, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: 1.0 }, { id: 6, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: -1.0 }], bonds: [[0, 1], [1, 2], [1, 3], [0, 4], [0, 5], [0, 6]] };
-                const DRUG_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: 1.4, z: 0 }, { id: 1, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: 0.7, z: 0 }, { id: 2, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: -0.7, z: 0 }, { id: 3, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: -1.4, z: 0 }, { id: 4, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: -0.7, z: 0 }, { id: 5, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: 0.7, z: 0 }, { id: 6, e: 'N', r: 0.45, c: 'blue', x: 2.4, y: 1.4, z: 0 }, { id: 7, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 0.7, z: 0 }, { id: 8, e: 'C', r: 0.45, c: '#f59e0b', x: 4.8, y: 1.4, z: 0 }, { id: 9, e: 'N', r: 0.45, c: 'blue', x: 4.8, y: 2.8, z: 0 }, { id: 10, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 3.5, z: 0 }, { id: 11, e: 'C', r: 0.45, c: '#f59e0b', x: 2.4, y: 2.8, z: 0 }, { id: 12, e: 'O', r: 0.45, c: 'red', x: -2.4, y: -1.4, z: 0 }], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 7], [4, 12]] };
-                const precalc = (t) => { let cx = 0, cy = 0, cz = 0; t.atoms.forEach(a => { cx += a.x; cy += a.y; cz += a.z; }); cx /= t.atoms.length; cy /= t.atoms.length; cz /= t.atoms.length; t.atoms.forEach(a => { let dx = a.x - cx, dy = a.y - cy, dz = a.z - cz, d = Math.hypot(dx, dy, dz) || 1; a.dx = dx / d; a.dy = dy / d; a.dz = dz / d; }); };
-                precalc(PFAS_TEMPLATE); precalc(DRUG_TEMPLATE);
-
-                $3Dmol.download("pdb:3R3V", vR, {}, function () {
-                    $3Dmol.download("pdb:3R3V", vL, {}, function () {
-                        viewers.forEach(v => { const m = v.getModel(0); proteinModels.push(m); const at = m.selectedAtoms({ atom: 'CA' }); at.forEach(a => { a.vx = (Math.random() - 0.5) * 8; a.vy = (Math.random() - 0.5) * 8; a.vz = (Math.random() - 0.5) * 8; }); protAtomsList.push(at); v.setStyle({ chain: 'B' }, { cross: { hidden: true } }); v.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } }); v.zoomTo({ chain: 'A' }); });
-
-                        const setProteinStyle = (idx, st) => {
-                            const m = proteinModels[idx];
-                            let cf; if (st === 'active') cf = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b'); else if (st === 'inhibited') cf = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a'); else if (st === 'catalyzing') cf = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
-                            m.setStyle({}, { hidden: false }); m.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cf, thickness: 0.4 } }); viewers[idx].render();
-                        };
-                        const setSurface = (idx, ty) => { 
-                            viewers[idx].removeAllSurfaces(); 
-                            if (ty === 'normal') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false }); 
-                            else if (ty === 'inhibited') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false }); 
-                            else if (ty === 'catalyzing') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false }); 
-                        };
-
-                        setProteinStyle(0, 'active'); setSurface(0, 'normal');
-                        setProteinStyle(1, 'active'); setSurface(1, 'normal');
-
-                        let tick = 0; const target = { x: -2, y: -5, z: 12 }, start = { x: 40, y: 20, z: -20 }, exit = { x: -40, y: -20, z: 30 };
-                        const drawLigand = (idx, tmpl, pos, scP = 0) => {
-                            let al = 1.0 - (scP * 1.5); if (al <= 0 && scP > 0) return; const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
-                            const tAt = tmpl.atoms.map(a => { let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c, isSc = false; if (scP > 0 && a.e === 'F') { rx += a.dx * 25 * scP; ry += a.dy * 25 * scP; rz += a.dz * 25 * scP; ry -= scP * 15; isSc = true; } return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isSc }; });
-                            const v = viewers[idx];
-                            tAt.forEach(a => v.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? al : 1.0 })); 
-                            tmpl.bonds.forEach(b => { const p1 = tAt.find(at => at.id === b[0]), p2 = tAt.find(at => at.id === b[1]); if (p1 && p2 && !p1.scattered && !p2.scattered) v.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' }); });
-                        };
-
-                        const termLeft = document.getElementById('ai-terminal-left');
-                        const termRight = document.getElementById('ai-terminal-right');
-                        let logsLeft = [], logsRight = [];
-                        let queueLeft = [], queueRight = [];
-                        let isTypingLeft = false, isTypingRight = false;
-
-                        const toggleTerm = (sh) => { 
-                            [termLeft, termRight].forEach(t => { 
-                                if (!t) return;
-                                t.style.opacity = sh ? '1' : '0'; 
-                                if (!sh) t.innerHTML = ''; 
-                            }); 
-                            if (!sh) { logsLeft = []; logsRight = []; queueLeft = []; queueRight = []; isTypingLeft = false; isTypingRight = false; } 
-                        };
-
-                        const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
-
-                        const typeLog = (side) => {
-                            const q = side === 'L' ? queueLeft : queueRight;
-                            const l = side === 'L' ? logsLeft : logsRight;
-                            const t = side === 'L' ? termLeft : termRight;
-                            let isT = side === 'L' ? isTypingLeft : isTypingRight;
-
-                            if (q.length === 0) { if(side==='L') isTypingLeft=false; else isTypingRight=false; return; }
-                            if(side==='L') isTypingLeft=true; else isTypingRight=true;
-
-                            const msg = q.shift();
-                            l.push(""); if (l.length > 18) l.shift();
-                            let i = 0;
-                            const typeChar = () => {
-                                l[l.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
-                                renderTerm(t, l); i++;
-                                if (i <= msg.length) setTimeout(typeChar, 8);
-                                else { l[l.length - 1] = msg; renderTerm(t, l); setTimeout(() => typeLog(side), 80); }
+                            const setProteinStyle = (idx, st) => {
+                                const m = proteinModels[idx];
+                                let cf; if (st === 'active') cf = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b'); else if (st === 'inhibited') cf = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a'); else if (st === 'catalyzing') cf = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
+                                m.setStyle({}, { hidden: false }); m.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cf, thickness: 0.4 } }); viewers[idx].render();
                             };
-                            typeChar();
-                        };
+                            const setSurface = (idx, ty) => { 
+                                viewers[idx].removeAllSurfaces(); 
+                                if (ty === 'normal') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false }); 
+                                else if (ty === 'inhibited') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false }); 
+                                else if (ty === 'catalyzing') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false }); 
+                            };
 
-                        const addLog = (m, side = 'both') => {
-                            let f = m;
-                            if (m.startsWith('>')) f = `<span style="color:#10b981">${m}</span>`;
-                            else if (m.includes('CRITICAL') || m.includes('ERROR') || m.includes('FAILURE')) f = `<span style="color:#ef4444">${m}</span>`;
-                            else if (m.includes('SUCCESS') || m.includes('COMPLETE')) f = `<span style="color:#10b981">${m}</span>`;
-                            else if (m.includes('WARNING') || m.includes('[CALC]') || m.includes('[INFO]')) f = `<span style="color:#f59e0b">${m}</span>`;
-                            else if (m.includes('[RESULT]')) f = `<span style="color:#38bdf8">${m}</span>`;
+                            setProteinStyle(0, 'active'); setSurface(0, 'normal');
+                            setProteinStyle(1, 'active'); setSurface(1, 'normal');
 
-                            if (side === 'L' || side === 'both') { queueLeft.push(f); if (!isTypingLeft) typeLog('L'); }
-                            if (side === 'R' || side === 'both') { queueRight.push(f); if (!isTypingRight) typeLog('R'); }
-                        };
+                            let tick = 0; const target = { x: -2, y: -5, z: 12 }, start = { x: 40, y: 20, z: -20 }, exit = { x: -40, y: -20, z: 30 };
+                            const drawLigand = (idx, tmpl, pos, scP = 0) => {
+                                let al = 1.0 - (scP * 1.5); if (al <= 0 && scP > 0) return; const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
+                                const tAt = tmpl.atoms.map(a => { let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c, isSc = false; if (scP > 0 && a.e === 'F') { rx += a.dx * 25 * scP; ry += a.dy * 25 * scP; rz += a.dz * 25 * scP; ry -= scP * 15; isSc = true; } return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isSc }; });
+                                const v = viewers[idx];
+                                tAt.forEach(a => v.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? al : 1.0 })); 
+                                tmpl.bonds.forEach(b => { const p1 = tAt.find(at => at.id === b[0]), p2 = tAt.find(at => at.id === b[1]); if (p1 && p2 && !p1.scattered && !p2.scattered) v.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' }); });
+                            };
 
-                        const animateScene = () => {
-                            if (!isAnimating) return; tick = (tick + 2) % 1800; viewers.forEach(v => v.removeAllShapes());
-                            
-                            // --- LEFT SIDE (VIEWER 0): DRUG DISCOVERY -> PHARMACOGENOMICS ---
-                            if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced", 'L'); }
-                            if (tick === 120) addLog("> loading Lead_Compound_X42...", 'L');
-                            if (tick === 180) addLog("> ligand_docking.start()", 'L');
-                            if (tick === 260) { addLog("[CALC] Bind Energy: -14.2 kcal/mol", 'L'); setProteinStyle(0, 'inhibited'); setSurface(0, 'inhibited'); }
-                            if (tick === 330) addLog("[CRITICAL] Ligand-induced denaturation!", 'L');
-                            if (tick === 420) { addLog("[FAILURE] Lead discarded. Resetting...", 'L'); setSurface(0, 'none'); proteinModels[0].setStyle({}, { hidden: true }); }
-                            if (tick === 550) { setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
-                            
-                            if (tick === 620) addLog("> import pharmacogenomics as pgx", 'L');
-                            if (tick === 700) addLog("> patient_profile = pgx.load('PT-29')", 'L');
-                            if (tick === 880) { addLog("[RESULT] Phenotype: Poor Metabolizer", 'L'); setProteinStyle(0, 'catalyzing'); setSurface(0, 'catalyzing'); }
-                            if (tick === 1030) { addLog("[SUCCESS] Optimized regimen active", 'L'); setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+                            const termLeft = document.getElementById('ai-terminal-left');
+                            const termRight = document.getElementById('ai-terminal-right');
+                            let logsLeft = [], logsRight = [], queueLeft = [], queueRight = [], isTypingLeft = false, isTypingRight = false;
 
-                            // --- RIGHT SIDE (VIEWER 1): PFAS BIOREMEDIATION -> STRUCTURAL BIOLOGY ---
-                            if (tick === 50) addLog("> system_status: monitoring node_01", 'R');
-                            if (tick === 120) addLog("[INFO] Proximity alert: 20Å", 'R');
-                            if (tick === 260) addLog("[WARNING] Active site distortion detected", 'R');
-                            if (tick === 420) addLog("[CRITICAL] SYSTEM OVERLOAD: Rebooting", 'R');
+                            const toggleTerm = (sh) => { 
+                                [termLeft, termRight].forEach(t => { if (t) { t.style.opacity = sh ? '1' : '0'; if (!sh) t.innerHTML = ''; } }); 
+                                if (!sh) { logsLeft = []; logsRight = []; queueLeft = []; queueRight = []; isTypingLeft = false; isTypingRight = false; } 
+                            };
+                            const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
+                            const typeLog = (side) => {
+                                const q = side === 'L' ? queueLeft : queueRight, l = side === 'L' ? logsLeft : logsRight, t = side === 'L' ? termLeft : termRight;
+                                if (q.length === 0) { if(side==='L') isTypingLeft=false; else isTypingRight=false; return; }
+                                if(side==='L') isTypingLeft=true; else isTypingRight=true;
+                                const msg = q.shift(); l.push(""); if (l.length > 18) l.shift();
+                                let i = 0;
+                                const typeChar = () => {
+                                    l[l.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
+                                    renderTerm(t, l); i++;
+                                    if (i <= msg.length) setTimeout(typeChar, 8);
+                                    else { l[l.length - 1] = msg; renderTerm(t, l); setTimeout(() => typeLog(side), 80); }
+                                };
+                                typeChar();
+                            };
+                            const addLog = (m, side = 'both') => {
+                                let f = m;
+                                if (m.startsWith('>')) f = `<span style="color:#10b981">${m}</span>`;
+                                else if (m.includes('CRITICAL') || m.includes('ERROR') || m.includes('FAILURE')) f = `<span style="color:#ef4444">${m}</span>`;
+                                else if (m.includes('SUCCESS') || m.includes('COMPLETE')) f = `<span style="color:#10b981">${m}</span>`;
+                                else if (m.includes('WARNING') || m.includes('[CALC]') || m.includes('[INFO]')) f = `<span style="color:#f59e0b">${m}</span>`;
+                                else if (m.includes('[RESULT]')) f = `<span style="color:#38bdf8">${m}</span>`;
 
-                            if (tick === 620) { addLog("> environment: site_alpha_groundwater", 'R'); }
-                            if (tick === 700) addLog("[INFO] Detecting fluorinated bonds", 'R');
-                            if (tick === 780) addLog("> simulate defluorination transition", 'R');
-                            if (tick === 880) { addLog("[INFO] SN2 attack angle: 178°", 'R'); setProteinStyle(1, 'catalyzing'); setSurface(1, 'catalyzing'); }
-                            if (tick === 960) addLog("[SUCCESS] Fluorine ion release detected", 'R');
-                            if (tick === 1030) { addLog("[COMPLETE] Degradation yield: 98.4%", 'R'); setProteinStyle(1, 'active'); setSurface(1, 'normal'); }
-                            
-                            if (tick === 1220) addLog("> model_structure --method 'AlphaFold3'", 'R');
-                            if (tick === 1480) addLog("[INFO] pLDDT score: 94.2 (HIGH)", 'R');
-                            if (tick === 1680) addLog("[SUCCESS] Global report finalized", 'R');
+                                if (side === 'L' || side === 'both') { queueLeft.push(f); if (!isTypingLeft) typeLog('L'); }
+                                if (side === 'R' || side === 'both') { queueRight.push(f); if (!isTypingRight) typeLog('R'); }
+                            };
 
-                            // LEFT DRUG ANIMATION (VIEWER 0)
-                            if (tick > 180 && tick <= 330) { let p = (tick - 180) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(0, DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
-                            else if (tick > 330 && tick <= 420) drawLigand(0, DRUG_TEMPLATE, target);
-                            else if (tick > 420 && tick <= 550) { let p = (tick - 420) / 130; p = Math.pow(p, 1.5); protAtomsList[0].forEach(a => { viewers[0].addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p }); }); drawLigand(0, DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p }); }
+                            const animateScene = () => {
+                                if (!isAnimating) return; tick = (tick + 2) % 1800; viewers.forEach(v => v.removeAllShapes());
+                                
+                                // --- LEFT SIDE (VIEWER 0): DRUG DISCOVERY -> PHARMACOGENOMICS ---
+                                if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced", 'L'); }
+                                if (tick === 120) addLog("> loading Lead_Compound_X42...", 'L');
+                                if (tick === 180) addLog("> ligand_docking.start()", 'L');
+                                if (tick === 260) { addLog("[CALC] Bind Energy: -14.2 kcal/mol", 'L'); setProteinStyle(0, 'inhibited'); setSurface(0, 'inhibited'); }
+                                if (tick === 330) addLog("[CRITICAL] Ligand-induced denaturation!", 'L');
+                                if (tick === 420) { addLog("[FAILURE] Lead discarded. Resetting...", 'L'); setSurface(0, 'none'); proteinModels[0].setStyle({}, { hidden: true }); }
+                                if (tick === 550) { setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+                                
+                                if (tick === 620) addLog("> import pharmacogenomics as pgx", 'L');
+                                if (tick === 700) addLog("> patient_profile = pgx.load('PT-29')", 'L');
+                                if (tick === 880) { addLog("[RESULT] Phenotype: Poor Metabolizer", 'L'); setProteinStyle(0, 'catalyzing'); setSurface(0, 'catalyzing'); }
+                                if (tick === 1030) { addLog("[SUCCESS] Optimised regimen active", 'L'); setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
 
-                            // RIGHT PFAS ANIMATION (VIEWER 1)
-                            if (tick > 780 && tick <= 930) { let p = (tick - 780) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(1, PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
-                            else if (tick > 930 && tick <= 1030) drawLigand(1, PFAS_TEMPLATE, target);
-                            else if (tick > 1030 && tick <= 1150) drawLigand(1, PFAS_TEMPLATE, target, Math.pow((tick - 1030) / 120, 2));
+                                // --- RIGHT SIDE (VIEWER 1): PFAS BIOREMEDIATION -> STRUCTURAL BIOLOGY ---
+                                if (tick === 50) addLog("> system_status: monitoring node_01", 'R');
+                                if (tick === 120) addLog("[INFO] Proximity alert: 20Å", 'R');
+                                if (tick === 260) addLog("[WARNING] Active site distortion detected", 'R');
+                                if (tick === 420) addLog("[CRITICAL] SYSTEM OVERLOAD: Rebooting", 'R');
 
-                            // GENOMIC SPHERES (VIEWER 0)
-                            if (tick > 750 && tick <= 1000) { let p = (tick - 750) / 250; const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z }); [0, 2.1, 4.2].forEach((a, i) => { const o = orb(a, 20 * p); viewers[0].addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p < 0.8 ? p : (1 - p) * 5 }); }); }
+                                if (tick === 620) { addLog("> environment: site_alpha_groundwater", 'R'); }
+                                if (tick === 700) addLog("[INFO] Detecting fluorinated bonds", 'R');
+                                if (tick === 780) addLog("> simulate defluorination transition", 'R');
+                                if (tick === 880) { addLog("[INFO] SN2 attack angle: 178°", 'R'); setProteinStyle(1, 'catalyzing'); setSurface(1, 'catalyzing'); }
+                                if (tick === 960) addLog("[SUCCESS] Fluorine ion release detected", 'R');
+                                if (tick === 1030) { addLog("[COMPLETE] Degradation yield: 98.4%", 'R'); setProteinStyle(1, 'active'); setSurface(1, 'normal'); }
+                                
+                                if (tick === 1220) addLog("> model_structure --method 'AlphaFold3'", 'R');
+                                if (tick === 1480) addLog("[INFO] pLDDT score: 94.2 (HIGH)", 'R');
+                                if (tick === 1680) addLog("[SUCCESS] Global report finalized", 'R');
 
-                            if (tick === 1750) toggleTerm(false);
-                            viewers.forEach(v => v.render()); requestAnimationFrame(animateScene);
-                        };
+                                // LEFT DRUG ANIMATION (VIEWER 0)
+                                if (tick > 180 && tick <= 330) { let p = (tick - 180) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(0, DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                                else if (tick > 330 && tick <= 420) drawLigand(0, DRUG_TEMPLATE, target);
+                                else if (tick > 420 && tick <= 550) { let p = (tick - 420) / 130; p = Math.pow(p, 1.5); protAtomsList[0].forEach(a => { viewers[0].addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p }); }); drawLigand(0, DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p }); }
 
-                        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { isAnimating = true; requestAnimationFrame(animateScene); } else { isAnimating = false; } }); }, { threshold: 0.1 });
-                        observer.observe(document.getElementById('hero-section'));
+                                // RIGHT PFAS ANIMATION (VIEWER 1)
+                                if (tick > 780 && tick <= 930) { let p = (tick - 780) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(1, PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                                else if (tick > 930 && tick <= 1030) drawLigand(1, PFAS_TEMPLATE, target);
+                                else if (tick > 1030 && tick <= 1150) drawLigand(1, PFAS_TEMPLATE, target, Math.pow((tick - 1030) / 120, 2));
+
+                                // GENOMIC SPHERES (VIEWER 0)
+                                if (tick > 750 && tick <= 1000) { let p = (tick - 750) / 250; const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z }); [0, 2.1, 4.2].forEach((a, i) => { const o = orb(a, 20 * p); viewers[0].addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p < 0.8 ? p : (1 - p) * 5 }); }); }
+
+                                if (tick === 1750) toggleTerm(false);
+                                viewers.forEach(v => v.render()); requestAnimationFrame(animateScene);
+                            };
+                            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { isAnimating = entry.isIntersecting; if (isAnimating) requestAnimationFrame(animateScene); }); }, { threshold: 0.1 });
+                            observer.observe(document.getElementById('hero-section'));
+                        });
                     });
-                });
-            };
-            init3D();
-        })();
+                };
+                init3D();
+            })();
 
-        /* ────────────────────────────────────────────────────────────
-           FLOATING ICONS LAYER — DOM icons drifting freely over the
-           hero background. They dynamically connect to form a neural/
-           bioinformatics network mesh when proximity is achieved.
-        ──────────────────────────────────────────────────────────── */
-        (() => {
-            const layer = document.getElementById('hi-layer');
-            const hero = document.getElementById('hero-section');
-            if (!layer || !hero) return;
-
-            // [FA class, color, size-px]
-            const ICONS = [
-                ['fa-brain', 'rgba(167,139,250,0.55)', 15],  // ML / deep learning
-                ['fa-dna', 'rgba(80,200,255,0.55)', 14],  // genomics
-                ['fa-atom', 'rgba(245,158,11,0.60)', 16],  // molecular dynamics
-                ['fa-pills', 'rgba(248,113,113,0.55)', 14],  // drug design
-                ['fa-robot', 'rgba(167,139,250,0.50)', 15],  // agentic AI
-                ['fa-microscope', 'rgba(255,255,255,0.40)', 14],  // experimental
-                ['fa-project-diagram', 'rgba(52,211,153,0.55)', 13],  // systems biology
-                ['fa-code', 'rgba(255,255,255,0.42)', 14],  // programming
-                ['fa-chart-line', 'rgba(245,158,11,0.52)', 14],  // data science
-                ['fa-leaf', 'rgba(52,211,153,0.58)', 14],  // PFAS / sustainability
-                ['fa-syringe', 'rgba(248,113,113,0.50)', 13],  // immunoinformatics
-                ['fa-database', 'rgba(255,255,255,0.38)', 13],  // data / HPC
-                ['fa-code-branch', 'rgba(80,200,255,0.48)', 13],  // phylogenetics
-                ['fa-heartbeat', 'rgba(248,113,113,0.55)', 14],  // translational bioinformatics
-                ['fa-virus', 'rgba(255,230,100,0.48)', 14],  // SARS-CoV-2 work
-                ['fa-flask', 'rgba(245,158,11,0.55)', 13],  // computational chemistry
-                ['fa-fingerprint', 'rgba(167,139,250,0.48)', 14],  // biomarker discovery
-                ['fa-sitemap', 'rgba(52,211,153,0.48)', 13],  // genomics networks
-                ['fa-graduation-cap', 'rgba(255,255,255,0.38)', 15],  // academia
-                ['fa-network-wired', 'rgba(80,200,255,0.48)', 13],  // network biology
-                ['fa-vial', 'rgba(248,113,113,0.45)', 13],  // wet-lab validation
-                ['fa-laptop-code', 'rgba(255,255,255,0.40)', 14],  // scientific computing
-                // Additional icons for denser view
-                ['fa-seedling', 'rgba(52,211,153,0.55)', 16],
-                ['fa-chart-pie', 'rgba(245,158,11,0.55)', 15],
-                ['fa-server', 'rgba(80,200,255,0.50)', 14],
-                ['fa-laptop-medical', 'rgba(248,113,113,0.50)', 15],
-                ['fa-capsules', 'rgba(167,139,250,0.50)', 16],
-                ['fa-shield-virus', 'rgba(52,211,153,0.50)', 15],
-                ['fa-square-root-alt', 'rgba(245,158,11,0.50)', 14],
-                ['fa-chart-bar', 'rgba(255,255,255,0.40)', 15],
-                ['fa-bug', 'rgba(248,113,113,0.50)', 13],
-                ['fa-satellite-dish', 'rgba(80,200,255,0.50)', 14]
-            ];
-
-            const SPEED = 0.05; // very slow idle drift
-            const BROWNIAN = 0.004; // tiny nudge
-            const REPEL_RADIUS = 130;
-            const REPEL_FORCE = 3.5; // stronger scatter on mouse
-
-            let W, H, nodes = [], hiRAF = null, netCanvas, netCtx;
-            let mouse = { x: -9999, y: -9999 };
-
-            const rand = (a, b) => Math.random() * (b - a) + a;
-            const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-
-            function resize() {
-                W = layer.offsetWidth || hero.offsetWidth;
-                H = layer.offsetHeight || hero.offsetHeight;
-                if (netCanvas) {
-                    netCanvas.width = W;
-                    netCanvas.height = H;
-                }
-            }
-
-            function init() {
-                layer.innerHTML = '';
-
-                // Add Network Connection Canvas behind icons
-                netCanvas = document.createElement('canvas');
-                netCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:0.5;';
-                layer.appendChild(netCanvas);
-                netCtx = netCanvas.getContext('2d');
-
-                nodes = [];
-                resize();
-                ICONS.forEach(([cls, color, size]) => {
-                    const el = document.createElement('i');
-                    el.className = `fas ${cls}`;
-                    // Set initial position via transform immediately (fixes 1-frame pile-up at 0,0)
-                    const startX = rand(20, W - 24);
-                    const startY = rand(20, H - 24);
-                    el.style.cssText = `position:absolute;left:0;top:0;font-size:${size}px;color:${color};pointer-events:none;will-change:transform;transform:translate(${startX}px,${startY}px);`;
-                    layer.appendChild(el);
-                    const angle = rand(0, Math.PI * 2);
-                    nodes.push({
-                        el,
-                        x: startX,
-                        y: startY,
-                        vx: Math.cos(angle) * rand(0.05, SPEED),
-                        vy: Math.sin(angle) * rand(0.05, SPEED),
-                        angle: rand(0, Math.PI * 2)
-                    });
-                });
-            }
-
-            function step() {
-                netCtx.clearRect(0, 0, W, H);
-
-                for (let i = 0; i < nodes.length; i++) {
-                    const n = nodes[i];
-                    n.vx += rand(-BROWNIAN, BROWNIAN); n.vy += rand(-BROWNIAN, BROWNIAN);
-                    // mouse repulsion
-                    const mdx = n.x - mouse.x, mdy = n.y - mouse.y;
-                    const mdist = Math.hypot(mdx, mdy);
-                    if (mdist < REPEL_RADIUS && mdist > 0.5) {
-                        const force = ((REPEL_RADIUS - mdist) / REPEL_RADIUS) * REPEL_FORCE;
-                        n.vx += (mdx / mdist) * force;
-                        n.vy += (mdy / mdist) * force;
-                    }
-                    // clamp: very slow idle, fast burst when mouse is active
-                    const spd = Math.hypot(n.vx, n.vy);
-                    const cap = (mouse.x > -9000) ? 3.5 : SPEED * 3;
-                    if (spd > cap) { n.vx *= cap / spd; n.vy *= cap / spd; }
-                    n.x += n.vx; n.y += n.vy;
-                    // wall bounce — right/bottom margin accounts for icon width (~20px)
-                    if (n.x < 8 || n.x > W - 24) { n.vx *= -1; n.x = clamp(n.x, 8, W - 24); }
-                    if (n.y < 8 || n.y > H - 24) { n.vy *= -1; n.y = clamp(n.y, 8, H - 24); }
-
-                    // Slight tumbling rotation for elements
-                    n.angle += n.vx * 0.15;
-                    n.el.style.transform = `translate(${n.x}px,${n.y}px) rotate(${n.angle}rad)`;
-
-                    // Draw AI networking lines connecting close nodes
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const nj = nodes[j];
-                        const dist = Math.hypot(n.x - nj.x, n.y - nj.y);
-                        if (dist < 140) {
-                            netCtx.beginPath();
-                            netCtx.moveTo(n.x + 10, n.y + 10);
-                            netCtx.lineTo(nj.x + 10, nj.y + 10);
-                            netCtx.strokeStyle = `rgba(245,158,11,${(140 - dist) / 140 * 0.35})`;
-                            netCtx.lineWidth = 1;
-                            netCtx.stroke();
+            // Floating Icons Mesh Layer
+            (() => {
+                const layer = document.getElementById('hi-layer'), hero = document.getElementById('hero-section');
+                if (!layer || !hero) return;
+                const ICONS = [['fa-brain', 'rgba(167,139,250,0.4)'], ['fa-dna', 'rgba(80,200,255,0.4)'], ['fa-atom', 'rgba(245,158,11,0.4)'], ['fa-pills', 'rgba(248,113,113,0.4)'], ['fa-robot', 'rgba(167,139,250,0.4)']];
+                let W, H, nodes = [], hiRAF = null, netCanvas, netCtx, mouse = { x: -999, y: -999 };
+                const resize = () => { W = layer.offsetWidth; H = layer.offsetHeight; if (netCanvas) { netCanvas.width = W; netCanvas.height = H; } };
+                const init = () => {
+                    layer.innerHTML = ''; netCanvas = document.createElement('canvas');
+                    netCanvas.style.cssText = 'position:absolute;inset:0;z-index:-1;opacity:0.5;';
+                    layer.appendChild(netCanvas); netCtx = netCanvas.getContext('2d');
+                    resize(); nodes = [];
+                    ICONS.forEach(([cls, color]) => {
+                        for(let k=0; k<4; k++) {
+                            const el = document.createElement('i'); el.className = `fas ${cls}`;
+                            const x = Math.random()*W, y = Math.random()*H;
+                            el.style.cssText = `position:absolute;color:${color};font-size:14px;will-change:transform;transform:translate(${x}px,${y}px);`;
+                            layer.appendChild(el);
+                            nodes.push({ el, x, y, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2 });
                         }
-                    }
-                }
-                hiRAF = requestAnimationFrame(step);
-            }
+                    });
+                };
+                const step = () => {
+                    netCtx.clearRect(0,0,W,H);
+                    nodes.forEach((n, i) => {
+                        n.x += n.vx; n.y += n.vy;
+                        if(n.x<0 || n.x>W) n.vx*=-1; if(n.y<0 || n.y>H) n.vy*=-1;
+                        n.el.style.transform = `translate(${n.x}px,${n.y}px)`;
+                        nodes.slice(i+1).forEach(nj => {
+                            const d = Math.hypot(n.x-nj.x, n.y-nj.y);
+                            if(d<120) {
+                                netCtx.beginPath(); netCtx.moveTo(n.x+7, n.y+7); netCtx.lineTo(nj.x+7, nj.y+7);
+                                netCtx.strokeStyle = `rgba(245,158,11,${(120-d)/400})`; netCtx.stroke();
+                            }
+                        });
+                    });
+                    hiRAF = requestAnimationFrame(step);
+                };
+                hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top; }, { passive: true });
+                window.addEventListener('resize', resize, { passive: true });
+                init(); step();
+                new IntersectionObserver(([e]) => { if (e.isIntersecting) { if(!hiRAF) step(); } else { cancelAnimationFrame(hiRAF); hiRAF = null; } }).observe(hero);
+            })();
+        };
 
-            // Mouse tracking on the hero wrapper (same element as mol-canvas listener)
-            hero.addEventListener('mousemove', e => {
-                const r = hero.getBoundingClientRect();
-                mouse.x = e.clientX - r.left;
-                mouse.y = e.clientY - r.top;
-            }, { passive: true });
-            hero.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
+        if ('requestIdleCallback' in window) { requestIdleCallback(initHeavyFX); } else { setTimeout(initHeavyFX, 1000); }
 
-            window.addEventListener('resize', () => { init(); }, { passive: true });
-
-            init();
-            step();
-
-            // Pause when off-screen (saves CPU, mirrors mol-canvas pattern)
-            new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) { if (!hiRAF) step(); }
-                else { cancelAnimationFrame(hiRAF); hiRAF = null; }
-            }, { threshold: 0.01 }).observe(hero);
-        })();
-
-        // Fix: Make Google Translate Init a globally accessible window function
-        window.googleTranslateElementInit = function () {
+        window.googleTranslateElementInit = () => {
             new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element');
         };
     </script>
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
     <div id="srch-overlay" class="srch-overlay" role="dialog" aria-modal="true" aria-label="Search">
@@ -13080,10 +12251,10 @@ TCP Groupg:description"
                 <div class="srch-kbd"><span class="srch-key">Esc</span></div>
             </div>
             <div class="srch-pills" id="srch-pills">
-                <span class="srch-pill" data-section="prospects">Research Vision</span>
+                <span class="srch-pill" data-section="research-vision">Research Vision</span>
                 <span class="srch-pill" data-section="publications">Publications</span>
                 <span class="srch-pill" data-section="awards">Awards</span>
-                <span class="srch-pill" data-section="expertise">Skills</span>
+                <span class="srch-pill" data-section="technical">Skills</span>
                 <span class="srch-pill" data-section="referees">Referees</span>
                 <span class="srch-pill" data-section="contact">Contact</span>
             </div>
