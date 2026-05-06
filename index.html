@@ -11647,7 +11647,27 @@
             }); 
         }
         const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
-        let sfAId, sfSpd = 0.8, isSfM = false; const startSFScroll = () => { const t = document.getElementById('sf-track'); if (!t) return; if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } cancelAnimationFrame(sfAId); const step = () => { if (!t.matches(':hover') && !isSfM) { t.scrollLeft += sfSpd; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; } sfAId = requestAnimationFrame(step); }; sfAId = requestAnimationFrame(step); }; const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
+        let sfAId, sfSpd = 0.8, isSfM = false; 
+        const startSFScroll = () => { 
+            const t = document.getElementById('sf-track'); if (!t) return; 
+            if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } 
+            cancelAnimationFrame(sfAId); 
+            let accum = 0;
+            const step = () => { 
+                if (!t.matches(':hover') && !isSfM) { 
+                    accum += sfSpd;
+                    if (accum >= 1) {
+                        t.scrollLeft += Math.floor(accum); 
+                        accum -= Math.floor(accum);
+                        const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; 
+                        if (t.scrollLeft >= jd) t.scrollLeft -= jd; 
+                    }
+                } 
+                sfAId = requestAnimationFrame(step); 
+            }; 
+            sfAId = requestAnimationFrame(step); 
+        }; 
+        const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
 
         /* Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) */
         const showAIModal = (content) => { document.getElementById('ai-modal-content').innerHTML = content; document.getElementById('ai-modal').classList.add('show'); };
@@ -11902,14 +11922,19 @@
                 t.dataset.cloned = 'true';
             }
             cancelAnimationFrame(pmqAId);
+            let accum = 0;
             const step = () => {
                 if (!t.matches(':hover') && !isPmqPaused) {
-                    t.scrollLeft += pmqSpd;
-                    const cs = t.querySelectorAll('.pub-mq-card');
-                    if (cs.length >= 2) {
-                        const half = Math.floor(cs.length / 2);
-                        const jump = cs[half].offsetLeft - cs[0].offsetLeft;
-                        if (t.scrollLeft >= jump) t.scrollLeft -= jump;
+                    accum += pmqSpd;
+                    if (accum >= 1) {
+                        t.scrollLeft += Math.floor(accum);
+                        accum -= Math.floor(accum);
+                        const cs = t.querySelectorAll('.pub-mq-card');
+                        if (cs.length >= 2) {
+                            const half = Math.floor(cs.length / 2);
+                            const jump = cs[half].offsetLeft - cs[0].offsetLeft;
+                            if (t.scrollLeft >= jump) t.scrollLeft -= jump;
+                        }
                     }
                 }
                 pmqAId = requestAnimationFrame(step);
@@ -12114,11 +12139,11 @@
                                 let i = 0;
                                 const typeChar = () => {
                                     l[l.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
-                                    renderTerm(t, l); i++;
-                                    if (i <= msg.length) setTimeout(typeChar, 8);
+                                    renderTerm(t, l); i += 4;
+                                    if (i <= msg.length) requestAnimationFrame(typeChar);
                                     else { l[l.length - 1] = msg; renderTerm(t, l); setTimeout(() => typeLog(side), 80); }
                                 };
-                                typeChar();
+                                requestAnimationFrame(typeChar);
                             };
                             const addLog = (m, side = 'both') => {
                                 let f = m;
@@ -12132,8 +12157,12 @@
                                 if (side === 'R' || side === 'both') { queueRight.push(f); if (!isTypingRight) typeLog('R'); }
                             };
 
+                            let skipFrame = false;
                             const animateScene = () => {
-                                if (!isAnimating) return; tick = (tick + 2) % 1800; viewers.forEach(v => v.removeAllShapes());
+                                if (!isAnimating) return; tick = (tick + 2) % 1800; 
+                                skipFrame = !skipFrame;
+                                if (skipFrame) { requestAnimationFrame(animateScene); return; }
+                                viewers.forEach(v => v.removeAllShapes());
                                 
                                 // --- LEFT SIDE (VIEWER 0): DRUG DISCOVERY -> PHARMACOGENOMICS ---
                                 if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced", 'L'); }
