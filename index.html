@@ -18,15 +18,15 @@
     <meta property="og:title" content="Dr Shaban Ahmad | Postdoctoral Researcher | Computational Pharmacology">
     <meta property="og:description"
         content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation research at the University of Copenhagen.">
-    <meta property="og:image" content="shaban.png">
+    <meta property="og:image" content="shaban.webp">
     <meta property="og:url" content="https://shabanahmad.github.io/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dr Shaban Ahmad | Postdoctoral Researcher">
     <meta name="twitter:description"
         content="Academic Portfolio: AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
-    <meta name="twitter:image" content="shaban.png">
-    <link rel="icon" href="shaban.png" type="image/png">
+    <meta name="twitter:image" content="shaban.webp">
+    <link rel="icon" href="shaban.webp" type="image/webp">
 
     <!-- === SECTION 2: EXTERNAL DEPENDENCIES & TYPOGRAPHY === -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -40,7 +40,7 @@
     {
       "@context": "https://schema.org", "@type": "Person", "name": "Dr. Shaban Ahmad", "jobTitle": "Postdoctoral Researcher",
       "affiliation": { "@type": "Organization", "name": "University of Copenhagen", "url": "https://www.ku.dk/en" },
-      "url": "https://shabanahmad.github.io/", "image": "https://shabanahmad.github.io/shaban.png",
+      "url": "https://shabanahmad.github.io/", "image": "https://shabanahmad.github.io/shaban.webp",
       "sameAs": [ "https://www.linkedin.com/in/drshabanahmad/", "https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en", "https://www.researchgate.net/profile/Shaban-Ahmad-2", "https://orcid.org/0000-0001-9832-2830" ],
       "alumniOf": [ { "@type": "CollegeOrUniversity", "name": "Jamia Millia Islamia" }, { "@type": "CollegeOrUniversity", "name": "University of Delhi" } ]
     }
@@ -48,7 +48,7 @@
 
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
     <style>
-        /* --- 4.1: Core Variables & Root Configuration --- */
+        /* Core Variables & Root Configuration */
         :root {
             --primary: #064e3b;
             --primary-dark: #022c22;
@@ -90,7 +90,7 @@
             --card-shadow-hover: var(--shadow-md);
         }
 
-        /* --- 4.2: Resets & Accessibility Enhancements --- */
+        /* Resets & Accessibility Enhancements */
         * {
             margin: 0;
             padding: 0;
@@ -148,7 +148,7 @@
             display: none !important;
         }
 
-        /* --- 4.3: Custom Scrollbars --- */
+        /* Custom Scrollbars */
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px;
@@ -169,7 +169,7 @@
             background: #b8860b;
         }
 
-        /* --- 4.4: Utility Animations & Search Highlighting --- */
+        /* Utility Animations & Search Highlighting */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -303,7 +303,7 @@
             border-radius: 3px;
         }
 
-        /* --- 4.5: Primary Navigation Header --- */
+        /* Primary Navigation Header */
         header {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -474,7 +474,7 @@
             display: none;
         }
 
-        /* --- 4.6: Desktop Utilities (Search & Localisation) --- */
+        /* Desktop Utilities (Search & Localisation) */
         .header-controls {
             display: flex;
             align-items: center;
@@ -931,7 +931,7 @@
             display: none;
         }
 
-        /* --- 4.7: Sticky Interfaces (Sidebar & To-Top Button) --- */
+        /* Sticky Interfaces (Sidebar & To-Top Button) */
         .sticky-sidebar {
             position: fixed;
             top: 50%;
@@ -1068,9 +1068,11 @@
             transform: translateY(-5px);
         }
 
-        /* --- Scroll More Button in Panels (Floating) --- */
+        /* --- Scroll More Button in Panels (Floating) */
         .panel {
             position: relative; /* Base for absolute scroll button */
+            content-visibility: auto;
+            contain-intrinsic-size: 500px;
         }
 
         .scroll-more-btn {
@@ -1100,7 +1102,7 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
-        /* --- 4.8: Hero Landing Section --- */
+        /* Hero Landing Section */
         .hero-section-wrapper {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             width: 100%;
@@ -1726,7 +1728,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        /* --- Apple-Style 4-Bento Box Grid --- */
+        /* --- Apple-Style 4-Bento Box Grid */
         .bento-grid {
             display: grid;
             grid-template-columns: 1.35fr 1fr;
@@ -1885,7 +1887,7 @@
             backdrop-filter: blur(4px);
         }
 
-        /* --- Bento Card Variations --- */
+        /* --- Bento Card Variations */
         .bento-card {
             background: var(--bento-bg);
             color: #fff;
@@ -1950,7 +1952,7 @@
             grid-column: 2 / 3; grid-row: 2 / 3;
         }
 
-        /* --- 4.9: Standard Content Layouts & Typography --- */
+        /* Standard Content Layouts & Typography */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -2247,7 +2249,7 @@
             outline: none;
         }
 
-        /* --- 4.10: Scientific Frontiers Interactive Slider --- */
+        /* Scientific Frontiers Interactive Slider */
         .marquee-wrapper {
             position: relative;
             padding: 0;
@@ -2487,7 +2489,7 @@
             transition: color 0.4s ease;
         }
 
-        /* --- 4.11: Dynamic Grid & Profile Cards --- */
+        /* Dynamic Grid & Profile Cards */
         .edu-grid {
             display: flex;
             flex-direction: column;
@@ -3028,7 +3030,7 @@
             line-height: 1;
         }
 
-        /* --- 4.12: Accolades & IPR --- */
+        /* Accolades & IPR */
         .award-card {
             background: var(--card-bg);
             padding: 1.2rem;
@@ -3260,7 +3262,7 @@
             }
         }
 
-        /* --- 4.13: Bold & Morphing Accordion Framework --- */
+        /* Bold & Morphing Accordion Framework */
         .accordion-btn {
             width: 100%;
             padding: 1.2rem 1.5rem;
@@ -3616,7 +3618,7 @@
             margin-left: 2px;
         }
 
-        /* --- 4.14: Reviewer Badges & Tech Grids --- */
+        /* Reviewer Badges & Tech Grids */
         .peer-review-container {
             display: flex;
             flex-wrap: wrap;
@@ -3782,7 +3784,7 @@
             transition: color 0.3s ease;
         }
 
-        /* --- 4.14.5: Premium TCP Group UI (Timeline & Focus Cards) --- */
+        /* Premium TCP Group UI (Timeline & Focus Cards) */
         .tcp-timeline {
             position: relative;
             padding-left: 45px;
@@ -4044,7 +4046,7 @@
             text-align: justify;
         }
 
-        /* --- 4.15: Contact Platform & Forms --- */
+        /* Contact Platform & Forms */
         .contact-footer-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: #fff;
@@ -4515,7 +4517,7 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* --- 4.16: Artificial Intelligence Chat Module --- */
+        /* Artificial Intelligence Chat Module */
         #ai-widget-toggle {
             position: fixed;
             bottom: 30px;
@@ -4706,7 +4708,7 @@
             color: #fff;
         }
 
-        /* --- 4.17: Citation Generation Engine UI --- */
+        /* Citation Generation Engine UI */
         .pub-controls {
             display: inline-flex;
             align-items: center;
@@ -4807,7 +4809,7 @@
             margin: 0;
         }
 
-        /* --- 4.18: Mobile Responsive Scaling Media Queries --- */
+        /* Mobile Responsive Scaling Media Queries */
         .mobile-only-separator {
             display: none;
         }
@@ -5369,7 +5371,7 @@
             }
         }
 
-        /* --- 4.19: Print Output Configuration --- */
+        /* Print Output Configuration */
         @media print {
 
             #main-header,
@@ -5498,7 +5500,7 @@
             }
         }
 
-        /* --- AI POPUP MODAL CSS --- */
+        /* --- AI POPUP MODAL CSS */
         .ai-logo-svg {
             width: 16px;
             height: 16px;
@@ -5623,7 +5625,7 @@
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
         }
 
-        /* --- 5.0: Global Dark Mode Framework --- */
+        /* Global Dark Mode Framework */
         body.dark-mode {
             --text: #e2e8f0;
             --light-bg: #0f172a;
@@ -6960,7 +6962,7 @@
             background: #c084fc;
         }
 
-        /* --- Custom User Styles --- */
+        /* --- Custom User Styles */
 
         .tcp-summary-card h4 {
             position: relative;
@@ -8488,9 +8490,9 @@
             <div class="hero-main-group">
                 <!-- Column 2: Photo -->
                 <div class="hero-img-wrap">
-                    <img src="shaban.png"
+                    <img src="shaban.webp"
                         alt="Dr Shaban Ahmad, Postdoctoral Researcher at the University of Copenhagen"
-                        class="hero-img" loading="eager" width="190" height="190"
+                        class="hero-img" loading="eager" decoding="async" width="190" height="190"
                         onerror="this.onerror=null; this.src='https://via.placeholder.com/190?text=SA';">
                 </div>
 
@@ -11162,9 +11164,9 @@
     </div>
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
     <script>
-        /* --- 18.1: Global Initialisation & Utilities --- */
+        /* Global Initialisation & Utilities */
         var submitted = false;
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('theme') === 'dark') toggleTheme();
@@ -11286,7 +11288,7 @@
             });
         };
 
-        /* --- 18.2: Automated Citation & DOI Logic Engine --- */
+        /* Automated Citation & DOI Logic Engine */
         const initCitationButtons = () => {
             document.querySelectorAll('.pub-item').forEach((pub, i) => {
                 const doiBtn = pub.querySelector('.pub-doi'); if (!doiBtn) return;
@@ -11318,7 +11320,7 @@
         const formatRIS = (m) => { let r = `TY  - JOUR\nTI  - ${m.title}\n`; m.authors.forEach(a => r += `AU  - ${a.last}, ${a.initial}\n`); return r + `JO  - ${m.journal}\nPY  - ${m.year}\nVL  - ${m.volume}\nIS  - ${m.issue}\nSP  - ${m.pages}\nDO  - ${m.doi}\nER  -`; };
         const downloadFile = (c, f, t) => { const b = new Blob([c], { type: t }), l = document.createElement("a"); l.href = URL.createObjectURL(b); l.download = f; document.body.appendChild(l); l.click(); document.body.removeChild(l); };
 
-        /* --- 18.3: UI Interactions, Accordions & Search Engine --- */
+        /* UI Interactions, Accordions & Search Engine */
         window.addEventListener('click', (e) => { if (!e.target.closest('.btn-cite')) document.querySelectorAll('.cite-dropdown-menu').forEach(m => { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); }); if (!e.target.closest('.lang-wrapper') && !e.target.closest('.search-container') && !e.target.closest('#srch-overlay') && !e.target.closest('.control-icon') && !e.target.closest('.mobile-dropdown-toggle') && !e.target.closest('.accordion-btn')) closeAllDropdowns(); if (!e.target.closest('.nav-list') && !e.target.closest('.nav-toggle')) { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb && nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } } if (!e.target.closest('#ai-chat-window') && !e.target.closest('#ai-widget-toggle')) { const cw = document.getElementById('ai-chat-window'); if (cw && cw.style.display === 'flex') cw.style.display = 'none'; } const pb = document.getElementById('pub-breakdown'), pc = pb ? pb.closest('.stat-row-link') : null; if (pb && pb.classList.contains('open') && pc && !pc.contains(e.target)) { pb.classList.remove('open'); pb.style.maxHeight = "0"; const ti = pc.querySelector('.stat-toggle i'); if (ti) { ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); } pc.classList.remove('active-box'); } });
         const closeAllDropdowns = (x = null) => { const d = document.getElementById('desktop-lang-dd'), m = document.getElementById('mobile-lang-dd'); if (d && d !== x) d.classList.remove('show'); if (m && m !== x) m.classList.remove('show');['pub-dd', 'act-dd', 'exp-dd', 'strat-dd'].forEach(id => { const r = document.getElementById(id); if (r && r.classList.contains('show-mobile') && r !== x) { r.classList.remove('show-mobile'); const t = r.previousElementSibling; if (t && t.classList.contains('mobile-dropdown-toggle')) { t.classList.remove('active'); t.innerHTML = '<i class="fas fa-chevron-down"></i>'; } } }); };
         const handleFormSubmit = () => { document.getElementById('contact-form').reset(); const fb = document.getElementById('msg-success-box'), sb = document.getElementById('submit-btn'), ab = document.getElementById('draft-email-btn'); if (sb) sb.style.display = 'none'; if (ab) ab.style.display = 'none'; fb.classList.add('anim-start'); setTimeout(() => fb.classList.add('anim-running'), 100); setTimeout(() => { fb.classList.remove('anim-running'); fb.classList.add('anim-reverse'); }, 3000); setTimeout(() => { fb.classList.remove('anim-start', 'anim-reverse'); fb.style.display = 'none'; if (sb) sb.style.display = 'block'; if (ab) ab.style.display = 'inline-flex'; submitted = false; }, 5000); };
@@ -11647,7 +11649,7 @@
         const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
         let sfAId, sfSpd = 0.8, isSfM = false; const startSFScroll = () => { const t = document.getElementById('sf-track'); if (!t) return; if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } cancelAnimationFrame(sfAId); const step = () => { if (!t.matches(':hover') && !isSfM) { t.scrollLeft += sfSpd; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; } sfAId = requestAnimationFrame(step); }; sfAId = requestAnimationFrame(step); }; const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
 
-        /* --- 18.4: Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) --- */
+        /* Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) */
         const showAIModal = (content) => { document.getElementById('ai-modal-content').innerHTML = content; document.getElementById('ai-modal').classList.add('show'); };
         const closeAIModal = (e) => { if (e && e.target && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return; const m = document.getElementById('ai-modal'); if (m) m.classList.remove('show'); };
 
@@ -11749,7 +11751,7 @@
             try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if (activeAbort && activeAbort.id === btnId) formatCallback(res); } catch (e) { if (e.name !== 'AbortError') { if (resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } else { showAIModal(`<div style="color:#dc2626;font-weight:700;margin-bottom:8px;">❌ Error</div><p style="margin:0;">${e.message}</p>`); } } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
         };
 
-        /* --- Teaching Statement Generator --- */
+        /* --- Teaching Statement Generator */
         const generateTeachingStatement = () => {
             triggerAIFeature(
                 'gen-teaching-btn',
@@ -11764,7 +11766,7 @@
             );
         };
 
-        /* --- Course Syllabus Generator --- */
+        /* --- Course Syllabus Generator */
         const COURSE_META = {
             'bioinformatics': { title: 'Basics to Advanced Bioinformatics', icon: '🧬', level: 'UG / Graduate' },
             'drug-design': { title: 'Computational Drug Design', icon: '💊', level: 'UG / Graduate' },
@@ -12018,7 +12020,7 @@
         const draftEmail = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Type notes first!"; return; } triggerAIFeature('draft-email-btn', null, '✨', 'AI Draft', 'Drafting...', `Rewrite these notes into a polite academic email addressed to Dr. Shaban Ahmad: "${mb.value.trim()}". CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); if (subject) document.getElementById('contact-subject').value = subject; mb.value = body; }); };
 
 
-        /* --- 18.5: Conversational Chatbot & Voice --- */
+        /* Conversational Chatbot & Voice */
         const toggleChatWindow = () => { const w = document.getElementById('ai-chat-window'); w.style.display = w.style.display === 'flex' ? 'none' : 'flex'; };
         const handleChatKey = (e) => { if (e.key === 'Enter') sendUserMessage(); };
         const addMessage = (t, type) => {
@@ -12049,7 +12051,7 @@
             }
         };
 
-        /* --- 19.0: Performance-Optimised 3D & Network Effects --- */
+        /* Performance-Optimised 3D & Network Effects */
         const initHeavyFX = () => {
             // 3D Molecular Simulation
             (() => {
@@ -12227,7 +12229,11 @@
                     hiRAF = requestAnimationFrame(step);
                 };
                 hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top; }, { passive: true });
-                window.addEventListener('resize', resize, { passive: true });
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(resize, 200);
+                }, { passive: true });
                 init(); step();
                 new IntersectionObserver(([e]) => { if (e.isIntersecting) { if(!hiRAF) step(); } else { cancelAnimationFrame(hiRAF); hiRAF = null; } }).observe(hero);
             })();
