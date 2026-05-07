@@ -1610,13 +1610,16 @@
         .stat-toggle {
             padding: 0 10px;
             cursor: pointer;
-            color: #ddd;
-            transition: color 0.3s;
+            color: #ff3131; /* Vibrant red for high visibility */
+            transition: all 0.3s ease;
             margin: 0 auto;
+            filter: drop-shadow(0 0 2px rgba(255, 49, 49, 0.3));
         }
 
         .stat-toggle:hover {
-            color: var(--accent);
+            color: #ff3131;
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 8px rgba(255, 49, 49, 0.6));
         }
 
         .pub-breakdown {
@@ -11126,7 +11129,7 @@
                         action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse"
                         method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
                         <div class="cf-input-group"><input type="text" name="entry.323008242" class="cf-input"
-                                placeholder="Name" required> <input type="email" name="entry.1398368038"
+                                placeholder="Full Name" required> <input type="email" name="entry.1398368038"
                                 class="cf-input" placeholder="Email" required></div>
                         <input type="text" id="contact-subject" name="entry.1980791409" class="cf-input"
                             placeholder="Subject" style="margin-bottom: 1rem;" required>
@@ -11164,7 +11167,7 @@
     </div>
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"></script>
+
     <script>
         /* Global Initialisation & Utilities */
         var submitted = false;
@@ -12078,10 +12081,12 @@
 
         /* Performance-Optimised 3D & Network Effects */
         const initHeavyFX = () => {
-            // 3D Molecular Simulation
-            (() => {
-                const init3D = () => {
-                    if (typeof $3Dmol === 'undefined') { setTimeout(init3D, 100); return; }
+            const DESKTOP_WIDTH = 1351;
+            if (window.innerWidth < DESKTOP_WIDTH) return;
+
+            // 3D Molecular Simulation Part
+            const loadAndRun3D = () => {
+                const runInit3D = () => {
                     const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
                     if (!containerL || !containerR) return;
 
@@ -12216,11 +12221,20 @@
                         });
                     });
                 };
-                init3D();
-            })();
+
+                if (typeof $3Dmol === 'undefined') {
+                    const script = document.createElement('script');
+                    script.src = "https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js";
+                    script.async = true;
+                    script.onload = runInit3D;
+                    document.head.appendChild(script);
+                } else {
+                    runInit3D();
+                }
+            };
 
             // Floating Icons Mesh Layer
-            (() => {
+            const loadAndRunMesh = () => {
                 const layer = document.getElementById('hi-layer'), hero = document.getElementById('hero-section');
                 if (!layer || !hero) return;
                 const ICONS = [['fa-brain', 'rgba(167,139,250,0.4)'], ['fa-dna', 'rgba(80,200,255,0.4)'], ['fa-atom', 'rgba(245,158,11,0.4)'], ['fa-pills', 'rgba(248,113,113,0.4)'], ['fa-robot', 'rgba(167,139,250,0.4)']];
@@ -12265,7 +12279,10 @@
                 }, { passive: true });
                 init(); step();
                 new IntersectionObserver(([e]) => { if (e.isIntersecting) { if(!hiRAF) step(); } else { cancelAnimationFrame(hiRAF); hiRAF = null; } }).observe(hero);
-            })();
+            };
+
+            loadAndRun3D();
+            loadAndRunMesh();
         };
 
         if ('requestIdleCallback' in window) { requestIdleCallback(initHeavyFX); } else { setTimeout(initHeavyFX, 1000); }
