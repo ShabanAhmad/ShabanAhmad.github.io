@@ -11804,33 +11804,41 @@
             }); 
         }
         window.triggerAccordion = (buttonId) => {
+            const evt = window.event;
+            if (evt && typeof evt.preventDefault === "function") evt.preventDefault();
+
             const btn = document.getElementById(buttonId);
-            if (!btn) return;
+            if (!btn) return false;
 
-            const openTarget = () => {
-                const panel = btn.nextElementSibling;
-                if (!panel) return;
+            const panel = btn.nextElementSibling;
+            if (!panel) return false;
 
-                for (let i = 0; i < acc.length; i++) {
-                    if (acc[i] !== btn && acc[i].classList.contains("active")) {
-                        acc[i].classList.remove("active");
-                        if (acc[i].nextElementSibling) acc[i].nextElementSibling.style.maxHeight = null;
-                    }
+            for (let i = 0; i < acc.length; i++) {
+                if (acc[i] !== btn && acc[i].classList.contains("active")) {
+                    acc[i].classList.remove("active");
+                    if (acc[i].nextElementSibling) acc[i].nextElementSibling.style.maxHeight = null;
                 }
+            }
 
-                if (!btn.classList.contains("active")) btn.classList.add("active");
-                panel.style.maxHeight = panel.scrollHeight + "px";
-                updateScrollMoreVisibility(panel);
-                btn.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (!btn.classList.contains("active")) btn.classList.add("active");
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            updateScrollMoreVisibility(panel);
 
-                const nav = document.querySelector(".nav-list");
-                const toggle = document.querySelector(".nav-toggle");
-                if (nav) nav.classList.remove("active");
-                if (toggle) toggle.classList.remove("open");
-                closeAllDropdowns();
+            const nav = document.querySelector(".nav-list");
+            const toggle = document.querySelector(".nav-toggle");
+            if (nav) nav.classList.remove("active");
+            if (toggle) toggle.classList.remove("open");
+            closeAllDropdowns();
+
+            const scrollToButton = () => {
+                const header = document.getElementById("main-header");
+                const headerOffset = (header ? header.offsetHeight : 0) + 14;
+                const top = btn.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.scrollTo({ top, behavior: "smooth" });
             };
 
-            setTimeout(openTarget, 80);
+            setTimeout(scrollToButton, 480);
+            return false;
         };
 
         updateAllScrollMoreButtons();
