@@ -59,10 +59,14 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <div style="width:240px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
 
-* 🫁 **[DrLungker](https://github.com/ShabanAhmad/DrLungker)** – AI-driven resistance aware multitargeted lung cancer drug developement
-* 🔬 **[DeepEntXAI](https://github.com/ShabanAhmad/DeepEntXAI)** – Explainable AI for AMR awared drug prediction in Enterobacteriaceae
+* 🫁 **[DrLungker](https://github.com/ShabanAhmad/DrLungker)** – AI-driven resistance-aware multitargeted lung cancer drug development
+* 🔬 **[DeepEntXAI](https://github.com/ShabanAhmad/DeepEntXAI)** – Explainable AI for AMR-aware drug prediction in Enterobacteriaceae
 * 🫁 **[LungXAI](https://github.com/SyeddNaseer/LUNGXAI)** – Explainable AI for Lung Cancer Prediction with RNA-Seq datasets
-* 🌍 **[PFAS Enzyme Discovery Pipeline](https://github.com/ShabanAhmad)** – AI-guided biodegradation
+* 🌍 **PFAS-Flow** – AI-guided biodegradation of persistent PFAS compounds
+  * **FAcDs:** Structure-based mechanistic validation of Fluoroacetate Dehalogenase
+  * **HAcDs:** ML-driven sequence mining and screening of Haloacid Dehalogenase
+  * **TFA-Mining:** Whole-proteome analysis for discovery of Trifluoroacetic acid degraders
+* 🧬 **ALT-Target** – RNA-seq-driven polypharmacological targeting of suppressed DDR pathways in ALT+ osteosarcoma.
 
 ➡️ Explore more: https://github.com/ShabanAhmad
 
@@ -101,7 +105,7 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 
 * Discovery of <b>PFAS-degrading enzymes</b>
 * AI-guided <b>enzyme mining</b>
-* Functional prediction & optimization
+* Functional prediction & optimisation
 * Sustainable solutions for <b>“forever chemicals”</b>
 
 </td>
@@ -152,11 +156,11 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <tr>
 <td align="center"><b>📄 Publications</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=100%2B" /></td>
 
-<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=140&lines=1700%2B" /></td>
+<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=140&lines=1800%2B" /></td>
 
-<td align="center"><b>📊 h-index</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=100&lines=27" /></td>
+<td align="center"><b>📊 h-index</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=100&lines=28" /></td>
 
-<td align="center"><b>🧪 Reviews</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=490%2B" /></td>
+<td align="center"><b>🧪 Reviews</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=560%2B" /></td>
 </tr>
 </table>
 
@@ -187,44 +191,14 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <div align="center" style="border:1px solid #EF4444; padding:15px 10px; border-radius:10px; width:90%; margin:auto;">
 
 <p>
-
-<a href="mailto:shaban@plen.ku.dk">
-<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
-</a>
-
-<a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en">
-<img src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white">
-</a>
-
-<a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288">
-<img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white">
-</a>
-
-
-<a href="https://orcid.org/0000-0001-9832-2830">
-<img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white">
-</a>
-
-<a href="https://www.researchgate.net/profile/Shaban-Ahmad-2">
-<img src="https://img.shields.io/badge/ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white">
-</a>
-
-<a href="https://github.com/ShabanAhmad">
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github">
-</a>
-
-<a href="https://www.linkedin.com/in/drshabanahmad/">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin">
-</a>
-
+<a href="mailto:shaban@plen.ku.dk"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a> <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en"><img src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white"></a> <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288"><img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white"></a> <a href="https://orcid.org/0000-0001-9832-2830"><img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white"></a> <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2"><img src="https://img.shields.io/badge/ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white"></a> <a href="https://github.com/ShabanAhmad"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github"></a> <a href="https://www.linkedin.com/in/drshabanahmad/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin"></a>
 </p>
-
-</div>
-
-<p align="center">
+<p style="margin:8px 0 0 0;">
   <img src="https://komarev.com/ghpvc/?username=ShabanAhmad&label=Profile+Views&color=22C55E&style=flat" />
   <span style="margin: 0 8px;">|</span>
   © 2026 <b>Dr Shaban Ahmad</b>
 </p>
+
+</div>
 
 <hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">

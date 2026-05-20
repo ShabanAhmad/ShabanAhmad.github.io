@@ -13,6 +13,9 @@
     <title>Dr Shaban | Postdoc at UCPH </title>
     <meta name="description"
         content="Academic Portfolio of Dr Shaban Ahmad — Postdoctoral Researcher at the University of Copenhagen specialising in AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#064e3b">
+    <link rel="canonical" href="https://shabanahmad.github.io/">
 
         
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
@@ -30,6 +33,10 @@
     <link rel="icon" href="shaban.webp" type="image/webp">
 
     <!-- === SECTION 2: EXTERNAL DEPENDENCIES & TYPOGRAPHY === -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link
@@ -10811,7 +10818,7 @@
                     <p id="peer-review-count-text" style="margin-bottom:15px; font-weight:bold; color:var(--primary);">
                         <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
                             style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i
-                                    class="fas fa-check-circle"></i> 490+ Verified</span> Peer Reviews on Publons
+                                    class="fas fa-check-circle"></i> 560+ Verified</span> Peer Reviews on Publons
                             (WoS)</a>
                     </p>
                     <div class="peer-review-container">
@@ -11278,7 +11285,30 @@
     <script>
         /* Global Initialisation & Utilities */
         var submitted = false;
+        const PROFILE_CONFIG = {
+            backendUrl: "https://shaban-ahmad-github-io.vercel.app/api/gemini",
+            stats: {
+                publications: "100+",
+                citations: "1800+",
+                hIndex: "28",
+                peerReviews: "560+"
+            },
+            links: {
+                webOfScience: "https://www.webofscience.com/wos/author/record/ABD-4112-2021"
+            }
+        };
+
+        const syncProfileStats = () => {
+            const statValues = document.querySelectorAll(".hero-stats .stat-value");
+            const values = [PROFILE_CONFIG.stats.publications, PROFILE_CONFIG.stats.citations, PROFILE_CONFIG.stats.hIndex, PROFILE_CONFIG.stats.peerReviews];
+            statValues.forEach((el, index) => { if (values[index]) el.textContent = values[index]; });
+
+            const peerCount = document.querySelector("#peer-review-count-text .verified-badge");
+            if (peerCount) peerCount.innerHTML = `<i class="fas fa-check-circle"></i> ${PROFILE_CONFIG.stats.peerReviews} Verified`;
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
+            syncProfileStats();
             if (localStorage.getItem('theme') === 'dark') toggleTheme();
             updateJournalCount();
             initCitationButtons();
@@ -11392,7 +11422,14 @@
 
         const toggleTheme = () => { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); document.querySelectorAll('.theme-toggle').forEach(el => el.className = isDark ? 'fas fa-sun control-icon theme-toggle' : 'fas fa-moon control-icon theme-toggle'); };
 
-        const updateJournalCount = () => { const j = document.querySelectorAll('.peer-review-container .pr-badge-item'), u = new Set(Array.from(j).map(i => i.textContent.trim())), c = document.getElementById('peer-review-count-text'); if (c) c.innerHTML = `<a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i class="fas fa-check-circle"></i> 560+ Verified</span> Peer Reviews on Publons (WoS) for ${u.size} Journals </a>`; };
+        const updateJournalCount = () => {
+            const journals = document.querySelectorAll(".peer-review-container .pr-badge-item");
+            const uniqueJournals = new Set(Array.from(journals).map(item => item.textContent.trim()));
+            const countText = document.getElementById("peer-review-count-text");
+            if (countText) {
+                countText.innerHTML = `<a href="${PROFILE_CONFIG.links.webOfScience}" target="_blank" style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i class="fas fa-check-circle"></i> ${PROFILE_CONFIG.stats.peerReviews} Verified</span> Peer Reviews on Publons (WoS) for ${uniqueJournals.size} Journals </a>`;
+            }
+        };
         const copyEmail = (el, email, color = null) => {
             navigator.clipboard.writeText(email).then(() => {
                 let fb = document.createElement("span");
@@ -11912,7 +11949,7 @@
 
         const fetchFromBackend = async (prompt, retries = 3, delay = 2000, signal = null) => {
             try {
-                const res = await fetch('https://shaban-ahmad-github-io.vercel.app/api/gemini', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }), signal });
+                const res = await fetch(PROFILE_CONFIG.backendUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }), signal });
                 const data = await res.json();
                 if (!res.ok) { if (res.status === 429 && retries > 0) { await new Promise(r => setTimeout(r, delay)); return fetchFromBackend(prompt, retries - 1, delay * 2, signal); } throw new Error(data.error?.message || data.error || 'Backend request failed'); }
                 if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) return data.candidates[0].content.parts[0].text; else if (data.text) return data.text; throw new Error("Unexpected response format.");

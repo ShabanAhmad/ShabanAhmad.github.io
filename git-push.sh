@@ -1,10 +1,18 @@
 #!/bin/bash
+set -euo pipefail
 
-# Add all changes
+if [ $# -lt 1 ] || [ -z "${1// }" ]; then
+  echo "Usage: ./git-push.sh \"Commit message\"" >&2
+  exit 1
+fi
+
+git status --short
+
+if [ -z "$(git status --porcelain)" ]; then
+  echo "No changes to commit."
+  exit 0
+fi
+
 git add .
-
-# Commit with message passed as argument
 git commit -m "$1"
-
-# Push to GitHub
 git push origin main
