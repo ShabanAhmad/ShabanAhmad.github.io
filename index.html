@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr Shaban | Postdoc at UCPH </title>
     <meta name="description"
-        content="Academic Portfolio of Dr Shaban Ahmad — Postdoctoral Researcher at the University of Copenhagen specialising in AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
+        content="Academic Portfolio of Dr Shaban Ahmad — Postdoctoral Researcher at the University of Copenhagen, specialising in AI-driven drug discovery, computational genomics, and PFAS biodegradation.">
 
     <!-- === SECTION 1: SEARCH ENGINE OPTIMISATION (SEO) & SOCIAL META TAGS === -->
     <meta property="og:title" content="Dr Shaban Ahmad | Postdoctoral Researcher | Computational Pharmacology">
@@ -1072,6 +1072,32 @@
             background-color: var(--primary);
             color: var(--accent);
             transform: translateY(-5px);
+        }
+
+        /* SVG Ring Styling for Back to Top */
+        .progress-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+
+        .progress-ring__background {
+            stroke: rgba(0, 0, 0, 0.15);
+            transition: stroke 0.3s ease;
+        }
+
+        .progress-ring__circle {
+            stroke: currentColor;
+            transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease;
+            stroke-linecap: round;
+        }
+
+        .back-to-top:hover .progress-ring__background {
+            stroke: rgba(255, 255, 255, 0.15);
         }
 
         /* --- Scroll More Button in Panels (Floating) */
@@ -8395,7 +8421,13 @@
     </div>
 
     <!-- Interface Triggers -->
-    <button type="button" class="back-to-top" id="back-to-top" aria-label="Scroll to top" data-tip="Back to Top"><i class="fas fa-chevron-up"></i></button>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Scroll to top" data-tip="Back to Top">
+        <svg class="progress-ring" viewBox="0 0 50 50">
+            <circle class="progress-ring__background" stroke-width="3" fill="transparent" r="22" cx="25" cy="25"/>
+            <circle class="progress-ring__circle" stroke-width="3" fill="transparent" r="22" cx="25" cy="25"/>
+        </svg>
+        <i class="fas fa-chevron-up" style="position: relative; z-index: 1;"></i>
+    </button>
     <button type="button" id="ai-widget-toggle" onclick="toggleChatWindow()" data-tip="Shaban's AI Assistant"
         aria-label="Shaban's AI Assistant"><i class="fas fa-robot"></i></button>
 
@@ -11262,6 +11294,14 @@
                 });
             });
 
+            // Initialize progress ring
+            const ptCircle = document.querySelector('.progress-ring__circle');
+            if (ptCircle) {
+                const radius = ptCircle.r.baseVal.value;
+                window.ptCircumference = 2 * Math.PI * radius;
+                ptCircle.style.strokeDasharray = `${window.ptCircumference} ${window.ptCircumference}`;
+                ptCircle.style.strokeDashoffset = window.ptCircumference;
+            }
 
             // Bridge tagline: now static HTML with CSS colour-fill animation (no JS needed)
 
@@ -11409,6 +11449,15 @@
                     const b = document.getElementById("back-to-top");
                     if (window.innerWidth > 900) { const hn = document.querySelector('.header-name'), hr = document.querySelector('.hero'); if (window.scrollY > (hr ? hr.offsetHeight - 150 : 300)) hn.classList.add('visible'); else hn.classList.remove('visible'); }
                     if (window.scrollY > 300) b.classList.add("visible"); else b.classList.remove("visible");
+                    
+                    // Circular progress logic
+                    const ptCircle = document.querySelector('.progress-ring__circle');
+                    if (ptCircle && window.ptCircumference) {
+                        const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+                        const scrollPercentage = scrollTotal > 0 ? (window.scrollY / scrollTotal) : 0;
+                        ptCircle.style.strokeDashoffset = window.ptCircumference - (scrollPercentage * window.ptCircumference);
+                    }
+
                     let c = ""; document.querySelectorAll("section").forEach(s => { if (window.scrollY >= (s.offsetTop - 150)) c = s.getAttribute("id"); });
                     document.querySelectorAll(".nav-link").forEach(li => { li.classList.remove("active-section"); if (li.getAttribute("href") && li.getAttribute("href").includes(c)) li.classList.add("active-section"); });
                     isScrolling = false;
