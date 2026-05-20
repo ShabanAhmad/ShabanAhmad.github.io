@@ -25,7 +25,7 @@
 <p align="center">
 <b>Translational Computational Pharmacology • AI for Precision Medicine • Environmental Intelligence</b>
 </p>
-
+ 
 </div>
 
 <hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
