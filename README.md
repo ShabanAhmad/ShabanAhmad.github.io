@@ -1,8 +1,8 @@
 <div align="center">
 
-# <b><a href="https://shabanahmad.github.io/" style="text-decoration:none; color:inherit;">Dr Shaban Ahmad</a></b>
+# <b><a href="https://shabanahmad.github.io/" style="text-decoration:none; color:inherit;">Shaban Ahmad (MSc, PhD)</a></b>
 
-<b>AI Scientist bridging Biology, Medicine, and Sustainability</b>
+<b>Bioinformatics Researcher at the intersection of Artificial Intelligence, Biology, Medicine, and Sustainability</b>
 
 <p align="center">
   <a href="https://shabanahmad.github.io/">
@@ -171,7 +171,7 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 
 * 🏅 <b>World’s Top 2% Scientists</b> — Stanford–Elsevier (2025)
 * 🌍 <b>Visiting Researcher</b> — University of Jyväskylä, Finland
-* 📖 <b>Guest Editor</b> — Frontiers in Oncology; Current Genomics; Discover Biotechnology
+* 📖 <b>Guest Editor</b> — International Journal of Molecular Sciences; Frontiers in Oncology; Natural Production Communication, and others. 
 * 🎓 <b>Mentorship</b> — 15+ undergraduate & postgraduate researchers
 * 🔬 <b>Scholarly Output</b> — 100+ publications, 30+ datasets, extensive peer review
 
@@ -196,7 +196,7 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <p style="margin:8px 0 0 0;">
   <img src="https://komarev.com/ghpvc/?username=ShabanAhmad&label=Profile+Views&color=22C55E&style=flat" />
   <span style="margin: 0 8px;">|</span>
-  © 2026 <b>Dr Shaban Ahmad</b>
+  © 2026 <b>Shaban Ahmad</b>
 </p>
 
 </div>

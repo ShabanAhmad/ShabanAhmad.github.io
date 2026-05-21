@@ -1094,18 +1094,21 @@
         }
 
         .progress-ring__background {
-            stroke: rgba(0, 0, 0, 0.15);
-            transition: stroke 0.3s ease;
+            stroke: transparent;
         }
 
         .progress-ring__circle {
-            stroke: currentColor;
-            transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease;
+            stroke: var(--primary);
+            transition: stroke-dashoffset 0.1s linear;
             stroke-linecap: round;
         }
 
+        .back-to-top:hover .progress-ring__circle {
+            stroke: var(--accent);
+        }
+
         .back-to-top:hover .progress-ring__background {
-            stroke: rgba(255, 255, 255, 0.15);
+            stroke: transparent;
         }
 
         /* --- Scroll More Button in Panels (Floating) */
@@ -8410,6 +8413,11 @@
                 animation: none !important;
             }
         }
+        body.dark-mode .theme-toggle {
+            color: var(--accent) !important;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+        }
+
     </style>
 </head>
 
@@ -8481,7 +8489,7 @@
                 Shaban <i class="fas fa-home"></i></a>
 
             <div class="mobile-controls-container">
-                <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode"
+                <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" data-tip="Toggle Dark Mode" aria-label="Toggle Dark Mode"
                     tabindex="0" role="button"></i>
                 <span class="header-sep">|</span>
                 <button type="button" class="control-icon" onclick="openSearchModal()" aria-label="Search"><i
@@ -8557,7 +8565,7 @@
                 </li>
                 <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
                 <li class="header-controls">
-                    <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" data-tip="Dark Mode"
+                    <i class="fas fa-moon control-icon theme-toggle" onclick="toggleTheme()" data-tip="Toggle Dark Mode"
                         aria-label="Toggle Dark Mode" tabindex="0" role="button"></i>
                     <span class="header-sep">|</span>
                     <div class="search-container"><button type="button" class="control-icon" onclick="openSearchModal()"
@@ -10749,34 +10757,41 @@
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed style="padding-left: 20px;">
                         <li class="pub-item">Guest Editor: <strong><a
+                                    href="https://www.mdpi.com/journal/ijms/special_issues/3V2GN3X3Z8"
+                                    target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">International
+                                    Journal of Molecular Sciences</a></strong> (2026-date)<br><span
+                                style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence, Multi-Omics,
+                                and Molecular Modelling in Modern Drug Discovery</span></li>
+
+                        <li class="pub-item">Guest Editor: <strong><a
                                     href="https://www.frontiersin.org/research-topics/77977/artificial-intelligence-for-polypharmacology-and-resistance-aware-cancer-drug-discovery"
                                     target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Frontiers
-                                    in Oncology</a></strong> (2025-date)<br><span
+                                    in Oncology</a></strong> (2026-date)<br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence for
                                 Polypharmacology and Resistance-Aware Cancer Drug Discovery</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://www.eurekaselect.com/call-for-papers-detail/7180/specialissue"
                                     target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Current
-                                    Genomics</a></strong> (2025-date)<br><span
+                                    Genomics</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: AI-Driven Genomics and Multi-Omics
                                 Approaches for Drug Discovery and Precision Medicine</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://link.springer.com/collections/hbihjggjeg" target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Discover
-                                    Biotechnology</a></strong> (2025-date)<br><span
+                                    Biotechnology</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence Applications in
                                 Bioinformatics for Cancer Research</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies"
                                     target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Natural
-                                    Product Communications</a></strong> (2024-date)<br><span
+                                    Product Communications</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Harnessing Nature's Pharmacy for the
                                 Therapeutics of Lung and Respiratory Diseases</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://www.eurekaselect.com/call-for-papers-detail/5588/specialissue"
                                     target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Mini-Reviews in Medicinal
-                                    Chemistry</a></strong> (2024-date)<br><span
+                                    Chemistry</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Computational Frontiers in Medicinal
                                 Chemistry</span></li>
                     </ol>
