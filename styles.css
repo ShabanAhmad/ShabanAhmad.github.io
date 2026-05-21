@@ -4966,7 +4966,7 @@ body.dark-mode h3:not([class]) {
         cursor: pointer;
         color: var(--primary);
         transition: transform 0.3s ease;
-        margin-left: 0;
+        margin-left: 24px;
     }
 
     .nav-toggle.open {
