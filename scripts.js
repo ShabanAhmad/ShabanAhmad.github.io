@@ -1250,12 +1250,12 @@ const initHeavyFX = () => {
         const init = () => {
             resize();
             particles = [];
-            const count = 130; // Dense enough to showcase flow, light enough to maintain 60+ FPS
+            const count = 91; // Dense enough to showcase flow, light enough to maintain 60+ FPS (reduced to 70%)
             for (let i = 0; i < count; i++) {
                 const x = Math.random() * w;
                 const y = Math.random() * h;
-                const vx = (Math.random() - 0.5) * 0.3;
-                const vy = (Math.random() - 0.5) * 0.3;
+                const vx = (Math.random() - 0.5) * 0.18; // Speed reduced to 60%
+                const vy = (Math.random() - 0.5) * 0.18; // Speed reduced to 60%
                 const depth = Math.random() * 0.8 + 0.4; // Parallax depth factor [0.4, 1.2]
                 const radius = depth * 2.2; // Farther elements are smaller
                 particles.push({
@@ -1282,7 +1282,7 @@ const initHeavyFX = () => {
             ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.12)' : 'rgba(250, 250, 249, 0.12)';
             ctx.fillRect(0, 0, w, h);
 
-            time += 0.003;
+            time += 0.0018; // Speed reduced to 60%
 
             // Define central content area boundaries (1100px max-width + 40px safe buffer)
             const contentWidth = 1140;
@@ -1291,8 +1291,8 @@ const initHeavyFX = () => {
 
             particles.forEach((p, i) => {
                 // 1. Organic Flow Field Drift (background wind)
-                p.vx += Math.sin(p.y * 0.006 + time) * 0.015 * p.depth;
-                p.vy += Math.cos(p.x * 0.006 + time) * 0.015 * p.depth;
+                p.vx += Math.sin(p.y * 0.006 + time) * 0.009 * p.depth; // Speed reduced to 60%
+                p.vy += Math.cos(p.x * 0.006 + time) * 0.009 * p.depth; // Speed reduced to 60%
 
                 // 2. Mouse gravity & vortex orbit physics
                 if (mouse.x !== null && mouse.y !== null) {
@@ -1304,18 +1304,18 @@ const initHeavyFX = () => {
                         const force = (mouse.radius - dist) / mouse.radius; // 0 to 1 scaling
                         
                         // Pull towards cursor
-                        const pull = force * 0.45 * p.depth;
+                        const pull = force * 0.27 * p.depth; // Speed reduced to 60%
                         p.vx += (dx / dist) * pull;
                         p.vy += (dy / dist) * pull;
 
                         // Swirl/orbit around cursor (perpendicular vectors: -dy, dx)
-                        const swirl = force * 0.75 * p.depth;
+                        const swirl = force * 0.45 * p.depth; // Speed reduced to 60%
                         p.vx += (-dy / dist) * swirl;
                         p.vy += (dx / dist) * swirl;
 
                         // Repulsion buffer to prevent dot-clumping at the absolute center
                         if (dist < 45) {
-                            const bounce = (45 - dist) / 45 * 1.5;
+                            const bounce = (45 - dist) / 45 * 0.9; // Speed reduced to 60%
                             p.vx -= (dx / dist) * bounce;
                             p.vy -= (dy / dist) * bounce;
                         }
@@ -1341,7 +1341,7 @@ const initHeavyFX = () => {
 
                 // Speed limit capping
                 const speed = Math.hypot(p.vx, p.vy);
-                const maxSpeed = 4.2 * p.depth;
+                const maxSpeed = 2.52 * p.depth; // Speed reduced to 60%
                 if (speed > maxSpeed) {
                     p.vx = (p.vx / speed) * maxSpeed;
                     p.vy = (p.vy / speed) * maxSpeed;
