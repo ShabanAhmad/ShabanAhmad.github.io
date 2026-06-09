@@ -82,6 +82,9 @@
 
 <body>
 
+    <!-- Interactive Background Canvas (Visible on large screens) -->
+    <canvas id="bg-dots-canvas"></canvas>
+
     <!-- === SECTION 5: GLOBAL INTERFACE COMPONENTS === -->
     <div id="print-footer" style="display:none;">Downloaded from https://shabanahmad.github.io/</div>
     <div class="sticky-sidebar">
@@ -526,7 +529,7 @@
                                     class="fas fa-university"></i> University of Copenhagen </a><span class="flag-wrapper" data-tip="Denmark"><img
                                     src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
                         <div class="exp-date">June 2025 - Present</div>
-                        <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies.</div>
+                        <div class="exp-desc">Identifying PFAS-degrading enzymes using AI strategies. Member of the PLEN Data Science Task Force (DSTF).</div>
                     </div>
                     <div class="exp-box exp-part">
                         <div class="exp-header">
@@ -1174,8 +1177,35 @@
 
                 <hr class="subtle-separator">
                 <h3 class="unified-sub-heading ush-primary"
-                    style="margin-top: 2.5rem; margin-bottom: 1.1rem; text-align: left;">Courses I Can Teach</h3>
+                    style="margin-top: 2.5rem; margin-bottom: 1.1rem; text-align: left;">Teaching Portfolio & Courses</h3>
                 <div class="course-cards-grid">
+
+                    <div class="course-card cc-indigo">
+                        <div class="course-card-top">
+                            <div class="course-icon-box"><i class="fas fa-database"></i></div>
+                            <div class="course-card-info">
+                                <div class="course-title"><a href="https://kurser.ku.dk/course/nplk19000u" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Big Data in Biotechnology</a></div>
+                                <div class="course-card-meta">
+                                    <span class="course-level-badge" style="background: #e0e7ff; color: #4338ca; font-weight: bold; border: 1px solid #c7d2fe;">Active Instructor</span>
+                                    <span class="ccard-sep">|</span>
+                                    <span class="course-level-badge">Graduate (7.5 ECTS)</span>
+                                    <span class="ccard-sep">|</span>
+                                    <button onclick="generateSyllabus('big-data-biotech')" id="syllabus-big-data-biotech"
+                                        class="course-ai-btn" aria-label="Generate AI Syllabus for Big Data in Biotechnology"><span
+                                            class="btn-icon">✨</span><span class="btn-text">AI Syllabus</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-desc">Focuses on large-scale data management, transfer, storage, and processing. Students learn to design and execute robust pipelines for high-throughput biological data using R and Python to analyse complex biological systems.</div>
+                            <div class="course-tags">
+                                <span class="course-tag">Big Data</span>
+                                <span class="course-tag">Biotechnology</span>
+                                <span class="course-tag">R / Python</span>
+                                <span class="course-tag">UCPH NPLK19000U</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="course-card cc-blue">
                         <div class="course-card-top">
@@ -2430,12 +2460,14 @@
         </div>
 
         <button class="accordion-btn" id="prof-soc"><span><i class="fas fa-user-friends acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;"></i> Society Membership</span><i
+                    style="color:var(--accent); margin-right:10px;"></i> Society Membership & Committees</span><i
                 class="fas fa-chevron-down"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed style="padding-left: 20px;">
+                        <li class="pub-item">Member of the <strong><a href="https://plen.ku.dk/english/" target="_blank" rel="noopener noreferrer"
+                                    style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">PLEN Data Science Task Force (DSTF)</a></strong>, University of Copenhagen (2026-present)</li>
                         <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" rel="noopener noreferrer"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">International Association
                                     for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>

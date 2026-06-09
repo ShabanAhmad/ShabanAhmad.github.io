@@ -731,7 +731,7 @@ const generateTeachingStatement = () => {
         'gen-teaching-btn',
         'teaching-statement-result',
         '✨', 'Teaching Statement', 'Drafting...',
-        `Write a formal 3-paragraph academic teaching statement for Dr Shaban Ahmad, a Postdoctoral Researcher in computational biology and AI-driven drug discovery at the University of Copenhagen. His philosophy: (1) fosters dual competency — students who are both conceptually strong and computationally confident; (2) transitions students from passive learning to active problem-solving using real biological data and real scientific uncertainty; (3) uses a structured-to-independent mentorship model — strong onboarding, shared tools, clear milestones, then gradual independence. He teaches computational drug discovery (AutoDock, GROMACS, SBDD), machine learning for biological data (deep learning, XAI/SHAP), bioinformatics and computational genomics (NGS, WGS, Snakemake), and AI in precision medicine and environmental biotech. Write in first person, academic register. Use HTML formatting: wrap each paragraph in <p> tags, use <strong> for 2-3 key phrases per paragraph. No section headings needed. Each paragraph 70-90 words.`,
+        `Write a formal 3-paragraph academic teaching statement for Dr Shaban Ahmad, a Postdoctoral Researcher in computational biology and AI-driven drug discovery at the University of Copenhagen. His philosophy: (1) fosters dual competency — students who are both conceptually strong and computationally confident; (2) transitions students from passive learning to active problem-solving using real biological data and real scientific uncertainty; (3) uses a structured-to-independent mentorship model — strong onboarding, shared tools, clear milestones, then gradual independence. He teaches computational drug discovery (AutoDock, GROMACS, SBDD), machine learning for biological data (deep learning, XAI/SHAP), bioinformatics and computational genomics (NGS, WGS, Snakemake), Big Data in Biotechnology (large-scale data management, pipelines in R/Python), and AI in precision medicine and environmental biotech. Write in first person, academic register. Use HTML formatting: wrap each paragraph in <p> tags, use <strong> for 2-3 key phrases per paragraph. No section headings needed. Each paragraph 70-90 words.`,
         (res) => {
             const rb = document.getElementById('teaching-statement-result');
             rb.style.display = 'block';
@@ -742,6 +742,7 @@ const generateTeachingStatement = () => {
 
 /* --- Course Syllabus Generator */
 const COURSE_META = {
+    'big-data-biotech': { title: 'Big Data in Biotechnology', icon: '📊', level: 'Graduate (UCPH - NPLK19000U)' },
     'bioinformatics': { title: 'Basics to Advanced Bioinformatics', icon: '🧬', level: 'UG / Graduate' },
     'drug-design': { title: 'Computational Drug Design', icon: '💊', level: 'UG / Graduate' },
     'ml-drug-design': { title: 'ML in Drug Design', icon: '🤖', level: 'Graduate' },
@@ -1032,11 +1033,9 @@ const sendUserMessage = async () => {
 
 /* Performance-Optimised 3D & Network Effects */
 const initHeavyFX = () => {
-    const DESKTOP_WIDTH = 1351;
-    if (window.innerWidth < DESKTOP_WIDTH) return;
-
     // 3D Molecular Simulation Part
     const loadAndRun3D = () => {
+        if (window.innerWidth < 1351) return;
         const runInit3D = () => {
             const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
             if (!containerL || !containerR) return;
@@ -1186,6 +1185,7 @@ const initHeavyFX = () => {
 
     // Floating Icons Mesh Layer
     const loadAndRunMesh = () => {
+        if (window.innerWidth < 1351) return;
         const layer = document.getElementById('hi-layer'), hero = document.getElementById('hero-section');
         if (!layer || !hero) return;
         const ICONS = [['fa-brain', 'rgba(167,139,250,0.4)'], ['fa-dna', 'rgba(80,200,255,0.4)'], ['fa-atom', 'rgba(245,158,11,0.4)'], ['fa-pills', 'rgba(248,113,113,0.4)'], ['fa-robot', 'rgba(167,139,250,0.4)']];
@@ -1232,11 +1232,203 @@ const initHeavyFX = () => {
         new IntersectionObserver(([e]) => { if (e.isIntersecting) { if(!hiRAF) step(); } else { cancelAnimationFrame(hiRAF); hiRAF = null; } }).observe(hero);
     };
 
+    // Background Interactive Particles Layer (Magnetic Parallax Fluid Vortex)
+    const loadAndRunBgParticles = () => {
+        const canvas = document.getElementById('bg-dots-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [], rafId = null, time = 0;
+        const mouse = { x: null, y: null, radius: 240 };
+
+        const resize = () => {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+        };
+
+        const init = () => {
+            resize();
+            particles = [];
+            const count = 130; // Dense enough to showcase flow, light enough to maintain 60+ FPS
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * w;
+                const y = Math.random() * h;
+                const vx = (Math.random() - 0.5) * 0.3;
+                const vy = (Math.random() - 0.5) * 0.3;
+                const depth = Math.random() * 0.8 + 0.4; // Parallax depth factor [0.4, 1.2]
+                const radius = depth * 2.2; // Farther elements are smaller
+                particles.push({
+                    x, y,
+                    vx, vy,
+                    baseVx: vx,
+                    baseVy: vy,
+                    radius,
+                    depth
+                });
+            }
+        };
+
+        const step = () => {
+            if (window.innerWidth < 1150) {
+                ctx.clearRect(0, 0, w, h);
+                rafId = requestAnimationFrame(step);
+                return;
+            }
+
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            // Motion blur/trail effect via semi-transparent background sweep
+            ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.12)' : 'rgba(250, 250, 249, 0.12)';
+            ctx.fillRect(0, 0, w, h);
+
+            time += 0.003;
+
+            // Define central content area boundaries (1100px max-width + 40px safe buffer)
+            const contentWidth = 1140;
+            const leftLimit = (w - contentWidth) * 0.5;
+            const rightLimit = (w + contentWidth) * 0.5;
+
+            particles.forEach((p, i) => {
+                // 1. Organic Flow Field Drift (background wind)
+                p.vx += Math.sin(p.y * 0.006 + time) * 0.015 * p.depth;
+                p.vy += Math.cos(p.x * 0.006 + time) * 0.015 * p.depth;
+
+                // 2. Mouse gravity & vortex orbit physics
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = mouse.x - p.x;
+                    const dy = mouse.y - p.y;
+                    const dist = Math.hypot(dx, dy);
+
+                    if (dist < mouse.radius) {
+                        const force = (mouse.radius - dist) / mouse.radius; // 0 to 1 scaling
+                        
+                        // Pull towards cursor
+                        const pull = force * 0.45 * p.depth;
+                        p.vx += (dx / dist) * pull;
+                        p.vy += (dy / dist) * pull;
+
+                        // Swirl/orbit around cursor (perpendicular vectors: -dy, dx)
+                        const swirl = force * 0.75 * p.depth;
+                        p.vx += (-dy / dist) * swirl;
+                        p.vy += (dx / dist) * swirl;
+
+                        // Repulsion buffer to prevent dot-clumping at the absolute center
+                        if (dist < 45) {
+                            const bounce = (45 - dist) / 45 * 1.5;
+                            p.vx -= (dx / dist) * bounce;
+                            p.vy -= (dy / dist) * bounce;
+                        }
+
+                        // Draw mouse-to-particle attraction filament (only if particle is in margins)
+                        if (!(p.x >= leftLimit && p.x <= rightLimit)) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            const filamentAlpha = (1 - dist / mouse.radius) * 0.08 * p.depth;
+                            ctx.strokeStyle = isDark ? `rgba(165, 180, 252, ${filamentAlpha})` : `rgba(99, 102, 241, ${filamentAlpha})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // 3. Friction & damping towards baseline state
+                p.vx *= 0.96;
+                p.vy *= 0.96;
+                p.vx += (p.baseVx - p.vx) * 0.02;
+                p.vy += (p.baseVy - p.vy) * 0.02;
+
+                // Speed limit capping
+                const speed = Math.hypot(p.vx, p.vy);
+                const maxSpeed = 4.2 * p.depth;
+                if (speed > maxSpeed) {
+                    p.vx = (p.vx / speed) * maxSpeed;
+                    p.vy = (p.vy / speed) * maxSpeed;
+                }
+
+                // Apply position update
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Screen wrapping boundaries
+                if (p.x < -10) p.x = w + 10;
+                else if (p.x > w + 10) p.x = -10;
+                if (p.y < -10) p.y = h + 10;
+                else if (p.y > h + 10) p.y = -10;
+
+                // 4. Render particle (strictly outside the central content area)
+                if (!(p.x >= leftLimit && p.x <= rightLimit)) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    
+                    const pAlpha = p.depth * 0.35;
+                    if (i % 3 === 0) {
+                        ctx.fillStyle = isDark ? `rgba(165, 180, 252, ${pAlpha})` : `rgba(99, 102, 241, ${pAlpha})`;
+                    } else {
+                        ctx.fillStyle = isDark ? `rgba(248, 250, 252, ${pAlpha * 0.6})` : `rgba(71, 85, 105, ${pAlpha * 0.6})`;
+                    }
+                    ctx.fill();
+                }
+
+                // 5. Constellation network lines (strictly outside the central content area)
+                for (let j = i + 1; j < particles.length; j++) {
+                    const pj = particles[j];
+                    
+                    if ((p.x >= leftLimit && p.x <= rightLimit) || (pj.x >= leftLimit && pj.x <= rightLimit)) continue;
+                    
+                    const dx = p.x - pj.x;
+                    const dy = p.y - pj.y;
+                    const dist = Math.hypot(dx, dy);
+
+                    if (dist < 95) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(pj.x, pj.y);
+                        const lineAlpha = (1 - dist / 95) * 0.055 * p.depth * pj.depth;
+                        ctx.strokeStyle = isDark ? `rgba(165, 180, 252, ${lineAlpha})` : `rgba(99, 102, 241, ${lineAlpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            rafId = requestAnimationFrame(step);
+        };
+
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }, { passive: true });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        }, { passive: true });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                resize();
+            }, 200);
+        }, { passive: true });
+
+        init();
+        step();
+    };
+
     loadAndRun3D();
     loadAndRunMesh();
+    loadAndRunBgParticles();
 };
 
-if ('requestIdleCallback' in window) { requestIdleCallback(initHeavyFX); } else { setTimeout(initHeavyFX, 1000); }
+// Robust immediately-invoked loading logic for visual elements (safer than idle-only callbacks)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeavyFX);
+} else {
+    initHeavyFX();
+}
 
 window.googleTranslateElementInit = () => {
     new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element');

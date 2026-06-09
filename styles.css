@@ -7840,6 +7840,42 @@ body.dark-mode .ccard-sep {
     background: #fda4af;
 }
 
+.cc-indigo {
+    border-right: 4px solid #6366f1;
+}
+
+.cc-indigo .course-card-top {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+.cc-indigo .course-icon-box {
+    background: #c7d2fe;
+    color: #4338ca;
+}
+
+.cc-indigo .course-level-badge {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.cc-indigo:hover {
+    border-color: #6366f1;
+    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.18);
+}
+
+.cc-indigo:hover .course-title {
+    color: #4338ca;
+}
+
+.cc-indigo:hover .course-tag {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.cc-indigo:hover .course-icon-box {
+    background: #a5b4fc;
+}
+
 /* Dark mode course cards */
 body.dark-mode .course-card {
     background: #1e293b;
@@ -7881,6 +7917,10 @@ body.dark-mode .cc-teal .course-card-top {
 
 body.dark-mode .cc-rose .course-card-top {
     background: linear-gradient(135deg, rgba(244, 63, 94, 0.18) 0%, rgba(244, 63, 94, 0.08) 100%);
+}
+
+body.dark-mode .cc-indigo .course-card-top {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0.08) 100%);
 }
 
 /* Syllabus modal content */
@@ -8360,5 +8400,24 @@ body.dark-mode .bento-v2 .bento-tag {
 body.dark-mode .theme-toggle {
     color: var(--accent) !important;
     text-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+}
+
+/* Background interactive particles canvas */
+#bg-dots-canvas {
+    display: none;
+}
+
+@media (min-width: 1150px) {
+    #bg-dots-canvas {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+        background: transparent;
+    }
 }
 
