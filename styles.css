@@ -1131,13 +1131,15 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center; /* Original tight, centered layout */
+    justify-content: flex-end; /* Push central content towards the right side */
     gap: 2.5rem; /* Original gap */
     width: 100%;
     max-width: var(--hero-main-width);
     flex-shrink: 0;
     pointer-events: auto;
     position: relative;
+    padding-right: 1.5rem; /* Add buffer from the right separator */
+    box-sizing: border-box;
     transition: var(--transition);
 }
 
@@ -1330,6 +1332,7 @@ body.dark-mode .srch-empty {
     text-align: left; /* Left-align text content */
     white-space: nowrap;
     pointer-events: auto;
+    margin-left: 1.5rem; /* Give more space between photo and name card content */
 }
 
 .hero-img-wrap {
@@ -5365,6 +5368,7 @@ body.dark-mode h3:not([class]) {
         text-align: center !important;
         white-space: normal !important;
         width: 100% !important;
+        margin-left: 0 !important;
     }
 
     .hero-info-combined {
