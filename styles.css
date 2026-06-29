@@ -1319,14 +1319,14 @@ body.dark-mode .srch-empty {
     text-align: left; /* Left-align text content */
     white-space: nowrap;
     pointer-events: auto;
-    margin-left: 3.5rem; /* Give more space between photo and name card content */
+    margin-left: 1.5rem; /* Standard gap between photo and name details */
 }
 
 .hero-img-wrap {
     position: relative;
     width: 190px;
     height: 190px;
-    margin: 0 0 0 4.5rem; /* Push picture more towards the right side */
+    margin: 0; /* Standard position */
     flex-shrink: 0;
     border-radius: 50%;
     padding: 0; 
@@ -2064,6 +2064,12 @@ body.dark-mode .srch-empty {
     .hero-bridge-inner,
     .header-content {
         max-width: 1380px;
+    }
+    .hero-img-wrap {
+        margin: 0 0 0 4.5rem; /* Push picture towards the right side on widescreen only */
+    }
+    .hero-text-group {
+        margin-left: 3.5rem; /* Increase gap between photo and details on widescreen only */
     }
 }
 
