@@ -1300,13 +1300,19 @@ body.dark-mode .srch-empty {
 }
 
 @media (max-width: 1550px) {
-    /* Hide side columns and separators on screens below 1550px to prevent overflow/cutoff on standard laptops */
-    .hero-column-side,
-    .hero-v-sep {
+    /* Hide side columns (visual assets) on screens below 1550px to prevent horizontal scrollbars */
+    .hero-column-side {
         display: none !important;
     }
     .hero {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    /* Hide separators below 1200px (matching page separator visibility threshold) */
+    .hero-v-sep {
+        display: none !important;
     }
 }
 
