@@ -1037,138 +1037,128 @@ const initHeavyFX = () => {
     const loadAndRun3D = () => {
         if (window.innerWidth < 1351) return;
         const runInit3D = () => {
-            const containerL = document.getElementById('mol-canvas-left'), containerR = document.getElementById('mol-canvas-right');
-            if (!containerL || !containerR) return;
+            const containerL = document.getElementById('mol-canvas-left');
+            if (!containerL) return;
 
-            const vL = $3Dmol.createViewer(containerL, { alpha: true, antialias: true }), vR = $3Dmol.createViewer(containerR, { alpha: true, antialias: true });
-            const viewers = [vL, vR]; viewers.forEach(v => v.setBackgroundColor(0x000000, 0.0));
+            const vL = $3Dmol.createViewer(containerL, { alpha: true, antialias: true });
+            vL.setBackgroundColor(0x000000, 0.0);
 
-            let proteinModels = [], isAnimating = false, protAtomsList = [];
+            let proteinModel = null, isAnimating = false, protAtoms = [];
             const PFAS_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: 'gray', x: 0, y: 0, z: 0 }, { id: 1, e: 'C', r: 0.45, c: 'gray', x: 1.5, y: 0.5, z: 0 }, { id: 2, e: 'O', r: 0.45, c: 'red', x: 2.2, y: 1.5, z: 0 }, { id: 3, e: 'O', r: 0.45, c: 'red', x: 2.2, y: -0.5, z: 0 }, { id: 4, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: 1.2, z: 0 }, { id: 5, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: 1.0 }, { id: 6, e: 'F', r: 0.4, c: 'cyan', x: -0.8, y: -0.6, z: -1.0 }], bonds: [[0, 1], [1, 2], [1, 3], [0, 4], [0, 5], [0, 6]] };
             const DRUG_TEMPLATE = { atoms: [{ id: 0, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: 1.4, z: 0 }, { id: 1, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: 0.7, z: 0 }, { id: 2, e: 'C', r: 0.45, c: '#f59e0b', x: 1.2, y: -0.7, z: 0 }, { id: 3, e: 'C', r: 0.45, c: '#f59e0b', x: 0, y: -1.4, z: 0 }, { id: 4, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: -0.7, z: 0 }, { id: 5, e: 'C', r: 0.45, c: '#f59e0b', x: -1.2, y: 0.7, z: 0 }, { id: 6, e: 'N', r: 0.45, c: 'blue', x: 2.4, y: 1.4, z: 0 }, { id: 7, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 0.7, z: 0 }, { id: 8, e: 'C', r: 0.45, c: '#f59e0b', x: 4.8, y: 1.4, z: 0 }, { id: 9, e: 'N', r: 0.45, c: 'blue', x: 4.8, y: 2.8, z: 0 }, { id: 10, e: 'C', r: 0.45, c: '#f59e0b', x: 3.6, y: 3.5, z: 0 }, { id: 11, e: 'C', r: 0.45, c: '#f59e0b', x: 2.4, y: 2.8, z: 0 }, { id: 12, e: 'O', r: 0.45, c: 'red', x: -2.4, y: -1.4, z: 0 }], bonds: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 7], [4, 12]] };
             const precalc = (t) => { let cx = 0, cy = 0, cz = 0; t.atoms.forEach(a => { cx += a.x; cy += a.y; cz += a.z; }); cx /= t.atoms.length; cy /= t.atoms.length; cz /= t.atoms.length; t.atoms.forEach(a => { let dx = a.x - cx, dy = a.y - cy, dz = a.z - cz, d = Math.hypot(dx, dy, dz) || 1; a.dx = dx / d; a.dy = dy / d; a.dz = dz / d; }); };
             precalc(PFAS_TEMPLATE); precalc(DRUG_TEMPLATE);
 
-            $3Dmol.download("pdb:3R3V", vR, {}, function () {
-                $3Dmol.download("pdb:3R3V", vL, {}, function () {
-                    viewers.forEach(v => { const m = v.getModel(0); proteinModels.push(m); const at = m.selectedAtoms({ atom: 'CA' }); at.forEach(a => { a.vx = (Math.random() - 0.5) * 8; a.vy = (Math.random() - 0.5) * 8; a.vz = (Math.random() - 0.5) * 8; }); protAtomsList.push(at); v.setStyle({ chain: 'B' }, { cross: { hidden: true } }); v.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } }); v.zoomTo({ chain: 'A' }); });
+            $3Dmol.download("pdb:3R3V", vL, {}, function () {
+                proteinModel = vL.getModel(0);
+                protAtoms = proteinModel.selectedAtoms({ atom: 'CA' });
+                protAtoms.forEach(a => { a.vx = (Math.random() - 0.5) * 8; a.vy = (Math.random() - 0.5) * 8; a.vz = (Math.random() - 0.5) * 8; });
+                vL.setStyle({ chain: 'B' }, { cross: { hidden: true } });
+                vL.setStyle({ hetflag: true, chain: 'A' }, { cross: { hidden: true } });
+                vL.zoomTo({ chain: 'A' });
 
-                    const setProteinStyle = (idx, st) => {
-                        const m = proteinModels[idx];
-                        let cf; if (st === 'active') cf = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b'); else if (st === 'inhibited') cf = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a'); else if (st === 'catalyzing') cf = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
-                        m.setStyle({}, { hidden: false }); m.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cf, thickness: 0.4 } }); viewers[idx].render();
+                const setProteinStyle = (st) => {
+                    let cf; if (st === 'active') cf = (a) => a.ss === 'h' ? '#10b981' : (a.ss === 's' ? '#f59e0b' : '#64748b'); else if (st === 'inhibited') cf = (a) => a.ss === 'h' ? '#ef4444' : (a.ss === 's' ? '#991b1b' : '#450a0a'); else if (st === 'catalyzing') cf = (a) => a.ss === 'h' ? '#06b6d4' : (a.ss === 's' ? '#fde047' : '#0891b2');
+                    proteinModel.setStyle({}, { hidden: false }); proteinModel.setStyle({ chain: 'A' }, { cartoon: { colorfunc: cf, thickness: 0.4 } }); vL.render();
+                };
+                const setSurface = (ty) => { 
+                    vL.removeAllSurfaces(); 
+                    if (ty === 'normal') vL.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false }); 
+                    else if (ty === 'inhibited') vL.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false }); 
+                    else if (ty === 'catalyzing') vL.addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false }); 
+                };
+
+                setProteinStyle('active'); setSurface('normal');
+
+                let tick = 0; const target = { x: -2, y: -5, z: 12 }, start = { x: 40, y: 20, z: -20 }, exit = { x: -40, y: -20, z: 30 };
+                const drawLigand = (tmpl, pos, scP = 0) => {
+                    let al = 1.0 - (scP * 1.5); if (al <= 0 && scP > 0) return; const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
+                    const tAt = tmpl.atoms.map(a => { let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c, isSc = false; if (scP > 0 && a.e === 'F') { rx += a.dx * 25 * scP; ry += a.dy * 25 * scP; rz += a.dz * 25 * scP; ry -= scP * 15; isSc = true; } return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isSc }; });
+                    tAt.forEach(a => vL.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? al : 1.0 })); 
+                    tmpl.bonds.forEach(b => { const p1 = tAt.find(at => at.id === b[0]), p2 = tAt.find(at => at.id === b[1]); if (p1 && p2 && !p1.scattered && !p2.scattered) vL.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' }); });
+                };
+
+                const termRight = document.getElementById('ai-terminal-right');
+                let logsRight = [], queueRight = [], isTypingRight = false;
+
+                const toggleTerm = (sh) => { 
+                    if (termRight) { termRight.style.opacity = sh ? '1' : '0'; if (!sh) termRight.innerHTML = ''; }
+                    if (!sh) { logsRight = []; queueRight = []; isTypingRight = false; } 
+                };
+                const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
+                const typeLog = () => {
+                    if (queueRight.length === 0) { isTypingRight = false; return; }
+                    isTypingRight = true;
+                    const msg = queueRight.shift(); logsRight.push(""); if (logsRight.length > 18) logsRight.shift();
+                    let i = 0;
+                    const typeChar = () => {
+                        logsRight[logsRight.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
+                        renderTerm(termRight, logsRight); i += 4;
+                        if (i <= msg.length) requestAnimationFrame(typeChar);
+                        else { logsRight[logsRight.length - 1] = msg; renderTerm(termRight, logsRight); setTimeout(() => typeLog(), 80); }
                     };
-                    const setSurface = (idx, ty) => { 
-                        viewers[idx].removeAllSurfaces(); 
-                        if (ty === 'normal') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.12, color: '#ffffff' }, { chain: 'A', hetflag: false }); 
-                        else if (ty === 'inhibited') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.75, color: '#ef4444' }, { chain: 'A', hetflag: false }); 
-                        else if (ty === 'catalyzing') viewers[idx].addSurface($3Dmol.SurfaceType.VDW, { opacity: 0.65, color: '#06b6d4' }, { chain: 'A', hetflag: false }); 
-                    };
+                    requestAnimationFrame(typeChar);
+                };
+                const addLog = (m) => {
+                    let f = m;
+                    if (m.startsWith('>')) f = `<span style="color:#10b981">${m}</span>`;
+                    else if (m.includes('CRITICAL') || m.includes('ERROR') || m.includes('FAILURE')) f = `<span style="color:#ef4444">${m}</span>`;
+                    else if (m.includes('SUCCESS') || m.includes('COMPLETE')) f = `<span style="color:#10b981">${m}</span>`;
+                    else if (m.includes('WARNING') || m.includes('[CALC]') || m.includes('[INFO]')) f = `<span style="color:#f59e0b">${m}</span>`;
+                    else if (m.includes('[RESULT]')) f = `<span style="color:#38bdf8">${m}</span>`;
+                    queueRight.push(f); if (!isTypingRight) typeLog();
+                };
 
-                    setProteinStyle(0, 'active'); setSurface(0, 'normal');
-                    setProteinStyle(1, 'active'); setSurface(1, 'normal');
+                let skipFrame = false;
+                const animateScene = () => {
+                    if (!isAnimating) return; tick = (tick + 2) % 1800; 
+                    skipFrame = !skipFrame;
+                    if (skipFrame) { requestAnimationFrame(animateScene); return; }
+                    vL.removeAllShapes();
 
-                    let tick = 0; const target = { x: -2, y: -5, z: 12 }, start = { x: 40, y: 20, z: -20 }, exit = { x: -40, y: -20, z: 30 };
-                    const drawLigand = (idx, tmpl, pos, scP = 0) => {
-                        let al = 1.0 - (scP * 1.5); if (al <= 0 && scP > 0) return; const c = Math.cos(tick * 0.06), s = Math.sin(tick * 0.06);
-                        const tAt = tmpl.atoms.map(a => { let rx = a.x * c - a.z * s, ry = a.y, rz = a.x * s + a.z * c, isSc = false; if (scP > 0 && a.e === 'F') { rx += a.dx * 25 * scP; ry += a.dy * 25 * scP; rz += a.dz * 25 * scP; ry -= scP * 15; isSc = true; } return { id: a.id, x: rx + pos.x, y: ry + pos.y, z: rz + pos.z, r: a.r, c: a.c, scattered: isSc }; });
-                        const v = viewers[idx];
-                        tAt.forEach(a => v.addSphere({ center: { x: a.x, y: a.y, z: a.z }, radius: a.r, color: a.c, alpha: a.scattered ? al : 1.0 })); 
-                        tmpl.bonds.forEach(b => { const p1 = tAt.find(at => at.id === b[0]), p2 = tAt.find(at => at.id === b[1]); if (p1 && p2 && !p1.scattered && !p2.scattered) v.addCylinder({ start: { x: p1.x, y: p1.y, z: p1.z }, end: { x: p2.x, y: p2.y, z: p2.z }, radius: 0.15, color: 'white' }); });
-                    };
+                    // Sequential Simulation Logs
+                    if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced"); }
+                    if (tick === 120) addLog("> loading Lead_Compound_X42...");
+                    if (tick === 180) addLog("> ligand_docking.start()");
+                    if (tick === 260) { addLog("[CALC] Bind Energy: -14.2 kcal/mol"); setProteinStyle('inhibited'); setSurface('inhibited'); }
+                    if (tick === 330) addLog("[CRITICAL] Ligand-induced denaturation!");
+                    if (tick === 420) { addLog("[FAILURE] Lead discarded. Resetting..."); setSurface('none'); proteinModel.setStyle({}, { hidden: true }); }
+                    if (tick === 550) { setProteinStyle('active'); setSurface('normal'); }
 
-                    const termLeft = document.getElementById('ai-terminal-left');
-                    const termRight = document.getElementById('ai-terminal-right');
-                    let logsLeft = [], logsRight = [], queueLeft = [], queueRight = [], isTypingLeft = false, isTypingRight = false;
+                    if (tick === 620) addLog("> import pharmacogenomics as pgx");
+                    if (tick === 700) addLog("> patient_profile = pgx.load('PT-29')");
+                    if (tick === 880) { addLog("[RESULT] Phenotype: Poor Metabolizer"); setProteinStyle('catalyzing'); setSurface('catalyzing'); }
+                    if (tick === 1030) { addLog("[SUCCESS] Optimised regimen active"); setProteinStyle('active'); setSurface('normal'); }
 
-                    const toggleTerm = (sh) => { 
-                        [termLeft, termRight].forEach(t => { if (t) { t.style.opacity = sh ? '1' : '0'; if (!sh) t.innerHTML = ''; } }); 
-                        if (!sh) { logsLeft = []; logsRight = []; queueLeft = []; queueRight = []; isTypingLeft = false; isTypingRight = false; } 
-                    };
-                    const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
-                    const typeLog = (side) => {
-                        const q = side === 'L' ? queueLeft : queueRight, l = side === 'L' ? logsLeft : logsRight, t = side === 'L' ? termLeft : termRight;
-                        if (q.length === 0) { if(side==='L') isTypingLeft=false; else isTypingRight=false; return; }
-                        if(side==='L') isTypingLeft=true; else isTypingRight=true;
-                        const msg = q.shift(); l.push(""); if (l.length > 18) l.shift();
-                        let i = 0;
-                        const typeChar = () => {
-                            l[l.length - 1] = msg.substring(0, i) + (Math.random() > 0.5 ? "█" : "");
-                            renderTerm(t, l); i += 4;
-                            if (i <= msg.length) requestAnimationFrame(typeChar);
-                            else { l[l.length - 1] = msg; renderTerm(t, l); setTimeout(() => typeLog(side), 80); }
-                        };
-                        requestAnimationFrame(typeChar);
-                    };
-                    const addLog = (m, side = 'both') => {
-                        let f = m;
-                        if (m.startsWith('>')) f = `<span style="color:#10b981">${m}</span>`;
-                        else if (m.includes('CRITICAL') || m.includes('ERROR') || m.includes('FAILURE')) f = `<span style="color:#ef4444">${m}</span>`;
-                        else if (m.includes('SUCCESS') || m.includes('COMPLETE')) f = `<span style="color:#10b981">${m}</span>`;
-                        else if (m.includes('WARNING') || m.includes('[CALC]') || m.includes('[INFO]')) f = `<span style="color:#f59e0b">${m}</span>`;
-                        else if (m.includes('[RESULT]')) f = `<span style="color:#38bdf8">${m}</span>`;
+                    if (tick === 1100) addLog("> environment: site_alpha_groundwater");
+                    if (tick === 1180) addLog("[INFO] Detecting fluorinated bonds");
+                    if (tick === 1260) addLog("> simulate defluorination transition");
+                    if (tick === 1340) { addLog("[INFO] SN2 attack angle: 178°"); setProteinStyle('catalyzing'); setSurface('catalyzing'); }
+                    if (tick === 1420) addLog("[SUCCESS] Fluorine ion release detected");
+                    if (tick === 1500) { addLog("[COMPLETE] Degradation yield: 98.4%"); setProteinStyle('active'); setSurface('normal'); }
 
-                        if (side === 'L' || side === 'both') { queueLeft.push(f); if (!isTypingLeft) typeLog('L'); }
-                        if (side === 'R' || side === 'both') { queueRight.push(f); if (!isTypingRight) typeLog('R'); }
-                    };
+                    if (tick === 1600) addLog("> model_structure --method 'AlphaFold3'");
+                    if (tick === 1680) addLog("[INFO] pLDDT score: 94.2 (HIGH)");
+                    if (tick === 1740) addLog("[SUCCESS] Global report finalized");
 
-                    let skipFrame = false;
-                    const animateScene = () => {
-                        if (!isAnimating) return; tick = (tick + 2) % 1800; 
-                        skipFrame = !skipFrame;
-                        if (skipFrame) { requestAnimationFrame(animateScene); return; }
-                        viewers.forEach(v => v.removeAllShapes());
+                    // DRUG ANIMATION
+                    if (tick > 180 && tick <= 330) { let p = (tick - 180) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                    else if (tick > 330 && tick <= 420) drawLigand(DRUG_TEMPLATE, target);
+                    else if (tick > 420 && tick <= 550) { let p = (tick - 420) / 130; p = Math.pow(p, 1.5); protAtoms.forEach(a => { vL.addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p }); }); drawLigand(DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p }); }
 
-                        // --- LEFT SIDE (VIEWER 0): DRUG DISCOVERY -> PHARMACOGENOMICS ---
-                        if (tick === 50) { toggleTerm(true); addLog("> init toxicity_scan --mode advanced", 'L'); }
-                        if (tick === 120) addLog("> loading Lead_Compound_X42...", 'L');
-                        if (tick === 180) addLog("> ligand_docking.start()", 'L');
-                        if (tick === 260) { addLog("[CALC] Bind Energy: -14.2 kcal/mol", 'L'); setProteinStyle(0, 'inhibited'); setSurface(0, 'inhibited'); }
-                        if (tick === 330) addLog("[CRITICAL] Ligand-induced denaturation!", 'L');
-                        if (tick === 420) { addLog("[FAILURE] Lead discarded. Resetting...", 'L'); setSurface(0, 'none'); proteinModels[0].setStyle({}, { hidden: true }); }
-                        if (tick === 550) { setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+                    // PFAS ANIMATION
+                    if (tick > 1100 && tick <= 1250) { let p = (tick - 1100) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
+                    else if (tick > 1250 && tick <= 1350) drawLigand(PFAS_TEMPLATE, target);
+                    else if (tick > 1350 && tick <= 1470) drawLigand(PFAS_TEMPLATE, target, Math.pow((tick - 1350) / 120, 2));
 
-                        if (tick === 620) addLog("> import pharmacogenomics as pgx", 'L');
-                        if (tick === 700) addLog("> patient_profile = pgx.load('PT-29')", 'L');
-                        if (tick === 880) { addLog("[RESULT] Phenotype: Poor Metabolizer", 'L'); setProteinStyle(0, 'catalyzing'); setSurface(0, 'catalyzing'); }
-                        if (tick === 1030) { addLog("[SUCCESS] Optimised regimen active", 'L'); setProteinStyle(0, 'active'); setSurface(0, 'normal'); }
+                    // GENOMIC SPHERES
+                    if (tick > 650 && tick <= 900) { let p = (tick - 650) / 250; const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z }); [0, 2.1, 4.2].forEach((a, i) => { const o = orb(a, 20 * p); vL.addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p < 0.8 ? p : (1 - p) * 5 }); }); }
 
-                        // --- RIGHT SIDE (VIEWER 1): PFAS BIOREMEDIATION -> STRUCTURAL BIOLOGY ---
-                        if (tick === 50) addLog("> system_status: monitoring node_01", 'R');
-                        if (tick === 120) addLog("[INFO] Proximity alert: 20Å", 'R');
-                        if (tick === 260) addLog("[WARNING] Active site distortion detected", 'R');
-                        if (tick === 420) addLog("[CRITICAL] SYSTEM OVERLOAD: Rebooting", 'R');
-
-                        if (tick === 620) { addLog("> environment: site_alpha_groundwater", 'R'); }
-                        if (tick === 700) addLog("[INFO] Detecting fluorinated bonds", 'R');
-                        if (tick === 780) addLog("> simulate defluorination transition", 'R');
-                        if (tick === 880) { addLog("[INFO] SN2 attack angle: 178°", 'R'); setProteinStyle(1, 'catalyzing'); setSurface(1, 'catalyzing'); }
-                        if (tick === 960) addLog("[SUCCESS] Fluorine ion release detected", 'R');
-                        if (tick === 1030) { addLog("[COMPLETE] Degradation yield: 98.4%", 'R'); setProteinStyle(1, 'active'); setSurface(1, 'normal'); }
-
-                        if (tick === 1220) addLog("> model_structure --method 'AlphaFold3'", 'R');
-                        if (tick === 1480) addLog("[INFO] pLDDT score: 94.2 (HIGH)", 'R');
-                        if (tick === 1680) addLog("[SUCCESS] Global report finalized", 'R');
-
-                        // LEFT DRUG ANIMATION (VIEWER 0)
-                        if (tick > 180 && tick <= 330) { let p = (tick - 180) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(0, DRUG_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
-                        else if (tick > 330 && tick <= 420) drawLigand(0, DRUG_TEMPLATE, target);
-                        else if (tick > 420 && tick <= 550) { let p = (tick - 420) / 130; p = Math.pow(p, 1.5); protAtomsList[0].forEach(a => { viewers[0].addSphere({ center: { x: a.x + a.vx * p * 12, y: a.y + a.vy * p * 12, z: a.z + a.vz * p * 12 }, radius: 1.2, color: '#ef4444', alpha: 1 - p }); }); drawLigand(0, DRUG_TEMPLATE, { x: target.x + (exit.x - target.x) * p, y: target.y + (exit.y - target.y) * p, z: target.z + (exit.z - target.z) * p }); }
-
-                        // RIGHT PFAS ANIMATION (VIEWER 1)
-                        if (tick > 780 && tick <= 930) { let p = (tick - 780) / 150; p = 1 - Math.pow(1 - p, 3); drawLigand(1, PFAS_TEMPLATE, { x: start.x + (target.x - start.x) * p, y: start.y + (target.y - start.y) * p, z: start.z + (target.z - start.z) * p }); }
-                        else if (tick > 930 && tick <= 1030) drawLigand(1, PFAS_TEMPLATE, target);
-                        else if (tick > 1030 && tick <= 1150) drawLigand(1, PFAS_TEMPLATE, target, Math.pow((tick - 1030) / 120, 2));
-
-                        // GENOMIC SPHERES (VIEWER 0)
-                        if (tick > 750 && tick <= 1000) { let p = (tick - 750) / 250; const orb = (angle, r) => ({ x: target.x + r * Math.cos(angle + tick * 0.04), y: target.y + r * Math.sin(angle + tick * 0.03), z: target.z }); [0, 2.1, 4.2].forEach((a, i) => { const o = orb(a, 20 * p); viewers[0].addSphere({ center: o, radius: 1.0 + i * 0.2, color: '#a78bfa', alpha: p < 0.8 ? p : (1 - p) * 5 }); }); }
-
-                        if (tick === 1750) toggleTerm(false);
-                        viewers.forEach(v => v.render()); requestAnimationFrame(animateScene);
-                    };
-                    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { isAnimating = entry.isIntersecting; if (isAnimating) requestAnimationFrame(animateScene); }); }, { threshold: 0.1 });
-                    observer.observe(document.getElementById('hero-section'));
-                });
+                    if (tick === 1750) toggleTerm(false);
+                    vL.render(); requestAnimationFrame(animateScene);
+                };
+                const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { isAnimating = entry.isIntersecting; if (isAnimating) requestAnimationFrame(animateScene); }); }, { threshold: 0.1 });
+                observer.observe(document.getElementById('hero-section'));
             });
         };
 
