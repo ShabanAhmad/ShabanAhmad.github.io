@@ -1085,7 +1085,7 @@ const initHeavyFX = () => {
                     if (termRight) { termRight.style.opacity = sh ? '1' : '0'; if (!sh) termRight.innerHTML = ''; }
                     if (!sh) { logsRight = []; queueRight = []; isTypingRight = false; } 
                 };
-                const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).reverse().join(''); };
+                const renderTerm = (t, logs) => { t.innerHTML = logs.map(l => `<div>${l}</div>`).join(''); };
                 const typeLog = () => {
                     if (queueRight.length === 0) { isTypingRight = false; return; }
                     isTypingRight = true;
