@@ -8,6 +8,7 @@
     --white: #ffffff;
     --page-v-sep-color: rgba(245, 158, 11, 0.15);
     --page-v-sep-glow: rgba(245, 158, 11, 0.75);
+    --hero-main-width: 1100px;
     --inst-font: 'Merriweather', serif;
     --transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
     --transition-fast: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
@@ -1111,18 +1112,18 @@ body.dark-mode .srch-empty {
 
 .hero {
     color: var(--white);
-    padding: 1.5rem 1rem 0.5rem 1rem;
+    padding: 2rem 4rem;
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: row; /* Horizontal layout */
     justify-content: center; /* Group everything in the centre */
     align-items: center;
-    gap: 5rem; /* Large gap for the wings */
-    max-width: 1800px; /* Wider to allow full protein visibility */
+    gap: 40px; /* Gap between the columns */
+    max-width: 100%; /* Stretch fully to viewport edges */
     margin: 0 auto;
     width: 100%;
-    min-height: 320px;
+    min-height: 350px;
     pointer-events: none;
     overflow: visible; /* Prevent any clipping */
 }
@@ -1131,30 +1132,62 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 2rem; /* Tighter gap for the main 3 columns */
+    justify-content: space-between; /* Space out photo, text, stats to fill the wider space */
+    width: 100%;
+    max-width: var(--hero-main-width);
     flex-shrink: 0;
     pointer-events: auto;
+    position: relative;
+    transition: var(--transition);
 }
 
 .hero-column-side {
     flex: 0 0 350px; /* Wider for proteins */
+    width: 350px;
     height: 350px;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center; 
     pointer-events: auto;
     overflow: visible;
+    transition: var(--transition);
 }
 
-/* Vertical Separators for Hero */
+/* Vertical Separators for Hero - Matching the container separators exactly */
 .hero-v-sep {
-    width: 1px;
-    height: 250px;
-    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent);
-    flex-shrink: 0;
+    position: absolute;
+    top: 2rem; /* offset from top of hero section */
+    bottom: 2rem; /* offset from bottom of hero section */
+    width: 2px;
     z-index: 10;
+    pointer-events: none;
+    clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+    background-size: 100% 200%;
+    animation: flowVerticalLine 8s linear infinite;
+}
+
+.hero-v-sep:nth-of-type(1) {
+    left: calc(50% - (var(--hero-main-width) / 2));
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        var(--page-v-sep-color) 25%, 
+        var(--page-v-sep-glow) 50%, 
+        var(--page-v-sep-color) 75%, 
+        transparent 100%
+    );
+}
+
+.hero-v-sep:nth-of-type(2) {
+    right: calc(50% - (var(--hero-main-width) / 2));
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        var(--page-v-sep-color) 25%, 
+        var(--page-v-sep-glow) 50%, 
+        var(--page-v-sep-color) 75%, 
+        transparent 100%
+    );
 }
 
 /* Section Content Layout and Vertical Separators for Desktop */
@@ -1210,35 +1243,33 @@ body.dark-mode .srch-empty {
 }
 
 .bg-canvas-inline {
-    position: absolute;
-    top: -20px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 450px; /* Large area for protein */
-    height: 350px;
-    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
     opacity: 0.95;
     pointer-events: none;
 }
 
 .ai-terminal-inline {
-    width: fit-content;
-    max-width: 340px;
-    min-width: 80px;
-    background: rgba(15, 23, 42, 0.6); 
-    border: none;
-    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.7); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     font-family: 'Courier New', Courier, monospace;
     color: #38bdf8;
-    font-size: 0.6rem;
-    line-height: 1.2;
-    padding: 6px 12px;
+    font-size: 0.65rem;
+    line-height: 1.35;
+    padding: 12px 16px;
     overflow: hidden;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
     white-space: nowrap;
     display: flex;
     flex-direction: column-reverse;
-    min-height: 0; 
+    box-sizing: border-box;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: var(--transition);
     opacity: 0;
 }
@@ -1250,23 +1281,22 @@ body.dark-mode .srch-empty {
 
 @media (max-width: 1550px) {
     .hero {
-        gap: 2rem;
-        max-width: 1400px;
+        gap: 30px;
+        max-width: 100%;
     }
     .hero-column-side {
         flex: 0 0 300px;
-    }
-    .bg-canvas-inline {
-        width: 350px;
+        width: 300px;
     }
 }
 
 @media (max-width: 1350px) {
-    .hero-column-side {
-        display: none;
+    .hero-column-side,
+    .hero-v-sep {
+        display: none !important;
     }
     .hero {
-        max-width: 1100px;
+        max-width: 100%;
         gap: 2rem;
     }
 }
@@ -2006,6 +2036,9 @@ body.dark-mode .srch-empty {
 }
 
 @media (min-width: 1400px) {
+    :root {
+        --hero-main-width: 1250px;
+    }
     .container,
     .hero-bridge-inner,
     .header-content {
@@ -2014,6 +2047,9 @@ body.dark-mode .srch-empty {
 }
 
 @media (min-width: 1600px) {
+    :root {
+        --hero-main-width: 1380px;
+    }
     .container,
     .hero-bridge-inner,
     .header-content {
