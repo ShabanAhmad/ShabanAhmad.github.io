@@ -6,6 +6,8 @@
     --text: #292524;
     --light-bg: #fafaf9;
     --white: #ffffff;
+    --page-v-sep-color: rgba(245, 158, 11, 0.15);
+    --page-v-sep-glow: rgba(245, 158, 11, 0.75);
     --inst-font: 'Merriweather', serif;
     --transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
     --transition-fast: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
@@ -1155,6 +1157,58 @@ body.dark-mode .srch-empty {
     z-index: 10;
 }
 
+/* Section Content Layout and Vertical Separators for Desktop */
+@keyframes flowVerticalLine {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 200%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        position: relative;
+    }
+
+    .container::before,
+    .container::after {
+        content: '';
+        position: absolute;
+        top: 2rem; /* offset from top of section */
+        bottom: 2rem; /* offset from bottom of section */
+        width: 2px;
+        z-index: 10;
+        pointer-events: none;
+        clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+        background-size: 100% 200%;
+        animation: flowVerticalLine 8s linear infinite;
+    }
+
+    .container::before {
+        left: -1px;
+        background: linear-gradient(to bottom, 
+            transparent 0%, 
+            var(--page-v-sep-color) 25%, 
+            var(--page-v-sep-glow) 50%, 
+            var(--page-v-sep-color) 75%, 
+            transparent 100%
+        );
+    }
+
+    .container::after {
+        right: -1px;
+        background: linear-gradient(to bottom, 
+            transparent 0%, 
+            var(--page-v-sep-color) 25%, 
+            var(--page-v-sep-glow) 50%, 
+            var(--page-v-sep-color) 75%, 
+            transparent 100%
+        );
+    }
+}
+
 .bg-canvas-inline {
     position: absolute;
     top: -20px; 
@@ -1672,7 +1726,7 @@ body.dark-mode .srch-empty {
 }
 
 .pub-badge {
-    color: var(--white);
+    color: var(--accent);
     font-weight: bold;
     transition: 0.2s;
 }
@@ -1949,6 +2003,22 @@ body.dark-mode .srch-empty {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+@media (min-width: 1400px) {
+    .container,
+    .hero-bridge-inner,
+    .header-content {
+        max-width: 1250px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container,
+    .hero-bridge-inner,
+    .header-content {
+        max-width: 1380px;
+    }
 }
 
 .section-title {
@@ -5681,6 +5751,8 @@ body.dark-mode {
     --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.5);
     --tooltip-bg: #ffffff;
     --tooltip-text: #1a1a1a;
+    --page-v-sep-color: rgba(245, 158, 11, 0.2);
+    --page-v-sep-glow: rgba(245, 158, 11, 0.85);
 }
 
 body.dark-mode,

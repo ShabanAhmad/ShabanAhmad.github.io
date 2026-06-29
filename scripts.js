@@ -4,9 +4,9 @@ const PROFILE_CONFIG = {
     backendUrl: "https://shaban-ahmad-github-io.vercel.app/api/gemini",
     stats: {
         publications: "100+",
-        citations: "1800+",
-        hIndex: "28",
-        peerReviews: "560+"
+        citations: "1830+",
+        hIndex: "29",
+        peerReviews: "600+"
     },
     links: {
         webOfScience: "https://www.webofscience.com/wos/author/record/ABD-4112-2021"
