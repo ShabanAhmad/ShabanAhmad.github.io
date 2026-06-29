@@ -1284,18 +1284,26 @@ const initHeavyFX = () => {
 
             time += 0.0018; // Speed reduced to 60%
 
-            // Define central content area boundaries (1100px max-width + 40px safe buffer)
-            const contentWidth = 1140;
+            // Define central content area boundaries based on screen size (max-width + safe buffer)
+            let contentWidth = 1140;
+            if (window.innerWidth >= 1600) {
+                contentWidth = 1420;
+            } else if (window.innerWidth >= 1400) {
+                contentWidth = 1290;
+            }
             const leftLimit = (w - contentWidth) * 0.5;
             const rightLimit = (w + contentWidth) * 0.5;
+
+            // Only interact with mouse if the cursor is outside the central content boundaries
+            const isMouseOutside = mouse.x !== null && mouse.y !== null && !(mouse.x >= leftLimit && mouse.x <= rightLimit);
 
             particles.forEach((p, i) => {
                 // 1. Organic Flow Field Drift (background wind)
                 p.vx += Math.sin(p.y * 0.006 + time) * 0.009 * p.depth; // Speed reduced to 60%
                 p.vy += Math.cos(p.x * 0.006 + time) * 0.009 * p.depth; // Speed reduced to 60%
 
-                // 2. Mouse gravity & vortex orbit physics
-                if (mouse.x !== null && mouse.y !== null) {
+                // 2. Mouse gravity & vortex orbit physics (only if mouse is in the side margins)
+                if (isMouseOutside) {
                     const dx = mouse.x - p.x;
                     const dy = mouse.y - p.y;
                     const dist = Math.hypot(dx, dy);
