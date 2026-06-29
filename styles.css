@@ -1112,7 +1112,7 @@ body.dark-mode .srch-empty {
 
 .hero {
     color: var(--white);
-    padding: 1.5rem 1rem 0.5rem 1rem;
+    padding: 0; /* Remove padding to align exactly with section containers */
     position: relative;
     z-index: 1;
     display: flex;
@@ -1131,15 +1131,16 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end; /* Push central content towards the right side */
+    justify-content: center; /* Center layout for balanced proportions */
     gap: 2.5rem; /* Original gap */
     width: 100%;
     max-width: var(--hero-main-width);
+    margin: 0 auto;
+    padding: 0 2rem; /* Match container padding exactly to align vertical lines */
+    box-sizing: border-box;
     flex-shrink: 0;
     pointer-events: auto;
     position: relative;
-    padding-right: 1.5rem; /* Add buffer from the right separator */
-    box-sizing: border-box;
     transition: var(--transition);
 }
 
@@ -1299,21 +1300,7 @@ body.dark-mode .srch-empty {
 }
 
 @media (max-width: 1550px) {
-    .hero {
-        max-width: 100%;
-    }
-    .hero-column-side {
-        width: 300px;
-    }
-    #hero-side-left {
-        right: calc(100% + 20px);
-    }
-    #hero-side-right {
-        left: calc(100% + 20px);
-    }
-}
-
-@media (max-width: 1350px) {
+    /* Hide side columns and separators on screens below 1550px to prevent overflow/cutoff on standard laptops */
     .hero-column-side,
     .hero-v-sep {
         display: none !important;
