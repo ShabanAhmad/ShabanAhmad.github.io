@@ -1112,14 +1112,13 @@ body.dark-mode .srch-empty {
 
 .hero {
     color: var(--white);
-    padding: 2rem 4rem;
+    padding: 1.5rem 1rem 0.5rem 1rem;
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: row; /* Horizontal layout */
     justify-content: center; /* Group everything in the centre */
     align-items: center;
-    gap: 40px; /* Gap between the columns */
     max-width: 100%; /* Stretch fully to viewport edges */
     margin: 0 auto;
     width: 100%;
@@ -1132,7 +1131,8 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* Space out photo, text, stats to fill the wider space */
+    justify-content: center; /* Original tight, centered layout */
+    gap: 2.5rem; /* Original gap */
     width: 100%;
     max-width: var(--hero-main-width);
     flex-shrink: 0;
@@ -1142,10 +1142,8 @@ body.dark-mode .srch-empty {
 }
 
 .hero-column-side {
-    flex: 0 0 350px; /* Wider for proteins */
     width: 350px;
     height: 350px;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1153,6 +1151,20 @@ body.dark-mode .srch-empty {
     pointer-events: auto;
     overflow: visible;
     transition: var(--transition);
+}
+
+#hero-side-left {
+    position: absolute;
+    right: calc(100% + 40px); /* Positioned outside left of main group */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#hero-side-right {
+    position: absolute;
+    left: calc(100% + 40px); /* Positioned outside right of main group */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Vertical Separators for Hero - Matching the container separators exactly */
@@ -1168,8 +1180,8 @@ body.dark-mode .srch-empty {
     animation: flowVerticalLine 8s linear infinite;
 }
 
-.hero-v-sep:nth-of-type(1) {
-    left: calc(50% - (var(--hero-main-width) / 2));
+#hero-sep-left {
+    left: -1px; /* Align exactly with the left boundary of main group container */
     background: linear-gradient(to bottom, 
         transparent 0%, 
         var(--page-v-sep-color) 25%, 
@@ -1179,8 +1191,8 @@ body.dark-mode .srch-empty {
     );
 }
 
-.hero-v-sep:nth-of-type(2) {
-    right: calc(50% - (var(--hero-main-width) / 2));
+#hero-sep-right {
+    right: -1px; /* Align exactly with the right boundary of main group container */
     background: linear-gradient(to bottom, 
         transparent 0%, 
         var(--page-v-sep-color) 25%, 
@@ -1245,16 +1257,19 @@ body.dark-mode .srch-empty {
 .bg-canvas-inline {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1;
     opacity: 0.95;
     pointer-events: none;
 }
 
 .ai-terminal-inline {
-    width: 100%;
+    width: fit-content;
     max-width: 100%;
-    height: 100%;
+    height: fit-content;
+    max-height: 100%;
     background: rgba(15, 23, 42, 0.7); 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -1281,12 +1296,16 @@ body.dark-mode .srch-empty {
 
 @media (max-width: 1550px) {
     .hero {
-        gap: 30px;
         max-width: 100%;
     }
     .hero-column-side {
-        flex: 0 0 300px;
         width: 300px;
+    }
+    #hero-side-left {
+        right: calc(100% + 20px);
+    }
+    #hero-side-right {
+        left: calc(100% + 20px);
     }
 }
 
@@ -1297,7 +1316,6 @@ body.dark-mode .srch-empty {
     }
     .hero {
         max-width: 100%;
-        gap: 2rem;
     }
 }
 
