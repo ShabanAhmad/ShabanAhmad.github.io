@@ -470,7 +470,7 @@ const languages = { 'en': { flag: 'gb', code: 'EN' }, 'da': { flag: 'dk', code: 
 
 /* Builds both lang dropdowns from one source — add/remove a language here, not in HTML */
 const LANGS = [{ code: 'en', flag: 'gb', title: 'English (UK)', label: 'English' }, { code: 'da', flag: 'dk', title: 'Danish (Denmark)', label: 'Dansk' }, { code: 'es', flag: 'es', title: 'Spanish (Spain)', label: 'Español' }, { code: 'fr', flag: 'fr', title: 'French (France)', label: 'Français' }, { code: 'de', flag: 'de', title: 'German (Germany)', label: 'Deutsch' }, { code: 'hi', flag: 'in', title: 'Hindi (India)', label: 'हिन्दी' }, { code: 'zh-CN', flag: 'cn', title: 'Chinese (China)', label: '中文' }, { code: 'ar', flag: 'sa', title: 'Arabic (Saudi Arabia)', label: 'العربية' }, { code: 'ur', flag: 'pk', title: 'Urdu (India/Pakistan)', label: 'اردو' }, { code: 'ru', flag: 'ru', title: 'Russian (Russia)', label: 'Русский' }, { code: 'ja', flag: 'jp', title: 'Japanese (Japan)', label: '日本語' }];
-const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" data-tip="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
+const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" onkeydown="if(event.key==='Enter'||event.key===' '){changeLanguage('${l.code}'); event.preventDefault();}" tabindex="0" role="button" data-tip="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
 
 const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
 const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
@@ -1435,6 +1435,15 @@ window.googleTranslateElementInit = () => {
     new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element');
 };
 
+/* ===== DEBOUNCE UTILITY FOR PERFORMANCE OPTIMISATION ===== */
+const debounce = (func, wait) => {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+};
+
 /* ===== ACADEMIC & RESEARCH JOURNEY FILTER ===== */
 window.filterJourney = function(type, element) {
     document.querySelectorAll('.journey-filter-btn').forEach(btn => {
@@ -1530,21 +1539,16 @@ window.addEventListener('click', () => {
     if (menu && menu.classList.contains('show')) {
         menu.classList.remove('show');
     }
+    const visionMenu = document.getElementById('vision-dropdown-menu');
+    if (visionMenu) {
+        visionMenu.style.display = 'none';
+    }
 });
 
-window.filterPublications = function() {
+const performFilterPublications = function() {
     const inp = document.getElementById('pub-search-input');
     if (!inp) return;
     const query = inp.value.trim().toLowerCase();
-    const clearBtn = document.getElementById('pub-clear-btn');
-    if (clearBtn) {
-        if (query) {
-            clearBtn.style.display = 'block';
-        } else {
-            clearBtn.style.display = 'none';
-        }
-    }
-
     const tag = window.pubSearchTag || 'all';
     const items = document.querySelectorAll('#publications .pub-item');
     let matchCount = 0;
@@ -1635,6 +1639,19 @@ window.filterPublications = function() {
     }
 };
 
+const debouncedFilterPublications = debounce(performFilterPublications, 150);
+
+window.filterPublications = function() {
+    const inp = document.getElementById('pub-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('pub-clear-btn');
+    if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+    }
+    debouncedFilterPublications();
+};
+
 /* ===== TECHNICAL SKILLS FINDER ===== */
 window.clearTechSearch = function() {
     const inp = document.getElementById('tech-search-input');
@@ -1644,19 +1661,11 @@ window.clearTechSearch = function() {
     window.filterSkills();
 };
 
-window.filterSkills = function() {
+const performFilterSkills = function() {
     const inp = document.getElementById('tech-search-input');
     if (!inp) return;
     const query = inp.value.trim().toLowerCase();
-    const clearBtn = document.getElementById('tech-clear-btn');
-    if (clearBtn) {
-        if (query) {
-            clearBtn.style.display = 'block';
-        } else {
-            clearBtn.style.display = 'none';
-        }
-    }
-
+    
     const skillCards = document.querySelectorAll('#technical .tech-card');
     const accordions = document.querySelectorAll('#technical .accordion-btn');
     let totalMatches = 0;
@@ -1721,6 +1730,19 @@ window.filterSkills = function() {
     }
 };
 
+const debouncedFilterSkills = debounce(performFilterSkills, 150);
+
+window.filterSkills = function() {
+    const inp = document.getElementById('tech-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('tech-clear-btn');
+    if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+    }
+    debouncedFilterSkills();
+};
+
 function toggleAccordionState(btn, expand) {
     if (!btn) return;
     const panel = btn.nextElementSibling;
@@ -1763,19 +1785,11 @@ window.clearVisionSearch = function() {
     window.filterVision();
 };
 
-window.filterVision = function() {
+const performFilterVision = function() {
     const inp = document.getElementById('vision-search-input');
     if (!inp) return;
     const query = inp.value.trim().toLowerCase();
-    const clearBtn = document.getElementById('vision-clear-btn');
-    if (clearBtn) {
-        if (query) {
-            clearBtn.style.display = 'block';
-        } else {
-            clearBtn.style.display = 'none';
-        }
-    }
-
+    
     const cards = document.querySelectorAll('#research-vision .tcp-focus-card, #research-vision .edu-card');
     const accordions = document.querySelectorAll('#research-vision .accordion-btn');
     let totalMatches = 0;
@@ -1857,8 +1871,22 @@ window.filterVision = function() {
     }
 };
 
+const debouncedFilterVision = debounce(performFilterVision, 150);
+
+window.filterVision = function() {
+    const inp = document.getElementById('vision-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('vision-clear-btn');
+    if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+    }
+    debouncedFilterVision();
+};
+
 /* ===== RESEARCH VISION FILTER DROPDOWN ===== */
-window.toggleVisionDropdown = function() {
+window.toggleVisionDropdown = function(e) {
+    if (e) e.stopPropagation();
     const menu = document.getElementById('vision-dropdown-menu');
     if (menu) {
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';

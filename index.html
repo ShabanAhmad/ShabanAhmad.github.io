@@ -204,7 +204,7 @@
                     <button type="button" class="control-icon" onclick="openSearchModal()" data-tip="Search" aria-label="Search"><i class="fas fa-search"></i></button>
                 </div>
                 <span class="header-sep">|</span>
-                <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" tabindex="0" role="button" aria-label="Language Selector" data-tip="Select Language">
+                <div class="lang-wrapper notranslate" onclick="toggleLangDropdown(event)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleLangDropdown(event); event.preventDefault();}" tabindex="0" role="button" aria-label="Language Selector" data-tip="Select Language">
                     <div class="lang-current-display">EN <i class="fas fa-chevron-down"></i></div>
                     <div class="custom-lang-dropdown" id="global-lang-dd">
                         <!-- lang options populated by buildLangOptions() -->
@@ -745,7 +745,7 @@
                                         </div>
                                         <div class="journey-inst-row" style="font-size:0.82rem; margin: 4px 0 2px 0;">
                                             <a href="https://www.icgeb.org/" target="_blank" rel="noopener noreferrer" class="inst-link">
-                                                <i class="fas fa-university"></i> International Centre for Genetic Eng. &amp; Biotech
+                                                <i class="fas fa-university"></i> International Centre for Genetic Engineering & Biotechnology
                                             </a>
                                         </div>
                                         <div class="journey-date-row" style="margin-top: 2px; margin-bottom: 4px;">
@@ -848,7 +848,7 @@
 
                 <!-- Vision Filter Dropdown -->
                 <div class="vision-filter-dropdown">
-                    <button class="pub-tag-btn vision-dropdown-toggle" onclick="toggleVisionDropdown()"><i class="fas fa-filter"></i> Select Part <i class="fas fa-chevron-down"></i></button>
+                    <button class="pub-tag-btn vision-dropdown-toggle" onclick="toggleVisionDropdown(event)"><i class="fas fa-filter"></i> Select Part <i class="fas fa-chevron-down"></i></button>
                     <div class="vision-dropdown-menu" id="vision-dropdown-menu">
                         <a href="javascript:void(0)" onclick="selectVisionPart('all', 'All Parts')">All Parts</a>
                         <a href="javascript:void(0)" onclick="selectVisionPart('themes', 'Themes')">Research Themes</a>
@@ -3183,7 +3183,7 @@
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
 
-    <script src="scripts.js" defer></script>
+    <script src="scripts.js?v=20260630_1520" defer></script>
     <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
