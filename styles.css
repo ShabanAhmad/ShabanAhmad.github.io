@@ -3407,15 +3407,16 @@ body.dark-mode .patent-card {
 /* Overhauled Awards Grid & Bento Cards */
 /* ======================================= */
 /* Connected Grid Timeline for Awards */
+/* Connected Grid Timeline for Awards */
 .award-box-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.2rem 1.75rem; /* vertical gap 2.2rem, horizontal gap 1.75rem */
+    gap: 2.5rem 1.75rem; /* vertical gap 2.5rem, horizontal gap 1.75rem */
     position: relative;
     padding-left: 0;
 }
 
-/* Base Arrow styling */
+/* Base Arrow styling using identical glyph rotated for consistency */
 .award-card::after {
     content: '➔';
     position: absolute;
@@ -3426,52 +3427,62 @@ body.dark-mode .patent-card {
     transition: var(--transition-fast);
 }
 
-/* 1. Large screens (3 columns): arrows point right */
+/* 1. Large screens (3 columns): snake flow going UP (from oldest at bottom-left to newest at top-left) */
 @media (min-width: 993px) {
     .award-box-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    .award-card::after {
-        content: '➔';
+    
+    /* Left arrows (◀ - rotated ➔) pointing from right to left */
+    .award-card:nth-child(6n+2)::after,
+    .award-card:nth-child(6n+3)::after {
+        left: -22px;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        right: auto;
+        bottom: auto;
+    }
+    
+    /* Right arrows (➔) pointing from left to right */
+    .award-card:nth-child(6n+4)::after,
+    .award-card:nth-child(6n+5)::after {
         right: -22px;
         top: 50%;
         transform: translateY(-50%);
         left: auto;
         bottom: auto;
     }
-    /* Hide arrow on rightmost cards of each panel */
-    #panel-top .award-card:nth-child(2)::after,
-    #panel-top .award-card:nth-child(3)::after,
-    #panel-presentations .award-card:nth-child(3n)::after,
-    #panel-fellowships .award-card:nth-child(3n)::after {
-        display: none;
-    }
-}
-
-/* 2. Medium screens (2 columns): arrows point right */
-@media (max-width: 992px) and (min-width: 601px) {
-    .award-box-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .award-card::after {
-        content: '➔';
-        right: -22px;
-        top: 50%;
-        transform: translateY(-50%);
-        left: auto;
+    
+    /* Up arrows (▲ - rotated ➔) pointing from bottom to top row */
+    .award-card:nth-child(6n+6)::after,
+    .award-card:nth-child(6n+1)::after {
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-90deg);
+        right: auto;
         bottom: auto;
     }
-    /* Hide arrow on rightmost cards of each panel for 2 columns */
-    #panel-top .award-card:nth-child(1)::after,
-    #panel-top .award-card:nth-child(2)::after,
-    #panel-presentations .award-card:nth-child(2n)::after,
-    #panel-fellowships .award-card:nth-child(2n)::after {
-        display: none;
+    
+    /* Fellowship card 4 grid position and arrow direction on desktop (aligns in col 3 row 2, points UP to card 3) */
+    #panel-fellowships .award-card:nth-child(4) {
+        grid-column: 3;
+    }
+    #panel-fellowships .award-card:nth-child(4)::after {
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-90deg);
+        right: auto;
+        bottom: auto;
+    }
+    
+    /* Always hide the arrow on the first child of each panel (the newest/end box of the timeline) */
+    .awards-panel .award-card:first-child::after {
+        display: none !important;
     }
 }
 
-/* 3. Small screens (1 column): arrows point down */
-@media (max-width: 600px) {
+/* 2. Medium & Small screens (1 column): vertical flow going UP (from bottom/oldest to top/newest) */
+@media (max-width: 992px) {
     .award-box-grid {
         grid-template-columns: 1fr;
         gap: 2.2rem;
@@ -3483,16 +3494,16 @@ body.dark-mode .patent-card {
         padding-top: 2.2rem !important;
     }
     .award-card::after {
-        content: '▼';
-        bottom: -22px;
+        content: '➔';
+        top: -24px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) rotate(-90deg);
         right: auto;
-        top: auto;
+        bottom: auto;
     }
-    /* Hide arrow on the last card of each panel */
-    .awards-panel .award-card:last-child::after {
-        display: none;
+    /* Hide the arrow on the first child of each panel (the newest/end box of the timeline) */
+    .awards-panel .award-card:first-child::after {
+        display: none !important;
     }
 }
 
@@ -3509,7 +3520,7 @@ body.dark-mode .patent-card {
     gap: 20px;
     text-align: left;
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Bento grid wide layout for highlights */
