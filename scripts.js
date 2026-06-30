@@ -1941,3 +1941,26 @@ document.addEventListener('click', function(e) {
         if (menu) menu.style.display = 'none';
     }
 });
+
+/* Switch Awards Tab */
+window.switchAwardsTab = function(tabId) {
+    document.querySelectorAll('.awards-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    const panels = document.querySelectorAll('.awards-panel');
+    panels.forEach(panel => {
+        panel.classList.remove('active');
+        panel.style.display = 'none';
+    });
+
+    const activePanel = document.getElementById(`panel-${tabId}`);
+    if (activePanel) {
+        activePanel.style.display = 'block';
+        // Force layout reflow
+        activePanel.offsetHeight;
+        activePanel.classList.add('active');
+    }
+};

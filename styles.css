@@ -1618,6 +1618,20 @@ body.dark-mode .srch-empty {
     border-color: var(--accent) !important;
 }
 
+.hero-link-hover {
+    color: var(--white) !important;
+    text-decoration: none !important;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.hero-link-hover:hover {
+    color: var(--accent) !important;
+    border-bottom-color: var(--accent) !important;
+    text-decoration: none !important;
+}
+
 .hero-stats {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -2747,8 +2761,7 @@ body.dark-mode h3:not([class]) {
     box-shadow: 0 0 10px rgba(232, 62, 140, 0.5);
 }
 
-.referee-grid,
-.award-box-grid {
+.referee-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
@@ -3187,21 +3200,323 @@ body.dark-mode h3:not([class]) {
 }
 
 /* Accolades & IPR */
+/* ===== OVERHAULED ACCOLADES & IPR STYLE SYSTEM ===== */
+
+/* Patent Dashboard Grid Layout */
+/* Patent Dashboard Grid Layout */
+.patent-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .patent-dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Patent Card Compact Styles */
+.patent-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    min-height: 170px;
+}
+
+/* Different Outlines for Granted and Pipeline Patent Cards */
+.patent-card-granted {
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+.patent-card-pipeline {
+    border-color: rgba(56, 189, 248, 0.25);
+}
+
+.patent-card-granted:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: #10B981;
+}
+
+.patent-card-pipeline:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: #38bdf8;
+}
+
+.patent-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.patent-status-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.patent-status-badge.status-granted {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.patent-status-badge.status-granted::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent);
+    transform: skewX(-20deg);
+    animation: metallicShimmer 3s infinite linear;
+}
+
+.patent-status-badge.status-pipeline {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.patent-territory {
+    font-size: 0.72rem;
+    color: var(--text);
+    opacity: 0.8;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.patent-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+}
+
+.patent-desc {
+    font-size: 0.85rem;
+    color: var(--text);
+    opacity: 0.85;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+}
+
+.patent-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--card-border);
+}
+
+.patent-id {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: var(--text);
+    opacity: 0.65;
+}
+
+.patent-link {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    background: transparent;
+    transition: var(--transition-fast);
+}
+
+/* Card Hover Highlights for Patents */
+.patent-card-granted .patent-link {
+    color: #10B981;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.patent-card-granted:hover .patent-link {
+    color: #ffffff !important;
+    background: #10B981 !important;
+    border-color: #10B981 !important;
+    text-decoration: none !important;
+}
+
+.patent-card-granted .patent-link:hover {
+    background: #059669 !important;
+    border-color: #059669 !important;
+}
+
+.patent-applications-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    background: transparent;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.patent-card-pipeline:hover .patent-applications-count {
+    background: #38bdf8 !important;
+    color: #ffffff !important;
+    border-color: #38bdf8 !important;
+}
+
+.patent-card-pipeline:hover .patent-applications-count span {
+    color: #ffffff !important;
+}
+
+body.dark-mode .patent-card {
+    background-color: var(--white);
+    color: var(--text);
+    border-color: var(--card-border);
+}
+
+/* ======================================= */
+/* Overhauled Awards Grid & Bento Cards */
+/* ======================================= */
+/* Connected Grid Timeline for Awards */
+.award-box-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem 1.75rem; /* vertical gap 2.2rem, horizontal gap 1.75rem */
+    position: relative;
+    padding-left: 0;
+}
+
+/* Base Arrow styling */
+.award-card::after {
+    content: '➔';
+    position: absolute;
+    color: var(--accent);
+    font-size: 14px;
+    z-index: 5;
+    pointer-events: none;
+    transition: var(--transition-fast);
+}
+
+/* 1. Large screens (3 columns): arrows point right */
+@media (min-width: 993px) {
+    .award-box-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .award-card::after {
+        content: '➔';
+        right: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: auto;
+        bottom: auto;
+    }
+    /* Hide arrow on rightmost cards of each panel */
+    #panel-top .award-card:nth-child(2)::after,
+    #panel-top .award-card:nth-child(3)::after,
+    #panel-presentations .award-card:nth-child(3n)::after,
+    #panel-fellowships .award-card:nth-child(3n)::after {
+        display: none;
+    }
+}
+
+/* 2. Medium screens (2 columns): arrows point right */
+@media (max-width: 992px) and (min-width: 601px) {
+    .award-box-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .award-card::after {
+        content: '➔';
+        right: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: auto;
+        bottom: auto;
+    }
+    /* Hide arrow on rightmost cards of each panel for 2 columns */
+    #panel-top .award-card:nth-child(1)::after,
+    #panel-top .award-card:nth-child(2)::after,
+    #panel-presentations .award-card:nth-child(2n)::after,
+    #panel-fellowships .award-card:nth-child(2n)::after {
+        display: none;
+    }
+}
+
+/* 3. Small screens (1 column): arrows point down */
+@media (max-width: 600px) {
+    .award-box-grid {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+    }
+    .award-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-top: 2.2rem !important;
+    }
+    .award-card::after {
+        content: '▼';
+        bottom: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        top: auto;
+    }
+    /* Hide arrow on the last card of each panel */
+    .awards-panel .award-card:last-child::after {
+        display: none;
+    }
+}
+
 .award-card {
     background: var(--card-bg);
-    padding: 1.2rem;
-    border-radius: 0 25px 0 25px;
     border: 1px solid var(--card-border);
-    border-left: 5px solid var(--award-color, #ccc);
-    box-shadow: var(--shadow-sm);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
     transition: var(--transition);
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
     gap: 20px;
     text-align: left;
-    position: relative;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+/* Bento grid wide layout for highlights */
+@media (min-width: 900px) {
+    .award-card.bento-wide {
+        grid-column: span 2;
+    }
 }
 
 .award-card:hover {
@@ -3210,129 +3525,86 @@ body.dark-mode h3:not([class]) {
     border-color: var(--award-color) !important;
 }
 
-.award-card:hover .award-badge-icon {
-    transform: scale(1.2) rotate(10deg);
-}
-
-.award-card::after {
-    content: attr(data-badge);
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-    width: 24px;
-    height: 24px;
-    background: var(--white);
-    border: 2px solid var(--award-color, #ccc);
+.award-icon-box {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    background: rgba(var(--award-color-rgb, 108, 117, 125), 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--award-color, #555);
-    z-index: 10;
+    flex-shrink: 0;
     transition: var(--transition);
 }
 
-.award-card:hover::after {
+.award-card:hover .award-icon-box {
     background: var(--award-color);
-    border-color: var(--award-color);
-    color: var(--white);
+    box-shadow: 0 0 15px rgba(var(--award-color-rgb, 108, 117, 125), 0.4);
 }
 
 .award-badge-icon {
-    font-size: 2.2rem;
-    color: var(--award-color, #666);
+    font-size: 1.8rem;
+    color: var(--award-color);
     transition: var(--transition);
-    flex-shrink: 0;
-    margin-top: 10px;
 }
 
-.award-card:nth-child(10n+1) { --award-color: #e63946; --award-color-dark: #b02a2a; }
-.award-card:nth-child(10n+2) { --award-color: #2a9d8f; --award-color-dark: #1e7166; }
-.award-card:nth-child(10n+3) { --award-color: #457b9d; --award-color-dark: #2d556d; }
-.award-card:nth-child(10n+4) { --award-color: #f4a261; --award-color-dark: #c4824e; }
-.award-card:nth-child(10n+5) { --award-color: #9d4edd; --award-color-dark: #7637a8; }
-.award-card:nth-child(10n+6) { --award-color: #e83e8c; --award-color-dark: #ad2462; }
-.award-card:nth-child(10n+7) { --award-color: #4caf50; --award-color-dark: #1e7e34; }
-.award-card:nth-child(10n+8) { --award-color: #ffc107; --award-color-dark: #d39e00; }
-.award-card:nth-child(10n+9) { --award-color: #6610f2; --award-color-dark: #4709aa; }
-.award-card:nth-child(10n+10) { --award-color: #17a2b8; --award-color-dark: #117a8b; }
+.award-card:hover .award-badge-icon {
+    color: var(--white);
+    transform: scale(1.15) rotate(12deg);
+}
+
+/* Absolute Year Tag */
+.award-year-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(var(--award-color-rgb, 108, 117, 125), 0.08);
+    border: 1px solid rgba(var(--award-color-rgb, 108, 117, 125), 0.25);
+    color: var(--award-color);
+    transition: var(--transition-fast);
+}
+
+.award-card:hover .award-year-tag {
+    background: var(--award-color);
+    color: var(--white);
+    border-color: var(--award-color);
+}
 
 .award-content-wrapper {
     flex: 1;
-    padding-right: 0px;
+    padding-right: 45px; /* Leave space for absolute year tag */
 }
 
 .award-top {
     font-weight: 700;
     color: var(--primary);
-    font-size: 1.05rem;
-    margin-bottom: 5px;
-    line-height: 1.2;
-    transition: color 0.4s ease;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    line-height: 1.3;
 }
 
 .award-bottom {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.3;
-    transition: color 0.4s ease;
+    font-size: 0.88rem;
+    color: var(--text);
+    opacity: 0.85;
+    line-height: 1.4;
 }
 
-.patent-box {
-    background: var(--white);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 20px 5px 20px 5px;
-    border: 1px solid #ccc;
-    border-right: 5px solid #ccc;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: all 0.4s ease;
-}
-
-.patent-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.patent-box:hover .patent-icon {
-    transform: scale(1.2) rotate(-15deg);
-}
-
-.patent-icon {
-    font-size: 3rem;
-    transition: all 0.4s ease;
-}
-
-.patent-box:nth-child(odd) {
-    border-color: rgba(16, 185, 129, 0.3);
-    border-right-color: #10B981;
-}
-
-.patent-box:nth-child(odd) .patent-icon {
-    color: #10B981;
-}
-
-.patent-box:nth-child(odd):hover {
-    border-color: #10B981 !important;
-}
-
-.patent-box:nth-child(even) {
-    border-color: rgba(6, 78, 59, 0.25);
-    border-right-color: var(--accent);
-}
-
-.patent-box:nth-child(even) .patent-icon {
-    color: var(--accent);
-}
-
-.patent-box:nth-child(even):hover {
-    border-color: var(--accent) !important;
-}
+/* Custom Dynamic Award Themes (using inline variables or classes) */
+.award-card:nth-child(10n+1) { --award-color: #e63946; --award-color-rgb: 230, 57, 70; }
+.award-card:nth-child(10n+2) { --award-color: #2a9d8f; --award-color-rgb: 42, 157, 143; }
+.award-card:nth-child(10n+3) { --award-color: #457b9d; --award-color-rgb: 69, 123, 157; }
+.award-card:nth-child(10n+4) { --award-color: #f4a261; --award-color-rgb: 244, 162, 97; }
+.award-card:nth-child(10n+5) { --award-color: #9d4edd; --award-color-rgb: 157, 78, 221; }
+.award-card:nth-child(10n+6) { --award-color: #e83e8c; --award-color-rgb: 232, 62, 140; }
+.award-card:nth-child(10n+7) { --award-color: #4caf50; --award-color-rgb: 76, 175, 80; }
+.award-card:nth-child(10n+8) { --award-color: #ffc107; --award-color-rgb: 255, 193, 7; }
+.award-card:nth-child(10n+9) { --award-color: #6610f2; --award-color-rgb: 102, 16, 242; }
+.award-card:nth-child(10n+10) { --award-color: #17a2b8; --award-color-rgb: 23, 162, 184; }
 
 .grant-badge {
     background-color: #f0fdf4;
@@ -8562,9 +8834,9 @@ body.dark-mode .theme-toggle {
 }
 
 .journey-filter-btn.active {
-    background: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
 }
 
 .journey-timeline {
@@ -8584,6 +8856,55 @@ body.dark-mode .theme-toggle {
     width: 4px;
     background: linear-gradient(to bottom, var(--accent) 0%, var(--primary) 50%, var(--accent) 100%);
     border-radius: 4px;
+}
+
+/* Static arrowhead at the top of the trajectory timeline line */
+.journey-timeline-arrow-top {
+    position: absolute;
+    right: 17px;
+    top: 0px;
+    transform: translateX(50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid var(--accent);
+    z-index: 4;
+}
+
+/* Animated Upward-Flowing Arrow on Career Timeline Line */
+.journey-timeline::after {
+    content: '▲';
+    position: absolute;
+    right: 17px;
+    transform: translateX(50%);
+    font-size: 11px;
+    color: #ef4444;
+    z-index: 3;
+    text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+    animation: flowUpwardTrajectory 6s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes flowUpwardTrajectory {
+    0% {
+        bottom: 10px;
+        opacity: 0;
+        transform: translateX(50%) scale(0.8);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(50%) scale(1.1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(50%) scale(1.1);
+    }
+    100% {
+        bottom: calc(100% - 20px);
+        opacity: 0;
+        transform: translateX(50%) scale(0.8);
+    }
 }
 
 .journey-node {
@@ -9612,5 +9933,89 @@ body.dark-mode .vision-dropdown-menu a:hover {
 /* Align Career Trajectory section header with timeline line */
 .about-right .section-header-flex {
     margin-left: 0.75rem;
+}
+
+/* ===== TABBED PORTFOLIO SHOWCASE FOR PATENTS & AWARDS ===== */
+.awards-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.awards-tab-btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.awards-tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.awards-tab-btn.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.awards-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.awards-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.dark-mode .awards-tab-btn {
+    background: var(--white);
+    color: var(--text);
+    border-color: var(--card-border);
+}
+
+body.dark-mode .awards-tab-btn.active {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Award card year tag micro-interaction */
+.award-year-tag i {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.award-card:hover .award-year-tag i {
+    transform: translateY(-2px) scale(1.15);
+}
+
+/* Patent Highlight Number Badge */
+.patent-highlight-num {
+    color: #38bdf8;
+    font-weight: 800;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    margin-right: 4px;
+    display: inline-block;
 }
 
