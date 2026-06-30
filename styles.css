@@ -6,8 +6,8 @@
     --text: #292524;
     --light-bg: #fafaf9;
     --white: #ffffff;
-    --page-v-sep-color: rgba(6, 78, 59, 0.08);
-    --page-v-sep-glow: rgba(6, 78, 59, 0.3);
+    --page-v-sep-color: rgba(245, 158, 11, 0.08);
+    --page-v-sep-glow: rgba(245, 158, 11, 0.35);
     --hero-main-width: 1100px;
     --inst-font: 'Merriweather', serif;
     --transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
@@ -1226,12 +1226,11 @@ body.dark-mode .srch-empty {
     .container::after {
         content: '';
         position: absolute;
-        top: 0; /* start from headings */
-        bottom: 0; /* end at section end */
+        top: 1.5rem; /* start from headings */
+        bottom: 5.5rem; /* end at section content, before separator */
         width: 2px;
         z-index: 10;
         pointer-events: none;
-        clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
         background-size: 100% 200%;
         animation: flowVerticalLine 8s linear infinite;
     }
@@ -1239,22 +1238,18 @@ body.dark-mode .srch-empty {
     .container::before {
         left: -1px;
         background: linear-gradient(to bottom, 
-            transparent 0%, 
-            var(--page-v-sep-color) 25%, 
+            var(--page-v-sep-color) 0%, 
             var(--page-v-sep-glow) 50%, 
-            var(--page-v-sep-color) 75%, 
-            transparent 100%
+            var(--page-v-sep-color) 100%
         );
     }
 
     .container::after {
         right: -1px;
         background: linear-gradient(to bottom, 
-            transparent 0%, 
-            var(--page-v-sep-color) 25%, 
+            var(--page-v-sep-color) 0%, 
             var(--page-v-sep-glow) 50%, 
-            var(--page-v-sep-color) 75%, 
-            transparent 100%
+            var(--page-v-sep-color) 100%
         );
     }
 }
@@ -5785,8 +5780,8 @@ body.dark-mode {
     --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.5);
     --tooltip-bg: #ffffff;
     --tooltip-text: #1a1a1a;
-    --page-v-sep-color: rgba(56, 189, 248, 0.1);
-    --page-v-sep-glow: rgba(56, 189, 248, 0.4);
+    --page-v-sep-color: rgba(245, 158, 11, 0.1);
+    --page-v-sep-glow: rgba(245, 158, 11, 0.45);
 }
 
 body.dark-mode,
