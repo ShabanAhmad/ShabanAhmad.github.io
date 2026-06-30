@@ -238,8 +238,7 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
         { id: 'research-vision', label: 'Research Vision', icon: 'fas fa-microscope', sels: ['#research-vision', '#roadmap-funding', '#lab-model'] },
         { id: 'experience', label: 'Research Experience', icon: 'fas fa-flask', sels: ['#profile-experience'] },
         { id: 'publications', label: 'Publications', icon: 'fas fa-book-open', sels: ['#publications'] },
-        { id: 'awards', label: 'Awards', icon: 'fas fa-trophy', sels: ['#awards'] },
-        { id: 'patents', label: 'Patents', icon: 'fas fa-certificate', sels: ['#patents'] },
+        { id: 'awards', label: 'Accolades', icon: 'fas fa-trophy', sels: ['#awards', '#patents'] },
         { id: 'technical', label: 'Skills & Tools', icon: 'fas fa-tools', sels: ['#technical'] },
         { id: 'professional', label: 'Professional Activities', icon: 'fas fa-briefcase', sels: ['#professional', '#conferences'] },
         { id: 'referees', label: 'Referees', icon: 'fas fa-users', sels: ['#referees'] },
@@ -776,26 +775,30 @@ function togglePubView() {
     var cards = document.getElementById('contrib-pub-cards');
     var list = document.getElementById('contrib-pub-list');
     var btn = document.getElementById('pub-view-btn');
-    var icon = btn.querySelector('.btn-icon i');
+    if (!btn) return;
+    var icon = btn.querySelector('i') || btn;
     var text = btn.querySelector('.btn-text');
     var mqVisible = mq && mq.style.display !== 'none';
     if (mqVisible) {                                  // Marquee → Grid
         if (mq) mq.style.display = 'none';
-        cards.style.display = 'grid';
-        list.style.display = 'none';
+        if (cards) cards.style.display = 'grid';
+        if (list) list.style.display = 'none';
         icon.className = 'fas fa-list';
-        text.textContent = 'View as List';
-    } else if (cards.style.display === 'grid') {     // Grid → List
-        cards.style.display = 'none';
-        list.style.display = 'block';
+        if (text) text.textContent = 'View as List';
+        btn.setAttribute('aria-label', 'View as List');
+    } else if (cards && cards.style.display === 'grid') {     // Grid → List
+        if (cards) cards.style.display = 'none';
+        if (list) list.style.display = 'block';
         icon.className = 'fas fa-film';
-        text.textContent = 'View as Marquee';
+        if (text) text.textContent = 'View as Marquee';
+        btn.setAttribute('aria-label', 'View as Marquee');
     } else {                                          // List → Marquee
         if (mq) mq.style.display = '';
-        cards.style.display = 'none';
-        list.style.display = 'none';
+        if (cards) cards.style.display = 'none';
+        if (list) list.style.display = 'none';
         icon.className = 'fas fa-th-large';
-        text.textContent = 'View as Grid';
+        if (text) text.textContent = 'View as Grid';
+        btn.setAttribute('aria-label', 'View as Grid');
     }
 }
 
@@ -1431,3 +1434,482 @@ if (document.readyState === 'loading') {
 window.googleTranslateElementInit = () => {
     new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,da,es,fr,de,hi,zh-CN,ar,ur,ru,ja', autoDisplay: false }, 'google_translate_element');
 };
+
+/* ===== ACADEMIC & RESEARCH JOURNEY FILTER ===== */
+window.filterJourney = function(type, element) {
+    document.querySelectorAll('.journey-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    if (element) {
+        element.classList.add('active');
+    }
+    
+    const nodes = document.querySelectorAll('.journey-node');
+    nodes.forEach(node => {
+        if (type === 'all') {
+            node.style.display = 'block';
+            setTimeout(() => {
+                node.style.opacity = '1';
+                node.style.transform = 'translateY(0) scale(1)';
+            }, 50);
+        } else {
+            const types = node.getAttribute('data-types') || '';
+            const nodeTypes = types.split(' ');
+            if (nodeTypes.includes(type)) {
+                node.style.display = 'block';
+                setTimeout(() => {
+                    node.style.opacity = '1';
+                    node.style.transform = 'translateY(0) scale(1)';
+                }, 50);
+            } else {
+                node.style.opacity = '0';
+                node.style.transform = 'translateY(10px) scale(0.98)';
+                setTimeout(() => {
+                    node.style.display = 'none';
+                }, 300);
+            }
+        }
+    });
+};
+
+/* ===== PUBLICATIONS SEARCH & FILTER HUB ===== */
+window.pubSearchTag = 'all';
+
+window.filterPubByTag = function(tag, btn) {
+    window.pubSearchTag = tag;
+    document.querySelectorAll('.pub-tag-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    
+    const toggleBtn = document.querySelector('.pub-dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.innerHTML = `More <i class="fas fa-chevron-down"></i>`;
+    }
+    
+    window.filterPublications();
+};
+
+window.clearPubSearch = function() {
+    const inp = document.getElementById('pub-search-input');
+    if (inp) inp.value = '';
+    const clearBtn = document.getElementById('pub-clear-btn');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.pubSearchTag = 'all';
+    document.querySelectorAll('.pub-tag-btn').forEach(b => b.classList.remove('active'));
+    const allBtn = document.querySelector(".pub-tag-btn[onclick*=\"'all'\"]");
+    if (allBtn) allBtn.classList.add('active');
+    
+    const toggleBtn = document.querySelector('.pub-dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.innerHTML = `More <i class="fas fa-chevron-down"></i>`;
+    }
+    
+    window.filterPublications();
+};
+
+window.togglePubDropdown = function() {
+    const menu = document.getElementById('pub-dropdown-menu');
+    if (menu) menu.classList.toggle('show');
+    if (window.event) window.event.stopPropagation();
+};
+
+window.selectDropdownTag = function(tag, label, element) {
+    window.pubSearchTag = tag;
+    document.querySelectorAll('.pub-tag-btn').forEach(btn => btn.classList.remove('active'));
+    const toggleBtn = document.querySelector('.pub-dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.classList.add('active');
+        toggleBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+    }
+    const menu = document.getElementById('pub-dropdown-menu');
+    if (menu) menu.classList.remove('show');
+    window.filterPublications();
+};
+
+window.addEventListener('click', () => {
+    const menu = document.getElementById('pub-dropdown-menu');
+    if (menu && menu.classList.contains('show')) {
+        menu.classList.remove('show');
+    }
+});
+
+window.filterPublications = function() {
+    const inp = document.getElementById('pub-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('pub-clear-btn');
+    if (clearBtn) {
+        if (query) {
+            clearBtn.style.display = 'block';
+        } else {
+            clearBtn.style.display = 'none';
+        }
+    }
+
+    const tag = window.pubSearchTag || 'all';
+    const items = document.querySelectorAll('#publications .pub-item');
+    let matchCount = 0;
+    
+    const pipelineBtn = document.getElementById('pubs-pipeline');
+    const journalBtn = document.getElementById('pubs-journal');
+    let pipelineMatches = 0;
+    let journalMatches = 0;
+
+    const categoryKeywords = {
+        'ai-ml': ['ai', 'machine learning', 'deep learning', 'cnn', 'lstm', 'predictive model', 'xgboost', 'transformers', 'drlungker', 'deepentxai', 'lungxai', 'in-silico'],
+        'drug-onc': ['drug', 'inhibitor', 'cancer', 'cervical', 'lung cancer', 'breast cancer', 'tumor', 'tumour', 'anti-lung', 'therapy', 'therapeutic', 'repurposing', 'docking', 'ligand', 'potency'],
+        'molecular-sim': ['molecular dynamics', 'simulation', 'desmond', 'gromacs', 'namd', 'amber', 'free energy', 'mm-gbsa', 'mm-pbsa', 'mm/pbsa', 'mm/gbsa', 'dft', 'density functional theory', 'watermap', 'trajectory', 'conformation'],
+        'genomics-sys': ['genomic', 'genome', 'sequencing', 'wgs', 'wes', 'variant', 'pathogenicity', 'phylogenomic', 'evolutionary', 'blast', 'fasta', 'ralstonia', 'solanacearum', 'chloroplast', 'vigna umbellata', 'dna'],
+        'immunology': ['sars-cov-2', 'vaccine', 'epitope', 'immunoinformatics', 'hla', 'hla-a', 'peptide', 'inflammation', 'cytokine', 'immune', 'docking'],
+        'sust-biotech': ['pfas', 'enzyme', 'homology', 'bioremediation', 'sustainable', 'biocatalysis', 'curcumin', 'coniferin', 'plant', 'herb', 'botanical'],
+        'natural-prod': ['natural product', 'botanical', 'fungus', 'curcumin', 'coniferin', 'quercetin', 'plant', 'herb', 'essential oil', 'punicalagin', 'traditional chinese medicine']
+    };
+
+    items.forEach(item => {
+        if (!item.hasAttribute('data-orig-html')) {
+            item.setAttribute('data-orig-html', item.innerHTML);
+        }
+        
+        const origHtml = item.getAttribute('data-orig-html');
+        const text = item.textContent.toLowerCase();
+        
+        let matchesQuery = true;
+        if (query) {
+            matchesQuery = text.includes(query);
+        }
+
+        let matchesTag = true;
+        if (tag !== 'all') {
+            const keywords = categoryKeywords[tag] || [];
+            matchesTag = keywords.some(kw => text.includes(kw));
+        }
+
+        const isMatch = matchesQuery && matchesTag;
+
+        if (isMatch) {
+            item.style.display = 'list-item';
+            matchCount++;
+            
+            if (tag !== 'all') {
+                item.classList.add('pub-matched');
+            } else {
+                item.classList.remove('pub-matched');
+            }
+            
+            const panel = item.closest('.panel');
+            if (panel && panel.previousElementSibling === pipelineBtn) {
+                pipelineMatches++;
+            } else if (panel) {
+                journalMatches++;
+            }
+
+            if (query) {
+                const strongTag = item.querySelector('strong');
+                if (strongTag) {
+                    const titleText = strongTag.textContent;
+                    const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+                    strongTag.innerHTML = titleText.replace(regex, '<mark class="pub-highlight">$1</mark>');
+                }
+            } else {
+                item.innerHTML = origHtml;
+            }
+        } else {
+            item.style.display = 'none';
+            item.innerHTML = origHtml;
+            item.classList.remove('pub-matched');
+        }
+    });
+
+    const statusText = document.getElementById('pub-status-text');
+    if (statusText) {
+        if (query || tag !== 'all') {
+            statusText.style.display = 'block';
+            statusText.textContent = `Found ${matchCount} matching publication${matchCount === 1 ? '' : 's'}.`;
+            
+            toggleAccordionState(pipelineBtn, pipelineMatches > 0);
+            toggleAccordionState(journalBtn, journalMatches > 0);
+        } else {
+            statusText.style.display = 'none';
+            toggleAccordionState(pipelineBtn, false);
+            toggleAccordionState(journalBtn, false);
+        }
+    }
+};
+
+/* ===== TECHNICAL SKILLS FINDER ===== */
+window.clearTechSearch = function() {
+    const inp = document.getElementById('tech-search-input');
+    if (inp) inp.value = '';
+    const clearBtn = document.getElementById('tech-clear-btn');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.filterSkills();
+};
+
+window.filterSkills = function() {
+    const inp = document.getElementById('tech-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('tech-clear-btn');
+    if (clearBtn) {
+        if (query) {
+            clearBtn.style.display = 'block';
+        } else {
+            clearBtn.style.display = 'none';
+        }
+    }
+
+    const skillCards = document.querySelectorAll('#technical .tech-card');
+    const accordions = document.querySelectorAll('#technical .accordion-btn');
+    let totalMatches = 0;
+
+    accordions.forEach(btn => {
+        const panel = btn.nextElementSibling;
+        if (!panel) return;
+        const cardsInPanel = panel.querySelectorAll('.tech-card');
+        let panelMatches = 0;
+
+        cardsInPanel.forEach(card => {
+            const listItems = card.querySelectorAll('li');
+            let cardMatches = 0;
+
+            listItems.forEach(li => {
+                if (!li.hasAttribute('data-orig-text')) {
+                    li.setAttribute('data-orig-text', li.textContent);
+                }
+                const origText = li.getAttribute('data-orig-text');
+                const text = origText.toLowerCase();
+
+                if (query) {
+                    if (text.includes(query)) {
+                        li.classList.remove('tech-dimmed');
+                        const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+                        li.innerHTML = origText.replace(regex, '<mark class="tech-highlight">$1</mark>');
+                        cardMatches++;
+                        panelMatches++;
+                        totalMatches++;
+                    } else {
+                        li.classList.add('tech-dimmed');
+                        li.innerHTML = origText;
+                    }
+                } else {
+                    li.classList.remove('tech-dimmed');
+                    li.innerHTML = origText;
+                }
+            });
+
+            if (query && cardMatches === 0) {
+                card.classList.add('tech-dimmed');
+            } else {
+                card.classList.remove('tech-dimmed');
+            }
+        });
+
+        if (query) {
+            toggleAccordionState(btn, panelMatches > 0);
+        } else {
+            toggleAccordionState(btn, false);
+        }
+    });
+
+    const statusText = document.getElementById('tech-status-text');
+    if (statusText) {
+        if (query) {
+            statusText.style.display = 'block';
+            statusText.textContent = `Found ${totalMatches} matching skill${totalMatches === 1 ? '' : 's'}.`;
+        } else {
+            statusText.style.display = 'none';
+        }
+    }
+};
+
+function toggleAccordionState(btn, expand) {
+    if (!btn) return;
+    const panel = btn.nextElementSibling;
+    if (!panel) return;
+    if (expand) {
+        btn.classList.add('active');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+    } else {
+        btn.classList.remove('active');
+        panel.style.maxHeight = null;
+    }
+}
+
+/* ===== ACADEMIC VISION AI SUMMARY ===== */
+window.summariseVision = () => {
+    const visionText = Array.from(document.querySelectorAll('.tcp-vision-copy p')).map(el => el.innerText).join(' ');
+    triggerAIFeature(
+        'summarise-vision-btn',
+        'vision-summary',
+        '✨',
+        'AI Summary',
+        'Summarising...',
+        `Summarise this academic vision and strategy for establishing the Translational Computational Pharmacology (TCP) group in 3 concise bullet points. Use HTML format, with <strong> for emphasis. Vision: ${visionText}`,
+        (res) => {
+            const rb = document.getElementById('vision-summary');
+            if (rb) {
+                rb.style.display = 'block';
+                rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>✨ AI Summary of Research Vision:</strong><br><br><ul>${res}</ul>`;
+            }
+        }
+    );
+};
+
+/* ===== ACADEMIC VISION SEARCH FINDER ===== */
+window.clearVisionSearch = function() {
+    const inp = document.getElementById('vision-search-input');
+    if (inp) inp.value = '';
+    const clearBtn = document.getElementById('vision-clear-btn');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.filterVision();
+};
+
+window.filterVision = function() {
+    const inp = document.getElementById('vision-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('vision-clear-btn');
+    if (clearBtn) {
+        if (query) {
+            clearBtn.style.display = 'block';
+        } else {
+            clearBtn.style.display = 'none';
+        }
+    }
+
+    const cards = document.querySelectorAll('#research-vision .tcp-focus-card, #research-vision .edu-card');
+    const accordions = document.querySelectorAll('#research-vision .accordion-btn');
+    let totalMatches = 0;
+
+    accordions.forEach(btn => {
+        const panel = btn.nextElementSibling;
+        if (!panel) return;
+        const cardsInPanel = panel.querySelectorAll('.tcp-focus-card, .edu-card');
+        let panelMatches = 0;
+
+        cardsInPanel.forEach(card => {
+            const listItems = card.querySelectorAll('li');
+            const cardTitle = card.querySelector('.tfc-title, h4');
+            let cardMatches = 0;
+
+            if (cardTitle) {
+                if (!cardTitle.hasAttribute('data-orig-text')) {
+                    cardTitle.setAttribute('data-orig-text', cardTitle.textContent);
+                }
+                const origTitleText = cardTitle.getAttribute('data-orig-text');
+                if (query && origTitleText.toLowerCase().includes(query)) {
+                    cardMatches++;
+                    panelMatches++;
+                    totalMatches++;
+                    const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+                    cardTitle.innerHTML = origTitleText.replace(regex, '<mark class="vision-highlight">$1</mark>');
+                } else {
+                    cardTitle.innerHTML = origTitleText;
+                }
+            }
+
+            listItems.forEach(li => {
+                if (!li.hasAttribute('data-orig-text')) {
+                    li.setAttribute('data-orig-text', li.textContent);
+                }
+                const origText = li.getAttribute('data-orig-text');
+                const text = origText.toLowerCase();
+
+                if (query) {
+                    if (text.includes(query)) {
+                        li.classList.remove('vision-dimmed');
+                        const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+                        li.innerHTML = origText.replace(regex, '<mark class="vision-highlight">$1</mark>');
+                        cardMatches++;
+                        panelMatches++;
+                        totalMatches++;
+                    } else {
+                        li.classList.add('vision-dimmed');
+                        li.innerHTML = origText;
+                    }
+                } else {
+                    li.classList.remove('vision-dimmed');
+                    li.innerHTML = origText;
+                }
+            });
+
+            if (query && cardMatches === 0) {
+                card.classList.add('vision-dimmed');
+            } else {
+                card.classList.remove('vision-dimmed');
+            }
+        });
+
+        if (query) {
+            toggleAccordionState(btn, panelMatches > 0);
+        } else {
+            toggleAccordionState(btn, false);
+        }
+    });
+
+    const statusText = document.getElementById('vision-status-text');
+    if (statusText) {
+        if (query) {
+            statusText.style.display = 'block';
+            statusText.textContent = `Found ${totalMatches} matching item${totalMatches === 1 ? '' : 's'}.`;
+        } else {
+            statusText.style.display = 'none';
+        }
+    }
+};
+
+/* ===== RESEARCH VISION FILTER DROPDOWN ===== */
+window.toggleVisionDropdown = function() {
+    const menu = document.getElementById('vision-dropdown-menu');
+    if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+};
+
+window.selectVisionPart = function(partId, partLabel) {
+    const menu = document.getElementById('vision-dropdown-menu');
+    if (menu) menu.style.display = 'none';
+
+    const btnToggle = document.querySelector('.vision-dropdown-toggle');
+    if (btnToggle) {
+        btnToggle.innerHTML = `<i class="fas fa-filter"></i> ${partLabel} <i class="fas fa-chevron-down"></i>`;
+        if (partId !== 'all') {
+            btnToggle.classList.add('active');
+        } else {
+            btnToggle.classList.remove('active');
+        }
+    }
+
+    const mappings = {
+        'themes': 'tcp-vision-button',
+        'roadmap': 'tcp-timeline-btn',
+        'lab': 'strat-lab',
+        'mentorship': 'tcp-culture'
+    };
+
+    const accordions = document.querySelectorAll('#research-vision .accordion-btn');
+    accordions.forEach(btn => {
+        const panel = btn.nextElementSibling;
+        if (!panel) return;
+        
+        if (partId === 'all') {
+            btn.style.display = '';
+            toggleAccordionState(btn, false);
+        } else {
+            const targetId = mappings[partId];
+            if (btn.id === targetId) {
+                btn.style.display = '';
+                toggleAccordionState(btn, true);
+            } else {
+                btn.style.display = 'none';
+                toggleAccordionState(btn, false);
+            }
+        }
+    });
+};
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.vision-filter-dropdown')) {
+        const menu = document.getElementById('vision-dropdown-menu');
+        if (menu) menu.style.display = 'none';
+    }
+});
