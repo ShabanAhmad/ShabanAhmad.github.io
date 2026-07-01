@@ -733,7 +733,8 @@ const sanitizeHTML = (str) => {
         .replace(/&lt;li&gt;/g, '<li>')
         .replace(/&lt;\/li&gt;/g, '</li>')
         .replace(/&lt;ol&gt;/g, '<ol>')
-        .replace(/&lt;\/ol&gt;/g, '</ol>');
+        .replace(/&lt;\/ol&gt;/g, '</ol>')
+        .replace(/&lt;a href="((?:https?:\/\/|mailto:|#)[^"]+)"(?: target="_blank")?(?: rel="noopener noreferrer")?&gt;(.*?)&lt;\/a&gt;/gi, '<a href="$1" target="_blank" rel="noopener noreferrer">$2</a>');
 };
 
 let activeAbort = null;
@@ -1030,11 +1031,70 @@ const sendUserMessage = async () => {
     try {
         const res = await fetchFromBackend(`${systemContext} User: ${msg}`);
         removeMessage(loadMsg);
-        addMessage(res.replace(/```html|```/gi, '').trim(), 'bot');
+        addMessage(sanitizeHTML(res.replace(/```html|```/gi, '').trim()), 'bot');
     } catch (err) {
         removeMessage(loadMsg);
         addMessage(`❌ Error: ${err.message}`, 'bot');
     }
+};
+
+const sendQuickMessage = (text) => {
+    const inp = document.getElementById('chat-input');
+    if (inp) {
+        inp.value = text;
+        sendUserMessage();
+    }
+};
+
+let voiceRecognition = null;
+const toggleMic = () => {
+    const btn = document.getElementById('mic-btn');
+    const inp = document.getElementById('chat-input');
+    if (!btn || !inp) return;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        alert("Web Speech API is not supported in this browser.");
+        return;
+    }
+
+    if (voiceRecognition) {
+        voiceRecognition.stop();
+        return;
+    }
+
+    voiceRecognition = new SpeechRecognition();
+    voiceRecognition.continuous = false;
+    voiceRecognition.interimResults = false;
+    voiceRecognition.lang = 'en-US';
+
+    voiceRecognition.onstart = () => {
+        btn.style.color = '#ef4444';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
+    };
+
+    voiceRecognition.onerror = (e) => {
+        console.error("Speech recognition error", e);
+        cleanupMic();
+    };
+
+    voiceRecognition.onend = () => {
+        cleanupMic();
+    };
+
+    voiceRecognition.onresult = (event) => {
+        const result = event.results[0][0].transcript;
+        inp.value = result;
+        sendUserMessage();
+    };
+
+    const cleanupMic = () => {
+        btn.style.color = '';
+        btn.innerHTML = '<i class="fas fa-microphone" aria-hidden="true"></i>';
+        voiceRecognition = null;
+    };
+
+    voiceRecognition.start();
 };
 
 /* Performance-Optimised 3D & Network Effects */
