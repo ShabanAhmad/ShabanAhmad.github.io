@@ -710,8 +710,30 @@ color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:poi
             </div>`;
         }
 
-        showAIModal(`<strong>${type === 'AI Report' ? '✨ DOI/AI Report:' : '🐦 Social Draft:'}</strong><br><br><textarea id="ai-gen-text" aria-label="Generated AI text" style="width:100%; min-height:120px; background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #1DA1F2; font-family:inherit; font-size:0.95rem; line-height:1.5; resize:vertical;">${res.trim()}</textarea>${bottomControls}`);
+        showAIModal(`<strong>${type === 'AI Report' ? '✨ DOI/AI Report:' : '🐦 Social Draft:'}</strong><br><br><textarea id="ai-gen-text" aria-label="Generated AI text" style="width:100%; min-height:120px; background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #1DA1F2; font-family:inherit; font-size:0.95rem; line-height:1.5; resize:vertical;">${sanitizeHTML(res.trim())}</textarea>${bottomControls}`);
     } catch (e) { btn.innerHTML = '❌'; setTimeout(() => btn.innerHTML = orig, 3000); } finally { btn.disabled = false; btn.innerHTML = orig; }
+};
+
+const sanitizeHTML = (str) => {
+    if (typeof str !== 'string') return '';
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML
+        .replace(/&lt;p&gt;/g, '<p>')
+        .replace(/&lt;\/p&gt;/g, '</p>')
+        .replace(/&lt;strong&gt;/g, '<strong>')
+        .replace(/&lt;\/strong&gt;/g, '</strong>')
+        .replace(/&lt;br&gt;/g, '<br>')
+        .replace(/&lt;b&gt;/g, '<b>')
+        .replace(/&lt;\/b&gt;/g, '</b>')
+        .replace(/&lt;i&gt;/g, '<i>')
+        .replace(/&lt;\/i&gt;/g, '</i>')
+        .replace(/&lt;ul&gt;/g, '<ul>')
+        .replace(/&lt;\/ul&gt;/g, '</ul>')
+        .replace(/&lt;li&gt;/g, '<li>')
+        .replace(/&lt;\/li&gt;/g, '</li>')
+        .replace(/&lt;ol&gt;/g, '<ol>')
+        .replace(/&lt;\/ol&gt;/g, '</ol>');
 };
 
 let activeAbort = null;
@@ -721,7 +743,7 @@ const triggerAIFeature = async (btnId, resultId, icon, btnText, loadingText, pro
     if (activeAbort) { activeAbort.ctrl.abort(); const oldBtn = document.getElementById(activeAbort.id); if (oldBtn) { oldBtn.classList.remove('processing-gold'); oldBtn.innerHTML = activeAbort.html; } }
     btn.innerHTML = `<span class="btn-icon"><i class="fas fa-spinner fa-spin"></i></span><span class="btn-text">${loadingText}</span>`; btn.classList.add('processing-gold'); if (resBox) resBox.style.display = 'none';
     const ctrl = new AbortController(); activeAbort = { id: btnId, ctrl, html: `<span class="btn-icon">${icon}</span><span class="btn-text">${btnText}</span>` };
-    try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if (activeAbort && activeAbort.id === btnId) formatCallback(res); } catch (e) { if (e.name !== 'AbortError') { if (resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } else { showAIModal(`<div style="color:#dc2626;font-weight:700;margin-bottom:8px;">❌ Error</div><p style="margin:0;">${e.message}</p>`); } } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
+    try { const res = await fetchFromBackend(prompt, 3, 2000, ctrl.signal); if (activeAbort && activeAbort.id === btnId) formatCallback(sanitizeHTML(res)); } catch (e) { if (e.name !== 'AbortError') { if (resBox) { resBox.innerHTML = `<strong>❌ Error:</strong> ${e.message}`; resBox.style.display = 'block'; } else { showAIModal(`<div style="color:#dc2626;font-weight:700;margin-bottom:8px;">❌ Error</div><p style="margin:0;">${e.message}</p>`); } } } finally { if (activeAbort && activeAbort.id === btnId) { btn.classList.remove('processing-gold'); btn.innerHTML = activeAbort.html; activeAbort = null; } }
 };
 
 /* --- Teaching Statement Generator */
@@ -871,7 +893,6 @@ function updateListDesc(fullTitle, descHtml) {
     }
 }
 
-let pmqAId, pmqSpd = 0.55, isPmqPaused = false;
 const startPubMarquee = () => {
     const t = document.getElementById('pub-mq-track');
     if (!t || !t.children.length) return;
@@ -879,25 +900,7 @@ const startPubMarquee = () => {
         Array.from(t.querySelectorAll('.pub-mq-card')).forEach(c => t.appendChild(c.cloneNode(true)));
         t.dataset.cloned = 'true';
     }
-    cancelAnimationFrame(pmqAId);
-    let accum = 0;
-    const step = () => {
-        if (!t.matches(':hover') && !isPmqPaused) {
-            accum += pmqSpd;
-            if (accum >= 1) {
-                t.scrollLeft += Math.floor(accum);
-                accum -= Math.floor(accum);
-                const cs = t.querySelectorAll('.pub-mq-card');
-                if (cs.length >= 2) {
-                    const half = Math.floor(cs.length / 2);
-                    const jump = cs[half].offsetLeft - cs[0].offsetLeft;
-                    if (t.scrollLeft >= jump) t.scrollLeft -= jump;
-                }
-            }
-        }
-        pmqAId = requestAnimationFrame(step);
-    };
-    pmqAId = requestAnimationFrame(step);
+    t.classList.add('run-animation');
 };
 
 // Extract the hardcoded impact text from the grid card matching keyword
@@ -1550,7 +1553,8 @@ const performFilterPublications = function() {
     if (!inp) return;
     const query = inp.value.trim().toLowerCase();
     const tag = window.pubSearchTag || 'all';
-    const items = document.querySelectorAll('#publications .pub-item');
+    if (!window.cachedPubItems) window.cachedPubItems = document.querySelectorAll('#publications .pub-item');
+    const items = window.cachedPubItems;
     let matchCount = 0;
     
     const pipelineBtn = document.getElementById('pubs-pipeline');
@@ -1666,18 +1670,20 @@ const performFilterSkills = function() {
     if (!inp) return;
     const query = inp.value.trim().toLowerCase();
     
-    const skillCards = document.querySelectorAll('#technical .tech-card');
-    const accordions = document.querySelectorAll('#technical .accordion-btn');
+    if (!window.cachedAccordions) window.cachedAccordions = document.querySelectorAll('#technical .accordion-btn');
+    const accordions = window.cachedAccordions;
     let totalMatches = 0;
 
     accordions.forEach(btn => {
         const panel = btn.nextElementSibling;
         if (!panel) return;
-        const cardsInPanel = panel.querySelectorAll('.tech-card');
+        if (!panel.cachedCards) panel.cachedCards = panel.querySelectorAll('.tech-card');
+        const cardsInPanel = panel.cachedCards;
         let panelMatches = 0;
 
         cardsInPanel.forEach(card => {
-            const listItems = card.querySelectorAll('li');
+            if (!card.cachedListItems) card.cachedListItems = card.querySelectorAll('li');
+            const listItems = card.cachedListItems;
             let cardMatches = 0;
 
             listItems.forEach(li => {

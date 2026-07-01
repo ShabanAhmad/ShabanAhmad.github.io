@@ -8581,14 +8581,27 @@ body.dark-mode .about-hero-card {
 
 .pub-mq-track {
     display: flex;
-    width: 100%;
-    overflow-x: auto;
+    width: max-content;
+    overflow-x: hidden;
     gap: 18px;
     align-items: stretch;
     mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
     scrollbar-width: none;
     padding: 14px 0 18px;
+}
+
+.pub-mq-track.run-animation {
+    animation: pubMarquee 45s linear infinite;
+}
+
+.pub-mq-track.run-animation:hover {
+    animation-play-state: paused;
+}
+
+@keyframes pubMarquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .pub-mq-track::-webkit-scrollbar {
