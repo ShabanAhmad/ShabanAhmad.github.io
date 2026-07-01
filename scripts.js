@@ -1241,12 +1241,19 @@ const initHeavyFX = () => {
 
     // Floating Icons Mesh Layer
     const loadAndRunMesh = () => {
-        if (window.innerWidth < 1351) return;
         const layer = document.getElementById('hi-layer'), hero = document.getElementById('hero-section');
         if (!layer || !hero) return;
         const ICONS = [['fa-brain', 'rgba(167,139,250,0.4)'], ['fa-dna', 'rgba(80,200,255,0.4)'], ['fa-atom', 'rgba(245,158,11,0.4)'], ['fa-pills', 'rgba(248,113,113,0.4)'], ['fa-robot', 'rgba(167,139,250,0.4)']];
         let W, H, nodes = [], hiRAF = null, netCanvas, netCtx, mouse = { x: -999, y: -999 };
-        const resize = () => { W = layer.offsetWidth; H = layer.offsetHeight; if (netCanvas) { netCanvas.width = W; netCanvas.height = H; } };
+        let active = false;
+
+        const resize = () => {
+            if (!active) return;
+            W = layer.offsetWidth;
+            H = layer.offsetHeight;
+            if (netCanvas) { netCanvas.width = W; netCanvas.height = H; }
+        };
+
         const init = () => {
             layer.innerHTML = ''; netCanvas = document.createElement('canvas');
             netCanvas.style.cssText = 'position:absolute;inset:0;z-index:-1;opacity:0.5;';
@@ -1262,7 +1269,9 @@ const initHeavyFX = () => {
                 }
             });
         };
+
         const step = () => {
+            if (!active) return;
             netCtx.clearRect(0,0,W,H);
             nodes.forEach((n, i) => {
                 n.x += n.vx; n.y += n.vy;
@@ -1278,14 +1287,49 @@ const initHeavyFX = () => {
             });
             hiRAF = requestAnimationFrame(step);
         };
-        hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top; }, { passive: true });
+
+        const checkViewport = () => {
+            const isSmall = window.innerWidth < 1351;
+            if (isSmall && !active) {
+                active = true;
+                layer.style.display = 'block';
+                init();
+                step();
+            } else if (!isSmall && active) {
+                active = false;
+                layer.style.display = 'none';
+                layer.innerHTML = '';
+                if (hiRAF) {
+                    cancelAnimationFrame(hiRAF);
+                    hiRAF = null;
+                }
+            }
+        };
+
+        hero.addEventListener('mousemove', e => {
+            if (!active) return;
+            const r = hero.getBoundingClientRect();
+            mouse.x = e.clientX-r.left;
+            mouse.y = e.clientY-r.top;
+        }, { passive: true });
+
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(resize, 200);
+            resizeTimer = setTimeout(() => {
+                checkViewport();
+                resize();
+            }, 200);
         }, { passive: true });
-        init(); step();
-        new IntersectionObserver(([e]) => { if (e.isIntersecting) { if(!hiRAF) step(); } else { cancelAnimationFrame(hiRAF); hiRAF = null; } }).observe(hero);
+
+        checkViewport();
+        new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) {
+                if (active && !hiRAF) step();
+            } else {
+                if (hiRAF) { cancelAnimationFrame(hiRAF); hiRAF = null; }
+            }
+        }).observe(hero);
     };
 
     // Background Interactive Particles Layer (Magnetic Parallax Fluid Vortex)
