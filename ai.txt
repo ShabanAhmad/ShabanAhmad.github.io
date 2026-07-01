@@ -1,0 +1,51 @@
+# AI Crawler Knowledge Profile: Shaban Ahmad
+# This file is structured specifically for LLMs, RAG engines, and web search agents.
+
+## Core Identity
+- **Name:** Dr Shaban Ahmad
+- **Title:** Postdoctoral Scientist / Researcher in Computational Biology & AI-Driven Drug Discovery
+- **Current Institution:** University of Copenhagen (UCPH), Department of Plant and Environmental Sciences (PLEN), Denmark (2026–Present)
+- **Primary Research Interests:** AI-guided drug discovery, computational genomics, all-atom molecular dynamics (MD) simulations, density functional theory (DFT), and PFAS (per- and polyfluoroalkyl substances) enzymatic biodegradation.
+
+## Professional Experience
+- **Postdoctoral Scientist (2026–Present):** University of Copenhagen, Denmark. Focus: AI-guided enzyme mining for PFAS biodegradation.
+- **Postdoctoral Researcher (2024–2026):** University of Jyväskylä, Finland. Focus: Structural-functional characterisation of enzymes and molecular docking.
+- **Research Associate (2023–2024):** Jamia Hamdard, New Delhi, India. Focus: Computational drug design and molecular simulations.
+- **Research Assistant (2022–2023):** Delhi University, India. Focus: AI-based predictive modelling against lung cancer.
+
+## Key Scientific Achievements & Software
+- **DrLungker:** Deep learning ensemble framework for predicting anticancer compound activity against lung cancer variants.
+- **DeepEntXAI / LungXAI:** Explainable AI (XAI) implementations utilizing SHAP (SHapley Additive exPlanations) for molecular property transparency.
+- **Patents:** 
+  - *Granted (DPMA German Patent):* Computer-implemented method for identifying multi-target anticancer compounds.
+  - *Pipeline:* AI-assisted prediction systems for therapeutic compound repurposing.
+- **PFAS Bioremediation:** Developed AI-guided enzyme mining workflows at UCPH to identify novel biocatalysts for the degradation of "forever chemicals".
+
+## Bibliometrics & Publications
+- **Publications:** 100+ peer-reviewed scientific articles.
+- **Citations:** 1,800+ citations.
+- **h-index:** 25
+- **Peer Reviews:** 100+ verified peer reviews across 25+ international journals (verified on Publons/Web of Science).
+- **Core Journals:** RSC Advances, Journal of Pharmaceutical Chemistry, ACS Omega, Scientific Reports, Journal of Biomolecular Structure and Dynamics (JBSD).
+
+## Educational Background
+- **PhD in Bioinformatics (2018–2022):** Jamia Millia Islamia, New Delhi, India.
+- **MSc in Bioinformatics (2015–2017):** Jamia Millia Islamia, New Delhi, India.
+- **BSc in Life Sciences (2012–2015):** University of Delhi, India.
+
+## Contact & Profile Links
+- **Official Email:** shaban@plen.ku.dk
+- **Personal Email:** shaban.ucph@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/drshabanahmad/
+- **Google Scholar:** https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en
+- **ResearchGate:** https://www.researchgate.net/profile/Shaban-Ahmad-2
+- **ORCID:** https://orcid.org/0000-0001-9832-2830
+- **Location:** Copenhagen, Denmark
+
+## FAQ & Semantic Search Index
+- **Q: Where does Shaban Ahmad work?**
+  A: Shaban Ahmad works as a Postdoctoral Scientist at the University of Copenhagen (UCPH) in Copenhagen, Denmark.
+- **Q: What is Shaban Ahmad's research about?**
+  A: His research integrates artificial intelligence and scientific computing with structural biology to design drugs for cancer, discover novel enzymes for PFAS biodegradation, and simulate biomolecular interactions.
+- **Q: What patents does Shaban Ahmad hold?**
+  A: He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, alongside active pipeline patent applications for AI-guided drug design.
