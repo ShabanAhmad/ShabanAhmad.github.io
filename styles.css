@@ -1840,7 +1840,8 @@ body.dark-mode .srch-empty {
 
 .bento-card {
     border-radius: 20px;
-    padding: 1.25rem 1.35rem;
+    padding: 1.5rem 1.8rem;
+    min-height: 210px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -2349,7 +2350,7 @@ body.dark-mode h3:not([class]) {
 
 .ai-matcher-box textarea {
     width: 100%;
-    min-height: 90px;
+    min-height: 140px;
     padding: 12px;
     border: 2px dashed #cbd5e1 !important;
     border-radius: 8px;
@@ -9105,7 +9106,8 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
 
 .journey-desc {
     font-size: 0.92rem;
-    color: #4b5563;
+    color: #1f2937;
+    font-weight: 500;
     line-height: 1.6;
 }
 
@@ -9242,7 +9244,7 @@ body.dark-mode .journey-role {
 }
 
 body.dark-mode .journey-desc {
-    color: #94a3b8;
+    color: #f1f5f9;
 }
 
 body.dark-mode .journey-marker {
@@ -10043,3 +10045,68 @@ body.dark-mode .awards-tab-btn.active {
     display: inline-block;
 }
 
+/* Career Trajectory Card Mini-Timeline */
+.trajectory-meta-grid {
+    position: relative;
+    padding-left: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top: 1.5px dashed rgba(2, 132, 199, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 0.92rem;
+}
+
+.trajectory-meta-grid::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 1;
+}
+
+body.dark-mode .trajectory-meta-grid::before {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .trajectory-meta-grid {
+    border-top: 1.5px dashed rgba(56, 189, 248, 0.45);
+}
+
+.trajectory-meta-row {
+    position: relative;
+    line-height: 1.6 !important;
+    color: #4b5563 !important;
+}
+
+body.dark-mode .trajectory-meta-row {
+    color: #94a3b8 !important;
+}
+
+.trajectory-meta-row::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dot-color, var(--primary));
+    box-shadow: 0 0 0 3px var(--card-bg, #fff);
+    z-index: 2;
+    transition: transform 0.2s ease;
+}
+
+body.dark-mode .trajectory-meta-row::before {
+    box-shadow: 0 0 0 3px var(--card-bg, #1e293b);
+}
+
+.trajectory-meta-row:hover::before {
+    transform: translate(-50%, -50%) scale(1.3);
+}
