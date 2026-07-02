@@ -10016,6 +10016,291 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 /* ===== TABBED PORTFOLIO SHOWCASE FOR PATENTS & AWARDS ===== */
+/* ===== AWARDS TITLE ROW (title + stats side-by-side on desktop) ===== */
+.awards-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .awards-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* ===== AWARDS STATS BANNER ===== */
+.awards-stats-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 0.65rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+}
+
+.awards-stat-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    gap: 2px;
+}
+
+.awards-stat-num {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.awards-stat-label {
+    font-size: 0.72rem;
+    color: var(--text);
+    opacity: 0.7;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.awards-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--card-border);
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .awards-stats-banner {
+        gap: 0.5rem;
+    }
+    .awards-stat-divider {
+        display: none;
+    }
+    .awards-stat-chip {
+        padding: 0.4rem 1rem;
+    }
+}
+
+/* ===== TAB COUNT BADGE ===== */
+.tab-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 20px;
+    padding: 0 5px;
+    margin-left: 2px;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.awards-tab-btn:not(.active) .tab-count-badge {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text);
+    opacity: 0.7;
+}
+
+.awards-tab-btn.active .tab-count-badge {
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+}
+
+/* ===== HERO SPOTLIGHT CARD (World Top 2%) ===== */
+.award-hero-spotlight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #1a3a2a 0%, #0f2d40 60%, #1e1040 100%);
+    border: 1px solid rgba(250, 204, 21, 0.25);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.award-hero-spotlight:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(250, 204, 21, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(250, 204, 21, 0.55);
+}
+
+/* Ambient glow orb */
+.award-hero-glow {
+    position: absolute;
+    top: -60px;
+    right: 80px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.award-hero-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+    min-width: 0;
+    z-index: 1;
+}
+
+.award-hero-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(250, 204, 21, 0.05));
+    border: 2px solid rgba(250, 204, 21, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.award-hero-spotlight:hover .award-hero-icon {
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.35), rgba(250, 204, 21, 0.1));
+    border-color: rgba(250, 204, 21, 0.65);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.25);
+}
+
+.award-hero-icon i {
+    font-size: 1.9rem;
+    color: #facc15;
+}
+
+.award-hero-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.award-hero-label {
+    font-size: 0.75rem;
+    color: rgba(250, 204, 21, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+}
+
+.award-hero-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.award-hero-desc {
+    font-size: 0.87rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.55;
+}
+
+.award-hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.award-hero-pct {
+    font-size: 1rem;
+    color: rgba(250, 204, 21, 0.75);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.award-hero-pct strong {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #facc15;
+    line-height: 1;
+}
+
+.award-hero-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    border-radius: 20px;
+    padding: 3px 10px;
+    background: rgba(250, 204, 21, 0.08);
+    white-space: nowrap;
+}
+
+@media (max-width: 680px) {
+    .award-hero-spotlight {
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .award-hero-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .award-hero-right {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .award-hero-pct strong {
+        font-size: 2rem;
+    }
+}
+
+/* ===== GOLD-TIER AWARD CARDS ===== */
+.award-tier-gold {
+    border-color: rgba(250, 204, 21, 0.3) !important;
+    background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, #facc15 4%, var(--card-bg))) !important;
+}
+
+.award-tier-gold:hover {
+    border-color: #facc15 !important;
+    box-shadow: 0 8px 24px rgba(250, 204, 21, 0.15) !important;
+}
+
+/* ===== TWO-COLUMN ACCOLADES GRID ===== */
+.award-box-grid--two {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+@media (max-width: 680px) {
+    .award-box-grid--two {
+        grid-template-columns: 1fr !important;
+    }
+}
+
 .awards-tabs-container {
     display: flex;
     justify-content: center;

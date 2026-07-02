@@ -1495,21 +1495,46 @@
 
     <!-- === SECTION 10: AWARDS, PATENTS & HONOURS === -->
     <section id="awards" class="container reveal">
-        <h2 class="section-title">Patents &amp; Awards</h2>
-        
+        <div class="awards-title-row">
+            <h2 class="section-title" style="margin-bottom:0;">Patents &amp; Awards</h2>
+
+            <!-- Stats Banner -->
+            <div class="awards-stats-banner">
+                <div class="awards-stat-chip">
+                    <span class="awards-stat-num">1</span>
+                    <span class="awards-stat-label">Granted Patent</span>
+                </div>
+                <div class="awards-stat-divider"></div>
+                <div class="awards-stat-chip">
+                    <span class="awards-stat-num">06</span>
+                    <span class="awards-stat-label">Drug Molecules in Pipeline</span>
+                </div>
+                <div class="awards-stat-divider"></div>
+                <div class="awards-stat-chip">
+                    <span class="awards-stat-num">15+</span>
+                    <span class="awards-stat-label">Awards &amp; Accolades</span>
+                </div>
+                <div class="awards-stat-divider"></div>
+                <div class="awards-stat-chip">
+                    <span class="awards-stat-num">3</span>
+                    <span class="awards-stat-label">International Recognitions</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Tab Navigation Buttons -->
         <div class="awards-tabs-container">
             <button class="awards-tab-btn active" id="tab-btn-patents" onclick="switchAwardsTab('patents')">
-                <i class="fas fa-certificate" aria-hidden="true"></i> Patents (IPR)
+                <i class="fas fa-certificate" aria-hidden="true"></i> Patents (IPR) <span class="tab-count-badge">2</span>
             </button>
             <button class="awards-tab-btn" id="tab-btn-top" onclick="switchAwardsTab('top')">
-                <i class="fas fa-medal" aria-hidden="true"></i> Top Accolades
+                <i class="fas fa-medal" aria-hidden="true"></i> Top Accolades <span class="tab-count-badge">3</span>
             </button>
             <button class="awards-tab-btn" id="tab-btn-presentations" onclick="switchAwardsTab('presentations')">
-                <i class="fas fa-microphone-alt" aria-hidden="true"></i> Presentation Awards
+                <i class="fas fa-microphone-alt" aria-hidden="true"></i> Presentation Awards <span class="tab-count-badge">6</span>
             </button>
             <button class="awards-tab-btn" id="tab-btn-fellowships" onclick="switchAwardsTab('fellowships')">
-                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Fellowships &amp; Others
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Fellowships &amp; Others <span class="tab-count-badge">4</span>
             </button>
         </div>
 
@@ -1566,21 +1591,28 @@
 
         <!-- PANEL 2: TOP ACCOLADES -->
         <div class="awards-panel" id="panel-top">
-            <div class="award-box-grid">
-                <!-- World's Top 2% Scientists (Bento Highlight) -->
-                <a href="https://topscinet.com/scientist_profile/Ahmad,%20Shaban/2020/?stype=single_year" target="_blank" rel="noopener noreferrer" class="award-card">
-                    <div class="award-icon-box">
-                        <i class="fas fa-medal award-badge-icon" aria-hidden="true"></i>
+            <!-- Flagship Hero: World's Top 2% Scientists -->
+            <a href="https://topscinet.com/scientist_profile/Ahmad,%20Shaban/2020/?stype=single_year" target="_blank" rel="noopener noreferrer" class="award-hero-spotlight">
+                <div class="award-hero-glow"></div>
+                <div class="award-hero-left">
+                    <div class="award-hero-icon">
+                        <i class="fas fa-medal" aria-hidden="true"></i>
                     </div>
-                    <div class="award-content-wrapper">
-                        <div class="award-top">World's Top 2% Scientists</div>
-                        <div class="award-bottom">Recognised by Stanford University and Elsevier for citation impact.</div>
+                    <div class="award-hero-copy">
+                        <div class="award-hero-label">Stanford University &amp; Elsevier · 2025</div>
+                        <div class="award-hero-title">World's Top 2% Scientists</div>
+                        <div class="award-hero-desc">Recognised globally for citation impact in AI-driven drug discovery and computational genomics — a distinction awarded to fewer than 2% of researchers worldwide.</div>
                     </div>
-                    <span class="award-year-tag">2025</span>
-                </a>
+                </div>
+                <div class="award-hero-right">
+                    <span class="award-hero-pct">Top<br><strong>2%</strong></span>
+                    <span class="award-hero-badge">Global Recognition</span>
+                </div>
+            </a>
 
-                <!-- Felicitated by VC (Bento Highlight) -->
-                <a href="https://jmi.ac.in/BULLETIN-BOARD/Press-Release/Latest/5668" target="_blank" rel="noopener noreferrer" class="award-card">
+            <div class="award-box-grid award-box-grid--two">
+                <!-- Felicitated by VC -->
+                <a href="https://jmi.ac.in/BULLETIN-BOARD/Press-Release/Latest/5668" target="_blank" rel="noopener noreferrer" class="award-card award-tier-gold">
                     <div class="award-icon-box">
                         <i class="fas fa-trophy award-badge-icon" aria-hidden="true"></i>
                     </div>
@@ -1592,7 +1624,7 @@
                 </a>
 
                 <!-- Achievers of the Year -->
-                <div class="award-card">
+                <div class="award-card award-tier-gold">
                     <div class="award-icon-box">
                         <i class="fas fa-trophy award-badge-icon" aria-hidden="true"></i>
                     </div>
