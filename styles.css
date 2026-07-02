@@ -1917,22 +1917,29 @@ body.dark-mode .srch-empty {
     z-index: 2;
 }
 
-/* Header row: title on left, icon on right */
+/* Header row: title in middle, icon on left */
 .bento-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.8rem;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 0.55rem;
+    position: relative;
+    min-height: 44px;
 }
 
 .bento-header-text {
     flex: 1;
+    text-align: center;
     min-width: 0;
+    padding: 0 54px; /* Leaves room for the 44px absolute icon + margin on BOTH sides to keep text perfectly centered */
 }
 
-/* Compact icon badge */
+/* Compact icon badge positioned on the left */
 .bento-icon-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 44px;
     height: 44px;
     flex-shrink: 0;
@@ -1946,7 +1953,7 @@ body.dark-mode .srch-empty {
 }
 
 .bento-card:hover .bento-icon-wrapper {
-    transform: scale(1.15) rotate(5deg);
+    transform: translateY(-50%) scale(1.15) rotate(5deg);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -2003,21 +2010,21 @@ body.dark-mode .srch-empty {
 .bento-card:hover .bento-tag { background: var(--bento-accent); color: var(--bento-hover-text); border-color: var(--bento-accent); }
 
 .bento-h1 {
-    --bento-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --bento-icon-code: '\f544';
-    --bento-accent: #38bdf8;
-    --bento-icon-bg: rgba(56, 189, 248, 0.2);
-    --bento-icon-border: rgba(56, 189, 248, 0.4);
-    --bento-tag-bg: rgba(56, 189, 248, 0.12);
-    --bento-tag-text: #7dd3fc;
-    --bento-tag-border: rgba(56, 189, 248, 0.25);
-    --bento-hover-text: #0f172a;
+    --bento-bg: linear-gradient(135deg, #831843 0%, #db2777 100%);
+    --bento-icon-code: '\f604';
+    --bento-accent: #fbcfe8;
+    --bento-icon-bg: rgba(244, 114, 182, 0.25);
+    --bento-icon-border: rgba(244, 114, 182, 0.45);
+    --bento-tag-bg: rgba(244, 114, 182, 0.15);
+    --bento-tag-text: #fdf2f8;
+    --bento-tag-border: rgba(244, 114, 182, 0.35);
+    --bento-hover-text: #4c0519;
     grid-column: 1 / 2; grid-row: 1 / 2;
 }
 
 .bento-h2 {
     --bento-bg: linear-gradient(135deg, var(--primary) 0%, #0f766e 100%);
-    --bento-icon-code: '\f06c';
+    --bento-icon-code: '\f0c3';
     --bento-accent: #34d399;
     --bento-icon-bg: rgba(52, 211, 153, 0.2);
     --bento-icon-border: rgba(52, 211, 153, 0.4);
@@ -2052,6 +2059,32 @@ body.dark-mode .srch-empty {
     --bento-tag-border: rgba(251, 113, 133, 0.25);
     --bento-hover-text: #4c0519;
     grid-column: 2 / 3; grid-row: 2 / 3;
+}
+
+.bento-h3 {
+    --bento-bg: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+    --bento-icon-code: '\e059';
+    --bento-accent: #c084fc;
+    --bento-icon-bg: rgba(192, 132, 252, 0.2);
+    --bento-icon-border: rgba(192, 132, 252, 0.4);
+    --bento-tag-bg: rgba(192, 132, 252, 0.12);
+    --bento-tag-text: #d8b4fe;
+    --bento-tag-border: rgba(192, 132, 252, 0.25);
+    --bento-hover-text: #2e1065;
+    grid-column: 1 / 2; grid-row: 3 / 4;
+}
+
+.bento-v3 {
+    --bento-bg: linear-gradient(135deg, #78350f 0%, #b45309 100%);
+    --bento-icon-code: '\f21e';
+    --bento-accent: #fbbf24;
+    --bento-icon-bg: rgba(251, 191, 36, 0.2);
+    --bento-icon-border: rgba(251, 191, 36, 0.4);
+    --bento-tag-bg: rgba(251, 191, 36, 0.12);
+    --bento-tag-text: #fde68a;
+    --bento-tag-border: rgba(251, 191, 36, 0.25);
+    --bento-hover-text: #78350f;
+    grid-column: 2 / 3; grid-row: 3 / 4;
 }
 
 /* Standard Content Layouts & Typography */
@@ -8716,9 +8749,9 @@ body.dark-mode .pub-list-ai-desc {
 
 /* Bento card tags — boost opacity in dark mode so they stay legible */
 body.dark-mode .bento-h1 .bento-tag {
-    background: rgba(56, 189, 248, 0.2);
-    color: #bae6fd;
-    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(244, 114, 182, 0.2);
+    color: #fbcfe8;
+    border-color: rgba(244, 114, 182, 0.4);
 }
 
 body.dark-mode .bento-h2 .bento-tag {
@@ -8737,6 +8770,18 @@ body.dark-mode .bento-v2 .bento-tag {
     background: rgba(251, 113, 133, 0.2);
     color: #fecdd3;
     border-color: rgba(251, 113, 133, 0.4);
+}
+
+body.dark-mode .bento-h3 .bento-tag {
+    background: rgba(192, 132, 252, 0.2);
+    color: #e9d5ff;
+    border-color: rgba(192, 132, 252, 0.4);
+}
+
+body.dark-mode .bento-v3 .bento-tag {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fef3c7;
+    border-color: rgba(251, 191, 36, 0.4);
 }
 
 /* =====================================================
@@ -9778,7 +9823,8 @@ body.dark-mode .vision-search-status {
     margin: 0 !important;
     grid-column: auto !important;
     grid-row: auto !important;
-    min-height: 250px !important;
+    min-height: auto !important;
+    padding: 1.25rem 1.5rem !important;
 }
 
 /* Wrapper to prevent AI button hover shift */
