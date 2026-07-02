@@ -755,9 +755,9 @@ window.copyAIContent = function(btn, elId) {
         .replace(/^Copied!\s*$/m, '')     // same for feedback label
         .trim();
     navigator.clipboard.writeText(text).then(() => {
+        const tickSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         const original = btn.innerHTML;
-        btn.innerHTML = 'Copied!';
-        btn.style.color = '#22c55e';
+        btn.innerHTML = tickSVG;
         btn.style.borderColor = '#22c55e';
         setTimeout(() => {
             btn.innerHTML = original;
@@ -774,9 +774,9 @@ window.copyAIContent = function(btn, elId) {
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
+        const tickSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         const original = btn.innerHTML;
-        btn.innerHTML = 'Copied!';
-        btn.style.color = '#22c55e';
+        btn.innerHTML = tickSVG;
         btn.style.borderColor = '#22c55e';
         setTimeout(() => {
             btn.innerHTML = original;
@@ -793,10 +793,11 @@ window.copyAIContent = function(btn, elId) {
  * @returns {string} – HTML string for the header row
  */
 function aiResultHeader(title, elId) {
+    const copyIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
     return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;gap:0.5rem;">`
         + `<strong style="font-size:0.95rem;">${title}</strong>`
         + `<div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">`
-        + `<button onclick="copyAIContent(this,'${elId}')" title="Copy to clipboard" style="background:none;border:1px solid #ccc;border-radius:6px;cursor:pointer;color:#555;font-size:0.75rem;padding:2px 8px;line-height:1.5;transition:color .2s,border-color .2s;">Copy</button>`
+        + `<button onclick="copyAIContent(this,'${elId}')" title="Copy to clipboard" style="background:none;border:1px solid #ccc;border-radius:6px;cursor:pointer;color:#666;padding:4px 6px;line-height:0;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s;">${copyIconSVG}</button>`
         + `<button onclick="document.getElementById('${elId}').style.display='none'" title="Dismiss" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:1.2rem;line-height:1;padding:0 2px;">×</button>`
         + `</div></div>`
         + `<div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:0.7rem;">`;
