@@ -656,7 +656,8 @@ const summariseContributions = () => {
         (res) => {
             const rb = document.getElementById('contributions-summary');
             rb.style.display = 'block';
-            rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>✨ AI Summary of Contributions:</strong><br><br><ul>${res}</ul>`;
+            rb.innerHTML = aiResultHeader('✨ AI Summary of Contributions', 'contributions-summary')
+                + `<ul>${res}</ul></div>`;
         }
     );
 };
@@ -737,6 +738,70 @@ const sanitizeHTML = (str) => {
         .replace(/&lt;a href="((?:https?:\/\/|mailto:|#)[^"]+)"(?: target="_blank")?(?: rel="noopener noreferrer")?&gt;(.*?)&lt;\/a&gt;/gi, '<a href="$1" target="_blank" rel="noopener noreferrer">$2</a>');
 };
 
+/* ===== AI RESULT COPY HELPER ===== */
+/**
+ * Copies plain text extracted from an AI result box to the clipboard.
+ * Temporarily replaces the button label with "Copied!" in green.
+ * @param {HTMLElement} btn  – the copy button element
+ * @param {string}      elId – the id of the result container element
+ */
+window.copyAIContent = function(btn, elId) {
+    const box = document.getElementById(elId);
+    if (!box) return;
+    // Extract plain text, stripping HTML tags
+    const text = box.innerText
+        .replace(/^[×✕]\s*/m, '')        // strip leading close-icon text
+        .replace(/^Copy\s*$/m, '')        // strip copy button label if captured
+        .replace(/^Copied!\s*$/m, '')     // same for feedback label
+        .trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = 'Copied!';
+        btn.style.color = '#22c55e';
+        btn.style.borderColor = '#22c55e';
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+        }, 2000);
+    }).catch(() => {
+        // Fallback for browsers that block clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const original = btn.innerHTML;
+        btn.innerHTML = 'Copied!';
+        btn.style.color = '#22c55e';
+        btn.style.borderColor = '#22c55e';
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+        }, 2000);
+    });
+};
+
+/**
+ * Builds the header row (title + copy + close buttons) for an AI result box.
+ * @param {string} title – display title including any emoji prefix
+ * @param {string} elId  – the id of the result container element
+ * @returns {string} – HTML string for the header row
+ */
+function aiResultHeader(title, elId) {
+    return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;gap:0.5rem;">`
+        + `<strong style="font-size:0.95rem;">${title}</strong>`
+        + `<div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">`
+        + `<button onclick="copyAIContent(this,'${elId}')" title="Copy to clipboard" style="background:none;border:1px solid #ccc;border-radius:6px;cursor:pointer;color:#555;font-size:0.75rem;padding:2px 8px;line-height:1.5;transition:color .2s,border-color .2s;">Copy</button>`
+        + `<button onclick="document.getElementById('${elId}').style.display='none'" title="Dismiss" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:1.2rem;line-height:1;padding:0 2px;">×</button>`
+        + `</div></div>`
+        + `<div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:0.7rem;">`;
+}
+
 let activeAbort = null;
 const triggerAIFeature = async (btnId, resultId, icon, btnText, loadingText, prompt, formatCallback) => {
     const btn = document.getElementById(btnId), resBox = document.getElementById(resultId); if (!btn) return;
@@ -757,7 +822,8 @@ const generateTeachingStatement = () => {
         (res) => {
             const rb = document.getElementById('teaching-statement-result');
             rb.style.display = 'block';
-            rb.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.7rem;"><strong style="color:var(--primary); font-size:0.97rem;">✨ AI Teaching Statement Draft</strong><button onclick="this.closest('[id=teaching-statement-result]').style.display='none'" style="background:none; border:none; cursor:pointer; color:#aaa; font-size:1.3rem; line-height:1; padding:0; margin-left:1rem;" title="Dismiss">×</button></div><div style="border-top:1px solid rgba(0,0,0,0.08); padding-top:0.8rem;">${res}</div><p style="margin-top:0.8rem; font-size:0.75rem; color:#94a3b8; font-style:italic;">AI-generated draft — review and personalise before use.</p>`;
+            rb.innerHTML = aiResultHeader('✨ AI Teaching Statement Draft', 'teaching-statement-result')
+                + `${res}</div><p style="margin-top:0.8rem; font-size:0.75rem; color:#94a3b8; font-style:italic;">AI-generated draft — review and personalise before use.</p>`;
         }
     );
 };
@@ -984,10 +1050,10 @@ async function buildPubMarquee() {
     }
 }
 
-const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>📄 Lay Summary:</strong><br><br>${res}`; });
+const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('📄 Lay Summary', 'eli5-result') + `${res}</div>`; });
 const summariseFrontiers = () => triggerAIFeature('sf-btn'
-, 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>🔬 Research Frontiers Summary:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; });
-const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong style="color:var(--primary);">Research Fit Analysis:</strong><br><br>${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}`; }); };
+, 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = aiResultHeader('🔬 Research Frontiers Summary', 'sf-status') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; });
+const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('✨ Research Fit Analysis', 'match-result') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; }); };
 
 const extractEmailParts = (text) => {
     let s = "", b = text;
@@ -1880,7 +1946,8 @@ window.summariseVision = () => {
             const rb = document.getElementById('vision-summary');
             if (rb) {
                 rb.style.display = 'block';
-                rb.innerHTML = `<i class="fas fa-times" style="float:right; cursor:pointer; color:#888;" onclick="this.parentElement.style.display='none'"></i><strong>✨ AI Summary of Research Vision:</strong><br><br><ul>${res}</ul>`;
+                rb.innerHTML = aiResultHeader('✨ AI Summary of Research Vision', 'vision-summary')
+                    + `<ul>${res}</ul></div>`;
             }
         }
     );
