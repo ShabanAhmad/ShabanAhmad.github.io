@@ -8541,8 +8541,8 @@ body.dark-mode .sel-pub-meta {
     border-radius: 24px;
     margin-bottom: 1.5rem;
     background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 30%), linear-gradient(135deg, #edf7f2 0%, #f6f8f4 55%, #fff9ef 100%);
-    border: 1px solid rgba(6, 78, 59, 0.12);
-    box-shadow: 0 12px 35px rgba(6, 78, 59, 0.08);
+    border: 2px solid rgba(100, 116, 139, 0.4); /* Elegant Slate Gray */
+    box-shadow: 0 12px 35px rgba(100, 116, 139, 0.08);
     position: relative;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
@@ -8550,8 +8550,8 @@ body.dark-mode .sel-pub-meta {
 
 .about-hero-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 22px 48px rgba(6, 78, 59, 0.13);
-    border-color: rgba(6, 78, 59, 0.22);
+    box-shadow: 0 22px 48px rgba(100, 116, 139, 0.15);
+    border-color: #475569; /* Slate 600 */
 }
 
 .about-hero-card:hover::before {
@@ -8604,7 +8604,11 @@ body.dark-mode .sel-pub-meta {
 
 body.dark-mode .about-hero-card {
     background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.09), transparent 30%), linear-gradient(135deg, #162219 0%, #1a2b1f 55%, #221f0e 100%);
-    border-color: rgba(110, 231, 183, 0.12);
+    border-color: rgba(148, 163, 184, 0.4); /* Slate 400 */
+}
+
+body.dark-mode .about-hero-card:hover {
+    border-color: #94a3b8;
 }
 
 /* === 4.21: Highlighted Publications Marquee === */
