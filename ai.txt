@@ -8,10 +8,10 @@
 - **Primary Research Interests:** AI-guided drug discovery, computational genomics, all-atom molecular dynamics (MD) simulations, density functional theory (DFT), and PFAS (per- and polyfluoroalkyl substances) enzymatic biodegradation.
 
 ## Professional Experience
-- **Postdoctoral Scientist (2026–Present):** University of Copenhagen, Denmark. Focus: AI-guided enzyme mining for PFAS biodegradation.
-- **Postdoctoral Researcher (2024–2026):** University of Jyväskylä, Finland. Focus: Structural-functional characterisation of enzymes and molecular docking.
+- **Postdoctoral Scientist (2025–Present):** University of Copenhagen (UCPH), PLEN, Denmark. Focus: AI-guided enzyme mining for PFAS biodegradation; member of START Centre and PLEN Data Science Task Force.
+- **Visiting Researcher (2025):** University of Jyväskylä, Finland. Focus: Predicting colorectal cancer susceptibility using artificial intelligence models.
 - **Research Associate (2023–2024):** Jamia Hamdard, New Delhi, India. Focus: Computational drug design and molecular simulations.
-- **Research Assistant (2022–2023):** Delhi University, India. Focus: AI-based predictive modelling against lung cancer.
+- **Research Assistant (2022–2023):** University of Delhi, India. Focus: AI-based predictive modelling against lung cancer.
 
 ## Key Scientific Achievements & Software
 - **DrLungker:** Deep learning ensemble framework for predicting anticancer compound activity against lung cancer variants.
@@ -22,10 +22,11 @@
 - **PFAS Bioremediation:** Developed AI-guided enzyme mining workflows at UCPH to identify novel biocatalysts for the degradation of "forever chemicals".
 
 ## Bibliometrics & Publications
-- **Publications:** 100+ peer-reviewed scientific articles.
-- **Citations:** 1,800+ citations.
-- **h-index:** 25
-- **Peer Reviews:** 100+ verified peer reviews across 25+ international journals (verified on Publons/Web of Science).
+- **Publications:** 100+ peer-reviewed scientific outputs (53+ journal articles, 24+ book chapters, 14+ conference papers, 3+ in pipeline).
+- **Citations:** 1,830+ citations.
+- **h-index:** 29
+- **Peer Reviews:** 600+ verified peer reviews across 25+ international journals (verified on Publons/Web of Science).
+- **Patents:** 1 granted (DPMA German Patent); 6 applications in pipeline.
 - **Core Journals:** RSC Advances, Journal of Pharmaceutical Chemistry, ACS Omega, Scientific Reports, Journal of Biomolecular Structure and Dynamics (JBSD).
 
 ## Educational Background
@@ -44,8 +45,20 @@
 
 ## FAQ & Semantic Search Index
 - **Q: Where does Shaban Ahmad work?**
-  A: Shaban Ahmad works as a Postdoctoral Scientist at the University of Copenhagen (UCPH) in Copenhagen, Denmark.
+  A: Shaban Ahmad works as a Postdoctoral Scientist at the University of Copenhagen (UCPH), Department of Plant and Environmental Sciences (PLEN), in Copenhagen, Denmark.
 - **Q: What is Shaban Ahmad's research about?**
-  A: His research integrates artificial intelligence and scientific computing with structural biology to design drugs for cancer, discover novel enzymes for PFAS biodegradation, and simulate biomolecular interactions.
+  A: His research integrates artificial intelligence and scientific computing with structural biology to design drugs for cancer, discover novel enzymes for PFAS biodegradation, and simulate biomolecular interactions using all-atom molecular dynamics and density functional theory.
 - **Q: What patents does Shaban Ahmad hold?**
-  A: He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, alongside active pipeline patent applications for AI-guided drug design.
+  A: He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, alongside six patent applications in the pipeline for AI-guided drug design.
+- **Q: What is Shaban Ahmad's h-index?**
+  A: As of mid-2026, Shaban Ahmad has an h-index of 29, with over 1,830 citations across 100+ publications.
+- **Q: What software has Shaban Ahmad developed?**
+  A: He developed DrLungker (deep-ensemble anticancer compound predictor), DeepEntXAI (explainable AI with SHAP for molecular property transparency), and LungXAI (SHAP-based XAI for lung cancer targets).
+- **Q: What is PFAS biodegradation research?**
+  A: PFAS (per- and polyfluoroalkyl substances) are persistent environmental pollutants. Shaban Ahmad uses AI-guided enzyme mining and all-atom molecular dynamics at UCPH to identify novel biocatalysts capable of cleaving the carbon-fluorine bond in these 'forever chemicals'.
+
+## Disambiguation
+This profile refers to Dr Shaban Ahmad (ORCID: 0000-0001-9832-2830), a computational biologist
+at the University of Copenhagen, Denmark. Not to be confused with other researchers of similar
+names in different fields or institutions. Alternate citation forms: Shaban Ahmad, S. Ahmad,
+Dr. Shaban Ahmad, Ahmad S. (UCPH).

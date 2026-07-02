@@ -16,6 +16,7 @@
     <meta name="keywords"
         content="Shaban Ahmad, UCPH, University of Copenhagen, Postdoctoral Researcher, AI Drug Discovery, PFAS Biodegradation, Bioinformatics, Computational Biology, molecular dynamics, DFT, DrLungker, DeepEntXAI, genomics">
     <meta name="robots" content="index, follow">
+    <meta name="author" content="Shaban Ahmad">
     <meta name="theme-color" content="#064e3b">
     <link rel="canonical" href="https://shabanahmad.github.io/">
 
@@ -102,7 +103,100 @@
     }
     </script>
 
+    <!-- === SECTION 3b: FAQ PAGE STRUCTURED DATA (JSON-LD) === -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Where does Shaban Ahmad work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Dr Shaban Ahmad is a Postdoctoral Scientist at the University of Copenhagen (UCPH), Department of Plant and Environmental Sciences (PLEN), in Copenhagen, Denmark, working on AI-guided enzyme mining for PFAS biodegradation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is Shaban Ahmad's h-index and citation count?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "As of mid-2026, Shaban Ahmad has an h-index of 29, with over 1,830 citations across 100+ peer-reviewed publications including journal articles, book chapters, and conference papers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is Shaban Ahmad's research focus?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "His research integrates artificial intelligence with structural biology to advance drug discovery for cancer, identify novel enzymes for PFAS (per- and polyfluoroalkyl substances) biodegradation, and simulate biomolecular interactions using all-atom molecular dynamics and density functional theory (DFT)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What patents does Shaban Ahmad hold?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, with six additional patent applications in the pipeline for AI-guided drug design."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What software tools has Shaban Ahmad developed?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shaban Ahmad developed DrLungker, a deep-learning ensemble framework for anticancer compound activity prediction; DeepEntXAI, an explainable AI system using SHAP for molecular property transparency; and LungXAI, a SHAP-based XAI pipeline for lung cancer target elucidation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is PFAS biodegradation and why does Shaban Ahmad research it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "PFAS (per- and polyfluoroalkyl substances) are persistent synthetic pollutants called 'forever chemicals' due to their extreme resistance to environmental breakdown. Shaban Ahmad uses AI-guided enzyme mining and all-atom molecular dynamics at UCPH to discover novel biocatalysts capable of cleaving the carbon-fluorine bond in these compounds, contributing to sustainable environmental remediation."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- === SECTION 3c: SCHOLARLY ARTICLE STRUCTURED DATA (JSON-LD) === -->
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "DrLungker",
+            "description": "Deep-learning ensemble framework for predicting anticancer compound activity against lung cancer variants. Integrates molecular dynamics, DFT, and WaterMap analysis.",
+            "author": {
+                "@type": "Person",
+                "name": "Shaban Ahmad",
+                "url": "https://shabanahmad.github.io/"
+            },
+            "url": "https://github.com/ShabanAhmad/DrLungker",
+            "applicationCategory": "Scientific Software",
+            "operatingSystem": "Linux, Windows, macOS"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "DeepEntXAI",
+            "description": "Explainable AI (XAI) implementation using SHAP (SHapley Additive exPlanations) for molecular property transparency in drug discovery pipelines.",
+            "author": {
+                "@type": "Person",
+                "name": "Shaban Ahmad",
+                "url": "https://shabanahmad.github.io/"
+            },
+            "url": "https://github.com/ShabanAhmad/DeepEntXAI",
+            "applicationCategory": "Scientific Software",
+            "operatingSystem": "Linux, Windows, macOS"
+        }
+    ]
+    </script>
+
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
+    <link rel="preload" as="image" href="shaban.webp" type="image/webp">
     <link rel="stylesheet" href="styles.css?v=20260701_0846">
 </head>
 
@@ -114,13 +208,13 @@
     <!-- === SECTION 5: GLOBAL INTERFACE COMPONENTS === -->
     <div id="print-footer" style="display:none;">Downloaded from https://shabanahmad.github.io/</div>
     <div class="sticky-sidebar">
-        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" rel="noopener noreferrer" class="h-social" data-tip="LinkedIn"
+        <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="h-social" data-tip="LinkedIn"
             aria-label="LinkedIn Profile" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="h-social"
+        <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" class="h-social"
             data-tip="Google Scholar" aria-label="Google Scholar Profile" rel="noopener noreferrer"><i class="ai ai-google-scholar" aria-hidden="true"></i></a>
-        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" rel="noopener noreferrer" class="h-social"
+        <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="h-social"
             data-tip="ResearchGate" aria-label="ResearchGate Profile" rel="noopener noreferrer"><i class="ai ai-researchgate" aria-hidden="true"></i></a>
-        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" rel="noopener noreferrer" class="h-social" data-tip="ORCID"
+        <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="h-social" data-tip="ORCID"
             aria-label="ORCID Profile" rel="noopener noreferrer"><i class="ai ai-orcid" aria-hidden="true"></i></a>
     </div>
 
@@ -347,21 +441,21 @@
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" rel="noopener noreferrer" class="stat-row-link" rel="noopener noreferrer">
+                    <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" class="stat-row-link" rel="noopener noreferrer">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-quote-left" aria-hidden="true"></i>
                                 Citations</span><span class="stat-value">1830+</span></div>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" rel="noopener noreferrer"
+                    <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
                         class="stat-row-link" rel="noopener noreferrer">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-chart-line" aria-hidden="true"></i> H-index</span><span
                                 class="stat-value">29</span></div>
                     </a>
-                    <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
                         class="stat-row-link" rel="noopener noreferrer">
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle" aria-hidden="true"></i> Peer
                                 Reviews</span><span class="stat-value">600+</span></div>
                     </a>
-                    <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank" rel="noopener noreferrer"
+                    <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank"
                             class="cv-btn-half" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Download Full CV</a></div>
                 </div>
 
@@ -1846,9 +1940,9 @@
                             data archived.</div>
                         <div class="sel-pub-actions">
                             <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                            <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fab fa-github" aria-hidden="true"></i> Code</a>
-                            <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                            <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fas fa-database" aria-hidden="true"></i> Data</a>
                         </div>
                     </div>
@@ -1864,7 +1958,7 @@
                         <div class="sel-pub-actions">
                             <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a>
                             <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
                         </div>
                     </div>
 
@@ -1879,7 +1973,7 @@
                         <div class="sel-pub-actions">
                             <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank" rel="noopener noreferrer">DOI</a>
                             <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
                         </div>
                     </div>
 
@@ -1918,7 +2012,7 @@
                                 Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
                                 Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations
                                 (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550"
-                                target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" rel="noopener noreferrer"
+                                target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
                                 NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine
@@ -1986,7 +2080,7 @@
                                 cancer</strong><br><em>Plos- PlosOne (2026)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1371/journal.pone.0344028" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="http://journals.plos.org/plosone/article/asset?unique&id=info:doi/10.1371/journal.pone.0344028.s001"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
                         <li class="pub-item"><strong>Multimodal evaluation of Mannose Engineered Poly Lactic Glycolic
                                 Acid Nanoparticles with Granulocyte Colony Stimulating Factor Focused Delivery to Bone
                                 Marrow for Neutropenia</strong><br><em>Nature- Scientific Reports (2026)</em> <a
@@ -2002,14 +2096,14 @@
                                 DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley-Advanced Theory and
                                 Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://figshare.com/projects/DrLungker/268952"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Data</a> <a
-                                href="https://github.com/ShabanAhmad/DrLungker" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Data</a> <a
+                                href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fab fa-github" aria-hidden="true"></i> Code</a> </li>
                         <li class="pub-item"><strong>Evaluating the Polypharmacological Potential of Cosmetic
                                 Preservative Imidurea Against Lung Cancer-Associated EGFR, CDK2, STAT3, BCL2, p53, and
                                 ABCB1 Proteins</strong><br><em>Intl. J. Bio. Macromol. (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/j.ijbiomac.2025.146175" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.36122.71365" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in
                                 Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting
@@ -2025,15 +2119,15 @@
                                 proteins</strong><br><em>Computers in Biology and Medicine (2025)</em> <a
                                 class="pub-doi" href="https://doi.org/10.1016/j.compbiomed.2025.110163"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://doi.org/10.13140/RG.2.2.17248.34566"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Probing the multitargeted potency of Theodrenaline and its
                                 comparative evaluation with Crizotinib against transferase, hydrolase, signalling, and
                                 apoptosis-related proteins to overcome lung cancer drug resistance</strong><br><em>Intl.
                                 J. Bio. Macromol. (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.30670.11846" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.30670.11846" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Integrative Computational Approaches Identify Haptoglobin
                                 Inhibitors to Modulate Erythrocyte Sedimentation Rate in Trauma-Linked Inflammatory and
@@ -2041,14 +2135,14 @@
                                 class="pub-doi" href="https://doi.org/10.3389/fchem.2025.1611972"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://www.frontiersin.org/journals/chemistry/articles/10.3389/fchem.2025.1611972/full#supplementary-material"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-flask" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-flask" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Evaluating the polypharmacological potency of FEDPN from ChEMBL
                                 BioAssays against lung cancer EGFR, ALK, TrkA and KRAS proteins</strong><br><em>Intl. J.
                                 Bio. Macromol. (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/j.ijbiomac.2025.141703" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data </a> <a
-                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" rel="noopener noreferrer"
+                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> </li>
                         <li class="pub-item"><strong>RCSB Protein Data Bank: Revolutionising Drug Discovery and Design
                                 for Over Five Decades</strong><br><em>Medical Data Mining (2025)</em> <a class="pub-doi"
@@ -2057,27 +2151,27 @@
                                 Docking, DFT, MD Simulations, MMPBSA, MTT, Apoptosis, and Immunoblotting
                                 Studies</strong><br><em>Intl. J. Mol. Sci. (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.3390/ijms26031060" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank" rel="noopener noreferrer"
+                                href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Probing the Role of Coniferin and Tetrahydrocurcumin from
                                 Traditional Chinese Medicine against PSAT1 in Early-stage Ovarian
                                 Cancer</strong><br><em>PLoS ONE (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1371/journal.pone.0313585" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://figshare.com/articles/figure/Structure_of_the_top_10_screened_compounds_/28363057?file=52186840"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Code</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Code</a> </li>
                         <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition
                                 of NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine
                                 Storms</strong><br><em>Nature- Scientific Reports (2025)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Synthesis, structural elucidation, and antibacterial activities of
                                 novel copper(II), cobalt(II), and nickel(II) complexes with a bidentate Schiff base
                                 ligand against pathogenic bacteria</strong><br><em>Journal of Molecular Structure
                                 (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2024.139874"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286024023834-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
                         <li class="pub-item"><strong>Reporting multitargeted potency of Tiaprofenic acid against lung
                                 cancer: Molecular fingerprinting, MD simulation, and MTT- based cell viability assay
                                 studies</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a class="pub-doi"
@@ -2087,15 +2181,15 @@
                                 and M. tuberculosis</strong><br><em>Intl. J. Bio. Macromol. (2024)</em> <a
                                 class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2024.132332"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://doi.org/10.13140/RG.2.2.34025.56164"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.25636.95361" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                href="https://doi.org/10.13140/RG.2.2.25636.95361" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fas fa-database" aria-hidden="true"></i> Data- 2</a> </li>
                         <li class="pub-item"><strong>Deciphering the influenza neuraminidase inhibitory potential of
                                 naturally occurring bioflavonoids: An in-silico approach</strong><br><em>Open Chemistry
                                 (2024)</em> <a class="pub-doi" href="https://doi.org/10.1515/chem-2024-0053"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://www.degruyterbrill.com/document/doi/10.1515/chem-2024-0053/downloadAsset/suppl/chem-2024-0053_sm.pdf"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
                         <li class="pub-item"><strong>Meet the Executive Guest Editor of Mini-Reviews in Medicinal
                                 Chemistry (Shaban Ahmad)</strong><br><em>Mini-Reviews in Medicinal Chemistry (2024)</em>
                             <a class="pub-doi" href="https://doi.org/10.2174/138955752413240422155139"
@@ -2104,7 +2198,7 @@
                         <li class="pub-item"><strong>Microbial biofilm inhibition using magnetic cross-linked polyphenol
                                 oxidase aggregates</strong><br><em>ACS Applied Biomaterials (2024)</em> <a
                                 class="pub-doi" href="https://doi.org/10.1021/acsabm.4c00175" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://ndownloader.figstatic.com/files/46219215" target="_blank" rel="noopener noreferrer"
+                            <a href="https://ndownloader.figstatic.com/files/46219215" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Data</a>
                         </li>
                         <li class="pub-item"><strong>An Extensive Review on Lung Cancer Therapeutics Using Machine
@@ -2116,7 +2210,7 @@
                                 approaches</strong><br><em>Journal of Molecular Structure (2024)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/j.molstruc.2024.138051" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286024005738-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a> </li>
                         <li class="pub-item"><strong>Structure-based virtual screening, molecular docking, molecular
                                 dynamics simulation, and metabolic reactivity studies of quinazoline derivatives for
                                 their anti-EGFR activity against tumour angiogenesis</strong><br><em>Current Medicinal
@@ -2126,22 +2220,22 @@
                                 multitargeted inhibitor for Lung Cancer: An optimisation followed multi-simulation and
                                 in-vitro study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1080/07391102.2023.2209673" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.28992.39680" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://ndownloader.figstatic.com/files/40472840" target="_blank" rel="noopener noreferrer"
+                                href="https://ndownloader.figstatic.com/files/40472840" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data -2</a></li>
                         <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential
                                 aromatase inhibitor against breast carcinoma</strong><br><em>Nature- Scientific Reports
                                 (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Investigating the multitargeted anti-diabetic potential of
                                 cucurbitane-type triterpenoid from Momordica charantia: An LC-MS, docking-based MM\GBSA
                                 and MD Simulation Study</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a
                                 class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2291174"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://ndownloader.figstatic.com/files/43578764"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Identification of 5-nitroindazole as a multitargeted inhibitor for
                                 CDK and transferase kinase in lung cancer: a multisampling algorithm-based structural
                                 study</strong><br><em>Molecular Diversity (2023)</em> <a class="pub-doi"
@@ -2150,21 +2244,21 @@
                                 binding and modelling studies of pyrazole-pyrazoline derivatives</strong><br><em>RSC
                                 Advances (2023)</em> <a class="pub-doi" href="https://doi.org/10.1039/d3ra04873j"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j1.pdf" target="_blank" rel="noopener noreferrer"
+                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j1.pdf" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j2.cif" target="_blank" rel="noopener noreferrer"
+                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j2.cif" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Structural-functional analysis and Molecular characterisation of
                                 arsenate reductase from Enterobacter cloacae RSC3 for arsenic
                                 biotransformation</strong><br><em>3-Biotech (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1007/s13205-023-03730-9" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs13205-023-03730-9/MediaObjects/13205_2023_3730_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Computational screening and MM\GBSA-based MD simulation studies
                                 reveal the high binding potential of FDA-approved drugs against Cutibacterium acnes
                                 Sialidase</strong><br><em>J. Biomol. Struct. Dyn. (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1080/07391102.2023.2242950" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.6084/m9.figshare.23898308" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.6084/m9.figshare.23898308" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-figshare" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Structure-Based Design of Novel MAO-B Inhibitors: A
                                 Review</strong><br><em>Molecules (2023)</em> <a class="pub-doi"
@@ -2173,51 +2267,51 @@
                                 An exploratory study</strong><br><em>Mol. Gen. Genomics (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1007/s00438-023-02031-3" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs00438-023-02031-3/MediaObjects/438_2023_2031_MOESM2_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs00438-023-02031-3/MediaObjects/438_2023_2031_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> </li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> </li>
                         <li class="pub-item"><strong>Synthesis, Single crystal, TD-DFT, Molecular Dynamics Simulation
                                 and DNA binding studies of Carbothioamide Analogue</strong><br><em>Journal of Molecular
                                 Structure (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1016/j.molstruc.2023.135701" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286023007974-mmc2.zip"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286023007974-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Comprehensive Computational Studies of Naturally Occurring
                                 Kuguacins as Anti-diabetic Agents by Targeting Visfatin</strong><br><em>Chemistry Africa
                                 (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/s42250-023-00604-8"
                                 target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs42250-023-00604-8/MediaObjects/42250_2023_604_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Comparative insight into Rice chloroplasts genome: Mutational
                                 Phylogenomics reveals Echinochloa oryzicola as the ongoing progenitor of
                                 rice</strong><br><em>Gen. Res. Crop Evol. (2023)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1007/s10722-022-01471-x" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM2_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and
                                 Pro-Inflammatory Cytokine Stimulation, an Increasing Antigenic and Anti-Inflammatory
                                 Cytokine Induction, and Rising Structural Protein Instability: A Minimal Number
                                 Genome-Based Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM2_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM3_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 3</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 3</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM4_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 4</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 4</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM5_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 5</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 5</a></li>
                         <li class="pub-item"><strong>Predictive modelling and therapeutic repurposing of natural
                                 compounds against the receptor-binding domain of SARS-CoV-2</strong><br><em>J. Biomol.
                                 Struct. Dyn. (2022)</em> <a class="pub-doi"
                                 href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank" rel="noopener noreferrer">DOI</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.18926.06725" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.18926.06725" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Correction to: Novel Severe Acute Respiratory Syndrome Coronavirus
                                 2 (SARS-CoV-2) and other coronaviruses: a genome-wide comparative annotation and
@@ -2398,138 +2492,138 @@
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>Ongoing/Latest Codes and Tools (KU-MGB)</strong>
-                            <a href="https://github.com/KU-MGB" target="_blank" rel="noopener noreferrer"
+                            <a href="https://github.com/KU-MGB" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Organisation</a></li>
                         <li class="pub-item"><strong>Code and Dataset: DrLungker-</strong> Deep Ensemble Learning
-                            Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" rel="noopener noreferrer"
+                            Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a
-                                href="https://figshare.com/projects/DrLungker/268952" target="_blank" rel="noopener noreferrer"
+                                href="https://figshare.com/projects/DrLungker/268952" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Code and Dataset: DeepEntXAI-</strong> Hybrid Explainable
-                            Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank" rel="noopener noreferrer"
+                            Framework. <a href="https://github.com/ShabanAhmad/DeepEntXAI" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Code and Dataset: LungXAI-</strong> Deep Learning Framework. <a
-                                href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://github.com/SyeddNaseer/LUNGXAI" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fab fa-github" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Code: RMSD-RMSF Plots</strong> <a
-                                href="https://github.com/ShabanAhmad/RMSD-RMSF-Plots" target="_blank" rel="noopener noreferrer"
+                                href="https://github.com/ShabanAhmad/RMSD-RMSF-Plots" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Code and Dataset: FEDPN Polypharmacology (Lung Cancer)</strong> <a
-                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" rel="noopener noreferrer"
+                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Code and Dataset: ChEMBL BioAssays (Lung Cancer)</strong> <a
-                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" rel="noopener noreferrer"
+                                href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.27314.67529" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.27314.67529" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Code and Dataset: PubChem BioAssay</strong> <a
-                                href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank" rel="noopener noreferrer"
+                                href="https://github.com/ShabanAhmad/PubChem_LungCancer-BioAssay" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Code: PSAT1 Screened Compounds (Coniferin and
                                 Tetrahydrocurcumin)</strong> <a
                                 href="https://figshare.com/articles/figure/Structure_of_the_top_10_screened_compounds_/28363057?file=52186840"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Code</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Code</a></li>
                         <li class="pub-item"><strong>Dataset: Imidurea Polypharmacology (Lung Cancer)</strong> <a
-                                href="https://doi.org/10.13140/RG.2.2.36122.71365" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.36122.71365" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Haptoglobin Inhibitors in Haematological
                                 Malignancies</strong> <a
                                 href="https://www.frontiersin.org/journals/chemistry/articles/10.3389/fchem.2025.1611972/full#supplementary-material"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-flask" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-flask" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Levophed Multitargeted Therapy</strong> <a
-                                href="https://doi.org/10.13140/RG.2.2.17248.34566" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.17248.34566" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Theodrenaline vs Crizotinib</strong> <a
-                                href="https://doi.org/10.13140/RG.2.2.30670.11846" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.30670.11846" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Paliperidone on RAGES</strong> <a
-                                href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank" rel="noopener noreferrer"
+                                href="https://www.mdpi.com/article/10.3390/ijms26031060/s1" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Inhibition of NF-kB Signalling</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Copper(II), cobalt(II), and nickel(II) complexes</strong>
                             <a href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286024023834-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
                         </li>
                         <li class="pub-item"><strong>Dataset: Imidurea Dual Inhibitor</strong> <a
-                                href="https://doi.org/10.13140/RG.2.2.34025.56164" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.34025.56164" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://doi.org/10.13140/RG.2.2.25636.95361" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.25636.95361" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Influenza neuraminidase inhibitory potential of
                                 bioflavonoids</strong> <a
                                 href="https://www.degruyterbrill.com/document/doi/10.1515/chem-2024-0053/downloadAsset/suppl/chem-2024-0053_sm.pdf"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Microbial biofilm inhibition (Polyphenol oxidase)</strong>
-                            <a href="https://ndownloader.figstatic.com/files/46219215" target="_blank" rel="noopener noreferrer"
+                            <a href="https://ndownloader.figstatic.com/files/46219215" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="ai ai-figshare" aria-hidden="true"></i> Data</a>
                         </li>
                         <li class="pub-item"><strong>Dataset: 2-hydrazinobenzothiazole-based derivatives</strong> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286024005738-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Imidazolidinyl urea Multisampling</strong> <a
-                                href="https://doi.org/10.13140/RG.2.2.28992.39680" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://ndownloader.figstatic.com/files/40472840" target="_blank" rel="noopener noreferrer"
+                                href="https://ndownloader.figstatic.com/files/40472840" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Ziprasidone as aromatase inhibitor</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Cucurbitane-type triterpenoid from Momordica
                                 charantia</strong> <a href="https://ndownloader.figstatic.com/files/43578764"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Pyrazole-pyrazoline derivatives</strong> <a
-                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j1.pdf" target="_blank" rel="noopener noreferrer"
+                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j1.pdf" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
-                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j2.cif" target="_blank" rel="noopener noreferrer"
+                                href="https://www.rsc.org/suppdata/d3/ra/d3ra04873j/d3ra04873j2.cif" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Arsenate reductase from Enterobacter cloacae</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs13205-023-03730-9/MediaObjects/13205_2023_3730_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Cutibacterium acnes Sialidase</strong> <a
-                                href="https://doi.org/10.6084/m9.figshare.23898308" target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i
+                                href="https://doi.org/10.6084/m9.figshare.23898308" target="_blank" class="btn-data" rel="noopener noreferrer"><i
                                     class="ai ai-figshare" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Genus Tenacibaculum (Comparative genomic)</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs00438-023-02031-3/MediaObjects/438_2023_2031_MOESM2_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs00438-023-02031-3/MediaObjects/438_2023_2031_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Carbothioamide Analogue</strong> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286023007974-mmc2.zip"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://ars.els-cdn.com/content/image/1-s2.0-S0022286023007974-mmc1.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: Kuguacins as Anti-diabetic Agents</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs42250-023-00604-8/MediaObjects/42250_2023_604_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Dataset: Rice Chloroplasts Genome's Evolutionary
                                 Comparison</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM2_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a></li>
                         <li class="pub-item"><strong>Dataset: SARS-CoV-2 Variants Gradual Declining
                                 Pathogenicity</strong> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM1_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 1</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM2_ESM.docx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 2</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM3_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 3</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 3</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM4_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 4</a> <a
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 4</a> <a
                                 href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM5_ESM.xlsx"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 5</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data- 5</a></li>
                         <li class="pub-item"><strong>Dataset: Predictive Modelling of Natural Compounds
                                 (SARS-CoV-2)</strong> <a href="https://doi.org/10.13140/RG.2.2.18926.06725"
-                                target="_blank" rel="noopener noreferrer" class="btn-data" rel="noopener noreferrer"><i class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="ai ai-researchgate" aria-hidden="true"></i> Data</a></li>
                     </ol>
                 </div>
                 <button class="scroll-more-btn" aria-label="Scroll for more content" onclick="scrollNextBatch(this)" data-tip="Scroll More"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
@@ -2851,26 +2945,26 @@
                     <ol class="pub-list" reversed style="padding-left: 20px;">
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://www.mdpi.com/journal/ijms/special_issues/3V2GN3X3Z8"
-                                    target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">International
+                                    target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">International
                                     Journal of Molecular Sciences</a></strong> (2026-date)<br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence, Multi-Omics,
                                 and Molecular Modelling in Modern Drug Discovery</span></li>
 
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://www.frontiersin.org/research-topics/77977/artificial-intelligence-for-polypharmacology-and-resistance-aware-cancer-drug-discovery"
-                                    target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Frontiers
+                                    target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Frontiers
                                     in Oncology</a></strong> (2026-date)<br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Artificial Intelligence for
                                 Polypharmacology and Resistance-Aware Cancer Drug Discovery</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="https://journals.sagepub.com/page/npx/collections/call-for-papers/harnessing-natures-pharmacy-for-the-therapeutics-of-lung-and-respiratory-diseases/biographies"
-                                    target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Natural
+                                    target="_blank" style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Natural
                                     Product Communications</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Harnessing Nature's Pharmacy for the
                                 Therapeutics of Lung and Respiratory Diseases</span></li>
                         <li class="pub-item">Guest Editor: <strong><a
                                     href="http://dx.doi.org/10.2174/138955752413240422155139"
-                                    target="_blank" rel="noopener noreferrer"
+                                    target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Mini-Reviews in Medicinal
                                     Chemistry</a></strong> <span style="color:#dc2626; font-weight:700;">(2024, Submission closed)</span><br><span
                                 style="font-size:0.85rem; color:#666;">Topic: Computational Frontiers in Medicinal
@@ -2891,17 +2985,17 @@
                                     style="color:var(--primary); text-decoration: underline;">START Centre for Sustainable Agrifood Systems</a></strong> (2026-present)</li>
                         <li class="pub-item">Member of the <strong><a href="https://plen.ku.dk/english/" target="_blank" rel="noopener noreferrer"
                                     style="color:var(--primary); text-decoration: underline;">PLEN Data Science Task Force (DSTF)</a></strong>, University of Copenhagen (2026-present)</li>
-                        <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank" rel="noopener noreferrer"
+                        <li class="pub-item">Member of the <strong><a href="https://www.iaslc.org/" target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">International Association
                                     for the Study of Lung Cancer</a></strong> (18/10/2024 to 17/10/2026)</li>
-                        <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank" rel="noopener noreferrer"
+                        <li class="pub-item">Member of the <strong><a href="https://www.esmo.org/" target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">European Society for
                                     Medical Oncology</a></strong> (10/05/2024 to 09/05/2027)</li>
-                        <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank" rel="noopener noreferrer"
+                        <li class="pub-item">Member of the <strong><a href="https://www.bidds.org/" target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Bioinformatics and Drug
                                     Discovery Society</a></strong> (Life Member)</li>
                         <li class="pub-item">Council Member of the <strong><a
-                                    href="https://www.deshbandhucollege.ac.in/" target="_blank" rel="noopener noreferrer"
+                                    href="https://www.deshbandhucollege.ac.in/" target="_blank"
                                     style="color:var(--primary); text-decoration: underline;" rel="noopener noreferrer">Botanical Society
                                     (Sanjeevani)</a></strong>, Deshbandhu College, University of Delhi.</li>
                     </ol>
@@ -2916,7 +3010,7 @@
             <div class="panel-content">
                 <div class="scrollable-list">
                     <p id="peer-review-count-text" style="margin-bottom:15px; font-weight:bold; color:var(--primary);">
-                        <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021" target="_blank"
                             style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i
                                     class="fas fa-check-circle" aria-hidden="true"></i> 600+ Verified</span> Peer Reviews on Publons
                             (WoS)</a>
@@ -3208,7 +3302,7 @@
                 </div>
                 <div class="referee-title-line">Associate Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/"
-                        target="_blank" rel="noopener noreferrer" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
+                        target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
                             class="fas fa-university" aria-hidden="true"></i> University of Copenhagen</a><span class="flag-wrapper" data-tip="Denmark"><img
                             src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
@@ -3223,7 +3317,7 @@
                             target="_blank" rel="noopener noreferrer">Dr Khalid Raza</a></div><span class="referee-role">PhD Supervisor</span>
                 </div>
                 <div class="referee-title-line">Associate Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" rel="noopener noreferrer"
+                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
                         Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
                             src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
@@ -3238,7 +3332,7 @@
                     </div><span class="referee-role">Mentor</span>
                 </div>
                 <div class="referee-title-line">Assistant Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank" rel="noopener noreferrer"
+                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> More
                         School of Medicine</a><span class="flag-wrapper" data-tip="United States"><img
                             src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US"></span></div>
@@ -3253,7 +3347,7 @@
                             Tiina Jokela</a></div><span class="referee-role">JYU Visiting PI</span>
                 </div>
                 <div class="referee-title-line">Research Director</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank" rel="noopener noreferrer"
+                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank"
                         class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> University
                         of Jyväskylä</a><span class="flag-wrapper" data-tip="Finland"><img
                             src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"></span></div>
@@ -3269,7 +3363,7 @@
                 </div>
                 <div class="referee-title-line">Associate Professor</div>
                 <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/"
-                        target="_blank" rel="noopener noreferrer" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
+                        target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
                             class="fas fa-university" aria-hidden="true"></i> SRM University</a><span class="flag-wrapper" data-tip="India"><img
                             src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
                 <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
@@ -3285,7 +3379,7 @@
                             target="_blank" rel="noopener noreferrer">Dr Mansaf Alam</a></div><span class="referee-role">MSc Supervisor</span>
                 </div>
                 <div class="referee-title-line">Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank" rel="noopener noreferrer"
+                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
                         class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
                         Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
                             src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
@@ -3323,30 +3417,30 @@
                             tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')"
                             aria-label="Copy email shaban.ucph@gmail.com">shaban.ucph@gmail.com</span></div>
                     <div class="contact-item"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><a
-                            href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" rel="noopener noreferrer" class="link-anim-slow" rel="noopener noreferrer">MEB
+                            href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow" rel="noopener noreferrer">MEB
                             Section, PLEN, University of Copenhagen, Denmark</a></div>
 
                     <!-- Unified Footer Line: Social Icons & Copyright (Responsive Wrapper) -->
                     <div class="footer-bottom-wrapper">
                         <div class="footer-socials"
                             style="margin: 0; padding: 5px 10px; gap: 12px; display: inline-flex; align-items: center;">
-                            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" rel="noopener noreferrer" class="f-soc-link"
+                            <a href="https://www.linkedin.com/in/drshabanahmad/" target="_blank" class="f-soc-link"
                                 data-tip="LinkedIn" aria-label="LinkedIn Profile" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" rel="noopener noreferrer" class="f-soc-link"
+                            <a href="https://orcid.org/0000-0001-9832-2830" target="_blank" class="f-soc-link"
                                 data-tip="ORCID" aria-label="ORCID Profile" rel="noopener noreferrer"><i class="ai ai-orcid" aria-hidden="true"></i></a>
-                            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank" rel="noopener noreferrer"
+                            <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en" target="_blank"
                                 class="f-soc-link" data-tip="Google Scholar" aria-label="Google Scholar Profile" rel="noopener noreferrer"><i
                                     class="ai ai-google-scholar" aria-hidden="true"></i></a>
-                            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank" rel="noopener noreferrer"
+                            <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2" target="_blank"
                                 class="f-soc-link" data-tip="ResearchGate" aria-label="ResearchGate Profile" rel="noopener noreferrer"><i
                                     class="ai ai-researchgate" aria-hidden="true"></i></a>
-                            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank" rel="noopener noreferrer"
+                            <a href="https://www.webofscience.com/wos/author/record/2415769" target="_blank"
                                 class="f-soc-link" data-tip="Web of Science" aria-label="Web of Science Profile" rel="noopener noreferrer"><i
                                     class="ai ai-clarivate" aria-hidden="true"></i></a>
-                            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank" rel="noopener noreferrer"
+                            <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288" target="_blank"
                                 class="f-soc-link" data-tip="Scopus" aria-label="Scopus Profile" rel="noopener noreferrer"><i
                                     class="ai ai-scopus" aria-hidden="true"></i></a>
-                            <a href="https://github.com/ShabanAhmad" target="_blank" rel="noopener noreferrer" class="f-soc-link" data-tip="GitHub"
+                            <a href="https://github.com/ShabanAhmad" target="_blank" class="f-soc-link" data-tip="GitHub"
                                 aria-label="GitHub Profile" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
                         </div>
                         <div class="footer-copyright" style="margin: 0 0 0 10px;">&copy; 2026 Shaban Ahmad | All rights

@@ -26,4 +26,19 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
+User-agent: Bytespider
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://shabanahmad.github.io/sitemap.xml
