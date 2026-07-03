@@ -10062,15 +10062,7 @@ body.dark-mode .vision-dropdown-menu a:hover {
 /* Align Career Trajectory section header with timeline line */
 @media (min-width: 901px) {
     .about-right .section-header-flex {
-        justify-content: center;
-        position: relative;
-    }
-    
-    .about-right .section-header-flex .journey-filters {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
+        margin-left: -1.5rem;
     }
 }
 @media (max-width: 900px) {
