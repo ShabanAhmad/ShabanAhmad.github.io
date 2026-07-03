@@ -2130,7 +2130,7 @@ document.addEventListener('click', function(e) {
 
 /* Switch Awards Tab */
 window.switchAwardsTab = function(tabId) {
-    document.querySelectorAll('.bento-tab-btn, .awards-tab-btn').forEach(btn => {
+    document.querySelectorAll('.metric-tab-btn, .awards-tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     const activeBtn = document.getElementById(`tab-btn-${tabId}`);

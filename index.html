@@ -1603,44 +1603,68 @@
 
     <!-- === SECTION 10: AWARDS, PATENTS & HONOURS === -->
     <section id="awards" class="container reveal">
-        <div class="about-hero-card" style="margin-top: 2rem; width: 100%; box-sizing: border-box;">
-            <div class="awards-title-row" style="margin-bottom: 2rem;">
+        <div class="awards-hero-wrapper">
+            <div class="awards-title-row" style="margin-bottom: 2.5rem;">
                 <h2 class="section-title" style="margin-bottom:0;">Patents &amp; Awards</h2>
             </div>
             
-            <!-- Unified Bento-style Tab Navigation -->
-            <div class="awards-bento-grid">
-                <button class="bento-tab-btn active" id="tab-btn-patents" onclick="switchAwardsTab('patents')">
-                    <div class="btc-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="btc-stats">
-                        <div class="btc-stat"><span class="btc-num">1</span> Granted</div>
-                        <div class="btc-stat"><span class="btc-num">06</span> Pipeline</div>
+            <!-- Unified Metric Tab Navigation -->
+            <div class="awards-metric-grid">
+                <button class="metric-tab-btn active" id="tab-btn-patents" onclick="switchAwardsTab('patents')">
+                    <i class="fas fa-certificate mt-icon"></i>
+                    <div class="mt-content">
+                        <div class="mt-title">Patents (IPR)</div>
+                        <div class="mt-stats-flex">
+                            <div class="mt-stat-group">
+                                <span class="mt-num">1</span>
+                                <span class="mt-sub-label">Granted</span>
+                            </div>
+                            <div class="mt-stat-divider"></div>
+                            <div class="mt-stat-group">
+                                <span class="mt-num">06</span>
+                                <span class="mt-sub-label">Pipeline</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btc-title">Patents (IPR)</div>
                 </button>
                 
-                <button class="bento-tab-btn" id="tab-btn-top" onclick="switchAwardsTab('top')">
-                    <div class="btc-icon"><i class="fas fa-medal"></i></div>
-                    <div class="btc-stats">
-                        <div class="btc-stat"><span class="btc-num">4</span> Int. Recognitions</div>
+                <button class="metric-tab-btn" id="tab-btn-top" onclick="switchAwardsTab('top')">
+                    <i class="fas fa-medal mt-icon"></i>
+                    <div class="mt-content">
+                        <div class="mt-title">Top Accolades</div>
+                        <div class="mt-stats-flex">
+                            <div class="mt-stat-group">
+                                <span class="mt-num">4</span>
+                                <span class="mt-sub-label">Int. Recognitions</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btc-title">Top Accolades</div>
                 </button>
                 
-                <button class="bento-tab-btn" id="tab-btn-presentations" onclick="switchAwardsTab('presentations')">
-                    <div class="btc-icon"><i class="fas fa-microphone-alt"></i></div>
-                    <div class="btc-stats">
-                        <div class="btc-stat"><span class="btc-num">7</span> Best Posters/Orals</div>
+                <button class="metric-tab-btn" id="tab-btn-presentations" onclick="switchAwardsTab('presentations')">
+                    <i class="fas fa-microphone-alt mt-icon"></i>
+                    <div class="mt-content">
+                        <div class="mt-title">Presentation Awards</div>
+                        <div class="mt-stats-flex">
+                            <div class="mt-stat-group">
+                                <span class="mt-num">7</span>
+                                <span class="mt-sub-label">Best Posters/Orals</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btc-title">Presentation Awards</div>
                 </button>
                 
-                <button class="bento-tab-btn" id="tab-btn-fellowships" onclick="switchAwardsTab('fellowships')">
-                    <div class="btc-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="btc-stats">
-                        <div class="btc-stat"><span class="btc-num">4</span> Fellowships & Grants</div>
+                <button class="metric-tab-btn" id="tab-btn-fellowships" onclick="switchAwardsTab('fellowships')">
+                    <i class="fas fa-graduation-cap mt-icon"></i>
+                    <div class="mt-content">
+                        <div class="mt-title">Fellowships &amp; Others</div>
+                        <div class="mt-stats-flex">
+                            <div class="mt-stat-group">
+                                <span class="mt-num">4</span>
+                                <span class="mt-sub-label">Grants & Fellowships</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btc-title">Fellowships &amp; Others</div>
                 </button>
             </div>
 
@@ -1896,7 +1920,7 @@
                 </div>
             </div>
         </div>
-        </div> <!-- Close about-hero-card -->
+        </div> <!-- Close awards-hero-wrapper -->
         
         <hr class="separator">
     </section>
