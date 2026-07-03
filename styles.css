@@ -10351,6 +10351,28 @@ body.dark-mode .vision-dropdown-menu a:hover {
     grid-template-columns: repeat(2, 1fr) !important;
 }
 
+@media (min-width: 681px) {
+    .award-box-grid--two .award-card:nth-child(2)::after {
+        left: -22px !important;
+        top: 50% !important;
+        transform: translateY(-50%) rotate(180deg) !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+    
+    .award-box-grid--two .award-card:nth-child(3) {
+        grid-column: 2;
+    }
+    
+    .award-box-grid--two .award-card:nth-child(3)::after {
+        top: -26px !important;
+        left: 50% !important;
+        transform: translateX(-50%) rotate(-90deg) !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+}
+
 @media (max-width: 680px) {
     .award-box-grid--two {
         grid-template-columns: 1fr !important;
