@@ -10489,13 +10489,13 @@ body.dark-mode .metric-tab-btn .mt-num {
 .metric-tab-btn .mt-title {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--sub-heading);
     transition: all 0.3s ease;
     margin-bottom: 0.5rem;
 }
 
 body.dark-mode .metric-tab-btn .mt-title {
-    color: var(--white);
+    color: #38bdf8;
 }
 
 .metric-tab-btn.active .mt-title {
