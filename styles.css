@@ -10417,7 +10417,37 @@ body.dark-mode .awards-hero-wrapper {
 }
 @media (max-width: 600px) {
     .awards-metric-grid {
-        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .metric-tab-btn {
+        padding: 1rem;
+        min-height: 100px;
+    }
+    
+    .metric-tab-btn .mt-title {
+        font-size: 0.85rem;
+        padding-right: 0;
+    }
+    
+    .metric-tab-btn .mt-num {
+        font-size: 1.6rem;
+    }
+    
+    .metric-tab-btn .mt-icon {
+        font-size: 1.2rem;
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+    
+    .mt-stats-flex {
+        margin-top: 0.8rem;
+    }
+    
+    .mt-sub-label {
+        font-size: 0.7rem;
+        white-space: normal;
+        letter-spacing: 0;
     }
 }
 
