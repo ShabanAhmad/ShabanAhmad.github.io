@@ -10517,16 +10517,16 @@ body.dark-mode .metric-tab-btn .mt-title {
 .mt-stat-divider {
     width: 2px;
     height: 24px;
-    background: var(--card-border);
+    background: #dc3545; /* Red color */
     margin: 0 4px;
     align-self: flex-end;
     margin-bottom: 4px;
 }
 body.dark-mode .mt-stat-divider {
-    background: rgba(255,255,255,0.1);
+    background: #ef4444; /* Bright red for dark mode */
 }
 .metric-tab-btn.active .mt-stat-divider {
-    background: rgba(255,255,255,0.3) !important;
+    background: rgba(255,255,255,0.5) !important;
 }
 
 .mt-sub-label {
