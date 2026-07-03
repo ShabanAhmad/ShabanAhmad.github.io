@@ -10436,7 +10436,7 @@ body.dark-mode .awards-hero-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 110px;
+    min-height: 120px;
     transform: translateY(0);
 }
 
@@ -10477,6 +10477,10 @@ body.dark-mode .metric-tab-btn.active {
     border-color: var(--accent);
     border-bottom-color: color-mix(in srgb, var(--accent) 40%, #000);
     box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.mt-content {
+    margin-top: 1.8rem;
 }
 
 .metric-tab-btn .mt-icon {
@@ -10526,6 +10530,8 @@ body.dark-mode .metric-tab-btn .mt-num {
     color: var(--sub-heading);
     transition: all 0.3s ease;
     margin-bottom: 0.5rem;
+    padding-right: 1.8rem;
+    line-height: 1.3;
 }
 
 body.dark-mode .metric-tab-btn .mt-title {
@@ -10539,8 +10545,9 @@ body.dark-mode .metric-tab-btn .mt-title {
 .mt-stats-flex {
     display: flex;
     align-items: baseline;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .mt-stat-group {
