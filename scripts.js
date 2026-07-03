@@ -1620,11 +1620,16 @@ const debounce = (func, wait) => {
 
 /* ===== ACADEMIC & RESEARCH JOURNEY FILTER ===== */
 window.filterJourney = function(type, element) {
-    document.querySelectorAll('.journey-filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    if (element) {
-        element.classList.add('active');
+    if (element && element.classList.contains('active')) {
+        element.classList.remove('active');
+        type = 'all';
+    } else {
+        document.querySelectorAll('.journey-filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        if (element) {
+            element.classList.add('active');
+        }
     }
     
     const nodes = document.querySelectorAll('.journey-node');
