@@ -1634,9 +1634,12 @@ window.filterJourney = function(type, element) {
     
     const nodes = document.querySelectorAll('.journey-node');
     nodes.forEach(node => {
+        // Clear any pending transitions
+        if (node.filterTimeoutId) clearTimeout(node.filterTimeoutId);
+
         if (type === 'all') {
             node.style.display = 'block';
-            setTimeout(() => {
+            node.filterTimeoutId = setTimeout(() => {
                 node.style.opacity = '1';
                 node.style.transform = 'translateY(0) scale(1)';
             }, 50);
