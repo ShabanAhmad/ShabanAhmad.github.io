@@ -9593,15 +9593,21 @@ body.dark-mode .tech-search-status {
     
     .section-header-flex {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center !important;
+        justify-content: space-between;
         gap: 0.75rem;
         margin-bottom: 1.5rem;
         width: 100%;
     }
     
-    .section-header-flex .section-title {
+    .section-header-flex .section-title,
+    .section-header-flex .unified-sub-heading {
         white-space: normal;
+        flex: 1;
+        min-width: 0;
+        margin-bottom: 0 !important;
     }
     
     .tech-search-status {
