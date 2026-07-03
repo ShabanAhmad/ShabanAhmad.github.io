@@ -10406,7 +10406,7 @@ body.dark-mode .awards-hero-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
-    max-width: 1000px;
+    max-width: 1150px;
     margin: 0 auto 3rem auto;
 }
 
@@ -10569,6 +10569,7 @@ body.dark-mode .mt-stat-divider {
     letter-spacing: 0.05em;
     color: var(--text-light);
     margin-top: 4px;
+    white-space: nowrap;
 }
 
 body.dark-mode .mt-sub-label {
