@@ -10401,8 +10401,8 @@ body.dark-mode .awards-hero-wrapper {
 
 .metric-tab-btn {
     position: relative;
-    padding: 1.5rem;
-    border-radius: 20px;
+    padding: 1.2rem 1.2rem 1rem 1.2rem;
+    border-radius: 16px;
     border: 1px solid rgba(0,0,0,0.05);
     background: linear-gradient(135deg, var(--card-bg) 0%, color-mix(in srgb, var(--card-bg) 95%, transparent) 100%);
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -10413,7 +10413,7 @@ body.dark-mode .awards-hero-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 140px;
+    min-height: 110px;
 }
 
 .metric-tab-btn:hover {
@@ -10447,9 +10447,9 @@ body.dark-mode .metric-tab-btn.active {
 
 .metric-tab-btn .mt-icon {
     position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
-    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.6rem;
     color: color-mix(in srgb, var(--text) 20%, transparent);
     transition: all 0.3s ease;
 }
@@ -10469,7 +10469,7 @@ body.dark-mode .metric-tab-btn .mt-icon {
 }
 
 .metric-tab-btn .mt-num {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     font-weight: 800;
     color: var(--text);
     line-height: 1;
