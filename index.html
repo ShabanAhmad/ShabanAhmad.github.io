@@ -1607,48 +1607,45 @@
     <!-- === SECTION 10: AWARDS, PATENTS & HONOURS === -->
     <section id="awards" class="container reveal">
         <div class="about-hero-card" style="margin-top: 2rem; width: 100%; box-sizing: border-box;">
-            <div class="awards-title-row">
-            <h2 class="section-title" style="margin-bottom:0;">Patents &amp; Awards</h2>
-
-            <!-- Stats Banner -->
-            <div class="awards-stats-banner">
-                <div class="awards-stat-chip">
-                    <span class="awards-stat-num">1</span>
-                    <span class="awards-stat-label">Granted Patent</span>
-                </div>
-                <div class="awards-stat-divider"></div>
-                <div class="awards-stat-chip">
-                    <span class="awards-stat-num">06</span>
-                    <span class="awards-stat-label">Drug Molecules in Pipeline</span>
-                </div>
-                <div class="awards-stat-divider"></div>
-                <div class="awards-stat-chip">
-                    <span class="awards-stat-num">15+</span>
-                    <span class="awards-stat-label">Awards &amp; Accolades</span>
-                </div>
-                <div class="awards-stat-divider"></div>
-                <div class="awards-stat-chip">
-                    <span class="awards-stat-num">3</span>
-                    <span class="awards-stat-label">International Recognitions</span>
-                </div>
+            <div class="awards-title-row" style="margin-bottom: 2rem;">
+                <h2 class="section-title" style="margin-bottom:0;">Patents &amp; Awards</h2>
             </div>
-        </div>
-
-        <!-- Tab Navigation Buttons -->
-        <div class="awards-tabs-container">
-            <button class="awards-tab-btn active" id="tab-btn-patents" onclick="switchAwardsTab('patents')">
-                <i class="fas fa-certificate" aria-hidden="true"></i> Patents (IPR) <span class="tab-count-badge">2</span>
-            </button>
-            <button class="awards-tab-btn" id="tab-btn-top" onclick="switchAwardsTab('top')">
-                <i class="fas fa-medal" aria-hidden="true"></i> Top Accolades <span class="tab-count-badge">3</span>
-            </button>
-            <button class="awards-tab-btn" id="tab-btn-presentations" onclick="switchAwardsTab('presentations')">
-                <i class="fas fa-microphone-alt" aria-hidden="true"></i> Presentation Awards <span class="tab-count-badge">6</span>
-            </button>
-            <button class="awards-tab-btn" id="tab-btn-fellowships" onclick="switchAwardsTab('fellowships')">
-                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Fellowships &amp; Others <span class="tab-count-badge">4</span>
-            </button>
-        </div>
+            
+            <!-- Unified Bento-style Tab Navigation -->
+            <div class="awards-bento-grid">
+                <button class="bento-tab-btn active" id="tab-btn-patents" onclick="switchAwardsTab('patents')">
+                    <div class="btc-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="btc-stats">
+                        <div class="btc-stat"><span class="btc-num">1</span> Granted</div>
+                        <div class="btc-stat"><span class="btc-num">06</span> Pipeline</div>
+                    </div>
+                    <div class="btc-title">Patents (IPR)</div>
+                </button>
+                
+                <button class="bento-tab-btn" id="tab-btn-top" onclick="switchAwardsTab('top')">
+                    <div class="btc-icon"><i class="fas fa-medal"></i></div>
+                    <div class="btc-stats">
+                        <div class="btc-stat"><span class="btc-num">3</span> Int. Recognitions</div>
+                    </div>
+                    <div class="btc-title">Top Accolades</div>
+                </button>
+                
+                <button class="bento-tab-btn" id="tab-btn-presentations" onclick="switchAwardsTab('presentations')">
+                    <div class="btc-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <div class="btc-stats">
+                        <div class="btc-stat"><span class="btc-num">6</span> Best Posters/Orals</div>
+                    </div>
+                    <div class="btc-title">Presentation Awards</div>
+                </button>
+                
+                <button class="bento-tab-btn" id="tab-btn-fellowships" onclick="switchAwardsTab('fellowships')">
+                    <div class="btc-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="btc-stats">
+                        <div class="btc-stat"><span class="btc-num">4</span> Fellowships & Grants</div>
+                    </div>
+                    <div class="btc-title">Fellowships &amp; Others</div>
+                </button>
+            </div>
 
         <!-- PANEL 1: PATENTS -->
         <div class="awards-panel active" id="panel-patents" style="display: block;">
