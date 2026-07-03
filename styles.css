@@ -10407,13 +10407,18 @@ body.dark-mode .bento-tab-btn:hover {
 }
 
 .bento-tab-btn.active {
-    background: color-mix(in srgb, var(--accent) 8%, var(--card-bg, #fff));
-    border-color: var(--accent);
-    border-width: 2px;
+    border-color: var(--card-border, #eaeaea);
 }
 
 body.dark-mode .bento-tab-btn.active {
-    background: color-mix(in srgb, var(--accent) 15%, rgba(30, 41, 59, 0.8));
+    border-color: rgba(100, 116, 139, 0.5);
+}
+
+.bento-tab-btn.active .btc-icon,
+.bento-tab-btn.active .btc-num,
+.bento-tab-btn.active .btc-title,
+.bento-tab-btn.active .btc-stat {
+    color: var(--accent) !important;
 }
 
 .bento-tab-btn .btc-icon {
