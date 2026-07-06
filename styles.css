@@ -8541,7 +8541,7 @@ body.dark-mode .sel-pub-meta {
     border-radius: 24px;
     margin-bottom: 1.5rem;
     background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 30%), linear-gradient(135deg, #edf7f2 0%, #f6f8f4 55%, #fff9ef 100%);
-    border: 2px solid rgba(100, 116, 139, 0.4); /* Elegant Slate Gray */
+    border: 1px solid rgba(100, 116, 139, 0.2); /* Lighter Elegant Slate Gray */
     box-shadow: 0 12px 35px rgba(100, 116, 139, 0.08);
     position: relative;
     overflow: hidden;
@@ -8551,7 +8551,7 @@ body.dark-mode .sel-pub-meta {
 .about-hero-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 22px 48px rgba(100, 116, 139, 0.15);
-    border-color: #475569; /* Slate 600 */
+    border-color: rgba(71, 85, 105, 0.4); /* Slate 600 */
 }
 
 .about-hero-card:hover::before {
@@ -8604,11 +8604,11 @@ body.dark-mode .sel-pub-meta {
 
 body.dark-mode .about-hero-card {
     background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.09), transparent 30%), linear-gradient(135deg, #162219 0%, #1a2b1f 55%, #221f0e 100%);
-    border-color: rgba(148, 163, 184, 0.4); /* Slate 400 */
+    border-color: rgba(148, 163, 184, 0.15); /* Slate 400 Lighter */
 }
 
 body.dark-mode .about-hero-card:hover {
-    border-color: #94a3b8;
+    border-color: rgba(148, 163, 184, 0.4);
 }
 
 /* === 4.21: Highlighted Publications Marquee === */

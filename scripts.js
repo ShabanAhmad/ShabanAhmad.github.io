@@ -1446,8 +1446,8 @@ const initHeavyFX = () => {
             const isDark = document.body.classList.contains('dark-mode');
             
             // Motion blur/trail effect via semi-transparent background sweep
-            ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.12)' : 'rgba(250, 250, 249, 0.12)';
-            ctx.fillRect(0, 0, w, h);
+            // Optimization: Replace fillRect with clearRect to significantly improve rendering performance
+            ctx.clearRect(0, 0, w, h);
 
             time += 0.0018; // Speed reduced to 60%
 
