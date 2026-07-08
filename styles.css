@@ -10413,7 +10413,7 @@ body.dark-mode .awards-hero-wrapper {
 
 .awards-metric-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
     max-width: 1150px;
     margin: 0 auto 3rem auto;
@@ -10626,8 +10626,11 @@ body.dark-mode .mt-sub-label {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    margin-bottom: 2rem;
 }
-
+.awards-panel:last-child {
+    margin-bottom: 0;
+}
 .awards-panel.active {
     opacity: 1;
     transform: translateY(0);

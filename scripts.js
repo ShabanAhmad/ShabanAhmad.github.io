@@ -2130,23 +2130,36 @@ document.addEventListener('click', function(e) {
 
 /* Switch Awards Tab */
 window.switchAwardsTab = function(tabId) {
+    const clickedBtn = document.getElementById(`tab-btn-${tabId}`);
+    const isAlreadyActive = clickedBtn && clickedBtn.classList.contains('active');
+    
     document.querySelectorAll('.metric-tab-btn, .awards-tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-    if (activeBtn) activeBtn.classList.add('active');
 
     const panels = document.querySelectorAll('.awards-panel');
-    panels.forEach(panel => {
-        panel.classList.remove('active');
-        panel.style.display = 'none';
-    });
 
-    const activePanel = document.getElementById(`panel-${tabId}`);
-    if (activePanel) {
-        activePanel.style.display = 'block';
-        // Force layout reflow
-        activePanel.offsetHeight;
-        activePanel.classList.add('active');
+    if (isAlreadyActive) {
+        // Toggle OFF: Show all panels
+        panels.forEach(panel => {
+            panel.style.display = 'block';
+            panel.offsetHeight; // Force reflow
+            panel.classList.add('active');
+        });
+    } else {
+        // Toggle ON: Show only selected panel
+        if (clickedBtn) clickedBtn.classList.add('active');
+        
+        panels.forEach(panel => {
+            panel.classList.remove('active');
+            panel.style.display = 'none';
+        });
+
+        const activePanel = document.getElementById(`panel-${tabId}`);
+        if (activePanel) {
+            activePanel.style.display = 'block';
+            activePanel.offsetHeight; // Force reflow
+            activePanel.classList.add('active');
+        }
     }
 };
