@@ -134,10 +134,7 @@ body>.skiptranslate {
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    border-bottom-color: var(--accent);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    transform: translateY(0);
 }
 
 @keyframes cascadeUp {
@@ -1854,6 +1851,30 @@ body.dark-mode .srch-empty {
     }
 }
 
+/* Key Scientific Contributions layout:
+   - mobile: single stacked column
+   - large screens: row 1 = two cards (60 / 40), row 2 = three equal cards */
+.bento-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+    .bento-stack {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.5rem;
+    }
+    /* Row 1: two cards, 50 / 50 */
+    .bento-stack > .bento-card:nth-child(1),
+    .bento-stack > .bento-card:nth-child(2) { grid-column: span 3; }
+    /* Row 2: three equal cards */
+    .bento-stack > .bento-card:nth-child(3),
+    .bento-stack > .bento-card:nth-child(4),
+    .bento-stack > .bento-card:nth-child(5) { grid-column: span 2; }
+}
+
 .bento-card {
     border-radius: 20px;
     padding: 1.5rem 1.8rem;
@@ -2038,16 +2059,17 @@ body.dark-mode .srch-empty {
     grid-column: span 3; grid-row: auto;
 }
 
+/* Clinical & Translational Informatics — medical blue */
 .bento-h2 {
-    --bento-bg: linear-gradient(135deg, var(--primary) 0%, #0f766e 100%);
-    --bento-icon-code: '\f0c3';
-    --bento-accent: #34d399;
-    --bento-icon-bg: rgba(52, 211, 153, 0.2);
-    --bento-icon-border: rgba(52, 211, 153, 0.4);
-    --bento-tag-bg: rgba(52, 211, 153, 0.12);
-    --bento-tag-text: #6ee7b7;
-    --bento-tag-border: rgba(52, 211, 153, 0.25);
-    --bento-hover-text: var(--primary);
+    --bento-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    --bento-icon-code: '\f812';
+    --bento-accent: #93c5fd;
+    --bento-icon-bg: rgba(96, 165, 250, 0.2);
+    --bento-icon-border: rgba(96, 165, 250, 0.4);
+    --bento-tag-bg: rgba(96, 165, 250, 0.14);
+    --bento-tag-text: #dbeafe;
+    --bento-tag-border: rgba(96, 165, 250, 0.3);
+    --bento-hover-text: #1e3a8a;
     grid-column: span 2; grid-row: auto;
 }
 
@@ -2064,42 +2086,45 @@ body.dark-mode .srch-empty {
     grid-column: span 2; grid-row: auto;
 }
 
+/* Computational Genomics — violet / data */
 .bento-v2 {
-    --bento-bg: linear-gradient(135deg, #4c0519 0%, #881337 100%);
+    --bento-bg: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);
     --bento-icon-code: '\f471';
-    --bento-accent: #fb7185;
-    --bento-icon-bg: rgba(251, 113, 133, 0.2);
-    --bento-icon-border: rgba(251, 113, 133, 0.4);
-    --bento-tag-bg: rgba(251, 113, 133, 0.12);
-    --bento-tag-text: #fda4af;
-    --bento-tag-border: rgba(251, 113, 133, 0.25);
-    --bento-hover-text: #4c0519;
+    --bento-accent: #c4b5fd;
+    --bento-icon-bg: rgba(167, 139, 250, 0.2);
+    --bento-icon-border: rgba(167, 139, 250, 0.4);
+    --bento-tag-bg: rgba(167, 139, 250, 0.14);
+    --bento-tag-text: #ede9fe;
+    --bento-tag-border: rgba(167, 139, 250, 0.3);
+    --bento-hover-text: #4c1d95;
     grid-column: span 3; grid-row: auto;
 }
 
+/* Pathogen Informatics & AMR — crimson / danger */
 .bento-h3 {
-    --bento-bg: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+    --bento-bg: linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%);
     --bento-icon-code: '\e059';
-    --bento-accent: #c084fc;
-    --bento-icon-bg: rgba(192, 132, 252, 0.2);
-    --bento-icon-border: rgba(192, 132, 252, 0.4);
-    --bento-tag-bg: rgba(192, 132, 252, 0.12);
-    --bento-tag-text: #d8b4fe;
-    --bento-tag-border: rgba(192, 132, 252, 0.25);
-    --bento-hover-text: #2e1065;
+    --bento-accent: #fca5a5;
+    --bento-icon-bg: rgba(248, 113, 113, 0.2);
+    --bento-icon-border: rgba(248, 113, 113, 0.4);
+    --bento-tag-bg: rgba(248, 113, 113, 0.14);
+    --bento-tag-text: #fee2e2;
+    --bento-tag-border: rgba(248, 113, 113, 0.3);
+    --bento-hover-text: #7f1d1d;
     grid-column: span 3; grid-row: auto;
 }
 
+/* PFAS Biodegradation — environmental green */
 .bento-v3 {
-    --bento-bg: linear-gradient(135deg, #78350f 0%, #b45309 100%);
-    --bento-icon-code: '\f21e';
-    --bento-accent: #fbbf24;
-    --bento-icon-bg: rgba(251, 191, 36, 0.2);
-    --bento-icon-border: rgba(251, 191, 36, 0.4);
-    --bento-tag-bg: rgba(251, 191, 36, 0.12);
-    --bento-tag-text: #fde68a;
-    --bento-tag-border: rgba(251, 191, 36, 0.25);
-    --bento-hover-text: #78350f;
+    --bento-bg: linear-gradient(135deg, #14532d 0%, #16a34a 100%);
+    --bento-icon-code: '\f06c';
+    --bento-accent: #86efac;
+    --bento-icon-bg: rgba(74, 222, 128, 0.2);
+    --bento-icon-border: rgba(74, 222, 128, 0.4);
+    --bento-tag-bg: rgba(74, 222, 128, 0.14);
+    --bento-tag-text: #dcfce7;
+    --bento-tag-border: rgba(74, 222, 128, 0.3);
+    --bento-hover-text: #14532d;
     grid-column: span 2; grid-row: auto;
 }
 
@@ -2449,13 +2474,13 @@ body.dark-mode h3:not([class]) {
     display: flex;
     width: 100%;
     overflow-x: auto;
-    gap: 40px;
+    gap: 28px;
     align-items: center;
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     scrollbar-width: none;
-    padding-top: 45px;
-    padding-bottom: 45px;
+    padding-top: 26px;
+    padding-bottom: 26px;
 }
 
 .marquee-track::-webkit-scrollbar {
@@ -2508,22 +2533,22 @@ body.dark-mode h3:not([class]) {
 
     0%,
     100% {
-        transform: translateY(18px);
+        transform: translateY(11px);
     }
 
     50% {
-        transform: translateY(-18px);
+        transform: translateY(-11px);
     }
 }
 
 .interest-card {
     background: var(--white);
     border: 1px solid var(--accent);
-    padding: 1.8rem 1.2rem;
-    border-radius: 30px 4px 30px 4px;
+    padding: 1.25rem 1.1rem;
+    border-radius: 24px 4px 24px 4px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    min-width: 220px;
-    max-width: 220px;
+    min-width: 200px;
+    max-width: 200px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -2618,16 +2643,16 @@ body.dark-mode h3:not([class]) {
 }
 
 .ic-icon-box {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     background: #f1f5f9;
     color: var(--accent);
-    border-radius: 15px 4px 15px 4px;
+    border-radius: 13px 4px 13px 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
     transition: all 0.4s ease;
 }
 
@@ -3277,8 +3302,9 @@ body.dark-mode h3:not([class]) {
 .patent-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 1.25rem;
+    border-left: 3px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.3rem 1.4rem;
     position: relative;
     transition: var(--transition);
     display: flex;
@@ -3286,15 +3312,38 @@ body.dark-mode h3:not([class]) {
     justify-content: space-between;
     box-shadow: var(--shadow-sm);
     min-height: 170px;
+    overflow: hidden;
 }
 
-/* Different Outlines for Granted and Pipeline Patent Cards */
+/* Corner glow accent */
+.patent-card::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--patent-glow, transparent) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.patent-card > * { position: relative; z-index: 1; }
+
+/* Different accents for Granted and Pipeline Patent Cards */
 .patent-card-granted {
-    border-color: rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.28);
+    border-left-color: #10B981;
+    background: linear-gradient(135deg, color-mix(in srgb, #10B981 7%, var(--card-bg)), var(--card-bg) 62%);
+    --patent-glow: rgba(16, 185, 129, 0.18);
 }
 
 .patent-card-pipeline {
-    border-color: rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.28);
+    border-left-color: #38bdf8;
+    background: linear-gradient(135deg, color-mix(in srgb, #38bdf8 7%, var(--card-bg)), var(--card-bg) 62%);
+    --patent-glow: rgba(56, 189, 248, 0.18);
 }
 
 .patent-card-granted:hover {
@@ -3464,116 +3513,36 @@ body.dark-mode .patent-card {
 /* ======================================= */
 /* Connected Grid Timeline for Awards */
 /* Connected Grid Timeline for Awards */
+/* ===== Awards (redesigned: clean chronological cards) ===== */
 .award-box-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem 1.75rem; /* vertical gap 2.5rem, horizontal gap 1.75rem */
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
     position: relative;
     padding-left: 0;
 }
 
-/* Base Arrow styling using identical glyph rotated for consistency */
-.award-card::after {
-    content: '➔';
-    position: absolute;
-    color: var(--accent);
-    font-size: 14px;
-    z-index: 5;
-    pointer-events: none;
-    transition: var(--transition-fast);
-}
-
-/* 1. Large screens (3 columns): snake flow going UP (from oldest at bottom-left to newest at top-left) */
-@media (min-width: 993px) {
+/* Use the extra width on large viewports without cramming */
+@media (min-width: 1250px) {
     .award-box-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    /* Left arrows (◀ - rotated ➔) pointing from right to left */
-    .award-card:nth-child(6n+2)::after,
-    .award-card:nth-child(6n+3)::after {
-        left: -22px;
-        top: 50%;
-        transform: translateY(-50%) rotate(180deg);
-        right: auto;
-        bottom: auto;
-    }
-    
-    /* Right arrows (➔) pointing from left to right */
-    .award-card:nth-child(6n+4)::after,
-    .award-card:nth-child(6n+5)::after {
-        right: -22px;
-        top: 50%;
-        transform: translateY(-50%);
-        left: auto;
-        bottom: auto;
-    }
-    
-    /* Up arrows (▲ - rotated ➔) pointing from bottom to top row */
-    .award-card:nth-child(6n+6)::after,
-    .award-card:nth-child(6n+1)::after {
-        top: -26px;
-        left: 50%;
-        transform: translateX(-50%) rotate(-90deg);
-        right: auto;
-        bottom: auto;
-    }
-    
-    /* Fellowship card 4 grid position and arrow direction on desktop (aligns in col 3 row 2, points UP to card 3) */
-    #panel-fellowships .award-card:nth-child(4) {
-        grid-column: 3;
-    }
-    #panel-fellowships .award-card:nth-child(4)::after {
-        top: -26px;
-        left: 50%;
-        transform: translateX(-50%) rotate(-90deg);
-        right: auto;
-        bottom: auto;
-    }
-    
-    /* Always hide the arrow on the first child of each panel (the newest/end box of the timeline) */
-    .awards-panel .award-card:first-child::after {
-        display: none !important;
-    }
-}
-
-/* 2. Medium & Small screens (1 column): vertical flow going UP (from bottom/oldest to top/newest) */
-@media (max-width: 992px) {
-    .award-box-grid {
-        grid-template-columns: 1fr;
-        gap: 2.2rem;
-    }
-    .award-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding-top: 2.2rem !important;
-    }
-    .award-card::after {
-        content: '➔';
-        top: -24px;
-        left: 50%;
-        transform: translateX(-50%) rotate(-90deg);
-        right: auto;
-        bottom: auto;
-    }
-    /* Hide the arrow on the first child of each panel (the newest/end box of the timeline) */
-    .awards-panel .award-card:first-child::after {
-        display: none !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem 1rem;
     }
 }
 
 .award-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 1.5rem;
+    border-left: 3px solid var(--award-color);
+    border-radius: 12px;
+    padding: 0.95rem 1.1rem;
     position: relative;
     transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    column-gap: 14px;
+    row-gap: 7px;
+    align-items: start;
     text-align: left;
     box-shadow: var(--shadow-sm);
     overflow: visible;
@@ -3593,10 +3562,12 @@ body.dark-mode .patent-card {
 }
 
 .award-icon-box {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(var(--award-color-rgb, 108, 117, 125), 0.1);
+    grid-column: 1;
+    grid-row: 1;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: rgba(var(--award-color-rgb, 108, 117, 125), 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3610,7 +3581,7 @@ body.dark-mode .patent-card {
 }
 
 .award-badge-icon {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     color: var(--award-color);
     transition: var(--transition);
 }
@@ -3622,17 +3593,19 @@ body.dark-mode .patent-card {
 
 /* Absolute Year Tag */
 .award-year-tag {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 0.72rem;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    align-self: start;
+    font-size: 0.7rem;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 20px;
     background: rgba(var(--award-color-rgb, 108, 117, 125), 0.08);
     border: 1px solid rgba(var(--award-color-rgb, 108, 117, 125), 0.25);
     color: var(--award-color);
     transition: var(--transition-fast);
+    white-space: nowrap;
 }
 
 .award-card:hover .award-year-tag {
@@ -3642,36 +3615,31 @@ body.dark-mode .patent-card {
 }
 
 .award-content-wrapper {
-    flex: 1;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
     width: 100%;
+    min-width: 0;
 }
 
 .award-top {
     font-weight: 700;
     color: var(--primary);
-    font-size: 1.05rem;
-    margin-bottom: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 3px;
     line-height: 1.3;
 }
 
 .award-bottom {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     color: var(--text);
-    opacity: 0.85;
+    opacity: 0.82;
     line-height: 1.4;
 }
 
-/* Custom Dynamic Award Themes (using inline variables or classes) */
-.award-card:nth-child(10n+1) { --award-color: #e63946; --award-color-rgb: 230, 57, 70; }
-.award-card:nth-child(10n+2) { --award-color: #2a9d8f; --award-color-rgb: 42, 157, 143; }
-.award-card:nth-child(10n+3) { --award-color: #457b9d; --award-color-rgb: 69, 123, 157; }
-.award-card:nth-child(10n+4) { --award-color: #f4a261; --award-color-rgb: 244, 162, 97; }
-.award-card:nth-child(10n+5) { --award-color: #9d4edd; --award-color-rgb: 157, 78, 221; }
-.award-card:nth-child(10n+6) { --award-color: #e83e8c; --award-color-rgb: 232, 62, 140; }
-.award-card:nth-child(10n+7) { --award-color: #4caf50; --award-color-rgb: 76, 175, 80; }
-.award-card:nth-child(10n+8) { --award-color: #ffc107; --award-color-rgb: 255, 193, 7; }
-.award-card:nth-child(10n+9) { --award-color: #6610f2; --award-color-rgb: 102, 16, 242; }
-.award-card:nth-child(10n+10) { --award-color: #17a2b8; --award-color-rgb: 23, 162, 184; }
+/* Unified scholarly palette: deep green default, amber for flagship (gold) tier */
+.award-card { --award-color: #0d5c46; --award-color-rgb: 13, 92, 70; }
+.award-card.award-tier-gold { --award-color: #b45309; --award-color-rgb: 180, 83, 9; }
 
 .grant-badge {
     background-color: #f0fdf4;
@@ -8796,9 +8764,9 @@ body.dark-mode .bento-h1 .bento-tag {
 }
 
 body.dark-mode .bento-h2 .bento-tag {
-    background: rgba(52, 211, 153, 0.2);
-    color: #a7f3d0;
-    border-color: rgba(52, 211, 153, 0.4);
+    background: rgba(96, 165, 250, 0.22);
+    color: #dbeafe;
+    border-color: rgba(96, 165, 250, 0.4);
 }
 
 body.dark-mode .bento-v1 .bento-tag {
@@ -8808,21 +8776,21 @@ body.dark-mode .bento-v1 .bento-tag {
 }
 
 body.dark-mode .bento-v2 .bento-tag {
-    background: rgba(251, 113, 133, 0.2);
-    color: #fecdd3;
-    border-color: rgba(251, 113, 133, 0.4);
+    background: rgba(167, 139, 250, 0.22);
+    color: #ede9fe;
+    border-color: rgba(167, 139, 250, 0.4);
 }
 
 body.dark-mode .bento-h3 .bento-tag {
-    background: rgba(192, 132, 252, 0.2);
-    color: #e9d5ff;
-    border-color: rgba(192, 132, 252, 0.4);
+    background: rgba(248, 113, 113, 0.22);
+    color: #fee2e2;
+    border-color: rgba(248, 113, 113, 0.4);
 }
 
 body.dark-mode .bento-v3 .bento-tag {
-    background: rgba(251, 191, 36, 0.2);
-    color: #fef3c7;
-    border-color: rgba(251, 191, 36, 0.4);
+    background: rgba(74, 222, 128, 0.22);
+    color: #dcfce7;
+    border-color: rgba(74, 222, 128, 0.4);
 }
 
 /* =====================================================
@@ -10226,9 +10194,9 @@ body.dark-mode .vision-dropdown-menu a:hover {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 1.5rem;
-    border-radius: 20px;
-    padding: 2rem 2.5rem;
+    gap: 1.35rem;
+    border-radius: 16px;
+    padding: 1.15rem 1.4rem;
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, #1a3a2a 0%, #0f2d40 60%, #1e1040 100%);
     border: 1px solid rgba(250, 204, 21, 0.25);
@@ -10238,6 +10206,18 @@ body.dark-mode .vision-dropdown-menu a:hover {
     cursor: pointer;
     transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Left stat column: medal + Top 2% */
+.award-hero-badgecol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    padding-right: 1.35rem;
+    border-right: 1px solid rgba(250, 204, 21, 0.22);
+    z-index: 1;
 }
 
 .award-hero-spotlight:hover {
@@ -10268,8 +10248,8 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-icon {
-    width: 80px;
-    height: 80px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(250, 204, 21, 0.05));
     border: 2px solid rgba(250, 204, 21, 0.35);
@@ -10287,38 +10267,45 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-icon i {
-    font-size: 2.5rem;
+    font-size: 1.4rem;
     color: #facc15;
 }
 
 .award-hero-copy {
     flex: 1;
     min-width: 0;
+    z-index: 1;
 }
 
 .award-hero-label {
-    font-size: 0.75rem;
-    color: rgba(250, 204, 21, 0.7);
-    font-weight: 600;
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(250, 204, 21, 0.85);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.3rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+}
+
+.award-hero-label i {
+    margin-right: 5px;
 }
 
 .award-hero-title {
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #ffffff;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     line-height: 1.2;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .award-hero-desc {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.82);
     line-height: 1.5;
-    max-width: 500px;
+    margin-bottom: 0;
+    max-width: 520px;
 }
 
 .award-hero-right {
@@ -10346,32 +10333,25 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-pct {
-    font-size: 3.8rem;
+    font-size: 1.65rem;
     font-weight: 900;
     color: #facc15;
     line-height: 1;
-    text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
     letter-spacing: -0.02em;
+    white-space: nowrap;
 }
 
 @media (max-width: 680px) {
     .award-hero-spotlight {
-        flex-direction: column;
-        padding: 1.5rem;
-        text-align: center;
-    }
-    .award-hero-left {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .award-hero-right {
-        flex-direction: row;
-        justify-content: center;
+        padding: 1rem 1.15rem;
         gap: 1rem;
     }
-    .award-hero-pct strong {
-        font-size: 2rem;
+    .award-hero-badgecol {
+        padding-right: 1rem;
+    }
+    .award-hero-title {
+        font-size: 1.2rem;
     }
 }
 
