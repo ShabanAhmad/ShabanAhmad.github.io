@@ -900,10 +900,10 @@ function togglePubView() {
 const HIGHLIGHTED_PUB_TITLES = [
     "DrLungker: A Deep Ensemble Learning Framework",
     "Probing the multitargeted potency of Theodrenaline",
-    "FEDPN from ChEMBL BioAssays against lung",
-    "Integrative Analysis Discovers Imidurea as a dual",
     "Multisampling-based docking reveals Imidazolidinyl",
+    "FEDPN from ChEMBL BioAssays against lung",
     "Comparative insight into Rice chloroplasts genome",
+    "Integrative Analysis Discovers Imidurea as a dual",
     "SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity",
     "Predictive modelling and therapeutic repurposing of natural"
 ];
