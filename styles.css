@@ -10830,7 +10830,7 @@ body.dark-mode .trajectory-meta-row::before {
 }
 
 .traj-sub-bullet:hover .sub-bullet-icon {
-    color: #ef4444;
+    color: var(--accent);
     transform: scale(1.3);
 }
 
