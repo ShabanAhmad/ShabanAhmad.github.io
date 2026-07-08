@@ -1836,20 +1836,6 @@ body.dark-mode .srch-empty {
 }
 
 /* --- Apple-Style 5-Bento Box Grid (3 columns) */
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-@media (max-width: 1024px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
-    }
-    .bento-h1, .bento-h2, .bento-h3, .bento-v1, .bento-v2, .bento-v3 {
-        grid-column: span 1 !important;
-    }
-}
 
 /* Key Scientific Contributions layout:
    - mobile: single stacked column
@@ -2070,19 +2056,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #dbeafe;
     --bento-tag-border: rgba(96, 165, 250, 0.3);
     --bento-hover-text: #1e3a8a;
-    grid-column: span 2; grid-row: auto;
-}
-
-.bento-v1 {
-    --bento-bg: linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
-    --bento-icon-code: '\f5d2';
-    --bento-accent: #c084fc;
-    --bento-icon-bg: rgba(192, 132, 252, 0.2);
-    --bento-icon-border: rgba(192, 132, 252, 0.4);
-    --bento-tag-bg: rgba(192, 132, 252, 0.12);
-    --bento-tag-text: #d8b4fe;
-    --bento-tag-border: rgba(192, 132, 252, 0.25);
-    --bento-hover-text: #2e1065;
     grid-column: span 2; grid-row: auto;
 }
 
@@ -3640,43 +3613,6 @@ body.dark-mode .patent-card {
 /* Unified scholarly palette: deep green default, amber for flagship (gold) tier */
 .award-card { --award-color: #0d5c46; --award-color-rgb: 13, 92, 70; }
 .award-card.award-tier-gold { --award-color: #b45309; --award-color-rgb: 180, 83, 9; }
-
-.grant-badge {
-    background-color: #f0fdf4;
-    color: #047857;
-    border: 1px solid #6ee7b7;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-right: 8px;
-    display: inline-block;
-    vertical-align: middle;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.grant-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9), transparent);
-    transform: skewX(-20deg);
-    animation: metallicShimmer 3s infinite linear;
-}
-
-.grant-badge i {
-    color: inherit;
-    font-size: 0.9rem;
-    margin-right: 5px;
-    position: relative;
-    z-index: 1;
-}
 
 .patent-link {
     color: var(--primary);
@@ -5817,12 +5753,6 @@ body.dark-mode .patent-card {
         text-align: justify;
     }
 
-    /* Mobile Bento Overrides (Forced Column Stack) */
-    .bento-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
 
     .bento-card {
         width: 100%;
@@ -6141,6 +6071,12 @@ body.dark-mode .h-social,
 body.dark-mode .mobile-dropdown-toggle,
 body.dark-mode .nav-toggle {
     color: #e2e8f0 !important;
+}
+
+body.dark-mode header {
+    background: rgba(15, 23, 42, 0.98);
+    border-bottom: 1px solid #1e293b;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
 }
 
 body.dark-mode .nav-dropdown-content {
@@ -8769,11 +8705,6 @@ body.dark-mode .bento-h2 .bento-tag {
     border-color: rgba(96, 165, 250, 0.4);
 }
 
-body.dark-mode .bento-v1 .bento-tag {
-    background: rgba(192, 132, 252, 0.2);
-    color: #e9d5ff;
-    border-color: rgba(192, 132, 252, 0.4);
-}
 
 body.dark-mode .bento-v2 .bento-tag {
     background: rgba(167, 139, 250, 0.22);
@@ -9831,22 +9762,6 @@ body.dark-mode .vision-search-status {
 }
 
 /* ===== ABOUT ME COLUMN BENTO GRID STACK ===== */
-.about-bento-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 1rem;
-}
-
-.about-bento-grid .bento-card {
-    width: 100% !important;
-    margin: 0 !important;
-    grid-column: auto !important;
-    grid-row: auto !important;
-    min-height: auto !important;
-    padding: 1.25rem 1.5rem !important;
-}
-
 /* Wrapper to prevent AI button hover shift */
 .ai-btn-container {
     width: 44px;
@@ -10238,15 +10153,6 @@ body.dark-mode .vision-dropdown-menu a:hover {
     pointer-events: none;
 }
 
-.award-hero-left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex: 1;
-    min-width: 0;
-    z-index: 1;
-}
-
 .award-hero-icon {
     width: 46px;
     height: 46px;
@@ -10308,30 +10214,6 @@ body.dark-mode .vision-dropdown-menu a:hover {
     max-width: 520px;
 }
 
-.award-hero-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    text-align: right;
-    z-index: 1;
-    min-width: max-content;
-}
-
-.award-hero-badge {
-    background: rgba(250, 204, 21, 0.15);
-    color: #facc15;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: 1px solid rgba(250, 204, 21, 0.3);
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-}
-
 .award-hero-pct {
     font-size: 1.65rem;
     font-weight: 900;
@@ -10364,62 +10246,6 @@ body.dark-mode .vision-dropdown-menu a:hover {
 .award-tier-gold:hover {
     border-color: #facc15 !important;
     box-shadow: 0 8px 24px rgba(250, 204, 21, 0.15) !important;
-}
-
-/* ===== TWO-COLUMN ACCOLADES GRID ===== */
-.award-box-grid--two {
-    grid-template-columns: repeat(2, 1fr) !important;
-}
-
-@media (min-width: 681px) {
-    .award-box-grid--two .award-card:nth-child(2)::after {
-        left: -22px !important;
-        top: 50% !important;
-        transform: translateY(-50%) rotate(180deg) !important;
-        right: auto !important;
-        bottom: auto !important;
-    }
-    
-    .award-box-grid--two .award-card:nth-child(3) {
-        grid-column: 2;
-    }
-    
-    .award-box-grid--two .award-card:nth-child(3)::after {
-        top: -26px !important;
-        left: 50% !important;
-        transform: translateX(-50%) rotate(-90deg) !important;
-        right: auto !important;
-        bottom: auto !important;
-    }
-}
-
-@media (max-width: 680px) {
-    .award-box-grid--two {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-/* Unique wrapper for Awards */
-.awards-hero-wrapper {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-body.dark-mode .awards-hero-wrapper {
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
-    border-color: rgba(148, 163, 184, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .awards-hero-wrapper {
-        padding: 1.5rem;
-    }
 }
 
 .awards-metric-grid {
@@ -10638,35 +10464,11 @@ body.dark-mode .mt-sub-label {
     transform: translateY(0);
 }
 
-/* Custom 2-column Snake Grid for Awards */
+/* Awards grid: single column on mobile, two columns on wider screens */
 @media (min-width: 768px) {
-    .custom-awards-grid { 
-        grid-template-columns: 1fr 1fr !important; 
-        grid-auto-flow: dense !important;
+    .custom-awards-grid {
+        grid-template-columns: 1fr 1fr;
     }
-    .custom-awards-grid .award-card:nth-child(4n+3) { grid-column: 2; }
-    .custom-awards-grid .award-card:nth-child(4n) { grid-column: 1; }
-    
-    .custom-awards-grid .award-card:nth-child(4n+2)::after {
-        left: -22px; top: 50%; transform: translateY(-50%) rotate(0deg); right: auto; bottom: auto; display: block;
-    }
-    .custom-awards-grid .award-card:nth-child(4n+3)::after {
-        top: -26px; left: 50%; transform: translateX(-50%) rotate(90deg); right: auto; bottom: auto; display: block;
-    }
-    .custom-awards-grid .award-card:nth-child(4n)::after {
-        right: -22px; top: 50%; transform: translateY(-50%) rotate(180deg); left: auto; bottom: auto; display: block;
-    }
-    .custom-awards-grid .award-card:nth-child(4n+1):not(:first-child)::after {
-        top: -26px; left: 50%; transform: translateX(-50%) rotate(90deg); right: auto; bottom: auto; display: block;
-    }
-    .custom-awards-grid .award-card:first-child::after { display: none !important; }
-}
-@media (max-width: 767px) {
-    .custom-awards-grid { grid-template-columns: 1fr !important; }
-    .custom-awards-grid .award-card::after {
-        top: -26px; left: 50%; transform: translateX(-50%) rotate(90deg); right: auto; bottom: auto; display: block;
-    }
-    .custom-awards-grid .award-card:first-child::after { display: none !important; }
 }
 
 body.dark-mode .awards-tab-btn {
