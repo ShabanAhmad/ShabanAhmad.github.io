@@ -10211,9 +10211,10 @@ body.dark-mode .vision-dropdown-menu a:hover {
 /* ===== HERO SPOTLIGHT CARD (World Top 2%) ===== */
 .award-hero-spotlight {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
     border-radius: 20px;
     padding: 2rem 2.5rem;
     margin-bottom: 1.5rem;

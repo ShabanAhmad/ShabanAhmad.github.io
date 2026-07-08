@@ -608,19 +608,19 @@
                 <!-- Flagship Hero: World's Top 2% Scientists -->
                 <a href="https://topscinet.com/scientist_profile/Ahmad,%20Shaban/2020/?stype=single_year" target="_blank" rel="noopener noreferrer" class="award-hero-spotlight" style="margin-bottom: 25px; display: block;">
                     <div class="award-hero-glow"></div>
-                    <div class="award-hero-left">
+                    <div class="award-hero-top-row" style="display: flex; width: 100%; justify-content: space-between; align-items: flex-start; z-index: 1;">
                         <div class="award-hero-icon">
                             <i class="fas fa-medal" aria-hidden="true"></i>
                         </div>
-                        <div class="award-hero-copy">
-                            <div class="award-hero-label">Stanford University &amp; Elsevier · 2025</div>
-                            <div class="award-hero-title">World's Top 2% Scientists</div>
-                            <div class="award-hero-desc">Recognised globally for citation impact in AI-driven drug discovery and computational genomics — a distinction awarded to fewer than 2% of researchers worldwide.</div>
+                        <div class="award-hero-right" style="flex-direction: row; align-items: center; text-align: right; gap: 15px;">
+                            <span class="award-hero-badge" style="margin-bottom: 0;">Global Recognition</span>
+                            <span class="award-hero-pct" style="display: flex; align-items: center; gap: 8px;">Top <strong style="font-size: 2.2rem;">2%</strong></span>
                         </div>
                     </div>
-                    <div class="award-hero-right">
-                        <span class="award-hero-pct">Top<br><strong>2%</strong></span>
-                        <span class="award-hero-badge">Global Recognition</span>
+                    <div class="award-hero-copy" style="z-index: 1; margin-top: 5px;">
+                        <div class="award-hero-label">Stanford University &amp; Elsevier · 2025</div>
+                        <div class="award-hero-title">World's Top 2% Scientists</div>
+                        <div class="award-hero-desc">Recognised globally for citation impact in AI-driven drug discovery and computational genomics — a distinction awarded to fewer than 2% of researchers worldwide.</div>
                     </div>
                 </a>
 
@@ -785,7 +785,20 @@
             </div>
         </div>
         
+        <hr class="subtle-separator">
 
+        <!-- Open to Collaboration -->
+        <div class="ai-matcher-box" style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-handshake" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Open to Collaboration</div>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" data-tip="Check Research Fit"><span class="btn-icon">✨</span><span class="btn-text">Research Fit</span></button>
+                </div>
+            </div>
+            <p style="font-size:0.92rem; color: rgba(255, 255, 255, 0.7); margin-bottom:10px; line-height:1.5;">Interested in discussing a position, collaboration, or joint project? Share the context below and I will get back to you directly.</p>
+            <textarea id="job-desc-input" aria-label="Opportunity or research context" placeholder="Briefly describe the opportunity or research context..."></textarea>
+            <div id="match-result" aria-live="polite" aria-atomic="true" style="display: none; margin-top: 15px; padding: 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #fff; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
+        </div>
 
                     </div>
                 </div>
@@ -1160,7 +1173,9 @@
         <div class="container reveal">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">Scientific Impact & Publications</h2>
             <div class="about-hero-box" style="margin-top: 0; padding: 1.5rem 2rem;">
-<div class="selected-publications-container" style="margin-top: 0; display: flex; flex-direction: column; gap: 10px;">
+                <div class="about-split-layout">
+                    <div class="about-left" style="min-width: 0;">
+                        <div class="selected-publications-container" style="margin-top: 0; display: flex; flex-direction: column; gap: 10px; height: 100%;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
                 <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Selected Publications</div>
                 <div style="display: flex; gap: 5px; align-items: center;">
@@ -1281,6 +1296,82 @@
                             <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
                         </li>
                     </ol>
+                        </div>
+                    </div>
+                    
+                    <hr class="mobile-only-separator">
+                    
+                    <div class="about-right" style="min-width: 0; display: flex; flex-direction: column;">
+                        <!-- Sub-section: Scientific Frontiers -->
+                        <div style="margin-top: 0; display: flex; flex-direction: column; height: 100%;">
+                            <div class="section-header-flex" style="margin-bottom: 0.5rem;">
+                                <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;"><i class="fas fa-microscope" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Scientific Frontiers</h3>
+                                <div class="ai-btn-container">
+                                    <button onclick="summariseFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn">
+                                        <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
+                                    </button>
+                                </div>
+                                <div id="sf-status" aria-live="polite" aria-atomic="true" style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
+                            </div>
+                            <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%; flex-grow: 1; display: flex; flex-direction: column;">
+                                <div class="marquee-track" id="sf-track">
+                                    <!-- Interest Card 1: AI Precision Oncology -->
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
+                                        <div class="ic-title">AI Precision Oncology</div>
+                                        <div class="ic-desc">DeepEntXAI, ensemble classifiers & clinical target prediction.</div>
+                                    </div>
+                                    <!-- Interest Card 2: PFAS Biodegradation -->
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+                                        <div class="ic-title">PFAS Biodegradation</div>
+                                        <div class="ic-desc">C-F bond cleavage energetics & enzymatic pre-organisation.</div>
+                                    </div>
+                                    <!-- Interest Card 3: Multitarget Drug Discovery -->
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-pills" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Multitarget Drug Discovery</div>
+                                        <div class="ic-desc">Polypharmacology workflows & active-site dynamics.</div>
+                                    </div>
+                                    <!-- Interest Card 4: High-Performance Computing -->
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-server" aria-hidden="true"></i></div>
+                                        <div class="ic-title">High-Performance Computing</div>
+                                        <div class="ic-desc">GPU clusters, GROMACS, and automations.</div>
+                                    </div>
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Generative AI</div>
+                                        <div class="ic-desc">LLMs & deep neural networks.</div>
+                                    </div>
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-project-diagram" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Systems Biology</div>
+                                        <div class="ic-desc">WGS/WES variant calling & phylogenomics.</div>
+                                    </div>
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Translational Pharmacology</div>
+                                        <div class="ic-desc">Bridging in silico targets to in vitro assays.</div>
+                                    </div>
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Deep Learning</div>
+                                        <div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div>
+                                    </div>
+                                    <div class="interest-card">
+                                        <div class="ic-icon-box"><i class="fas fa-flask" aria-hidden="true"></i></div>
+                                        <div class="ic-title">Computational Chemistry</div>
+                                        <div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div>
+                                    </div>
+                                </div>
+                                <div class="sf-nav-controls" style="margin-top: auto;">
+                                    <button class="sf-nav-btn" onclick="scrollSF(-1)" aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                                    <button class="sf-nav-btn" onclick="scrollSF(1)" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1389,93 +1480,7 @@
                     </div>
                 </div>
 
-                <hr class="subtle-separator">
 
-                <!-- Sub-section: Scientific Frontiers -->
-                <div style="margin-top: 1rem;">
-                    <div class="section-header-flex" style="margin-bottom: 0.5rem;">
-                        <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;"><i class="fas fa-microscope" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Scientific Frontiers</h3>
-                        <div class="ai-btn-container">
-                            <button onclick="summariseFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn">
-                                <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
-                            </button>
-                        </div>
-                        <div id="sf-status" aria-live="polite" aria-atomic="true"
-                            style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;">
-                        </div>
-                    </div>
-                    <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%;">
-                        <div class="marquee-track" id="sf-track">
-                            <!-- Interest Card 1: AI Precision Oncology -->
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
-                                <div class="ic-title">AI Precision Oncology</div>
-                                <div class="ic-desc">DeepEntXAI, ensemble classifiers & clinical target prediction.</div>
-                            </div>
-                            <!-- Interest Card 2: PFAS Biodegradation -->
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-leaf" aria-hidden="true"></i></div>
-                                <div class="ic-title">PFAS Biodegradation</div>
-                                <div class="ic-desc">C-F bond cleavage energetics & enzymatic pre-organisation.</div>
-                            </div>
-                            <!-- Interest Card 3: Multitarget Drug Discovery -->
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-pills" aria-hidden="true"></i></div>
-                                <div class="ic-title">Multitarget Drug Discovery</div>
-                                <div class="ic-desc">Polypharmacology workflows & active-site dynamics.</div>
-                            </div>
-                            <!-- Interest Card 4: High-Performance Computing -->
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-server" aria-hidden="true"></i></div>
-                                <div class="ic-title">High-Performance Computing</div>
-                                <div class="ic-desc">GPU clusters, GROMACS, and automations.</div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-robot" aria-hidden="true"></i></div>
-                                <div class="ic-title">Generative AI</div>
-                                <div class="ic-desc">LLMs & deep neural networks.</div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-project-diagram" aria-hidden="true"></i></div>
-                                <div class="ic-title">Systems Biology</div>
-                                <div class="ic-desc">WGS/WES variant calling & phylogenomics.</div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
-                                <div class="ic-title">Translational Pharmacology</div>
-                                <div class="ic-desc">Bridging in silico targets to in vitro assays.</div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-brain" aria-hidden="true"></i></div>
-                                <div class="ic-title">Deep Learning</div>
-                                <div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div>
-                            </div>
-                            <div class="interest-card">
-                                <div class="ic-icon-box"><i class="fas fa-flask" aria-hidden="true"></i></div>
-                                <div class="ic-title">Computational Chemistry</div>
-                                <div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div>
-                            </div>
-                        </div>
-                        <div class="sf-nav-controls"><button class="sf-nav-btn" onclick="scrollSF(-1)"
-                                aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="sf-nav-btn"
-                                onclick="scrollSF(1)" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
-                    </div>
-                </div>
-
-                <hr class="subtle-separator">
-
-                <!-- Open to Collaboration -->
-                <div class="ai-matcher-box" style="margin-top: 1rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                        <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-handshake" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Open to Collaboration</div>
-                        <div style="display: flex; gap: 5px; align-items: center;">
-                            <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" data-tip="Check Research Fit"><span class="btn-icon">✨</span><span class="btn-text">Research Fit</span></button>
-                        </div>
-                    </div>
-                    <p style="font-size:0.92rem; color:#555; margin-bottom:10px; line-height:1.5;">Interested in discussing a position, collaboration, or joint project? Share the context below and I will get back to you directly.</p>
-                    <textarea id="job-desc-input" aria-label="Opportunity or research context" placeholder="Briefly describe the opportunity or research context..."></textarea>
-                    <div id="match-result" aria-live="polite" aria-atomic="true" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
-            </div>
             <hr class="separator">
         </div>
     </section>
