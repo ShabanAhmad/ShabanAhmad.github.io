@@ -2342,7 +2342,7 @@ body.dark-mode h3:not([class]) {
     border: 1px solid rgba(245, 158, 11, 0.4);
     padding: 1.5rem;
     border-radius: 12px;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     position: relative;
     transition: var(--transition);
