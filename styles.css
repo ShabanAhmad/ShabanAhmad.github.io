@@ -10645,10 +10645,31 @@ body.dark-mode .mt-sub-label {
 }
 .awards-panel.active {
     opacity: 1;
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    border-bottom-color: var(--accent);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    transform: translateY(0);
+}
+
+/* Custom 2-column Snake Grid for Awards */
+@media (min-width: 768px) {
+    .custom-awards-grid .award-card:nth-child(4n+3) { grid-column: 2; }
+    .custom-awards-grid .award-card:nth-child(4n) { grid-column: 1; }
+    
+    .custom-awards-grid .award-card:nth-child(4n+2)::after {
+        left: -22px; top: 50%; transform: translateY(-50%) rotate(180deg); right: auto; bottom: auto; display: block;
+    }
+    .custom-awards-grid .award-card:nth-child(4n)::after {
+        right: -22px; top: 50%; transform: translateY(-50%); left: auto; bottom: auto; display: block;
+    }
+    .custom-awards-grid .award-card:nth-child(2n+1)::after {
+        top: -26px; left: 50%; transform: translateX(-50%) rotate(-90deg); right: auto; bottom: auto; display: block;
+    }
+    .custom-awards-grid .award-card:first-child::after { display: none !important; }
+}
+@media (max-width: 767px) {
+    .custom-awards-grid { grid-template-columns: 1fr !important; }
+    .custom-awards-grid .award-card::after {
+        top: -26px; left: 50%; transform: translateX(-50%) rotate(-90deg); right: auto; bottom: auto; display: block;
+    }
+    .custom-awards-grid .award-card:first-child::after { display: none !important; }
 }
 
 body.dark-mode .awards-tab-btn {
@@ -10903,8 +10924,4 @@ body.dark-mode .sub-bullet-icon {
 }
 
 .trajectory-meta-grid a:hover, .trajectory-meta-row a:hover { color: var(--accent) !important; }
-
-.custom-awards-grid .award-card::after {
-    display: none;
-}
 

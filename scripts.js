@@ -2132,6 +2132,7 @@ document.addEventListener('click', function(e) {
 window.switchAwardsTab = function(tabId) {
     const clickedBtn = document.getElementById(`tab-btn-${tabId}`);
     const isAlreadyActive = clickedBtn && clickedBtn.classList.contains('active');
+    const divider = document.getElementById('patents-awards-divider');
     
     document.querySelectorAll('.metric-tab-btn, .awards-tab-btn').forEach(btn => {
         btn.classList.remove('active');
@@ -2146,6 +2147,7 @@ window.switchAwardsTab = function(tabId) {
             panel.offsetHeight; // Force reflow
             panel.classList.add('active');
         });
+        if (divider) divider.style.display = 'block';
     } else {
         // Toggle ON: Show only selected panel
         if (clickedBtn) clickedBtn.classList.add('active');
@@ -2161,5 +2163,6 @@ window.switchAwardsTab = function(tabId) {
             activePanel.offsetHeight; // Force reflow
             activePanel.classList.add('active');
         }
+        if (divider) divider.style.display = 'none';
     }
 };
