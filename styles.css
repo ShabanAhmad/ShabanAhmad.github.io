@@ -134,7 +134,10 @@ body>.skiptranslate {
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 @keyframes cascadeUp {
@@ -144,7 +147,10 @@ body>.skiptranslate {
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     }
 }
 
@@ -1021,7 +1027,10 @@ body.dark-mode .srch-empty {
 
 .back-to-top.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     pointer-events: auto;
 }
 
@@ -4401,7 +4410,10 @@ body.dark-mode .patent-card {
 }
 
 .tcp-focus-card:hover::after {
-    transform: translateY(0);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 .tcp-focus-card:hover .tfc-icon {
@@ -4896,7 +4908,10 @@ body.dark-mode .patent-card {
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     }
 }
 
@@ -5033,7 +5048,10 @@ body.dark-mode .patent-card {
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     }
 }
 
@@ -7151,7 +7169,10 @@ body.dark-mode .tcp-roadmap .tcp-ph-3:hover {
 /* === Hero Tagline Bridge Section === */
 @keyframes bridgeFadeIn {
     from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08); }
 }
 
 .hero-bridge-section {
@@ -10476,21 +10497,20 @@ body.dark-mode .awards-hero-wrapper {
     flex-direction: column;
     justify-content: flex-end;
     min-height: 110px;
-    transform: translateY(0);
-}
-
-.metric-tab-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
     border-color: var(--accent);
     border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
+
+
 
 .metric-tab-btn:active {
     transform: translateY(2px);
     border-bottom-width: 2px;
 }
 
+.metric-tab-btn:hover,
 .metric-tab-btn.active {
     background: var(--accent);
     box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 40%, transparent);
@@ -10505,13 +10525,10 @@ body.dark-mode .metric-tab-btn {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-body.dark-mode .metric-tab-btn:hover {
-    border-color: var(--accent);
-    border-bottom-color: var(--accent);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-}
+body.dark-mode 
 
-body.dark-mode .metric-tab-btn.active {
+body.dark-mode .metric-tab-btn:hover,
+.metric-tab-btn.active {
     background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, black) 100%);
     border-color: var(--accent);
     border-bottom-color: color-mix(in srgb, var(--accent) 40%, #000);
@@ -10531,13 +10548,8 @@ body.dark-mode .metric-tab-btn .mt-icon {
     color: rgba(255,255,255,0.15);
 }
 
-.metric-tab-btn:hover .mt-icon {
-    color: var(--accent);
-    transform: scale(1.1);
-}
-
-.metric-tab-btn.active .mt-icon,
-.metric-tab-btn.active:hover .mt-icon {
+.metric-tab-btn:hover .mt-icon,
+.metric-tab-btn.active .mt-icon {
     color: rgba(255,255,255,0.8) !important;
 }
 
@@ -10555,7 +10567,7 @@ body.dark-mode .metric-tab-btn .mt-num {
     color: var(--white);
 }
 
-.metric-tab-btn.active .mt-num {
+.metric-tab-btn:hover .mt-num, .metric-tab-btn.active .mt-num {
     color: var(--white) !important;
 }
 
@@ -10571,7 +10583,7 @@ body.dark-mode .metric-tab-btn .mt-title {
     color: #38bdf8;
 }
 
-.metric-tab-btn.active .mt-title {
+.metric-tab-btn:hover .mt-title, .metric-tab-btn.active .mt-title {
     color: rgba(255,255,255,0.95) !important;
 }
 
@@ -10598,7 +10610,7 @@ body.dark-mode .metric-tab-btn .mt-title {
 body.dark-mode .mt-stat-divider {
     background: #ef4444; /* Bright red for dark mode */
 }
-.metric-tab-btn.active .mt-stat-divider {
+.metric-tab-btn:hover .mt-stat-divider, .metric-tab-btn.active .mt-stat-divider {
     background: rgba(255,255,255,0.5) !important;
 }
 
@@ -10615,7 +10627,7 @@ body.dark-mode .mt-sub-label {
     color: #94a3b8;
 }
 
-.metric-tab-btn.active .mt-sub-label {
+.metric-tab-btn:hover .mt-sub-label, .metric-tab-btn.active .mt-sub-label {
     color: rgba(255,255,255,0.7) !important;
 }
 
@@ -10633,7 +10645,10 @@ body.dark-mode .mt-sub-label {
 }
 .awards-panel.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 body.dark-mode .awards-tab-btn {
@@ -10842,3 +10857,8 @@ body.dark-mode .trajectory-meta-row::before {
 }
 
 .trajectory-meta-grid a:hover, .trajectory-meta-row a:hover { color: var(--accent) !important; }
+
+.custom-awards-grid .award-card::after {
+    display: none;
+}
+
