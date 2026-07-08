@@ -515,7 +515,7 @@
                 <hr class="subtle-separator">
 
                 <!-- Sub-section: Key Scientific Contributions -->
-                <div style="margin-top: 1rem;">
+                <div style="margin-top: 1rem; display: flex; flex-direction: column; flex-grow: 1;">
                     <div class="section-header-flex" style="margin-bottom: 1rem;">
                         <h3 class="unified-sub-heading ush-primary" style="margin: 0;"><i class="fas fa-flask" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Key Scientific Contributions</h3>
                         <div class="ai-btn-container">
@@ -529,7 +529,7 @@
                     </div>
                     
                     <!-- Bento Grid (re-styled as a single column stacked vertically for about-left) -->
-                    <div class="about-bento-grid">
+                    <div class="about-bento-grid" style="flex-grow: 1;">
                         <!-- Bento Box 1: AI Precision Oncology -->
                         <div class="bento-card bento-h1">
                             <div class="bento-header">
@@ -705,17 +705,17 @@
                     <div id="match-result" aria-live="polite" aria-atomic="true" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
                 </div>
 
-        <div class="featured-publications-container">
-            <div class="featured-sidebar" onclick="togglePubView()" title="Toggle layout view" style="cursor: pointer;">
-                <div class="featured-rotated-title">Flagship</div>
-                <div class="featured-controls">
-                    <button id="pub-view-btn" class="pub-view-mini-btn" aria-label="Toggle view layout">
-                        <i class="fas fa-th-large" aria-hidden="true"></i>
+        <div class="selected-publications-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-bookmark" aria-hidden="true"></i> Selected Publications</div>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <button id="pub-view-btn" onclick="togglePubView()" class="ai-expand-btn" data-tip="Toggle View" aria-label="Toggle view layout">
+                        <span class="btn-icon"><i class="fas fa-th-large" aria-hidden="true"></i></span><span class="btn-text">Toggle View</span>
                     </button>
                 </div>
             </div>
             
-            <div class="featured-content">
+            <div class="featured-content" style="width: 100%;">
                 <!-- Marquee view (default — auto-built by buildPubMarquee()) -->
                 <div id="pub-marquee-wrapper" class="pub-mq-wrapper">
                     <div class="pub-mq-track" id="pub-mq-track"></div>
