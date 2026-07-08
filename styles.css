@@ -9203,6 +9203,20 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
     flex-direction: column;
     gap: 0.85rem;
     margin-top: 0.5rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.journey-sub-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    background: color-mix(in srgb, var(--variant-color, var(--primary)) 30%, transparent);
+    border-radius: 2px;
+    z-index: 1;
 }
 
 .journey-sub-card {
@@ -9250,13 +9264,14 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
 
 /* Position sub-card numbers on the left vertical line of the sub-boxes */
 .journey-sub-card .journey-card-number {
-    left: 0 !important;
+    left: -20px !important;
     right: auto !important;
     transform: translate(-50%, -50%) !important;
     background: var(--card-bg, var(--white));
     border-color: var(--variant-color);
     color: var(--variant-color);
     opacity: 1 !important;
+    z-index: 2;
 }
 
 .journey-card:hover .journey-sub-card:not(:hover) .journey-card-number {
