@@ -10650,6 +10650,10 @@ body.dark-mode .mt-sub-label {
 
 /* Custom 2-column Snake Grid for Awards */
 @media (min-width: 768px) {
+    .custom-awards-grid { 
+        grid-template-columns: 1fr 1fr !important; 
+        grid-auto-flow: dense !important;
+    }
     .custom-awards-grid .award-card:nth-child(4n+3) { grid-column: 2; }
     .custom-awards-grid .award-card:nth-child(4n) { grid-column: 1; }
     
@@ -10961,4 +10965,3 @@ body.dark-mode .sub-bullet-icon {
 }
 
 .trajectory-meta-grid a:hover, .trajectory-meta-row a:hover { color: var(--accent) !important; }
-
