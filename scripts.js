@@ -473,7 +473,7 @@ const LANGS = [{ code: 'en', flag: 'gb', title: 'English (UK)', label: 'English'
 const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdown').forEach(dd => { dd.innerHTML = LANGS.map(l => `<div class="lang-option" onclick="changeLanguage('${l.code}')" onkeydown="if(event.key==='Enter'||event.key===' '){changeLanguage('${l.code}'); event.preventDefault();}" tabindex="0" role="button" data-tip="${l.title}"><img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-img" loading="lazy" alt="${l.flag.toUpperCase()}"> ${l.label}</div>`).join(''); }); }; buildLangOptions();
 
 const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
-const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages['en']; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
+const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages.en; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
 const toggleMenu = (e) => { if (e) e.stopPropagation(); const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'), mDD = document.getElementById('global-lang-dd'); if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns(); nb.classList.toggle('active'); tb.classList.toggle('open'); }; const toggleMobileSubmenu = (e, tId) => { e.stopPropagation(); const dd = document.getElementById(tId), tb = e.currentTarget; closeAllDropdowns(dd); if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; } }; document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
 const assignReverseBadges = () => [document.querySelector('.exp-grid-vertical'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cs = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cs.forEach((cd, i) => cd.setAttribute('data-badge', cs.length - i)); });
 const fixReversedListStart = () => {
@@ -1052,8 +1052,7 @@ async function buildPubMarquee() {
 }
 
 const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('📄 Lay Summary', 'eli5-result') + `${res}</div>`; });
-const summariseFrontiers = () => triggerAIFeature('sf-btn'
-, 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = aiResultHeader('🔬 Research Frontiers Summary', 'sf-status') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; });
+const summariseFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = aiResultHeader('🔬 Research Frontiers Summary', 'sf-status') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; });
 const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('✨ Research Fit Analysis', 'match-result') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; }); };
 
 const extractEmailParts = (text) => {
@@ -2144,7 +2143,7 @@ window.switchAwardsTab = function(tabId) {
         // Toggle OFF: Show all panels
         panels.forEach(panel => {
             panel.style.display = 'block';
-            panel.offsetHeight; // Force reflow
+            void panel.offsetHeight; // Force reflow
             panel.classList.add('active');
         });
         if (divider) divider.style.display = 'block';
@@ -2160,7 +2159,7 @@ window.switchAwardsTab = function(tabId) {
         const activePanel = document.getElementById(`panel-${tabId}`);
         if (activePanel) {
             activePanel.style.display = 'block';
-            activePanel.offsetHeight; // Force reflow
+            void activePanel.offsetHeight; // Force reflow
             activePanel.classList.add('active');
         }
         if (divider) divider.style.display = 'none';
