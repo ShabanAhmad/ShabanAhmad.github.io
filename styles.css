@@ -1840,9 +1840,9 @@ body.dark-mode .srch-empty {
 
 /* --- Apple-Style 5-Bento Box Grid (3 columns) */
 .bento-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
@@ -9203,20 +9203,6 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
     flex-direction: column;
     gap: 0.85rem;
     margin-top: 0.5rem;
-    position: relative;
-    padding-left: 20px;
-}
-
-.journey-sub-timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 15px;
-    bottom: 15px;
-    width: 2px;
-    background: color-mix(in srgb, var(--variant-color, var(--primary)) 30%, transparent);
-    border-radius: 2px;
-    z-index: 1;
 }
 
 .journey-sub-card {
@@ -9264,14 +9250,13 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
 
 /* Position sub-card numbers on the left vertical line of the sub-boxes */
 .journey-sub-card .journey-card-number {
-    left: -20px !important;
+    left: 0 !important;
     right: auto !important;
     transform: translate(-50%, -50%) !important;
     background: var(--card-bg, var(--white));
     border-color: var(--variant-color);
     color: var(--variant-color);
     opacity: 1 !important;
-    z-index: 2;
 }
 
 .journey-card:hover .journey-sub-card:not(:hover) .journey-card-number {
@@ -10274,8 +10259,8 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-icon {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(250, 204, 21, 0.05));
     border: 2px solid rgba(250, 204, 21, 0.35);
@@ -10293,7 +10278,7 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-icon i {
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     color: #facc15;
 }
 
@@ -10312,55 +10297,52 @@ body.dark-mode .vision-dropdown-menu a:hover {
 }
 
 .award-hero-title {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #ffffff;
+    margin-bottom: 0.4rem;
     line-height: 1.2;
-    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .award-hero-desc {
-    font-size: 0.87rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.55;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    max-width: 500px;
 }
 
 .award-hero-right {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    flex-shrink: 0;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: right;
     z-index: 1;
-}
-
-.award-hero-pct {
-    font-size: 1rem;
-    color: rgba(250, 204, 21, 0.75);
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.2;
-}
-
-.award-hero-pct strong {
-    display: block;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #facc15;
-    line-height: 1;
+    min-width: max-content;
 }
 
 .award-hero-badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    background: rgba(250, 204, 21, 0.15);
     color: #facc15;
-    border: 1px solid rgba(250, 204, 21, 0.4);
+    padding: 6px 14px;
     border-radius: 20px;
-    padding: 3px 10px;
-    background: rgba(250, 204, 21, 0.08);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    margin-bottom: 0.5rem;
     white-space: nowrap;
+}
+
+.award-hero-pct {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #facc15;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+    letter-spacing: -0.02em;
 }
 
 @media (max-width: 680px) {
@@ -10977,9 +10959,9 @@ body.dark-mode .sub-bullet-icon {
 
 .traj-sub-bullet:hover .sub-bullet-icon,
 .traj-sub-sub-bullet:hover .sub-bullet-icon {
-    background: #0ea5e9; /* Light blue instead of red/gold */
+    background: var(--accent); /* Turn to nice accent color on hover */
     transform: scale(1.4);
-    box-shadow: 0 0 6px rgba(14, 165, 233, 0.4);
+    box-shadow: 0 0 6px var(--accent-transparent, rgba(14, 165, 233, 0.4));
 }
 
 .traj-sub-bullet a:hover,
