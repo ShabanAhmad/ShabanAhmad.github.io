@@ -3564,9 +3564,9 @@ body.dark-mode .patent-card {
     position: relative;
     transition: var(--transition);
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
     text-align: left;
     box-shadow: var(--shadow-sm);
     overflow: visible;
@@ -3586,8 +3586,8 @@ body.dark-mode .patent-card {
 }
 
 .award-icon-box {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: rgba(var(--award-color-rgb, 108, 117, 125), 0.1);
     display: flex;
@@ -3603,7 +3603,7 @@ body.dark-mode .patent-card {
 }
 
 .award-badge-icon {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--award-color);
     transition: var(--transition);
 }
@@ -3636,13 +3636,13 @@ body.dark-mode .patent-card {
 
 .award-content-wrapper {
     flex: 1;
-    padding-right: 45px; /* Leave space for absolute year tag */
+    width: 100%;
 }
 
 .award-top {
     font-weight: 700;
     color: var(--primary);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin-bottom: 6px;
     line-height: 1.3;
 }
@@ -10939,24 +10939,25 @@ body.dark-mode .traj-sub-sub-bullet::after {
 
 .sub-bullet-icon {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 10px;
-    text-align: center;
-    background: var(--card-bg, #fff);
+    left: 2px;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
     z-index: 2;
-    transition: color 0.2s ease, transform 0.2s ease;
-    line-height: 1.6;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 body.dark-mode .sub-bullet-icon {
-    background: var(--card-bg, #1e293b);
+    background: rgba(255,255,255,0.4);
 }
 
 .traj-sub-bullet:hover .sub-bullet-icon,
 .traj-sub-sub-bullet:hover .sub-bullet-icon {
-    color: var(--accent);
-    transform: scale(1.3);
+    background: #0ea5e9; /* Light blue instead of red/gold */
+    transform: scale(1.4);
+    box-shadow: 0 0 6px rgba(14, 165, 233, 0.4);
 }
 
 .traj-sub-bullet a:hover,
