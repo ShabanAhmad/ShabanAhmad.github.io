@@ -10839,12 +10839,58 @@ body.dark-mode .trajectory-meta-row::before {
 }
 
 .traj-sub-bullet {
-    padding-left: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+    margin-left: 0.75rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Vertical connecting line */
+.traj-sub-bullet::before {
+    content: '';
+    position: absolute;
+    left: 4px; /* Center of the line */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+body.dark-mode .traj-sub-bullet::before {
+    background: rgba(255,255,255,0.1);
+}
+
+/* First sub-bullet: line starts halfway down */
+.traj-sub-bullet:first-of-type::before {
+    top: 0.8rem;
+}
+
+/* Last sub-bullet: line ends halfway down */
+.traj-sub-bullet:last-of-type::before {
+    bottom: auto;
+    height: 0.8rem;
+}
+
+/* If there's only one sub-bullet, don't show the line */
+.traj-sub-bullet:only-of-type::before {
+    display: none;
 }
 
 .sub-bullet-icon {
-    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    text-align: center;
+    background: var(--card-bg, #fff); /* Hide line behind dot */
+    z-index: 2;
     transition: color 0.2s ease, transform 0.2s ease;
+    line-height: 1.6;
+}
+
+body.dark-mode .sub-bullet-icon {
+    background: var(--card-bg, #1e293b);
 }
 
 .traj-sub-bullet:hover .sub-bullet-icon {
