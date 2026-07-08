@@ -1838,12 +1838,12 @@ body.dark-mode .srch-empty {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* --- Apple-Style 4-Bento Box Grid */
+/* --- Apple-Style 5-Bento Box Grid (3 columns) */
 .bento-grid {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    grid-auto-rows: auto;
-    gap: 1.4rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 1.25rem;
     margin-top: 1.5rem;
 }
 
@@ -2028,7 +2028,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fdf2f8;
     --bento-tag-border: rgba(244, 114, 182, 0.35);
     --bento-hover-text: #4c0519;
-    grid-column: 1 / 2; grid-row: 1 / 2;
+    grid-column: span 2; grid-row: auto;
 }
 
 .bento-h2 {
@@ -2041,7 +2041,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #6ee7b7;
     --bento-tag-border: rgba(52, 211, 153, 0.25);
     --bento-hover-text: var(--primary);
-    grid-column: 1 / 2; grid-row: 2 / 3;
+    grid-column: span 1; grid-row: auto;
 }
 
 .bento-v1 {
@@ -2054,7 +2054,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #d8b4fe;
     --bento-tag-border: rgba(192, 132, 252, 0.25);
     --bento-hover-text: #2e1065;
-    grid-column: 2 / 3; grid-row: 1 / 2;
+    grid-column: span 1; grid-row: auto;
 }
 
 .bento-v2 {
@@ -2067,7 +2067,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fda4af;
     --bento-tag-border: rgba(251, 113, 133, 0.25);
     --bento-hover-text: #4c0519;
-    grid-column: 2 / 3; grid-row: 2 / 3;
+    grid-column: span 1; grid-row: auto;
 }
 
 .bento-h3 {
@@ -2080,7 +2080,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #d8b4fe;
     --bento-tag-border: rgba(192, 132, 252, 0.25);
     --bento-hover-text: #2e1065;
-    grid-column: 1 / 2; grid-row: 3 / 4;
+    grid-column: span 1; grid-row: auto;
 }
 
 .bento-v3 {
@@ -2093,7 +2093,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fde68a;
     --bento-tag-border: rgba(251, 191, 36, 0.25);
     --bento-hover-text: #78350f;
-    grid-column: 2 / 3; grid-row: 3 / 4;
+    grid-column: span 1; grid-row: auto;
 }
 
 /* Standard Content Layouts & Typography */
