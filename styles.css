@@ -1841,9 +1841,17 @@ body.dark-mode .srch-empty {
 /* --- Apple-Style 5-Bento Box Grid (3 columns) */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
     margin-top: 1.5rem;
+}
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-h1, .bento-h2, .bento-h3, .bento-v1, .bento-v2, .bento-v3 {
+        grid-column: span 1 !important;
+    }
 }
 
 .bento-card {
@@ -2027,7 +2035,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fdf2f8;
     --bento-tag-border: rgba(244, 114, 182, 0.35);
     --bento-hover-text: #4c0519;
-    grid-column: span 2; grid-row: auto;
+    grid-column: span 3; grid-row: auto;
 }
 
 .bento-h2 {
@@ -2040,7 +2048,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #6ee7b7;
     --bento-tag-border: rgba(52, 211, 153, 0.25);
     --bento-hover-text: var(--primary);
-    grid-column: span 1; grid-row: auto;
+    grid-column: span 2; grid-row: auto;
 }
 
 .bento-v1 {
@@ -2053,7 +2061,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #d8b4fe;
     --bento-tag-border: rgba(192, 132, 252, 0.25);
     --bento-hover-text: #2e1065;
-    grid-column: span 1; grid-row: auto;
+    grid-column: span 2; grid-row: auto;
 }
 
 .bento-v2 {
@@ -2066,7 +2074,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fda4af;
     --bento-tag-border: rgba(251, 113, 133, 0.25);
     --bento-hover-text: #4c0519;
-    grid-column: span 1; grid-row: auto;
+    grid-column: span 3; grid-row: auto;
 }
 
 .bento-h3 {
@@ -2079,7 +2087,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #d8b4fe;
     --bento-tag-border: rgba(192, 132, 252, 0.25);
     --bento-hover-text: #2e1065;
-    grid-column: span 1; grid-row: auto;
+    grid-column: span 3; grid-row: auto;
 }
 
 .bento-v3 {
@@ -2092,7 +2100,7 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fde68a;
     --bento-tag-border: rgba(251, 191, 36, 0.25);
     --bento-hover-text: #78350f;
-    grid-column: span 1; grid-row: auto;
+    grid-column: span 2; grid-row: auto;
 }
 
 /* Standard Content Layouts & Typography */
@@ -9248,11 +9256,12 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
     color: var(--badge-color) !important;
 }
 
-/* Position sub-card numbers on the left vertical line of the sub-boxes */
+/* Position sub-card numbers strictly on the middle right edge of the sub-boxes */
 .journey-sub-card .journey-card-number {
-    left: 0 !important;
-    right: auto !important;
-    transform: translate(-50%, -50%) !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translate(50%, -50%) !important;
     background: var(--card-bg, var(--white));
     border-color: var(--variant-color);
     color: var(--variant-color);
@@ -9285,7 +9294,7 @@ body.dark-mode .journey-sub-card:hover .journey-badge {
     color: var(--white) !important;
     background: var(--variant-color) !important;
     border-color: var(--variant-color) !important;
-    transform: translate(50%, -50%) scale(1.2) !important;
+    transform: translate(50%, -50%) scale(1.15) !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -10948,20 +10957,20 @@ body.dark-mode .traj-sub-sub-bullet::after {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--text-muted);
+    background: #6b7280;
     z-index: 2;
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 body.dark-mode .sub-bullet-icon {
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .traj-sub-bullet:hover .sub-bullet-icon,
 .traj-sub-sub-bullet:hover .sub-bullet-icon {
-    background: var(--accent); /* Turn to nice accent color on hover */
+    background: var(--primary); /* Turn to nice primary color on hover instead of gold/red/green */
     transform: scale(1.4);
-    box-shadow: 0 0 6px var(--accent-transparent, rgba(14, 165, 233, 0.4));
+    box-shadow: 0 0 6px var(--primary);
 }
 
 .traj-sub-bullet a:hover,
@@ -10970,3 +10979,16 @@ body.dark-mode .sub-bullet-icon {
 }
 
 .trajectory-meta-grid a:hover, .trajectory-meta-row a:hover { color: var(--accent) !important; }
+
+
+.impact-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+@media (max-width: 1024px) {
+    .impact-split-layout {
+        grid-template-columns: 1fr;
+    }
+}
