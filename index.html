@@ -514,6 +514,131 @@
 
                 <hr class="subtle-separator">
 
+        <div class="selected-publications-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Selected Publications</div>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <button id="pub-view-btn" onclick="togglePubView()" class="ai-expand-btn" data-tip="Toggle View" aria-label="Toggle view layout">
+                        <span class="btn-icon"><i class="fas fa-th-large" aria-hidden="true"></i></span><span class="btn-text">Toggle View</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="featured-content" style="width: 100%;">
+                <!-- Marquee view (default — auto-built by buildPubMarquee()) -->
+                <div id="pub-marquee-wrapper" class="pub-mq-wrapper">
+                    <div class="pub-mq-track" id="pub-mq-track"></div>
+                </div>
+
+                <!-- Card / Grid view (hidden by default) -->
+                <div id="contrib-pub-cards" class="sel-pub-grid" style="display:none;">
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
+                            Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
+                            Simulations, and MM-GBSA Analysis</div>
+                        <div class="sel-pub-meta"><em>Wiley — Advanced Theory and Simulations</em> (2025)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
+                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Flagship AI work: deep ensemble model
+                            that predicts drug activity and provides mechanistic validation. Open-source pipeline with all
+                            data archived.</div>
+                        <div class="sel-pub-actions">
+                            <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a>
+                            <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i
+                                    class="fab fa-github" aria-hidden="true"></i> Code</a>
+                            <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i
+                                    class="fas fa-database" aria-hidden="true"></i> Data</a>
+                        </div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
+                            NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</div>
+                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2025)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
+                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Rigorous structure-based drug discovery —
+                            from target identification to MD-validated binding — applied to a clinically relevant
+                            inflammatory pathway.</div>
+                        <div class="sel-pub-actions">
+                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a>
+                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
+                        </div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">In-silico and in-vitro studies reveal ziprasidone as a potential
+                            aromatase inhibitor against breast carcinoma</div>
+                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2023)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
+                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Bridges computational prediction with
+                            wet-lab validation — a critical differentiator for translational credibility in a hiring
+                            context.</div>
+                        <div class="sel-pub-actions">
+                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank" rel="noopener noreferrer">DOI</a>
+                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
+                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
+                        </div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity — A Minimal
+                            Number Genome-Based Approach</div>
+                        <div class="sel-pub-meta"><em>Inflammation</em> (2022)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
+                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Genome-wide comparative analysis using a
+                            novel minimal-number approach — showcases the computational genomics pillar with clear
+                            epidemiological translation.</div>
+                        <div class="sel-pub-actions">
+                            <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a>
+                        </div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">Machine Learning for Genomic Profiling and Drug Discovery in Personalised
+                            Lung Cancer Therapeutics</div>
+                        <div class="sel-pub-meta"><em>Journal of Drug Targeting</em> (2025)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
+                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Integrative review linking ML-based
+                            genomic profiling with drug discovery — articulates the conceptual bridge between the genomics
+                            and pharmacology pillars of TCP.</div>
+                        <div class="sel-pub-actions">
+                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- List view (hidden by default) -->
+                <div id="contrib-pub-list" style="display:none;">
+                    <ol class="pub-list">
+                        <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
+                                Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
+                                Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations
+                                (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550"
+                                target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
+                                class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
+                        <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
+                                NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine
+                                Storms</strong><br><em>Nature — Scientific Reports (2025)</em> <a class="pub-doi"
+                                href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential
+                                aromatase inhibitor against breast carcinoma</strong><br><em>Nature — Scientific Reports
+                                (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1"
+                                target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and
+                                Pro-Inflammatory Cytokine Stimulation — A Minimal Number Genome-Based
+                                Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi"
+                                href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in
+                                Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em>
+                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
                 <!-- Sub-section: Key Scientific Contributions -->
                 <div style="margin-top: 1rem; display: flex; flex-direction: column; flex-grow: 1;">
                     <div class="section-header-flex" style="margin-bottom: 1rem;">
@@ -700,135 +825,11 @@
                             <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" data-tip="Check Research Fit"><span class="btn-icon">✨</span><span class="btn-text">Research Fit</span></button>
                         </div>
                     </div>
-                    <p style="font-size:0.92rem; color:#555; margin-bottom:10px; line-height:1.5;">Interested in discussing a position, collaboration, or joint project? Share the context below and I will get back to you directly.</p>
-                    <textarea id="job-desc-input" aria-label="Opportunity or research context" placeholder="Briefly describe the opportunity or research context..."></textarea>
+                    <p style="font-size:0.92rem; color:#555; margin-bottom:10px; line-height:1.5;">Interested in a position or collaboration? Share the context below.</p>
+                    <textarea id="job-desc-input" rows="1" style="min-height: 40px; padding: 8px 12px;" aria-label="Opportunity or research context" placeholder="Briefly describe the opportunity or research context..."></textarea>
                     <div id="match-result" aria-live="polite" aria-atomic="true" style="display: none; margin-top: 15px; padding: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: #1e293b; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
                 </div>
 
-        <div class="selected-publications-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Selected Publications</div>
-                <div style="display: flex; gap: 5px; align-items: center;">
-                    <button id="pub-view-btn" onclick="togglePubView()" class="ai-expand-btn" data-tip="Toggle View" aria-label="Toggle view layout">
-                        <span class="btn-icon"><i class="fas fa-th-large" aria-hidden="true"></i></span><span class="btn-text">Toggle View</span>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="featured-content" style="width: 100%;">
-                <!-- Marquee view (default — auto-built by buildPubMarquee()) -->
-                <div id="pub-marquee-wrapper" class="pub-mq-wrapper">
-                    <div class="pub-mq-track" id="pub-mq-track"></div>
-                </div>
-
-                <!-- Card / Grid view (hidden by default) -->
-                <div id="contrib-pub-cards" class="sel-pub-grid" style="display:none;">
-
-                    <div class="sel-pub-card">
-                        <div class="sel-pub-title">DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
-                            Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
-                            Simulations, and MM-GBSA Analysis</div>
-                        <div class="sel-pub-meta"><em>Wiley — Advanced Theory and Simulations</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Flagship AI work: deep ensemble model
-                            that predicts drug activity and provides mechanistic validation. Open-source pipeline with all
-                            data archived.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i
-                                    class="fab fa-github" aria-hidden="true"></i> Code</a>
-                            <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i
-                                    class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
-                    </div>
-
-                    <div class="sel-pub-card">
-                        <div class="sel-pub-title">Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
-                            NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</div>
-                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Rigorous structure-based drug discovery —
-                            from target identification to MD-validated binding — applied to a clinically relevant
-                            inflammatory pathway.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
-                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
-                    </div>
-
-                    <div class="sel-pub-card">
-                        <div class="sel-pub-title">In-silico and in-vitro studies reveal ziprasidone as a potential
-                            aromatase inhibitor against breast carcinoma</div>
-                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2023)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Bridges computational prediction with
-                            wet-lab validation — a critical differentiator for translational credibility in a hiring
-                            context.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
-                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
-                    </div>
-
-                    <div class="sel-pub-card">
-                        <div class="sel-pub-title">SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity — A Minimal
-                            Number Genome-Based Approach</div>
-                        <div class="sel-pub-meta"><em>Inflammation</em> (2022)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Genome-wide comparative analysis using a
-                            novel minimal-number approach — showcases the computational genomics pillar with clear
-                            epidemiological translation.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </div>
-                    </div>
-
-                    <div class="sel-pub-card">
-                        <div class="sel-pub-title">Machine Learning for Genomic Profiling and Drug Discovery in Personalised
-                            Lung Cancer Therapeutics</div>
-                        <div class="sel-pub-meta"><em>Journal of Drug Targeting</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Integrative review linking ML-based
-                            genomic profiling with drug discovery — articulates the conceptual bridge between the genomics
-                            and pharmacology pillars of TCP.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- List view (hidden by default) -->
-                <div id="contrib-pub-list" style="display:none;">
-                    <ol class="pub-list">
-                        <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
-                                Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
-                                Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations
-                                (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550"
-                                target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
-                                class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
-                        <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
-                                NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine
-                                Storms</strong><br><em>Nature — Scientific Reports (2025)</em> <a class="pub-doi"
-                                href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential
-                                aromatase inhibitor against breast carcinoma</strong><br><em>Nature — Scientific Reports
-                                (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1"
-                                target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and
-                                Pro-Inflammatory Cytokine Stimulation — A Minimal Number Genome-Based
-                                Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi"
-                                href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in
-                                Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em>
-                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
 
                     </div>
                 </div>
