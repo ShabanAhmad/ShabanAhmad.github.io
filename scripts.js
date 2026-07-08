@@ -910,10 +910,14 @@ const HIGHLIGHTED_PUB_TITLES = [
 
 function scrapePubData(keyword) {
     const kw = keyword.toLowerCase().substring(0, 40);
-    for (const item of document.querySelectorAll('.pub-item')) {
+    // Scope to the main Publications section so we read the authoritative entry
+    // (full DOI/Code/Data), not the Selected Publications list-view copy which
+    // appears earlier in the DOM and may carry fewer links.
+    const pubItems = document.querySelectorAll('#publications .pub-item');
+    for (const item of pubItems) {
         const titleEl = item.querySelector('strong');
         if (!titleEl) continue;
-        const fullTitle = titleEl.textContent.trim();
+        const fullTitle = titleEl.textContent.trim().replace(/\s+/g, ' ');
         if (fullTitle.toLowerCase().includes(kw)) {
             const emEl = item.querySelector('em');
             const doiEl = item.querySelector('.pub-doi');
