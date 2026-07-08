@@ -899,10 +899,13 @@ function togglePubView() {
  * is auto-fetched from the Publications section DOM and the AI backend. */
 const HIGHLIGHTED_PUB_TITLES = [
     "DrLungker: A Deep Ensemble Learning Framework",
-    "Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of NF-kB",
-    "In-silico and in-vitro studies reveal ziprasidone",
+    "Probing the multitargeted potency of Theodrenaline",
+    "FEDPN from ChEMBL BioAssays against lung",
+    "Integrative Analysis Discovers Imidurea as a dual",
+    "Multisampling-based docking reveals Imidazolidinyl",
+    "Comparative insight into Rice chloroplasts genome",
     "SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity",
-    "Machine Learning for Genomic Profiling and Drug Discovery"
+    "Predictive modelling and therapeutic repurposing of natural"
 ];
 
 function scrapePubData(keyword) {

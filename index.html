@@ -40,11 +40,17 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap"
-        rel="stylesheet">
+
+    <!-- Icon + web fonts loaded non-blocking (preload → stylesheet) to protect Largest Contentful Paint;
+         <noscript> fallback keeps them working when JS is disabled. -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Merriweather:ital,wght@0,700;1,400&display=swap">
+    </noscript>
 
     <!-- === SECTION 3: STRUCTURED DATA (JSON-LD) === -->
     <script type="application/ld+json">
@@ -197,7 +203,7 @@
 
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
     <link rel="preload" as="image" href="shaban.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260701_0846">
+    <link rel="stylesheet" href="styles.css?v=20260708_1">
 </head>
 
 <body>
@@ -535,107 +541,77 @@
                 <!-- Card / Grid view (hidden by default) -->
                 <div id="contrib-pub-cards" class="sel-pub-grid" style="display:none;">
 
+
                     <div class="sel-pub-card">
-                        <div class="sel-pub-title">DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
-                            Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
-                            Simulations, and MM-GBSA Analysis</div>
+                        <div class="sel-pub-title">DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</div>
                         <div class="sel-pub-meta"><em>Wiley — Advanced Theory and Simulations</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Flagship AI work: deep ensemble model
-                            that predicts drug activity and provides mechanistic validation. Open-source pipeline with all
-                            data archived.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i
-                                    class="fab fa-github" aria-hidden="true"></i> Code</a>
-                            <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i
-                                    class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Flagship deep-ensemble framework integrating MD, DFT, WaterMap and MM-GBSA to predict and mechanistically validate anti-lung-cancer activity; fully open-source.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a><a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></div>
                     </div>
 
                     <div class="sel-pub-card">
-                        <div class="sel-pub-title">Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
-                            NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine Storms</div>
-                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Rigorous structure-based drug discovery —
-                            from target identification to MD-validated binding — applied to a clinically relevant
-                            inflammatory pathway.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-024-78411-5/MediaObjects/41598_2024_78411_MOESM2_ESM.pdf"
-                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
+                        <div class="sel-pub-title">Probing the multitargeted potency of Theodrenaline and its comparative evaluation with Crizotinib against transferase, hydrolase, signalling, and apoptosis-related proteins to overcome lung cancer drug resistance</div>
+                        <div class="sel-pub-meta"><em>International Journal of Biological Macromolecules</em> (2025)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Multitargeted repurposing benchmarking Theodrenaline against Crizotinib to counter lung-cancer drug resistance across transferase, hydrolase, signalling and apoptosis targets.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://doi.org/10.13140/RG.2.2.30670.11846" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 1</a><a href="https://doi.org/10.13140/RG.2.2.13892.90248" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 2</a></div>
                     </div>
 
                     <div class="sel-pub-card">
-                        <div class="sel-pub-title">In-silico and in-vitro studies reveal ziprasidone as a potential
-                            aromatase inhibitor against breast carcinoma</div>
-                        <div class="sel-pub-meta"><em>Nature — Scientific Reports</em> (2023)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Bridges computational prediction with
-                            wet-lab validation — a critical differentiator for translational credibility in a hiring
-                            context.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1" target="_blank" rel="noopener noreferrer">DOI</a>
-                            <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-023-43789-1/MediaObjects/41598_2023_43789_MOESM1_ESM.docx"
-                                target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a>
-                        </div>
+                        <div class="sel-pub-title">Evaluating the polypharmacological potency of FEDPN from ChEMBL BioAssays against lung cancer EGFR, ALK, TrkA and KRAS proteins</div>
+                        <div class="sel-pub-meta"><em>International Journal of Biological Macromolecules</em> (2025)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Mines ChEMBL BioAssays to identify FEDPN as a polypharmacological hit against EGFR, ALK, TrkA and KRAS, pairing data-driven discovery with structural validation.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.141703" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://doi.org/10.13140/RG.2.2.20603.78884" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a><a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></div>
                     </div>
 
                     <div class="sel-pub-card">
-                        <div class="sel-pub-title">SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity — A Minimal
-                            Number Genome-Based Approach</div>
+                        <div class="sel-pub-title">Integrative Analysis Discovers Imidurea as a dual multitargeted inhibitor of CD69, CD40, SHP2, Lysozyme, GATA3, cCBL, and S-cysteinase from SARS-CoV-2 and M. tuberculosis</div>
+                        <div class="sel-pub-meta"><em>International Journal of Biological Macromolecules</em> (2024)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Cross-pathogen integrative analysis identifying Imidurea as a dual multitargeted inhibitor spanning SARS-CoV-2 and M. tuberculosis protein targets.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2024.132332" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://doi.org/10.13140/RG.2.2.34025.56164" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 1</a><a href="https://doi.org/10.13140/RG.2.2.25636.95361" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 2</a></div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">Multisampling-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer: An optimisation followed multi-simulation and in-vitro study</div>
+                        <div class="sel-pub-meta"><em>Journal of Biomolecular Structure and Dynamics</em> (2023)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Optimisation-led, multi-simulation and in-vitro study establishing Imidazolidinyl urea as a multitargeted lung-cancer inhibitor.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2209673" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://doi.org/10.13140/RG.2.2.28992.39680" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 1</a><a href="https://ndownloader.figstatic.com/files/40472840" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 2</a></div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">Comparative insight into Rice chloroplasts genome: Mutational Phylogenomics reveals Echinochloa oryzicola as the ongoing progenitor of rice</div>
+                        <div class="sel-pub-meta"><em>Genetic Resources and Crop Evolution</em> (2023)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Mutational phylogenomics of rice chloroplast genomes identifying Echinochloa oryzicola as an ongoing progenitor — the computational-genomics pillar applied to crop evolution.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1007/s10722-022-01471-x" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM1_ESM.docx" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 1</a><a href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10722-022-01471-x/MediaObjects/10722_2022_1471_MOESM2_ESM.xlsx" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data 2</a></div>
+                    </div>
+
+                    <div class="sel-pub-card">
+                        <div class="sel-pub-title">SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation, an Increasing Antigenic and Anti-Inflammatory Cytokine Induction, and Rising Structural Protein Instability: A Minimal Number Genome-Based Approach</div>
                         <div class="sel-pub-meta"><em>Inflammation</em> (2022)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Genome-wide comparative analysis using a
-                            novel minimal-number approach — showcases the computational genomics pillar with clear
-                            epidemiological translation.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Minimal-number genome-based framework tracking declining SARS-CoV-2 pathogenicity and shifting cytokine and antigenic profiles across variants.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://static-content.springer.com/esm/art%3A10.1007%2Fs10753-022-01734-w/MediaObjects/10753_2022_1734_MOESM1_ESM.docx" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></div>
                     </div>
 
                     <div class="sel-pub-card">
-                        <div class="sel-pub-title">Machine Learning for Genomic Profiling and Drug Discovery in Personalised
-                            Lung Cancer Therapeutics</div>
-                        <div class="sel-pub-meta"><em>Journal of Drug Targeting</em> (2025)</div>
-                        <div class="sel-pub-impact"><i class="fas fa-lightbulb"
-                                style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Integrative review linking ML-based
-                            genomic profiling with drug discovery — articulates the conceptual bridge between the genomics
-                            and pharmacology pillars of TCP.</div>
-                        <div class="sel-pub-actions">
-                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </div>
+                        <div class="sel-pub-title">Predictive modelling and therapeutic repurposing of natural compounds against the receptor-binding domain of SARS-CoV-2</div>
+                        <div class="sel-pub-meta"><em>Journal of Biomolecular Structure and Dynamics</em> (2022)</div>
+                        <div class="sel-pub-impact"><i class="fas fa-lightbulb" style="margin-right:5px; color:var(--accent);" aria-hidden="true"></i>Structure-based repurposing of natural compounds against the SARS-CoV-2 receptor-binding domain during the early pandemic response.</div>
+                        <div class="sel-pub-actions"><a class="pub-doi" href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://doi.org/10.13140/RG.2.2.18926.06725" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></div>
                     </div>
+
 
                 </div>
 
                 <!-- List view (hidden by default) -->
                 <div id="contrib-pub-list" style="display:none;">
                     <ol class="pub-list">
-                        <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung
-                                Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD
-                                Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations
-                                (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550"
-                                target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
-                                class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
-                        <li class="pub-item"><strong>Molecular Dynamics Simulation and Docking Studies Reveal Inhibition of
-                                NF-kB Signalling as a Promising Therapeutic Drug Target for Reduction in Cytokine
-                                Storms</strong><br><em>Nature — Scientific Reports (2025)</em> <a class="pub-doi"
-                                href="https://doi.org/10.1038/s41598-024-78411-5" target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>In-silico and in-vitro studies reveal ziprasidone as a potential
-                                aromatase inhibitor against breast carcinoma</strong><br><em>Nature — Scientific Reports
-                                (2023)</em> <a class="pub-doi" href="https://doi.org/10.1038/s41598-023-43789-1"
-                                target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and
-                                Pro-Inflammatory Cytokine Stimulation — A Minimal Number Genome-Based
-                                Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi"
-                                href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a></li>
-                        <li class="pub-item"><strong>Machine Learning for Genomic Profiling and Drug Discovery in
-                                Personalised Lung Cancer Therapeutics</strong><br><em>Journal of Drug Targeting (2025)</em>
-                            <a class="pub-doi" href="https://doi.org/10.1080/1061186X.2025.2530656" target="_blank" rel="noopener noreferrer">DOI</a>
-                        </li>
+                        <li class="pub-item"><strong>DrLungker: A Deep Ensemble Learning Framework for Predicting Anti-Lung Cancer Compound Activity and Validating Multitarget Potency through WaterMap, DFT, MD Simulations, and MM-GBSA Analysis</strong><br><em>Wiley — Advanced Theory and Simulations (2025)</em> <a class="pub-doi" href="https://doi.org/10.1002/adts.202501550" target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a href="https://figshare.com/projects/DrLungker/268952" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fas fa-database" aria-hidden="true"></i> Data</a></li>
+                        <li class="pub-item"><strong>Probing the multitargeted potency of Theodrenaline and its comparative evaluation with Crizotinib against transferase, hydrolase, signalling, and apoptosis-related proteins to overcome lung cancer drug resistance</strong><br><em>International Journal of Biological Macromolecules (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.142343" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>Evaluating the polypharmacological potency of FEDPN from ChEMBL BioAssays against lung cancer EGFR, ALK, TrkA and KRAS proteins</strong><br><em>International Journal of Biological Macromolecules (2025)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2025.141703" target="_blank" rel="noopener noreferrer">DOI</a> <a href="https://github.com/ShabanAhmad/ChEMBL_LungCancer-BioAssays" target="_blank" class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a></li>
+                        <li class="pub-item"><strong>Integrative Analysis Discovers Imidurea as a dual multitargeted inhibitor of CD69, CD40, SHP2, Lysozyme, GATA3, cCBL, and S-cysteinase from SARS-CoV-2 and M. tuberculosis</strong><br><em>International Journal of Biological Macromolecules (2024)</em> <a class="pub-doi" href="https://doi.org/10.1016/j.ijbiomac.2024.132332" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>Multisampling-based docking reveals Imidazolidinyl urea as a multitargeted inhibitor for Lung Cancer: An optimisation followed multi-simulation and in-vitro study</strong><br><em>Journal of Biomolecular Structure and Dynamics (2023)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2023.2209673" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>Comparative insight into Rice chloroplasts genome: Mutational Phylogenomics reveals Echinochloa oryzicola as the ongoing progenitor of rice</strong><br><em>Genetic Resources and Crop Evolution (2023)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10722-022-01471-x" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>SARS-CoV-2 Variants Show a Gradual Declining Pathogenicity and Pro-Inflammatory Cytokine Stimulation, an Increasing Antigenic and Anti-Inflammatory Cytokine Induction, and Rising Structural Protein Instability: A Minimal Number Genome-Based Approach</strong><br><em>Inflammation (2022)</em> <a class="pub-doi" href="https://doi.org/10.1007/s10753-022-01734-w" target="_blank" rel="noopener noreferrer">DOI</a></li>
+                        <li class="pub-item"><strong>Predictive modelling and therapeutic repurposing of natural compounds against the receptor-binding domain of SARS-CoV-2</strong><br><em>Journal of Biomolecular Structure and Dynamics (2022)</em> <a class="pub-doi" href="https://doi.org/10.1080/07391102.2021.2021993" target="_blank" rel="noopener noreferrer">DOI</a></li>
                     </ol>
                                 </div>
                             </div>
@@ -3557,7 +3533,7 @@
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
 
-    <script src="scripts.js?v=20260701_0846" defer></script>
+    <script src="scripts.js?v=20260708_1" defer></script>
     <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
