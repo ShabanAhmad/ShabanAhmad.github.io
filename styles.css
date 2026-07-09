@@ -1843,28 +1843,14 @@ body.dark-mode .srch-empty {
 .bento-stack {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.8rem;
 }
-
-@media (min-width: 900px) {
-    .bento-stack {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 1.5rem;
-    }
-    /* Row 1: two cards, 50 / 50 */
-    .bento-stack > .bento-card:nth-child(1),
-    .bento-stack > .bento-card:nth-child(2) { grid-column: span 3; }
-    /* Row 2: three equal cards */
-    .bento-stack > .bento-card:nth-child(3),
-    .bento-stack > .bento-card:nth-child(4),
-    .bento-stack > .bento-card:nth-child(5) { grid-column: span 2; }
-}
+/* 5 contribution cards stacked one-per-row (lives in the narrow left column) */
 
 .bento-card {
-    border-radius: 20px;
-    padding: 1.5rem 1.8rem;
-    min-height: 210px;
+    border-radius: 18px;
+    padding: 1.15rem 1.4rem;
+    min-height: 138px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -1945,9 +1931,9 @@ body.dark-mode .srch-empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.4rem;
     position: relative;
-    min-height: 44px;
+    min-height: 34px;
 }
 
 .bento-header-text {
@@ -1997,9 +1983,9 @@ body.dark-mode .srch-empty {
 
 .bento-desc {
     font-size: 0.87rem;
-    line-height: 1.58;
+    line-height: 1.45;
     flex-grow: 1;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
     /* Raised from 0.85 opacity for WCAG AA on the brighter gradient stops */
     color: rgba(255, 255, 255, 0.94);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
@@ -2516,11 +2502,11 @@ body.dark-mode h3:not([class]) {
 .interest-card {
     background: var(--white);
     border: 1px solid var(--accent);
-    padding: 1.5rem 1.35rem;
+    padding: 1.95rem 1.75rem;
     border-radius: 24px 4px 24px 4px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    min-width: 235px;
-    max-width: 235px;
+    min-width: 305px;
+    max-width: 305px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -8385,8 +8371,8 @@ body.dark-mode .syllabus-body strong {
 /* === 4.19: Selected Key Publications (in-contributions) === */
 .sel-pub-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.85rem;
 }
 
 @media (max-width: 700px) {
@@ -8400,7 +8386,7 @@ body.dark-mode .syllabus-body strong {
     border: 1px solid #e5e7eb;
     border-left: 5px solid var(--primary);
     border-radius: 10px;
-    padding: 1.1rem 1.3rem;
+    padding: 0.85rem 1rem;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
 }
@@ -8424,33 +8410,33 @@ body.dark-mode .syllabus-body strong {
 
 .sel-pub-title {
     font-weight: 700;
-    font-size: 0.97rem;
+    font-size: 0.88rem;
     color: var(--text);
-    line-height: 1.5;
-    margin-bottom: 4px;
+    line-height: 1.4;
+    margin-bottom: 3px;
 }
 
 .sel-pub-meta {
-    font-size: 0.83rem;
+    font-size: 0.78rem;
     color: #666;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .sel-pub-impact {
-    font-size: 0.87rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--primary);
     background: rgba(6, 78, 59, 0.06);
     border-left: 3px solid var(--accent);
     border-radius: 6px;
-    padding: 6px 11px;
-    line-height: 1.5;
+    padding: 5px 9px;
+    line-height: 1.4;
 }
 
 .sel-pub-actions {
     display: flex;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 6px;
+    margin-top: 6px;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -8594,13 +8580,13 @@ body.dark-mode .about-hero-card:hover {
     border: 1px solid #e5e7eb;
     border-left: 4px solid var(--card-border-color, var(--primary));
     border-radius: 12px;
-    padding: 1.25rem 1.4rem;
-    min-width: 360px;
-    max-width: 360px;
+    padding: 0.95rem 1.15rem;
+    min-width: 340px;
+    max-width: 340px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -8625,26 +8611,25 @@ body.dark-mode .about-hero-card:hover {
 
 .pub-mq-title {
     font-weight: 700;
-    font-size: 1.05rem;
-    line-height: 1.45;
+    font-size: 0.94rem;
+    line-height: 1.32;
     color: var(--text);
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex: 1;
 }
 
 .pub-mq-desc {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.4;
     font-style: italic;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 2.5rem;
 }
 
 .pub-mq-actions {
@@ -10265,8 +10250,8 @@ body.dark-mode .vision-dropdown-menu a:hover {
 
 .metric-tab-btn {
     position: relative;
-    padding: 1.2rem 1.2rem 1rem 1.2rem;
-    border-radius: 16px;
+    padding: 0.85rem 1rem 0.7rem 1rem;
+    border-radius: 14px;
     border: 1px solid rgba(0,0,0,0.05);
     border-bottom: 4px solid rgba(0,0,0,0.08);
     background: linear-gradient(135deg, var(--card-bg) 0%, color-mix(in srgb, var(--card-bg) 95%, transparent) 100%);
@@ -10278,7 +10263,7 @@ body.dark-mode .vision-dropdown-menu a:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 110px;
+    min-height: 84px;
     transform: translateY(-4px);
     border-color: var(--accent);
     border-bottom-color: var(--accent);
@@ -10319,9 +10304,9 @@ body.dark-mode .metric-tab-btn:hover,
 
 .metric-tab-btn .mt-icon {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.6rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.25rem;
     color: color-mix(in srgb, var(--text) 20%, transparent);
     transition: all 0.3s ease;
 }
@@ -10336,11 +10321,11 @@ body.dark-mode .metric-tab-btn .mt-icon {
 }
 
 .metric-tab-btn .mt-num {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--text);
     line-height: 1;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.15rem;
     font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
 }
@@ -10354,11 +10339,11 @@ body.dark-mode .metric-tab-btn .mt-num {
 }
 
 .metric-tab-btn .mt-title {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: var(--sub-heading);
     transition: all 0.3s ease;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 body.dark-mode .metric-tab-btn .mt-title {
@@ -10891,15 +10876,16 @@ body.dark-mode .tech-panel-grid .tech-sub-title {
         gap: 0.8rem;
     }
     .metric-tab-btn {
-        padding: 1rem 0.9rem;
-        min-height: 100px;
+        padding: 0.7rem 0.8rem;
+        min-height: 72px;
     }
     .metric-tab-btn .mt-title {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         padding-right: 0;
+        margin-bottom: 0.25rem;
     }
     .metric-tab-btn .mt-num {
-        font-size: 1.6rem;
+        font-size: 1.45rem;
     }
     .metric-tab-btn .mt-icon {
         font-size: 1.2rem;
@@ -10915,4 +10901,84 @@ body.dark-mode .tech-panel-grid .tech-sub-title {
         letter-spacing: 0;
         line-height: 1.2;
     }
+}
+
+/* =====================================================
+   DARK MODE — Research Vision & Lab Strategy boxes
+   Fixes: pastel/white card backgrounds, tech-card
+   gradient-to-white, missing/faint card outlines and
+   hover outline-colour on roadmap & funding cards.
+   ===================================================== */
+
+/* Vision & Research Themes cards kept pastel light bg */
+body.dark-mode .tcp-focus-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .tcp-focus-card .tfc-title {
+    color: #f1f5f9;
+}
+body.dark-mode .tcp-focus-card .tfc-desc,
+body.dark-mode .tcp-focus-card .tech-ul li {
+    color: #cbd5e1;
+}
+
+/* Expertise tech-cards: base gradient ended in white (#f8fafc) */
+body.dark-mode .tech-card {
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border-color: #334155;
+}
+
+/* Roadmap phase cards (.edu-card): visible outline + coloured top + hover */
+body.dark-mode #roadmap-funding .edu-card {
+    border: 1px solid #475569;
+}
+body.dark-mode #roadmap-funding .edu-card.edu-phd { border-top: 4px solid var(--edu-phd); }
+body.dark-mode #roadmap-funding .edu-card.edu-msc { border-top: 4px solid var(--edu-msc); }
+body.dark-mode #roadmap-funding .edu-card.edu-bsc { border-top: 4px solid var(--edu-bsc); }
+body.dark-mode #roadmap-funding .edu-card:hover {
+    border-color: var(--variant-color);
+}
+
+/* Funding Logic / Partnership / Growth cards: consistent outline + coloured top */
+body.dark-mode #roadmap-funding .strategy-card-item {
+    border: 1px solid #475569;
+}
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(1) { border-top: 4px solid #0ea5e9; }
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(2) { border-top: 4px solid #10b981; }
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(3) { border-top: 4px solid #f43f5e; }
+
+/* Nav: Home on desktop, About-dropdown on mobile (≤900px) */
+.nav-mobile-only { display: none; }
+.nav-desktop-only { display: list-item; }
+@media (max-width: 900px) {
+    .nav-desktop-only { display: none; }
+    /* About is a dropdown — keep nav-item-dropdown flex layout so its
+       label + chevron share one row like Vision/Publications */
+    .nav-mobile-only.nav-item-dropdown { display: flex; }
+    .nav-mobile-only { display: block; }
+}
+
+/* Publications: gold-barred meta line (journal + DOI/Cite buttons) — matches Conferences */
+.pub-meta {
+    display: block;
+    margin-top: 5px;
+    margin-left: 2px;
+    padding-left: 8px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.7;
+}
+.pub-meta em {
+    color: var(--text);
+    opacity: 0.85;
+}
+body.dark-mode .pub-meta em {
+    color: #cbd5e1;
+    opacity: 1;
+}
+
+/* Tighten heading→content gap in Publications & Research Vision (title sat in a
+   flex header whose margin stacked with the title's own margin) */
+.section-heading-row .section-title {
+    margin-bottom: 0;
 }

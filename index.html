@@ -276,7 +276,8 @@
             <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="header-name">Shaban <i class="fas fa-home" aria-hidden="true"></i></a>
 
             <ul class="nav-list" id="nav-menu">
-                <li class="nav-item nav-item-dropdown">
+                <li class="nav-item nav-desktop-only"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
+                <li class="nav-item nav-item-dropdown nav-mobile-only">
                     <a href="#profile-experience" class="nav-link">About <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
                     <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'about-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
                     <div class="nav-dropdown-content" id="about-dd">
@@ -285,7 +286,6 @@
                         <a href="#selected-publications">Selected Publications</a>
                         <a href="#awards">Patents</a>
                         <a href="#awards">Awards</a>
-                        <a href="#scientific-frontiers">Scientific Frontiers</a>
                     </div>
                 </li>
                 <li class="nav-item nav-item-dropdown">
@@ -688,7 +688,7 @@
                         <div class="patent-footer">
                             <span class="patent-id">DE 20 2024 101 028.0</span>
                             <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020241010280&amp;CURSOR=8" target="_blank" rel="noopener noreferrer" class="patent-link">
-                                DPMA Registry <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                DPMA <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -712,7 +712,7 @@
                         <div class="patent-title"><span class="patent-highlight-num">06</span> Drug Molecules in Development</div>
                         <div class="patent-desc">Patent applications filed for novel drug molecules designed during doctoral research.</div>
                         <div class="patent-footer">
-                            <span class="patent-id">Status: Examination Stage</span>
+                            <span class="patent-id">Status: Filed</span>
                             <span class="patent-applications-count">01 US <span style="color: #ef4444; font-weight: 700;">|</span> 05 Indian</span>
                         </div>
                     </div>
@@ -905,92 +905,94 @@
         </div>
         <hr class="subtle-separator">
 
-                <div style="width: 100%; min-width: 0;">
-                    <div style="display: flex; flex-direction: column;">
-                        <!-- Sub-section: Scientific Frontiers -->
-                        <div style="margin-top: 0; display: flex; flex-direction: column;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                                    <h3 id="scientific-frontiers" class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0; scroll-margin-top: 80px;"><i class="fas fa-microscope" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Scientific Frontiers</h3>
-                                <div class="ai-btn-container">
-                                    <button onclick="summariseFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn">
-                                        <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
-                                    </button>
+                <!-- Key Scientific Contributions -->
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                    <h3 class="unified-sub-heading ush-primary" style="margin: 0;"><i class="fas fa-flask" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Key Scientific Contributions</h3>
+                    <div class="ai-btn-container">
+                        <button onclick="summariseContributions()" class="ai-magic-btn ai-expand-btn" id="summarise-contributions-btn">
+                            <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
+                        </button>
+                    </div>
+                </div>
+                    <div id="contributions-summary" aria-live="polite" aria-atomic="true"
+                        style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    </div>
+                    
+                    <!-- Bento Grid (restored to full bento layout) -->
+                    <div class="bento-stack">
+                        <!-- Bento Box 1: AI Precision Oncology -->
+                        <div class="bento-card bento-h1">
+                            <div class="bento-header">
+                                <div class="bento-header-text">
+                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">AI Precision Oncology</div>
                                 </div>
-                                <div id="sf-status" aria-live="polite" aria-atomic="true" style="display:none; width: 100%; margin-bottom: 10px; padding: 10px; background: rgba(111, 66, 193, 0.1); border-left: 3px solid #6f42c1; font-size: 0.85rem; border-radius: 4px; color: #333;"></div>
+                                <div class="bento-icon-wrapper"><i class="fas fa-robot bento-icon" aria-hidden="true"></i></div>
                             </div>
-                            <div class="marquee-wrapper" id="sf-wrapper" style="max-width: 100%; flex-grow: 1; display: flex; flex-direction: column;">
-                                <div class="marquee-track" id="sf-track">
-                                    <!-- Interest Card 1: AI Precision Oncology -->
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
-                                        <div class="ic-title">AI Precision Oncology</div>
-                                        <div class="ic-desc">DeepEntXAI, ensemble classifiers & clinical target prediction.</div>
-                                    </div>
-                                    <!-- Interest Card 2: PFAS Biodegradation -->
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-leaf" aria-hidden="true"></i></div>
-                                        <div class="ic-title">PFAS Biodegradation</div>
-                                        <div class="ic-desc">C-F bond cleavage energetics & enzymatic pre-organisation.</div>
-                                    </div>
-                                    <!-- Interest Card 3: Multitarget Drug Discovery -->
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-pills" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Multitarget Drug Discovery</div>
-                                        <div class="ic-desc">Polypharmacology workflows & active-site dynamics.</div>
-                                    </div>
-                                    <!-- Interest Card 4: High-Performance Computing -->
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-server" aria-hidden="true"></i></div>
-                                        <div class="ic-title">High-Performance Computing</div>
-                                        <div class="ic-desc">GPU clusters, GROMACS, and automations.</div>
-                                    </div>
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-robot" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Generative AI</div>
-                                        <div class="ic-desc">LLMs & deep neural networks.</div>
-                                    </div>
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-project-diagram" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Systems Biology</div>
-                                        <div class="ic-desc">WGS/WES variant calling & phylogenomics.</div>
-                                    </div>
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-dna" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Translational Pharmacology</div>
-                                        <div class="ic-desc">Bridging in silico targets to in vitro assays.</div>
-                                    </div>
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-brain" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Deep Learning</div>
-                                        <div class="ic-desc">CNNs/RNNs/Transformers for sequence analysis & protein structure prediction.</div>
-                                    </div>
-                                    <div class="interest-card">
-                                        <div class="ic-icon-box"><i class="fas fa-flask" aria-hidden="true"></i></div>
-                                        <div class="ic-title">Computational Chemistry</div>
-                                        <div class="ic-desc">QM/MM approaches, DFT calculations & electronic structure analysis.</div>
-                                    </div>
-                                </div>
-                                <div class="sf-nav-controls" style="margin-top: auto;">
-                                    <button class="sf-nav-btn" onclick="scrollSF(-1)" aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                                    <button class="sf-nav-btn" onclick="scrollSF(1)" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-                                </div>
+                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Pioneered deep-ensemble models (DrLungker, DeepEntXAI) integrating all-atom molecular dynamics (MD), Density Functional Theory (DFT), and WaterMap analysis to identify therapeutic candidates and decrypt drug resistance.</div>
+                            <div class="bento-tags">
+                                <span class="bento-tag">AI/ML Models</span>
+                                <span class="bento-tag">DrLungker</span>
+                                <span class="bento-tag">Drug Design</span>
+                                <span class="bento-tag">XAI Pipelines</span>
                             </div>
+                        </div>
+                        
+                        <!-- Bento Box 2: Clinical & Translational Informatics -->
+                        <div class="bento-card bento-h2">
+                            <div class="bento-header">
+                                <div class="bento-header-text">
+                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">Clinical & Translational Informatics</div>
+                                </div>
+                                <div class="bento-icon-wrapper"><i class="fas fa-laptop-medical bento-icon" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Bridging computational models with clinical epidemiology and nanomedicine. Deriving mortality risk indices from NHANES cohorts and evaluating targeted nanoparticle delivery systems.</div>
+                            <div class="bento-tags">
+                                <span class="bento-tag">Clinical Epidemiology</span>
+                                <span class="bento-tag">Nanomedicine</span>
+                                <span class="bento-tag">NHANES Data</span>
+                                <span class="bento-tag">Translational Research</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Bento Box 4: Computational Genomics -->
+                        <div class="bento-card bento-v2">
+                            <div class="bento-header">
+                                <div class="bento-header-text">
+                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">Genomics &amp; Pathogen Informatics</div>
+                                </div>
+                                <div class="bento-icon-wrapper"><i class="fas fa-code-branch bento-icon" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Unravelling genomic data via WGS/WES processing, variant pathogenicity prediction, and phylogenomics, coupled with AI pipelines and multitarget docking to combat antimicrobial resistance (AMR) and viral pathogens — Enterobacteriaceae, M. tuberculosis, and SARS-CoV-2.</div>
+                            <div class="bento-tags">
+                                <span class="bento-tag">WGS/WES</span>
+                                <span class="bento-tag">Variant Calling</span>
+                                <span class="bento-tag">AMR</span>
+                                <span class="bento-tag">Viral Pathogenesis</span>
+                            </div>
+                        </div>
+
+                        <!-- Bento Box 6: PFAS Biodegradation -->
+                        <div class="bento-card bento-v3">
+                            <div class="bento-header">
+                                <div class="bento-header-text">
+                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">PFAS Biodegradation</div>
+                                </div>
+                                <div class="bento-icon-wrapper"><i class="fas fa-leaf bento-icon" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Elucidating catalytic pathways of C-F bond cleavage in fluorinated pollutants using all-atom MD simulations, DFT pre-organisation analysis, and QM/MM transition state mapping.</div>
+                            <div class="bento-tags">
+                                <span class="bento-tag">QM/MM Prep</span>
+                                <span class="bento-tag">DFT Modelling</span>
+                                <span class="bento-tag">Bioremediation</span>
+                                <span class="bento-tag">C-F Cleavage</span>
                             </div>
                         </div>
                     </div>
-
-        <!-- Open to Collaboration -->
-        <div class="ai-matcher-box" style="margin-top: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                <div class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-handshake" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Open to Collaboration</div>
-                <div style="display: flex; gap: 5px; align-items: center;">
-                    <button onclick="matchSkills()" id="match-btn" class="ai-expand-btn" data-tip="Check Research Fit"><span class="btn-icon">✨</span><span class="btn-text">Research Fit</span></button>
                 </div>
-            </div>
-            <p style="font-size:0.92rem; color: var(--text); opacity: 0.9; margin-bottom:10px; line-height:1.5;">Interested in discussing a position, collaboration, or joint project? Share the context below and I will get back to you directly.</p>
-            <textarea id="job-desc-input" aria-label="Opportunity or research context" placeholder="Briefly describe the opportunity or research context..."></textarea>
-            <div id="match-result" aria-live="polite" aria-atomic="true" style="display: none; margin-top: 15px; padding: 20px; background: var(--card-bg); border: 1px solid var(--card-border); border-left: 5px solid var(--primary); border-radius: 12px; font-size: 0.95rem; line-height: 1.6; color: var(--card-text); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
-        </div>
+
+
+
 
                     </div>
                 </div>
@@ -1362,118 +1364,13 @@
                 </div>
             </div>
         </div>
-        <hr class="subtle-separator">
-
-        <!-- Key Scientific Contributions (merged from former Scientific Impact section) -->
-            <div style="display: flex; flex-direction: column; flex-grow: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                    <h3 class="unified-sub-heading ush-primary" style="margin: 0;"><i class="fas fa-flask" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Key Scientific Contributions</h3>
-                    <div class="ai-btn-container">
-                        <button onclick="summariseContributions()" class="ai-magic-btn ai-expand-btn" id="summarise-contributions-btn">
-                            <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
-                        </button>
-                    </div>
-                </div>
-                    <div id="contributions-summary" aria-live="polite" aria-atomic="true"
-                        style="display: none; background: #fff9db; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; font-size: 0.95rem; color: #333; line-height: 1.5; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                    </div>
-                    
-                    <!-- Bento Grid (restored to full bento layout) -->
-                    <div class="bento-stack">
-                        <!-- Bento Box 1: AI Precision Oncology -->
-                        <div class="bento-card bento-h1">
-                            <div class="bento-header">
-                                <div class="bento-header-text">
-                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">AI Precision Oncology</div>
-                                </div>
-                                <div class="bento-icon-wrapper"><i class="fas fa-robot bento-icon" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Pioneered deep-ensemble models (DrLungker, DeepEntXAI) integrating all-atom molecular dynamics (MD), Density Functional Theory (DFT), and WaterMap analysis to identify therapeutic candidates and decrypt drug resistance.</div>
-                            <div class="bento-tags">
-                                <span class="bento-tag">AI/ML Models</span>
-                                <span class="bento-tag">DrLungker</span>
-                                <span class="bento-tag">Drug Design</span>
-                                <span class="bento-tag">XAI Pipelines</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Bento Box 2: Clinical & Translational Informatics -->
-                        <div class="bento-card bento-h2">
-                            <div class="bento-header">
-                                <div class="bento-header-text">
-                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">Clinical & Translational Informatics</div>
-                                </div>
-                                <div class="bento-icon-wrapper"><i class="fas fa-laptop-medical bento-icon" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Bridging computational models with clinical epidemiology and nanomedicine. Deriving mortality risk indices from NHANES cohorts and evaluating targeted nanoparticle delivery systems.</div>
-                            <div class="bento-tags">
-                                <span class="bento-tag">Clinical Epidemiology</span>
-                                <span class="bento-tag">Nanomedicine</span>
-                                <span class="bento-tag">NHANES Data</span>
-                                <span class="bento-tag">Translational Research</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Bento Box 4: Computational Genomics -->
-                        <div class="bento-card bento-v2">
-                            <div class="bento-header">
-                                <div class="bento-header-text">
-                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">Computational Genomics</div>
-                                </div>
-                                <div class="bento-icon-wrapper"><i class="fas fa-code-branch bento-icon" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Unravelling complex genomic data using WGS/WES processing, variant pathogenicity prediction, and phylogenomic evolutionary mapping to combat diverse pathogens and diseases.</div>
-                            <div class="bento-tags">
-                                <span class="bento-tag">WGS/WES</span>
-                                <span class="bento-tag">Variant Calling</span>
-                                <span class="bento-tag">Phylogenomics</span>
-                                <span class="bento-tag">NGS Data</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Bento Box 5: Pathogen Informatics & AMR -->
-                        <div class="bento-card bento-h3">
-                            <div class="bento-header">
-                                <div class="bento-header-text">
-                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">Pathogen Informatics & AMR</div>
-                                </div>
-                                <div class="bento-icon-wrapper"><i class="fas fa-capsules bento-icon" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Leveraging AI pipelines, multitarget docking, and structural analysis to combat antimicrobial resistance (AMR) and viral pathogenesis, focusing on Enterobacteriaceae, M. tuberculosis, and SARS-CoV-2.</div>
-                            <div class="bento-tags">
-                                <span class="bento-tag">AMR</span>
-                                <span class="bento-tag">Pathogen Informatics</span>
-                                <span class="bento-tag">DeepEntXAI</span>
-                                <span class="bento-tag">Viral Pathogenesis</span>
-                            </div>
-                        </div>
-
-                        <!-- Bento Box 6: PFAS Biodegradation -->
-                        <div class="bento-card bento-v3">
-                            <div class="bento-header">
-                                <div class="bento-header-text">
-                                    <div class="bento-title" style="font-size: 1.05rem; font-weight: 700;">PFAS Biodegradation</div>
-                                </div>
-                                <div class="bento-icon-wrapper"><i class="fas fa-leaf bento-icon" aria-hidden="true"></i></div>
-                            </div>
-                            <div class="bento-desc" style="font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.85);">Elucidating catalytic pathways of C-F bond cleavage in fluorinated pollutants using all-atom MD simulations, DFT pre-organisation analysis, and QM/MM transition state mapping.</div>
-                            <div class="bento-tags">
-                                <span class="bento-tag">QM/MM Prep</span>
-                                <span class="bento-tag">DFT Modelling</span>
-                                <span class="bento-tag">Bioremediation</span>
-                                <span class="bento-tag">C-F Cleavage</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
         <hr class="separator">
     </section>
 
 
     <!-- === SECTION 9: RESEARCH VISION & STRATEGY (TCP Group) === -->
     <section id="research-vision" class="container reveal">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 10px;">
+        <div class="section-heading-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 10px;">
             <h2 class="section-title">Research Vision &amp; Lab Strategy</h2>
             
             <!-- Vision Search & Filter (Desktop Only) -->
@@ -2052,7 +1949,7 @@
 
     <!-- === SECTION 11: SCIENTIFIC PUBLICATION FRAMEWORK === -->
     <section id="publications" class="container reveal">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 10px;">
+        <div class="section-heading-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 10px;">
             <h2 class="section-title">Publications &amp; Scholarly Works</h2>
 
             <!-- Publications Search & Filter Hub -->
@@ -2769,7 +2666,7 @@
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
                         <li class="pub-item"><strong>START Retreat for Young Researchers</strong>
-                            <div class="event-meta">Comwell Middelfart, Denmark | June 24-25, 2026</div>
+                            <div class="event-meta">START Centre for Sustainable Agrifood Systems at Comwell Middelfart, Denmark | June 24-25, 2026</div>
                         </li>
                         <li class="pub-item"><strong>2025 Summer School in Applied Deep Learning in
                                 Bioinformatics</strong>

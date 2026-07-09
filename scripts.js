@@ -161,24 +161,40 @@ const copyEmail = (el, email, color = null) => {
 /* Automated Citation & DOI Logic Engine */
 const initCitationButtons = () => {
     document.querySelectorAll('.pub-item').forEach((pub, i) => {
-        const doiBtn = pub.querySelector('.pub-doi'); if (!doiBtn) return;
-        const controls = document.createElement('span'); controls.className = 'pub-controls';
-        const dataBtns = Array.from(pub.querySelectorAll('.btn-data'));
-        dataBtns.forEach(btn => { btn.style.margin = '0'; controls.appendChild(btn); });
-        if (dataBtns.length > 0) { const sep1 = document.createElement('span'); sep1.style.cssText = 'color:#dc3545; font-weight:900; margin:0 6px;'; sep1.innerHTML = '|'; controls.appendChild(sep1); }
-        let doiUrl = doiBtn.getAttribute('href'); doiBtn.style.margin = '0'; controls.appendChild(doiBtn);
-        const citeBtn = document.createElement('button'); citeBtn.className = 'btn-cite'; citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>'; citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn); controls.appendChild(citeBtn);
-        const sep2 = document.createElement('span'); sep2.style.cssText = 'color:#dc3545; font-weight:900; margin:0 6px;'; sep2.innerHTML = '|'; controls.appendChild(sep2);
+        const doiBtn = pub.querySelector('.pub-doi');
+        let controls = null;
+        // Citation/action controls only for published items (those with a DOI)
+        if (doiBtn) {
+            controls = document.createElement('span'); controls.className = 'pub-controls';
+            const dataBtns = Array.from(pub.querySelectorAll('.btn-data'));
+            dataBtns.forEach(btn => { btn.style.margin = '0'; controls.appendChild(btn); });
+            if (dataBtns.length > 0) { const sep1 = document.createElement('span'); sep1.style.cssText = 'color:#dc3545; font-weight:900; margin:0 6px;'; sep1.innerHTML = '|'; controls.appendChild(sep1); }
+            let doiUrl = doiBtn.getAttribute('href'); doiBtn.style.margin = '0'; controls.appendChild(doiBtn);
+            const citeBtn = document.createElement('button'); citeBtn.className = 'btn-cite'; citeBtn.innerHTML = 'Cite <i class="fas fa-caret-down"></i>'; citeBtn.onclick = (e) => toggleCiteMenu(e, citeBtn); controls.appendChild(citeBtn);
+            const sep2 = document.createElement('span'); sep2.style.cssText = 'color:#dc3545; font-weight:900; margin:0 6px;'; sep2.innerHTML = '|'; controls.appendChild(sep2);
 
-        const pubTitle = pub.querySelector('strong')?.innerText.trim() || "";
-        const tldrBtn = document.createElement('button'); tldrBtn.className = 'btn-data'; tldrBtn.style.cssText = 'background-color:#dc3545; color:#fff; border:none; margin:0; cursor:pointer;'; tldrBtn.innerHTML = '✨'; tldrBtn.title = "Generate AI Report"; tldrBtn.onclick = () => handlePublicationAction('AI Report', pubTitle, doiUrl, tldrBtn); controls.appendChild(tldrBtn);
-        const socialBtn = document.createElement('button'); socialBtn.className = 'btn-data'; socialBtn.style.cssText = 'background-color:#1DA1F2; color:#fff; border:none; margin:0 0 0 5px; cursor:pointer;'; socialBtn.innerHTML = '<i class="fab fa-twitter"></i>'; socialBtn.title = "Create Social Media Post"; socialBtn.onclick = () => handlePublicationAction('Social Post', pubTitle, doiUrl, socialBtn); controls.appendChild(socialBtn);
+            const pubTitle = pub.querySelector('strong')?.innerText.trim() || "";
+            const tldrBtn = document.createElement('button'); tldrBtn.className = 'btn-data'; tldrBtn.style.cssText = 'background-color:#dc3545; color:#fff; border:none; margin:0; cursor:pointer;'; tldrBtn.innerHTML = '✨'; tldrBtn.title = "Generate AI Report"; tldrBtn.onclick = () => handlePublicationAction('AI Report', pubTitle, doiUrl, tldrBtn); controls.appendChild(tldrBtn);
+            const socialBtn = document.createElement('button'); socialBtn.className = 'btn-data'; socialBtn.style.cssText = 'background-color:#1DA1F2; color:#fff; border:none; margin:0 0 0 5px; cursor:pointer;'; socialBtn.innerHTML = '<i class="fab fa-twitter"></i>'; socialBtn.title = "Create Social Media Post"; socialBtn.onclick = () => handlePublicationAction('Social Post', pubTitle, doiUrl, socialBtn); controls.appendChild(socialBtn);
 
-        const dd = document.createElement('div'); dd.className = 'cite-dropdown-menu'; dd.id = `cite-menu-${i}`;
-        const optCopy = document.createElement('button'); optCopy.className = 'cite-option'; optCopy.innerHTML = '<i class="fas fa-copy"></i> Copy APA Format'; optCopy.onclick = () => handleCitationAction(pub, doiUrl, optCopy, 'copy');
-        const optBib = document.createElement('button'); optBib.className = 'cite-option'; optBib.innerHTML = '<i class="fas fa-file-code"></i> Download BibTeX'; optBib.onclick = () => handleCitationAction(pub, doiUrl, optBib, 'bib');
-        const optRis = document.createElement('button'); optRis.className = 'cite-option'; optRis.innerHTML = '<i class="fas fa-file-export"></i> Download EndNote'; optRis.onclick = () => handleCitationAction(pub, doiUrl, optRis, 'ris');
-        dd.appendChild(optCopy); dd.appendChild(document.createElement('div')).className = 'cite-divider'; dd.appendChild(optBib); dd.appendChild(optRis); controls.appendChild(dd); pub.appendChild(controls);
+            const dd = document.createElement('div'); dd.className = 'cite-dropdown-menu'; dd.id = `cite-menu-${i}`;
+            const optCopy = document.createElement('button'); optCopy.className = 'cite-option'; optCopy.innerHTML = '<i class="fas fa-copy"></i> Copy APA Format'; optCopy.onclick = () => handleCitationAction(pub, doiUrl, optCopy, 'copy');
+            const optBib = document.createElement('button'); optBib.className = 'cite-option'; optBib.innerHTML = '<i class="fas fa-file-code"></i> Download BibTeX'; optBib.onclick = () => handleCitationAction(pub, doiUrl, optBib, 'bib');
+            const optRis = document.createElement('button'); optRis.className = 'cite-option'; optRis.innerHTML = '<i class="fas fa-file-export"></i> Download EndNote'; optRis.onclick = () => handleCitationAction(pub, doiUrl, optRis, 'ris');
+            dd.appendChild(optCopy); dd.appendChild(document.createElement('div')).className = 'cite-divider'; dd.appendChild(optBib); dd.appendChild(optRis); controls.appendChild(dd);
+        }
+        // Group journal name (+ action buttons when present) into a gold-barred meta line (matches Conferences).
+        // Runs for every list item with a <br> — including Submitted/In-Pipeline entries that have no DOI.
+        const br = pub.querySelector('br');
+        if (br) {
+            const meta = document.createElement('div'); meta.className = 'pub-meta';
+            let node = br.nextSibling;
+            while (node) { const next = node.nextSibling; meta.appendChild(node); node = next; }
+            if (controls) meta.appendChild(controls);
+            br.after(meta); br.remove();
+        } else if (controls) {
+            pub.appendChild(controls);
+        }
     });
 };
 const toggleCiteMenu = (e, btn) => { e.stopPropagation(); const cm = btn.parentElement.querySelector('.cite-dropdown-menu'), pi = btn.closest('.pub-item'); document.querySelectorAll('.cite-dropdown-menu').forEach(m => { if (m !== cm) { m.classList.remove('show'); m.closest('.pub-item').classList.remove('z-active'); } }); if (cm.classList.contains('show')) { cm.classList.remove('show'); pi.classList.remove('z-active'); } else { cm.classList.add('show'); pi.classList.add('z-active'); setTimeout(() => pi.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100); } };
@@ -475,7 +491,7 @@ const buildLangOptions = () => { document.querySelectorAll('.custom-lang-dropdow
 const toggleLangDropdown = (e) => { e.stopPropagation(); const wrapper = e.currentTarget; const dd = wrapper.querySelector('.custom-lang-dropdown'); if (!dd) return; const isShown = dd.classList.contains('show'); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); if (!isShown) dd.classList.add('show'); };
 const changeLanguage = (c) => { const s = document.querySelector('.goog-te-combo'); if (s) { s.value = c; s.dispatchEvent(new Event('change')); } const l = languages[c] || languages.en; document.querySelectorAll('.lang-current-display').forEach(el => el.innerHTML = `<img src="https://flagcdn.com/w40/${l.flag}.png" class="flag-xs" alt="${l.code}"> ${l.code} <i class="fas fa-chevron-down"></i>`); document.querySelectorAll('.custom-lang-dropdown').forEach(d => d.classList.remove('show')); };
 const toggleMenu = (e) => { if (e) e.stopPropagation(); const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'), mDD = document.getElementById('global-lang-dd'); if (mDD && mDD.classList.contains('show')) mDD.classList.remove('show'); closeAllDropdowns(); nb.classList.toggle('active'); tb.classList.toggle('open'); }; const toggleMobileSubmenu = (e, tId) => { e.stopPropagation(); const dd = document.getElementById(tId), tb = e.currentTarget; closeAllDropdowns(dd); if (dd.classList.contains('show-mobile')) { dd.classList.remove('show-mobile'); tb.classList.remove('active'); tb.innerHTML = '<i class="fas fa-chevron-down"></i>'; } else { dd.classList.add('show-mobile'); tb.classList.add('active'); tb.innerHTML = '<i class="fas fa-chevron-up"></i>'; } }; document.querySelectorAll('.nav-link').forEach(l => { if (!l.closest('.nav-item-dropdown')) l.addEventListener('click', () => { const nb = document.querySelector('.nav-list'), tb = document.querySelector('.nav-toggle'); if (nb.classList.contains('active')) { nb.classList.remove('active'); tb.classList.remove('open'); } }); });
-const assignReverseBadges = () => [document.querySelector('.exp-grid-vertical'), document.querySelector('.edu-grid'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cs = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cs.forEach((cd, i) => cd.setAttribute('data-badge', cs.length - i)); });
+const assignReverseBadges = () => [document.querySelector('.exp-grid-vertical'), document.querySelector('.referee-grid'), document.querySelector('.award-box-grid')].forEach(c => { if (!c) return; const cs = c.querySelectorAll('.exp-box, .edu-card, .referee-card, .award-card'); cs.forEach((cd, i) => cd.setAttribute('data-badge', cs.length - i)); });
 const fixReversedListStart = () => {
     const attendedList = document.getElementById('attended-list');
     if (attendedList) attendedList.setAttribute('start', attendedList.querySelectorAll('li').length);
@@ -994,6 +1010,23 @@ function getGridCardDesc(keyword) {
     return null;
 }
 
+const JOURNAL_SHORT = {
+    'advanced theory and simulations': 'Adv. Theory Simul.',
+    'international journal of biological macromolecules': 'Int. J. Biol. Macromol.',
+    'journal of biomolecular structure and dynamics': 'J. Biomol. Struct. Dyn.',
+    'natural product communications': 'Nat. Prod. Commun.',
+    'scientific reports': 'Sci. Rep.',
+    'journal of translational medicine': 'J. Transl. Med.',
+    'frontiers in chemistry': 'Front. Chem.',
+    'acs applied biomaterials': 'ACS Appl. Bio Mater.',
+    'plosone': 'PLoS ONE', 'plos one': 'PLoS ONE'
+};
+const shortenJournal = (j) => {
+    if (!j) return j;
+    let x = j.replace(/\s+/g, ' ').trim();
+    x = x.replace(/^[A-Za-z .]+\s*[\u2014-]\s*/, '').trim(); // strip publisher prefix (Wiley —, SAGE-, Nature-)
+    return JOURNAL_SHORT[x.toLowerCase()] || x;
+};
 async function buildPubMarquee() {
     const track = document.getElementById('pub-mq-track');
     if (!track) return;
@@ -1019,7 +1052,7 @@ async function buildPubMarquee() {
         const doi = d.doi ? `<a class="pub-doi" href="${d.doi}" target="_blank" rel="noopener">DOI</a>` : '';
         const code = d.codeHref ? `<a href="${d.codeHref}" target="_blank" class="btn-data" rel="noopener"><i class="fab fa-github"></i> Code</a>` : '';
         const dat = d.dataHref ? `<a href="${d.dataHref}" target="_blank" class="btn-data" rel="noopener"><i class="fas fa-database"></i> Data</a>` : '';
-        const jrnl = d.journal ? (d.journal + (d.year ? ' · ' + d.year : '')) : (d.year || '');
+        const jrnl = d.journal ? (shortenJournal(d.journal) + (d.year ? ' · ' + d.year : '')) : (d.year || '');
         const desc = d.cachedDesc
             ? d.cachedDesc
             : '<i class="fas fa-spinner fa-spin" style="color:#aaa;font-size:0.78rem;"></i>';
