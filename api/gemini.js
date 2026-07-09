@@ -1,3 +1,34 @@
+/*
+ * Best-effort in-memory rate limiter.
+ * NOTE: Vercel functions are stateless across cold starts and may run on
+ * multiple concurrent instances, so this bucket is per-warm-instance only.
+ * It throttles burst abuse cheaply without external services; for a hard,
+ * cross-instance guarantee migrate to @upstash/ratelimit (Vercel KV).
+ */
+const RATE_WINDOW_MS = Number(process.env.RATE_WINDOW_MS || 10800000); // 3 hours
+const RATE_MAX = Number(process.env.RATE_MAX || 10); // 10 requests per window per IP, then resets
+const rateBuckets = new Map();
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  // Opportunistic prune of expired buckets to bound memory.
+  if (rateBuckets.size > 5000) {
+    for (const [key, b] of rateBuckets) {
+      if (b.resetAt <= now) rateBuckets.delete(key);
+    }
+  }
+  let bucket = rateBuckets.get(ip);
+  if (!bucket || bucket.resetAt <= now) {
+    bucket = { count: 0, resetAt: now + RATE_WINDOW_MS };
+    rateBuckets.set(ip, bucket);
+  }
+  bucket.count += 1;
+  return {
+    limited: bucket.count > RATE_MAX,
+    retryAfter: Math.ceil((bucket.resetAt - now) / 1000)
+  };
+}
+
 export default async function handler(req, res) {
   const allowedOrigins = (process.env.ALLOWED_ORIGINS || "https://shabanahmad.github.io,https://shaban-ahmad-github-io.vercel.app")
     .split(",")
@@ -18,6 +49,13 @@ export default async function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  const clientIp = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || "unknown";
+  const rate = checkRateLimit(clientIp);
+  if (rate.limited) {
+    res.setHeader("Retry-After", String(rate.retryAfter));
+    return res.status(429).json({ error: "Too many requests. Please slow down and try again shortly." });
   }
 
   const prompt = typeof req.body?.prompt === "string" ? req.body.prompt.trim() : "";

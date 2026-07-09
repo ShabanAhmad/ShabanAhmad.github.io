@@ -276,12 +276,23 @@
             <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="header-name">Shaban <i class="fas fa-home" aria-hidden="true"></i></a>
 
             <ul class="nav-list" id="nav-menu">
-                <li class="nav-item"><a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" class="nav-link">Home</a></li>
                 <li class="nav-item nav-item-dropdown">
-                    <a href="#research-vision" class="nav-link">Prospects <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
+                    <a href="#profile-experience" class="nav-link">About <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'about-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
+                    <div class="nav-dropdown-content" id="about-dd">
+                        <a href="#profile-experience">About Me</a>
+                        <a href="#experience">Career Trajectory</a>
+                        <a href="#selected-publications">Selected Publications</a>
+                        <a href="#awards">Patents</a>
+                        <a href="#awards">Awards</a>
+                        <a href="#scientific-frontiers">Scientific Frontiers</a>
+                    </div>
+                </li>
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#research-vision" class="nav-link">Vision <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
                     <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'strat-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
                     <div class="nav-dropdown-content" id="strat-dd">
-                        <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Vision</a>
+                        <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Research Vision</a>
                         <a href="#roadmap-funding" onclick="triggerAccordion('tcp-timeline-btn')">Roadmap</a>
                         <a href="#lab-model" onclick="triggerAccordion('strat-lab')">Lab Model</a>
                         <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')">Mentorship</a>
@@ -476,7 +487,7 @@
 
 
     <!-- 7.2: Unified Profile & Experience Layout -->
-    <section id="profile-experience" class="container" style="margin-top: 3.5rem;">
+    <section id="profile-experience" class="container" style="margin-top: 3.5rem; scroll-margin-top: 80px;">
         <div class="about-split-layout">
             <div class="about-left" style="min-width: 0;">
                 <div class="about-hero-card">
@@ -524,7 +535,7 @@
                     <div style="display: flex; flex-direction: column;">
                         <div class="selected-publications-container" style="display: flex; flex-direction: column; gap: 10px;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                                <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 0;"><i class="fas fa-book-open" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Selected Publications</h3>
+                                <h3 id="selected-publications" class="unified-sub-heading ush-primary" style="margin-bottom: 0; scroll-margin-top: 80px;"><i class="fas fa-book-open" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Selected Publications</h3>
                                 <div style="display: flex; gap: 5px; align-items: center;">
                                     <button id="pub-view-btn" onclick="togglePubView()" class="ai-expand-btn" data-tip="Toggle View" aria-label="Toggle view layout">
                                         <span class="btn-icon"><i class="fas fa-th-large" aria-hidden="true"></i></span><span class="btn-text">Toggle View</span>
@@ -899,7 +910,7 @@
                         <!-- Sub-section: Scientific Frontiers -->
                         <div style="margin-top: 0; display: flex; flex-direction: column;">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                                    <h3 class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0;"><i class="fas fa-microscope" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Scientific Frontiers</h3>
+                                    <h3 id="scientific-frontiers" class="unified-sub-heading ush-primary" style="text-align: left; margin-bottom: 0; scroll-margin-top: 80px;"><i class="fas fa-microscope" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i> Scientific Frontiers</h3>
                                 <div class="ai-btn-container">
                                     <button onclick="summariseFrontiers()" id="sf-btn" class="ai-magic-btn ai-expand-btn">
                                         <span class="btn-icon">✨</span><span class="btn-text">AI Summary</span>
@@ -989,7 +1000,7 @@
 
             <div class="about-right" style="min-width: 0;">
                 <div class="section-header-flex" style="margin-bottom: 1.5rem;">
-                    <h2 id="experience" class="section-title" style="margin-top:0;">Career Trajectory</h2>
+                    <h2 id="experience" class="section-title" style="margin-top:0; scroll-margin-top: 80px;">Career Trajectory</h2>
                     
                     <!-- Journey Filters -->
                     <div class="journey-filters">
