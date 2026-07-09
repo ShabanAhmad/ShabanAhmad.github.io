@@ -2042,7 +2042,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fdf2f8;
     --bento-tag-border: rgba(244, 114, 182, 0.35);
     --bento-hover-text: #4c0519;
-    grid-column: span 3; grid-row: auto;
 }
 
 /* Clinical & Translational Informatics — medical blue */
@@ -2056,7 +2055,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #dbeafe;
     --bento-tag-border: rgba(96, 165, 250, 0.3);
     --bento-hover-text: #1e3a8a;
-    grid-column: span 2; grid-row: auto;
 }
 
 /* Computational Genomics — violet / data */
@@ -2070,7 +2068,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #ede9fe;
     --bento-tag-border: rgba(167, 139, 250, 0.3);
     --bento-hover-text: #4c1d95;
-    grid-column: span 3; grid-row: auto;
 }
 
 /* Pathogen Informatics & AMR — crimson / danger */
@@ -2084,7 +2081,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #fee2e2;
     --bento-tag-border: rgba(248, 113, 113, 0.3);
     --bento-hover-text: #7f1d1d;
-    grid-column: span 3; grid-row: auto;
 }
 
 /* PFAS Biodegradation — environmental green */
@@ -2098,7 +2094,6 @@ body.dark-mode .srch-empty {
     --bento-tag-text: #dcfce7;
     --bento-tag-border: rgba(74, 222, 128, 0.3);
     --bento-hover-text: #14532d;
-    grid-column: span 2; grid-row: auto;
 }
 
 /* Standard Content Layouts & Typography */
