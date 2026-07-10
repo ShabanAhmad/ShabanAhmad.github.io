@@ -196,6 +196,8 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <p style="margin:8px 0 0 0;">
   <img src="https://komarev.com/ghpvc/?username=ShabanAhmad&label=Profile+Views&color=22C55E&style=flat" />
   <span style="margin: 0 8px;">|</span>
+  <a href="https://shabanahmad.goatcounter.com"><img src="https://img.shields.io/badge/Site_Visitors_%26_Countries-Live_Stats-F59E0B?style=flat&logo=googleanalytics&logoColor=white" alt="Live site visitor and country stats" /></a>
+  <span style="margin: 0 8px;">|</span>
   © 2026 <b>Shaban Ahmad</b>
 </p>
 
