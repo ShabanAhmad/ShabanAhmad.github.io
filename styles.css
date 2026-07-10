@@ -10982,3 +10982,76 @@ body.dark-mode .pub-meta em {
 .section-heading-row .section-title {
     margin-bottom: 0;
 }
+
+/* =====================================================
+   Dark mode — batch 5: restore hover outline colours +
+   consistent accent edges across Vision / Funding / Lab
+   Model / Teaching / Culture / Course / Expertise /
+   Referee cards.
+
+   Cause: the dark base border rules (`body.dark-mode .card`)
+   carry the `body` element, out-specifying the light-mode
+   `.card:hover` border-colour rules (no `body`), so the
+   coloured hover outline never applied in dark. Some cards
+   also had their side borders left near-invisible or their
+   accent edge flattened. Fixes use end-of-file source order
+   (and !important only where the base itself is !important).
+   ===================================================== */
+
+/* Vision & Research Themes — base border-colour is !important, so hover must be too */
+body.dark-mode .tcp-focus-card-1:hover { border-color: #0ea5e9 !important; }
+body.dark-mode .tcp-focus-card-2:hover { border-color: #10b981 !important; }
+body.dark-mode .tcp-focus-card-3:hover { border-color: #f43f5e !important; }
+body.dark-mode .tcp-focus-card-4:hover { border-color: #8b5cf6 !important; }
+body.dark-mode .tcp-focus-card-5:hover { border-color: var(--accent) !important; }
+body.dark-mode .tcp-focus-card-6:hover { border-color: #14b8a6 !important; }
+
+/* Funding Logic & Growth Strategy (roadmap) — base carries #id, so scope hover to match */
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(1):hover { border-color: #0ea5e9; }
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(2):hover { border-color: #10b981; }
+body.dark-mode #roadmap-funding .strategy-card-item:nth-child(3):hover { border-color: #f43f5e; }
+
+/* TCP Lab Model & Partnerships (lab-section) — visible grey sides + coloured top + hover */
+body.dark-mode #lab-model .lab-section {
+    border: 1px solid #475569;
+    border-top: 4px solid var(--panel-accent);
+}
+body.dark-mode #lab-model .lab-section:nth-child(1):hover { border-color: #0ea5e9; }
+body.dark-mode #lab-model .lab-section:nth-child(2):hover { border-color: #10b981; }
+body.dark-mode #lab-model .lab-section:nth-child(3):hover { border-color: #8b5cf6; }
+
+/* Teaching & Training Philosophy (strategy cards, incl. Mentorship Model) —
+   uniform visible grey sides + coloured top (matches Funding), hover = accent */
+body.dark-mode #tcp-culture + .panel .strategy-card-item { border: 1px solid #475569; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(1) { border-top: 4px solid #0ea5e9; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(2) { border-top: 4px solid #10b981; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(3) { border-top: 4px solid #f43f5e; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(1):hover { border-color: #0ea5e9; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(2):hover { border-color: #10b981; }
+body.dark-mode #tcp-culture + .panel .strategy-card-item:nth-child(3):hover { border-color: #f43f5e; }
+
+/* Core Lab Culture (culture-card) — visible grey box + coloured left edge + hover */
+body.dark-mode .culture-card { border: 1px solid #475569; }
+body.dark-mode .culture-card:nth-child(1) { border-left: 5px solid #22c55e; }
+body.dark-mode .culture-card:nth-child(2) { border-left: 5px solid var(--accent); }
+body.dark-mode .culture-card:nth-child(3) { border-left: 5px solid #8b5cf6; }
+body.dark-mode .culture-card:nth-child(1):hover { border-color: #22c55e; }
+body.dark-mode .culture-card:nth-child(2):hover { border-color: var(--accent); }
+body.dark-mode .culture-card:nth-child(3):hover { border-color: #8b5cf6; }
+
+/* Teaching Portfolio & Courses (course-card) — brighter base outline + coloured hover */
+body.dark-mode .course-card { border-color: #475569; }
+body.dark-mode .cc-blue:hover   { border-color: #3b82f6; }
+body.dark-mode .cc-green:hover  { border-color: #10b981; }
+body.dark-mode .cc-purple:hover { border-color: #7c3aed; }
+body.dark-mode .cc-amber:hover  { border-color: #f59e0b; }
+body.dark-mode .cc-teal:hover   { border-color: #14b8a6; }
+body.dark-mode .cc-rose:hover   { border-color: #f43f5e; }
+body.dark-mode .cc-indigo:hover { border-color: #6366f1; }
+
+/* Expertise tech-cards — hover accent outline (base border carries `body`) */
+body.dark-mode .tech-card:hover { border-color: var(--tc-accent); }
+
+/* Academic Referees — restore coloured top edge + coloured hover outline */
+body.dark-mode .referee-card { border-top: 5px solid var(--ref-color, #ccc); }
+body.dark-mode .referee-card:hover { border-color: var(--ref-color); }
