@@ -3448,6 +3448,20 @@
          Setup: sign up free at goatcounter.com, then replace YOURCODE below with your site code. -->
     <script data-goatcounter="https://shabanahmad.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
+    <!-- Log visitor browser language as a GoatCounter event (see dashboard > Events). Cookieless, no personal data. -->
+    <script>
+      (function () {
+        function sendLang(tries) {
+          if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+            var lang = navigator.language || 'unknown';
+            window.goatcounter.count({ path: 'lang/' + lang, title: 'Visitor language: ' + lang, event: true });
+          } else if (tries < 20) {
+            setTimeout(function () { sendLang(tries + 1); }, 300);
+          }
+        }
+        window.addEventListener('load', function () { sendLang(0); });
+      })();
+    </script>
 
     <!-- ===== COMMAND PALETTE SEARCH MODAL (viewport-level, outside header) ===== -->
     <div id="srch-overlay" class="srch-overlay" role="dialog" aria-modal="true" aria-label="Search">
