@@ -4087,8 +4087,10 @@ body.dark-mode .patent-card {
     transition: color 0.3s ease;
 }
 
+/* An actual blue. This used to be var(--primary), the brand's dark green, which
+   left the first two cards in every group reading as two shades of green. */
 .tc-blue {
-    --tc-accent: var(--primary);
+    --tc-accent: #2563eb;
 }
 
 .tc-green {
@@ -11083,4 +11085,50 @@ body.low-power .bento-tag,
 body.low-power .pub-view-mini-btn {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+}
+
+/* ============================================================
+   Dark mode — restore hover colours on headings and names
+
+   The dark theme pins a lot of heading/link text to emerald with
+   `color: #34d399 !important`. Because !important outranks specificity, it
+   also overrode the :hover rules that are supposed to tint those headings
+   with their card's accent, so in dark mode they simply never changed.
+
+   Each rule below re-states the hover intent at higher specificity and with
+   !important, which is the only way to outrank the blanket rules above.
+   ============================================================ */
+
+/* Expertise & Technical Proficiencies — the accents are mid-tone and sit at
+   roughly 2.6:1 on the dark card, so they are lightened here before being
+   used for the border and the heading hover. */
+body.dark-mode .tc-blue { --tc-accent: #60a5fa; }
+body.dark-mode .tc-green { --tc-accent: #2dd4bf; }
+body.dark-mode .tc-purple { --tc-accent: #a78bfa; }
+body.dark-mode .tc-orange { --tc-accent: #fb923c; }
+
+body.dark-mode .tech-card:hover .tech-sub-title,
+body.dark-mode .tech-card:hover .tech-sub-title i {
+    color: var(--tc-accent) !important;
+}
+
+/* Academic Referees — the names are links, and the blanket rule on
+   `.referee-name a` was what pinned them to emerald. --ref-1..6 are already
+   lightened for dark mode, so the card's own colour can be used directly. */
+body.dark-mode .referee-card:hover .referee-name,
+body.dark-mode .referee-card:hover .referee-name a {
+    color: var(--ref-color) !important;
+}
+
+/* Core Lab Culture — amber is unchanged between themes and reads well on dark. */
+body.dark-mode .culture-card:hover h4 {
+    color: var(--accent) !important;
+}
+
+/* Scientific-interest cards — hovering fills the card with a saturated
+   gradient, so the title wants true white. The light rule asks for
+   var(--white), which dark mode redefines as slate and would be unreadable
+   against that fill. */
+body.dark-mode .interest-card:hover .ic-title {
+    color: #ffffff !important;
 }
