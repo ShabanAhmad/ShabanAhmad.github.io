@@ -197,17 +197,19 @@ body>.skiptranslate {
     box-shadow: var(--card-shadow-hover);
 }
 
+/* Compositor-driven for the same reason as `sweep`; the badge highlight is 50%
+   of the badge's width, so -100%..200% parent-relative becomes 600%. */
 @keyframes metallicShimmer {
     0% {
-        left: -100%;
+        transform: translateX(0) skewX(-20deg);
     }
 
     20% {
-        left: 200%;
+        transform: translateX(600%) skewX(-20deg);
     }
 
     100% {
-        left: 200%;
+        transform: translateX(600%) skewX(-20deg);
     }
 }
 
@@ -1508,17 +1510,20 @@ body.dark-mode .srch-empty {
     margin-right: 5px;
 }
 
+/* Travels on the compositor instead of animating `left`, which relaid out the
+   element every frame. The element is 50% of its parent's width, so the
+   original -120%..120% parent-relative sweep is 480% element-relative. */
 @keyframes sweep {
     0% {
-        left: -120%;
+        transform: translateX(0) skewX(-20deg);
     }
 
     23% {
-        left: 120%;
+        transform: translateX(480%) skewX(-20deg);
     }
 
     100% {
-        left: 120%;
+        transform: translateX(480%) skewX(-20deg);
     }
 }
 
@@ -1541,7 +1546,7 @@ body.dark-mode .srch-empty {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -120%;
     width: 50%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);

@@ -610,32 +610,120 @@ window.triggerAccordion = (buttonId) => {
 };
 
 updateAllScrollMoreButtons();
-window.addEventListener('resize', () => {
-    clearTimeout(window.__scrollMoreResizeTimer);
-    window.__scrollMoreResizeTimer = setTimeout(updateAllScrollMoreButtons, 150);
-}, { passive: true });
+/* ============================================================
+   Shared animation kernel
+   Used by the skills marquee, the hero icon mesh and the background
+   particle field, which previously each carried their own copy of
+   this logic.
+   ============================================================ */
+
+/* Debounced window-resize subscription. */
+const onResize = (fn, delay = 200) => {
+    let timer;
+    window.addEventListener('resize', () => {
+        clearTimeout(timer);
+        timer = setTimeout(fn, delay);
+    }, { passive: true });
+};
+
+/* A requestAnimationFrame loop that only runs when its work is actually
+   visible: it stops when the gate element scrolls off-screen, when the tab
+   is hidden, and whenever `enabled()` returns false. Call refresh() after
+   anything that changes the enabled condition (e.g. a resize). */
+const createLoop = (tick, { gate = null, enabled = () => true } = {}) => {
+    let id = null;
+    let onScreen = !gate;
+    const shouldRun = () => onScreen && !document.hidden && enabled();
+    const frame = () => {
+        id = null;
+        if (!shouldRun()) return;
+        tick();
+        id = requestAnimationFrame(frame);
+    };
+    const start = () => { if (id === null && shouldRun()) id = requestAnimationFrame(frame); };
+    const stop = () => { if (id !== null) { cancelAnimationFrame(id); id = null; } };
+    const refresh = () => { shouldRun() ? start() : stop(); };
+    if (gate) new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; refresh(); }).observe(gate);
+    document.addEventListener('visibilitychange', refresh);
+    return { start, stop, refresh };
+};
+
+/* Constellation lines between every pair of points within `maxDist`.
+   Compares squared distances so the square root is only taken for the pairs
+   that actually get drawn, rather than for all n(n-1)/2 of them. */
+const drawLinks = (ctx, items, maxDist, styleFor, { lineWidth = 0.5, offset = 0, skip = null } = {}) => {
+    const maxSq = maxDist * maxDist;
+    for (let i = 0; i < items.length; i++) {
+        const a = items[i];
+        for (let j = i + 1; j < items.length; j++) {
+            const b = items[j];
+            if (skip && skip(a, b)) continue;
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq >= maxSq) continue;
+            ctx.beginPath();
+            ctx.moveTo(a.x + offset, a.y + offset);
+            ctx.lineTo(b.x + offset, b.y + offset);
+            ctx.strokeStyle = styleFor(Math.sqrt(distSq), a, b);
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+        }
+    }
+};
+
+/* Pointer position tracker. `relative` reports coordinates within `el`. */
+const trackPointer = (el, mouse, { relative = false, clearOnLeave = false } = {}) => {
+    el.addEventListener('mousemove', e => {
+        if (relative) {
+            const r = el.getBoundingClientRect();
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+        } else {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }
+    }, { passive: true });
+    if (clearOnLeave) {
+        el.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; }, { passive: true });
+    }
+};
+
+onResize(updateAllScrollMoreButtons, 150);
 window.addEventListener('load', updateAllScrollMoreButtons);
 const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
-let sfAId, sfSpd = 0.56, isSfM = false;
-const startSFScroll = () => { 
-    const t = document.getElementById('sf-track'); if (!t) return; 
-    if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; } 
-    cancelAnimationFrame(sfAId); 
+let sfSpd = 0.56, isSfM = false;
+const startSFScroll = () => {
+    const t = document.getElementById('sf-track'); if (!t) return;
+    if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; }
+
+    /* The wrap-around distance is a layout measurement, so it is taken once here
+       and re-taken on resize. Reading it inside the frame loop forced a
+       synchronous reflow on every frame. */
+    let jumpDist = 0;
+    const measure = () => {
+        const cs = t.querySelectorAll('.interest-card');
+        jumpDist = cs.length ? cs[Math.floor(cs.length / 2)].offsetLeft - cs[0].offsetLeft : 0;
+    };
+    measure();
+    onResize(measure, 150);
+
+    let hovering = false;
+    t.addEventListener('mouseenter', () => { hovering = true; }, { passive: true });
+    t.addEventListener('mouseleave', () => { hovering = false; }, { passive: true });
+
     let accum = 0;
-    const step = () => { 
-        if (!t.matches(':hover') && !isSfM) { 
-            accum += sfSpd;
-            if (accum >= 1) {
-                t.scrollLeft += Math.floor(accum); 
-                accum -= Math.floor(accum);
-                const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; 
-                if (t.scrollLeft >= jd) t.scrollLeft -= jd; 
-            }
-        } 
-        sfAId = requestAnimationFrame(step); 
-    }; 
-    sfAId = requestAnimationFrame(step); 
-}; 
+    const loop = createLoop(() => {
+        if (hovering || isSfM) return;
+        accum += sfSpd;
+        const px = Math.floor(accum);
+        if (px < 1) return;
+        accum -= px;
+        let next = t.scrollLeft + px;
+        if (jumpDist > 0 && next >= jumpDist) next -= jumpDist;
+        t.scrollLeft = next;
+    }, { gate: t });
+    loop.start();
+};
 const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
 
 /* Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) */
@@ -1350,7 +1438,7 @@ const initHeavyFX = () => {
         const layer = document.getElementById('hi-layer'), hero = document.getElementById('hero-section');
         if (!layer || !hero) return;
         const ICONS = [['fa-brain', 'rgba(167,139,250,0.4)'], ['fa-dna', 'rgba(80,200,255,0.4)'], ['fa-atom', 'rgba(245,158,11,0.4)'], ['fa-pills', 'rgba(248,113,113,0.4)'], ['fa-robot', 'rgba(167,139,250,0.4)']];
-        let W, H, nodes = [], hiRAF = null, netCanvas, netCtx, mouse = { x: -999, y: -999 };
+        let W, H, nodes = [], netCanvas, netCtx;
         let active = false;
 
         const resize = () => {
@@ -1376,23 +1464,16 @@ const initHeavyFX = () => {
             });
         };
 
-        const step = () => {
-            if (!active) return;
-            netCtx.clearRect(0,0,W,H);
-            nodes.forEach((n, i) => {
+        const loop = createLoop(() => {
+            netCtx.clearRect(0, 0, W, H);
+            nodes.forEach(n => {
                 n.x += n.vx; n.y += n.vy;
-                if(n.x<0 || n.x>W) n.vx*=-1; if(n.y<0 || n.y>H) n.vy*=-1;
+                if (n.x < 0 || n.x > W) n.vx *= -1;
+                if (n.y < 0 || n.y > H) n.vy *= -1;
                 n.el.style.transform = `translate(${n.x}px,${n.y}px)`;
-                nodes.slice(i+1).forEach(nj => {
-                    const d = Math.hypot(n.x-nj.x, n.y-nj.y);
-                    if(d<120) {
-                        netCtx.beginPath(); netCtx.moveTo(n.x+7, n.y+7); netCtx.lineTo(nj.x+7, nj.y+7);
-                        netCtx.strokeStyle = `rgba(245,158,11,${(120-d)/400})`; netCtx.stroke();
-                    }
-                });
             });
-            hiRAF = requestAnimationFrame(step);
-        };
+            drawLinks(netCtx, nodes, 120, d => `rgba(245,158,11,${(120 - d) / 400})`, { lineWidth: 1, offset: 7 });
+        }, { gate: hero, enabled: () => active });
 
         const checkViewport = () => {
             const isSmall = window.innerWidth < 1351;
@@ -1400,42 +1481,16 @@ const initHeavyFX = () => {
                 active = true;
                 layer.style.display = 'block';
                 init();
-                step();
             } else if (!isSmall && active) {
                 active = false;
                 layer.style.display = 'none';
                 layer.innerHTML = '';
-                if (hiRAF) {
-                    cancelAnimationFrame(hiRAF);
-                    hiRAF = null;
-                }
             }
+            loop.refresh();
         };
 
-        hero.addEventListener('mousemove', e => {
-            if (!active) return;
-            const r = hero.getBoundingClientRect();
-            mouse.x = e.clientX-r.left;
-            mouse.y = e.clientY-r.top;
-        }, { passive: true });
-
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                checkViewport();
-                resize();
-            }, 200);
-        }, { passive: true });
-
+        onResize(() => { checkViewport(); resize(); });
         checkViewport();
-        new IntersectionObserver(([e]) => {
-            if (e.isIntersecting) {
-                if (active && !hiRAF) step();
-            } else {
-                if (hiRAF) { cancelAnimationFrame(hiRAF); hiRAF = null; }
-            }
-        }).observe(hero);
     };
 
     // Background Interactive Particles Layer (Magnetic Parallax Fluid Vortex)
@@ -1443,7 +1498,7 @@ const initHeavyFX = () => {
         const canvas = document.getElementById('bg-dots-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let w, h, particles = [], rafId = null, time = 0;
+        let w, h, particles = [], time = 0;
         const mouse = { x: null, y: null, radius: 240 };
 
         const resize = () => {
@@ -1476,12 +1531,6 @@ const initHeavyFX = () => {
         };
 
         const step = () => {
-            if (window.innerWidth < 1150) {
-                ctx.clearRect(0, 0, w, h);
-                rafId = requestAnimationFrame(step);
-                return;
-            }
-
             const isDark = document.body.classList.contains('dark-mode');
             
             // Motion blur/trail effect via semi-transparent background sweep
@@ -1585,51 +1634,26 @@ const initHeavyFX = () => {
                     ctx.fill();
                 }
 
-                // 5. Constellation network lines (strictly outside the central content area)
-                for (let j = i + 1; j < particles.length; j++) {
-                    const pj = particles[j];
-                    
-                    if ((p.x >= leftLimit && p.x <= rightLimit) || (pj.x >= leftLimit && pj.x <= rightLimit)) continue;
-                    
-                    const dx = p.x - pj.x;
-                    const dy = p.y - pj.y;
-                    const dist = Math.hypot(dx, dy);
-
-                    if (dist < 95) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(pj.x, pj.y);
-                        const lineAlpha = (1 - dist / 95) * 0.055 * p.depth * pj.depth;
-                        ctx.strokeStyle = isDark ? `rgba(165, 180, 252, ${lineAlpha})` : `rgba(99, 102, 241, ${lineAlpha})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
             });
 
-            rafId = requestAnimationFrame(step);
+            // 5. Constellation network lines (strictly outside the central content area)
+            const inCentre = p => p.x >= leftLimit && p.x <= rightLimit;
+            drawLinks(ctx, particles, 95, (dist, p, pj) => {
+                const lineAlpha = (1 - dist / 95) * 0.055 * p.depth * pj.depth;
+                return isDark ? `rgba(165, 180, 252, ${lineAlpha})` : `rgba(99, 102, 241, ${lineAlpha})`;
+            }, { lineWidth: 0.5, skip: (p, pj) => inCentre(p) || inCentre(pj) });
         };
 
-        window.addEventListener('mousemove', e => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        }, { passive: true });
+        trackPointer(window, mouse, { clearOnLeave: true });
 
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        }, { passive: true });
+        /* Below 1150px the canvas is display:none, so the loop is parked rather
+           than left spinning on an invisible canvas. */
+        const loop = createLoop(step, { enabled: () => window.innerWidth >= 1150 });
 
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                resize();
-            }, 200);
-        }, { passive: true });
+        onResize(() => { resize(); loop.refresh(); });
 
         init();
-        step();
+        loop.start();
     };
 
     loadAndRun3D();
