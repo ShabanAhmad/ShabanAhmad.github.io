@@ -23,6 +23,7 @@ const syncProfileStats = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    initLowPowerMode();
     syncProfileStats();
     if (localStorage.getItem('theme') === 'dark') toggleTheme();
     updateJournalCount();
@@ -616,6 +617,39 @@ updateAllScrollMoreButtons();
    particle field, which previously each carried their own copy of
    this logic.
    ============================================================ */
+
+/* Backdrop blur is the most expensive effect on a machine without a discrete
+   GPU: the browser re-blurs everything sitting behind the element on every
+   scroll frame. Flag such machines on <body> so the stylesheet can drop it.
+
+   Device hints are consulted first, then a real frame-rate sample, because
+   Firefox and Safari do not expose navigator.deviceMemory at all and would
+   otherwise never be recognised. */
+const initLowPowerMode = () => {
+    const enable = () => document.body.classList.add('low-power');
+
+    const cores = navigator.hardwareConcurrency || 0;
+    const memory = navigator.deviceMemory || 0;
+    if ((cores && cores <= 4) || (memory && memory <= 4)) { enable(); return; }
+
+    /* Sampling waits for the page to settle, so that load work is not mistaken
+       for a slow GPU. A backgrounded tab cannot be measured at all, since the
+       browser stops serving frames to it. */
+    const sampleFrameRate = () => {
+        if (document.hidden) return;
+        let frames = 0;
+        const start = performance.now();
+        const tick = (now) => {
+            if (document.hidden) return;
+            frames++;
+            const elapsed = now - start;
+            if (elapsed < 2000) { requestAnimationFrame(tick); return; }
+            if (frames / (elapsed / 1000) < 45) enable();
+        };
+        requestAnimationFrame(tick);
+    };
+    window.addEventListener('load', () => setTimeout(sampleFrameRate, 1500));
+};
 
 /* Debounced window-resize subscription. */
 const onResize = (fn, delay = 200) => {

@@ -11060,3 +11060,27 @@ body.dark-mode .tech-card:hover { border-color: var(--tc-accent); }
 /* Academic Referees — restore coloured top edge + coloured hover outline */
 body.dark-mode .referee-card { border-top: 5px solid var(--ref-color, #ccc); }
 body.dark-mode .referee-card:hover { border-color: var(--ref-color); }
+
+/* ============================================================
+   Low-power mode
+   `body.low-power` is set by initLowPowerMode() in scripts.js when the device
+   reports few cores or little memory, or when a frame-rate sample comes back
+   slow. Backdrop blur makes the browser re-blur whatever sits behind the
+   element on every scroll frame, which is the heaviest thing on the page for
+   integrated graphics — the sticky header re-blurs the full viewport width
+   continuously while scrolling.
+
+   Only the frosting is dropped. Each element keeps whatever background its
+   theme gives it, so light and dark mode both stay correct.
+   ============================================================ */
+body.low-power header,
+body.low-power .hero-stats,
+body.low-power .tcp-kpi,
+body.low-power .ai-terminal-inline,
+body.low-power .ai-modal-overlay,
+body.low-power .bento-icon-wrapper,
+body.low-power .bento-tag,
+body.low-power .pub-view-mini-btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
