@@ -156,7 +156,7 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <tr>
 <td align="center"><b>📄 Publications</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=120&lines=100%2B" /></td>
 
-<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=140&lines=1996%2B" /></td>
+<td align="center"><b>📈 Citations</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=140&lines=2000%2B" /></td>
 
 <td align="center"><b>📊 h-index</b><br><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=22C55E&center=true&vCenter=true&width=100&lines=29" /></td>
 
