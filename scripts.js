@@ -354,17 +354,8 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
     /* ── Render ──────────────────────────────────────── */
     function renderBody(q) {
         const b = body(); if (!b) return;
-        if (!q) {
-            const recent = getRecent();
-            if (recent.length) {
-                b.innerHTML = '<div class="srch-section-hd">Recent Searches</div>' +
-                    recent.map(r => `<div class="srch-item srch-recent" data-q="${esc(r)}"><div class="srch-item-icon"><i class="fas fa-clock"></i></div><div class="srch-item-body"><div class="srch-item-title">${esc(r)}</div></div></div>`).join('');
-                b.querySelectorAll('.srch-recent').forEach(el => el.addEventListener('click', () => { inp().value = el.dataset.q; runSearch(el.dataset.q); }));
-            } else {
-                b.innerHTML = '<div class="srch-empty"><i class="fas fa-search"></i>Type to search publications, awards, skills&hellip;<br><small style="margin-top:6px;display:block">Or use Ctrl+K to toggle</small></div>';
-            }
-            return;
-        }
+        // Empty query: keep the panel compact — no empty-state prompt, no history.
+        if (!q) { b.innerHTML = ''; return; }
         if (!results.length) { b.innerHTML = `<div class="srch-empty"><i class="fas fa-circle-xmark"></i>No results for "<strong>${esc(q)}</strong>"</div>`; return; }
 
         const groups = {};
