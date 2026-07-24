@@ -33,9 +33,9 @@
 <h2>👨‍🔬 About Me</h2>
 <div style="width:180px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
-<img align="right" width="230" src="shaban.webp" alt="Shaban Ahmad">
-
 I am a <b>Postdoctoral Researcher</b> at the <b>University of Copenhagen (UCPH), Denmark</b>, working at the intersection of <span style="color:#22C55E;"><b>Artificial Intelligence</b></span>, <span style="color:#22C55E;"><b>Bioinformatics</b></span>, and <span style="color:#22C55E;"><b>Environmental Biotechnology</b></span>.
+
+<img align="right" width="230" src="shaban.webp" alt="Shaban Ahmad">
 
 My research focuses on designing <b>AI-driven computational frameworks</b> that translate complex biological data into <b>clinically and environmentally actionable insights</b>.
 
