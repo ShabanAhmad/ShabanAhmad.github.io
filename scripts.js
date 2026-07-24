@@ -811,12 +811,32 @@ const fetchFromBackend = async (prompt, retries = 3, delay = 2000, signal = null
     } catch (err) { if (err.name === 'AbortError') throw err; if (err.message === 'Failed to fetch') throw new Error("Could not reach the AI service. Check your connection and try again."); throw err; }
 };
 
+// Fetch and clean a paper's abstract from Crossref so AI posts are grounded in
+// the real content, not just the title. Returns '' when unavailable.
+const fetchAbstract = async (doiUrl) => {
+    try {
+        const doi = (doiUrl.split('doi.org/')[1] || '').trim();
+        if (!doi) return '';
+        const r = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=shaban.ucph@gmail.com`);
+        if (!r.ok) return '';
+        const j = await r.json();
+        return String(j?.message?.abstract || '')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .replace(/^\s*Abstract[:.]?\s*/i, '')
+            .trim()
+            .slice(0, 1200);
+    } catch { return ''; }
+};
+
 const handlePublicationAction = async (type, title, doiUrl, btn) => {
     const orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; btn.disabled = true;
     const hasDOI = doiUrl && doiUrl.includes('doi.org');
+    const abstract = hasDOI ? await fetchAbstract(doiUrl) : '';
+    const ctx = abstract ? `Title: "${title}"\nAbstract: ${abstract}` : `Title: "${title}"`;
     const prompt = type === 'AI Report'
-        ? `Based strictly on the title of this academic paper, write a concise, factual 2-sentence summary of what it is most likely about. Stay on the paper's actual subject; do not invent specific results, numbers, or unrelated topics. Title: "${title}". Plain text, no markdown.`
-        : `Write a short, engaging social-media post (2-3 sentences) about this academic paper, based strictly on its title. Stay on the paper's actual topic — never introduce an unrelated subject. Title: "${title}". Include 2-3 relevant emojis and exactly 3 relevant hashtags. Plain text only.`;
+        ? `Using only the paper details below, write a concise, factual 2-sentence summary of its key contribution. Do not invent numbers or unrelated topics.\n\n${ctx}\n\nPlain text, no markdown.`
+        : `Using only the paper details below, write a short, punchy social-media post (2-3 sentences) capturing the paper's actual finding. Stay strictly on topic and keep it crisp. Include 2-3 relevant emojis and exactly 3 relevant hashtags. Plain text only.\n\n${ctx}`;
 
     try {
         let res = await fetchFromBackend(prompt);

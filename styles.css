@@ -2354,6 +2354,35 @@ body.dark-mode h3:not([class]) {
     width: auto;
 }
 
+/* On touch / small screens the hover-expand reflows the button out from under
+   the pointer, causing an up/down flicker that blocks clicks. Show these
+   buttons fully expanded there so they stay still and tappable. */
+@media (hover: none), (max-width: 900px) {
+
+    .ai-expand-btn,
+    .course-ai-btn {
+        max-width: none !important;
+        width: auto !important;
+        padding: 8px 16px !important;
+        background-color: var(--accent) !important;
+        color: var(--white) !important;
+        box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
+    }
+
+    .ai-expand-btn .btn-text,
+    .course-ai-btn .btn-text {
+        opacity: 1 !important;
+        width: auto !important;
+        margin-left: 8px !important;
+    }
+
+    .ai-expand-btn .btn-icon,
+    .course-ai-btn .btn-icon {
+        color: var(--white) !important;
+        animation: none !important;
+    }
+}
+
 .ai-matcher-box {
     background: var(--white);
     border: 1px solid rgba(245, 158, 11, 0.4);
