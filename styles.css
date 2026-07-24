@@ -1830,18 +1830,6 @@ body.dark-mode .srch-empty {
     box-shadow: 0 5px 15px rgba(220, 161, 29, 0.4);
 }
 
-/* Secondary CTA: outline variant of the CV button, links to the contact form. */
-.cv-btn-collab {
-    background: transparent;
-    color: var(--accent);
-    border: 2px solid var(--accent);
-}
-
-.cv-btn-collab:hover {
-    background: var(--accent);
-    color: var(--primary-dark);
-}
-
 .stat-row-link.active-box {
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(255, 255, 255, 0.05);
