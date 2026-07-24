@@ -203,7 +203,7 @@
 
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
     <link rel="preload" as="image" href="shaban.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260724_3">
+    <link rel="stylesheet" href="styles.css?v=20260724_4">
 </head>
 
 <body>
@@ -233,40 +233,44 @@
         <i class="fas fa-chevron-up" style="position: relative; z-index: 1;" aria-hidden="true"></i>
     </button>
     <button type="button" id="ai-widget-toggle" onclick="toggleChatWindow()" data-tip="Shaban's AI Assistant"
-        aria-label="Shaban's AI Assistant"><i class="fas fa-robot" aria-hidden="true"></i></button>
+        aria-label="Shaban's AI Assistant"><img src="shaban.webp" alt="Shaban Ahmad" class="ai-widget-avatar" width="58"
+            height="58" loading="lazy" decoding="async"></button>
 
     <!-- Artificial Intelligence Assistant Pane -->
     <div id="ai-chat-window">
-        <div class="chat-header"><span><i class="fas fa-robot"
-                    style="font-size:0.85em; margin-right:6px; opacity:0.9;" aria-hidden="true"></i> Shaban's AI Assistant</span><button
-                style="cursor:pointer;" type="button" onclick="toggleChatWindow()" aria-label="Close Chat"><i class="fas fa-times" aria-hidden="true"></i></button></div>
+        <div class="chat-header">
+            <div class="chat-header-id">
+                <img src="shaban.webp" alt="Shaban Ahmad" class="chat-avatar-img" width="38" height="38" loading="lazy"
+                    decoding="async">
+                <span class="chat-header-txt">
+                    <span class="chat-title">Shaban's AI Assistant</span>
+                    <span class="chat-status"><span class="chat-dot" aria-hidden="true"></span> Ask about his research</span>
+                </span>
+            </div>
+            <button class="chat-close" type="button" onclick="toggleChatWindow()" aria-label="Close chat"><i
+                    class="fas fa-times" aria-hidden="true"></i></button>
+        </div>
         <div class="chat-body" id="chat-body" aria-live="polite" aria-relevant="additions">
-            <div class="msg msg-bot">This is a technology demonstration. Ask me about Shaban's research, publications,
-                or background — or use the 🎙️ for voice input.
-                <div style="display:flex; flex-wrap:wrap; margin-top:8px; gap:4px;">
-                    <button class="quick-action-btn"
-                        onclick="sendQuickMessage('Summarise Shaban\'s research focus')">✨ Summarise
-                        Research</button>
-                    <button class="quick-action-btn" onclick="sendQuickMessage('What are his key publications?')">📚 Key
-                        Publications</button>
-                    <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about his Postdoc at UCPH')">🔬
-                        Postdoc Work</button>
-                    <button class="quick-action-btn"
-                        onclick="sendQuickMessage('What is his experience with AI in Drug Design?')">💊 AI Drug
-                        Design</button>
-                    <button class="quick-action-btn" onclick="sendQuickMessage('List his Academic Qualifications')">🎓
-                        Qualifications</button>
-                </div>
+            <div class="msg msg-bot">Hi! I'm Shaban's AI assistant. Ask me about his research, publications, career, or how
+                to collaborate.</div>
+            <div class="chat-chips">
+                <button class="quick-action-btn" onclick="sendQuickMessage('Summarise Shaban\'s research focus')">✨
+                    Research focus</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('What are his most important publications?')">📚
+                    Key publications</button>
+                <button class="quick-action-btn"
+                    onclick="sendQuickMessage('Tell me about his PFAS biodegradation work')">🌍 PFAS work</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('How can I collaborate with Shaban?')">🤝
+                    Collaborate</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('List his academic qualifications')">🎓
+                    Qualifications</button>
             </div>
         </div>
         <div class="chat-footer">
-            <button id="mic-btn" onclick="toggleMic()" data-tip="Voice Input" aria-label="Voice Input"
-                style="background: none; border: none; cursor: pointer; color: #555; padding: 0 5px; font-size: 1.1rem; transition: color 0.3s;"><i
-                    class="fas fa-microphone" aria-hidden="true"></i></button>
-            <input type="text" id="chat-input" class="chat-input" placeholder="Type or say a question..."
-                aria-label="Chat question"
-                onkeydown="handleChatKey(event)">
-            <button class="chat-send-btn" onclick="sendUserMessage()" aria-label="Send Message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about Shaban's work…"
+                aria-label="Ask a question" autocomplete="off" onkeydown="handleChatKey(event)">
+            <button class="chat-send-btn" type="button" onclick="sendUserMessage()" aria-label="Send"><i
+                    class="fas fa-paper-plane" aria-hidden="true"></i></button>
         </div>
     </div>
 
@@ -3442,7 +3446,7 @@
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
 
-    <script src="scripts.js?v=20260724_2" defer></script>
+    <script src="scripts.js?v=20260724_4" defer></script>
     <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Privacy-friendly, cookieless analytics (GoatCounter): visit counts + per-country stats only. No cookies, no personal data stored.
