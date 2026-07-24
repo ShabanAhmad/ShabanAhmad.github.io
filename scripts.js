@@ -815,8 +815,8 @@ const handlePublicationAction = async (type, title, doiUrl, btn) => {
     const orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; btn.disabled = true;
     const hasDOI = doiUrl && doiUrl.includes('doi.org');
     const prompt = type === 'AI Report'
-        ? (hasDOI ? `Using the valid DOI link (${doiUrl}) as a knowledgebase reference for the publication "${title}", provide a concise, academic 2-sentence summary of the likely findings. Do not use markdown.` : `Using internal synthesis for the publication "${title}", provide a concise, academic 2-sentence summary. Do not use markdown.`)
-        : (hasDOI ? `Write a catchy social media post for the paper "${title}". Pull verified context using its DOI (${doiUrl}) knowledgebase. Include relevant emojis and 3 hashtags. Output plain text only.` : `Write a catchy social media post for the paper "${title}" using internal synthesis. Include relevant emojis and 3 hashtags. Output plain text only.`);
+        ? `Based strictly on the title of this academic paper, write a concise, factual 2-sentence summary of what it is most likely about. Stay on the paper's actual subject; do not invent specific results, numbers, or unrelated topics. Title: "${title}". Plain text, no markdown.`
+        : `Write a short, engaging social-media post (2-3 sentences) about this academic paper, based strictly on its title. Stay on the paper's actual topic — never introduce an unrelated subject. Title: "${title}". Include 2-3 relevant emojis and exactly 3 relevant hashtags. Plain text only.`;
 
     try {
         let res = await fetchFromBackend(prompt);
@@ -842,12 +842,12 @@ color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:poi
                     <button onclick="shareToSocial('whatsapp', '${doiUrl}')" data-tip="Share via WhatsApp" style="background:linear-gradient(135deg, #25d366, #128c7e); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(37,211,102,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-whatsapp"></i></button>
                     <button onclick="shareToSocial('instagram', '${doiUrl}')" data-tip="Open Instagram" style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color:#fff; border:none; border-radius:10px; width:38px; height:38px; cursor:pointer; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); font-size:1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(220,39,67,0.3);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fab fa-instagram"></i></button>
                 </div>
-                <button onclick="navigator.clipboard.writeText(document.getElementById('ai-gen-text').value); this.innerHTML='<i class=\\'fas fa-check\\'></i> Copied!';" class="btn-data" style="background-color:var(--accent); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(245,158,11,0.3); font-size:0.9rem;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fas fa-copy"></i> Copy Text</button>
+                <button onclick="copyGenText(this)" class="btn-data" style="background-color:var(--accent); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(245,158,11,0.3); font-size:0.9rem;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fas fa-copy"></i> Copy Text</button>
             </div>`;
         } else {
             bottomControls = `
             <div style="margin-top:20px; text-align:right; border-top:1px solid #eee; padding-top:15px;">
-                <button onclick="navigator.clipboard.writeText(document.getElementById('ai-gen-text').value); this.innerHTML='<i class=\\'fas fa-check\\'></i> Copied!';" class="btn-data" style="background-color:var(--accent); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(245,158,11,0.3); font-size:0.9rem;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fas fa-copy"></i> Copy Text</button>
+                <button onclick="copyGenText(this)" class="btn-data" style="background-color:var(--accent); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(245,158,11,0.3); font-size:0.9rem;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><i class="fas fa-copy"></i> Copy Text</button>
             </div>`;
         }
 
@@ -924,6 +924,23 @@ window.copyAIContent = function(btn, elId) {
             btn.style.borderColor = '';
         }, 2000);
     });
+};
+
+// Copy the generated AI textarea; flash green "Copied!" then revert so it can be reused.
+window.copyGenText = function (btn) {
+    const ta = document.getElementById('ai-gen-text');
+    if (!ta) return;
+    const done = () => {
+        if (!btn.dataset.orig) { btn.dataset.orig = btn.innerHTML; btn.dataset.origbg = btn.style.backgroundColor || ''; }
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.style.backgroundColor = '#22c55e';
+        clearTimeout(btn._copyTimer);
+        btn._copyTimer = setTimeout(() => {
+            btn.innerHTML = btn.dataset.orig;
+            btn.style.backgroundColor = btn.dataset.origbg || 'var(--accent)';
+        }, 2000);
+    };
+    navigator.clipboard.writeText(ta.value).then(done).catch(() => { ta.select(); document.execCommand('copy'); done(); });
 };
 
 /**

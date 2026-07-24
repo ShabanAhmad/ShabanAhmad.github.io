@@ -957,6 +957,19 @@ body.dark-mode .srch-empty {
     opacity: 1;
 }
 
+/* Share buttons inside the AI modal: show the tooltip above the icon (not to the
+   side, where the next button covers it) and lift the hovered button. */
+#ai-modal-content [data-tip]::after {
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+}
+
+#ai-modal-content [data-tip]:hover {
+    z-index: 2147483647;
+}
+
 /* Floating Interface Triggers: Flip tooltip to the left to prevent edge clipping */
 .global-controls [data-tip]::after,
 .global-controls [data-tip]::after,
