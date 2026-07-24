@@ -4,9 +4,9 @@ const PROFILE_CONFIG = {
     backendUrl: "https://shaban-ahmad-github-io.vercel.app/api/gemini",
     stats: {
         publications: "100+",
-        citations: "1830+",
+        citations: "2000+",
         hIndex: "29",
-        peerReviews: "600+"
+        peerReviews: "612+"
     },
     links: {
         webOfScience: "https://www.webofscience.com/wos/author/record/ABD-4112-2021"
@@ -143,7 +143,7 @@ const updateJournalCount = () => {
     const uniqueJournals = new Set(Array.from(journals).map(item => item.textContent.trim()));
     const countText = document.getElementById("peer-review-count-text");
     if (countText) {
-        countText.innerHTML = `<a href="${PROFILE_CONFIG.links.webOfScience}" target="_blank" style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i class="fas fa-check-circle"></i> ${PROFILE_CONFIG.stats.peerReviews} Verified</span> Peer Reviews on Publons (WoS) for ${uniqueJournals.size} Journals </a>`;
+        countText.innerHTML = `<a href="${PROFILE_CONFIG.links.webOfScience}" target="_blank" style="text-decoration:underline;" rel="noopener noreferrer"> <span class="verified-badge"><i class="fas fa-check-circle"></i> ${PROFILE_CONFIG.stats.peerReviews} Verified</span> Peer Reviews on Web of Science for ${uniqueJournals.size} Journals </a>`;
     }
 };
 const copyEmail = (el, email, color = null) => {
@@ -719,7 +719,7 @@ const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDe
 let sfSpd = 0.56, isSfM = false;
 const startSFScroll = () => {
     const t = document.getElementById('sf-track'); if (!t) return;
-    if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => t.appendChild(c.cloneNode(true))); t.dataset.cloned = 'true'; }
+    if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); t.appendChild(cl); }); t.dataset.cloned = 'true'; }
 
     /* The wrap-around distance is a layout measurement, so it is taken once here
        and re-taken on resize. Reading it inside the frame loop forced a
@@ -1101,7 +1101,7 @@ const startPubMarquee = () => {
     const t = document.getElementById('pub-mq-track');
     if (!t || !t.children.length) return;
     if (!t.dataset.cloned) {
-        Array.from(t.querySelectorAll('.pub-mq-card')).forEach(c => t.appendChild(c.cloneNode(true)));
+        Array.from(t.querySelectorAll('.pub-mq-card')).forEach(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); t.appendChild(cl); });
         t.dataset.cloned = 'true';
     }
     t.classList.add('run-animation');

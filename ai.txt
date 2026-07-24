@@ -4,14 +4,14 @@
 ## Core Identity
 - **Name:** Dr Shaban Ahmad
 - **Title:** Postdoctoral Scientist / Researcher in Computational Biology & AI-Driven Drug Discovery
-- **Current Institution:** University of Copenhagen (UCPH), Department of Plant and Environmental Sciences (PLEN), Denmark (2026–Present)
+- **Current Institution:** University of Copenhagen (UCPH), Department of Plant and Environmental Sciences (PLEN), Denmark (2025–Present)
 - **Primary Research Interests:** AI-guided drug discovery, computational genomics, all-atom molecular dynamics (MD) simulations, density functional theory (DFT), and PFAS (per- and polyfluoroalkyl substances) enzymatic biodegradation.
 
 ## Professional Experience
-- **Postdoctoral Scientist (2025–Present):** University of Copenhagen (UCPH), PLEN, Denmark. Focus: AI-guided enzyme mining for PFAS biodegradation; member of START Centre and PLEN Data Science Task Force.
+- **Postdoctoral Researcher (2025–Present):** University of Copenhagen (UCPH), PLEN, Denmark. Focus: AI-guided enzyme mining for PFAS biodegradation; member of START Centre and PLEN Data Science Task Force.
 - **Visiting Researcher (2025):** University of Jyväskylä, Finland. Focus: Predicting colorectal cancer susceptibility using artificial intelligence models.
-- **Research Associate (2023–2024):** Jamia Hamdard, New Delhi, India. Focus: Computational drug design and molecular simulations.
-- **Research Assistant (2022–2023):** University of Delhi, India. Focus: AI-based predictive modelling against lung cancer.
+- **PhD Researcher (2021–2025):** Jamia Millia Islamia, New Delhi, India. Focus: AI-based predictive modelling and molecular enumeration against lung cancer.
+- **Research Assistant (2020–2021):** SRM University, India. Focus: Machine-learning drug repurposing against COVID-19.
 
 ## Key Scientific Achievements & Software
 - **DrLungker:** Deep learning ensemble framework for predicting anticancer compound activity against lung cancer variants.
@@ -23,16 +23,17 @@
 
 ## Bibliometrics & Publications
 - **Publications:** 100+ peer-reviewed scientific outputs (53+ journal articles, 24+ book chapters, 14+ conference papers, 3+ in pipeline).
-- **Citations:** 1,830+ citations.
+- **Citations:** 2,000+ citations.
 - **h-index:** 29
-- **Peer Reviews:** 600+ verified peer reviews across 25+ international journals (verified on Publons/Web of Science).
+- **Peer Reviews:** 612+ verified peer reviews across 25+ international journals (verified on Web of Science).
 - **Patents:** 1 granted (DPMA German Patent); 6 applications in pipeline.
 - **Core Journals:** RSC Advances, Journal of Pharmaceutical Chemistry, ACS Omega, Scientific Reports, Journal of Biomolecular Structure and Dynamics (JBSD).
 
 ## Educational Background
-- **PhD in Bioinformatics (2018–2022):** Jamia Millia Islamia, New Delhi, India.
-- **MSc in Bioinformatics (2015–2017):** Jamia Millia Islamia, New Delhi, India.
-- **BSc in Life Sciences (2012–2015):** University of Delhi, India.
+- **PhD in Artificial Intelligence in Biology (2021–2025):** Jamia Millia Islamia, New Delhi, India.
+- **MSc in Bioinformatics (2018–2020):** Jamia Millia Islamia, New Delhi, India.
+- **BSc (Hons) in Botany (2015–2018):** University of Delhi, India.
+- Honorary alumnus of NIPER-Ahmedabad.
 
 ## Contact & Profile Links
 - **Official Email:** shaban@plen.ku.dk
@@ -51,7 +52,7 @@
 - **Q: What patents does Shaban Ahmad hold?**
   A: He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, alongside six patent applications in the pipeline for AI-guided drug design.
 - **Q: What is Shaban Ahmad's h-index?**
-  A: As of mid-2026, Shaban Ahmad has an h-index of 29, with over 1,830 citations across 100+ publications.
+  A: As of mid-2026, Shaban Ahmad has an h-index of 29, with over 2,000 citations across 100+ publications.
 - **Q: What software has Shaban Ahmad developed?**
   A: He developed DrLungker (deep-ensemble anticancer compound predictor), DeepEntXAI (explainable AI with SHAP for molecular property transparency), and LungXAI (SHAP-based XAI for lung cancer targets).
 - **Q: What is PFAS biodegradation research?**

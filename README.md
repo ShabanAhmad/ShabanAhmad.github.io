@@ -47,6 +47,30 @@ With expertise spanning <b>deep learning, molecular modelling, and multi-omics</
 
 <hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
 
+<h2>💼 Experience</h2>
+<div style="width:180px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
+
+* 🇩🇰 **Postdoctoral Researcher** — *University of Copenhagen (UCPH), PLEN* · Jun 2025 – Present
+  <br>AI-guided enzyme mining for PFAS biodegradation; member of the PLEN Data Science Task Force and START Centre.
+* 🇫🇮 **Visiting Researcher** — *University of Jyväskylä, Finland* · Jan – Dec 2025
+  <br>Predicting colorectal cancer susceptibility using AI models.
+* 🇮🇳 **PhD Researcher (AI in Biology)** — *Jamia Millia Islamia, New Delhi* · Sep 2021 – Feb 2025
+  <br>AI-based predictive modelling and molecular enumeration against lung cancer.
+* 🇮🇳 **Research Assistant** — *SRM University, India* · Nov 2020 – Sep 2021
+  <br>Machine-learning drug repurposing against COVID-19.
+
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
+
+<h2>🎓 Education</h2>
+<div style="width:180px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
+
+* **PhD, Artificial Intelligence in Biology** — Jamia Millia Islamia, New Delhi (2021 – 2025)
+* **MSc, Bioinformatics** — Jamia Millia Islamia, New Delhi (2018 – 2020)
+* **BSc (Hons), Botany** — University of Delhi (2015 – 2018)
+* 🏅 *Honorary alumnus* — NIPER-Ahmedabad
+
+<hr style="border:none;height:1px;margin:8px auto;width:65%;background:linear-gradient(to right,transparent,#F87171,#DC2626,#F87171,transparent);opacity:0.9;">
+
 <h2>🔭 Research Vision</h2>
 <div style="width:220px;height:2px;background:#EF4444;margin-top:-8px;margin-bottom:10px;"></div>
 
@@ -191,7 +215,7 @@ To build AI systems that seamlessly connect **biological complexity** with **rea
 <div align="center" style="border:1px solid #EF4444; padding:15px 10px; border-radius:10px; width:90%; margin:auto;">
 
 <p>
-<a href="mailto:shaban@plen.ku.dk"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a> <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en"><img src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white"></a> <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288"><img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white"></a> <a href="https://orcid.org/0000-0001-9832-2830"><img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white"></a> <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2"><img src="https://img.shields.io/badge/ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white"></a> <a href="https://github.com/ShabanAhmad"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github"></a> <a href="https://www.linkedin.com/in/drshabanahmad/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin"></a>
+<a href="mailto:shaban@plen.ku.dk"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a> <a href="https://scholar.google.com/citations?user=Bv4nV80AAAAJ&hl=en"><img src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white"></a> <a href="https://www.scopus.com/authid/detail.uri?authorId=57219487288"><img src="https://img.shields.io/badge/Scopus-FF6C00?style=for-the-badge&logo=elsevier&logoColor=white"></a> <a href="https://orcid.org/0000-0001-9832-2830"><img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white"></a> <a href="https://www.researchgate.net/profile/Shaban-Ahmad-2"><img src="https://img.shields.io/badge/ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white"></a> <a href="https://github.com/ShabanAhmad"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github"></a> <a href="https://www.linkedin.com/in/drshabanahmad/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin"></a> <a href="https://www.webofscience.com/wos/author/record/ABD-4112-2021"><img src="https://img.shields.io/badge/Web_of_Science-000000?style=for-the-badge&logo=clarivate&logoColor=white"></a>
 </p>
 <p style="margin:8px 0 0 0;">
   <img src="https://komarev.com/ghpvc/?username=ShabanAhmad&label=Profile+Views&color=22C55E&style=flat" />
