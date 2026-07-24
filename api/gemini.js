@@ -29,6 +29,76 @@ function checkRateLimit(ip) {
   };
 }
 
+/*
+ * Model resolution.
+ * Gemini models get retired or lose their free-tier quota over time, so a
+ * single hardcoded model eventually returns HTTP 429 (limit: 0) or 404 for
+ * everyone. Instead we try a preference list, but first intersect it with the
+ * models this API key can actually call (discovered via ListModels), and fall
+ * back through the list until one succeeds. Override the order/candidates with
+ * the GEMINI_MODELS env var (comma-separated) without touching code.
+ */
+const PREFERRED_MODELS = (process.env.GEMINI_MODELS ||
+  "gemini-2.5-flash,gemini-2.5-flash-lite,gemini-flash-latest,gemini-2.0-flash-lite,gemini-2.0-flash,gemini-1.5-flash-8b,gemini-1.5-flash")
+  .split(",")
+  .map(s => s.trim())
+  .filter(Boolean);
+
+const GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta";
+
+// Cache the discovered model list on the warm instance to avoid a ListModels
+// call on every request.
+let modelCache = { list: null, at: 0 };
+const MODEL_CACHE_MS = 10 * 60 * 1000; // 10 minutes
+
+async function discoverModels(apiKey) {
+  const now = Date.now();
+  if (modelCache.list && now - modelCache.at < MODEL_CACHE_MS) return modelCache.list;
+  try {
+    const r = await fetch(`${GEMINI_BASE}/models?key=${apiKey}&pageSize=1000`);
+    if (!r.ok) return [];
+    const j = await r.json();
+    const list = (j.models || [])
+      .filter(m => (m.supportedGenerationMethods || []).includes("generateContent"))
+      .map(m => (m.name || "").replace(/^models\//, ""))
+      .filter(Boolean);
+    modelCache = { list, at: now };
+    return list;
+  } catch {
+    return [];
+  }
+}
+
+// Ordered list of models to attempt: preferred ones the key exposes first, then
+// any other lightweight text models the key exposes as a safety net.
+function orderCandidates(available) {
+  if (!available.length) return PREFERRED_MODELS.slice();
+  const set = new Set(available);
+  const ordered = PREFERRED_MODELS.filter(m => set.has(m));
+  const extras = available
+    .filter(m => !ordered.includes(m))
+    .filter(m => /flash|lite/i.test(m) && !/vision|embedding|aqa|imagen|tts|image|audio/i.test(m));
+  const candidates = [...ordered, ...extras];
+  // If discovery matched nothing sensible, still try the raw preference list.
+  return candidates.length ? candidates : PREFERRED_MODELS.slice();
+}
+
+async function callModel(model, prompt, apiKey) {
+  const resp = await fetch(`${GEMINI_BASE}/models/${model}:generateContent?key=${apiKey}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.4,
+        maxOutputTokens: 1200
+      }
+    })
+  });
+  const data = await resp.json().catch(() => ({}));
+  return { ok: resp.ok, status: resp.status, data };
+}
+
 export default async function handler(req, res) {
   const allowedOrigins = (process.env.ALLOWED_ORIGINS || "https://shabanahmad.github.io,https://shaban-ahmad-github-io.vercel.app")
     .split(",")
@@ -55,7 +125,7 @@ export default async function handler(req, res) {
   const rate = checkRateLimit(clientIp);
   if (rate.limited) {
     res.setHeader("Retry-After", String(rate.retryAfter));
-    return res.status(429).json({ error: "Too many requests. Please slow down and try again shortly." });
+    return res.status(429).json({ error: "Too many requests. Please slow down and try again shortly.", scope: "local-limiter" });
   }
 
   const prompt = typeof req.body?.prompt === "string" ? req.body.prompt.trim() : "";
@@ -74,33 +144,44 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "GEMINI_API_KEY is missing in Vercel environment variables." });
   }
 
-  try {
-    const fetchResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 1200
-        }
-      })
-    });
+  const candidates = orderCandidates(await discoverModels(apiKey));
+  const tried = [];
+  let lastErr = null;
 
-    const data = await fetchResponse.json();
-
-    if (!fetchResponse.ok) {
-      const message = data?.error?.message || "Gemini request failed.";
-      return res.status(fetchResponse.status).json({ error: message, details: data });
+  for (const model of candidates) {
+    tried.push(model);
+    let result;
+    try {
+      result = await callModel(model, prompt, apiKey);
+    } catch (error) {
+      lastErr = { status: 502, message: error.message || "Network error contacting Gemini." };
+      continue; // transient/network -> try next model
     }
 
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) {
-      return res.status(502).json({ error: "Gemini returned an unexpected response format.", details: data });
+    const { ok, status, data } = result;
+    if (ok) {
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (text) {
+        res.setHeader("X-Gemini-Model", model);
+        return res.status(200).json({ text, model, candidates: data.candidates });
+      }
+      lastErr = { status: 502, message: "Model returned an unexpected response format.", details: data };
+      continue;
     }
 
-    return res.status(200).json({ text, candidates: data.candidates });
-  } catch (error) {
-    return res.status(500).json({ error: error.message || "Unexpected server error." });
+    lastErr = { status, message: data?.error?.message || "Gemini request failed.", details: data };
+    // Quota exhausted (429), model retired (404) or rejected (400) -> try the next model.
+    if ([400, 404, 429].includes(status)) continue;
+    // Auth/permission/server errors won't be fixed by another model -> stop.
+    break;
   }
+
+  const allQuota = lastErr && lastErr.status === 429;
+  return res.status(lastErr?.status || 502).json({
+    error: allQuota
+      ? "Every available Gemini model is out of free-tier quota for this API key. Enable billing on the Google AI Studio project, swap in a different key, or set the GEMINI_MODELS env var to a model you have quota for."
+      : (lastErr?.message || "Gemini request failed."),
+    triedModels: tried,
+    details: lastErr?.details
+  });
 }

@@ -804,9 +804,9 @@ const fetchFromBackend = async (prompt, retries = 3, delay = 2000, signal = null
     try {
         const res = await fetch(PROFILE_CONFIG.backendUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }), signal });
         const data = await res.json();
-        if (!res.ok) { if (res.status === 429 && retries > 0) { await new Promise(r => setTimeout(r, delay)); return fetchFromBackend(prompt, retries - 1, delay * 2, signal); } throw new Error(data.error?.message || data.error || 'Backend request failed'); }
+        if (!res.ok) { if (res.status >= 500 && retries > 0) { await new Promise(r => setTimeout(r, delay)); return fetchFromBackend(prompt, retries - 1, delay * 2, signal); } throw new Error(data.error?.message || data.error || 'Backend request failed'); }
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) return data.candidates[0].content.parts[0].text; else if (data.text) return data.text; throw new Error("Unexpected response format.");
-    } catch (err) { if (err.name === 'AbortError') throw err; if (err.message.includes('429') || err.message.includes('quota') || err.message.includes('Requests')) throw new Error("⏳ AI rate limit hit. Wait 30s."); throw err; }
+    } catch (err) { if (err.name === 'AbortError') throw err; if (err.message === 'Failed to fetch') throw new Error("Could not reach the AI service. Check your connection and try again."); throw err; }
 };
 
 const handlePublicationAction = async (type, title, doiUrl, btn) => {
