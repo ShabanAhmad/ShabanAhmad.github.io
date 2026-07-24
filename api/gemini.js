@@ -83,20 +83,35 @@ function orderCandidates(available) {
   return candidates.length ? candidates : PREFERRED_MODELS.slice();
 }
 
-async function callModel(model, prompt, apiKey) {
+async function callModel(model, payload, apiKey) {
   const resp = await fetch(`${GEMINI_BASE}/models/${model}:generateContent?key=${apiKey}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.4,
-        maxOutputTokens: 1200
-      }
-    })
+    body: JSON.stringify(payload)
   });
   const data = await resp.json().catch(() => ({}));
   return { ok: resp.ok, status: resp.status, data };
+}
+
+// Build the Gemini request body from either a single prompt (legacy) or a
+// structured chat: an optional system instruction plus a message history with
+// user/model roles for real multi-turn conversations.
+function buildPayload({ prompt, messages, system }) {
+  const generationConfig = { temperature: 0.5, maxOutputTokens: 1200 };
+  if (Array.isArray(messages) && messages.length) {
+    const contents = messages
+      .filter(m => m && typeof m.text === "string" && m.text.trim())
+      .map(m => ({
+        role: (m.role === "assistant" || m.role === "model") ? "model" : "user",
+        parts: [{ text: m.text }]
+      }));
+    const payload = { contents, generationConfig };
+    if (system && typeof system === "string" && system.trim()) {
+      payload.systemInstruction = { parts: [{ text: system }] };
+    }
+    return payload;
+  }
+  return { contents: [{ parts: [{ text: prompt }] }], generationConfig };
 }
 
 export default async function handler(req, res) {
@@ -129,14 +144,22 @@ export default async function handler(req, res) {
   }
 
   const prompt = typeof req.body?.prompt === "string" ? req.body.prompt.trim() : "";
+  const messages = Array.isArray(req.body?.messages) ? req.body.messages : null;
+  const system = typeof req.body?.system === "string" ? req.body.system : "";
   const apiKey = process.env.GEMINI_API_KEY;
   const maxPromptLength = Number(process.env.MAX_PROMPT_LENGTH || 8000);
 
-  if (!prompt) {
+  const hasMessages = messages && messages.some(m => typeof m?.text === "string" && m.text.trim());
+  if (!prompt && !hasMessages) {
     return res.status(400).json({ error: "Prompt is required." });
   }
 
-  if (prompt.length > maxPromptLength) {
+  // Size guard applies to user-supplied text only; the system instruction is
+  // trusted first-party content (the site's own knowledge base).
+  const userLen = hasMessages
+    ? messages.reduce((n, m) => n + (typeof m?.text === "string" ? m.text.length : 0), 0)
+    : prompt.length;
+  if (userLen > maxPromptLength) {
     return res.status(413).json({ error: `Prompt is too long. Maximum length is ${maxPromptLength} characters.` });
   }
 
@@ -144,6 +167,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "GEMINI_API_KEY is missing in Vercel environment variables." });
   }
 
+  const payload = buildPayload({ prompt, messages, system });
   const candidates = orderCandidates(await discoverModels(apiKey));
   const tried = [];
   let lastErr = null;
@@ -152,7 +176,7 @@ export default async function handler(req, res) {
     tried.push(model);
     let result;
     try {
-      result = await callModel(model, prompt, apiKey);
+      result = await callModel(model, payload, apiKey);
     } catch (error) {
       lastErr = { status: 502, message: error.message || "Network error contacting Gemini." };
       continue; // transient/network -> try next model
