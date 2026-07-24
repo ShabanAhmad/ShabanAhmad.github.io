@@ -785,18 +785,29 @@ const summariseContributions = () => {
         (res) => {
             const rb = document.getElementById('contributions-summary');
             rb.style.display = 'block';
+            let body = res.trim();
+            if (!/<li[ >]/i.test(body)) body = body.split(/\n+/).map(x => x.trim()).filter(Boolean).map(x => `<li>${x.replace(/^[-*•]\s*/, '')}</li>`).join('');
             rb.innerHTML = aiResultHeader('✨ AI Summary of Contributions', 'contributions-summary')
-                + `<ul>${res}</ul></div>`;
+                + `<ul>${body}</ul></div>`;
         }
     );
 };
+
+// Models sometimes wrap answers in a Markdown code fence (```html … ```) or use
+// Markdown **bold** even when asked for HTML; normalise both so the AI buttons
+// render clean HTML instead of showing the literal markers.
+const stripCodeFences = (t) => String(t).replace(/```(?:html|markdown|md|json|text)?/gi, '').trim();
+const normaliseAI = (t) => stripCodeFences(t)
+    .replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>')
+    .replace(/__([^_\n]+)__/g, '<b>$1</b>');
 
 const fetchFromBackend = async (prompt, retries = 3, delay = 2000, signal = null) => {
     try {
         const res = await fetch(PROFILE_CONFIG.backendUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }), signal });
         const data = await res.json();
         if (!res.ok) { if (res.status >= 500 && retries > 0) { await new Promise(r => setTimeout(r, delay)); return fetchFromBackend(prompt, retries - 1, delay * 2, signal); } throw new Error(data.error?.message || data.error || 'Backend request failed'); }
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) return data.candidates[0].content.parts[0].text; else if (data.text) return data.text; throw new Error("Unexpected response format.");
+        const out = (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) || data.text;
+        if (out) return normaliseAI(out); throw new Error("Unexpected response format.");
     } catch (err) { if (err.name === 'AbortError') throw err; if (err.message === 'Failed to fetch') throw new Error("Could not reach the AI service. Check your connection and try again."); throw err; }
 };
 
@@ -953,7 +964,7 @@ const generateTeachingStatement = () => {
             const rb = document.getElementById('teaching-statement-result');
             rb.style.display = 'block';
             rb.innerHTML = aiResultHeader('✨ AI Teaching Statement Draft', 'teaching-statement-result')
-                + `${res}</div><p style="margin-top:0.8rem; font-size:0.75rem; color:#94a3b8; font-style:italic;">AI-generated draft — review and personalise before use.</p>`;
+                + `${res}</div>`;
         }
     );
 };
@@ -1317,7 +1328,7 @@ const sendUserMessage = async () => {
     const loadMsg = addMessage('', 'loading');
     try {
         const res = await fetchChat(chatHistory, CHAT_SYSTEM);
-        const clean = res.replace(/```html|```/gi, '').trim();
+        const clean = stripCodeFences(res);
         removeMessage(loadMsg);
         addMessage(clean, 'bot');
         chatHistory.push({ role: 'model', text: clean });
