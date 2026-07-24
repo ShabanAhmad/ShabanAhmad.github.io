@@ -1256,6 +1256,18 @@ const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨',
 const summariseFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = aiResultHeader('🔬 Research Frontiers Summary', 'sf-status') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; });
 const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('✨ Research Fit Analysis', 'match-result') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; }); };
 
+// Email drafts land in plain <input>/<textarea> fields, so strip any HTML tags
+// or Markdown markers the model (or normaliseAI) may have added.
+const toPlainText = (t) => String(t)
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\*\*|__|`/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
 const extractEmailParts = (text) => {
     let s = "", b = text;
     const m = text.match(/SUBJECT:\s*([^\n]*)\n+BODY:\s*([\s\S]*)/i);
@@ -1267,7 +1279,7 @@ const extractEmailParts = (text) => {
             b = parts.slice(1).join('\n\n').trim();
         }
     }
-    return { subject: s, body: b };
+    return { subject: toPlainText(s), body: toPlainText(b) };
 };
 
 const findSynergy = () => { const mb = document.getElementById('contact-message'); if (!mb.value.trim()) { mb.placeholder = "⚠️ Describe your area first!"; return; } triggerAIFeature('synergy-btn', null, '🤝', 'Synergy', 'Finding...', `Propose ONE highly innovative joint research project for Shaban Ahmad (AI/Bioinformatics) and a researcher with expertise in: "${mb.value.trim()}". Draft a formal email proposing this. CRITICAL: Format your response exactly like this:\nSUBJECT: [Your Subject Here]\nBODY: [Your Email Body Here]`, (res) => { const { subject, body } = extractEmailParts(res); showAIModal(`<strong>🤝 Collaborative Synergy Idea:</strong><br><br><label style="font-size:0.85rem;font-weight:bold;color:#555;">Subject:</label><input type="text" id="syn-gen-sub" aria-label="Generated email subject" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit;" value="${escapeHTML(subject)}"><label style="font-size:0.85rem;font-weight:bold;color:#555;">Body:</label><textarea id="syn-gen-body" aria-label="Generated email body" style="width:100%; min-height:200px; padding:10px; border-radius:8px; border:1px solid var(--accent); font-family:inherit; resize:vertical;">${escapeHTML(body)}</textarea><br><br><div style="display:flex; gap:10px; justify-content:flex-end;"><button onclick="document.getElementById('contact-subject').value = document.getElementById('syn-gen-sub').value; document.getElementById('contact-message').value = document.getElementById('syn-gen-body').value; closeAIModal();" class="cf-btn" style="border:none; padding:8px 15px;">Use as Email Draft</button></div>`); }); };
