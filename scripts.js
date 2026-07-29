@@ -2327,3 +2327,50 @@ window.switchAwardsTab = function(tabId) {
         if (divider) divider.style.display = 'none';
     }
 };
+
+/* ---- Section Minimap Rail: scroll-spy + header-offset navigation ---- */
+(function () {
+    const rail = document.getElementById('section-rail');
+    if (!rail) return;
+    const dots = Array.from(rail.querySelectorAll('.rail-dot'));
+    const targets = dots
+        .map(d => ({ dot: d, el: document.getElementById(d.dataset.target) }))
+        .filter(t => t.el);
+    if (!targets.length) return;
+
+    const headerOffset = () => {
+        const h = document.getElementById('main-header');
+        return (h ? h.offsetHeight : 0) + 12;
+    };
+
+    // Smooth-scroll with fixed-header compensation.
+    targets.forEach(({ dot, el }) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+            window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        });
+    });
+
+    // Active-state scroll-spy: section whose top crosses the viewport midpoint.
+    let ticking = false;
+    const update = () => {
+        ticking = false;
+        const mid = window.innerHeight / 2;
+        let current = targets[0];
+        for (const t of targets) {
+            if (t.el.getBoundingClientRect().top <= mid) current = t;
+        }
+        // Bottom of page → force last dot active.
+        if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 4) {
+            current = targets[targets.length - 1];
+        }
+        dots.forEach(d => d.classList.toggle('active', d === current.dot));
+    };
+    const onScroll = () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+})();

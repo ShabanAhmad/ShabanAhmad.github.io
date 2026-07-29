@@ -1014,6 +1014,98 @@ body.dark-mode .srch-empty {
     transform: scale(1.2);
 }
 
+/* ---- Section Minimap Rail: stacked progress dashes (right edge, desktop only) ---- */
+.section-rail {
+    display: none; /* Shown on wide desktops only (see min-width media query) */
+    position: fixed;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    z-index: 1100;
+    flex-direction: column;
+    gap: 16px;
+    background: transparent;
+    padding: 0;
+    border: none;
+    transition: var(--transition);
+}
+
+/* Each dash: a short horizontal bar. Muted by default, accent-filled when active. */
+.section-rail .rail-dot {
+    display: block;
+    width: 32px;
+    height: 4px;
+    border-radius: 4px;
+    background: #cbd5e1;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    transition: background-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.section-rail .rail-dot:hover {
+    background: #94a3b8;
+}
+
+.section-rail .rail-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.55);
+}
+
+/* Heading label: hidden until its own dash is hovered, then shown to the
+   left of that dash (no layout shift — absolutely positioned). */
+.section-rail .rail-label {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section-rail .rail-dot:hover .rail-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    pointer-events: auto;
+}
+
+.section-rail .rail-dot.active .rail-label {
+    background: var(--accent);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* Dark mode: brighter muted bars so they read on the dark background */
+body.dark-mode .section-rail .rail-dot {
+    background: #475569;
+}
+
+body.dark-mode .section-rail .rail-dot:hover {
+    background: #94a3b8;
+}
+
+body.dark-mode .section-rail .rail-dot.active {
+    background: var(--accent);
+}
+
+/* Show only on wide desktops (like the hero terminal / protein visuals) */
+@media (min-width: 1200px) {
+    .section-rail {
+        display: flex;
+    }
+}
+
 .back-to-top {
     position: fixed;
     bottom: 30px;
