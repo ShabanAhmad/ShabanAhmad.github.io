@@ -11377,64 +11377,98 @@ body.dark-mode .interest-card:hover .ic-title {
     color: #ffffff !important;
 }
 
-/* ---- AI buttons: single expanding pill (icon + label in ONE gold box). The
-   desktop hover expansion is handled by the base .ai-expand-btn / .course-ai-btn
-   rules above. Below only: (a) make the fixed-slot "magic" buttons grow to the
-   LEFT so they overlay the heading instead of spilling into the right margin,
-   and (b) give touch devices a press-to-reveal. ---- */
-
-/* Magic buttons (About / Contributions / Vision) live in a fixed 44px slot at
-   the heading's right edge. Anchor the pill to that edge and grow it LEFT
-   (row-reverse keeps the icon on the right), overlaying the heading. Absolute
-   positioning inside the reserved slot means it never reflows the layout. */
-.ai-btn-container {
-    overflow: visible;
+/* ---- AI buttons: fixed footprint + overlay reveal. Each button stays at its
+   collapsed icon size (so it NEVER grows the layout or reflows/wraps anything).
+   On hover / while processing / on press (touch), the label appears as ONE gold
+   pill anchored at the button's right edge and extending LEFT — the icon sits on
+   top of the pill's right end so it reads as a single box, and the pill is free
+   to overlay whatever text sits to its left. ---- */
+.ai-expand-btn,
+.course-ai-btn {
+    position: relative;
+    overflow: visible !important;
 }
 
-.ai-btn-container .ai-expand-btn {
+/* Hold the button at its collapsed size on reveal (cancel the base rightward
+   growth); the label pill carries the gold background, so the button goes
+   transparent. Lift it above neighbouring content. */
+.ai-expand-btn:hover, .ai-expand-btn.processing-gold, .ai-expand-btn:active {
+    max-width: 44px !important;
+    padding: 8px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    z-index: 20;
+}
+
+.journey-recap-btn:hover, .journey-recap-btn.processing-gold, .journey-recap-btn:active {
+    max-width: 34px !important;
+    padding: 5px !important;
+}
+
+.course-ai-btn:hover, .course-ai-btn.processing-gold, .course-ai-btn:active {
+    max-width: 26px !important;
+    padding: 3px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    z-index: 20;
+}
+
+/* Icon stays put, above the pill. */
+.ai-expand-btn .btn-icon,
+.course-ai-btn .btn-icon {
+    position: relative;
+    z-index: 2;
+}
+
+/* The label pill: same height as the button, right edge flush with the button's
+   right edge, extending left; right padding leaves room for the icon on top. */
+.ai-expand-btn .btn-text,
+.course-ai-btn .btn-text {
     position: absolute;
-    top: 0;
     right: 0;
-    flex-direction: row-reverse;
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    z-index: 1;
+    margin: 0 !important;
+    width: auto !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 40px 0 14px;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
 }
 
-.ai-btn-container .ai-expand-btn:hover .btn-text,
-.ai-btn-container .ai-expand-btn.processing-gold .btn-text {
-    margin-left: 0 !important;
-    margin-right: 8px !important;   /* gap on the icon side in row-reverse */
+.journey-recap-btn .btn-text {
+    padding-right: 30px;
 }
 
-/* Touch (phones/tablets): no hover — reveal the same pill on press. */
+.course-ai-btn .btn-text {
+    padding-right: 24px;
+    font-size: 0.72rem;
+}
+
+/* Reveal the pill (hover / processing / touch press). */
+.ai-expand-btn:hover .btn-text,
+.ai-expand-btn.processing-gold .btn-text,
+.course-ai-btn:hover .btn-text,
+.course-ai-btn.processing-gold .btn-text {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
 @media (hover: none) {
-    .ai-expand-btn:active {
-        max-width: 250px !important;
-        padding: 8px 18px !important;
-        background-color: var(--accent) !important;
-        color: var(--white) !important;
-    }
-    .ai-expand-btn:active .btn-icon { color: var(--white) !important; }
-    .ai-expand-btn:active .btn-text {
-        opacity: 1 !important;
-        width: auto !important;
-        margin-left: 8px !important;
-    }
-
-    .course-ai-btn:active {
-        max-width: 120px !important;
-        padding: 3px 8px !important;
-        background-color: var(--accent) !important;
-        color: var(--white) !important;
-    }
-    .course-ai-btn:active .btn-icon { color: var(--white) !important; }
+    .ai-expand-btn:active .btn-text,
     .course-ai-btn:active .btn-text {
-        opacity: 1 !important;
-        width: auto !important;
-        margin-left: 4px !important;
-    }
-
-    .ai-btn-container .ai-expand-btn:active .btn-text {
-        margin-left: 0 !important;
-        margin-right: 8px !important;
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
     }
 }
 
