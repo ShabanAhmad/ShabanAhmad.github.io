@@ -11377,76 +11377,63 @@ body.dark-mode .interest-card:hover .ic-title {
     color: #ffffff !important;
 }
 
-/* ---- AI buttons — leftward label reveal (unified, all buttons, all screens).
-   Every expand-style AI button stays icon-sized and reveals its label as a gold
-   tag floating to the LEFT of the icon. The tag overlays neighbouring text and
-   never reflows or breaks the layout. Shows on hover, while processing, and on
-   press (touch). Covers .ai-expand-btn (incl. .journey-recap-btn) and
-   .course-ai-btn. ---- */
-.ai-expand-btn,
-.course-ai-btn {
-    position: relative;
-    overflow: visible !important;
+/* ---- AI buttons: single expanding pill (icon + label in ONE gold box). The
+   desktop hover expansion is handled by the base .ai-expand-btn / .course-ai-btn
+   rules above. Below only: (a) make the fixed-slot "magic" buttons grow to the
+   LEFT so they overlay the heading instead of spilling into the right margin,
+   and (b) give touch devices a press-to-reveal. ---- */
+
+/* Magic buttons (About / Contributions / Vision) live in a fixed 44px slot at
+   the heading's right edge. Anchor the pill to that edge and grow it LEFT
+   (row-reverse keeps the icon on the right), overlaying the heading. Absolute
+   positioning inside the reserved slot means it never reflows the layout. */
+.ai-btn-container {
+    overflow: visible;
 }
 
-/* Label as a floating tag to the left of the icon; hidden until revealed. */
-.ai-expand-btn .btn-text,
-.course-ai-btn .btn-text {
+.ai-btn-container .ai-expand-btn {
     position: absolute;
-    right: calc(100% + 8px);
-    top: 50%;
-    transform: translateY(-50%) translateX(8px);
-    margin: 0 !important;
-    width: auto !important;
-    opacity: 0;
-    pointer-events: none;
-    background: var(--accent);
-    color: var(--white);
-    padding: 6px 11px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    line-height: 1.1;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-    white-space: nowrap;
-    z-index: 40;
+    top: 0;
+    right: 0;
+    flex-direction: row-reverse;
 }
 
-/* Cancel the old rightward box expansion so the button stays icon-sized and
-   nothing reflows (per-size; most specific listed last to win). */
-.ai-expand-btn:hover, .ai-expand-btn.processing-gold {
-    max-width: 44px !important;
-    padding: 8px !important;
+.ai-btn-container .ai-expand-btn:hover .btn-text,
+.ai-btn-container .ai-expand-btn.processing-gold .btn-text {
+    margin-left: 0 !important;
+    margin-right: 8px !important;   /* gap on the icon side in row-reverse */
 }
 
-.journey-recap-btn:hover, .journey-recap-btn.processing-gold {
-    max-width: 34px !important;
-    padding: 5px !important;
-}
-
-.course-ai-btn:hover, .course-ai-btn.processing-gold {
-    max-width: 26px !important;
-    padding: 3px !important;
-}
-
-/* Reveal the label tag. */
-.ai-expand-btn:hover .btn-text,
-.ai-expand-btn.processing-gold .btn-text,
-.course-ai-btn:hover .btn-text,
-.course-ai-btn.processing-gold .btn-text {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
-
-/* Touch: same reveal on press (no reliable hover state). */
+/* Touch (phones/tablets): no hover — reveal the same pill on press. */
 @media (hover: none) {
-    .ai-expand-btn:active { max-width: 44px !important; padding: 8px !important; }
-    .journey-recap-btn:active { max-width: 34px !important; padding: 5px !important; }
-    .course-ai-btn:active { max-width: 26px !important; padding: 3px !important; }
+    .ai-expand-btn:active {
+        max-width: 250px !important;
+        padding: 8px 18px !important;
+        background-color: var(--accent) !important;
+        color: var(--white) !important;
+    }
+    .ai-expand-btn:active .btn-icon { color: var(--white) !important; }
+    .ai-expand-btn:active .btn-text {
+        opacity: 1 !important;
+        width: auto !important;
+        margin-left: 8px !important;
+    }
 
-    .ai-expand-btn:active .btn-text,
+    .course-ai-btn:active {
+        max-width: 120px !important;
+        padding: 3px 8px !important;
+        background-color: var(--accent) !important;
+        color: var(--white) !important;
+    }
+    .course-ai-btn:active .btn-icon { color: var(--white) !important; }
     .course-ai-btn:active .btn-text {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
+        opacity: 1 !important;
+        width: auto !important;
+        margin-left: 4px !important;
+    }
+
+    .ai-btn-container .ai-expand-btn:active .btn-text {
+        margin-left: 0 !important;
+        margin-right: 8px !important;
     }
 }
