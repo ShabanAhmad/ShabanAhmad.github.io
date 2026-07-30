@@ -56,6 +56,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 65px;
+    background-color: var(--primary-dark); /* overscroll below the footer blends with it, not white */
     margin-top: 0px !important;
 }
 
@@ -4529,8 +4530,8 @@ body.dark-mode .patent-card {
 .contact-footer-section {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--white);
-    padding: 2rem 0;
-    margin-top: 3rem;
+    padding: 1.25rem 0 0.5rem;
+    margin-top: 1rem;
 }
 
 .contact-grid-layout {
@@ -5539,7 +5540,7 @@ body.dark-mode .patent-card {
     /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
     .nav-list {
         position: fixed;
-        top: 48px;
+        top: 42px;
         right: -100%;
         width: 200px;
         max-width: 85vw;
@@ -5940,7 +5941,7 @@ body.dark-mode .patent-card {
     }
 
     .contact-footer-section {
-        padding: 2rem 0 0; /* footer ends right below the form buttons */
+        padding: 1rem 0 0; /* tight top, footer ends right below the form buttons */
     }
 
     .about-split-layout {
@@ -9065,7 +9066,7 @@ body.dark-mode .theme-toggle {
 
 .journey-timeline {
     position: relative;
-    padding-right: 3rem;
+    padding-right: 2.25rem;
     padding-left: 0;
     margin-top: 1rem;
 }
@@ -9073,7 +9074,7 @@ body.dark-mode .theme-toggle {
 .journey-timeline::before {
     content: '';
     position: absolute;
-    right: 23px;
+    right: 14px;
     left: auto;
     top: 10px;
     bottom: 10px;
@@ -9085,7 +9086,7 @@ body.dark-mode .theme-toggle {
 /* Static arrowhead at the top of the trajectory timeline line */
 .journey-timeline-arrow-top {
     position: absolute;
-    right: 25px;
+    right: 16px;
     top: 0px;
     transform: translateX(50%);
     width: 0;
@@ -9100,7 +9101,7 @@ body.dark-mode .theme-toggle {
 .journey-timeline::after {
     content: '▲';
     position: absolute;
-    right: 25px;
+    right: 16px;
     transform: translateX(50%);
     font-size: 11px;
     color: #ef4444;
@@ -9139,7 +9140,7 @@ body.dark-mode .theme-toggle {
 
 .journey-marker {
     position: absolute;
-    right: -37px;
+    right: -34px;
     left: auto;
     top: 50%;
     transform: translateY(-50%);
@@ -11539,9 +11540,13 @@ body.dark-mode .interest-card:hover .ic-title {
 /* Mobile: shorter header bar (was 60px) and matching search-overlay offset. */
 @media (max-width: 900px) {
     header {
-        height: 48px;
+        height: 42px;
+    }
+    .header-content {
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .srch-overlay {
-        padding-top: calc(52px + env(safe-area-inset-top)) !important;
+        padding-top: calc(46px + env(safe-area-inset-top)) !important;
     }
 }
