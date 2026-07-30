@@ -11477,3 +11477,26 @@ body.dark-mode .interest-card:hover .ic-title {
 
 /* Submit button uses the icon-pill pattern but is not an AI action — no sparkle */
 #submit-btn .btn-icon { animation: none !important; }
+
+/* Footer form buttons (Send / AI Draft / Synergy) sit on the LEFT, so reveal
+   their pill to the RIGHT instead: anchor the left edge, extend right, and keep
+   the icon on the left end (room reserved via left padding). */
+.form-actions .ai-expand-btn .btn-text {
+    right: auto;
+    left: 0;
+    transform: translateY(-50%) translateX(-8px);
+    padding: 0 14px 0 40px;
+}
+
+.form-actions .ai-expand-btn:hover .btn-text,
+.form-actions .ai-expand-btn.processing-gold .btn-text {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+@media (hover: none) {
+    .form-actions .ai-expand-btn:active .btn-text {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
