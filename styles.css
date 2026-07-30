@@ -11441,3 +11441,26 @@ body.dark-mode .culture-card:hover h4 {
 body.dark-mode .interest-card:hover .ic-title {
     color: #ffffff !important;
 }
+
+/* ---- AI expand buttons: reveal the FULL label on hover (press on touch),
+   overlapping nearby content if needed. It retracts on unhover; nothing clips
+   the text (no max-width cap, overflow visible, lifted above siblings). ---- */
+.ai-expand-btn:hover, .ai-expand-btn.processing-gold,
+.course-ai-btn:hover, .course-ai-btn.processing-gold,
+.journey-recap-btn:hover, .journey-recap-btn.processing-gold {
+    max-width: none !important;
+    overflow: visible !important;
+    position: relative;
+    z-index: 6;
+}
+
+@media (hover: none) {
+    .ai-expand-btn:active,
+    .course-ai-btn:active,
+    .journey-recap-btn:active {
+        max-width: none !important;
+        overflow: visible !important;
+        position: relative;
+        z-index: 6;
+    }
+}

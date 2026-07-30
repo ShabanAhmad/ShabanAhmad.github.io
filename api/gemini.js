@@ -84,10 +84,21 @@ function orderCandidates(available) {
 }
 
 async function callModel(model, payload, apiKey) {
+  // Gemini 2.5 models spend "thinking" tokens from the same output-token budget,
+  // which can starve the visible answer (truncated mid-sentence). Turn thinking
+  // off for them so the whole budget goes to the response. Sent only to 2.5
+  // models — older fallback models don't accept thinkingConfig.
+  let body = payload;
+  if (/gemini-2\.5/.test(model)) {
+    body = {
+      ...payload,
+      generationConfig: { ...payload.generationConfig, thinkingConfig: { thinkingBudget: 0 } }
+    };
+  }
   const resp = await fetch(`${GEMINI_BASE}/models/${model}:generateContent?key=${apiKey}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(body)
   });
   const data = await resp.json().catch(() => ({}));
   return { ok: resp.ok, status: resp.status, data };
@@ -97,7 +108,7 @@ async function callModel(model, payload, apiKey) {
 // structured chat: an optional system instruction plus a message history with
 // user/model roles for real multi-turn conversations.
 function buildPayload({ prompt, messages, system }) {
-  const generationConfig = { temperature: 0.5, maxOutputTokens: 1200 };
+  const generationConfig = { temperature: 0.5, maxOutputTokens: 2048 };
   if (Array.isArray(messages) && messages.length) {
     const contents = messages
       .filter(m => m && typeof m.text === "string" && m.text.trim())
