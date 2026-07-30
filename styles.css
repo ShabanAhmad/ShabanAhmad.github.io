@@ -5539,7 +5539,7 @@ body.dark-mode .patent-card {
     /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
     .nav-list {
         position: fixed;
-        top: 60px;
+        top: 48px;
         right: -100%;
         width: 200px;
         max-width: 85vw;
@@ -5940,7 +5940,7 @@ body.dark-mode .patent-card {
     }
 
     .contact-footer-section {
-        padding: 2rem 0;
+        padding: 2rem 0 0; /* footer ends right below the form buttons */
     }
 
     .about-split-layout {
@@ -11523,4 +11523,25 @@ body.dark-mode .interest-card:hover .ic-title {
     opacity: 1;
     width: auto;
     margin-left: 8px !important;
+}
+
+
+
+/* Mobile: let content sections use nearly the full width (like the header and
+   footer) instead of the desktop 2rem side padding. */
+@media (max-width: 900px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* Mobile: shorter header bar (was 60px) and matching search-overlay offset. */
+@media (max-width: 900px) {
+    header {
+        height: 48px;
+    }
+    .srch-overlay {
+        padding-top: calc(52px + env(safe-area-inset-top)) !important;
+    }
 }
