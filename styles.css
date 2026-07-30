@@ -2446,10 +2446,10 @@ body.dark-mode h3:not([class]) {
     width: auto;
 }
 
-/* On touch / small screens the hover-expand reflows the button out from under
-   the pointer, causing an up/down flicker that blocks clicks. Show these
-   buttons fully expanded there so they stay still and tappable. */
-@media (hover: none), (max-width: 900px) {
+/* Small screens WITH a mouse: hover-expand reflows the pill out from under the
+   pointer, flickering up/down and blocking clicks. Keep these fully expanded so
+   they stay still and clickable. */
+@media (hover: hover) and (max-width: 900px) {
 
     .ai-expand-btn,
     .course-ai-btn {
@@ -2470,6 +2470,46 @@ body.dark-mode h3:not([class]) {
 
     .ai-expand-btn .btn-icon,
     .course-ai-btn .btn-icon {
+        color: var(--white) !important;
+        animation: none !important;
+    }
+}
+
+/* Touch devices (phones/tablets): show only the icon by default. A press
+   expands the pill to reveal its label; releasing runs the action. Uses :active
+   because touch has no reliable hover state. */
+@media (hover: none) {
+
+    .ai-expand-btn:active {
+        max-width: 250px !important;
+        padding: 8px 18px !important;
+        background-color: var(--accent) !important;
+        color: var(--white) !important;
+        box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
+    }
+
+    .ai-expand-btn:active .btn-text {
+        opacity: 1 !important;
+        width: auto !important;
+        margin-left: 8px !important;
+    }
+
+    .course-ai-btn:active {
+        max-width: 120px !important;
+        padding: 3px 8px !important;
+        background-color: var(--accent) !important;
+        color: var(--white) !important;
+        box-shadow: 0 3px 8px rgba(220, 161, 29, 0.3) !important;
+    }
+
+    .course-ai-btn:active .btn-text {
+        opacity: 1 !important;
+        width: auto !important;
+        margin-left: 4px !important;
+    }
+
+    .ai-expand-btn:active .btn-icon,
+    .course-ai-btn:active .btn-icon {
         color: var(--white) !important;
         animation: none !important;
     }
