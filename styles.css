@@ -11437,3 +11437,9 @@ body.dark-mode .interest-card:hover .ic-title {
         margin-right: 8px !important;
     }
 }
+
+/* Utility: hard hide (wins over .ai-expand-btn's !important display) */
+.is-hidden { display: none !important; }
+
+/* Submit button uses the icon-pill pattern but is not an AI action — no sparkle */
+#submit-btn .btn-icon { animation: none !important; }
