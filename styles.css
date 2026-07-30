@@ -9334,6 +9334,30 @@ body.dark-mode .journey-date {
     align-items: center;
 }
 
+/* Compact "Phase Recap" AI button sitting just before each career badge */
+.journey-recap-btn {
+    max-width: 34px !important;
+    height: 34px !important;
+    padding: 5px !important;
+    border-radius: 20px !important;
+    flex-shrink: 0;
+}
+
+.journey-recap-btn .btn-icon {
+    min-width: 22px;
+    font-size: 1.05rem;
+}
+
+.journey-recap-btn .btn-text {
+    font-size: 0.78rem;
+}
+
+.journey-recap-btn:hover,
+.journey-recap-btn.processing-gold {
+    max-width: 190px !important;
+    padding: 5px 14px !important;
+}
+
 .journey-inst-row {
     display: flex;
     align-items: center;

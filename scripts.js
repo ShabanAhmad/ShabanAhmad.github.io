@@ -2374,3 +2374,25 @@ window.switchAwardsTab = function(tabId) {
     window.addEventListener('resize', onScroll, { passive: true });
     update();
 })();
+
+/* ---- Career Trajectory: AI "Phase Recap" (one per main timeline card) ---- */
+window.summarisePhase = function (btn) {
+    const card = btn.closest('.journey-card');
+    if (!card) return;
+    const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+    const role = clean(card.querySelector('.journey-role')?.textContent);
+    const inst = clean(card.querySelector('.inst-link')?.textContent);
+    const dates = clean(card.querySelector('.journey-date')?.textContent);
+    // Grounding: use the card's own text (minus header/buttons/numbers) so the
+    // recap never invents anything not already on the page.
+    const clone = card.cloneNode(true);
+    clone.querySelectorAll('.journey-header, .journey-card-number, button').forEach(n => n.remove());
+    const detail = clean(clone.textContent).slice(0, 1400);
+    const context = `Role: ${role}\nInstitution: ${inst}\nPeriod: ${dates}\nActivities: ${detail}`;
+    const prompt = `Write a punchy recap of one career phase for Dr Shaban Ahmad's portfolio. Using ONLY the facts below, produce 2-3 crisp sentences (max ~55 words) on what he did during this window. Be dense and informative; use standard field abbreviations where natural (AI, ML, DL, MD, DFT, QM/MM, PFAS, WGS/WES, XAI, PPI). British spelling. No preamble, no markdown, no hashtags, no invented facts.\n\n${context}`;
+    if (!btn.id) btn.id = 'phase-recap-' + Math.random().toString(36).slice(2, 8);
+    triggerAIFeature(btn.id, null, '✨', 'Phase Recap', 'Summarising...', prompt, (res) => {
+        const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+        showAIModal(`<div style="display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:.7rem;"><strong style="font-size:1rem;">✨ ${escapeHTML(role)} — Phase Recap</strong><button onclick="copyAIContent(this,'phase-recap-body')" title="Copy to clipboard" style="background:none;border:1px solid #ccc;border-radius:6px;cursor:pointer;color:#666;padding:4px 6px;line-height:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${copyIcon}</button></div><div id="phase-recap-body" style="font-size:0.95rem;line-height:1.65;border-top:1px solid rgba(0,0,0,0.08);padding-top:.7rem;">${res}</div>`);
+    });
+};
