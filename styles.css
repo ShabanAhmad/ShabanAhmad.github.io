@@ -11478,25 +11478,49 @@ body.dark-mode .interest-card:hover .ic-title {
 /* Submit button uses the icon-pill pattern but is not an AI action — no sparkle */
 #submit-btn .btn-icon { animation: none !important; }
 
-/* Footer form buttons (Send / AI Draft / Synergy) sit on the LEFT, so reveal
-   their pill to the RIGHT instead: anchor the left edge, extend right, and keep
-   the icon on the left end (room reserved via left padding). */
+/* Footer form buttons (Send / AI Draft / Synergy): the row has room, so let
+   them expand IN-FLOW as a single pill (label inside the box) that pushes the
+   neighbouring buttons aside instead of overlaying/hiding them. This overrides
+   the fixed-footprint overlay used elsewhere — footer only. */
+.form-actions .ai-expand-btn {
+    overflow: hidden !important;
+}
+
+.form-actions .ai-expand-btn:hover,
+.form-actions .ai-expand-btn.processing-gold,
+.form-actions .ai-expand-btn:active {
+    max-width: 250px !important;
+    padding: 8px 18px !important;
+    background-color: var(--accent) !important;
+    box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
+    z-index: auto;
+}
+
+/* Label flows inline within the pill (not an absolute overlay). */
 .form-actions .ai-expand-btn .btn-text {
+    position: static;
+    transform: none;
+    left: auto;
     right: auto;
-    left: 0;
-    transform: translateY(-50%) translateX(-8px);
-    padding: 0 14px 0 40px;
+    height: auto;
+    display: inline-block;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    color: inherit;
+    font-size: 0.9rem;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
 }
 
 .form-actions .ai-expand-btn:hover .btn-text,
-.form-actions .ai-expand-btn.processing-gold .btn-text {
+.form-actions .ai-expand-btn.processing-gold .btn-text,
+.form-actions .ai-expand-btn:active .btn-text {
     opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
-
-@media (hover: none) {
-    .form-actions .ai-expand-btn:active .btn-text {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-    }
+    width: auto;
+    margin-left: 8px !important;
 }
