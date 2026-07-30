@@ -2446,74 +2446,9 @@ body.dark-mode h3:not([class]) {
     width: auto;
 }
 
-/* Small screens WITH a mouse: hover-expand reflows the pill out from under the
-   pointer, flickering up/down and blocking clicks. Keep these fully expanded so
-   they stay still and clickable. */
-@media (hover: hover) and (max-width: 900px) {
-
-    .ai-expand-btn,
-    .course-ai-btn {
-        max-width: none !important;
-        width: auto !important;
-        padding: 8px 16px !important;
-        background-color: var(--accent) !important;
-        color: var(--white) !important;
-        box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
-    }
-
-    .ai-expand-btn .btn-text,
-    .course-ai-btn .btn-text {
-        opacity: 1 !important;
-        width: auto !important;
-        margin-left: 8px !important;
-    }
-
-    .ai-expand-btn .btn-icon,
-    .course-ai-btn .btn-icon {
-        color: var(--white) !important;
-        animation: none !important;
-    }
-}
-
-/* Touch devices (phones/tablets): show only the icon by default. A press
-   expands the pill to reveal its label; releasing runs the action. Uses :active
-   because touch has no reliable hover state. */
-@media (hover: none) {
-
-    .ai-expand-btn:active {
-        max-width: 250px !important;
-        padding: 8px 18px !important;
-        background-color: var(--accent) !important;
-        color: var(--white) !important;
-        box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
-    }
-
-    .ai-expand-btn:active .btn-text {
-        opacity: 1 !important;
-        width: auto !important;
-        margin-left: 8px !important;
-    }
-
-    .course-ai-btn:active {
-        max-width: 120px !important;
-        padding: 3px 8px !important;
-        background-color: var(--accent) !important;
-        color: var(--white) !important;
-        box-shadow: 0 3px 8px rgba(220, 161, 29, 0.3) !important;
-    }
-
-    .course-ai-btn:active .btn-text {
-        opacity: 1 !important;
-        width: auto !important;
-        margin-left: 4px !important;
-    }
-
-    .ai-expand-btn:active .btn-icon,
-    .course-ai-btn:active .btn-icon {
-        color: var(--white) !important;
-        animation: none !important;
-    }
-}
+/* Hover/press reveal for every AI expand button (all screens) is defined once
+   in the unified "AI buttons — leftward label reveal" block at the end of this
+   file. */
 
 .ai-matcher-box {
     background: var(--white);
@@ -11442,25 +11377,76 @@ body.dark-mode .interest-card:hover .ic-title {
     color: #ffffff !important;
 }
 
-/* ---- AI expand buttons: reveal the FULL label on hover (press on touch),
-   overlapping nearby content if needed. It retracts on unhover; nothing clips
-   the text (no max-width cap, overflow visible, lifted above siblings). ---- */
-.ai-expand-btn:hover, .ai-expand-btn.processing-gold,
-.course-ai-btn:hover, .course-ai-btn.processing-gold,
-.journey-recap-btn:hover, .journey-recap-btn.processing-gold {
-    max-width: none !important;
-    overflow: visible !important;
+/* ---- AI buttons — leftward label reveal (unified, all buttons, all screens).
+   Every expand-style AI button stays icon-sized and reveals its label as a gold
+   tag floating to the LEFT of the icon. The tag overlays neighbouring text and
+   never reflows or breaks the layout. Shows on hover, while processing, and on
+   press (touch). Covers .ai-expand-btn (incl. .journey-recap-btn) and
+   .course-ai-btn. ---- */
+.ai-expand-btn,
+.course-ai-btn {
     position: relative;
-    z-index: 6;
+    overflow: visible !important;
 }
 
+/* Label as a floating tag to the left of the icon; hidden until revealed. */
+.ai-expand-btn .btn-text,
+.course-ai-btn .btn-text {
+    position: absolute;
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    margin: 0 !important;
+    width: auto !important;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--accent);
+    color: var(--white);
+    padding: 6px 11px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    white-space: nowrap;
+    z-index: 40;
+}
+
+/* Cancel the old rightward box expansion so the button stays icon-sized and
+   nothing reflows (per-size; most specific listed last to win). */
+.ai-expand-btn:hover, .ai-expand-btn.processing-gold {
+    max-width: 44px !important;
+    padding: 8px !important;
+}
+
+.journey-recap-btn:hover, .journey-recap-btn.processing-gold {
+    max-width: 34px !important;
+    padding: 5px !important;
+}
+
+.course-ai-btn:hover, .course-ai-btn.processing-gold {
+    max-width: 26px !important;
+    padding: 3px !important;
+}
+
+/* Reveal the label tag. */
+.ai-expand-btn:hover .btn-text,
+.ai-expand-btn.processing-gold .btn-text,
+.course-ai-btn:hover .btn-text,
+.course-ai-btn.processing-gold .btn-text {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Touch: same reveal on press (no reliable hover state). */
 @media (hover: none) {
-    .ai-expand-btn:active,
-    .course-ai-btn:active,
-    .journey-recap-btn:active {
-        max-width: none !important;
-        overflow: visible !important;
-        position: relative;
-        z-index: 6;
+    .ai-expand-btn:active { max-width: 44px !important; padding: 8px !important; }
+    .journey-recap-btn:active { max-width: 34px !important; padding: 5px !important; }
+    .course-ai-btn:active { max-width: 26px !important; padding: 3px !important; }
+
+    .ai-expand-btn:active .btn-text,
+    .course-ai-btn:active .btn-text {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
     }
 }
