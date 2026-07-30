@@ -11537,10 +11537,14 @@ body.dark-mode .interest-card:hover .ic-title {
     }
 }
 
-/* Mobile: shorter header bar (was 60px) and matching search-overlay offset. */
+/* Mobile: shorter header bar (was 60px), matching body offset (removes the light
+   strip that showed between the header and content) and search-overlay offset. */
 @media (max-width: 900px) {
     header {
         height: 42px;
+    }
+    body {
+        padding-top: 42px;
     }
     .header-content {
         padding-top: 0;
