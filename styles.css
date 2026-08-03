@@ -91,7 +91,6 @@ a {
 .accordion-btn:focus-visible,
 .cv-btn-half:focus-visible,
 .ai-expand-btn:focus-visible,
-.sf-nav-btn:focus-visible,
 .back-to-top:focus-visible,
 #ai-widget-toggle:focus-visible {
     outline: 2px solid var(--accent) !important;
@@ -1015,12 +1014,13 @@ body.dark-mode .srch-empty {
     transform: scale(1.2);
 }
 
-/* ---- Section Minimap Rail: stacked progress dashes (right edge, desktop only) ---- */
+/* ---- Section Minimap Rail: stacked progress dashes (left edge, beside the
+   social sidebar, desktop only) ---- */
 .section-rail {
     display: none; /* Shown on wide desktops only (see min-width media query) */
     position: fixed;
     top: 50%;
-    right: 14px;
+    left: 58px; /* Sits just right of the social sidebar (left:0, ~40px wide) */
     transform: translateY(-50%);
     z-index: 1100;
     flex-direction: column;
@@ -1054,12 +1054,12 @@ body.dark-mode .srch-empty {
 }
 
 /* Heading label: hidden until its own dash is hovered, then shown to the
-   left of that dash (no layout shift — absolutely positioned). */
+   right of that dash (no layout shift — absolutely positioned). */
 .section-rail .rail-label {
     position: absolute;
-    right: calc(100% + 12px);
+    left: calc(100% + 12px);
     top: 50%;
-    transform: translateY(-50%) translateX(6px);
+    transform: translateY(-50%) translateX(-6px);
     background: var(--tooltip-bg);
     color: var(--tooltip-text);
     padding: 4px 10px;
@@ -2450,327 +2450,6 @@ body.dark-mode h3:not([class]) {
 /* Hover/press reveal for every AI expand button (all screens) is defined once
    in the unified "AI buttons — leftward label reveal" block at the end of this
    file. */
-
-.ai-matcher-box {
-    background: var(--white);
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    position: relative;
-    transition: var(--transition);
-    border-left: 5px solid var(--accent);
-}
-
-.ai-matcher-box:hover {
-    border-color: var(--primary);
-    border-left-color: var(--primary);
-    box-shadow: 0 8px 25px rgba(6, 78, 59, 0.15);
-    transform: translateY(-2px);
-}
-
-.ai-matcher-title {
-    text-align: center;
-    font-weight: 900;
-    color: var(--primary);
-    font-size: 1.35rem;
-    margin-bottom: 15px;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-transform: uppercase;
-}
-
-.ai-matcher-title i {
-    color: var(--accent);
-    font-size: 1.5rem;
-}
-
-.ai-matcher-box textarea::placeholder {
-    color: #ea2608 !important;
-    font-weight: 400;
-    font-style: italic;
-    transition: color 0.3s ease;
-    line-height: 1.5;
-}
-
-.ai-matcher-box textarea:focus::placeholder {
-    color: transparent !important;
-}
-
-.ai-matcher-box textarea {
-    width: 100%;
-    min-height: 140px;
-    padding: 12px;
-    border: 2px dashed #cbd5e1 !important;
-    border-radius: 8px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
-    resize: vertical;
-    outline: none;
-    transition: var(--transition);
-    text-align: justify;
-    background: #f8fafc;
-    cursor: text;
-    position: relative;
-    z-index: 10;
-}
-
-.ai-matcher-box textarea:hover {
-    border-color: var(--accent) !important;
-    background: var(--white);
-}
-
-.ai-matcher-box textarea:focus {
-    border-color: var(--primary) !important;
-    border-style: solid !important;
-    background: var(--white);
-    box-shadow: 0 0 0 3px rgba(223, 2, 197, 0.1);
-    outline: none;
-}
-
-/* Scientific Frontiers Interactive Slider */
-.marquee-wrapper {
-    position: relative;
-    padding: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: -15px;
-}
-
-.marquee-track {
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-    gap: 34px;
-    align-items: center;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    scrollbar-width: none;
-    padding-top: 34px;
-    padding-bottom: 34px;
-}
-
-.marquee-track::-webkit-scrollbar {
-    display: none;
-}
-
-.sf-nav-controls {
-    position: absolute;
-    top: 50%;
-    left: -30px;
-    right: -30px;
-    width: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transform: translateY(-50%);
-    padding: 0;
-    pointer-events: none;
-    z-index: 10;
-    margin-top: 0;
-}
-
-.sf-nav-btn {
-    pointer-events: auto;
-    background: transparent;
-    border: none;
-    color: #94a3b8;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    opacity: 0.4;
-}
-
-.sf-nav-btn:hover {
-    opacity: 1;
-    background: var(--accent);
-    color: var(--white);
-    font-size: 1.5rem;
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(220, 161, 29, 0.4);
-}
-
-@keyframes sfWave {
-
-    0%,
-    100% {
-        transform: translateY(14px);
-    }
-
-    50% {
-        transform: translateY(-14px);
-    }
-}
-
-.interest-card {
-    background: var(--white);
-    border: 1px solid var(--accent);
-    padding: 1.95rem 1.75rem;
-    border-radius: 24px 4px 24px 4px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    min-width: 305px;
-    max-width: 305px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: var(--transition);
-    position: relative;
-    z-index: 2;
-    animation: sfWave 4s ease-in-out infinite;
-}
-
-/* Staggered animation delay to create the floating wave effect */
-.interest-card:nth-child(10n+1) {
-    animation-delay: 0.0s;
-}
-
-.interest-card:nth-child(10n+2) {
-    animation-delay: 0.4s;
-}
-
-.interest-card:nth-child(10n+3) {
-    animation-delay: 0.8s;
-}
-
-.interest-card:nth-child(10n+4) {
-    animation-delay: 1.2s;
-}
-
-.interest-card:nth-child(10n+5) {
-    animation-delay: 1.6s;
-}
-
-.interest-card:nth-child(10n+6) {
-    animation-delay: 2.0s;
-}
-
-.interest-card:nth-child(10n+7) {
-    animation-delay: 2.4s;
-}
-
-.interest-card:nth-child(10n+8) {
-    animation-delay: 2.8s;
-}
-
-.interest-card:nth-child(10n+9) {
-    animation-delay: 3.2s;
-}
-
-.interest-card:nth-child(10n+10) {
-    animation-delay: 3.6s;
-}
-
-.interest-card:hover {
-    animation-play-state: paused;
-    transform: translateY(-25px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.15);
-    z-index: 10;
-    border-color: var(--primary);
-}
-
-.interest-card:nth-child(5n+1):hover {
-    background: linear-gradient(135deg, #e63946 0%, #b02a2a 100%);
-    border-color: #b02a2a;
-}
-
-.interest-card:nth-child(5n+2):hover {
-    background: linear-gradient(135deg, #2a9d8f 0%, #1e7166 100%);
-    border-color: #1e7166;
-}
-
-.interest-card:nth-child(5n+3):hover {
-    background: linear-gradient(135deg, #457b9d 0%, #2d556d 100%);
-    border-color: #2d556d;
-}
-
-.interest-card:nth-child(5n+4):hover {
-    background: linear-gradient(135deg, #f4a261 0%, #c4824e 100%);
-    border-color: #c4824e;
-}
-
-.interest-card:nth-child(5n+5):hover {
-    background: linear-gradient(135deg, #9d4edd 0%, #7637a8 100%);
-    border-color: #7637a8;
-}
-
-.interest-card:hover .ic-title {
-    color: var(--white);
-}
-
-.interest-card:hover .ic-desc {
-    color: #f8fafc;
-}
-
-.ic-icon-box {
-    width: 48px;
-    height: 48px;
-    background: #f1f5f9;
-    color: var(--accent);
-    border-radius: 13px 4px 13px 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.7rem;
-    margin-bottom: 0.8rem;
-    transition: all 0.4s ease;
-}
-
-.interest-card:hover .ic-icon-box {
-    background: var(--white);
-    transform: rotate(10deg) scale(1.1);
-    border-radius: 4px 15px 4px 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.interest-card:nth-child(5n+1):hover .ic-icon-box {
-    color: #b02a2a;
-}
-
-.interest-card:nth-child(5n+2):hover .ic-icon-box {
-    color: #1e7166;
-}
-
-.interest-card:nth-child(5n+3):hover .ic-icon-box {
-    color: #2d556d;
-}
-
-.interest-card:nth-child(5n+4):hover .ic-icon-box {
-    color: #c4824e;
-}
-
-.interest-card:nth-child(5n+5):hover .ic-icon-box {
-    color: #7637a8;
-}
-
-.ic-title {
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    line-height: 1.2;
-    transition: color 0.4s ease;
-}
-
-.ic-desc {
-    font-size: 0.9rem;
-    color: #64748b;
-    line-height: 1.5;
-    transition: color 0.4s ease;
-}
 
 /* Dynamic Grid & Profile Cards */
 .edu-grid {
@@ -5980,7 +5659,6 @@ body.dark-mode .patent-card {
     #ai-widget-toggle,
     #ai-chat-window,
     .ai-modal-overlay,
-    .sf-nav-controls,
     .ai-expand-btn {
         display: none !important;
     }
@@ -6249,9 +5927,7 @@ body.dark-mode .exp-box,
 body.dark-mode .referee-card,
 body.dark-mode .award-card,
 body.dark-mode .patent-box,
-body.dark-mode .accordion-btn,
-body.dark-mode .interest-card,
-body.dark-mode .ai-matcher-box {
+body.dark-mode .accordion-btn {
     background-color: var(--white);
     color: var(--text);
     border-color: var(--card-border);
@@ -6286,7 +5962,6 @@ body.dark-mode .nav-dropdown-content {
 body.dark-mode .ai-generated-content,
 body.dark-mode .chat-body,
 body.dark-mode .chat-input,
-body.dark-mode .ai-matcher-box textarea,
 body.dark-mode .ai-modal-body input,
 body.dark-mode .ai-modal-body textarea {
     background-color: #020617;
@@ -11001,7 +10676,6 @@ body.dark-mode {
 body.dark-mode .section-title,
 body.dark-mode .patent-title,
 body.dark-mode .award-top,
-body.dark-mode .ic-title,
 body.dark-mode .tech-sub-title,
 body.dark-mode .inst-link,
 body.dark-mode .tcp-kpi-label,
@@ -11026,8 +10700,7 @@ body.dark-mode .verified-badge {
 body.dark-mode .profile-text,
 body.dark-mode .exp-desc,
 body.dark-mode .referee-title-line,
-body.dark-mode .event-meta,
-body.dark-mode .ic-desc {
+body.dark-mode .event-meta {
     color: #94a3b8;
 }
 
@@ -11368,14 +11041,6 @@ body.dark-mode .referee-card:hover .referee-name a {
 /* Core Lab Culture — amber is unchanged between themes and reads well on dark. */
 body.dark-mode .culture-card:hover h4 {
     color: var(--accent) !important;
-}
-
-/* Scientific-interest cards — hovering fills the card with a saturated
-   gradient, so the title wants true white. The light rule asks for
-   var(--white), which dark mode redefines as slate and would be unreadable
-   against that fill. */
-body.dark-mode .interest-card:hover .ic-title {
-    color: #ffffff !important;
 }
 
 /* ---- AI buttons: fixed footprint + overlay reveal. Each button stays at its

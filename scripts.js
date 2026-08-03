@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     assignReverseBadges();
     fixReversedListStart();
     reveal();
-    startSFScroll();
     buildPubMarquee();
     document.querySelectorAll('.email-click').forEach(el => {
         el.setAttribute('role', 'button');
@@ -716,41 +715,6 @@ const trackPointer = (el, mouse, { relative = false, clearOnLeave = false } = {}
 onResize(updateAllScrollMoreButtons, 150);
 window.addEventListener('load', updateAllScrollMoreButtons);
 const togglePubStats = (e) => { if (e.target.closest('.stat-row')) { e.preventDefault(); e.stopPropagation(); const bd = document.getElementById('pub-breakdown'), ti = document.querySelector('.stat-toggle i'), pc = e.target.closest('.stat-row-link'); if (bd.classList.contains('open')) { bd.classList.remove('open'); bd.style.maxHeight = "0"; ti.classList.remove('fa-chevron-up'); ti.classList.add('fa-chevron-down'); if (pc) pc.classList.remove('active-box'); } else { bd.classList.add('open'); bd.style.maxHeight = bd.scrollHeight + "px"; ti.classList.remove('fa-chevron-down'); ti.classList.add('fa-chevron-up'); if (pc) pc.classList.add('active-box'); runSequentialCounters('#pub-breakdown .pub-badge', 2500); } } };
-let sfSpd = 0.56, isSfM = false;
-const startSFScroll = () => {
-    const t = document.getElementById('sf-track'); if (!t) return;
-    if (!t.dataset.cloned) { Array.from(t.querySelectorAll('.interest-card')).forEach(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); t.appendChild(cl); }); t.dataset.cloned = 'true'; }
-
-    /* The wrap-around distance is a layout measurement, so it is taken once here
-       and re-taken on resize. Reading it inside the frame loop forced a
-       synchronous reflow on every frame. */
-    let jumpDist = 0;
-    const measure = () => {
-        const cs = t.querySelectorAll('.interest-card');
-        jumpDist = cs.length ? cs[Math.floor(cs.length / 2)].offsetLeft - cs[0].offsetLeft : 0;
-    };
-    measure();
-    onResize(measure, 150);
-
-    let hovering = false;
-    t.addEventListener('mouseenter', () => { hovering = true; }, { passive: true });
-    t.addEventListener('mouseleave', () => { hovering = false; }, { passive: true });
-
-    let accum = 0;
-    const loop = createLoop(() => {
-        if (hovering || isSfM) return;
-        accum += sfSpd;
-        const px = Math.floor(accum);
-        if (px < 1) return;
-        accum -= px;
-        let next = t.scrollLeft + px;
-        if (jumpDist > 0 && next >= jumpDist) next -= jumpDist;
-        t.scrollLeft = next;
-    }, { gate: t });
-    loop.start();
-};
-const scrollSF = (dir) => { const t = document.getElementById('sf-track'); if (!t) return; isSfM = true; t.style.scrollBehavior = 'smooth'; const cw = t.querySelector('.interest-card').offsetWidth + 40; t.scrollLeft += dir * cw; setTimeout(() => { t.style.scrollBehavior = 'auto'; const cs = t.querySelectorAll('.interest-card'), jd = cs[cs.length / 2].offsetLeft - cs[0].offsetLeft; if (t.scrollLeft >= jd) t.scrollLeft -= jd; else if (t.scrollLeft <= 0) t.scrollLeft += jd; isSfM = false; }, 500); };
-
 /* Artificial Intelligence Handlers (DOI Knowledgebase & Core Generators) */
 const showAIModal = (content) => { document.getElementById('ai-modal-content').innerHTML = content; document.getElementById('ai-modal').classList.add('show'); };
 const closeAIModal = (e) => { if (e && e.target && e.target.id !== 'ai-modal' && !e.target.classList.contains('ai-close-btn')) return; const m = document.getElementById('ai-modal'); if (m) m.classList.remove('show'); };
@@ -761,7 +725,7 @@ const shareToSocial = (platform, url) => {
     const encodedUrl = encodeURIComponent((url && url !== 'undefined' && url !== 'null') ? url : window.location.href);
 
     // Auto-copy text to clipboard (Crucial for LinkedIn, FB, and Instagram which block text pre-filling via URL)
-    navigator.clipboard.writeText(text).catch(err => console.log('Copy failed', err));
+    navigator.clipboard.writeText(text).catch(() => { /* clipboard unavailable — non-blocking */ });
 
     let shareLink = '';
     if (platform === 'twitter') shareLink = `https://twitter.com/intent/tweet?text=${encodedText}`;
@@ -1253,8 +1217,6 @@ async function buildPubMarquee() {
 }
 
 const simplifyBio = () => triggerAIFeature('simplify-btn', 'eli5-result', '✨', "Lay Summary", 'Summarising...', "Write a concise lay summary (3 sentences) of Shaban Ahmad's research in AI-driven drug discovery, computational genomics, and PFAS biodegradation. Use plain, accessible language suitable for a non-specialist reader.", (res) => { const rb = document.getElementById('eli5-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('📄 Lay Summary', 'eli5-result') + `${res}</div>`; });
-const summariseFrontiers = () => triggerAIFeature('sf-btn', 'sf-status', '✨', 'AI Summary', 'Synthesising...', "Summarise the 4 core research areas Shaban Ahmad is currently pioneering: 1. AI in Drug Design, 2. Deep Learning in Genomics, 3. MD Simulations, and 4. PFAS Biodegradation. FORMAT: Use <b>bold titles</b> and 1-2 punchy sentences per area. HTML only.", (res) => { const st = document.getElementById('sf-status'); st.style.display = 'block'; st.innerHTML = aiResultHeader('🔬 Research Frontiers Summary', 'sf-status') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; });
-const matchSkills = () => { const inp = document.getElementById('job-desc-input'); if (!inp.value.trim()) { inp.placeholder = "⚠️ Please describe the opportunity first."; inp.style.border = "2px solid red"; setTimeout(() => inp.style.border = "2px dashed #cbd5e1", 2000); return; } triggerAIFeature('match-btn', 'match-result', '✨', 'Research Fit', 'Analysing...', `Assess the research fit between this opportunity and Shaban Ahmad's expertise in AI drug discovery, computational genomics, and PFAS biodegradation. Provide: 1. A brief fit summary. 2. Three specific areas of alignment. 3. One honest gap if any. HTML format only. Context: ${inp.value}`, (res) => { const rb = document.getElementById('match-result'); rb.style.display = 'block'; rb.innerHTML = aiResultHeader('✨ Research Fit Analysis', 'match-result') + `${res.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</div>`; }); };
 
 // Email drafts land in plain <input>/<textarea> fields, so strip any HTML tags
 // or Markdown markers the model (or normaliseAI) may have added.
