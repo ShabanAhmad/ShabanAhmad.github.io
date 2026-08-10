@@ -6,7 +6,7 @@ const PROFILE_CONFIG = {
         publications: "100+",
         citations: "2000+",
         hIndex: "30",
-        peerReviews: "620+"
+        peerReviews: "630+"
     },
     links: {
         webOfScience: "https://www.webofscience.com/wos/author/record/ABD-4112-2021"
@@ -1284,7 +1284,7 @@ const SHABAN_KB = `IDENTITY: Dr Shaban Ahmad — MSc (Bioinformatics) and PhD (A
 
 FOCUS: AI-driven drug discovery, computational genomics and bioinformatics, and PFAS biodegradation / environmental biotechnology. Long-term goal: establish an independent Translational Computational Pharmacology (TCP) Group; currently seeking an Assistant Professorship. Research signature: mechanism-aware, interpretable, reproducible AI that connects biological complexity to real clinical and environmental impact.
 
-METRICS: 100+ peer-reviewed publications; 2000+ citations; h-index 30; 620 verified peer reviews (Web of Science); named in the World's Top 2% Scientists (Stanford-Elsevier, 2025).
+METRICS: 100+ peer-reviewed publications; 2000+ citations; h-index 30; 630 verified peer reviews (Web of Science); named in the World's Top 2% Scientists (Stanford-Elsevier, 2025).
 
 CURRENT ROLE: Postdoc at UCPH (June 2025-present) — identifying PFAS-degrading enzymes using AI. Co-teaches PLEN bioinformatics sessions, co-supervises 1 MSc and 1 BSc student, Guest Editor for IJMS and Frontiers in Oncology, member of the PLEN Data Science Task Force.
 
