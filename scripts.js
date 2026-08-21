@@ -227,8 +227,18 @@ window.addEventListener('scroll', () => {
                 ptCircle.style.strokeDashoffset = window.ptCircumference - (scrollPercentage * window.ptCircumference);
             }
 
-            let c = ""; document.querySelectorAll("section").forEach(s => { if (window.scrollY >= (s.offsetTop - 150)) c = s.getAttribute("id"); });
-            document.querySelectorAll(".nav-link").forEach(li => { li.classList.remove("active-section"); if (li.getAttribute("href") && li.getAttribute("href").includes(c)) li.classList.add("active-section"); });
+            // Active nav = the section whose heading has scrolled up past the viewport midpoint
+            // (i.e. its heading is on screen), matching the minimap rail's logic.
+            const secs = document.querySelectorAll("section");
+            const mid = window.innerHeight / 2;
+            let c = "";
+            secs.forEach(s => { if (s.getBoundingClientRect().top <= mid) c = s.getAttribute("id"); });
+            // Bottom of page → force the last section active (fixes tall last sections that can't reach mid).
+            if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4 && secs.length) c = secs[secs.length - 1].getAttribute("id");
+            // Sections with no button of their own map to the button that owns them.
+            if (c === "professional") c = "conferences";   // Professional Activities → Activities
+            if (c === "contact") c = "referees";            // Contact → Referees
+            document.querySelectorAll(".nav-link").forEach(li => { li.classList.remove("active-section"); const h = li.getAttribute("href"); if (c && h && h === "#" + c) li.classList.add("active-section"); });
             isScrolling = false;
         });
         isScrolling = true;

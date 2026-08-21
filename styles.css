@@ -55,7 +55,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 65px;
+    scroll-padding-top: 90px; /* clears the floating island header */
     background-color: var(--primary-dark); /* overscroll below the footer blends with it, not white */
     margin-top: 0px !important;
 }
@@ -65,7 +65,7 @@ body {
     line-height: 1.6;
     color: var(--text);
     background: var(--light-bg);
-    padding-top: 50px;
+    padding-top: 0; /* header floats; hero runs to the very top (full green) */
     overflow-x: hidden;
     top: 0px !important;
     position: static !important;
@@ -263,17 +263,23 @@ body>.skiptranslate {
     border-radius: 3px;
 }
 
-/* Primary Navigation Header */
+/* Primary Navigation Header — centred floating frosted-glass island (DeepSeek-style).
+   Semi-transparent + heavy blur: page content scrolls behind it, blurred and unreadable.
+   Theme-adaptive — light here, dark override in the dark-mode block. */
 header {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.55);
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1180px, calc(100% - 24px));
+    border-radius: 18px;
     z-index: 10001;
-    height: 60px;
+    height: 56px;
     transition: var(--transition);
 }
 
@@ -307,8 +313,23 @@ header {
         display: none !important;
     }
 
+    /* Island spans the page width; nav items spread evenly across it */
+    header {
+        width: min(1180px, calc(100vw - 24px));
+        max-width: none;
+    }
+
     .header-content {
-        justify-content: center;
+        justify-content: space-between;
+        max-width: none;
+        padding: 0 22px;
+    }
+
+    .nav-list {
+        flex: 1;
+        justify-content: space-evenly;
+        gap: 4px;
+        margin: 0 10px;
     }
 }
 
@@ -1226,7 +1247,7 @@ body.dark-mode .section-rail .rail-dot.active {
 
 .hero {
     color: var(--white);
-    padding: 0; /* Remove padding to align exactly with section containers */
+    padding: 78px 0 0; /* top clearance so the floating header sits above the photo/text */
     position: relative;
     z-index: 1;
     display: flex;
@@ -5219,7 +5240,7 @@ body.dark-mode .patent-card {
     /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
     .nav-list {
         position: fixed;
-        top: 42px;
+        top: 74px;
         right: -100%;
         width: 200px;
         max-width: 85vw;
@@ -5241,7 +5262,7 @@ body.dark-mode .patent-card {
     }
 
     .nav-list.active {
-        right: 0;
+        right: 12px;
     }
 
     .nav-item {
@@ -5255,8 +5276,10 @@ body.dark-mode .patent-card {
         text-align: left;
         font-size: 0.9rem;
         padding: 10px 20px 10px 70px;
+        border: none;
         border-bottom: 1px solid #eee;
         border-radius: 0;
+        background: transparent;
         width: 100%;
         display: block;
         box-sizing: border-box;
@@ -5452,7 +5475,7 @@ body.dark-mode .patent-card {
     .hero {
         flex-direction: column !important;
         gap: 2.5rem !important;
-        padding: 3rem 1.5rem !important;
+        padding: 5rem 1.5rem 3rem !important; /* extra top clearance for the floating header */
         text-align: center !important;
         min-height: auto !important;
         pointer-events: auto !important;
@@ -5950,9 +5973,9 @@ body.dark-mode .nav-toggle {
 }
 
 body.dark-mode header {
-    background: rgba(15, 23, 42, 0.98);
-    border-bottom: 1px solid #1e293b;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 body.dark-mode .nav-dropdown-content {
@@ -10873,7 +10896,7 @@ body.dark-mode #roadmap-funding .strategy-card-item:nth-child(1) { border-top: 4
 body.dark-mode #roadmap-funding .strategy-card-item:nth-child(2) { border-top: 4px solid #10b981; }
 body.dark-mode #roadmap-funding .strategy-card-item:nth-child(3) { border-top: 4px solid #f43f5e; }
 
-/* Nav: Home on desktop, About-dropdown on mobile (≤900px) */
+/* Nav: Home shows on desktop only; About shows on both. */
 .nav-mobile-only { display: none; }
 .nav-desktop-only { display: list-item; }
 @media (max-width: 900px) {
@@ -11202,14 +11225,14 @@ body.dark-mode .culture-card:hover h4 {
     }
 }
 
-/* Mobile: shorter header bar (was 60px), matching body offset (removes the light
-   strip that showed between the header and content) and search-overlay offset. */
+/* Mobile: floating island header — slightly shorter bar, no body offset so the
+   green hero runs to the very top behind it. */
 @media (max-width: 900px) {
     header {
-        height: 42px;
+        height: 50px;
     }
     body {
-        padding-top: 42px;
+        padding-top: 0;
     }
     .header-content {
         padding-top: 0;
