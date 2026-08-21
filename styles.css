@@ -267,11 +267,11 @@ body>.skiptranslate {
    Semi-transparent + heavy blur: page content scrolls behind it, blurred and unreadable.
    Theme-adaptive — light here, dark override in the dark-mode block. */
 header {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.78);
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    border: 0.5px solid rgba(0, 0, 0, 0.35); /* very thin, faint black outline (light theme) */
     position: fixed;
     top: 12px;
     left: 50%;
@@ -5973,8 +5973,8 @@ body.dark-mode .nav-toggle {
 }
 
 body.dark-mode header {
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(15, 23, 42, 0.80);
+    border: 0.5px solid rgba(255, 255, 255, 0.42); /* very thin, faint white outline (dark theme) */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
