@@ -1002,7 +1002,13 @@ body.dark-mode .srch-empty {
 }
 
 [data-tip]:hover::after {
-    opacity: 1;
+    /* Show, hold ~1.3s, then auto-fade — even if the pointer stays. Re-hover replays. */
+    animation: tipAutoHide 1.8s ease forwards;
+}
+
+@keyframes tipAutoHide {
+    0%, 100% { opacity: 0; }
+    8%, 78% { opacity: 1; }
 }
 
 /* Share buttons inside the AI modal: show the tooltip above the icon (not to the
@@ -2430,7 +2436,7 @@ body.dark-mode h3:not([class]) {
 .ai-expand-btn {
     background-color: transparent !important;
     color: var(--accent) !important;
-    border: 1px solid transparent !important;
+    border: 1px solid rgba(245, 158, 11, 0.55) !important; /* amber outline at rest */
     box-shadow: none !important;
     border-radius: 30px !important;
     padding: 8px !important;
@@ -5289,24 +5295,42 @@ body.dark-mode .patent-card {
         max-width: 85vw;
         height: auto;
         min-height: auto; /* Shorter mobile menu */
-        background: var(--white);
+        background: rgba(255, 255, 255, 0.82); /* frosted, matching the header island */
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
         flex-direction: column;
         justify-content: flex-start;
         padding: 0;
-        box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         transform: translateX(120vw); /* fully off-screen when closed — no visible sliver */
         transition: transform 0.3s ease-in-out;
         z-index: 2000;
         display: flex;
-        border-radius: 0 0 0 15px;
-        border: 1px solid #eee;
-        border-top: none;
-        border-right: none;
+        border-radius: 16px;
+        border: 0.5px solid rgba(0, 0, 0, 0.22);
+        overflow: hidden;
         align-items: flex-start;
     }
 
     .nav-list.active {
         transform: translateX(0);
+    }
+
+    /* Dark theme: menu matches the dark frosted header */
+    body.dark-mode .nav-list {
+        background: rgba(15, 23, 42, 0.82);
+        border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    body.dark-mode .nav-link,
+    body.dark-mode .nav-item-dropdown,
+    body.dark-mode .nav-dropdown-content a {
+        border-bottom-color: rgba(255, 255, 255, 0.10);
+    }
+
+    /* Nested sub-menu panels transparent too, not solid dark */
+    body.dark-mode .nav-dropdown-content {
+        background-color: transparent;
     }
 
     .nav-item {
