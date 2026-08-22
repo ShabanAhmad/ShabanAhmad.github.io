@@ -267,20 +267,33 @@ body>.skiptranslate {
    Semi-transparent + heavy blur: page content scrolls behind it, blurred and unreadable.
    Theme-adaptive — light here, dark override in the dark-mode block. */
 header {
-    background: rgba(255, 255, 255, 0.78);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+    background: transparent; /* frost lives on ::before so the header creates NO containing block for the fixed menu */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     border: 0.5px solid rgba(0, 0, 0, 0.35); /* very thin, faint black outline (light theme) */
     position: fixed;
     top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; /* centre without transform, so the fixed slide-in menu stays viewport-anchored */
     width: min(1180px, calc(100% - 24px));
     border-radius: 18px;
     z-index: 10001;
-    height: 56px;
+    height: 48px;
     transition: var(--transition);
+}
+
+/* Frosted glass on a pseudo-element: keeps backdrop-filter OFF the header itself,
+   so position:fixed descendants (the mobile slide-in menu) stay viewport-anchored. */
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    z-index: -1;
 }
 
 .header-content {
@@ -313,23 +326,35 @@ header {
         display: none !important;
     }
 
-    /* Island spans the page width; nav items spread evenly across it */
+    /* Island hugs its content (buttons + tools), centred */
     header {
-        width: min(1180px, calc(100vw - 24px));
-        max-width: none;
+        width: fit-content;
+        max-width: calc(100vw - 24px);
     }
 
     .header-content {
-        justify-content: space-between;
+        justify-content: center;
         max-width: none;
-        padding: 0 22px;
+        padding: 0 8px;
+        gap: 12px;
     }
 
     .nav-list {
-        flex: 1;
-        justify-content: space-evenly;
-        gap: 4px;
-        margin: 0 10px;
+        gap: 6px; /* buttons kept close together */
+        margin: 0;
+    }
+
+    /* Tools get the same bordered pill as mobile */
+    .header-tools {
+        border: 0.5px solid rgba(0, 0, 0, 0.30);
+        border-radius: 999px;
+        padding: 4px 11px;
+    }
+
+    .global-controls {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
     }
 }
 
@@ -458,13 +483,15 @@ header {
     display: none;
 }
 
+.header-tools {
+    display: flex;
+    align-items: center;
+}
+
 .global-controls {
     display: flex;
     align-items: center;
-    gap: 18px;
-    margin-left: 15px;
-    border-left: 1px solid #ddd;
-    padding-left: 15px;
+    gap: 11px;
     height: 30px;
 }
 
@@ -5173,10 +5200,16 @@ body.dark-mode .patent-card {
         border-radius: 50%;
     }
 
+    /* Compact centred header: island hugs logo + tools, no wasted side space */
+    header {
+        width: fit-content;
+        max-width: calc(100vw - 24px);
+    }
+
     .header-content {
-        justify-content: space-between;
-        gap: 5px;
-        padding: 0 15px;
+        justify-content: center;
+        gap: 14px;
+        padding: 0 14px;
     }
 
     /* Fixed Header Name constraints to prevent overlap */
@@ -5186,16 +5219,24 @@ body.dark-mode .patent-card {
         transform: none !important;
         pointer-events: auto !important;
         color: var(--accent) !important;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         position: static !important;
         margin: 0;
-        flex: 1;
+        flex: 0 0 auto;
         text-align: center;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         z-index: 1002;
         max-width: none;
+    }
+
+    /* Tools grouped in a bordered pill (toggle · search · EN · menu) */
+    .header-tools {
+        border: 1px solid rgba(0, 0, 0, 0.28);
+        border-radius: 999px;
+        padding: 4px 9px;
+        gap: 12px;
     }
 
     .header-name i {
@@ -5210,8 +5251,10 @@ body.dark-mode .patent-card {
     .global-controls {
         display: flex;
         align-items: center;
-        gap: 24px;
-        margin-left: auto;
+        gap: 11px;
+        margin-left: 0;
+        border-left: none;
+        padding-left: 0;
         z-index: 2002;
         flex-shrink: 0;
     }
@@ -5222,11 +5265,11 @@ body.dark-mode .patent-card {
         background: none;
         border: none;
         padding: 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         cursor: pointer;
         color: var(--primary);
         transition: transform 0.3s ease;
-        margin-left: 24px;
+        margin-left: 0;
     }
 
     .nav-toggle.open {
@@ -5240,8 +5283,8 @@ body.dark-mode .patent-card {
     /* Fixed Mobile Menu Layout (Perfect Alignment & Wrap Logic) */
     .nav-list {
         position: fixed;
-        top: 74px;
-        right: -100%;
+        top: 60px;
+        right: 6px;
         width: 200px;
         max-width: 85vw;
         height: auto;
@@ -5251,7 +5294,8 @@ body.dark-mode .patent-card {
         justify-content: flex-start;
         padding: 0;
         box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease-in-out;
+        transform: translateX(120vw); /* fully off-screen when closed — no visible sliver */
+        transition: transform 0.3s ease-in-out;
         z-index: 2000;
         display: flex;
         border-radius: 0 0 0 15px;
@@ -5262,7 +5306,7 @@ body.dark-mode .patent-card {
     }
 
     .nav-list.active {
-        right: 12px;
+        transform: translateX(0);
     }
 
     .nav-item {
@@ -5973,9 +6017,17 @@ body.dark-mode .nav-toggle {
 }
 
 body.dark-mode header {
-    background: rgba(15, 23, 42, 0.80);
     border: 0.5px solid rgba(255, 255, 255, 0.42); /* very thin, faint white outline (dark theme) */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Dark-theme frost fill lives on the pseudo-element (header itself is transparent) */
+body.dark-mode header::before {
+    background: rgba(15, 23, 42, 0.80);
+}
+
+body.dark-mode .header-tools {
+    border-color: rgba(255, 255, 255, 0.40);
 }
 
 body.dark-mode .nav-dropdown-content {
