@@ -5639,17 +5639,19 @@ body.dark-mode .patent-card {
 
     /* offset form inputs from the arrow line running at left:0 */
 
-    /* Mobile: compact the connector arrow into a tidy left-edge flourish so the
-       line and its arrowhead stay joined (single-column layout). */
+    /* Mobile (single column): form sits BELOW, so the connector runs down the left
+       edge and its arrowhead points DOWN toward the Send button below. */
     .contact-arrow-wrapper {
-        left: 0;
-        width: 24px;
-        height: calc(100% - 16px);
+        left: 2px;
+        width: 8px;
+        height: calc(100% - 4px);
     }
 
     .contact-arrow-head-svg {
-        right: -5px;
-        bottom: -5px;
+        right: -6px;
+        bottom: -9px;
+        transform: rotate(90deg); /* rotate the ">" so it points down */
+        transform-origin: center;
     }
 
     /* Draw on tap (touch = hover) */
