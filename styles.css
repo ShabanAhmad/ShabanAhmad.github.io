@@ -956,11 +956,13 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.68); /* frosted, matching the header island */
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     padding: 15px 8px;
     border-radius: 0 12px 12px 0;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--card-border);
+    box-shadow: 2px 0 18px rgba(0, 0, 0, 0.12);
+    border: 0.5px solid rgba(0, 0, 0, 0.18);
     transition: var(--transition);
 }
 
@@ -1009,6 +1011,13 @@ body.dark-mode .srch-empty {
 @keyframes tipAutoHide {
     0%, 100% { opacity: 0; }
     8%, 78% { opacity: 1; }
+}
+
+/* Touch devices: no hover, so a tap shouldn't pop a tooltip (looks odd next to the action) */
+@media (hover: none) {
+    [data-tip]::after {
+        display: none !important;
+    }
 }
 
 /* Share buttons inside the AI modal: show the tooltip above the icon (not to the
@@ -2478,7 +2487,14 @@ body.dark-mode h3:not([class]) {
     font-size: 0.9rem;
 }
 
-.ai-expand-btn:hover,
+/* Hover: fill only (no text-expand) — the label shows as a tooltip instead */
+.ai-expand-btn:hover {
+    background-color: var(--accent) !important;
+    color: var(--white) !important;
+    box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
+}
+
+/* Processing state still expands to show its status text */
 .ai-expand-btn.processing-gold {
     max-width: 250px;
     padding: 8px 18px !important;
@@ -5630,22 +5646,10 @@ body.dark-mode .patent-card {
 
     /* offset form inputs from the arrow line running at left:0 */
 
-    /* Responsive targeting for mobile SVG arrow wrapper */
+    /* Decorative connector arrow is a 2-column desktop flourish — it breaks apart
+       in the single-column mobile layout, so hide it entirely on mobile. */
     .contact-arrow-wrapper {
-        left: 0;
-        width: max(20px, calc(50% - 130px));
-        height: calc(100% - 25px);
-    }
-
-    .contact-left:hover .contact-arrow-line-svg .arrow-line,
-    .contact-grid-layout:hover .contact-arrow-line-svg .arrow-line {
-        stroke-dashoffset: 0;
-    }
-
-    .contact-left:hover .contact-arrow-head-svg,
-    .contact-grid-layout:hover .contact-arrow-head-svg {
-        opacity: 1;
-        transition: opacity 0.2s ease-out 0.8s;
+        display: none !important;
     }
 
     .cf-input-group {
@@ -6003,13 +6007,19 @@ body.dark-mode,
 body.dark-mode .panel,
 body.dark-mode .nav-dropdown-content,
 body.dark-mode .custom-lang-dropdown,
-body.dark-mode .sticky-sidebar,
 body.dark-mode .ai-modal-box,
 body.dark-mode #ai-chat-window,
 body.dark-mode .chat-footer {
     background-color: var(--light-bg);
     color: var(--text);
     border-color: var(--card-border);
+}
+
+/* Social sidebar: frosted like the header, both themes */
+body.dark-mode .sticky-sidebar {
+    background: rgba(15, 23, 42, 0.68);
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 body.dark-mode .ui-card,
