@@ -1013,13 +1013,6 @@ body.dark-mode .srch-empty {
     8%, 78% { opacity: 1; }
 }
 
-/* Touch devices: no hover, so a tap shouldn't pop a tooltip (looks odd next to the action) */
-@media (hover: none) {
-    [data-tip]::after {
-        display: none !important;
-    }
-}
-
 /* Share buttons inside the AI modal: show the tooltip above the icon (not to the
    side, where the next button covers it) and lift the hovered button. */
 #ai-modal-content [data-tip]::after {
@@ -5646,10 +5639,29 @@ body.dark-mode .patent-card {
 
     /* offset form inputs from the arrow line running at left:0 */
 
-    /* Decorative connector arrow is a 2-column desktop flourish — it breaks apart
-       in the single-column mobile layout, so hide it entirely on mobile. */
+    /* Mobile: compact the connector arrow into a tidy left-edge flourish so the
+       line and its arrowhead stay joined (single-column layout). */
     .contact-arrow-wrapper {
-        display: none !important;
+        left: 0;
+        width: 24px;
+        height: calc(100% - 16px);
+    }
+
+    .contact-arrow-head-svg {
+        right: -5px;
+        bottom: -5px;
+    }
+
+    /* Draw on tap (touch = hover) */
+    .contact-left:hover .contact-arrow-line-svg .arrow-line,
+    .contact-grid-layout:hover .contact-arrow-line-svg .arrow-line {
+        stroke-dashoffset: 0;
+    }
+
+    .contact-left:hover .contact-arrow-head-svg,
+    .contact-grid-layout:hover .contact-arrow-head-svg {
+        opacity: 1;
+        transition: opacity 0.2s ease-out 0.8s;
     }
 
     .cf-input-group {
