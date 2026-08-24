@@ -6,6 +6,11 @@
     --text: #292524;
     --light-bg: #fafaf9;
     --white: #ffffff;
+    /* Shared frosted-glass rule for header, mobile menu, and social sidebar.
+       Change here and all three update together. */
+    --frost-bg: rgba(255, 255, 255, 0.78);
+    --frost-blur: blur(18px);
+    --frost-border: rgba(0, 0, 0, 0.35);
     --page-v-sep-color: rgba(245, 158, 11, 0.08);
     --page-v-sep-glow: rgba(245, 158, 11, 0.35);
     --hero-main-width: 1100px;
@@ -269,7 +274,7 @@ body>.skiptranslate {
 header {
     background: transparent; /* frost lives on ::before so the header creates NO containing block for the fixed menu */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border: 0.5px solid rgba(0, 0, 0, 0.35); /* very thin, faint black outline (light theme) */
+    border: 0.5px solid var(--frost-border); /* shared frosted outline */
     position: fixed;
     top: 12px;
     left: 0;
@@ -290,9 +295,9 @@ header::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: rgba(255, 255, 255, 0.78);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+    background: var(--frost-bg);
+    -webkit-backdrop-filter: var(--frost-blur);
+    backdrop-filter: var(--frost-blur);
     z-index: -1;
     /* Force a GPU layer so the frosted backdrop repaints on scroll (fixes the
        mobile "fixed header + backdrop-filter goes invisible on scroll" bug). */
@@ -961,13 +966,13 @@ body.dark-mode .srch-empty {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: rgba(255, 255, 255, 0.68); /* frosted, matching the header island */
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
+    background: var(--frost-bg); /* shared frost with the header + menu */
+    -webkit-backdrop-filter: var(--frost-blur);
+    backdrop-filter: var(--frost-blur);
     padding: 15px 8px;
     border-radius: 0 12px 12px 0;
     box-shadow: 2px 0 18px rgba(0, 0, 0, 0.12);
-    border: 0.5px solid rgba(0, 0, 0, 0.18);
+    border: 0.5px solid var(--frost-border);
     transition: var(--transition);
 }
 
@@ -5394,9 +5399,9 @@ body.dark-mode .patent-card {
         max-width: 85vw;
         height: auto;
         min-height: auto; /* Shorter mobile menu */
-        background: rgba(255, 255, 255, 0.78); /* frosted — same as the header island */
-        -webkit-backdrop-filter: blur(18px);
-        backdrop-filter: blur(18px);
+        background: var(--frost-bg); /* shared frost with the header + sidebar */
+        -webkit-backdrop-filter: var(--frost-blur);
+        backdrop-filter: var(--frost-blur);
         flex-direction: column;
         justify-content: flex-start;
         padding: 0;
@@ -5409,7 +5414,7 @@ body.dark-mode .patent-card {
         z-index: 2000;
         display: flex;
         border-radius: 16px;
-        border: 0.5px solid rgba(0, 0, 0, 0.22);
+        border: 0.5px solid var(--frost-border);
         overflow: hidden;
         align-items: flex-start;
     }
@@ -5420,12 +5425,6 @@ body.dark-mode .patent-card {
         opacity: 1;
         visibility: visible;
         transition: transform 0.28s ease, opacity 0.28s ease;
-    }
-
-    /* Dark theme: menu matches the dark frosted header */
-    body.dark-mode .nav-list {
-        background: rgba(15, 23, 42, 0.82);
-        border-color: rgba(255, 255, 255, 0.16);
     }
 
     body.dark-mode .nav-link,
@@ -6117,6 +6116,8 @@ body.dark-mode {
     --text: #e2e8f0;
     --light-bg: #0f172a;
     --white: #1e293b;
+    --frost-bg: rgba(15, 23, 42, 0.82);
+    --frost-border: rgba(255, 255, 255, 0.42);
     --sub-heading: #38bdf8;
     --card-bg: var(--white);
     --card-border: #334155;
@@ -6142,9 +6143,7 @@ body.dark-mode .chat-footer {
 
 /* Social sidebar: frosted like the header, both themes */
 body.dark-mode .sticky-sidebar {
-    background: rgba(15, 23, 42, 0.68);
     color: var(--text);
-    border-color: rgba(255, 255, 255, 0.16);
 }
 
 body.dark-mode .ui-card,
@@ -6177,13 +6176,7 @@ body.dark-mode .nav-toggle {
 }
 
 body.dark-mode header {
-    border: 0.5px solid rgba(255, 255, 255, 0.42); /* very thin, faint white outline (dark theme) */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-}
-
-/* Dark-theme frost fill lives on the pseudo-element (header itself is transparent) */
-body.dark-mode header::before {
-    background: rgba(15, 23, 42, 0.82);
 }
 
 body.dark-mode .header-tools {
