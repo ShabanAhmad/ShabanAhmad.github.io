@@ -4638,7 +4638,7 @@ body.dark-mode .patent-card {
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.7rem;
-    font-weight: bold;
+    font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
