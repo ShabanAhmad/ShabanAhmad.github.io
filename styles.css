@@ -4450,6 +4450,14 @@ body.dark-mode .patent-card {
     transition: color 0.3s;
 }
 
+/* Red separator between the social icons and the copyright */
+.footer-copyright::before {
+    content: "|";
+    color: #f3071f;
+    margin-right: 8px;
+    font-weight: 400;
+}
+
 .footer-copyright:hover {
     color: var(--accent);
 }
@@ -5732,6 +5740,11 @@ body.dark-mode .patent-card {
     .contact-left {
         position: static;
         padding-left: 12px;
+    }
+
+    /* A touch of breathing room below the location line before the form */
+    .contact-left .contact-item:last-of-type {
+        margin-bottom: 6px;
     }
 
     .contact-right {
