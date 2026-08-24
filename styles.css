@@ -4283,6 +4283,24 @@ body.dark-mode .patent-card {
     margin-bottom: 0;
 }
 
+/* Gradient separator between the "Let's Collaborate" column and the form,
+   matching the page's section dividers. Vertical on desktop. */
+.contact-right {
+    position: relative;
+}
+
+.contact-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1rem; /* centred in the 2rem grid gap */
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #0d0b0c, var(--accent), #f3071f);
+    opacity: 0.9;
+}
+
 .contact-left h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -4296,6 +4314,7 @@ body.dark-mode .patent-card {
     font-size: 1.1rem;
     margin-bottom: 1rem;
     line-height: 1.6;
+    text-align: justify;
 }
 
 .contact-item {
@@ -5659,48 +5678,45 @@ body.dark-mode .patent-card {
     }
 
     .contact-right {
-        padding-left: 15px;
+        padding-left: 0;
+        padding-top: 1.5rem; /* room below the horizontal separator */
     }
 
-    /* offset form inputs from the arrow line running at left:0 */
-
-    /* Mobile (single column): form sits BELOW, so the connector runs down the left
-       edge and its arrowhead points DOWN toward the Send button below. */
-    .contact-arrow-wrapper {
-        left: 2px;
-        width: 8px;
-        height: calc(100% - 4px);
-    }
-
-    .contact-arrow-head-svg {
-        right: -6px;
-        bottom: -9px;
-        transform: rotate(90deg); /* rotate the ">" so it points down */
-        transform-origin: center;
-        opacity: 1; /* always visible on mobile (no hover on touch) */
-    }
-
-    /* Always drawn on mobile — no tap needed */
-    .contact-arrow-line-svg .arrow-line {
-        stroke-dashoffset: 0;
+    /* Separator turns horizontal on mobile, sitting just below the copyright line */
+    .contact-right::before {
+        top: -0.9rem;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 3px;
+        background: linear-gradient(90deg, #0d0b0c, var(--accent), #f3071f);
+        background-size: 200% 100%;
+        animation: gradientRun 3s linear infinite;
     }
 
     .cf-input-group {
         grid-template-columns: 1fr;
     }
 
+    /* Centre the socials + copyright (they wrap to their own lines on mobile) */
     .footer-bottom-wrapper {
         flex-wrap: wrap;
         white-space: normal;
-        justify-content: flex-start;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-socials {
+        justify-content: center !important;
     }
 
     .footer-copyright {
-        margin-left: 0 !important;
-        margin-top: 10px;
+        margin: 10px auto 0 !important;
         width: fit-content;
-        align-self: flex-start;
+        align-self: center;
         display: inline-block;
+        text-align: center;
     }
 
     .form-actions {
