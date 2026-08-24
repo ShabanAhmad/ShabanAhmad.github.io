@@ -5311,8 +5311,11 @@ body.dark-mode .patent-card {
         justify-content: flex-start;
         padding: 0;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        transform: translateX(120vw); /* fully off-screen when closed — no visible sliver */
-        transition: transform 0.3s ease-in-out;
+        transform-origin: top center;
+        transform: translateY(-16px); /* closed: tucked up toward the header */
+        opacity: 0;
+        visibility: hidden; /* fully hidden — nothing visible or clickable when closed */
+        transition: transform 0.28s ease, opacity 0.28s ease, visibility 0s linear 0.28s;
         z-index: 2000;
         display: flex;
         border-radius: 16px;
@@ -5321,8 +5324,12 @@ body.dark-mode .patent-card {
         align-items: flex-start;
     }
 
+    /* Open: drops down from the header and fades in; closing retracts up + fades out */
     .nav-list.active {
-        transform: translateX(0);
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        transition: transform 0.28s ease, opacity 0.28s ease;
     }
 
     /* Dark theme: menu matches the dark frosted header */
