@@ -4569,7 +4569,7 @@ body.dark-mode .patent-card {
     position: absolute;
     left: 0;
     top: 6px; /* sits just inside the fields' top, doesn't cross above the form */
-    cursor: help;
+    cursor: default;
 }
 
 .cf-vlabel {
@@ -4588,13 +4588,6 @@ body.dark-mode .patent-card {
     white-space: nowrap;
 }
 
-/* Nice multi-line tooltip for the Contact label */
-.cf-vlabel-wrap[data-tip]::after {
-    white-space: normal;
-    width: 220px;
-    line-height: 1.4;
-    text-align: left;
-}
 
 /* Message box + action buttons side by side, buttons vertically centred */
 .cf-message-row {
