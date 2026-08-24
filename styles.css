@@ -284,7 +284,7 @@ header {
     width: min(1180px, calc(100% - 24px));
     border-radius: 18px;
     z-index: 10001;
-    height: 48px;
+    height: 42px;
     transition: var(--transition);
 }
 
@@ -1292,7 +1292,7 @@ body.dark-mode .section-rail .rail-dot.active {
 
 .hero {
     color: var(--white);
-    padding: 78px 0 0; /* top clearance so the floating header sits above the photo/text */
+    padding: 56px 0 0; /* top clearance so the floating header sits above the photo/text */
     position: relative;
     z-index: 1;
     display: flex;
@@ -1335,7 +1335,9 @@ body.dark-mode .section-rail .rail-dot.active {
 #hero-side-left {
     position: absolute;
     right: calc(100% + 40px); /* Positioned outside left of main group */
-    top: 0;                   /* Align with top of main group container */
+    top: -56px;               /* Rise into header row (no buttons above the sides) */
+    width: 420px;             /* Wider so it bleeds off top+left; wrapper clips those edges */
+    height: 420px;            /* Kept square to avoid distorting the WebGL molecule */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1345,10 +1347,10 @@ body.dark-mode .section-rail .rail-dot.active {
 #hero-side-right {
     position: absolute;
     left: calc(100% + 40px);  /* Positioned outside right of main group */
-    top: 0;                   /* Align with top of main group container */
+    top: -30px;               /* Mild rise into header row (no buttons above the sides) */
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Anchor terminal to bottom-left to grow upwards and rightwards */
+    justify-content: center;  /* Centre terminal vertically — no huge gap top or bottom */
     align-items: flex-start;  /* Align terminal closest to separator */
 }
 
@@ -4630,7 +4632,7 @@ body.dark-mode .patent-card {
     gap: 4px;
     flex-wrap: nowrap;
     width: fit-content;
-    margin: 0;
+    margin: 18px 0 0; /* push stack down so top red | clears the Contact Shaban outline */
     padding: 0;
     border: none; /* no outline — just the two stacked icon buttons */
 }
@@ -11463,7 +11465,7 @@ body.dark-mode .culture-card:hover h4 {
    green hero runs to the very top behind it. */
 @media (max-width: 900px) {
     header {
-        height: 50px;
+        height: 44px;
     }
     body {
         padding-top: 0;
