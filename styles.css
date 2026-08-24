@@ -4295,10 +4295,10 @@ body.dark-mode .patent-card {
     top: 0;
     bottom: 0;
     left: -1rem; /* centred in the 2rem grid gap */
-    width: 3px;
-    border-radius: 3px;
-    background: linear-gradient(180deg, #0d0b0c, var(--accent), #f3071f);
-    opacity: 0.9;
+    width: 2px;
+    border-radius: 2px;
+    background: var(--accent); /* thin solid gold line, like the page side outlines */
+    opacity: 0.6;
 }
 
 .contact-left h2 {
@@ -5689,10 +5689,9 @@ body.dark-mode .patent-card {
         left: 0;
         right: 0;
         width: auto;
-        height: 3px;
-        background: linear-gradient(90deg, #0d0b0c, var(--accent), #f3071f);
-        background-size: 200% 100%;
-        animation: gradientRun 3s linear infinite;
+        height: 2px;
+        background: var(--accent);
+        animation: none;
     }
 
     .cf-input-group {
