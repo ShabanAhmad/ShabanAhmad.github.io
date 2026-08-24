@@ -4498,6 +4498,7 @@ body.dark-mode .patent-card {
 .footer-bottom-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center; /* centre socials+copyright under the column (not hard-left) */
     flex-wrap: nowrap;
     white-space: nowrap;
     margin-top: 0;
