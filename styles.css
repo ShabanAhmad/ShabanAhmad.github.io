@@ -290,10 +290,15 @@ header::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.78);
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     z-index: -1;
+    /* Force a GPU layer so the frosted backdrop repaints on scroll (fixes the
+       mobile "fixed header + backdrop-filter goes invisible on scroll" bug). */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .header-content {
@@ -1923,7 +1928,7 @@ body.dark-mode .section-rail .rail-dot.active {
     background: rgba(255, 255, 255, 0.05);
     padding: 5px 10px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.78);
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -5381,7 +5386,7 @@ body.dark-mode .patent-card {
         max-width: 85vw;
         height: auto;
         min-height: auto; /* Shorter mobile menu */
-        background: rgba(255, 255, 255, 0.6); /* frosted — same as the header island */
+        background: rgba(255, 255, 255, 0.78); /* frosted — same as the header island */
         -webkit-backdrop-filter: blur(18px);
         backdrop-filter: blur(18px);
         flex-direction: column;
@@ -5411,7 +5416,7 @@ body.dark-mode .patent-card {
 
     /* Dark theme: menu matches the dark frosted header */
     body.dark-mode .nav-list {
-        background: rgba(15, 23, 42, 0.62);
+        background: rgba(15, 23, 42, 0.82);
         border-color: rgba(255, 255, 255, 0.16);
     }
 
@@ -6151,7 +6156,7 @@ body.dark-mode header {
 
 /* Dark-theme frost fill lives on the pseudo-element (header itself is transparent) */
 body.dark-mode header::before {
-    background: rgba(15, 23, 42, 0.62);
+    background: rgba(15, 23, 42, 0.82);
 }
 
 body.dark-mode .header-tools {
