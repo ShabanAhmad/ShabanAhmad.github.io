@@ -4456,11 +4456,13 @@ body.dark-mode .patent-card {
 }
 
 /* Red separator between the social icons and the copyright */
-.footer-copyright::before {
-    content: "|";
+/* Red separator between the social icons and the copyright (own element so the
+   copyright's hover underline stays under the text only). */
+.footer-red-sep {
     color: #f3071f;
-    margin-right: 8px;
+    margin: 0 6px;
     font-weight: 400;
+    user-select: none;
 }
 
 .footer-copyright:hover {
