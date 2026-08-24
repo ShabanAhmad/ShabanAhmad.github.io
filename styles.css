@@ -5305,7 +5305,7 @@ body.dark-mode .patent-card {
     .header-content {
         justify-content: center;
         gap: 14px;
-        padding: 0 14px;
+        padding: 0 4px 0 14px; /* trim the whitespace to the right of the hamburger */
     }
 
     /* Fixed Header Name constraints to prevent overlap */
