@@ -5750,22 +5750,36 @@ body.dark-mode .patent-card {
 
     /* Centre the socials + copyright (they wrap to their own lines on mobile) */
     .footer-bottom-wrapper {
-        flex-wrap: wrap;
-        white-space: normal;
+        flex-wrap: nowrap;
+        white-space: nowrap;
         justify-content: center;
-        text-align: center;
+        align-items: center;
+        gap: 8px;
     }
 
+    /* Mobile: plain social icons — no pill outline, fill, or padding */
     .footer-socials {
         justify-content: center !important;
+        gap: 8px !important;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        margin-left: 0 !important;
+    }
+
+    .footer-socials:has(.f-soc-link:hover) {
+        border-color: transparent !important;
+        background: transparent !important;
     }
 
     .footer-copyright {
-        margin: 10px auto 0 !important;
-        width: fit-content;
+        margin: 0 !important;
+        width: auto;
         align-self: center;
         display: inline-block;
         text-align: center;
+        font-size: 0.72rem;
+        white-space: nowrap;
     }
 
     .form-actions {
