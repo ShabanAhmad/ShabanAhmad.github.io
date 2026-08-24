@@ -4325,13 +4325,7 @@ body.dark-mode .patent-card {
 
 /* ===== UNIFIED ANIMATED SVG CONTACT ARROW ===== */
 .contact-arrow-wrapper {
-    position: absolute;
-    top: 0;
-    left: -15px;
-    width: calc(100% + 15px);
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+    display: none !important; /* connector arrow removed */
 }
 
 .contact-arrow-line-svg {
@@ -4506,16 +4500,31 @@ body.dark-mode .patent-card {
     background-color: var(--accent);
 }
 
-.form-actions {
+/* Message box + action buttons side by side, buttons vertically centred */
+.cf-message-row {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 10px;
+}
+
+.cf-message-row .cf-textarea {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Buttons stacked vertically in a single pill outline, on the LEFT of the message
+   box (keeps them clear of the back-to-top / AI bot on the right in mobile). */
+.form-actions {
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     flex-wrap: nowrap;
     width: fit-content;
-    margin: 8px auto 0; /* centred, just below the message box */
-    padding: 3px;
-    border: 1px solid rgba(245, 158, 11, 0.55); /* single outline hugging both buttons */
-    border-radius: 999px;
+    margin: 0;
+    padding: 0;
+    border: none; /* no outline — just the two stacked icon buttons */
 }
 
 .footer-socials {
@@ -5695,12 +5704,12 @@ body.dark-mode .patent-card {
     }
 
     .form-actions {
-        justify-content: center;
         width: fit-content;
         display: flex;
+        flex-direction: column;
         gap: 3px;
         flex-wrap: nowrap;
-        margin: 8px auto 0; /* hug content, centred */
+        margin: 0;
     }
 
     .form-footer {
@@ -11278,25 +11287,34 @@ body.dark-mode .culture-card:hover h4 {
 /* Submit button uses the icon-pill pattern but is not an AI action — no sparkle */
 #submit-btn .btn-icon { animation: none !important; }
 
-/* Footer buttons stay small icon buttons showing a tooltip on hover.
+/* Footer buttons: tight icon buttons — no horizontal padding, width = icon only.
    overflow visible so the tooltip isn't clipped by the button box. */
 .form-actions .ai-expand-btn {
     overflow: visible !important;
-    width: 36px;
-    height: 36px;
-    max-width: 36px !important;
-    padding: 6px !important;
+    width: auto;
+    height: auto;
+    max-width: none !important;
+    padding: 4px 0 !important;
 }
 
-/* Hover just fills the icon (no expand); the label shows as a tooltip above. */
+.form-actions .ai-expand-btn .btn-icon {
+    min-width: 0;
+}
+
+/* Hover: fill just the icon (no expand); label shows as a tooltip above. */
 .form-actions .ai-expand-btn:hover,
 .form-actions .ai-expand-btn.processing-gold,
 .form-actions .ai-expand-btn:active {
-    max-width: 36px !important;
-    padding: 6px !important;
-    background-color: var(--accent) !important;
-    box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
+    max-width: none !important;
+    padding: 4px 0 !important;
+    background-color: transparent !important;
+    color: var(--accent) !important;
+    box-shadow: none !important;
     z-index: auto;
+}
+
+.form-actions .ai-expand-btn:hover .btn-icon {
+    color: var(--accent) !important;
 }
 
 /* Never reveal the inline label on the footer buttons — the tooltip replaces it. */
