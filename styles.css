@@ -4279,9 +4279,18 @@ body.dark-mode .patent-card {
 .contact-grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-rows: auto auto;
+    column-gap: 2rem;
+    row-gap: 0.6rem;
     margin-bottom: 0;
+    align-content: start;
+    align-items: start;
 }
+
+/* Desktop: socials/copyright sit directly under the left column; form spans both rows */
+.contact-left { grid-column: 1; grid-row: 1; }
+.contact-right { grid-column: 2; grid-row: 1 / span 2; }
+.contact-grid-layout > .footer-bottom-wrapper { grid-column: 1; grid-row: 2; }
 
 /* Gradient separator between the "Let's Collaborate" column and the form,
    matching the page's section dividers. Vertical on desktop. */
@@ -4295,10 +4304,10 @@ body.dark-mode .patent-card {
     top: 0;
     bottom: 0;
     left: -1rem; /* centred in the 2rem grid gap */
-    width: 2px;
-    border-radius: 2px;
-    background: var(--accent); /* thin solid gold line, like the page side outlines */
-    opacity: 0.6;
+    width: 1px;
+    /* Thin line, thick in the centre and fading at the corners — like the page outline */
+    background: linear-gradient(180deg, transparent, var(--accent) 40%, var(--accent) 60%, transparent);
+    opacity: 0.7;
 }
 
 .contact-left h2 {
@@ -4322,6 +4331,10 @@ body.dark-mode .patent-card {
     align-items: center;
     margin-bottom: 0.5rem;
     color: #cbd5e1;
+}
+
+.contact-left .contact-item:last-of-type {
+    margin-bottom: 0; /* no trailing space after the location line */
 }
 
 .contact-item i {
@@ -4517,6 +4530,36 @@ body.dark-mode .patent-card {
 
 .cf-btn:hover {
     background-color: var(--accent);
+}
+
+/* Name/Email/Subject with a vertical "Contact Shaban" label on the left.
+   Label is absolutely positioned so its height never pushes the message box down. */
+.cf-top-row {
+    position: relative;
+    margin-bottom: 1rem;
+    padding-left: 40px; /* room for the vertical label */
+}
+
+.cf-top-fields > .cf-input-group {
+    margin-bottom: 1rem;
+}
+
+.cf-vlabel {
+    position: absolute;
+    left: 0;
+    top: 6px; /* sits just inside the fields' top, doesn't cross above the form */
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    color: var(--accent);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(245, 158, 11, 0.5); /* outline */
+    border-radius: 8px;
+    padding: 6px 3px;
+    white-space: nowrap;
 }
 
 /* Message box + action buttons side by side, buttons vertically centred */
@@ -5667,9 +5710,18 @@ body.dark-mode .patent-card {
 
     .contact-grid-layout {
         grid-template-columns: 1fr;
-        gap: 2rem;
-        margin-bottom: 2rem;
+        grid-template-rows: none;
+        gap: 1.2rem;
+        margin-bottom: 0;
         position: relative;
+    }
+
+    /* Single column: natural DOM order → left, form, then socials/copyright last */
+    .contact-left,
+    .contact-right,
+    .contact-grid-layout > .footer-bottom-wrapper {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .contact-left {
@@ -5682,16 +5734,9 @@ body.dark-mode .patent-card {
         padding-top: 1.5rem; /* room below the horizontal separator */
     }
 
-    /* Separator turns horizontal on mobile, sitting just below the copyright line */
+    /* No separator on mobile */
     .contact-right::before {
-        top: -0.9rem;
-        bottom: auto;
-        left: 0;
-        right: 0;
-        width: auto;
-        height: 2px;
-        background: var(--accent);
-        animation: none;
+        display: none;
     }
 
     .cf-input-group {
