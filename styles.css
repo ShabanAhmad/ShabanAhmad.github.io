@@ -290,7 +290,7 @@ header::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.6);
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     z-index: -1;
@@ -4281,7 +4281,7 @@ body.dark-mode .patent-card {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     column-gap: 2rem;
-    row-gap: 0.6rem;
+    row-gap: 0.25rem;
     margin-bottom: 0;
     align-content: start;
     align-items: start;
@@ -4351,7 +4351,7 @@ body.dark-mode .patent-card {
 .contact-left {
     position: relative;
     padding-left: 15px;
-    padding-bottom: 12px;
+    padding-bottom: 0;
     align-self: start;
 }
 
@@ -4593,8 +4593,8 @@ body.dark-mode .patent-card {
     display: inline-flex;
     gap: 15px;
     justify-content: flex-start;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 0;
+    margin-top: 0;
     padding: 8px 20px;
     border-radius: 50px;
     border: 1px solid transparent;
@@ -5381,7 +5381,7 @@ body.dark-mode .patent-card {
         max-width: 85vw;
         height: auto;
         min-height: auto; /* Shorter mobile menu */
-        background: rgba(255, 255, 255, 0.78); /* frosted — same as the header island */
+        background: rgba(255, 255, 255, 0.6); /* frosted — same as the header island */
         -webkit-backdrop-filter: blur(18px);
         backdrop-filter: blur(18px);
         flex-direction: column;
@@ -5411,7 +5411,7 @@ body.dark-mode .patent-card {
 
     /* Dark theme: menu matches the dark frosted header */
     body.dark-mode .nav-list {
-        background: rgba(15, 23, 42, 0.80);
+        background: rgba(15, 23, 42, 0.62);
         border-color: rgba(255, 255, 255, 0.16);
     }
 
@@ -5711,7 +5711,7 @@ body.dark-mode .patent-card {
     .contact-grid-layout {
         grid-template-columns: 1fr;
         grid-template-rows: none;
-        gap: 0.7rem;
+        gap: 0.3rem;
         margin-bottom: 0;
         position: relative;
     }
@@ -5731,7 +5731,7 @@ body.dark-mode .patent-card {
 
     .contact-right {
         padding-left: 0;
-        padding-top: 1.5rem; /* room below the horizontal separator */
+        padding-top: 0;
     }
 
     /* No separator on mobile */
@@ -6151,7 +6151,7 @@ body.dark-mode header {
 
 /* Dark-theme frost fill lives on the pseudo-element (header itself is transparent) */
 body.dark-mode header::before {
-    background: rgba(15, 23, 42, 0.80);
+    background: rgba(15, 23, 42, 0.62);
 }
 
 body.dark-mode .header-tools {
