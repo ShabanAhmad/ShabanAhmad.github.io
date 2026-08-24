@@ -4524,7 +4524,7 @@ body.dark-mode .patent-card {
 .cf-textarea {
     padding: 12px 14px;
     resize: vertical;
-    min-height: 120px;
+    min-height: 150px;
     margin-bottom: 1rem;
 }
 
@@ -4554,12 +4554,12 @@ body.dark-mode .patent-card {
    Label is absolutely positioned so its height never pushes the message box down. */
 .cf-top-row {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding-left: 40px; /* room for the vertical label */
 }
 
 .cf-top-fields > .cf-input-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .cf-vlabel {
