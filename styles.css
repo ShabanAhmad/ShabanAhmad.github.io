@@ -489,6 +489,10 @@ header::before {
     display: none;
 }
 
+.tools-toggle {
+    display: none;
+}
+
 .mobile-dropdown-toggle {
     display: none;
 }
@@ -920,9 +924,25 @@ body.dark-mode .srch-empty {
     border-radius: 4px;
     padding: 5px 0;
     width: 150px;
+    max-height: 240px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     display: none;
     flex-direction: column;
     z-index: 2005;
+}
+
+.custom-lang-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-lang-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+}
+
+body.dark-mode .custom-lang-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .custom-lang-dropdown.show {
@@ -5387,15 +5407,80 @@ body.dark-mode .patent-card {
         display: none !important;
     }
 
+    /* Collapse the three global controls behind a gear "tools" button.
+       Panel drops down from the header like the hamburger menu. */
+    .tools-toggle {
+        display: block;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .tools-toggle.open {
+        transform: rotate(90deg);
+    }
+
     .global-controls {
+        position: fixed;
+        top: 60px;
+        left: 50%;
+        right: auto;
+        width: max-content;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-left: 0;
+        border: 0.5px solid var(--frost-border);
+        border-radius: 14px;
+        padding: 2px 0;
+        background: var(--frost-bg);
+        -webkit-backdrop-filter: var(--frost-blur);
+        backdrop-filter: var(--frost-blur);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform-origin: top center;
+        transform: translateX(-50%) translateY(-16px);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.28s ease, opacity 0.28s ease, visibility 0s linear 0.28s;
+        z-index: 2000;
+    }
+
+    .global-controls.tools-open {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+        visibility: visible;
+        transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    /* Each control is a compact row inside the panel — panel hugs content width */
+    .global-controls > .theme-toggle,
+    .global-controls > .search-container,
+    .global-controls > .lang-wrapper {
+        width: 100%;
+        box-sizing: border-box;
         display: flex;
         align-items: center;
-        gap: 11px;
-        margin-left: 0;
-        border-left: none;
-        padding-left: 0;
-        z-index: 2002;
-        flex-shrink: 0;
+        justify-content: center;
+        padding: 9px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .global-controls > .lang-wrapper {
+        border-bottom: none;
+        position: relative;
+        justify-content: center;
+    }
+
+    body.dark-mode .global-controls > .theme-toggle,
+    body.dark-mode .global-controls > .search-container {
+        border-bottom-color: rgba(255, 255, 255, 0.10);
     }
 
     .nav-toggle {
