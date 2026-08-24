@@ -4498,11 +4498,18 @@ body.dark-mode .patent-card {
 .footer-bottom-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center; /* centre socials+copyright under the column (not hard-left) */
+    justify-content: flex-start;
     flex-wrap: nowrap;
     white-space: nowrap;
     margin-top: 0;
     width: 100%;
+}
+
+/* Desktop: nudge socials/copyright a little right of the hard-left edge */
+@media (min-width: 901px) {
+    .contact-grid-layout > .footer-bottom-wrapper {
+        padding-left: 22px;
+    }
 }
 
 .cf-input-group {
