@@ -4562,10 +4562,16 @@ body.dark-mode .patent-card {
     margin-bottom: 0.5rem;
 }
 
-.cf-vlabel {
+/* Wrapper carries the tooltip (upright); the inner label is the rotated text. */
+.cf-vlabel-wrap {
     position: absolute;
     left: 0;
     top: 6px; /* sits just inside the fields' top, doesn't cross above the form */
+    cursor: help;
+}
+
+.cf-vlabel {
+    display: inline-block;
     transform: rotate(180deg);
     writing-mode: vertical-rl;
     color: var(--accent);
@@ -4578,6 +4584,14 @@ body.dark-mode .patent-card {
     border-radius: 8px;
     padding: 6px 3px;
     white-space: nowrap;
+}
+
+/* Nice multi-line tooltip for the Contact label */
+.cf-vlabel-wrap[data-tip]::after {
+    white-space: normal;
+    width: 220px;
+    line-height: 1.4;
+    text-align: left;
 }
 
 /* Message box + action buttons side by side, buttons vertically centred */
@@ -5758,6 +5772,7 @@ body.dark-mode .patent-card {
 
     .cf-input-group {
         grid-template-columns: 1fr;
+        gap: 0.5rem; /* Name and Email stack on mobile — tighten the gap */
     }
 
     /* Centre the socials + copyright (they wrap to their own lines on mobile) */
