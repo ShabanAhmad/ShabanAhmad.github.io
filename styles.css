@@ -2438,7 +2438,7 @@ body.dark-mode h3:not([class]) {
 .ai-expand-btn {
     background-color: transparent !important;
     color: var(--accent) !important;
-    border: 1px solid rgba(245, 158, 11, 0.55) !important; /* amber outline at rest */
+    border: 1px solid transparent !important;
     box-shadow: none !important;
     border-radius: 30px !important;
     padding: 8px !important;
@@ -4509,8 +4509,13 @@ body.dark-mode .patent-card {
 .form-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 3px;
+    flex-wrap: nowrap;
+    width: fit-content;
+    margin: 8px auto 0; /* centred, just below the message box */
+    padding: 3px;
+    border: 1px solid rgba(245, 158, 11, 0.55); /* single outline hugging both buttons */
+    border-radius: 999px;
 }
 
 .footer-socials {
@@ -5305,7 +5310,7 @@ body.dark-mode .patent-card {
         max-width: 85vw;
         height: auto;
         min-height: auto; /* Shorter mobile menu */
-        background: rgba(255, 255, 255, 0.82); /* frosted, matching the header island */
+        background: rgba(255, 255, 255, 0.78); /* frosted — same as the header island */
         -webkit-backdrop-filter: blur(18px);
         backdrop-filter: blur(18px);
         flex-direction: column;
@@ -5335,7 +5340,7 @@ body.dark-mode .patent-card {
 
     /* Dark theme: menu matches the dark frosted header */
     body.dark-mode .nav-list {
-        background: rgba(15, 23, 42, 0.82);
+        background: rgba(15, 23, 42, 0.80);
         border-color: rgba(255, 255, 255, 0.16);
     }
 
@@ -5345,9 +5350,12 @@ body.dark-mode .patent-card {
         border-bottom-color: rgba(255, 255, 255, 0.10);
     }
 
-    /* Nested sub-menu panels transparent too, not solid dark */
+    /* Sub-menu panels transparent (both themes) so the menu's frosted tint shows
+       through — menu and sub-menu read as one colour, matching the header. */
+    .nav-dropdown-content,
     body.dark-mode .nav-dropdown-content {
-        background-color: transparent;
+        background-color: transparent !important;
+        box-shadow: none !important;
     }
 
     .nav-item {
@@ -5660,18 +5668,12 @@ body.dark-mode .patent-card {
         bottom: -9px;
         transform: rotate(90deg); /* rotate the ">" so it points down */
         transform-origin: center;
+        opacity: 1; /* always visible on mobile (no hover on touch) */
     }
 
-    /* Draw on tap (touch = hover) */
-    .contact-left:hover .contact-arrow-line-svg .arrow-line,
-    .contact-grid-layout:hover .contact-arrow-line-svg .arrow-line {
+    /* Always drawn on mobile — no tap needed */
+    .contact-arrow-line-svg .arrow-line {
         stroke-dashoffset: 0;
-    }
-
-    .contact-left:hover .contact-arrow-head-svg,
-    .contact-grid-layout:hover .contact-arrow-head-svg {
-        opacity: 1;
-        transition: opacity 0.2s ease-out 0.8s;
     }
 
     .cf-input-group {
@@ -5694,11 +5696,11 @@ body.dark-mode .patent-card {
 
     .form-actions {
         justify-content: center;
-        width: 100%;
+        width: fit-content;
         display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-top: 5px;
+        gap: 3px;
+        flex-wrap: nowrap;
+        margin: 8px auto 0; /* hug content, centred */
     }
 
     .form-footer {
@@ -6063,6 +6065,7 @@ body.dark-mode .contact-footer-section {
 }
 
 body.dark-mode .nav-link,
+body.dark-mode .nav-dropdown-content a,
 body.dark-mode .control-icon,
 body.dark-mode .lang-wrapper,
 body.dark-mode .header-name,
@@ -11275,51 +11278,42 @@ body.dark-mode .culture-card:hover h4 {
 /* Submit button uses the icon-pill pattern but is not an AI action — no sparkle */
 #submit-btn .btn-icon { animation: none !important; }
 
-/* Footer form buttons (Send / AI Draft / Synergy): the row has room, so let
-   them expand IN-FLOW as a single pill (label inside the box) that pushes the
-   neighbouring buttons aside instead of overlaying/hiding them. This overrides
-   the fixed-footprint overlay used elsewhere — footer only. */
+/* Footer buttons stay small icon buttons showing a tooltip on hover.
+   overflow visible so the tooltip isn't clipped by the button box. */
 .form-actions .ai-expand-btn {
-    overflow: hidden !important;
+    overflow: visible !important;
+    width: 36px;
+    height: 36px;
+    max-width: 36px !important;
+    padding: 6px !important;
 }
 
+/* Hover just fills the icon (no expand); the label shows as a tooltip above. */
 .form-actions .ai-expand-btn:hover,
 .form-actions .ai-expand-btn.processing-gold,
 .form-actions .ai-expand-btn:active {
-    max-width: 250px !important;
-    padding: 8px 18px !important;
+    max-width: 36px !important;
+    padding: 6px !important;
     background-color: var(--accent) !important;
     box-shadow: 0 4px 10px rgba(220, 161, 29, 0.3) !important;
     z-index: auto;
 }
 
-/* Label flows inline within the pill (not an absolute overlay). */
+/* Never reveal the inline label on the footer buttons — the tooltip replaces it. */
 .form-actions .ai-expand-btn .btn-text {
-    position: static;
-    transform: none;
-    left: auto;
-    right: auto;
-    height: auto;
-    display: inline-block;
-    width: 0;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    box-shadow: none;
-    border-radius: 0;
-    color: inherit;
-    font-size: 0.9rem;
-    opacity: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease, margin-left 0.3s ease;
+    display: none !important;
 }
 
-.form-actions .ai-expand-btn:hover .btn-text,
-.form-actions .ai-expand-btn.processing-gold .btn-text,
-.form-actions .ai-expand-btn:active .btn-text {
-    opacity: 1;
-    width: auto;
-    margin-left: 8px !important;
+/* Tooltip above the button, like the flag/social tooltips. */
+.form-actions .ai-expand-btn[data-tip]::after {
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%) translateY(4px);
+}
+
+.form-actions .ai-expand-btn[data-tip]:hover::after {
+    transform: translateX(-50%) translateY(0);
 }
 
 
