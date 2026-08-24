@@ -5299,7 +5299,8 @@ body.dark-mode .patent-card {
     .nav-list {
         position: fixed;
         top: 60px;
-        right: 6px;
+        left: 50%; /* centred under the header */
+        right: auto;
         width: 200px;
         max-width: 85vw;
         height: auto;
@@ -5312,7 +5313,7 @@ body.dark-mode .patent-card {
         padding: 0;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         transform-origin: top center;
-        transform: translateY(-16px); /* closed: tucked up toward the header */
+        transform: translateX(-50%) translateY(-16px); /* closed: centred, tucked up toward the header */
         opacity: 0;
         visibility: hidden; /* fully hidden — nothing visible or clickable when closed */
         transition: transform 0.28s ease, opacity 0.28s ease, visibility 0s linear 0.28s;
@@ -5326,7 +5327,7 @@ body.dark-mode .patent-card {
 
     /* Open: drops down from the header and fades in; closing retracts up + fades out */
     .nav-list.active {
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
         opacity: 1;
         visibility: visible;
         transition: transform 0.28s ease, opacity 0.28s ease;
