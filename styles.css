@@ -4465,6 +4465,17 @@ body.dark-mode .patent-card {
     user-select: none;
 }
 
+/* Red separator between the stacked Send / AI Draft buttons — rotated so it reads
+   horizontal between the two vertically-stacked buttons. */
+.btn-red-sep {
+    color: #f3071f;
+    font-weight: 400;
+    line-height: 1;
+    transform: rotate(90deg);
+    user-select: none;
+    pointer-events: none;
+}
+
 .footer-copyright:hover {
     color: var(--accent);
 }
