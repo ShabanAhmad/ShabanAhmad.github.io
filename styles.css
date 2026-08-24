@@ -356,7 +356,7 @@ header::before {
 
     /* Tools get the same bordered pill as mobile */
     .header-tools {
-        border: 0.5px solid rgba(0, 0, 0, 0.18);
+        border: 0.5px solid rgba(0, 0, 0, 0.10);
         border-radius: 999px;
         padding: 4px 11px;
     }
@@ -5370,7 +5370,7 @@ body.dark-mode .patent-card {
 
     /* Tools grouped in a bordered pill (toggle · search · EN · menu) */
     .header-tools {
-        border: 0.5px solid rgba(0, 0, 0, 0.18);
+        border: 0.5px solid rgba(0, 0, 0, 0.10);
         border-radius: 999px;
         padding: 4px 9px;
         gap: 12px;
@@ -6209,7 +6209,7 @@ body.dark-mode header {
 }
 
 body.dark-mode .header-tools {
-    border-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.14);
 }
 
 body.dark-mode .nav-dropdown-content {
