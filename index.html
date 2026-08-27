@@ -203,7 +203,7 @@
 
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
     <link rel="preload" as="image" href="shaban.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260729_78">
+    <link rel="stylesheet" href="styles.css?v=20260729_79">
 </head>
 
 <body>
@@ -232,7 +232,7 @@
         <a href="#conferences" class="rail-dot" data-target="conferences" aria-label="Conferences"><span class="rail-label">Conferences</span></a>
         <a href="#professional" class="rail-dot" data-target="professional" aria-label="Professional Activities"><span class="rail-label">Activities</span></a>
         <a href="#technical" class="rail-dot" data-target="technical" aria-label="Expertise"><span class="rail-label">Expertise</span></a>
-        <a href="#referees" class="rail-dot" data-target="referees" aria-label="Referees and Contact"><span class="rail-label">Referees &amp; Contact</span></a>
+        <a href="#contact" class="rail-dot" data-target="contact" aria-label="Contact"><span class="rail-label">Contact</span></a>
     </nav>
 
     <!-- Interface Triggers -->
@@ -333,6 +333,7 @@
                         <a href="#professional" onclick="triggerAccordion('prof-soc')"> Membership</a>
                         <a href="#professional" onclick="triggerAccordion('prof-peer')">Peer Reviews</a>
                         <a href="#professional" onclick="triggerAccordion('prof-ment')">Mentorship</a>
+                        <a href="#professional" onclick="triggerAccordion('prof-ref')">Referees</a>
                     </div>
                 </li>
                 <li class="nav-item nav-item-dropdown">
@@ -345,7 +346,6 @@
                         <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="#referees" class="nav-link">Referees</a></li>
             </ul>
 
             <div class="header-tools">
@@ -545,7 +545,9 @@
                                     target="_blank" rel="noopener noreferrer" class="niper-hover">LungXAI</a>) and molecular simulations, to
                                 discovering PFAS-degrading enzymes. Trained at institutions across India, Finland, and
                                 Denmark, I am building towards leading an independent research group focused on
-                                therapeutic innovation. I am also an honorary alumnus of <a href="https://niperahm.ac.in/" target="_blank" rel="noopener noreferrer"
+                                therapeutic innovation. My <a href="#professional" onclick="triggerAccordion('prof-ref')"
+                                    class="niper-hover">academic referees</a> across Denmark, Finland, the United States, and India can
+                                speak to this trajectory. I am also an honorary alumnus of <a href="https://niperahm.ac.in/" target="_blank" rel="noopener noreferrer"
                                     class="niper-hover">NIPER-Ahmedabad</a>.</p>
                         </div>
 
@@ -1070,6 +1072,7 @@
                                     <span><strong>Co-Teaching (with supervisor):</strong><br>
 <ul class="traj-sub-list">
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> Co-taught course: <a href="https://kurser.ku.dk/course/NPLB24004U/2025-2026" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Bioinformatics: Methods and Application</a></li>
+<li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> Co-taught course: <a href="https://kurser.ku.dk/course/nplk19000u" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Big Data in Biotechnology</a></li>
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> PLEN DSTF Sessions on Protein-Ligand Modelling (18 September)</li>
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> PLEN DSTF Sessions on AI Agents in Bioinformatics Research (January 2027)</li>
 </ul>
@@ -1442,7 +1445,10 @@
                     useful.</p>
                 <p>This vision is portable and aligned with host institutions focused on precision medicine, biological
                     data science, or environmental sustainability. It brings a recognisable signature: mechanism-aware
-                    AI, reproducible pipelines, and collaborative translation from prediction to biological insight.</p>
+                    AI, reproducible pipelines, and collaborative translation from prediction to biological insight.
+                    Prospective hosts and collaborators are welcome to consult my <a href="#professional"
+                        onclick="triggerAccordion('prof-ref')" class="niper-hover">academic referees</a> for an
+                    independent perspective on this work.</p>
                 
                 <div class="tcp-tag-row" style="margin-top: 1.5rem;">
                     <span class="tcp-tag">Mechanism-aware AI</span>
@@ -2906,7 +2912,19 @@
 
     <!-- === SECTION 13: PROFESSIONAL ACTIVITIES === -->
     <section id="professional" class="container">
-        <h2 class="section-title">Professional Activities</h2>
+        <div class="section-header-flex">
+            <h2 class="section-title">Professional Activities</h2>
+
+            <!-- Professional Activities Finder -->
+            <div class="tech-search-container">
+                <div class="tech-search-box">
+                    <i class="fas fa-search tech-search-icon" aria-hidden="true"></i>
+                    <input type="text" id="prof-search-input" placeholder="editorial, society, referees…" oninput="filterProfessional()">
+                    <button id="prof-clear-btn" onclick="clearProfSearch()" aria-label="Clear search"><i class="fas fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="tech-search-status" id="prof-status-text" style="display:none; text-align: right; margin-top: -1.5rem; margin-bottom: 1.5rem;"></div>
 
         <button class="accordion-btn" id="prof-edit"><span><i class="fas fa-edit acc-badge-icon"
                     style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Editorial Roles</span><i
@@ -3113,6 +3131,110 @@
                 </div>
             </div>
         </div>
+
+        <button class="accordion-btn" id="prof-ref"><span><i class="fas fa-id-card acc-badge-icon"
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Academic Referees</span><i
+                class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="referee-grid">
+                    <div class="referee-card ref-1">
+                        <div class="ref-header">
+                            <div class="referee-name"><a
+                                    href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/"
+                                    target="_blank" rel="noopener noreferrer">Dr Tue K. Nielsen</a></div><span class="referee-role">Postdoc PI</span>
+                        </div>
+                        <div class="referee-title-line">Associate Professor</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/"
+                                target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
+                                    class="fas fa-university" aria-hidden="true"></i> University of Copenhagen</a><span class="flag-wrapper" data-tip="Denmark"><img
+                                    src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)');}"
+                                onclick="copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)')">tkn@plen.ku.dk</span></div>
+                    </div>
+                    <div class="referee-card ref-2">
+                        <div class="ref-header">
+                            <div class="referee-name"><a
+                                    href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza"
+                                    target="_blank" rel="noopener noreferrer">Dr Khalid Raza</a></div><span class="referee-role">PhD Supervisor</span>
+                        </div>
+                        <div class="referee-title-line">Associate Professor</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
+                                class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
+                                Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)');}"
+                                onclick="copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)')">kraza@jmi.ac.in</span></div>
+                    </div>
+                    <div class="referee-card ref-5">
+                        <div class="ref-header">
+                            <div class="referee-name"><a href="https://www.msm.edu/" target="_blank" rel="noopener noreferrer">Dr Murugesh Eswaran</a>
+                            </div><span class="referee-role">Mentor</span>
+                        </div>
+                        <div class="referee-title-line">Assistant Professor</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank"
+                                class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Morehouse
+                                School of Medicine</a><span class="flag-wrapper" data-tip="United States"><img
+                                    src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)');}"
+                                onclick="copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)')">meswaran@msm.edu</span></div>
+                    </div>
+                    <div class="referee-card ref-3">
+                        <div class="ref-header">
+                            <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank" rel="noopener noreferrer">Dr
+                                    Tiina Jokela</a></div><span class="referee-role">JYU Visiting PI</span>
+                        </div>
+                        <div class="referee-title-line">Research Director</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank"
+                                class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> University
+                                of Jyväskylä</a><span class="flag-wrapper" data-tip="Finland"><img
+                                    src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)');}"
+                                onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)')">tiina.a.jokela@jyu.fi</span></div>
+                    </div>
+                    <div class="referee-card ref-4">
+                        <div class="ref-header">
+                            <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/"
+                                    target="_blank" rel="noopener noreferrer">Dr Manoj K Yadav</a></div><span class="referee-role">PI- SARS-CoV-2</span>
+                        </div>
+                        <div class="referee-title-line">Associate Professor</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/"
+                                target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
+                                    class="fas fa-university" aria-hidden="true"></i> SRM University</a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)');}"
+                                onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)')">manoj.yadav@srmuniversity.ac.in</span>
+                        </div>
+                    </div>
+                    <div class="referee-card ref-6">
+                        <div class="ref-header">
+                            <div class="referee-name"><a
+                                    href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam"
+                                    target="_blank" rel="noopener noreferrer">Dr Mansaf Alam</a></div><span class="referee-role">MSc Supervisor</span>
+                        </div>
+                        <div class="referee-title-line">Professor</div>
+                        <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
+                                class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
+                                Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
+                                    src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
+                        <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
+                                role="button" tabindex="0"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)');}"
+                                onclick="copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)')">malam2@jmi.ac.in</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr class="separator">
     </section>
 
@@ -3295,108 +3417,6 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 15: ACADEMIC REFERENCES AND NETWORKING === -->
-    <section id="referees" class="container">
-        <h2 class="section-title">Academic Referees</h2>
-        <div class="referee-grid">
-            <div class="referee-card ref-1">
-                <div class="ref-header">
-                    <div class="referee-name"><a
-                            href="https://researchprofiles.ku.dk/en/persons/tue-kj%C3%A6rgaard-nielsen/"
-                            target="_blank" rel="noopener noreferrer">Dr Tue K. Nielsen</a></div><span class="referee-role">Postdoc PI</span>
-                </div>
-                <div class="referee-title-line">Associate Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://plen.ku.dk/english/"
-                        target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
-                            class="fas fa-university" aria-hidden="true"></i> University of Copenhagen</a><span class="flag-wrapper" data-tip="Denmark"><img
-                            src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="DK"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)');}"
-                        onclick="copyEmail(this, 'tkn@plen.ku.dk', 'var(--ref-1)')">tkn@plen.ku.dk</span></div>
-            </div>
-            <div class="referee-card ref-2">
-                <div class="ref-header">
-                    <div class="referee-name"><a
-                            href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/3004/Khalid_Raza"
-                            target="_blank" rel="noopener noreferrer">Dr Khalid Raza</a></div><span class="referee-role">PhD Supervisor</span>
-                </div>
-                <div class="referee-title-line">Associate Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
-                        class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
-                        Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
-                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)');}"
-                        onclick="copyEmail(this, 'kraza@jmi.ac.in', 'var(--ref-2)')">kraza@jmi.ac.in</span></div>
-            </div>
-            <div class="referee-card ref-5">
-                <div class="ref-header">
-                    <div class="referee-name"><a href="https://www.msm.edu/" target="_blank" rel="noopener noreferrer">Dr Murugesh Eswaran</a>
-                    </div><span class="referee-role">Mentor</span>
-                </div>
-                <div class="referee-title-line">Assistant Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.msm.edu/" target="_blank"
-                        class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Morehouse
-                        School of Medicine</a><span class="flag-wrapper" data-tip="United States"><img
-                            src="https://flagcdn.com/w20/us.png" class="flag-img" loading="lazy" alt="US"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)');}"
-                        onclick="copyEmail(this, 'meswaran@msm.edu', 'var(--ref-5)')">meswaran@msm.edu</span></div>
-            </div>
-            <div class="referee-card ref-3">
-                <div class="ref-header">
-                    <div class="referee-name"><a href="https://www.jyu.fi/en/people/tiina-jokela" target="_blank" rel="noopener noreferrer">Dr
-                            Tiina Jokela</a></div><span class="referee-role">JYU Visiting PI</span>
-                </div>
-                <div class="referee-title-line">Research Director</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jyu.fi/en" target="_blank"
-                        class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> University
-                        of Jyväskylä</a><span class="flag-wrapper" data-tip="Finland"><img
-                            src="https://flagcdn.com/w20/fi.png" class="flag-img" loading="lazy" alt="FI"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)');}"
-                        onclick="copyEmail(this, 'tiina.a.jokela@jyu.fi', 'var(--ref-3)')">tiina.a.jokela@jyu.fi</span></div>
-            </div>
-            <div class="referee-card ref-4">
-                <div class="ref-header">
-                    <div class="referee-name"><a href="https://www.srmuniversity.ac.in/faculty/dr-manoj-kumar-yadav/"
-                            target="_blank" rel="noopener noreferrer">Dr Manoj K Yadav</a></div><span class="referee-role">PI- SARS-CoV-2</span>
-                </div>
-                <div class="referee-title-line">Associate Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.srmuniversity.ac.in/"
-                        target="_blank" class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i
-                            class="fas fa-university" aria-hidden="true"></i> SRM University</a><span class="flag-wrapper" data-tip="India"><img
-                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)');}"
-                        onclick="copyEmail(this, 'manoj.yadav@srmuniversity.ac.in', 'var(--ref-4)')">manoj.yadav@srmuniversity.ac.in</span>
-                </div>
-            </div>
-            <div class="referee-card ref-6">
-                <div class="ref-header">
-                    <div class="referee-name"><a
-                            href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Faculty-Members/1891/Mansaf_Alam"
-                            target="_blank" rel="noopener noreferrer">Dr Mansaf Alam</a></div><span class="referee-role">MSc Supervisor</span>
-                </div>
-                <div class="referee-title-line">Professor</div>
-                <div class="ref-inst-row" style="margin-bottom:5px;"><a href="https://www.jmi.ac.in/" target="_blank"
-                        class="inst-link" style="display:inline; margin:0;" rel="noopener noreferrer"><i class="fas fa-university" aria-hidden="true"></i> Jamia
-                        Millia Islamia</a><span class="flag-wrapper" data-tip="India"><img
-                            src="https://flagcdn.com/w20/in.png" class="flag-img" loading="lazy" alt="IN"></span></div>
-                <div class="referee-contact"><i class="fas fa-envelope email-badge" aria-hidden="true"></i><span class="email-click"
-                        role="button" tabindex="0"
-                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)');}"
-                        onclick="copyEmail(this, 'malam2@jmi.ac.in', 'var(--ref-6)')">malam2@jmi.ac.in</span></div>
-            </div>
-        </div>
-        <hr class="separator">
-    </section>
-
     <!-- === SECTION 16: CONTACT PLATFORM & FOOTER === -->
     <section id="contact" class="contact-footer-section reveal">
         <div class="container">
@@ -3507,7 +3527,7 @@
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
 
-    <script src="scripts.js?v=20260729_24" defer></script>
+    <script src="scripts.js?v=20260729_25" defer></script>
     <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Privacy-friendly, cookieless analytics (GoatCounter): visit counts + per-country stats only. No cookies, no personal data stored.
@@ -3543,7 +3563,7 @@
                 <span class="srch-pill" data-section="publications">Publications</span>
                 <span class="srch-pill" data-section="awards">Awards</span>
                 <span class="srch-pill" data-section="technical">Skills</span>
-                <span class="srch-pill" data-section="referees">Referees</span>
+                <span class="srch-pill" data-section="prof-ref">Referees</span>
                 <span class="srch-pill" data-section="contact">Contact</span>
             </div>
             <div class="srch-body" id="srch-body"></div>

@@ -237,8 +237,7 @@ window.addEventListener('scroll', () => {
             if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4 && secs.length) c = secs[secs.length - 1].getAttribute("id");
             // Sections with no button of their own map to the button that owns them.
             if (c === "professional") c = "conferences";   // Professional Activities → Activities
-            if (c === "contact") c = "referees";            // Contact → Referees
-            document.querySelectorAll(".nav-link").forEach(li => { li.classList.remove("active-section"); const h = li.getAttribute("href"); if (c && h && h === "#" + c) li.classList.add("active-section"); });
+                document.querySelectorAll(".nav-link").forEach(li => { li.classList.remove("active-section"); const h = li.getAttribute("href"); if (c && h && h === "#" + c) li.classList.add("active-section"); });
             isScrolling = false;
         });
         isScrolling = true;
@@ -267,7 +266,6 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
         { id: 'awards', label: 'Accolades', icon: 'fas fa-trophy', sels: ['#awards', '#patents'] },
         { id: 'technical', label: 'Skills & Tools', icon: 'fas fa-tools', sels: ['#technical'] },
         { id: 'professional', label: 'Professional Activities', icon: 'fas fa-briefcase', sels: ['#professional', '#conferences'] },
-        { id: 'referees', label: 'Referees', icon: 'fas fa-users', sels: ['#referees'] },
         { id: 'contact', label: 'Contact', icon: 'fas fa-envelope', sels: ['#contact'] },
     ];
 
@@ -2075,6 +2073,67 @@ function toggleAccordionState(btn, expand) {
         panel.style.maxHeight = null;
     }
 }
+
+/* ===== PROFESSIONAL ACTIVITIES FINDER ===== */
+window.clearProfSearch = function() {
+    const inp = document.getElementById('prof-search-input');
+    if (inp) inp.value = '';
+    const clearBtn = document.getElementById('prof-clear-btn');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.filterProfessional();
+};
+
+const performFilterProfessional = function() {
+    const inp = document.getElementById('prof-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+
+    if (!window.cachedProfAccordions) window.cachedProfAccordions = document.querySelectorAll('#professional .accordion-btn');
+    const accordions = window.cachedProfAccordions;
+    let totalMatches = 0;
+
+    accordions.forEach(btn => {
+        const panel = btn.nextElementSibling;
+        if (!panel) return;
+        if (!panel.cachedProfItems) panel.cachedProfItems = panel.querySelectorAll('.pub-item, .referee-card, .pr-badge-item');
+        const items = panel.cachedProfItems;
+        let panelMatches = 0;
+
+        items.forEach(item => {
+            if (!item.hasAttribute('data-orig-text')) item.setAttribute('data-orig-text', item.textContent.toLowerCase());
+            const text = item.getAttribute('data-orig-text');
+            if (query && !text.includes(query)) {
+                item.classList.add('prof-hide');
+            } else {
+                item.classList.remove('prof-hide');
+                if (query) { panelMatches++; totalMatches++; }
+            }
+        });
+
+        toggleAccordionState(btn, query ? panelMatches > 0 : false);
+    });
+
+    const statusText = document.getElementById('prof-status-text');
+    if (statusText) {
+        if (query) {
+            statusText.style.display = 'block';
+            statusText.textContent = `Found ${totalMatches} matching entr${totalMatches === 1 ? 'y' : 'ies'}.`;
+        } else {
+            statusText.style.display = 'none';
+        }
+    }
+};
+
+const debouncedFilterProfessional = debounce(performFilterProfessional, 150);
+
+window.filterProfessional = function() {
+    const inp = document.getElementById('prof-search-input');
+    if (!inp) return;
+    const query = inp.value.trim().toLowerCase();
+    const clearBtn = document.getElementById('prof-clear-btn');
+    if (clearBtn) clearBtn.style.display = query ? 'block' : 'none';
+    debouncedFilterProfessional();
+};
 
 /* ===== ACADEMIC VISION AI SUMMARY ===== */
 window.summariseVision = () => {

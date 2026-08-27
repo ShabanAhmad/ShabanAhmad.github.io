@@ -9713,7 +9713,8 @@ body.dark-mode .pub-search-status {
     pointer-events: none;
 }
 
-#tech-search-input {
+#tech-search-input,
+#prof-search-input {
     width: 100%;
     padding: 9px 2.2rem 9px 2.2rem;
     border-radius: 8px;
@@ -9725,14 +9726,16 @@ body.dark-mode .pub-search-status {
     transition: all 0.3s ease;
 }
 
-#tech-search-input:focus {
+#tech-search-input:focus,
+#prof-search-input:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
     background: var(--white);
 }
 
-#tech-clear-btn {
+#tech-clear-btn,
+#prof-clear-btn {
     position: absolute;
     right: 0.8rem;
     background: transparent;
@@ -9744,8 +9747,13 @@ body.dark-mode .pub-search-status {
     display: none;
 }
 
-#tech-clear-btn:hover {
+#tech-clear-btn:hover,
+#prof-clear-btn:hover {
     color: var(--text);
+}
+
+.prof-hide {
+    display: none !important;
 }
 
 .tech-search-status {
@@ -9768,13 +9776,15 @@ body.dark-mode .pub-search-status {
 }
 
 /* Dark Mode Overrides for Tech Search */
-body.dark-mode #tech-search-input {
+body.dark-mode #tech-search-input,
+body.dark-mode #prof-search-input {
     background: #0f172a;
     border-color: #334155;
     color: #f1f5f9;
 }
 
-body.dark-mode #tech-search-input:focus {
+body.dark-mode #tech-search-input:focus,
+body.dark-mode #prof-search-input:focus {
     background: #1e293b;
     border-color: var(--accent);
 }
