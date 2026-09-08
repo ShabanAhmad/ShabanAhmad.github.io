@@ -263,7 +263,7 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
         { id: 'research-vision', label: 'Research Vision', icon: 'fas fa-microscope', sels: ['#research-vision', '#roadmap-funding', '#lab-model'] },
         { id: 'experience', label: 'Research Experience', icon: 'fas fa-flask', sels: ['#profile-experience'] },
         { id: 'publications', label: 'Publications', icon: 'fas fa-book-open', sels: ['#publications'] },
-        { id: 'awards', label: 'Accolades', icon: 'fas fa-trophy', sels: ['#awards', '#patents'] },
+        { id: 'awards', label: 'Accolades', icon: 'fas fa-trophy', sels: ['#awards'] },
         { id: 'technical', label: 'Skills & Tools', icon: 'fas fa-tools', sels: ['#technical'] },
         { id: 'professional', label: 'Professional Activities', icon: 'fas fa-briefcase', sels: ['#professional', '#conferences'] },
         { id: 'contact', label: 'Contact', icon: 'fas fa-envelope', sels: ['#contact'] },
@@ -287,6 +287,21 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
                     if (!txt || txt.length < 3 || seen.has(h)) return;
                     seen.add(h);
                     idx.push({ title: txt, excerpt: siblingExcerpt(h), el: h, section: sec.label, icon: sec.icon, type: 'heading' });
+                });
+
+                /* Accordion titles — searchable by their label + optional data-keywords.
+                   Indexed as 'card' so the excerpt/keywords count (heading-type would
+                   require a title-word match and miss aliases like "references"). */
+                root.querySelectorAll('.accordion-btn').forEach(btn => {
+                    if (seen.has(btn)) return;
+                    seen.add(btn);
+                    const labelEl = btn.querySelector('span');
+                    const label = (labelEl ? labelEl.textContent : btn.textContent).replace(/\s+/g, ' ').trim();
+                    if (!label || label.length < 3) return;
+                    const kw = btn.getAttribute('data-keywords') || '';
+                    const panel = btn.nextElementSibling;
+                    const panelText = panel ? panel.textContent.replace(/\s+/g, ' ').trim().slice(0, 130) : '';
+                    idx.push({ title: label, excerpt: (kw ? kw + ' ' : '') + panelText, el: btn, section: sec.label, icon: sec.icon, type: 'card' });
                 });
 
                 /* Cards / items */
@@ -408,14 +423,19 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
         addRecent(q || (inp() && inp().value.trim()));
         closeSearchModal();
         let target = item.el, panelOpened = false;
-        let p = target.parentElement;
-        while (p && p !== document.body) {
-            if (p.classList.contains('panel')) {
-                const btn = p.previousElementSibling;
-                if (btn && btn.classList.contains('accordion-btn') && !btn.classList.contains('active')) { btn.click(); panelOpened = true; }
-                break;
+        if (target.classList && target.classList.contains('accordion-btn')) {
+            /* Result is the accordion header itself — open it directly. */
+            if (!target.classList.contains('active')) { target.click(); panelOpened = true; }
+        } else {
+            let p = target.parentElement;
+            while (p && p !== document.body) {
+                if (p.classList.contains('panel')) {
+                    const btn = p.previousElementSibling;
+                    if (btn && btn.classList.contains('accordion-btn') && !btn.classList.contains('active')) { btn.click(); panelOpened = true; }
+                    break;
+                }
+                p = p.parentElement;
             }
-            p = p.parentElement;
         }
         setTimeout(() => {
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -464,7 +484,10 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
             pill.addEventListener('click', () => {
                 closeSearchModal();
                 const el = document.getElementById(pill.dataset.section);
-                if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 220);
+                if (el) {
+                    if (el.classList.contains('accordion-btn') && !el.classList.contains('active')) el.click();
+                    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 220);
+                }
             });
         });
     }
