@@ -3856,6 +3856,39 @@ body.dark-mode .patent-card {
     font-size: 0.7rem;
 }
 
+.teach-portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--primary);
+    background: rgba(0, 0, 0, 0.045);
+    border: 1px solid var(--card-border);
+    padding: 2px 10px;
+    border-radius: 999px;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.teach-portfolio-btn:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.teach-portfolio-btn i {
+    font-size: 0.7rem;
+}
+
+body.dark-mode .teach-portfolio-btn {
+    background: rgba(255, 255, 255, 0.06);
+}
+
 .event-meta {
     display: block;
     color: #666;

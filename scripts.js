@@ -305,7 +305,7 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
                 });
 
                 /* Cards / items */
-                const cardSel = '.pub-item,.exp-box,.edu-card,.award-card,.referee-card,.patent-card,.tcp-card,.act-card,.skill-category,.interest-item';
+                const cardSel = '.pub-item,.exp-box,.edu-card,.award-card,.referee-card,.patent-card,.tcp-card,.act-card,.skill-category,.interest-item,.course-card';
                 root.querySelectorAll(cardSel).forEach(card => {
                     if (seen.has(card)) return;
                     seen.add(card);
