@@ -318,7 +318,7 @@
                     <a href="#publications" class="nav-link">Publications <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
                     <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'pub-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
                     <div class="nav-dropdown-content" id="pub-dd">
-                        <a href="#publications" onclick="triggerAccordion('pubs-pipeline')">In Pipeline</a>
+                        <a href="#publications" onclick="triggerAccordion('pubs-pipeline')">Submitted/Preprints</a>
                         <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
                         <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
                         <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes</a>
@@ -2242,12 +2242,13 @@
 
         <!-- Submitted / In Pipeline Accordion -->
         <button class="accordion-btn" id="pubs-pipeline"><span><i class="fas fa-hourglass-half acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Submitted / In Pipeline</span> <i
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Submitted/Preprints</span> <i
                 class="fas fa-chevron-down" aria-hidden="true"></i></button>
         <div class="panel">
             <div class="panel-content">
                 <div class="scrollable-list">
                     <ol class="pub-list" reversed>
+                        <li class="pub-item"><strong>TFA-defluorinating microbial consortium achieved with analogue enrichment</strong><br><em>bioRxiv (Preprint, 2026)</em> <a class="pub-doi" href="https://doi.org/10.64898/2026.10.12.758446" target="_blank" rel="noopener noreferrer">DOI</a> <span style="color:var(--accent); font-weight:bold; font-size:0.8rem; margin-left:5px;">(Preprint)</span></li>
                         <li class="pub-item"><strong>DeepEntXAI: A CNN-LSTM and Hybrid, LIME-Based Explainable Framework
                                 for Enterobacteriaceae Drug Activity Classification and Efficacy
                                 Prediction</strong><br><em>Computers in Biology and Medicine (Under review, 2026)</em> <span
@@ -2696,6 +2697,11 @@
                         <li class="pub-item"><strong>Ongoing/Latest Codes and Tools (KU-MGB)</strong>
                             <a href="https://github.com/KU-MGB" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Organisation</a></li>
+                        <li class="pub-item"><strong>Code and Dataset: DeFluorX-</strong> PFAS Defluorination (FAcD discovery). <a
+                                href="https://github.com/KU-MGB/DeFluorX" target="_blank"
+                                class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a
+                                href="https://doi.org/10.5281/zenodo.23318610" target="_blank" class="btn-data" rel="noopener noreferrer"><i
+                                    class="ai ai-zenodo" aria-hidden="true"></i> Data</a></li>
                         <li class="pub-item"><strong>Code and Dataset: DrLungker-</strong> Deep Ensemble Learning
                             Framework. <a href="https://github.com/ShabanAhmad/DrLungker" target="_blank"
                                 class="btn-data" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a> <a
