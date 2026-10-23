@@ -261,6 +261,7 @@ const reveal = () => document.querySelectorAll(".reveal").forEach(r => revealObs
     /* Section map — matches section IDs in the actual HTML */
     const SECTIONS = [
         { id: 'research-vision', label: 'Research Vision', icon: 'fas fa-microscope', sels: ['#research-vision', '#roadmap-funding', '#lab-model'] },
+        { id: 'teaching', label: 'Teaching & Mentoring', icon: 'fas fa-chalkboard-teacher', sels: ['#teaching'] },
         { id: 'experience', label: 'Research Experience', icon: 'fas fa-flask', sels: ['#profile-experience'] },
         { id: 'publications', label: 'Publications', icon: 'fas fa-book-open', sels: ['#publications'] },
         { id: 'awards', label: 'Accolades', icon: 'fas fa-trophy', sels: ['#awards'] },
@@ -2313,8 +2314,7 @@ window.selectVisionPart = function(partId, partLabel) {
     const mappings = {
         'themes': 'tcp-vision-button',
         'roadmap': 'tcp-timeline-btn',
-        'lab': 'strat-lab',
-        'mentorship': 'tcp-culture'
+        'lab': 'strat-lab'
     };
 
     const accordions = document.querySelectorAll('#research-vision .accordion-btn');

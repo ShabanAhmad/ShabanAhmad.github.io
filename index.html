@@ -228,10 +228,11 @@
     <nav class="section-rail" id="section-rail" aria-label="Page section navigation">
         <a href="#profile-experience" class="rail-dot" data-target="profile-experience" aria-label="About"><span class="rail-label">About</span></a>
         <a href="#research-vision" class="rail-dot" data-target="research-vision" aria-label="Research Vision"><span class="rail-label">Vision</span></a>
+        <a href="#teaching" class="rail-dot" data-target="teaching" aria-label="Teaching"><span class="rail-label">Teaching</span></a>
         <a href="#publications" class="rail-dot" data-target="publications" aria-label="Publications"><span class="rail-label">Publications</span></a>
+        <a href="#technical" class="rail-dot" data-target="technical" aria-label="Expertise"><span class="rail-label">Expertise</span></a>
         <a href="#conferences" class="rail-dot" data-target="conferences" aria-label="Conferences"><span class="rail-label">Conferences</span></a>
         <a href="#professional" class="rail-dot" data-target="professional" aria-label="Professional Activities"><span class="rail-label">Activities</span></a>
-        <a href="#technical" class="rail-dot" data-target="technical" aria-label="Expertise"><span class="rail-label">Expertise</span></a>
         <a href="#contact" class="rail-dot" data-target="contact" aria-label="Contact"><span class="rail-label">Contact</span></a>
     </nav>
 
@@ -310,10 +311,9 @@
                         <a href="#research-vision" onclick="triggerAccordion('tcp-vision-button')">Research Vision</a>
                         <a href="#roadmap-funding" onclick="triggerAccordion('tcp-timeline-btn')">Roadmap</a>
                         <a href="#lab-model" onclick="triggerAccordion('strat-lab')">Lab Model</a>
-                        <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')">Mentorship</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="#teaching-mentorship" class="nav-link" onclick="triggerAccordion('tcp-culture')">Teaching</a></li>
+                <li class="nav-item"><a href="#teaching" class="nav-link">Teaching</a></li>
                 <li class="nav-item nav-item-dropdown">
                     <a href="#publications" class="nav-link">Publications <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
                     <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'pub-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
@@ -322,6 +322,16 @@
                         <a href="#publications" onclick="triggerAccordion('pubs-journal')">Journal Articles</a>
                         <a href="#publications" onclick="triggerAccordion('pubs-book')">Book Chapters</a>
                         <a href="#publications" onclick="triggerAccordion('pubs-data')">Data & Codes</a>
+                    </div>
+                </li>
+                <li class="nav-item nav-item-dropdown">
+                    <a href="#technical" class="nav-link">Expertise <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
+                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'exp-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
+                    <div class="nav-dropdown-content" id="exp-dd">
+                        <a href="#technical" onclick="triggerAccordion('tech-ml')">AI & ML</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-gen')">Genomics</a>
+                        <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
                     </div>
                 </li>
                 <li class="nav-item nav-item-dropdown">
@@ -335,16 +345,6 @@
                         <a href="#professional" onclick="triggerAccordion('prof-peer')">Peer Reviews</a>
                         <a href="#professional" onclick="triggerAccordion('prof-ment')">Mentorship</a>
                         <a href="#professional" onclick="triggerAccordion('prof-ref')">Referees</a>
-                    </div>
-                </li>
-                <li class="nav-item nav-item-dropdown">
-                    <a href="#technical" class="nav-link">Expertise <span class="desktop-arrow"><i class="fas fa-chevron-down" aria-hidden="true"></i></span></a>
-                    <div class="mobile-dropdown-toggle" onclick="toggleMobileSubmenu(event, 'exp-dd')"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
-                    <div class="nav-dropdown-content" id="exp-dd">
-                        <a href="#technical" onclick="triggerAccordion('tech-ml')">AI & ML</a>
-                        <a href="#technical" onclick="triggerAccordion('tech-drug')">Drug Discovery</a>
-                        <a href="#technical" onclick="triggerAccordion('tech-gen')">Genomics</a>
-                        <a href="#technical" onclick="triggerAccordion('tech-soft')">Software & Infra</a>
                     </div>
                 </li>
             </ul>
@@ -1073,7 +1073,7 @@
                                     <span><strong>Funding:</strong> Submitted Grant Applications to <a href="https://lighthouse.ku.dk/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">KU- Proof of Concept</a> and <a href="https://novonordiskfonden.dk/en/grant/postdoctoral-fellowships-for-research-within-industrial-biotechnology-and-environmental-biotechnology/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">NNF Postdoc Fellowships (Industrial &amp; Environmental Biotechnology)</a></span>
                                 </div>
                                 <div class="trajectory-meta-row" style="--dot-color: var(--exp-full); color: var(--text-muted);">
-                                    <span><strong>Co-Teaching:</strong> <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')" class="teach-portfolio-btn"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Teaching portfolio</a><br>
+                                    <span><strong>Co-Teaching:</strong> <a href="#teaching" class="teach-portfolio-btn"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Teaching portfolio</a><br>
 <ul class="traj-sub-list">
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> Co-taught course: <a href="https://www.linkedin.com/feed/update/urn:li:activity:7500545320620032000/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Bioinformatics: Methods and Application</a> <a href="https://kurser.ku.dk/course/NPLB24004U/2025-2026" target="_blank" rel="noopener noreferrer" class="btn-data" data-tip="Open course page" aria-label="Open course page in a new tab"><i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li><li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> <a href="https://www.linkedin.com/posts/drshabanahmad_proteinmodelling-moleculardocking-computationalbiology-ugcPost-7507716311695785984-fQJE/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">PLEN DSTF Session on Protein Modelling with Ligand Docking</a> (18 September 2026)</li>
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> PLEN DSTF Sessions on AI Agents in Bioinformatics Research (Scheduled, January 2027)</li>
@@ -1166,7 +1166,7 @@
                                     <span><strong>Leadership:</strong> Elected Class Representative</span>
                                 </div>
                                 <div class="trajectory-meta-row" style="--dot-color: var(--edu-phd); color: var(--text-muted);">
-                                    <span><strong>Co-Teaching:</strong> <a href="#teaching-mentorship" onclick="triggerAccordion('tcp-culture')" class="teach-portfolio-btn"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Teaching portfolio</a><br>
+                                    <span><strong>Co-Teaching:</strong> <a href="#teaching" class="teach-portfolio-btn"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Teaching portfolio</a><br>
 <ul class="traj-sub-list">
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> <a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Programmes/Courses/189" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">MBI-11 Introduction to Bioinformatics</a></li>
 <li class="traj-sub-bullet"><span class="sub-bullet-icon"></span> <a href="https://jmi.ac.in/ACADEMICS/Departments/Department-Of-Computer-Science/Programmes/Courses/189" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">MBI-16 Lab-I (Bioinformatics Tools)</a></li>
@@ -1421,7 +1421,6 @@
                         <a href="javascript:void(0)" onclick="selectVisionPart('themes', 'Themes')">Research Themes</a>
                         <a href="javascript:void(0)" onclick="selectVisionPart('roadmap', 'Roadmap')">5-Year Roadmap</a>
                         <a href="javascript:void(0)" onclick="selectVisionPart('lab', 'Lab Model')">Lab Model</a>
-                        <a href="javascript:void(0)" onclick="selectVisionPart('mentorship', 'Mentorship')">Mentorship</a>
                     </div>
                 </div>
             </div>
@@ -1690,13 +1689,12 @@
         </div>
         </div> <!-- Close #lab-model -->
 
-        <!-- Pillar 4: Teaching & Mentorship -->
-        <div id="teaching-mentorship" class="reveal">
-        <button class="accordion-btn" id="tcp-culture"><span><i class="fas fa-hands-helping acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Teaching & Mentoring</span><i
-                class="fas fa-chevron-down" aria-hidden="true"></i></button>
-        <div class="panel">
-            <div class="panel-content">
+        <hr class="separator">
+    </section>
+
+    <!-- === SECTION: TEACHING & MENTORING === -->
+    <section id="teaching" class="container reveal">
+        <h2 class="section-title">Teaching &amp; Mentoring</h2>
                 <p
                     style="margin-bottom: 20px; font-size: 1.05rem; font-family: 'Roboto', sans-serif; color: #444; line-height: 1.85;">
                     University teaching and co-supervision across BSc, MSc and PhD levels at the University of
@@ -2196,10 +2194,6 @@
                         </ul>
                     </div>
                     </div>
-                </div> <!-- Close .panel-content -->
-            </div> <!-- Close .panel -->
-        </div> <!-- Close #teaching-mentorship -->
-
         <hr class="separator">
     </section>
 
@@ -2837,6 +2831,184 @@
             </div>
         </div>
         <hr class="separator">
+    </section>
+
+    <!-- === SECTION 14: TECHNICAL PROFICIENCIES AND SKILLS MATRIX === -->
+
+    <section id="technical" class="container">
+        <div class="section-header-flex">
+            <h2 class="section-title">Expertise &amp; Technical Proficiencies</h2>
+
+            <!-- Skills Finder -->
+            <div class="tech-search-container">
+                <div class="tech-search-box">
+                    <i class="fas fa-search tech-search-icon" aria-hidden="true"></i>
+                    <input type="text" id="tech-search-input" placeholder="skills, tools, softwares etc." oninput="filterSkills()">
+                    <button id="tech-clear-btn" onclick="clearTechSearch()" aria-label="Clear search"><i class="fas fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="tech-search-status" id="tech-status-text" style="display:none; text-align: right; margin-top: -1.5rem; margin-bottom: 1.5rem;"></div>
+
+        <button class="accordion-btn" id="tech-ml"><span><i class="fas fa-brain acc-badge-icon"
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Machine Learning, Agentic AI &amp; Data
+                Science</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-robot" aria-hidden="true"></i> Agentic AI & GenAI</div>
+                            <ul class="tech-ul">
+                                <li>Autonomous Agent Workflows (LangChain, AutoGPT)</li>
+                                <li>Retrieval-Augmented Generation (RAG) architecture</li>
+                                <li>Fine-tuning Large Language Models (LLMs) for biology</li>
+                                <li>Multi-agent simulations for complex data parsing</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-brain" aria-hidden="true"></i> Deep Learning & ML</div>
+                            <ul class="tech-ul">
+                                <li>Advanced Architectures: Transformers, CNNs, LSTMs</li>
+                                <li>Classical ML pipelines: Scikit-learn, XGBoost, LightGBM</li>
+                                <li>Explainable AI (XAI) algorithms: LIME, SHAP</li>
+                                <li>Hyperparameter optimisation and cross-validation</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-code" aria-hidden="true"></i> Scientific Computing</div>
+                            <ul class="tech-ul">
+                                <li>Python Ecosystem: NumPy, Pandas, SciPy, PyTorch, Keras</li>
+                                <li>R Bioconductor & Tidyverse integration</li>
+                                <li>Complex data visualisation: Seaborn, Plotly, Matplotlib</li>
+                                <li>MATLAB for specialised mathematical modelling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn" id="tech-drug"><span><i class="fas fa-atom acc-badge-icon"
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Computational Biology & Drug Discovery</span><i
+                class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt" aria-hidden="true"></i> AI-Driven Drug
+                                Design</div>
+                            <ul class="tech-ul">
+                                <li>Generative diffusion models for de novo ligand design</li>
+                                <li>High-throughput Virtual Screening (HTVS) pipelines</li>
+                                <li>Molecular docking (AutoDock Vina, Glide, SwissDock)</li>
+                                <li>Binding free energy profiling (MM/GBSA, MM/PBSA)</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-atom" aria-hidden="true"></i> Molecular Dynamics & Simulation
+                            </div>
+                            <ul class="tech-ul">
+                                <li>All-atom MD: Desmond, GROMACS, NAMD, AMBER</li>
+                                <li>Trajectory dynamics: PCA, RMSD/RMSF, FEL mappings</li>
+                                <li>Force field parametrization (OPLS, CHARMM, AMBER)</li>
+                                <li>Markov State Models for conformational sampling</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-microscope" aria-hidden="true"></i> Quantum & Structural Biology
+                            </div>
+                            <ul class="tech-ul">
+                                <li>Density Functional Theory (DFT) calculations</li>
+                                <li>Homology modelling & protein refinement (MODELLER)</li>
+                                <li>Predictive toxicology and pharmacokinetics (ADMET)</li>
+                                <li>Advanced 3D visualisation (PyMOL, UCSF ChimeraX)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn" id="tech-gen"><span><i class="fas fa-dna acc-badge-icon"
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Genomics, Transcriptomics & Systems
+                Biology</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-dna" aria-hidden="true"></i> Advanced Omics Analysis</div>
+                            <ul class="tech-ul">
+                                <li>WGS/WES data processing & variant annotation</li>
+                                <li>Single-cell RNA-seq (scRNA-seq) trajectory inference</li>
+                                <li>Alignment (Bowtie2, BWA) & Variant calling (GATK)</li>
+                                <li>AI-based variant pathogenicity prediction frameworks</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-project-diagram" aria-hidden="true"></i> Systems Biology &
+                                Networks</div>
+                            <ul class="tech-ul">
+                                <li>Multi-omics data integration and harmonization</li>
+                                <li>Protein-protein interaction mapping (Cytoscape, STRING)</li>
+                                <li>Gene regulatory network reconstruction & pathway mining</li>
+                                <li>Biomarker discovery via systems-level interpretation</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fas fa-align-left" aria-hidden="true"></i> Evolutionary & Sequences</div>
+                            <ul class="tech-ul">
+                                <li>Phylogenomics and maximum likelihood estimations</li>
+                                <li>Multiple sequence alignment (Clustal, MAFFT, MUSCLE)</li>
+                                <li>Motif discovery and hidden Markov models (HMMs)</li>
+                                <li>Comprehensive BLAST and FASTA heuristic searches</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion-btn" id="tech-soft"><span><i class="fas fa-laptop-code acc-badge-icon"
+                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Software Development, MLOps &
+                Infrastructure</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="panel">
+            <div class="panel-content">
+                <div class="scrollable-grid">
+                    <div class="tech-panel-grid">
+                        <div class="tech-card tc-blue">
+                            <div class="tech-sub-title"><i class="fas fa-server" aria-hidden="true"></i> HPC & Cloud Infrastructure</div>
+                            <ul class="tech-ul">
+                                <li>Linux/Unix architectures and system administration</li>
+                                <li>HPC job scheduling (SLURM, PBS Pro)</li>
+                                <li>Cloud computing platforms (AWS, Google Cloud)</li>
+                                <li>Parallel computing and GPU acceleration strategies</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-green">
+                            <div class="tech-sub-title"><i class="fas fa-cogs" aria-hidden="true"></i> MLOps & Containerization</div>
+                            <ul class="tech-ul">
+                                <li>Deploying AI models in production environments</li>
+                                <li>Containerized scientific workflows (Docker, Singularity)</li>
+                                <li>CI/CD pipelines for automated testing & deployment</li>
+                                <li>Bash scripting for scalable batch automation</li>
+                            </ul>
+                        </div>
+                        <div class="tech-card tc-purple">
+                            <div class="tech-sub-title"><i class="fab fa-git-alt" aria-hidden="true"></i> Version & Dev Standards</div>
+                            <ul class="tech-ul">
+                                <li>Git/GitHub for collaborative code management</li>
+                                <li>Building reproducible, modular scientific codebases</li>
+                                <li>Strict documentation and Jupyter Notebook integration</li>
+                                <li>Agile methodologies in computational research</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- === SECTION 12: CONFERENCES, WORKSHOPS AND SYMPOSIA === -->
@@ -3488,184 +3660,6 @@
         <hr class="separator">
     </section>
 
-    <!-- === SECTION 14: TECHNICAL PROFICIENCIES AND SKILLS MATRIX === -->
-
-    <section id="technical" class="container">
-        <div class="section-header-flex">
-            <h2 class="section-title">Expertise &amp; Technical Proficiencies</h2>
-
-            <!-- Skills Finder -->
-            <div class="tech-search-container">
-                <div class="tech-search-box">
-                    <i class="fas fa-search tech-search-icon" aria-hidden="true"></i>
-                    <input type="text" id="tech-search-input" placeholder="skills, tools, softwares etc." oninput="filterSkills()">
-                    <button id="tech-clear-btn" onclick="clearTechSearch()" aria-label="Clear search"><i class="fas fa-times" aria-hidden="true"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="tech-search-status" id="tech-status-text" style="display:none; text-align: right; margin-top: -1.5rem; margin-bottom: 1.5rem;"></div>
-
-        <button class="accordion-btn" id="tech-ml"><span><i class="fas fa-brain acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Machine Learning, Agentic AI &amp; Data
-                Science</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="scrollable-grid">
-                    <div class="tech-panel-grid">
-                        <div class="tech-card tc-blue">
-                            <div class="tech-sub-title"><i class="fas fa-robot" aria-hidden="true"></i> Agentic AI & GenAI</div>
-                            <ul class="tech-ul">
-                                <li>Autonomous Agent Workflows (LangChain, AutoGPT)</li>
-                                <li>Retrieval-Augmented Generation (RAG) architecture</li>
-                                <li>Fine-tuning Large Language Models (LLMs) for biology</li>
-                                <li>Multi-agent simulations for complex data parsing</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-green">
-                            <div class="tech-sub-title"><i class="fas fa-brain" aria-hidden="true"></i> Deep Learning & ML</div>
-                            <ul class="tech-ul">
-                                <li>Advanced Architectures: Transformers, CNNs, LSTMs</li>
-                                <li>Classical ML pipelines: Scikit-learn, XGBoost, LightGBM</li>
-                                <li>Explainable AI (XAI) algorithms: LIME, SHAP</li>
-                                <li>Hyperparameter optimisation and cross-validation</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-purple">
-                            <div class="tech-sub-title"><i class="fas fa-code" aria-hidden="true"></i> Scientific Computing</div>
-                            <ul class="tech-ul">
-                                <li>Python Ecosystem: NumPy, Pandas, SciPy, PyTorch, Keras</li>
-                                <li>R Bioconductor & Tidyverse integration</li>
-                                <li>Complex data visualisation: Seaborn, Plotly, Matplotlib</li>
-                                <li>MATLAB for specialised mathematical modelling</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="accordion-btn" id="tech-drug"><span><i class="fas fa-atom acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Computational Biology & Drug Discovery</span><i
-                class="fas fa-chevron-down" aria-hidden="true"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="scrollable-grid">
-                    <div class="tech-panel-grid">
-                        <div class="tech-card tc-blue">
-                            <div class="tech-sub-title"><i class="fas fa-prescription-bottle-alt" aria-hidden="true"></i> AI-Driven Drug
-                                Design</div>
-                            <ul class="tech-ul">
-                                <li>Generative diffusion models for de novo ligand design</li>
-                                <li>High-throughput Virtual Screening (HTVS) pipelines</li>
-                                <li>Molecular docking (AutoDock Vina, Glide, SwissDock)</li>
-                                <li>Binding free energy profiling (MM/GBSA, MM/PBSA)</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-green">
-                            <div class="tech-sub-title"><i class="fas fa-atom" aria-hidden="true"></i> Molecular Dynamics & Simulation
-                            </div>
-                            <ul class="tech-ul">
-                                <li>All-atom MD: Desmond, GROMACS, NAMD, AMBER</li>
-                                <li>Trajectory dynamics: PCA, RMSD/RMSF, FEL mappings</li>
-                                <li>Force field parametrization (OPLS, CHARMM, AMBER)</li>
-                                <li>Markov State Models for conformational sampling</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-purple">
-                            <div class="tech-sub-title"><i class="fas fa-microscope" aria-hidden="true"></i> Quantum & Structural Biology
-                            </div>
-                            <ul class="tech-ul">
-                                <li>Density Functional Theory (DFT) calculations</li>
-                                <li>Homology modelling & protein refinement (MODELLER)</li>
-                                <li>Predictive toxicology and pharmacokinetics (ADMET)</li>
-                                <li>Advanced 3D visualisation (PyMOL, UCSF ChimeraX)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="accordion-btn" id="tech-gen"><span><i class="fas fa-dna acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Genomics, Transcriptomics & Systems
-                Biology</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="scrollable-grid">
-                    <div class="tech-panel-grid">
-                        <div class="tech-card tc-blue">
-                            <div class="tech-sub-title"><i class="fas fa-dna" aria-hidden="true"></i> Advanced Omics Analysis</div>
-                            <ul class="tech-ul">
-                                <li>WGS/WES data processing & variant annotation</li>
-                                <li>Single-cell RNA-seq (scRNA-seq) trajectory inference</li>
-                                <li>Alignment (Bowtie2, BWA) & Variant calling (GATK)</li>
-                                <li>AI-based variant pathogenicity prediction frameworks</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-green">
-                            <div class="tech-sub-title"><i class="fas fa-project-diagram" aria-hidden="true"></i> Systems Biology &
-                                Networks</div>
-                            <ul class="tech-ul">
-                                <li>Multi-omics data integration and harmonization</li>
-                                <li>Protein-protein interaction mapping (Cytoscape, STRING)</li>
-                                <li>Gene regulatory network reconstruction & pathway mining</li>
-                                <li>Biomarker discovery via systems-level interpretation</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-purple">
-                            <div class="tech-sub-title"><i class="fas fa-align-left" aria-hidden="true"></i> Evolutionary & Sequences</div>
-                            <ul class="tech-ul">
-                                <li>Phylogenomics and maximum likelihood estimations</li>
-                                <li>Multiple sequence alignment (Clustal, MAFFT, MUSCLE)</li>
-                                <li>Motif discovery and hidden Markov models (HMMs)</li>
-                                <li>Comprehensive BLAST and FASTA heuristic searches</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="accordion-btn" id="tech-soft"><span><i class="fas fa-laptop-code acc-badge-icon"
-                    style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Software Development, MLOps &
-                Infrastructure</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-        <div class="panel">
-            <div class="panel-content">
-                <div class="scrollable-grid">
-                    <div class="tech-panel-grid">
-                        <div class="tech-card tc-blue">
-                            <div class="tech-sub-title"><i class="fas fa-server" aria-hidden="true"></i> HPC & Cloud Infrastructure</div>
-                            <ul class="tech-ul">
-                                <li>Linux/Unix architectures and system administration</li>
-                                <li>HPC job scheduling (SLURM, PBS Pro)</li>
-                                <li>Cloud computing platforms (AWS, Google Cloud)</li>
-                                <li>Parallel computing and GPU acceleration strategies</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-green">
-                            <div class="tech-sub-title"><i class="fas fa-cogs" aria-hidden="true"></i> MLOps & Containerization</div>
-                            <ul class="tech-ul">
-                                <li>Deploying AI models in production environments</li>
-                                <li>Containerized scientific workflows (Docker, Singularity)</li>
-                                <li>CI/CD pipelines for automated testing & deployment</li>
-                                <li>Bash scripting for scalable batch automation</li>
-                            </ul>
-                        </div>
-                        <div class="tech-card tc-purple">
-                            <div class="tech-sub-title"><i class="fab fa-git-alt" aria-hidden="true"></i> Version & Dev Standards</div>
-                            <ul class="tech-ul">
-                                <li>Git/GitHub for collaborative code management</li>
-                                <li>Building reproducible, modular scientific codebases</li>
-                                <li>Strict documentation and Jupyter Notebook integration</li>
-                                <li>Agile methodologies in computational research</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- === SECTION 16: CONTACT PLATFORM & FOOTER === -->
     <section id="contact" class="contact-footer-section reveal">
         <div class="container">
@@ -3776,7 +3770,7 @@
 
     <!-- === SECTION 18: INTERACTIVE JAVASCRIPT LOGIC === -->
 
-    <script src="scripts.js?v=20260729_29" defer></script>
+    <script src="scripts.js?v=20260729_30" defer></script>
     <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Privacy-friendly, cookieless analytics (GoatCounter): visit counts + per-country stats only. No cookies, no personal data stored.
