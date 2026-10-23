@@ -8121,6 +8121,9 @@ body.dark-mode #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li
 
 .course-card:hover {
     transform: translateY(-5px);
+    overflow: visible;
+    position: relative;
+    z-index: 30;
 }
 
 .course-card-top {
@@ -8128,6 +8131,7 @@ body.dark-mode #teaching-mentorship .culture-card:nth-child(3):hover .tech-ul li
     display: flex;
     align-items: flex-start;
     gap: 0.9rem;
+    border-radius: 14px 14px 0 0;
 }
 
 .course-card-info {

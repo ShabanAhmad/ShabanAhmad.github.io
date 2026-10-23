@@ -203,7 +203,7 @@
 
     <!-- === SECTION 4: GLOBAL STYLESHEET (CSS) === -->
     <link rel="preload" as="image" href="shaban.webp" type="image/webp">
-    <link rel="stylesheet" href="styles.css?v=20260729_82">
+    <link rel="stylesheet" href="styles.css?v=20260729_83">
 </head>
 
 <body>
@@ -492,7 +492,7 @@
                         <div class="stat-row"><span class="stat-label"><i class="fas fa-check-circle" aria-hidden="true"></i> Peer
                                 Reviews</span><span class="stat-value">650+</span></div>
                     </a>
-                    <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf" target="_blank"
+                    <div class="cv-btn-group"><a href="https://shabanahmad.github.io/Ahmad_Shaban_CV.pdf?v=20261023" target="_blank"
                             class="cv-btn-half" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Full CV</a><a
                             href="#contact" class="cv-btn-half cv-btn-collab"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></div>
                 </div>
@@ -1702,7 +1702,9 @@
                     drug design, and hands-on research training.</p>
 
                 <!-- ===== University Courses (delivered) ===== -->
-                <h3 class="unified-sub-heading ush-primary" style="margin-top: 1rem; margin-bottom: 0.8rem; text-align: left;">Courses Taught</h3>
+                <button class="accordion-btn" id="teach-courses"><span><i class="fas fa-graduation-cap acc-badge-icon" style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Courses Taught</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
                 <h4 class="unified-sub-heading" style="display:table; margin-top: 1rem; margin-bottom: 0.6rem; text-align: left; font-size:1.05rem;">Co-teaching at <a href="https://www.ku.dk/en" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">University of Copenhagen</a></h4>
                 <div class="course-cards-grid">
 
@@ -1946,9 +1948,11 @@
                     </div>
                 </div>
 
-                <hr class="subtle-separator">
-                <h3 class="unified-sub-heading ush-primary"
-                    style="margin-top: 2.5rem; margin-bottom: 0.6rem; text-align: left;">Teaching Areas and Proposed Courses</h3>
+                    </div>
+                </div>
+                <button class="accordion-btn" id="teach-proposed"><span><i class="fas fa-lightbulb acc-badge-icon" style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Teaching Areas and Proposed Courses</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
                 <p style="margin-bottom: 1.1rem; font-size: 0.9rem; color:#666;">Teaching capability and proposed course concepts, distinct from the delivered courses above. Any syllabus generated on demand is illustrative, not an official or delivered syllabus.</p>
                 <div class="course-cards-grid">
 
@@ -2121,10 +2125,12 @@
 
                 </div>
 
-                <hr class="subtle-separator">
-                <div
-                    style="display:flex; align-items:center; justify-content:space-between; margin-top: 2rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-                    <h3 class="unified-sub-heading ush-primary" style="margin-bottom: 0; text-align: left;">Teaching Approach</h3>
+                    </div>
+                </div>
+                <button class="accordion-btn" id="teach-approach"><span><i class="fas fa-chalkboard-teacher acc-badge-icon" style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Teaching Approach</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
+                <div style="display:flex; justify-content:flex-end; margin-bottom: 1rem;">
                     <button onclick="generateTeachingStatement()" id="gen-teaching-btn" class="ai-expand-btn"
                         data-tip="Generate formal teaching statement with AI"
                         aria-label="Generate AI Teaching Statement"><span class="btn-icon">✨</span><span
@@ -2161,9 +2167,11 @@
                     </div>
                 </div>
 
-                <hr class="subtle-separator">
-                <h3 class="unified-sub-heading ush-primary"
-                    style="margin-top: 2.5rem; margin-bottom: 1rem; text-align: left;">Supervision and Mentoring</h3>
+                    </div>
+                </div>
+                <button class="accordion-btn" id="teach-supervision"><span><i class="fas fa-user-graduate acc-badge-icon" style="color:var(--accent); margin-right:10px;" aria-hidden="true"></i> Supervision and Mentoring</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
                 <p style="margin-bottom: 20px; font-size: 1.05rem; font-family: 'Roboto', sans-serif; color: #444; line-height: 1.85;">
                     The practices below are already in use with current mentees; the planned TCP group will extend them
                     further, as a nurturing training ground alongside high-impact research, developing independent,
@@ -2194,6 +2202,8 @@
                         </ul>
                     </div>
                     </div>
+                    </div>
+                </div>
         <hr class="separator">
     </section>
 
