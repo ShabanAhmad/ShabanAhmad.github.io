@@ -11683,9 +11683,9 @@ body.dark-mode .culture-card:hover h4 {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--accent);
     background: transparent;
-    color: var(--accent);
+    color: var(--primary);
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
@@ -11698,8 +11698,8 @@ body.dark-mode .culture-card:hover h4 {
 }
 .li-nav:hover {
     opacity: 1;
-    background: var(--primary);
-    color: var(--accent);
+    background: var(--accent);
+    color: var(--primary);
 }
 .li-prev {
     left: 6px;
@@ -11708,12 +11708,37 @@ body.dark-mode .culture-card:hover h4 {
     right: 6px;
 }
 .li-post {
+    position: relative;
     flex: 0 0 auto;
     width: 440px;
     background: var(--white);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.li-open {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    opacity: 0.92;
+    transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+.li-open:hover {
+    opacity: 1;
+    background: var(--accent);
+    color: var(--primary);
 }
 .li-post iframe {
     display: block;

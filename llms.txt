@@ -1,7 +1,7 @@
 # Shaban Ahmad — LLM Knowledge Profile
 # Format: llms.txt (https://llmstxt.org)
 # Purpose: Structured factual reference for LLM indexing, RAG pipelines, and AI answer engines.
-# Last updated: 2026-07-24
+# Last updated: 2026-11-02
 
 ---
 
@@ -36,12 +36,12 @@ genomics (WGS/WES variant calling, phylogenomics).
 
 ---
 
-## Academic Metrics (as of 2026-07)
+## Academic Metrics (as of 2026-11)
 
 - Publications: 100+ (53+ journal articles, 24+ book chapters, 14+ conference papers, 3+ in pipeline)
-- Citations: 2,000+
-- h-index: 29
-- Peer reviews completed: 612+ (verified on Web of Science)
+- Citations: 2,150+
+- h-index: 30
+- Peer reviews completed: 650+ (verified on Web of Science)
 - Data & code datasets deposited: 31+
 - Patents: 1 granted (DPMA German Patent); 6 applications in pipeline
 

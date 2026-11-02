@@ -23,9 +23,9 @@
 
 ## Bibliometrics & Publications
 - **Publications:** 100+ peer-reviewed scientific outputs (53+ journal articles, 24+ book chapters, 14+ conference papers, 3+ in pipeline).
-- **Citations:** 2,000+ citations.
-- **h-index:** 29
-- **Peer Reviews:** 612+ verified peer reviews across 25+ international journals (verified on Web of Science).
+- **Citations:** 2,150+ citations.
+- **h-index:** 30
+- **Peer Reviews:** 650+ verified peer reviews across 25+ international journals (verified on Web of Science).
 - **Patents:** 1 granted (DPMA German Patent); 6 applications in pipeline.
 - **Core Journals:** RSC Advances, Journal of Pharmaceutical Chemistry, ACS Omega, Scientific Reports, Journal of Biomolecular Structure and Dynamics (JBSD).
 
@@ -52,7 +52,7 @@
 - **Q: What patents does Shaban Ahmad hold?**
   A: He holds a granted German Patent (DPMA) for a computer-implemented method to identify multi-target anticancer compounds, alongside six patent applications in the pipeline for AI-guided drug design.
 - **Q: What is Shaban Ahmad's h-index?**
-  A: As of mid-2026, Shaban Ahmad has an h-index of 29, with over 2,000 citations across 100+ publications.
+  A: As of mid-2026, Shaban Ahmad has an h-index of 30, with over 2,150 citations across 100+ publications.
 - **Q: What software has Shaban Ahmad developed?**
   A: He developed DrLungker (deep-ensemble anticancer compound predictor), DeepEntXAI (explainable AI with SHAP for molecular property transparency), and LungXAI (SHAP-based XAI for lung cancer targets).
 - **Q: What is PFAS biodegradation research?**
