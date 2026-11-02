@@ -3673,70 +3673,6 @@
     <!-- === SECTION 16: CONTACT PLATFORM & FOOTER === -->
     <section id="contact" class="contact-footer-section reveal">
         <div class="container">
-            <div class="contact-grid-layout">
-                <div class="contact-left">
-                    <div class="contact-arrow-wrapper">
-                        <!-- Line SVG (stretches dynamically) -->
-                        <svg class="contact-arrow-line-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                            <path class="arrow-line" d="M 2,2 L 2,95 Q 2,99 8,99 L 100,99" />
-                        </svg>
-                        <!-- Arrowhead SVG (fixed size, never stretches) -->
-                        <svg class="contact-arrow-head-svg" viewBox="0 0 10 10" aria-hidden="true">
-                            <path d="M 2,2 L 8,5 L 2,8" />
-                        </svg>
-                    </div>
-                    <h2>Let's Collaborate</h2>
-                    <p style="margin-bottom: 0.6rem;">I am always open to discussing new research opportunities,
-                        collaborations, or speaking engagements.</p>
-                    <div class="contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><span class="email-click" role="button"
-                            tabindex="0" onclick="copyEmail(this, 'shaban@plen.ku.dk')"
-                            aria-label="Copy email shaban@plen.ku.dk">shaban@plen.ku.dk</span><span
-                            style="margin: 0 10px; color:var(--accent);">|</span><span class="email-click" role="button"
-                            tabindex="0" onclick="copyEmail(this, 'shaban.ucph@gmail.com')"
-                            aria-label="Copy email shaban.ucph@gmail.com">shaban.ucph@gmail.com</span></div>
-                    <div class="contact-item"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><a
-                            href="https://maps.app.goo.gl/gUWR7uhWqF3KYAAT7" target="_blank" class="link-anim-slow" rel="noopener noreferrer">PLEN, University of Copenhagen</a> <span class="flag-wrapper" data-tip="Denmark"><img src="https://flagcdn.com/w20/dk.png" class="flag-img" loading="lazy" alt="Denmark"></span></div>
-
-                    
-                </div>
-
-                <div class="contact-right">
-                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
-                        onload="if(typeof submitted !== 'undefined' && submitted){handleFormSubmit();}"></iframe>
-                    <form
-                        action="https://docs.google.com/forms/d/e/1FAIpQLSeX1QCdll7XYGhizuXH3CfBPCdIAZMRZRTo_KFtgotPkSGm1g/formResponse"
-                        method="POST" target="hidden_iframe" id="contact-form" onsubmit="submitted=true;">
-                        <div class="cf-top-row">
-                            <div class="cf-vlabel-wrap" tabindex="0" role="note" data-tip="Fill this form to contact and collaborate with Shaban"><span class="cf-vlabel" aria-hidden="true">Contact Shaban</span></div>
-                            <div class="cf-top-fields">
-                                <div class="cf-input-group"><input type="text" name="entry.323008242" class="cf-input"
-                                        placeholder="Your Name" aria-label="Full name" required> <input type="email" name="entry.1398368038"
-                                        class="cf-input" placeholder="Your Email" aria-label="Email address" required></div>
-                                <input type="text" id="contact-subject" name="entry.1980791409" class="cf-input"
-                                    placeholder="Your Subject" aria-label="Subject" required>
-                            </div>
-                        </div>
-                        <div class="cf-message-row">
-                            <textarea name="entry.1216360893" id="contact-message" class="cf-textarea"
-                                placeholder="Type a few rough notes here (e.g., 'postdoc inquiry') and click ✨ to instantly get a professional draft..."
-                                aria-label="Message"
-                                required></textarea>
-                            <div class="form-actions">
-                                <span class="btn-red-sep" aria-hidden="true">|</span>
-                                <button type="button" onclick="draftEmail()" id="draft-email-btn" data-tip="AI Draft" aria-label="AI Draft"
-                                    class="ai-expand-btn"><span class="btn-icon">✨</span><span class="btn-text">AI
-                                        Draft</span></button>
-                                <span class="btn-red-sep" aria-hidden="true">|</span>
-                                <button type="submit" class="ai-expand-btn" id="submit-btn" data-tip="Send Message" aria-label="Send Message"><span class="btn-icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></span><span class="btn-text">Send Message</span></button>
-                                <div id="msg-success-box" class="msg-success-box">
-                                    <span></span><span></span><span></span><span></span><i class="fas fa-check-circle" aria-hidden="true"></i>
-                                    Sent Successfully!
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- Unified Footer Line: Social Icons & Copyright (Responsive Wrapper) -->
                     <div class="footer-bottom-wrapper">
                         <div class="footer-socials"
                             style="margin: 0; padding: 5px 10px; gap: 12px; display: inline-flex; align-items: center;">
@@ -3762,7 +3698,6 @@
                         <span class="footer-red-sep" aria-hidden="true">|</span>
                         <div class="footer-copyright" style="margin: 0;">&copy; 2026 All rights reserved.</div>
                     </div>
-            </div>
         </div>
     </section>
 
