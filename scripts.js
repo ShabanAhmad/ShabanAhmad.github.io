@@ -2466,22 +2466,22 @@ window.summarisePhase = function (btn) {
         if (mq.scrollLeft >= half) mq.scrollLeft -= half;
         else if (mq.scrollLeft <= 0) mq.scrollLeft += half;
     };
-    let paused = false, hover = false, resumeT;
+    let paused = false, hover = false, navigating = false, resumeT;
     const tick = () => { if (!paused && !hover) { mq.scrollLeft += 0.5; wrap(); } requestAnimationFrame(tick); };
     if (!reduce) requestAnimationFrame(tick);
     mq.addEventListener('mouseenter', () => { hover = true; });
     mq.addEventListener('mouseleave', () => { hover = false; });
-    mq.addEventListener('scroll', wrap, { passive: true });
+    mq.addEventListener('scroll', () => { if (!navigating) wrap(); }, { passive: true });
     const step = () => { const p = track.querySelector('.li-post'); return (p ? p.getBoundingClientRect().width : 320) + 18; };
     const nudge = (dir) => {
         paused = true;
+        navigating = true;
         clearTimeout(resumeT);
-        wrap();
         mq.scrollBy({ left: dir * step(), behavior: 'smooth' });
-        resumeT = setTimeout(() => { paused = false; }, 1600);
+        resumeT = setTimeout(() => { navigating = false; paused = false; wrap(); }, 1700);
     };
     const prev = document.querySelector('#linkedin-posts .li-prev');
     const next = document.querySelector('#linkedin-posts .li-next');
-    if (prev) prev.addEventListener('click', () => nudge(-1));
-    if (next) next.addEventListener('click', () => nudge(1));
+    if (prev) prev.addEventListener('click', nudge.bind(null, -1));
+    if (next) next.addEventListener('click', nudge.bind(null, 1));
 }());
