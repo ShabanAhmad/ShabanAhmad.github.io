@@ -11683,21 +11683,23 @@ body.dark-mode .culture-card:hover h4 {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: none;
-    background: var(--primary);
-    color: #fff;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
     font-size: 1.5rem;
+    font-weight: 700;
     line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     opacity: 0.9;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.2s, background 0.2s, color 0.2s, transform 0.2s;
 }
 .li-nav:hover {
     opacity: 1;
+    background: var(--primary);
+    color: #fff;
 }
 .li-prev {
     left: 6px;
