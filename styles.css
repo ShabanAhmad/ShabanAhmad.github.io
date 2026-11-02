@@ -4337,7 +4337,7 @@ body.dark-mode .teach-portfolio-btn {
 .contact-footer-section {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--white);
-    padding: 1.25rem 0 0.5rem;
+    padding: 0.85rem 0;
     margin-top: 1rem;
 }
 
@@ -4553,11 +4553,11 @@ body.dark-mode .teach-portfolio-btn {
 .footer-bottom-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 0;
     width: 100%;
+    gap: 6px;
 }
 
 /* Desktop: nudge socials/copyright a little right of the hard-left edge */
@@ -5988,7 +5988,7 @@ body.dark-mode .teach-portfolio-btn {
     }
 
     .contact-footer-section {
-        padding: 1rem 0 0; /* tight top, footer ends right below the form buttons */
+        padding: 0.85rem 0;
     }
 
     .about-split-layout {
@@ -11648,4 +11648,53 @@ body.dark-mode .culture-card:hover h4 {
     .srch-overlay {
         padding-top: calc(46px + env(safe-area-inset-top)) !important;
     }
+}
+
+/* ===== LinkedIn posts marquee ===== */
+#linkedin-posts {
+    overflow: hidden;
+    padding-top: 1.5rem;
+}
+.li-marquee {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.li-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: liMarquee 120s linear infinite;
+    will-change: transform;
+}
+.li-marquee:hover .li-track {
+    animation-play-state: paused;
+}
+.li-post {
+    flex: 0 0 auto;
+    width: 440px;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.li-post iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    border: 0;
+}
+@keyframes liMarquee {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
+@media (max-width: 600px) {
+    .li-post { width: 300px; }
+    .li-post iframe { height: 440px; }
+    .li-track { gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .li-track { animation: none; }
+    .li-marquee { overflow-x: auto; }
 }
