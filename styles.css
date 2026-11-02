@@ -11655,21 +11655,55 @@ body.dark-mode .culture-card:hover h4 {
     overflow: hidden;
     padding-top: 1.5rem;
 }
+.li-wrap {
+    position: relative;
+}
 .li-marquee {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.li-marquee::-webkit-scrollbar {
+    display: none;
 }
 .li-track {
     display: flex;
     gap: 18px;
     width: max-content;
-    animation: liMarquee 120s linear infinite;
-    will-change: transform;
 }
-.li-marquee:hover .li-track {
-    animation-play-state: paused;
+.li-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    opacity: 0.9;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.li-nav:hover {
+    opacity: 1;
+}
+.li-prev {
+    left: 6px;
+}
+.li-next {
+    right: 6px;
 }
 .li-post {
     flex: 0 0 auto;
@@ -11682,19 +11716,12 @@ body.dark-mode .culture-card:hover h4 {
 .li-post iframe {
     display: block;
     width: 100%;
-    height: 480px;
+    height: 640px;
     border: 0;
-}
-@keyframes liMarquee {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
 }
 @media (max-width: 600px) {
     .li-post { width: 300px; }
-    .li-post iframe { height: 440px; }
+    .li-post iframe { height: 560px; }
     .li-track { gap: 12px; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .li-track { animation: none; }
-    .li-marquee { overflow-x: auto; }
+    .li-nav { width: 38px; height: 38px; font-size: 1.3rem; }
 }

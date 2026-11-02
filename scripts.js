@@ -2452,3 +2452,29 @@ window.summarisePhase = function (btn) {
         showAIModal(`<div style="display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:.7rem;"><strong style="font-size:1rem;">✨ ${escapeHTML(role)} — Phase Recap</strong><button onclick="copyAIContent(this,'phase-recap-body')" title="Copy to clipboard" style="background:none;border:1px solid #ccc;border-radius:6px;cursor:pointer;color:#666;padding:4px 6px;line-height:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${copyIcon}</button></div><div id="phase-recap-body" style="font-size:0.95rem;line-height:1.65;border-top:1px solid rgba(0,0,0,0.08);padding-top:.7rem;">${res}</div>`);
     });
 };
+
+/* ===== LinkedIn posts marquee: auto-run (right-to-left) + prev/next arrows ===== */
+(function () {
+    const mq = document.querySelector('#linkedin-posts .li-marquee');
+    const track = document.querySelector('#linkedin-posts .li-track');
+    if (!mq || !track) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let half = track.scrollWidth / 2;
+    window.addEventListener('resize', () => { half = track.scrollWidth / 2; });
+    const wrap = () => {
+        if (!half) return;
+        if (mq.scrollLeft >= half) mq.scrollLeft -= half;
+        else if (mq.scrollLeft <= 0) mq.scrollLeft += half;
+    };
+    let paused = false;
+    const tick = () => { if (!paused) { mq.scrollLeft += 0.5; wrap(); } requestAnimationFrame(tick); };
+    if (!reduce) requestAnimationFrame(tick);
+    mq.addEventListener('mouseenter', () => { paused = true; });
+    mq.addEventListener('mouseleave', () => { paused = false; });
+    mq.addEventListener('scroll', wrap, { passive: true });
+    const step = () => { const p = track.querySelector('.li-post'); return (p ? p.getBoundingClientRect().width : 320) + 18; };
+    const prev = document.querySelector('#linkedin-posts .li-prev');
+    const next = document.querySelector('#linkedin-posts .li-next');
+    if (prev) prev.addEventListener('click', () => mq.scrollBy({ left: -step(), behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => mq.scrollBy({ left: step(), behavior: 'smooth' }));
+}());
