@@ -4337,7 +4337,7 @@ body.dark-mode .teach-portfolio-btn {
 .contact-footer-section {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--white);
-    padding: 0.85rem 0;
+    padding: 1.25rem 0 0.5rem;
     margin-top: 1rem;
 }
 
@@ -4553,11 +4553,11 @@ body.dark-mode .teach-portfolio-btn {
 .footer-bottom-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     margin-top: 0;
     width: 100%;
-    gap: 6px;
 }
 
 /* Desktop: nudge socials/copyright a little right of the hard-left edge */
@@ -5988,7 +5988,7 @@ body.dark-mode .teach-portfolio-btn {
     }
 
     .contact-footer-section {
-        padding: 0.85rem 0;
+        padding: 1rem 0 0; /* tight top, footer ends right below the form buttons */
     }
 
     .about-split-layout {
